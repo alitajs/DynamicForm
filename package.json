@@ -1,11 +1,15 @@
 {
-  "name": "DynamicForm",
-  "version": "1.0.0",
+  "name": "@alitajs/dform",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "unpkg": "./dist/index.umd.js",
   "scripts": {
     "start": "father-doc dev",
-    "build": "father-doc build",
+    "build:doc": "father-doc build",
+    "build": "father-build",
+    "publish": "npm publish --access public",
     "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
@@ -19,12 +23,19 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "antd-mobile": "^2.3.1",
+    "rc-field-form": "^0.0.0-alpha.30"
+  },
+  "peerDependencies": {
+    "react": "^16.8.5"
+  },
   "devDependencies": {
     "@umijs/fabric": "2.0.0-beta.4",
     "check-prettier": "^1.0.3",
     "cross-env": "^6.0.3",
     "eslint": "5.10.0",
+    "father-build": "^1.17.2",
     "father-doc": "^1.0.0-alpha.15",
     "husky": "^3.1.0",
     "import-sort-cli": "^6.0.0",
@@ -33,5 +44,8 @@
     "import-sort-style-module": "^6.0.0",
     "lint-staged": "^9.5.0",
     "stylelint": "^12.0.1"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
