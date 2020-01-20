@@ -5,7 +5,7 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 
-import { IFormItemProps } from './DynamicForm';
+import { IFormItemProps } from '../../DynamicForm';
 
 import {
   NomarInput,
@@ -17,7 +17,7 @@ import {
   ExtraInput,
   RangeDatePicker,
   NomarRadio,
-} from './components';
+} from '..';
 
 const FormItemType = {
   input: NomarInput,

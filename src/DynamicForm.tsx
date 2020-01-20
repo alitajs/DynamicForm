@@ -17,7 +17,7 @@ import {
   NomarRadio,
 } from './components';
 
-import NewFieldPicker from './NewFieldPicker';
+import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
 
 const FormItemType = {
   input: NomarInput,
@@ -68,8 +68,6 @@ export interface IDynamicFormProps {
 const nodeEnvIsDev = process.env.NODE_ENV === 'development';
 
 export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
-  console.log(formItem);
-
   const { type, disabled = allDisabled, ...otherProps } = formItem;
   const FormItemComponent = FormItemType[formItem.type];
   return <FormItemComponent {...otherProps} key={formItem.fieldProps} disabled={disabled} />;
