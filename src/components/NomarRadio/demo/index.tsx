@@ -37,7 +37,7 @@ const dayList = [
     label: '雨',
     value: '雨',
   },
-]
+];
 
 interface PageProps {}
 
@@ -62,7 +62,7 @@ const Page: FC<PageProps> = props => {
       fieldProps: 'userRadio2',
       required: true,
       data: dayList,
-      radioType: "vertical",
+      radioType: 'vertical',
       title: '天气情况',
     },
     {
@@ -80,7 +80,7 @@ const Page: FC<PageProps> = props => {
     userRadio3: 'no',
   };
   const formProps = {
-    formsData,
+    data: formsData,
     formsValues,
     form,
     onFinishFailed,

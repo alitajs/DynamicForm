@@ -58,7 +58,7 @@ const Page: FC<PageProps> = props => {
     onFinish,
     onFinishFailed,
     formsValues,
-    formsData,
+    data: formsData,
   };
 
   return (

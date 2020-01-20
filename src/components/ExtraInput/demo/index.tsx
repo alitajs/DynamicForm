@@ -84,7 +84,7 @@ const Page: FC = () => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    formsData,
+    data:formsData,
     formsValues,
     form,
   }

@@ -53,6 +53,7 @@ export interface IFormItemProps {
   fieldProps2?: string;
   placeholder2?: string;
   extraType?: 'input' | 'select';
+  editable?: boolean;
 }
 
 export interface IDynamicFormProps {

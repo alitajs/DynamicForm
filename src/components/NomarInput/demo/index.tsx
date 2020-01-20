@@ -32,8 +32,14 @@ const Page: FC<PageProps> = props => {
   };
 
   const photoImg = () => {
-    return <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} onClick={e => console.log(e)} />
-  }
+    return (
+      <img
+        src={PhotoIcon}
+        style={{ width: '3rem', height: '2rem' }}
+        onClick={e => console.log(e)}
+      />
+    );
+  };
 
   const formsData = [
     {
@@ -88,7 +94,7 @@ const Page: FC<PageProps> = props => {
       placeholder: '',
       title: '标题',
       editable: false,
-      onClick: (e) => console.log(e)
+      onClick: e => console.log(e),
     },
   ] as IFormItemProps[];
   const formsValues = {
@@ -99,7 +105,7 @@ const Page: FC<PageProps> = props => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    formsData,
+    data: formsData,
     formsValues,
     form,
   };

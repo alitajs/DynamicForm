@@ -10,8 +10,8 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 
 const tailLayout = {
-  wrapperCol: { offset: 2, span: 20 }
-}
+  wrapperCol: { offset: 2, span: 20 },
+};
 
 const RangeDatePicker: FC = () => {
   const [form] = useForm();
@@ -38,7 +38,7 @@ const RangeDatePicker: FC = () => {
       fieldProps2: 'rangeTime4',
       title: '时间(month)',
       modeType: 'month',
-    }
+    },
   ] as IFormItemProps[];
 
   const formsValues = {};
@@ -46,7 +46,7 @@ const RangeDatePicker: FC = () => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    formsData,
+    data: formsData,
     formsValues,
     form,
   };
@@ -55,10 +55,12 @@ const RangeDatePicker: FC = () => {
     <DynamicForm {...formProps}>
       <WhiteSpace size="sm" />
       <Field {...tailLayout}>
-        <Button type="primary" onClick={() => form.submit()}>Submit</Button>
+        <Button type="primary" onClick={() => form.submit()}>
+          Submit
+        </Button>
       </Field>
     </DynamicForm>
-  )
-}
+  );
+};
 
 export default RangeDatePicker;

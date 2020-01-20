@@ -10,8 +10,8 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 
 const tailLayout = {
-  wrapperCol: { offset: 2, span: 20 }
-}
+  wrapperCol: { offset: 2, span: 20 },
+};
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -52,26 +52,31 @@ const Page: FC = () => {
     Date: new Date(),
     Month: new Date(),
     DateTime: new Date(),
-  }
+  };
 
   const formProps = {
     form,
     onFinish,
     onFinishFailed,
-    formsData,
+    data: formsData,
     formsValues,
-  }
+  };
 
   return (
     <DynamicForm {...formProps}>
       <WhiteSpace size="sm" />
       <Field {...tailLayout}>
-        <Button type="primary" onClick={() => {form.submit()}}>
+        <Button
+          type="primary"
+          onClick={() => {
+            form.submit();
+          }}
+        >
           Submit
         </Button>
       </Field>
     </DynamicForm>
-  )
-}
+  );
+};
 
 export default Page;

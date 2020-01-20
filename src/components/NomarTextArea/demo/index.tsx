@@ -27,7 +27,7 @@ const Page: FC = () => {
       type: 'area',
       fieldProps: 'textArea1',
       required: true,
-      placeholder: '请输入...'
+      placeholder: '请输入...',
     },
     {
       type: 'area',
@@ -37,7 +37,6 @@ const Page: FC = () => {
       rows: 3,
       editable: false,
     },
-
   ] as IFormItemProps[];
 
   const formsValues = {};
@@ -45,7 +44,7 @@ const Page: FC = () => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    formsData,
+    data: formsData,
     formsValues,
     form,
   };
