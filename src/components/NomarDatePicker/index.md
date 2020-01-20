@@ -22,3 +22,52 @@ title: Date
 |maxDate|最大可选日期|date|''|否|
 
 ## 组件使用
+
+### Date
+
+<code src="./demo/date.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "date",
+  fieldProps: "Date",
+  modeType: "date",
+  title: "Date",
+  maxDate: new Date(),
+  minDate: new Date(),
+}
+```
+
+### Month
+
+<code src="./demo/month.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "date",
+  fieldProps: "Month",
+  modeType: "month",
+  title: "Month",
+  required: true,
+}
+```
+
+### DateTime
+
+<code src="./demo/datetime.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+ {
+  type: "date",
+  fieldProps: "DateTime",
+  modeType: "datetime",
+  title: "DateTime",
+  required: true,
+}
+```

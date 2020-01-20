@@ -23,3 +23,37 @@ title: RangeDatePicker
 |maxDate|最大可选日期|date|''|否|
 
 ## 组件使用
+
+### DateTime 
+
+<code src="./demo/datetime.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "rangeDatePicker",
+  fieldProps: "rangeTime1",
+  fieldProps2: "rangeTime2",
+  title: "时间(datetime)",
+  modeType: "datetime",
+  required: true
+}
+```
+
+### Month
+
+<code src="./demo/month.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "rangeDatePicker",
+  required: true,
+  fieldProps: "rangeTime3",
+  fieldProps2: "rangeTime4",
+  title: "时间(month)",
+  modeType: "month",
+}
+```
