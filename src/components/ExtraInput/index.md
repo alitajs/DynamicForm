@@ -26,5 +26,62 @@
 
 ## 组件使用
 
+### PriceInput
 
+<code src="./demo/priceInput.tsx" />
 
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "extraInput",
+  fieldProps: "minPrise",
+  fieldProps2: "maxPrise",
+  title: "价格区间",
+  placeholder: "输入最小价格",
+  placeholder2: "输入最大价格",
+  required: true,
+  inputType: "number",
+  extra: "¥",
+}
+```
+
+### PositionInput
+
+<code src="./demo/positionInput.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "extraInput",
+  fieldProps: "minPosition",
+  fieldProps2: "maxPosition",
+  title: "位置区间",
+  placeholder: "选择最小位置",
+  placeholder2: "选择最大位置",
+  required: true,
+  inputType: "text",
+  extra: extraImg(),
+}
+```
+
+### SelectExtra
+
+<code src="./demo/selectExtra.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "extraInput",
+  fieldProps: "price",
+  fieldProps2: "unit",
+  title: "单价",
+  placeholder: "输入价格",
+  placeholder2: "选择区间",
+  required: true,
+  extraType: "select",
+  data: unitList,
+}
+```
