@@ -11,7 +11,12 @@ export default {
       react: 'React',
     },
   },
-  // disableTypeCheck: true,
+  disableTypeCheck: true,
+  // namedExports: {
+  //   'react-is': [
+  //     'isFragment',
+  //   ]
+  // },
   extraBabelPlugins: [
     [
       'babel-plugin-import',
