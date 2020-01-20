@@ -6,7 +6,7 @@ export interface IOnlyReadInputProps extends Omit<INomarInputProps, 'inputType'>
 }
 
 const OnlyReadInput: FC<IOnlyReadInputProps> = props => {
-  return <NomarInput {...props} editable={false} inputType="text" />;
+  return <NomarInput {...props} editable={false} inputType="text" value={props.placeholder} />;
 };
 
 export default OnlyReadInput;
