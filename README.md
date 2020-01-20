@@ -6,7 +6,7 @@
 
 官方用法
 
-```tsx | pure
+```tsx
 <InputItem
     {...getFieldProps('autofocus')}
     clear
@@ -17,7 +17,7 @@
 
 使用@alitajs/dform
 
-```tsx | pure
+```tsx
 <NomarInput
     name='autofocus'
     placeholder="auto focus"
@@ -27,7 +27,7 @@
 
 ## 动态表单
 
-```tsx | pure
+```tsx
 <List renderHeader={() => 'Customize to focus'}>
     <InputItem
         {...getFieldProps('autofocus')}
@@ -52,7 +52,7 @@
 
 使用@alitajs/dform
 
-```tsx | pure
+```tsx
 const formData = [
     {
       type: 'input',
