@@ -10,7 +10,7 @@ export default {
       'umi-plugin-react',
       {
         antd: true,
-        hd: true,
+        hd: process.env.CUSTOM_DEV ? true : false,
         dva: false
       },
     ],
