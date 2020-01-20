@@ -16,14 +16,14 @@ const PositionInput: FC = () => {
     <Form>
       <List>
         <ExtraInput
-          fieldProps= 'minPosition'
-          fieldProps2 ='maxPosition'
-          title= '位置区间'
-          placeholder = '选择最小位置'
-          placeholder2 = '选择最大位置'
+          fieldProps="minPosition"
+          fieldProps2="maxPosition"
+          title="位置区间"
+          placeholder="选择最小位置"
+          placeholder2="选择最大位置"
           required={true}
-          inputType= 'text'
-          extra ={extraImg()}
+          inputType="text"
+          extra={extraImg()}
         />
       </List>
     </Form>

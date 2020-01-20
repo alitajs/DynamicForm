@@ -28,14 +28,14 @@ const SelectExtra: FC = () => {
     <Form>
       <List>
         <ExtraInput
-          fieldProps= 'price'
-          fieldProps2= 'unit'
-          title= '单价'
-          placeholder= '输入价格'
-          placeholder2= '选择区间'
-          required= {true}
-          extraType= 'select'
-          data= {unitList}
+          fieldProps="price"
+          fieldProps2="unit"
+          title="单价"
+          placeholder="输入价格"
+          placeholder2="选择区间"
+          required={true}
+          extraType="select"
+          data={unitList}
         />
       </List>
     </Form>

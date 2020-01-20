@@ -21,22 +21,20 @@ const citys = [
 
   
 const OnlyRead: FC = () =>{
-  
-    return(
-        <Form>
-            <List>
-                <NomarPicker
-                 fieldProps="userPicker3"
-                 required={true}
-                 title= '城市(不可编辑)'
-                 placeholder= '请选择'
-                 data= {citys}
-                 disabled={true}
-                />
-            </List>
-        </Form>
-    );
+  return(
+    <Form>
+      <List>
+        <NomarPicker
+          fieldProps="userPicker3"
+          required={true}
+          title="城市(不可编辑)"
+          placeholder="请选择"
+          data={citys}
+          disabled={true}
+        />
+      </List>
+    </Form>
+  );
 }
-
 
 export default OnlyRead;

@@ -30,19 +30,18 @@ const seasons = [
   ];
   
 const NormalSelect: FC = () =>{
-    return(
-        <Form>
-            <List>
-                <NomarPicker
-                 fieldProps = 'userPicker1'
-                 title = '季节'
-                 placeholder = '请选择'
-                 data = {seasons}
-                />
-            </List>
-        </Form>
-    );
+  return(
+    <Form>
+      <List>
+        <NomarPicker
+          fieldProps="userPicker1"
+          title="季节"
+          placeholder="请选择"
+          data={seasons}
+        />
+      </List>
+    </Form>
+  );
 }
-
 
 export default NormalSelect;

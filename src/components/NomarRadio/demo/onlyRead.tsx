@@ -21,11 +21,11 @@ const OnlyRead: FC = () => {
     <Form>
       <List>
         <NomarRadio
-         fieldProps= 'userRadio3'
-         required= {true}
-         data= {radioList}
-         title="发票"
-         disabled={true}
+          fieldProps="userRadio3"
+          required={true}
+          data={radioList}
+          title="发票"
+          disabled={true}
         />
       </List>
     </Form>
