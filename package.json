@@ -7,7 +7,7 @@
   "unpkg": "./dist/index.umd.js",
   "scripts": {
     "start": "father-doc dev",
-    "dev":"umi dev",
+    "dev": "cross-env CUSTOM_DEV=true umi dev",
     "build:doc": "father-doc build",
     "build": "father-build",
     "publish": "npm publish --access public",
