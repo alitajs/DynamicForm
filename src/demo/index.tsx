@@ -131,7 +131,7 @@ const Page: FC = props => {
     data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
     // allDisabled: true,
   };
   return (
