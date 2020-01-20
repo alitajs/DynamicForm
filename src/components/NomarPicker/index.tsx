@@ -13,6 +13,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   rules?: [];
   placeholder?: PickerPropsType['extra'];
   data?: PickerPropsType['data'];
+  value?: PickerPropsType['value'];
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -23,11 +24,20 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     fieldProps,
     rules,
     placeholder,
+    data = [] as any,
     ...otherProps
   } = props;
+
   return (
     <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-      <Picker {...otherProps} style={coverStyle} cascade={false} extra={placeholder}>
+      <Picker
+        {...otherProps}
+        style={coverStyle}
+        cascade={false}
+        extra={placeholder}
+        data={data}
+        title={title}
+      >
         <List.Item arrow="horizontal">
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps}>{title}</span>

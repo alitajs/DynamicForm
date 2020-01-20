@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { DatePicker, List } from 'antd-mobile';
 import { Field } from 'rc-field-form';
 import { INomarDatePickerProps } from '../NomarDatePicker';
@@ -29,13 +29,21 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     <div className={styles.rangeDatePickerStyle}>
       <div className={styles.beginDatePickerStyle}>
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-          <DatePicker {...otherProps} mode={modeType} minDate={minDate} maxDate={maxDate}>
-            <List.Item arrow="horizontal">
-              {required && <span className={styles.redStar}>*</span>}
-              <span id={fieldProps}>{title}</span>
-              <span id={fieldProps2}></span>
-            </List.Item>
-          </DatePicker>
+          {from => (
+            <DatePicker
+              {...otherProps}
+              mode={modeType}
+              minDate={minDate}
+              maxDate={maxDate}
+              format={value => changeDateFormat(value, modeType)}
+            >
+              <List.Item arrow="horizontal">
+                {required && <span className={styles.redStar}>*</span>}
+                <span id={fieldProps}>{title}</span>
+                <span id={fieldProps2}></span>
+              </List.Item>
+            </DatePicker>
+          )}
         </Field>
       </div>
       <div className={styles.line}>——</div>

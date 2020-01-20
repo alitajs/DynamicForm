@@ -17,10 +17,21 @@ export interface INomarRadioProps extends RadioGroupProps {
   rules?: [];
   required?: boolean;
   placeholder?: string;
-  data?: radioItem[];
+  data?: radioItem[] | [];
   radioType?: 'horizontal' | 'vertical';
   coverStyle?: React.CSSProperties;
 }
+
+const radioList = [
+  {
+    label: '是',
+    value: true,
+  },
+  {
+    label: '否',
+    value: false,
+  },
+];
 
 const NomarRadio: FC<INomarRadioProps> = props => {
   const {
@@ -30,20 +41,22 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     rules,
     title,
     placeholder,
-    data,
+    data = radioList as any,
     radioType = 'horizontal',
     ...otherProps
   } = props;
 
   const RadioGroup = () => {
     return (
-      <Radio.Group className={styles.fixRadioStyle} style={coverStyle} {...otherProps}>
-        {data.map(item => (
-          <Radio key={item.label} value={item.value}>
-            {item.label}
-          </Radio>
-        ))}
-      </Radio.Group>
+      <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+        <Radio.Group className={styles.fixRadioStyle} style={coverStyle} {...otherProps}>
+          {data.map((item: radioItem) => (
+            <Radio key={item.label} value={item.value}>
+              {item.label}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </Field>
     );
   };
 
@@ -56,7 +69,13 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         </p>
         {
           <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-            {RadioGroup()}
+            <Radio.Group className={styles.fixRadioStyle} style={coverStyle} {...otherProps}>
+              {data.map((item: radioItem) => (
+                <Radio key={item.label} value={item.value}>
+                  {item.label}
+                </Radio>
+              ))}
+            </Radio.Group>
           </Field>
         }
       </div>
@@ -64,15 +83,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   }
 
   return (
-    <List.Item
-      key={fieldProps}
-      style={coverStyle}
-      extra={
-        <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-          {RadioGroup()}
-        </Field>
-      }
-    >
+    <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
       {required && <span className={styles.redStar}>*</span>}
       {title}
     </List.Item>

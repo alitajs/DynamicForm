@@ -37,12 +37,14 @@ const Page: FC = () => {
       fieldProps: 'Month',
       modeType: 'month',
       title: 'Month',
+      required: true,
     },
     {
       type: 'date',
       fieldProps: 'DateTime',
       modeType: 'datetime',
       title: 'DateTime',
+      required: true,
     },
   ] as IFormItemProps[];
 
