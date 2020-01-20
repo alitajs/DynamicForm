@@ -20,3 +20,38 @@ title: Radio
 |required|必填判断|boolean|false|否|
 |disabled|是否可编辑|boolean|false|否|
 |radioType|样式类型|`vertical` or `horizontal`|false|`horizontal`|
+
+## 组件使用
+
+### NormalRadio
+
+<code src="./demo/normalRadio.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: 'radio',
+  fieldProps: 'userRadio1',
+  required: true,
+  data: radioList,
+  title: '发票',
+}
+```
+
+### OnlyRead
+
+<code src="./demo/onlyRead.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "radio",
+  fieldProps: "userRadio3",
+  required: true,
+  data: radioList,
+  title: "发票",
+  disabled: true,
+},
+```
