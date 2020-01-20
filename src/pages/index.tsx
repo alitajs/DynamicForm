@@ -85,6 +85,16 @@ const Page: FC = props => {
       title: '用户时间选择',
       modeType: 'datetime',
     },
+    {
+      type: 'rangeDatePicker',
+      fieldProps: 'datePicker1',
+      fieldProps2: 'datePicker2',
+      required: true,
+      placeholder: '请输入',
+      placeholder2: '请选择',
+      title: '时间(datetime)',
+      modeType: 'datetime',
+    },
   ] as IFormItemProps[];
   const formsValues = {
     username: 0,
