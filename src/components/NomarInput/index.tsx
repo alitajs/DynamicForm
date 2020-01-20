@@ -28,14 +28,9 @@ const NomarInput: FC<INomarInputProps> = props => {
   return (
     <div className={styles.fixNomarInputStyle}>
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <InputItem
-          id={fieldProps}
-          {...otherProps}
-          type={inputType}
-          style={{ textAlign: 'right', ...coverStyle }}
-        >
+        <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
           {required && <span className={styles.redStar}>*</span>}
-          {title}
+          <span id={fieldProps}>{title}</span>
         </InputItem>
       </Field>
     </div>

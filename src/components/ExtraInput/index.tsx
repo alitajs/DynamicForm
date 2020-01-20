@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
 import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
-import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 import { Field } from 'rc-field-form';
 import { NomarInput } from '../';
-
 import styles from '../../styles/index.less';
 
 export interface IExtraInputProps extends InputItemPropsType {
@@ -17,12 +15,13 @@ export interface IExtraInputProps extends InputItemPropsType {
   title: string;
   coverStyle?: React.CSSProperties;
   extraType?: 'input' | 'select';
-  data?: PickerPropsType['data'];
+  data?: any;
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
   const {
     inputType = 'text',
+    fieldProps,
     fieldProps2,
     title,
     required,
@@ -47,12 +46,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
 
     return (
       <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <InputItem
-          {...otherProps}
-          type={inputType}
-          style={{ textAlign: 'right', ...coverStyle }}
-          placeholder={placeholder2}
-        />
+        <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }} />
       </Field>
     );
   };
@@ -63,7 +57,15 @@ const ExtraInput: FC<IExtraInputProps> = props => {
         className={styles.beginExtraInputStyle}
         style={{ width: extraType === 'input' ? '65%' : '70%' }}
       >
-        <NomarInput {...props} extra="" />
+        <NomarInput
+          {...otherProps}
+          title={title}
+          required={required}
+          rules={rules}
+          coverStyle={coverStyle}
+          fieldProps={fieldProps}
+          extra=""
+        />
       </div>
       {extraType === 'input' && <div className={styles.line}>——</div>}
       <div className={styles.endExtraInputStyle}>{extraDiv()}</div>
