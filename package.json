@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "main": "./dist/index.js",
+  "typings": "./dist/src",
   "module": "./dist/index.esm.js",
   "unpkg": "./dist/index.umd.js",
   "scripts": {
@@ -26,10 +27,13 @@
   "license": "MIT",
   "dependencies": {
     "antd-mobile": "^2.3.1",
-    "rc-field-form": "^0.0.0-alpha.30"
+    "rc-field-form": "^0.0.0-alpha.30",
+    "copy-to-clipboard": "^3.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8.5"
+    "react": "^16.8.5",
+    "antd-mobile":"^2.3.1",
+    "antd":"^3.26.7"
   },
   "devDependencies": {
     "@umijs/fabric": "2.0.0-beta.4",

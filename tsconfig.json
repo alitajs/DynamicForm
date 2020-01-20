@@ -5,7 +5,7 @@
     "outDir": "build/dist",
     "sourceMap": true,
     "jsx": "react",
-    "declaration": false,
+    // "declaration": false,
     "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -21,7 +21,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "allowJs": true,
-    // "strict": true,
+    "strict": true,
     "paths": {
       "@/*": ["./src/*"]
     }
