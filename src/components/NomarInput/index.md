@@ -14,7 +14,7 @@ title: Input
 |--|--|--|--|--|
 |type|表单类型|string|''|是|
 |title|标题|string|''|是|
-|fieldProps|文本属性|boolean|false|是|
+|fieldProps|文本属性|string|false|是|
 |placeholder|placeholder|string|''|否|
 |required|必填判断|boolean|false|否|
 |inputType|html input 框类型|string|text|否|

@@ -21,3 +21,38 @@ title: TextArea
 |editable|可编辑判断|boolean|false|true|
 
 ## 组件使用
+
+### NomarArea
+
+<code src="./demo/nomarArea.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "area",
+  fieldProps: "textArea1",
+  required: true,
+  placeholder: "请输入..."
+},
+```
+
+### OnlyReadArea
+
+<code src="./demo/onlyReadArea.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "area",
+  fieldProps: "textArea2",
+  title: "有标题",
+  placeholder: "只读，不可编辑",
+  rows: 3,
+  editable: false,
+},
+```
+
+
+
