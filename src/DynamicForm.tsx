@@ -93,7 +93,7 @@ export const defaultFailed = (
 
 const DynamicForm: FC<IDynamicFormProps> = ({
   children,
-  data,
+  data = [],
   form,
   allDisabled = false,
   formsValues = {},
