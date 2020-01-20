@@ -21,10 +21,10 @@ const NormalRedio: FC = () => {
     <Form>
       <List>
         <NomarRadio
-          fieldProps='userRadio1'
+          fieldProps="userRadio1"
           required={true}
           data={radioList}
-          title= '发票'
+          title="发票"
         />
       </List>
     </Form>

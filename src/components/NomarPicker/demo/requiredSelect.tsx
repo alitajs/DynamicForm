@@ -20,20 +20,19 @@ const citys = [
 ]
   
 const RequiredSelect: FC = () =>{
-    return(
-        <Form>
-            <List>
-                <NomarPicker
-                 fieldProps= 'userPicker2'
-                 required= {true}
-                 title= '城市'
-                 placeholder= "请选择"
-                 data={citys}
-                />
-            </List>
-        </Form>
-    );
+  return(
+    <Form>
+      <List>
+        <NomarPicker
+          fieldProps="userPicker2"
+          required={true}
+          title="城市"
+          placeholder="请选择"
+          data={citys}
+        />
+      </List>
+    </Form>
+  );
 }
-
 
 export default RequiredSelect;
