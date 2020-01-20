@@ -16,8 +16,11 @@ import {
   OnlyReadInput,
   NomarTextArea,
   NomarDatePicker,
+  ExtraInput,
+  RangeDatePicker,
+  NomarRadio,
 } from './components';
-import useForm from 'rc-field-form/es/useForm';
+
 
 const FormItemType = {
   input: NomarInput,
@@ -26,10 +29,13 @@ const FormItemType = {
   area: NomarTextArea,
   date: NomarDatePicker,
   switch: NomarSwitch,
+  radio: NomarRadio,
+  extraInput: ExtraInput,
+  rangeDatePicker: RangeDatePicker,
 };
 
 export interface IFormItemProps {
-  type: 'input' | 'text' | 'select' | 'area' | 'date';
+  type: 'input' | 'text' | 'select' | 'area' | 'date' | 'switch' | 'extraInput' | 'radio' | 'rangeDatePicker';
   title: string;
   fieldProps: string;
   required?: boolean;
@@ -38,6 +44,15 @@ export interface IFormItemProps {
   data?: [];
   inputType?: InputItemPropsType['type'];
   modeType?: DatePickerPropsType['mode'];
+  fieldProps2?: string;
+  placeholder2?: string;
+  coverStyle?: React.CSSProperties;
+  extraType?: 'input' | 'select';
+  radioType?: 'horizontal' | 'vertical';
+  minDate?: Date;
+  maxDate?: Date;
+  editable?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface IDynamicFormProps {
@@ -66,6 +81,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
     const FormItemComponent = FormItemType[formItem.type];
     return <FormItemComponent {...otherProps} key={formItem.fieldProps} disabled={disabled} />;
   };
+
   return (
     <Form
       form={form}

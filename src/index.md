@@ -7,6 +7,3 @@ DynamicForm 太长了懒得拼，就叫做 dform 了。
 
 <code src="./demo/index.tsx" />
 
-#
-
-<code src="./DynamicForm.tsx" />

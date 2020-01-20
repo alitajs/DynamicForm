@@ -30,7 +30,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
       <Picker {...otherProps} style={coverStyle} cascade={false} extra={placeholder}>
         <List.Item arrow="horizontal">
           {required && <span className={styles.redStar}>*</span>}
-          {title}
+          <span id={fieldProps}>{title}</span>
         </List.Item>
       </Picker>
     </Field>

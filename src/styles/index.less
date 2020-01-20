@@ -4,3 +4,154 @@
   margin-right: 6px;
   color: rgba(255, 72, 72, 1);
 }
+
+
+.fixRadioStyle {
+
+  :global {
+    .ant-radio-inner {
+      width: 40px;
+      height: 40px;
+    }
+
+    .ant-radio-wrapper {
+      font-size: 30px;
+    }
+
+    .ant-radio-inner::after {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      top: 6px;
+      left: 6px;
+    }
+  }
+}
+
+.fixRadioVerticalStyle {
+  margin-left: 30px;
+  padding: 21px 21px 21px 0px;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+  font-size: 34px;
+
+  .titleDiv {
+    margin-bottom: 28px;
+    color: #999;
+    font-size: 24px;
+  }
+}
+
+.fixNomarInputStyle {
+  :global {
+    .am-input-extra {
+      max-height: 88px;
+    }
+  }
+}
+
+.rangeDatePickerStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  :global {
+    .am-list-item .am-list-line .am-list-arrow {
+      display: none;
+    }
+  }
+
+  .beginDatePickerStyle {
+    width: 65%;
+    :global {
+      .am-list-extra {
+        flex-basis: 50%;
+      }
+    }
+  }
+
+  .endDatePickerStyle {
+    width: 30%;
+
+    :global {
+      .am-list-line {
+        justify-content: flex-end;
+      }
+      .am-list-extra {
+        flex-basis: 100%;
+      }
+      .am-list-item {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .line {
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.textAreaStyle {
+  :global {
+    .am-textarea-control {
+      padding: 0px;
+    }
+
+    .am-textarea-label {
+      line-height: 55px;
+    }
+    
+    .am-list-item {
+      padding-right: 0px !important;
+    }
+  }
+}
+
+.extraInputStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .beginExtraInputStyle {
+    width: 65%;
+  }
+
+  .line {
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .endExtraInputStyle {
+    width: 30%;
+
+    :global {
+      .am-list-item.am-input-item {
+        padding-left: 0px;
+      }
+
+      .am-list-item {
+        padding-left: 0px;
+      }
+
+      .am-list-line {
+        justify-content: flex-end;
+      }
+
+      .am-list-extra {
+        flex-basis: 100%;
+      }
+    }
+  }
+}

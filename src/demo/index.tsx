@@ -32,6 +32,17 @@ const seasons = [
   ],
 ];
 
+const radioList = [
+  {
+    label: '是',
+    value: 'yes',
+  },
+  {
+    label: '否',
+    value: 'no',
+  },
+];
+
 const Page: FC = props => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
@@ -86,6 +97,30 @@ const Page: FC = props => {
       title: '用户时间选择',
       modeType: 'datetime',
     },
+    {
+      type: 'extraInput',
+      fieldProps:"extraInput1",
+      fieldProps2: "extraInput2",
+      placeholder: "请输入1",
+      placeholder2: "请输入",
+      title: "文字区间1",
+      required: true,
+    },
+    {
+      type: 'radio',
+      fieldProps: "userRadio1",
+      required: true,
+      title: "用户选择1", 
+      data: radioList
+    },
+    {
+      type: 'rangeDatePicker',
+      fieldProps: "datePicker3",
+      fieldProps2: "datePicker4",
+      required: true,
+      title: "时间(month)",
+      modeType: "month",
+    }
   ] as IFormItemProps[];
   const formsValues = {
     useronlyread: '原始文档，没有变更',

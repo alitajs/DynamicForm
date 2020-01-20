@@ -12,6 +12,7 @@ export interface INomarInputProps extends InputItemPropsType {
   required?: boolean;
   fieldProps: string;
   rules?: [];
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 const NomarInput: FC<INomarInputProps> = props => {
@@ -25,12 +26,19 @@ const NomarInput: FC<INomarInputProps> = props => {
     ...otherProps
   } = props;
   return (
-    <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-      <InputItem {...otherProps} type={inputType} style={coverStyle}>
-        {required && <span className={styles.redStar}>*</span>}
-        {title}
-      </InputItem>
-    </Field>
+    <div className={styles.fixNomarInputStyle}>
+      <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+        <InputItem
+          id={fieldProps}
+          {...otherProps}
+          type={inputType}
+          style={{ textAlign: 'right', ...coverStyle }}
+        >
+          {required && <span className={styles.redStar}>*</span>}
+          {title}
+        </InputItem>
+      </Field>
+    </div>
   );
 };
 
