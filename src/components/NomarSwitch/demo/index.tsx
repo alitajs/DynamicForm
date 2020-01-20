@@ -19,39 +19,58 @@ const Page: FC<PageProps> = props => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
     console.log('Success:', values);
-  }
+  };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     console.log(errorInfo);
-  }
+  };
 
   const formsData = [
     {
       type: 'switch',
-      fieldProps: 'userSwitch',
+      fieldProps: 'off',
       placeholder: '选择',
-      title: '用户选择',
+      title: 'Off',
       required: true,
     },
+    {
+      type: 'switch',
+      fieldProps: 'on',
+      placeholder: '选择',
+      title: 'On',
+    },
+    {
+      type: 'switch',
+      fieldProps: 'disabledOn',
+      placeholder: '选择',
+      title: 'Disabled On',
+      required: true,
+      disabled: true,
+    },
   ] as IFormItemProps[];
-  const formsValues = {};
+  const formsValues = {
+    off: false,
+    on: true,
+    disabledOn: true,
+  };
   const formsProps = {
     form,
     onFinish,
     onFinishFailed,
     formsValues,
     formsData,
-  }
+  };
 
   return (
     <DynamicForm {...formsProps}>
-      <WhiteSpace size='sm' />
-        <Button type="primary" onClick={() => form.submit()} >
+      <WhiteSpace size="sm" />
+      <Field {...tailLayout}>
+        <Button type="primary" onClick={() => form.submit()}>
           Submit
         </Button>
+      </Field>
     </DynamicForm>
-  )
-}
+  );
+};
 
 export default Page;
-
