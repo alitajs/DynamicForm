@@ -1,5 +1,5 @@
 /**
- * title: 基础 Modal
+ * title: 基础 输入框
  * desc: 存在文本点击事件
  */
 import React, { FC } from 'react';

@@ -1,5 +1,6 @@
 /**
- * title: Select
+ * title: 基础 选择框
+ * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';

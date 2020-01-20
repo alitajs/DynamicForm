@@ -52,6 +52,7 @@ export interface IFormItemProps {
   minDate?: Date;
   maxDate?: Date;
   editable?: boolean;
+  extra?: any;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 

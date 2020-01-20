@@ -1,57 +1,65 @@
 /**
- * title: 基础 开关控件
+ * title: 基础 多行文本输入框
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 
 const tailLayout = {
   wrapperCol: { offset: 2, span: 20 },
 };
 
-interface PageProps {}
-
-const Page: FC<PageProps> = props => {
+const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
     console.log('Success:', values);
-  }
+  };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    console.log(errorInfo);
-  }
+    console.log('Failed:', errorInfo);
+  };
 
   const formsData = [
     {
-      type: 'switch',
-      fieldProps: 'userSwitch',
-      placeholder: '选择',
-      title: '用户选择',
+      type: 'area',
+      fieldProps: 'textArea1',
       required: true,
+      placeholder: '请输入...'
     },
+    {
+      type: 'area',
+      fieldProps: 'textArea2',
+      title: '有标题',
+      placeholder: '只读，不可编辑',
+      rows: 3,
+      editable: false,
+    },
+
   ] as IFormItemProps[];
+
   const formsValues = {};
-  const formsProps = {
-    form,
+
+  const formProps = {
     onFinish,
     onFinishFailed,
-    formsValues,
     formsData,
-  }
+    formsValues,
+    form,
+  };
 
   return (
-    <DynamicForm {...formsProps}>
-      <WhiteSpace size='sm' />
-        <Button type="primary" onClick={() => form.submit()} >
+    <DynamicForm {...formProps}>
+      <WhiteSpace size="sm" />
+      <Field {...tailLayout}>
+        <Button type="primary" onClick={() => form.submit()}>
           Submit
         </Button>
+      </Field>
     </DynamicForm>
-  )
-}
+  );
+};
 
 export default Page;
-

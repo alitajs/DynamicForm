@@ -1,5 +1,5 @@
 /**
- * title: 基础 Modal
+ * title: 基础 输入框
  * desc: 输入框
  */
 import React, { FC } from 'react';
