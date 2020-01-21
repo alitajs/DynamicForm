@@ -6,6 +6,7 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
+import moment from 'moment';
 
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 
@@ -41,7 +42,9 @@ const RangeDatePicker: FC = () => {
     },
   ] as IFormItemProps[];
 
-  const formsValues = {};
+  const formsValues = {
+    rangeTime1: new Date(),
+  };
 
   const formProps = {
     onFinish,
