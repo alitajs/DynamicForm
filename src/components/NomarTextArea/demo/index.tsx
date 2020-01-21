@@ -37,6 +37,14 @@ const Page: FC = () => {
       rows: 3,
       editable: false,
     },
+    {
+      type: 'area',
+      fieldProps: 'titleTooLong',
+      title: '标题文字内容过长',
+      placeholder: '请输入',
+      labelNumber: 8,
+      required: true,
+    }
   ] as IFormItemProps[];
 
   const formsValues = {};

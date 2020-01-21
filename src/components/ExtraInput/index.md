@@ -23,6 +23,7 @@
 |clear|是否带清除功能|boolean|false|否|
 |editable|是否可编辑|boolean|true|否|
 |extra|右边注释|string or node|''|否|
+|labelNumber|标签的文字个数|number|5|否|
 
 ## 组件使用
 
@@ -42,6 +43,7 @@
   placeholder2: "输入最大价格",
   required: true,
   inputType: "number",
+  labelNumber: 8,
   extra: "¥",
 }
 ```

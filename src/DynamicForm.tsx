@@ -54,6 +54,8 @@ export interface IFormItemProps {
   placeholder2?: string;
   extraType?: 'input' | 'select';
   editable?: boolean;
+  rows?: number;
+  labelNumber?: number;
 }
 
 export interface IDynamicFormProps {
