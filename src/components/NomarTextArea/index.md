@@ -19,6 +19,7 @@ title: TextArea
 |required|必填判断|boolean|false|否|
 |rows|行数|number|3|否|
 |editable|可编辑判断|boolean|false|true|
+|labelNumber|标签的文字个数|number|5|否|
 
 ## 组件使用
 
@@ -51,6 +52,21 @@ title: TextArea
   placeholder: "只读，不可编辑",
   rows: 3,
   editable: false,
+},
+```
+
+### TitleTooLong
+
+<code src="./demo/titleTooLong.tsx" />
+
+```json
+{
+  type: "area",
+  fieldProps: "titleTooLong",
+  title: "标题文字内容过长",
+  placeholder: "请输入",
+  labelNumber: 8,
+  required: true,
 },
 ```
 

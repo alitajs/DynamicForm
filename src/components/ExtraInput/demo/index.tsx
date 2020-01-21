@@ -50,11 +50,12 @@ const Page: FC = () => {
       type: 'extraInput',
       fieldProps: 'minPrise',
       fieldProps2: 'maxPrise',
-      title: '价格区间',
+      title: '价格区间(数字输入)',
       placeholder: '输入最小价格',
       placeholder2: '输入最大价格',
       required: true,
       inputType: 'number',
+      labelNumber: 8,
       extra: '¥',
     },
     {
@@ -78,7 +79,7 @@ const Page: FC = () => {
       required: true,
       extraType: 'select',
       data: unitList,
-    }
+    },
   ] as IFormItemProps[];
   const formsValues = {};
   const formProps = {

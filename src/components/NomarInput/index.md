@@ -22,6 +22,7 @@ title: Input
 |editable|是否可编辑|boolean|true|否|
 |extra|右边注释|string or node|''|否|
 |onClick|文字点击事件|function|null|否|
+|labelNumber|标签的文字个数|number|5|否|
 
 ## 组件使用
 
@@ -110,3 +111,19 @@ title: Input
 }
 ```
 
+### TitleTooLong
+
+<code src="./demo/titleTooLong.tsx" />
+
+```json
+{
+  type: "input",
+  fieldProps: "username7",
+  required: true,
+  placeholder: "请输入",
+  title: "标题名称过长",
+  labelNumber: 7,
+  inputType: "text",
+  clear: true,
+}
+```

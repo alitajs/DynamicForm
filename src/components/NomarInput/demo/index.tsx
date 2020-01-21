@@ -96,6 +96,16 @@ const Page: FC<PageProps> = props => {
       editable: false,
       onClick: e => console.log(e),
     },
+    {
+      type: 'input',
+      fieldProps: 'username7',
+      required: true,
+      placeholder: '请输入',
+      title: '标题名称过长',
+      labelNumber: 7,
+      inputType: 'text',
+      clear: true,
+    },
   ] as IFormItemProps[];
   const formsValues = {
     userAge: '这里只读不可编辑',
