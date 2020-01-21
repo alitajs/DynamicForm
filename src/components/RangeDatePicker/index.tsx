@@ -34,6 +34,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
             mode={modeType}
             minDate={minDate}
             maxDate={maxDate}
+            title={title}
             format={value => changeDateFormat(value, modeType)}
           >
             <List.Item arrow="horizontal">
@@ -52,6 +53,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
             mode={modeType}
             minDate={minDate}
             maxDate={maxDate}
+            title={title}
             format={value => changeDateFormat(value, modeType)}
           >
             <List.Item arrow="horizontal"></List.Item>

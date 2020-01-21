@@ -23,6 +23,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
       <DatePicker
         {...otherProps}
         mode={modeType}
+        title={title}
         format={value => changeDateFormat(value, modeType)}
       >
         <List.Item arrow="horizontal">
