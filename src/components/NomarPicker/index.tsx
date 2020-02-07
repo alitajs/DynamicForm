@@ -14,6 +14,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   placeholder?: PickerPropsType['extra'];
   data?: PickerPropsType['data'];
   value?: PickerPropsType['value'];
+  positionType?: 'vertical' | 'horizontal';
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -25,8 +26,34 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     rules,
     placeholder,
     data = [] as any,
+    positionType = 'horizontal',
     ...otherProps
   } = props;
+
+  if (positionType === 'vertical') {
+    return (
+      <div className={styles.nomarPickerVerticalStyle}>
+        <p>
+          {required && <span className={styles.redStar}>*</span>}
+          <span id={fieldProps} className={styles.title}>
+            {title}
+          </span>
+        </p>
+        <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+          <Picker
+            {...otherProps}
+            style={coverStyle}
+            cascade={false}
+            extra={placeholder}
+            data={data}
+            title={title}
+          >
+            <List.Item arrow="horizontal"></List.Item>
+          </Picker>
+        </Field>
+      </div>
+    );
+  }
 
   return (
     <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>

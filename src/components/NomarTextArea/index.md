@@ -10,16 +10,17 @@ title: TextArea
 
 ## API
 
-|参数|说明|类型|默认值|是否必填|
-|--|--|--|--|--|
-|type|表单类型|string|''|是|
-|title|标题|string|''|是|
-|fieldProps|文本属性|string|''|是|
-|placeholder|placeholder|string|''|否|
-|required|必填判断|boolean|false|否|
-|rows|行数|number|3|否|
-|editable|可编辑判断|boolean|false|true|
-|labelNumber|标签的文字个数|number|5|否|
+| 参数         | 说明           | 类型                       | 默认值       | 是否必填 |
+| ------------ | -------------- | -------------------------- | ------------ | -------- |
+| type         | 表单类型       | string                     | ''           | 是       |
+| title        | 标题           | string                     | ''           | 是       |
+| fieldProps   | 文本属性       | string                     | ''           | 是       |
+| placeholder  | placeholder    | string                     | ''           | 否       |
+| required     | 必填判断       | boolean                    | false        | 否       |
+| rows         | 行数           | number                     | 3            | 否       |
+| editable     | 可编辑判断     | boolean                    | false        | true     |
+| labelNumber  | 标签的文字个数 | number                     | 5            | 否       |
+| positionType | 表单方向样式   | `horizontal` or `vertical` | `horizontal` | 否       |
 
 ## 组件使用
 
@@ -59,6 +60,8 @@ title: TextArea
 
 <code src="./demo/titleTooLong.tsx" />
 
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
 ```json
 {
   type: "area",
@@ -68,6 +71,22 @@ title: TextArea
   labelNumber: 8,
   required: true,
 },
+```
+
+### VerticalArea
+
+<code src="./demo/verticalArea.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  title: "备注",
+  fieldProps: "Remarks",
+  required: true,
+  placeholder: "请输入...",
+  positionType: "vertical",
+}
 ```
 
 

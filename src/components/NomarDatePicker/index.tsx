@@ -13,10 +13,42 @@ export interface INomarDatePickerProps extends DatePickerPropsType {
   title: string;
   rules?: [];
   placeholder?: string;
+  positionType?: 'vertical' | 'horizontal';
 }
 
 const NomarDatePicker: FC<INomarDatePickerProps> = props => {
-  const { fieldProps, required = false, title, rules, modeType = 'date', ...otherProps } = props;
+  const {
+    fieldProps,
+    required = false,
+    title,
+    rules,
+    modeType = 'date',
+    positionType = 'horizontal',
+    ...otherProps
+  } = props;
+
+  if (positionType === 'vertical') {
+    return (
+      <div className={styles.nomarDatePickerVerticalStyle}>
+        <p>
+          {required && <span className={styles.redStar}>*</span>}
+          <span id={fieldProps} className={styles.title}>
+            {title}
+          </span>
+        </p>
+        <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+          <DatePicker
+            {...otherProps}
+            mode={modeType}
+            title={title}
+            format={value => changeDateFormat(value, modeType)}
+          >
+            <List.Item arrow="horizontal" />
+          </DatePicker>
+        </Field>
+      </div>
+    );
+  }
 
   return (
     <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>

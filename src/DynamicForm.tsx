@@ -56,6 +56,7 @@ export interface IFormItemProps {
   editable?: boolean;
   rows?: number;
   labelNumber?: number;
+  positionType?: 'vertical' | 'horizontal';
 }
 
 export interface IDynamicFormProps {

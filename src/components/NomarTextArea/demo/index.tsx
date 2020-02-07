@@ -44,7 +44,15 @@ const Page: FC = () => {
       placeholder: '请输入',
       labelNumber: 8,
       required: true,
-    }
+    },
+    {
+      type: 'area',
+      fieldProps: 'Remarks',
+      title: '备注',
+      placeholder: '请输入',
+      required: true,
+      positionType: 'vertical',
+    },
   ] as IFormItemProps[];
 
   const formsValues = {};

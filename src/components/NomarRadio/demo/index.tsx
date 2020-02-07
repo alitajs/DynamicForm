@@ -62,7 +62,7 @@ const Page: FC<PageProps> = props => {
       fieldProps: 'userRadio2',
       required: true,
       data: dayList,
-      radioType: 'vertical',
+      positionType: 'vertical',
       title: '天气情况',
     },
     {

@@ -50,6 +50,63 @@
   }
 }
 
+.nomarInputVerticalStyle {
+  p {
+    font-size: 34px;
+    margin-bottom: 0;
+    padding-left: 30px;
+    color: #000;
+    padding-top: 28px;
+  }
+
+  :global {
+    .am-input-extra {
+      max-height: 88px;
+    }
+  }
+}
+
+.nomarPickerVerticalStyle {
+  p {
+    font-size: 34px;
+    margin-bottom: 0;
+    padding-left: 30px;
+    color: #000;
+    padding-top: 28px;
+  }
+
+  :global {
+    .am-list-line {
+      justify-content: space-between;
+    }
+
+    .am-list-extra {
+      text-align: left !important;
+    }
+  }
+}
+
+.nomarDatePickerVerticalStyle {
+  p {
+    font-size: 34px;
+    margin-bottom: 0;
+    padding-left: 30px;
+    color: #000;
+    padding-top: 28px;
+  }
+
+  :global {
+    .am-list-line {
+      justify-content: space-between;
+    }
+
+    .am-list-extra {
+      text-align: left !important;
+      flex-basis: 70% !important;
+    }
+  }
+}
+
 .rangeDatePickerStyle {
   display: flex;
   flex-direction: row;
@@ -65,6 +122,7 @@
 
   .beginDatePickerStyle {
     width: 65%;
+
     :global {
       .am-list-extra {
         flex-basis: 50%;
@@ -79,9 +137,11 @@
       .am-list-line {
         justify-content: flex-end;
       }
+
       .am-list-extra {
         flex-basis: 100%;
       }
+
       .am-list-item {
         padding-left: 0;
       }
@@ -107,11 +167,27 @@
     .am-textarea-label {
       line-height: 55px;
     }
-    
+
     .am-list-item {
       padding-right: 0px !important;
+      padding-left: 20px;
     }
   }
+}
+
+.textAreaVerticalStyle {
+  margin-left: 30px;
+  margin-top: 14px;
+
+  p {
+    margin-bottom: 0;
+    font-size: 34px;
+  }
+
+  .titleStyle {
+    color: #000;
+  }
+
 }
 
 .extraInputStyle {
@@ -151,6 +227,122 @@
 
       .am-list-extra {
         flex-basis: 100%;
+      }
+    }
+  }
+}
+
+.extraInputVerticalStyle {
+  p {
+    font-size: 34px;
+    margin-bottom: 0;
+    padding-left: 30px;
+    color: #000;
+    padding-top: 28px;
+  }
+
+  .extraInputContentStyle {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+    width: 100%;
+
+    .beginVerticalExtraInputStyle {
+      :global {
+        .am-list-item {
+          padding-left: 0;
+        }
+      }
+    }
+
+    .endVerticalExtraInputStyle {
+      width: 51%;
+      border-bottom: 1px solid #ddd;
+
+      :global {
+        .am-list-item {
+          padding-left: 30px;
+        }
+
+        .am-list-line {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    .line {
+      width: 5%;
+      height: 88px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    :global {
+      .am-list-extra {
+        flex-basis: 100%;
+      }
+
+      .am-input-label {
+        display: none;
+      }
+    }
+  }
+
+}
+
+.rangeDatePickerVerticalStyle {
+
+  p {
+    font-size: 34px;
+    margin-bottom: 0;
+    padding-left: 30px;
+    color: #000;
+    padding-top: 28px;
+  }
+
+  .rangeDatePickerVerticalContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .line {
+      width: 5%;
+      height: 88px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .beginVerticalDatePickerStyle {
+      width: 48%;
+
+      :global {
+        .am-list-content {
+          display: none;
+        }
+
+        .am-list-extra {
+          flex-basis: 90%;
+        }
+      }
+    }
+
+    .endVerticalDatePickerStyle {
+      width: 47%;
+
+      :global {
+        .am-list-extra {
+          flex-basis: 90%;
+        }
+
+        .am-list-line {
+          border-bottom: 0;
+        }
+
+        .am-list-item {
+          border-bottom: 1px solid #ddd;
+        }
       }
     }
   }

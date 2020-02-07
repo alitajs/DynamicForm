@@ -10,15 +10,16 @@ title: Select
 
 ## API
 
-|参数|说明|类型|默认值|是否必填|
-|--|--|--|--|--|
-|type|表单类型|string|''|是|
-|title|标题|string|''|是|
-|data|数据源|list|[]|是|
-|fieldProps|文本属性|string|false|是|
-|placeholder|placeholder|string|''|否|
-|required|必填判断|boolean|false|否|
-|disabled|是否可编辑|boolean|false|否|
+| 参数         | 说明         | 类型                       | 默认值       | 是否必填 |
+| ------------ | ------------ | -------------------------- | ------------ | -------- |
+| type         | 表单类型     | string                     | ''           | 是       |
+| title        | 标题         | string                     | ''           | 是       |
+| data         | 数据源       | list                       | []           | 是       |
+| fieldProps   | 文本属性     | string                     | false        | 是       |
+| placeholder  | placeholder  | string                     | ''           | 否       |
+| required     | 必填判断     | boolean                    | false        | 否       |
+| disabled     | 是否可编辑   | boolean                    | false        | 否       |
+| positionType | 表单方向样式 | `horizontal` or `vertical` | `horizontal` | 否       |
 
 ## 组件使用
 
@@ -73,6 +74,24 @@ title: Select
 }
 
 ```
+
+### VerticalPicker
+
+<code src="./demo/verticalPicker.tsx" />
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "select",
+  fieldProps: "userPicker4",
+  title: "季节",
+  placeholder: "请选择",
+  data: seasons,
+  positionType: "vertical",
+}
+```
+
+
 
 
 

@@ -18,7 +18,7 @@ export interface INomarRadioProps extends RadioGroupProps {
   required?: boolean;
   placeholder?: string;
   data?: radioItem[] | [];
-  radioType?: 'horizontal' | 'vertical';
+  positionType?: 'horizontal' | 'vertical';
   coverStyle?: React.CSSProperties;
 }
 
@@ -42,7 +42,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     title,
     placeholder,
     data = radioList as any,
-    radioType = 'horizontal',
+    positionType = 'horizontal',
     ...otherProps
   } = props;
 
@@ -60,7 +60,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     );
   };
 
-  if (radioType === 'vertical') {
+  if (positionType === 'vertical') {
     return (
       <div className={styles.fixRadioVerticalStyle} key={fieldProps} style={coverStyle}>
         <p>

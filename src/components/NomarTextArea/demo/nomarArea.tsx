@@ -11,11 +11,7 @@ const NomarArea = () => {
   return (
     <Form>
       <List>
-        <NomarTextArea
-          fieldProps="textArea1"
-          required={true}
-          placeholder="请输入..."
-        />
+        <NomarTextArea fieldProps="textArea1" required={true} placeholder="请输入" />
       </List>
     </Form>
   );
