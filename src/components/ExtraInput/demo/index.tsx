@@ -11,8 +11,8 @@ import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 import PositionIcon from '../../../assets/position_ico.png';
 
 const tailLayout = {
-  wrapperCol: { offset: 2, span: 20 }
-}
+  wrapperCol: { offset: 2, span: 20 },
+};
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -42,8 +42,8 @@ const Page: FC = () => {
         label: '亿元',
         value: '亿元',
       },
-    ]
-  ]
+    ],
+  ];
 
   const formsData = [
     {
@@ -80,20 +80,43 @@ const Page: FC = () => {
       extraType: 'select',
       data: unitList,
     },
+    {
+      type: 'extraInput',
+      fieldProps: 'minLength',
+      fieldProps2: 'maxLength',
+      title: '长度区间',
+      placeholder: '输入长度',
+      placeholder2: '输入长度',
+      positionType: 'vertical',
+      required: true,
+    },
+    {
+      type: 'extraInput',
+      title: '价格',
+      fieldProps: 'prices',
+      fieldProps2: 'priceUnit',
+      placeholder: '输入长度',
+      placeholder2: '选择长度单位',
+      positionType: 'vertical',
+      extraType: 'select',
+      data: unitList,
+    },
   ] as IFormItemProps[];
   const formsValues = {};
   const formProps = {
     onFinish,
     onFinishFailed,
-    data:formsData,
+    data: formsData,
     formsValues,
     form,
-  }
+  };
   return (
     <DynamicForm {...formProps}>
-      <WhiteSpace size='sm'/>
+      <WhiteSpace size="sm" />
       <Field {...tailLayout}>
-        <Button type='primary' onClick={() => form.submit()}>Submit</Button>
+        <Button type="primary" onClick={() => form.submit()}>
+          Submit
+        </Button>
       </Field>
     </DynamicForm>
   );

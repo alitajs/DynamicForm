@@ -12,6 +12,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   fieldProps: string;
   rules?: [];
   placeholder?: string;
+  positionType?: 'vertical' | 'horizontal';
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {
@@ -22,8 +23,26 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     rules,
     rows = 3,
     title,
+    positionType = 'horizontal',
     ...otherProps
   } = props;
+
+  if (positionType === 'vertical') {
+    return (
+      <div className={styles.textAreaVerticalStyle}>
+        <p>
+          {required && <span className={styles.redStar}>*</span>}
+          <span id={fieldProps} className={styles.titleStyle}>
+            {title}
+          </span>
+        </p>
+        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+          <TextareaItem {...otherProps} style={coverStyle} rows={rows} />
+        </Field>
+      </div>
+    );
+  }
+
   return (
     <List.Item
       style={{

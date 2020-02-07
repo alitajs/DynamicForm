@@ -46,6 +46,14 @@ const Page: FC = () => {
       title: 'DateTime',
       required: true,
     },
+    {
+      type: 'date',
+      fieldProps: 'DateTimeVertical',
+      modeType: 'datetime',
+      title: 'DateTimeVertical',
+      required: true,
+      positionType: 'vertical',
+    },
   ] as IFormItemProps[];
 
   const formsValues = {

@@ -46,8 +46,8 @@ const citys = [
       label: '厦门',
       value: '厦门',
     },
-  ]
-]
+  ],
+];
 
 interface PageProps {}
 
@@ -55,10 +55,10 @@ const Page: FC<PageProps> = props => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
     console.log('Success:', values);
-  }
+  };
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     console.log(errorInfo);
-  }
+  };
   const formsData = [
     {
       type: 'select',
@@ -83,21 +83,29 @@ const Page: FC<PageProps> = props => {
       placeholder: '请选择',
       data: citys,
       disabled: true,
-    }
+    },
+    {
+      type: 'select',
+      fieldProps: 'verticalPicker',
+      title: '季节',
+      placeholder: '请选择',
+      data: seasons,
+      positionType: 'vertical',
+    },
   ] as IFormItemProps[];
 
   const formsValues = {
     userPicker2: ['厦门'],
     userPicker3: ['福州'],
-  }
+  };
 
   const formProps = {
     form,
     onFinish,
     onFinishFailed,
     formsValues,
-    formsData,
-  }
+    data: formsData,
+  };
 
   return (
     <DynamicForm {...formProps}>
@@ -108,7 +116,7 @@ const Page: FC<PageProps> = props => {
         </Button>
       </Field>
     </DynamicForm>
-  )
-}
+  );
+};
 
 export default Page;

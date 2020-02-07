@@ -15,6 +15,7 @@ export interface IExtraInputProps extends InputItemPropsType {
   title: string;
   coverStyle?: React.CSSProperties;
   extraType?: 'input' | 'select';
+  positionType?: 'vertical' | 'horizontal';
   data?: any;
 }
 
@@ -29,6 +30,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     coverStyle,
     placeholder2,
     extraType = 'input',
+    positionType = 'horizontal',
     data,
     ...otherProps
   } = props;
@@ -50,6 +52,36 @@ const ExtraInput: FC<IExtraInputProps> = props => {
       </Field>
     );
   };
+
+  if (positionType === 'vertical') {
+    return (
+      <div className={styles.extraInputVerticalStyle}>
+        <p>
+          {required && <span className={styles.redStar}>*</span>}
+          <span id={fieldProps} className={styles.title}>
+            {title}
+          </span>
+        </p>
+        <div className={styles.extraInputContentStyle}>
+          <div
+            className={styles.beginVerticalExtraInputStyle}
+            style={{ width: extraType === 'input' ? '44%' : '49%' }}
+          >
+            <NomarInput
+              {...otherProps}
+              required={required}
+              rules={rules}
+              coverStyle={{ textAlign: 'left', ...coverStyle }}
+              fieldProps={fieldProps}
+              extra=""
+            />
+          </div>
+          {extraType === 'input' && <div className={styles.line}>——</div>}
+          <div className={styles.endVerticalExtraInputStyle}>{extraDiv()}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.extraInputStyle}>

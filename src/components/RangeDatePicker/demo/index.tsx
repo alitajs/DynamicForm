@@ -40,6 +40,14 @@ const RangeDatePicker: FC = () => {
       title: '时间(month)',
       modeType: 'month',
     },
+    {
+      type: 'rangeDatePicker',
+      required: true,
+      fieldProps: 'rangeTime5',
+      fieldProps2: 'rangeTime6',
+      title: '时间(date)',
+      positionType: 'vertical',
+    },
   ] as IFormItemProps[];
 
   const formsValues = {

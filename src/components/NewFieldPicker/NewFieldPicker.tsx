@@ -124,7 +124,7 @@ const InitFormData = [
     placeholder: '请选择',
     title: '用户选择1',
     data: radioList,
-    radioType: 'vertical',
+    positionType: 'vertical',
   },
   {
     type: 'extraInput',

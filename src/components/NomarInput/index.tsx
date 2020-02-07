@@ -8,11 +8,12 @@ import styles from '../../styles/index.less';
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
   coverStyle?: React.CSSProperties;
-  title: string;
+  title?: string;
   required?: boolean;
   fieldProps: string;
   rules?: [];
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  positionType?: 'vertical' | 'horizontal';
 }
 
 const NomarInput: FC<INomarInputProps> = props => {
@@ -23,8 +24,37 @@ const NomarInput: FC<INomarInputProps> = props => {
     required = false,
     fieldProps,
     rules,
+    positionType = 'horizontal',
     ...otherProps
   } = props;
+
+  const onBlur = () => {
+    window.scrollTo(0, 0);
+  };
+
+  if (positionType === 'vertical') {
+    return (
+      <div className={styles.nomarInputVerticalStyle}>
+        <p>
+          {required && <span className={styles.redStar}>*</span>}
+          <span id={fieldProps} className={styles.title}>
+            {title}
+          </span>
+        </p>
+        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+          <InputItem
+            onBlur={() => {
+              onBlur();
+            }}
+            {...otherProps}
+            type={inputType}
+            style={{ ...coverStyle }}
+          />
+        </Field>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.fixNomarInputStyle}>
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
