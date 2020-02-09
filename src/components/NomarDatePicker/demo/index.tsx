@@ -8,6 +8,7 @@ import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
+import { dateChange } from '../../../';
 
 const tailLayout = {
   wrapperCol: { offset: 2, span: 20 },
@@ -59,7 +60,7 @@ const Page: FC = () => {
   const formsValues = {
     Date: new Date(),
     Month: new Date(),
-    DateTime: new Date(),
+    DateTime: dateChange('2020-02-02 22:22'),
   };
 
   const formProps = {
