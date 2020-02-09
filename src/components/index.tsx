@@ -1,3 +1,5 @@
+import { IFormItemProps, IDynamicFormProps } from '../DynamicForm';
+
 export { default as NomarInput } from './NomarInput';
 export { default as NomarPicker } from './NomarPicker';
 export { default as NomarSwitch } from './NomarSwitch';
@@ -8,3 +10,5 @@ export { default as NomarRadio } from './NomarRadio';
 export { default as RangeDatePicker } from './RangeDatePicker';
 export { default as ExtraInput } from './ExtraInput';
 export { default as NomarCheckBox } from './NomarCheckBox';
+
+export { IFormItemProps, IDynamicFormProps };
