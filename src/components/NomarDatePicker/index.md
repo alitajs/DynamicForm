@@ -14,7 +14,7 @@ title: Date
 | ------------ | ------------ | -------------------------- | ------------ | -------- |
 | type         | 表单类型     | string                     | ''           | 是       |
 | title        | 标题         | string                     | ''           | 是       |
-| fieldProps   | 文本属性     | string                     | false        | 是       |
+| fieldProps   | 文本属性     | string                     | ''           | 是       |
 | placeholder  | placeholder  | string                     | ''           | 否       |
 | required     | 必填判断     | boolean                    | false        | 否       |
 | modeType     | 时间类型     | string                     | `date`       | 否       |
