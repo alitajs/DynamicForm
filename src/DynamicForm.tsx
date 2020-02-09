@@ -15,6 +15,7 @@ import {
   ExtraInput,
   RangeDatePicker,
   NomarRadio,
+  NomarCheckBox,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -29,6 +30,7 @@ const FormItemType = {
   radio: NomarRadio,
   extraInput: ExtraInput,
   rangeDatePicker: RangeDatePicker,
+  checkbox: NomarCheckBox,
 };
 
 export interface IFormItemProps {
@@ -41,7 +43,8 @@ export interface IFormItemProps {
     | 'switch'
     | 'extraInput'
     | 'radio'
-    | 'rangeDatePicker';
+    | 'rangeDatePicker'
+    | 'checkbox';
   title: string;
   fieldProps: string;
   required?: boolean;

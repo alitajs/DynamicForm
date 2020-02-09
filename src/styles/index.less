@@ -347,3 +347,43 @@
     }
   }
 }
+
+.nomarCheckBoxStyle {
+  padding-left: 30px;
+  color: #000;
+  padding-top: 14px;
+
+  p {
+    margin-bottom: 0;
+    font-size: 34px;
+  }
+
+  .itemStyle {
+    display: flex;
+    flex-direction: column;
+  }
+
+  :global {
+    .ant-checkbox-wrapper {
+      font-size: 28px;
+    }
+
+    .ant-checkbox-wrapper {
+      margin-left: 30px;
+    }
+
+    .ant-checkbox-inner {
+      width: 24px !important;
+      height: 24px !important;
+    }
+
+    .ant-checkbox-inner::after {
+      width: 8px;
+      height: 13px;
+    }
+
+    .ant-list-item {
+      padding: 20px 0;
+    }
+  }
+}
