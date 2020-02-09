@@ -70,6 +70,7 @@ export interface IDynamicFormProps {
   onFinish?: (values: Store) => void;
   onFinishFailed?: (errorInfo: ValidateErrorEntity) => void;
   isDev?: boolean; // 手动声明是开发模式
+  onValuesChange?: (values: any) => void; // 字段改变时抛出事件
 }
 
 const nodeEnvIsDev = process.env.NODE_ENV === 'development';
@@ -106,6 +107,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   formsValues = {},
   onFinish,
   onFinishFailed,
+  onValuesChange,
   isDev,
 }) => {
   useEffect(() => {
@@ -123,9 +125,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         onFinishFailed={(errorInfo: ValidateErrorEntity) =>
           defaultFailed(errorInfo, onFinishFailed)
         }
-        onValuesChange={changFeil => {
-          console.log(changFeil);
-        }}
+        onValuesChange={onValuesChange}
       >
         <List>{data.map(item => getFormItem(item, allDisabled))}</List>
         {children}
