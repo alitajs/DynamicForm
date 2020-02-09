@@ -28,7 +28,6 @@ export const changeDateFormat = (val: Date, modeType: string) => {
 
 export const dateChange = (date: Date | string) => {
   const stringDate = moment(date).format('YYYY-MM-DD-HH-mm-ss');
-  console.log(stringDate);
   const dateList = stringDate.split('-');
   let numberDateList = dateList.map(item => {
     return parseInt(item);

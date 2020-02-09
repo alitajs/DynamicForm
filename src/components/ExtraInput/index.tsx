@@ -17,6 +17,7 @@ export interface IExtraInputProps extends InputItemPropsType {
   extraType?: 'input' | 'select';
   positionType?: 'vertical' | 'horizontal';
   data?: any;
+  titleFontSize?: string;
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
@@ -31,6 +32,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     placeholder2,
     extraType = 'input',
     positionType = 'horizontal',
+    titleFontSize = '0.34rem',
     data,
     ...otherProps
   } = props;
@@ -56,7 +58,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.extraInputVerticalStyle}>
-        <p>
+        <p style={{ fontSize: titleFontSize }}>
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.title}>
             {title}

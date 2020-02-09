@@ -15,6 +15,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   data?: PickerPropsType['data'];
   value?: PickerPropsType['value'];
   positionType?: 'vertical' | 'horizontal';
+  titleFontSize?: string;
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -27,13 +28,14 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     placeholder,
     data = [] as any,
     positionType = 'horizontal',
+    titleFontSize = '0.34rem',
     ...otherProps
   } = props;
 
   if (positionType === 'vertical') {
     return (
       <div className={styles.nomarPickerVerticalStyle}>
-        <p>
+        <p style={{ fontSize: titleFontSize }}>
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.title}>
             {title}
@@ -66,8 +68,14 @@ const NomarPicker: FC<INomarPickerProps> = props => {
         title={title}
       >
         <List.Item arrow="horizontal">
-          {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps}>{title}</span>
+          {required && (
+            <span style={{ fontSize: titleFontSize }} className={styles.redStar}>
+              *
+            </span>
+          )}
+          <span style={{ fontSize: titleFontSize }} id={fieldProps}>
+            {title}
+          </span>
         </List.Item>
       </Picker>
     </Field>

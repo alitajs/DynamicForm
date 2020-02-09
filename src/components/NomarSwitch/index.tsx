@@ -12,6 +12,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   fieldProps: string;
   rules?: [];
   placeholder?: string;
+  titleFontSize?: string;
 }
 
 const NomarSwitch: FC<INomarSwitchProps> = props => {
@@ -22,6 +23,7 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
     fieldProps,
     rules,
     placeholder,
+    titleFontSize = '0.34rem',
     ...otherProps
   } = props;
   return (
@@ -38,8 +40,14 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
         </Field>
       }
     >
-      {required && <span className={styles.redStar}>*</span>}
-      <span id={fieldProps}>{title}</span>
+      {required && (
+        <span style={{ fontSize: titleFontSize }} className={styles.redStar}>
+          *
+        </span>
+      )}
+      <span style={{ fontSize: titleFontSize }} id={fieldProps}>
+        {title}
+      </span>
     </List.Item>
   );
 };

@@ -13,6 +13,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   rules?: [];
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
+  titleFontSize?: string;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {
@@ -24,13 +25,14 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     rows = 3,
     title,
     positionType = 'horizontal',
+    titleFontSize = '0.34rem',
     ...otherProps
   } = props;
 
   if (positionType === 'vertical') {
     return (
       <div className={styles.textAreaVerticalStyle}>
-        <p>
+        <p style={{ fontSize: titleFontSize }}>
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.titleStyle}>
             {title}

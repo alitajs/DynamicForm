@@ -14,6 +14,7 @@ export interface INomarInputProps extends InputItemPropsType {
   rules?: [];
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   positionType?: 'vertical' | 'horizontal';
+  titleFontSize?: string;
 }
 
 const NomarInput: FC<INomarInputProps> = props => {
@@ -25,6 +26,7 @@ const NomarInput: FC<INomarInputProps> = props => {
     fieldProps,
     rules,
     positionType = 'horizontal',
+    titleFontSize = '0.34rem',
     ...otherProps
   } = props;
 
@@ -35,7 +37,7 @@ const NomarInput: FC<INomarInputProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.nomarInputVerticalStyle}>
-        <p>
+        <p style={{ fontSize: titleFontSize }}>
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.title}>
             {title}
@@ -59,8 +61,14 @@ const NomarInput: FC<INomarInputProps> = props => {
     <div className={styles.fixNomarInputStyle}>
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
         <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
-          {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps}>{title}</span>
+          {required && (
+            <span style={{ fontSize: titleFontSize }} className={styles.redStar}>
+              *
+            </span>
+          )}
+          <span style={{ fontSize: titleFontSize }} id={fieldProps}>
+            {title}
+          </span>
         </InputItem>
       </Field>
     </div>

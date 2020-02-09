@@ -11,6 +11,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   minDate?: Date;
   maxDate?: Date;
   positionType?: 'vertical' | 'horizontal';
+  titleFontSize?: string;
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
@@ -26,13 +27,14 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     minDate,
     maxDate,
     positionType = 'horizontal',
+    titleFontSize = '0.34rem',
     ...otherProps
   } = props;
 
   if (positionType === 'vertical') {
     return (
       <div className={styles.rangeDatePickerVerticalStyle}>
-        <p>
+        <p style={{ fontSize: titleFontSize }}>
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.title}>
             {title}
@@ -123,8 +125,14 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   }}
                 >
                   <List.Item arrow="horizontal">
-                    {required && <span className={styles.redStar}>*</span>}
-                    <span id={fieldProps}>{title}</span>
+                    {required && (
+                      <span style={{ fontSize: titleFontSize }} className={styles.redStar}>
+                        *
+                      </span>
+                    )}
+                    <span style={{ fontSize: titleFontSize }} id={fieldProps}>
+                      {title}
+                    </span>
                     <span id={fieldProps2}></span>
                   </List.Item>
                 </DatePicker>

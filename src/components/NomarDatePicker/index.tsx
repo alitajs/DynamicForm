@@ -14,6 +14,7 @@ export interface INomarDatePickerProps extends DatePickerPropsType {
   rules?: [];
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
+  titleFontSize?: string;
 }
 
 const NomarDatePicker: FC<INomarDatePickerProps> = props => {
@@ -24,13 +25,14 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
     rules,
     modeType = 'date',
     positionType = 'horizontal',
+    titleFontSize = '0.34rem',
     ...otherProps
   } = props;
 
   if (positionType === 'vertical') {
     return (
       <div className={styles.nomarDatePickerVerticalStyle}>
-        <p>
+        <p style={{ fontSize: titleFontSize }}>
           {required && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.title}>
             {title}
@@ -59,8 +61,14 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
         format={value => changeDateFormat(value, modeType)}
       >
         <List.Item arrow="horizontal">
-          {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps}>{title}</span>
+          {required && (
+            <span style={{ fontSize: titleFontSize }} className={styles.redStar}>
+              *
+            </span>
+          )}
+          <span style={{ fontSize: titleFontSize }} id={fieldProps}>
+            {title}
+          </span>
         </List.Item>
       </DatePicker>
     </Field>

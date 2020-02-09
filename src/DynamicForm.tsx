@@ -60,6 +60,7 @@ export interface IFormItemProps {
   rows?: number;
   labelNumber?: number;
   positionType?: 'vertical' | 'horizontal';
+  titleFontSize?: string;
 }
 
 export interface IDynamicFormProps {
