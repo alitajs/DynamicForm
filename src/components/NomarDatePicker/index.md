@@ -22,6 +22,12 @@ title: Date
 | maxDate      | 最大可选日期 | date                       | ''           | 否       |
 | positionType | 表单方向样式 | `horizontal` or `vertical` | `horizontal` | 否       |
 
+## 备注
+
+**日期字符串在不同浏览器有不同的实现，例如 new Date('2017-1-1') 在 Safari 上是 Invalid Date，而在 Chrome 上是能正常解析的。**
+
+**在设值时，如果是日期字符串请先用 `dateChange(val)` 进行转化下，`dateChange` 可以在 `@alitajs/dform` 中导出。**
+
 ## 组件使用
 
 ### Date

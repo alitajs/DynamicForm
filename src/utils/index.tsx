@@ -8,7 +8,7 @@ export const changeDateFormat = (val: Date, modeType: string) => {
   let dateFormat = '';
   switch (modeType) {
     case 'datetime':
-      dateFormat = moment(val).format('YYYY-MM-DD hh:mm');
+      dateFormat = moment(val).format('YYYY-MM-DD HH:mm');
       break;
     case 'month':
       dateFormat = moment(val).format('YYYY-MM');
@@ -26,4 +26,20 @@ export const changeDateFormat = (val: Date, modeType: string) => {
   return dateFormat;
 };
 
+export const dateChange = (date: Date | string) => {
+  const stringDate = moment(date).format('YYYY-MM-DD-HH-mm-ss');
+  console.log(stringDate);
+  const dateList = stringDate.split('-');
+  let numberDateList = dateList.map(item => {
+    return parseInt(item);
+  });
 
+  return new Date(
+    numberDateList[0],
+    numberDateList[1] - 1,
+    numberDateList[2],
+    numberDateList[3],
+    numberDateList[4],
+    numberDateList[5],
+  );
+};
