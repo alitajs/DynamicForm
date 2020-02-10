@@ -19,9 +19,11 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
 
   return (
     <div className={styles.nomarCheckBoxStyle}>
-      <p>
+      <p className={styles.titleFontSize}>
         {required && <span className={styles.redStar}>*</span>}
-        <span id={fieldProps}>{title}</span>
+        <span id={fieldProps} className={styles.titleColor}>
+          {title}
+        </span>
       </p>
       <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
         <Checkbox.Group style={{ width: '100%' }} {...otherProps}>

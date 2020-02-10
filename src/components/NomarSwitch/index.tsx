@@ -38,8 +38,12 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
         </Field>
       }
     >
-      {required && <span className={styles.redStar}>*</span>}
-      <span id={fieldProps}>{title}</span>
+      <div className={styles.titleFontSize}>
+        {required && <span className={styles.redStar}>*</span>}
+        <span id={fieldProps} className={styles.titleColor}>
+          {title}
+        </span>
+      </div>
     </List.Item>
   );
 };

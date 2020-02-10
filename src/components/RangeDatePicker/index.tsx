@@ -32,9 +32,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.rangeDatePickerVerticalStyle}>
-        <p>
+        <p className={styles.titleFontSize}>
           {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.title}>
+          <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
         </p>
@@ -60,9 +60,13 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                       }}
                     >
                       <List.Item arrow="horizontal">
-                        {required && <span className={styles.redStar}>*</span>}
-                        <span id={fieldProps}>{title}</span>
-                        <span id={fieldProps2}></span>
+                        <div className={styles.titleFontSize}>
+                          {required && <span className={styles.redStar}>*</span>}
+                          <span id={fieldProps} className={styles.titleColor}>
+                            {title}
+                          </span>
+                          <span id={fieldProps2}></span>
+                        </div>
                       </List.Item>
                     </DatePicker>
                   </Field>
@@ -123,9 +127,13 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   }}
                 >
                   <List.Item arrow="horizontal">
-                    {required && <span className={styles.redStar}>*</span>}
-                    <span id={fieldProps}>{title}</span>
-                    <span id={fieldProps2}></span>
+                    <div className={styles.titleFontSize}>
+                      {required && <span className={styles.redStar}>*</span>}
+                      <span id={fieldProps} className={styles.titleColor}>
+                        {title}
+                      </span>
+                      <span id={fieldProps2}></span>
+                    </div>
                   </List.Item>
                 </DatePicker>
               </Field>
