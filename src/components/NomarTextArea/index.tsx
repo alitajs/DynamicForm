@@ -3,7 +3,7 @@ import { TextareaItem, List } from 'antd-mobile';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
   coverStyle?: React.CSSProperties;

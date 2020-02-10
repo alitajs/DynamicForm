@@ -41,7 +41,26 @@ const Page: FC = props => {
     console.log('Failed:', errorInfo);
   };
 
+  const radioList = [
+    {
+      label: '是',
+      value: 'yes',
+    },
+    {
+      label: '否',
+      value: 'no',
+    },
+  ];
+
   const formsData = [
+    {
+      type: 'radio',
+      fieldProps: 'userRadio1',
+      required: true,
+      data: radioList,
+      title: '发票',
+    },
+
     {
       type: 'input',
       fieldProps: 'username',

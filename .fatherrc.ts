@@ -12,6 +12,7 @@ export default {
     },
   },
   disableTypeCheck: true,
+  cssModules: false,
   // namedExports: {
   //   'react-is': [
   //     'isFragment',

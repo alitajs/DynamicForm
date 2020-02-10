@@ -4,7 +4,7 @@ import { Field } from 'rc-field-form';
 import { INomarDatePickerProps } from '../NomarDatePicker';
 import { changeDateFormat } from '../../utils';
 
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
   fieldProps2?: string;

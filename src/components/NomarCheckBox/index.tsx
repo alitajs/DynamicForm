@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { Field } from 'rc-field-form';
 import { Checkbox, List } from 'antd';
-import styles from '../../styles/index.less';
+import 'antd/lib/checkbox/style/index.less';
+import 'antd/lib/list/style/index.less';
 import { CheckboxGroupProps } from 'antd/lib/checkbox/index';
+import styles from '../../styles/index.module.less';
 
 interface INomarCheckBoxProps extends CheckboxGroupProps {
   title: string;

@@ -3,7 +3,7 @@ import { Picker, List } from 'antd-mobile';
 import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   coverStyle?: React.CSSProperties;

@@ -3,7 +3,7 @@ import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
