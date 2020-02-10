@@ -33,9 +33,9 @@ const NomarPicker: FC<INomarPickerProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.nomarPickerVerticalStyle}>
-        <p>
+        <p className={styles.titleFontSize}>
           {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.title}>
+          <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
         </p>
@@ -66,8 +66,12 @@ const NomarPicker: FC<INomarPickerProps> = props => {
         title={title}
       >
         <List.Item arrow="horizontal">
-          {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps}>{title}</span>
+          <div className={styles.titleFontSize}>
+            {required && <span className={styles.redStar}>*</span>}
+            <span id={fieldProps} className={styles.titleColor}>
+              {title}
+            </span>
+          </div>
         </List.Item>
       </Picker>
     </Field>

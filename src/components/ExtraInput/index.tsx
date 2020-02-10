@@ -56,9 +56,9 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.extraInputVerticalStyle}>
-        <p>
+        <p className={styles.titleFontSize}>
           {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.title}>
+          <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
         </p>

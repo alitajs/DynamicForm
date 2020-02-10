@@ -30,9 +30,9 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.textAreaVerticalStyle}>
-        <p>
+        <p className={styles.titleFontSize}>
           {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.titleStyle}>
+          <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
         </p>

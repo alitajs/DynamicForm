@@ -35,9 +35,9 @@ const NomarInput: FC<INomarInputProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.nomarInputVerticalStyle}>
-        <p>
+        <p className={styles.titleFontSize}>
           {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.title}>
+          <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
         </p>
@@ -59,8 +59,12 @@ const NomarInput: FC<INomarInputProps> = props => {
     <div className={styles.fixNomarInputStyle}>
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
         <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
-          {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps}>{title}</span>
+          <div className={styles.titleFontSize}>
+            {required && <span className={styles.redStar}>*</span>}
+            <span id={fieldProps} className={styles.titleColor}>
+              {title}
+            </span>
+          </div>
         </InputItem>
       </Field>
     </div>

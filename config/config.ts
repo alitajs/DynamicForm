@@ -11,7 +11,7 @@ export default {
       {
         antd: true,
         hd: process.env.CUSTOM_DEV ? true : false,
-        dva: false
+        dva: false,
       },
     ],
     join(__dirname, '..', 'config/plugin.ts'),

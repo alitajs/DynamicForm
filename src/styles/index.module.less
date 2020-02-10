@@ -1,3 +1,13 @@
+@import '~antd-mobile/lib/style/themes/default.less';
+
+.titleFontSize {
+  font-size: @input-font-size  !important;
+}
+
+.titleColor {
+  color: #000;
+}
+
 .redStar {
   width: 0.14rem;
   height: 0.34rem;
@@ -29,9 +39,7 @@
 .fixRadioVerticalStyle {
   margin-left: 0.3rem;
   padding: 0.21rem 0.21rem 0.21rem 0;
-  color: #000;
   border-bottom: 0.01rem solid #ddd;
-  font-size: 0.34rem;
 
   .titleDiv {
     margin-bottom: 0.28rem;
@@ -50,10 +58,8 @@
 
 .nomarInputVerticalStyle {
   p {
-    font-size: 0.34rem;
     margin-bottom: 0;
     padding-left: 0.3rem;
-    color: #000;
     padding-top: 0.28rem;
   }
 
@@ -66,10 +72,8 @@
 
 .nomarPickerVerticalStyle {
   p {
-    font-size: 0.34rem;
     margin-bottom: 0;
     padding-left: 0.3rem;
-    color: #000;
     padding-top: 0.28rem;
   }
 
@@ -86,10 +90,8 @@
 
 .nomarDatePickerVerticalStyle {
   p {
-    font-size: 0.34rem;
     margin-bottom: 0;
     padding-left: 0.3rem;
-    color: #000;
     padding-top: 0.28rem;
   }
 
@@ -163,6 +165,8 @@
     }
 
     .am-textarea-label {
+      .titleColor();
+      .titleFontSize();
       line-height: 0.55rem;
     }
 
@@ -179,11 +183,6 @@
 
   p {
     margin-bottom: 0;
-    font-size: 0.34rem;
-  }
-
-  .titleStyle {
-    color: #000;
   }
 }
 
@@ -231,10 +230,8 @@
 
 .extraInputVerticalStyle {
   p {
-    font-size: 0.34rem;
     margin-bottom: 0;
     padding-left: 0.3rem;
-    color: #000;
     padding-top: 0.28rem;
   }
 
@@ -289,10 +286,8 @@
 
 .rangeDatePickerVerticalStyle {
   p {
-    font-size: 0.34rem;
     margin-bottom: 0;
     padding-left: 0.3rem;
-    color: #000;
     padding-top: 0.28rem;
   }
 
@@ -344,12 +339,10 @@
 
 .nomarCheckBoxStyle {
   padding-left: 0.3rem;
-  color: #000;
-  padding-top: 0.14rem;
+  padding-top: 0.3rem;
 
   p {
     margin-bottom: 0;
-    font-size: 0.34rem;
   }
 
   .itemStyle {

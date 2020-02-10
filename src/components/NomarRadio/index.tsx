@@ -63,9 +63,11 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className={styles.fixRadioVerticalStyle} key={fieldProps} style={coverStyle}>
-        <p>
+        <p className={styles.titleFontSize}>
           {required && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps}>{title}</span>
+          <span id={fieldProps} className={styles.titleColor}>
+            {title}
+          </span>
         </p>
         {
           <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
@@ -84,8 +86,12 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   return (
     <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
-      {required && <span className={styles.redStar}>*</span>}
-      {title}
+      <div className={styles.fixRadioVerticalStyle}>
+        {required && <span className={styles.redStar}>*</span>}
+        <span id={fieldProps} className={styles.titleColor}>
+          {title}
+        </span>
+      </div>
     </List.Item>
   );
 };
