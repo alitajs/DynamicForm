@@ -19,6 +19,16 @@ title: CheckBox
 | placeholder | placeholder | string  | ''     | 否       |
 | required    | 必填判断    | boolean | false  | 否       |
 
+## 备注
+
+`title` 大小默认设置为 `0.34rem`，如需自定义 `title` 大小，可以在 `config/config.ts` 文件下增加如下代码：
+
+```js
+theme: {
+  '@input-font-size': '0.28rem',
+}
+```
+
 ## 组件使用
 
 ### Checkbox
