@@ -3,8 +3,8 @@ import { Field } from 'rc-field-form';
 import { List } from 'antd-mobile';
 import { Radio } from 'antd';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
-
-import styles from '../../styles/index.less';
+import 'antd/lib/radio/style/index.less';
+import styles from '../../styles/index.module.less';
 
 interface radioItem {
   label: string;

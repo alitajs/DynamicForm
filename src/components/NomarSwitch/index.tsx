@@ -3,7 +3,7 @@ import { Switch, List } from 'antd-mobile';
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface INomarSwitchProps extends SwitchPropsType {
   coverStyle?: React.CSSProperties;

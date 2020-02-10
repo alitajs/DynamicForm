@@ -3,7 +3,7 @@ import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Field } from 'rc-field-form';
 import { NomarInput } from '../';
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface IExtraInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];

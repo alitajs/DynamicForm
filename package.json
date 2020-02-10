@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "0.0.1",
+  "version": "0.1.4",
   "description": "",
   "main": "./dist/index.js",
   "typings": "./dist/src",
@@ -12,6 +12,7 @@
     "build:doc": "father-doc build",
     "build": "father-build",
     "publish": "npm publish --access public",
+    "prepublishOnly": "father-build",
     "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",

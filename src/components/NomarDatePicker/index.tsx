@@ -4,7 +4,7 @@ import { Field } from 'rc-field-form';
 import { DatePicker, List } from 'antd-mobile';
 import { changeDateFormat } from '../../utils';
 
-import styles from '../../styles/index.less';
+import styles from '../../styles/index.module.less';
 
 export interface INomarDatePickerProps extends DatePickerPropsType {
   modeType?: DatePickerPropsType['mode'];
