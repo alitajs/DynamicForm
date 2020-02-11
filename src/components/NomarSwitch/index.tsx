@@ -12,6 +12,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   fieldProps: string;
   rules?: [];
   placeholder?: string;
+  hasStar?: boolean;
 }
 
 const NomarSwitch: FC<INomarSwitchProps> = props => {
@@ -22,6 +23,7 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
     fieldProps,
     rules,
     placeholder,
+    hasStar = true,
     ...otherProps
   } = props;
   return (
@@ -39,7 +41,7 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
       }
     >
       <div className={styles.titleFontSize}>
-        {required && <span className={styles.redStar}>*</span>}
+        {required && hasStar && <span className={styles.redStar}>*</span>}
         <span id={fieldProps} className={styles.titleColor}>
           {title}
         </span>

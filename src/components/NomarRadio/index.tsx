@@ -20,6 +20,7 @@ export interface INomarRadioProps extends RadioGroupProps {
   data?: radioItem[] | [];
   positionType?: 'horizontal' | 'vertical';
   coverStyle?: React.CSSProperties;
+  hasStar?: boolean;
 }
 
 const radioList = [
@@ -43,6 +44,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     placeholder,
     data = radioList as any,
     positionType = 'horizontal',
+    hasStar = true,
     ...otherProps
   } = props;
 
@@ -64,7 +66,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     return (
       <div className={styles.fixRadioVerticalStyle} key={fieldProps} style={coverStyle}>
         <p className={styles.titleFontSize}>
-          {required && <span className={styles.redStar}>*</span>}
+          {required && hasStar && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
@@ -87,7 +89,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   return (
     <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
       <div className={styles.fixRadioVerticalStyle}>
-        {required && <span className={styles.redStar}>*</span>}
+        {required && hasStar && <span className={styles.redStar}>*</span>}
         <span id={fieldProps} className={styles.titleColor}>
           {title}
         </span>

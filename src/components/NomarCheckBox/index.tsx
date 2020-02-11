@@ -12,15 +12,24 @@ interface INomarCheckBoxProps extends CheckboxGroupProps {
   required?: boolean;
   data?: any;
   fieldProps: string;
+  hasStar?: boolean;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
-  const { fieldProps, title, rules, required = false, data = [], ...otherProps } = props;
+  const {
+    fieldProps,
+    title,
+    rules,
+    required = false,
+    data = [],
+    hasStar = true,
+    ...otherProps
+  } = props;
 
   return (
     <div className={styles.nomarCheckBoxStyle}>
       <p className={styles.titleFontSize}>
-        {required && <span className={styles.redStar}>*</span>}
+        {required && hasStar && <span className={styles.redStar}>*</span>}
         <span id={fieldProps} className={styles.titleColor}>
           {title}
         </span>

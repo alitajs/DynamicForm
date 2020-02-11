@@ -11,6 +11,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   minDate?: Date;
   maxDate?: Date;
   positionType?: 'vertical' | 'horizontal';
+  hasStar?: boolean;
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
@@ -26,6 +27,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     minDate,
     maxDate,
     positionType = 'horizontal',
+    hasStar = true,
     ...otherProps
   } = props;
 
@@ -33,7 +35,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     return (
       <div className={styles.rangeDatePickerVerticalStyle}>
         <p className={styles.titleFontSize}>
-          {required && <span className={styles.redStar}>*</span>}
+          {required && hasStar && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
@@ -61,7 +63,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                     >
                       <List.Item arrow="horizontal">
                         <div className={styles.titleFontSize}>
-                          {required && <span className={styles.redStar}>*</span>}
+                          {required && hasStar && <span className={styles.redStar}>*</span>}
                           <span id={fieldProps} className={styles.titleColor}>
                             {title}
                           </span>
@@ -128,7 +130,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                 >
                   <List.Item arrow="horizontal">
                     <div className={styles.titleFontSize}>
-                      {required && <span className={styles.redStar}>*</span>}
+                      {required && hasStar && <span className={styles.redStar}>*</span>}
                       <span id={fieldProps} className={styles.titleColor}>
                         {title}
                       </span>

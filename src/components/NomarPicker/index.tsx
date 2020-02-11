@@ -15,6 +15,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   data?: PickerPropsType['data'];
   value?: PickerPropsType['value'];
   positionType?: 'vertical' | 'horizontal';
+  hasStar?: boolean;
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -27,6 +28,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     placeholder,
     data = [] as any,
     positionType = 'horizontal',
+    hasStar = true,
     ...otherProps
   } = props;
 
@@ -34,7 +36,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     return (
       <div className={styles.nomarPickerVerticalStyle}>
         <p className={styles.titleFontSize}>
-          {required && <span className={styles.redStar}>*</span>}
+          {required && hasStar && <span className={styles.redStar}>*</span>}
           <span id={fieldProps} className={styles.titleColor}>
             {title}
           </span>
@@ -67,7 +69,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
       >
         <List.Item arrow="horizontal">
           <div className={styles.titleFontSize}>
-            {required && <span className={styles.redStar}>*</span>}
+            {required && hasStar && <span className={styles.redStar}>*</span>}
             <span id={fieldProps} className={styles.titleColor}>
               {title}
             </span>
