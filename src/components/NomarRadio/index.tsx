@@ -88,7 +88,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   return (
     <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
-      <div className={styles.fixRadioVerticalStyle}>
+      <div className={styles.titleFontSize}>
         {required && hasStar && <span className={styles.redStar}>*</span>}
         <span id={fieldProps} className={styles.titleColor}>
           {title}
