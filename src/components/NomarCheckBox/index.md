@@ -10,14 +10,15 @@ title: CheckBox
 
 ## API
 
-| 参数        | 说明        | 类型    | 默认值 | 是否必填 |
-| ----------- | ----------- | ------- | ------ | -------- |
-| type        | 表单类型    | string  | ''     | 是       |
-| title       | 标题        | string  | ''     | 是       |
-| fieldProps  | 文本属性    | string  | ''     | 是       |
-| data        | 数据源      | list    | []     | 是       |
-| placeholder | placeholder | string  | ''     | 否       |
-| required    | 必填判断    | boolean | false  | 否       |
+| 参数        | 说明                    | 类型    | 默认值 | 是否必填 |
+| ----------- | ----------------------- | ------- | ------ | -------- |
+| type        | 表单类型                | string  | ''     | 是       |
+| title       | 标题                    | string  | ''     | 是       |
+| fieldProps  | 文本属性                | string  | ''     | 是       |
+| data        | 数据源                  | list    | []     | 是       |
+| placeholder | placeholder             | string  | ''     | 否       |
+| required    | 必填判断                | boolean | false  | 否       |
+| hasStar     | 必填项红*展示与否的判断 | boolean | true   | 否       |
 
 ## 备注
 
