@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "0.1.4",
+  "version": "0.2.1",
   "description": "",
   "main": "./dist/index.js",
   "typings": "./dist/src",
