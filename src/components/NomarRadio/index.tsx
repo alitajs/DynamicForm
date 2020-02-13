@@ -4,7 +4,7 @@ import { List } from 'antd-mobile';
 import { Radio } from 'antd';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
 import 'antd/lib/radio/style/index.less';
-import styles from '../../styles/index.module.less';
+import '../../styles/index.less';
 
 interface radioItem {
   label: string;
@@ -51,7 +51,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   const RadioGroup = () => {
     return (
       <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-        <Radio.Group className={styles.fixRadioStyle} style={coverStyle} {...otherProps}>
+        <Radio.Group className='alitajs-dform-fixRadioStyle' style={coverStyle} {...otherProps}>
           {data.map((item: radioItem) => (
             <Radio key={item.label} value={item.value}>
               {item.label}
@@ -64,16 +64,16 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className={styles.fixRadioVerticalStyle} key={fieldProps} style={coverStyle}>
-        <p className={styles.titleFontSize}>
-          {required && hasStar && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.titleColor}>
+      <div className='alitajs-dform-fixRadioVerticalStyle' key={fieldProps} style={coverStyle}>
+        <p className='alitajs-dform-titleFontSize'>
+          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+          <span id={fieldProps} className='alitajs-dform-titleColor'>
             {title}
           </span>
         </p>
         {
           <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-            <Radio.Group className={styles.fixRadioStyle} style={coverStyle} {...otherProps}>
+            <Radio.Group className='alitajs-dform-fixRadioStyle' style={coverStyle} {...otherProps}>
               {data.map((item: radioItem) => (
                 <Radio key={item.label} value={item.value}>
                   {item.label}
@@ -88,9 +88,9 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   return (
     <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
-      <div className={styles.titleFontSize}>
-        {required && hasStar && <span className={styles.redStar}>*</span>}
-        <span id={fieldProps} className={styles.titleColor}>
+      <div className='alitajs-dform-titleFontSize'>
+        {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+        <span id={fieldProps} className='alitajs-dform-titleColor'>
           {title}
         </span>
       </div>

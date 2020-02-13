@@ -5,6 +5,7 @@ export default {
     // father-doc 独有配置
     title: 'dForm',
   },
+  disableCSSModules: true,
   plugins: [
     [
       'umi-plugin-react',

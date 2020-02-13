@@ -3,7 +3,7 @@ import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Field } from 'rc-field-form';
 import { NomarInput } from '../';
-import styles from '../../styles/index.module.less';
+import '../../styles/index.less';
 
 export interface IExtraInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
@@ -57,16 +57,16 @@ const ExtraInput: FC<IExtraInputProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className={styles.extraInputVerticalStyle}>
-        <p className={styles.titleFontSize}>
-          {required && hasStar && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.titleColor}>
+      <div className='alitajs-dform-extraInputVerticalStyle'>
+        <p className='alitajs-dform-titleFontSize'>
+          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+          <span id={fieldProps} className='alitajs-dform-titleColor'>
             {title}
           </span>
         </p>
-        <div className={styles.extraInputContentStyle}>
+        <div className='alitajs-dform-extraInputContentStyle'>
           <div
-            className={styles.beginVerticalExtraInputStyle}
+            className='alitajs-dform-beginVerticalExtraInputStyle'
             style={{ width: extraType === 'input' ? '44%' : '49%' }}
           >
             <NomarInput
@@ -78,17 +78,17 @@ const ExtraInput: FC<IExtraInputProps> = props => {
               extra=""
             />
           </div>
-          {extraType === 'input' && <div className={styles.line}>——</div>}
-          <div className={styles.endVerticalExtraInputStyle}>{extraDiv()}</div>
+          {extraType === 'input' && <div className='alitajs-dform-line'>——</div>}
+          <div className='alitajs-dform-endVerticalExtraInputStyle'>{extraDiv()}</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={styles.extraInputStyle}>
+    <div className='alitajs-dform-extraInputStyle'>
       <div
-        className={styles.beginExtraInputStyle}
+        className='alitajs-dform-beginExtraInputStyle'
         style={{ width: extraType === 'input' ? '65%' : '70%' }}
       >
         <NomarInput
@@ -102,8 +102,8 @@ const ExtraInput: FC<IExtraInputProps> = props => {
           extra=""
         />
       </div>
-      {extraType === 'input' && <div className={styles.line}>——</div>}
-      <div className={styles.endExtraInputStyle}>{extraDiv()}</div>
+      {extraType === 'input' && <div className='alitajs-dform-line'>——</div>}
+      <div className='alitajs-dform-endExtraInputStyle'>{extraDiv()}</div>
     </div>
   );
 };

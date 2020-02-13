@@ -1,9 +1,10 @@
+import px2rem from 'postcss-plugin-px2rem';
 export default {
   esm: {
-    type: 'rollup',
+    type: 'babel',
   },
   cjs: {
-    type: 'rollup',
+    type: 'babel',
   },
   umd: {
     name: 'DynamicForm',
@@ -13,6 +14,7 @@ export default {
   },
   disableTypeCheck: true,
   cssModules: false,
+  // lessInBabelMode: true,
   // namedExports: {
   //   'react-is': [
   //     'isFragment',
@@ -21,11 +23,18 @@ export default {
   extraBabelPlugins: [
     [
       'babel-plugin-import',
-      {
-        libraryName: 'antd-mobile',
-        libraryDirectory: 'es',
-        style: true,
-      },
+      { libraryName: 'antd-mobile', libraryDirectory: 'es', style: true }, 'antd-mobile'
     ],
+    [
+      'babel-plugin-import',
+      { libraryName: 'antd', libraryDirectory: 'es', style: true },
+      'antd'
+    ]
   ],
+  extraPostCSSPlugins: [
+    px2rem({
+      rootValue: 100,
+      minPixelValue: 2,
+    })
+  ]
 };

@@ -4,7 +4,7 @@ import { Checkbox, List } from 'antd';
 import 'antd/lib/checkbox/style/index.less';
 import 'antd/lib/list/style/index.less';
 import { CheckboxGroupProps } from 'antd/lib/checkbox/index';
-import styles from '../../styles/index.module.less';
+import '../../styles/index.less';
 
 interface INomarCheckBoxProps extends CheckboxGroupProps {
   title: string;
@@ -27,16 +27,16 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
   } = props;
 
   return (
-    <div className={styles.nomarCheckBoxStyle}>
-      <p className={styles.titleFontSize}>
-        {required && hasStar && <span className={styles.redStar}>*</span>}
-        <span id={fieldProps} className={styles.titleColor}>
+    <div className='alitajs-dform-nomarCheckBoxStyle'>
+      <p className='alitajs-dform-titleFontSize'>
+        {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+        <span id={fieldProps} className='alitajs-dform-titleColor'>
           {title}
         </span>
       </p>
       <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
         <Checkbox.Group style={{ width: '100%' }} {...otherProps}>
-          <div className={styles.itemStyle}>
+          <div className='alitajs-dform-itemStyle'>
             {[...data].map(item => {
               return (
                 <List.Item key={item.value}>

@@ -3,7 +3,7 @@ import { TextareaItem, List } from 'antd-mobile';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.module.less';
+import '../../styles/index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
   coverStyle?: React.CSSProperties;
@@ -31,10 +31,10 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className={styles.textAreaVerticalStyle}>
-        <p className={styles.titleFontSize}>
-          {required && hasStar && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.titleColor}>
+      <div className='alitajs-dform-textAreaVerticalStyle'>
+        <p className='alitajs-dform-titleFontSize'>
+          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+          <span id={fieldProps} className='alitajs-dform-titleColor'>
             {title}
           </span>
         </p>
@@ -50,11 +50,11 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
       style={{
         position: 'relative',
       }}
-      className={styles.textAreaStyle}
+      className='alitajs-dform-textAreaStyle'
     >
       {required && (
         <span
-          className={styles.redStar}
+          className='alitajs-dform-redStar'
           style={{
             position: 'absolute',
             top: '14px',

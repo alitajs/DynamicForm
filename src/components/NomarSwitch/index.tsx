@@ -3,7 +3,7 @@ import { Switch, List } from 'antd-mobile';
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.module.less';
+import '../../styles/index.less';
 
 export interface INomarSwitchProps extends SwitchPropsType {
   coverStyle?: React.CSSProperties;
@@ -40,9 +40,9 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
         </Field>
       }
     >
-      <div className={styles.titleFontSize}>
-        {required && hasStar && <span className={styles.redStar}>*</span>}
-        <span id={fieldProps} className={styles.titleColor}>
+      <div className='alitajs-dform-titleFontSize'>
+        {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+        <span id={fieldProps} className='alitajs-dform-titleColor'>
           {title}
         </span>
       </div>

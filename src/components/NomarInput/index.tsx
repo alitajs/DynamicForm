@@ -3,7 +3,7 @@ import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Field } from 'rc-field-form';
 
-import styles from '../../styles/index.module.less';
+import '../../styles/index.less';
 
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
@@ -36,10 +36,10 @@ const NomarInput: FC<INomarInputProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className={styles.nomarInputVerticalStyle}>
-        <p className={styles.titleFontSize}>
-          {required && hasStar && <span className={styles.redStar}>*</span>}
-          <span id={fieldProps} className={styles.titleColor}>
+      <div className='alitajs-dform-nomarInputVerticalStyle'>
+        <p className='alitajs-dform-titleFontSize'>
+          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+          <span id={fieldProps} className='alitajs-dform-titleColor'>
             {title}
           </span>
         </p>
@@ -58,12 +58,12 @@ const NomarInput: FC<INomarInputProps> = props => {
   }
 
   return (
-    <div className={styles.fixNomarInputStyle}>
+    <div className='alitajs-dform-fixNomarInputStyle'>
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
         <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
-          <div className={styles.titleFontSize}>
-            {required && hasStar && <span className={styles.redStar}>*</span>}
-            <span id={fieldProps} className={styles.titleColor}>
+          <div className='alitajs-dform-titleFontSize'>
+            {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
+            <span id={fieldProps} className='alitajs-dform-titleColor'>
               {title}
             </span>
           </div>
