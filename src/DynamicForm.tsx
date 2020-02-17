@@ -73,6 +73,7 @@ export interface IDynamicFormProps {
   onFinishFailed?: (errorInfo: ValidateErrorEntity) => void;
   isDev?: boolean; // 手动声明是开发模式
   onValuesChange?: (values: any) => void; // 字段改变时抛出事件
+  autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
 }
 
 const nodeEnvIsDev = process.env.NODE_ENV === 'development';
@@ -111,6 +112,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   onFinishFailed,
   onValuesChange,
   isDev,
+  autoLineFeed = true,
 }) => {
   useEffect(() => {
     form.setFieldsValue(formsValues as Store);
@@ -119,6 +121,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   const showAddItem = isDev || (nodeEnvIsDev && data.length === 0);
 
   const changeData = data.map(item => {
+    if (item.positionType === 'vertical' || !autoLineFeed) return item;
     if (item.title) {
       let titleSize = getByteLen(item.title);
       if (titleSize >= 16) {
@@ -127,6 +130,8 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         if (item.type === 'input' || item.type === 'extraInput') {
           if (titleSize > 8) {
             item.labelNumber = titleSize / 2 + 1;
+          } else {
+            item.labelNumber = 5;
           }
         }
       }
