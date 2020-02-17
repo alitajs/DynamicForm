@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Field } from 'rc-field-form';
-import { getByteLen } from '../../utils';
 
 import '../../styles/index.less';
 
@@ -35,9 +34,7 @@ const NomarInput: FC<INomarInputProps> = props => {
     window.scrollTo(0, 0);
   };
 
-  let titleSize = getByteLen(title);
-
-  if (positionType === 'vertical' || titleSize >= 16) {
+  if (positionType === 'vertical') {
     return (
       <div className="alitajs-dform-nomarInputVerticalStyle">
         <p className="alitajs-dform-titleFontSize">
@@ -63,12 +60,7 @@ const NomarInput: FC<INomarInputProps> = props => {
   return (
     <div className="alitajs-dform-fixNomarInputStyle">
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <InputItem
-          labelNumber={titleSize / 2 + 1}
-          {...otherProps}
-          type={inputType}
-          style={{ textAlign: 'right', ...coverStyle }}
-        >
+        <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
           <div className="alitajs-dform-titleFontSize">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
             <span id={fieldProps} className="alitajs-dform-titleColor">

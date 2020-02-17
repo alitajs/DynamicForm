@@ -4,6 +4,7 @@ import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import Form from 'rc-field-form';
 import { Store, FormInstance, ValidateErrorEntity } from 'rc-field-form/es/interface';
+import { getByteLen } from './utils';
 
 import {
   NomarInput,
@@ -117,6 +118,22 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 
   const showAddItem = isDev || (nodeEnvIsDev && data.length === 0);
 
+  const changeData = data.map(item => {
+    if (item.title) {
+      let titleSize = getByteLen(item.title);
+      if (titleSize >= 16) {
+        item.positionType = 'vertical';
+      } else {
+        if (item.type === 'input' || item.type === 'extraInput') {
+          if (titleSize > 8) {
+            item.labelNumber = titleSize / 2 + 1;
+          }
+        }
+      }
+    }
+    return item;
+  });
+
   return (
     <>
       <Form
@@ -128,7 +145,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         }
         onValuesChange={onValuesChange}
       >
-        <List>{data.map(item => getFormItem(item, allDisabled))}</List>
+        <List>{changeData.map(item => getFormItem(item, allDisabled))}</List>
         {children}
       </Form>
       {showAddItem && <NewFieldPicker />}
