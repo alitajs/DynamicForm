@@ -108,6 +108,15 @@ const Page: FC<PageProps> = props => {
     },
     {
       type: 'input',
+      fieldProps: 'titleTooLong2',
+      required: true,
+      placeholder: '请输入',
+      title: '标题名称过长(超过14个字符自动换行)',
+      inputType: 'text',
+      clear: true,
+    },
+    {
+      type: 'input',
       fieldProps: 'cardNumber',
       required: true,
       placeholder: '请输入',
