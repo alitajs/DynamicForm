@@ -22,6 +22,7 @@ title: TextArea
 | labelNumber  | 标签的文字个数          | number                     | 5            | 否       |
 | positionType | 表单方向样式            | `horizontal` or `vertical` | `horizontal` | 否       |
 | hasStar      | 必填项红*展示与否的判断 | boolean                    | true         | 否       |
+| extra        | 右边注释                | string or node             | ''           | 否       |
 
 ## 备注
 
@@ -105,6 +106,23 @@ theme: {
   required: true,
   placeholder: "请输入...",
   positionType: "vertical",
+}
+```
+
+### ExtraArea 
+
+<code src="./demo/ExtraArea.tsx" />
+
+如需在 `DynamicForm` 中使用，请使用以下 `json`：
+
+```json
+{
+  type: "area",
+  fieldProps: "idenPhone",
+  title: "身份证",
+  extra: photoImg(),
+  placeholder: "存在 extra 自动换行",
+  required: true,
 }
 ```
 

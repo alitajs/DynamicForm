@@ -7,6 +7,7 @@ import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
+import PhotoIcon from '../../../assets/photo.png';
 
 const tailLayout = {
   wrapperCol: { offset: 2, span: 20 },
@@ -20,6 +21,16 @@ const Page: FC = () => {
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     console.log('Failed:', errorInfo);
+  };
+
+  const photoImg = () => {
+    return (
+      <img
+        src={PhotoIcon}
+        style={{ width: '3rem', height: '2rem' }}
+        onClick={e => console.log(e)}
+      />
+    );
   };
 
   const formsData = [
@@ -52,6 +63,14 @@ const Page: FC = () => {
       placeholder: '请输入',
       required: true,
       positionType: 'vertical',
+    },
+    {
+      type: 'area',
+      fieldProps: 'idenPhone',
+      title: '身份证',
+      extra: photoImg(),
+      placeholder: '存在 extra 自动换行',
+      required: true,
     },
   ] as IFormItemProps[];
 

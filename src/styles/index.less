@@ -179,11 +179,28 @@
 
 .alitajs-dform-textAreaVerticalStyle {
   margin-left: 30px;
+  margin-right: 30px;
   margin-top: 14px;
 
-  p {
-    margin-bottom: 0;
+  .alitajs-dform-textAreaVerticalTitleStyle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    .alitajs-dform-extraStyle {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
+
+
 
   :global {
     .am-textarea-item {
