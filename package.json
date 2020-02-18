@@ -28,13 +28,14 @@
   "license": "MIT",
   "dependencies": {
     "antd-mobile": "^2.3.1",
-    "rc-field-form": "^0.0.0-alpha.30",
-    "copy-to-clipboard": "^3.2.0"
+    "classnames": "^2.2.6",
+    "copy-to-clipboard": "^3.2.0",
+    "rc-field-form": "^0.0.0-alpha.30"
   },
   "peerDependencies": {
-    "react": "^16.8.5",
+    "antd": "^3.26.7",
     "antd-mobile": "^2.3.1",
-    "antd": "^3.26.7"
+    "react": "^16.8.5"
   },
   "devDependencies": {
     "@umijs/fabric": "2.0.0-beta.4",
