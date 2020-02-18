@@ -43,3 +43,15 @@ export const dateChange = (date: Date | string) => {
     numberDateList[5],
   );
 };
+
+export const getByteLen = (val: string) => {
+  var len = 0;
+  val.split('').map(item => {
+    if (item.match(/[^\x00-\xff]/gi) != null) {
+      len += 2;
+    } else {
+      len += 1;
+    }
+  });
+  return len;
+};

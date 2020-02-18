@@ -21,7 +21,7 @@ const NomarInput: FC<INomarInputProps> = props => {
   const {
     inputType = 'text',
     coverStyle,
-    title,
+    title = '',
     required = false,
     fieldProps,
     rules,
@@ -36,10 +36,10 @@ const NomarInput: FC<INomarInputProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className='alitajs-dform-nomarInputVerticalStyle'>
-        <p className='alitajs-dform-titleFontSize'>
-          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-          <span id={fieldProps} className='alitajs-dform-titleColor'>
+      <div className="alitajs-dform-nomarInputVerticalStyle">
+        <p className="alitajs-dform-titleFontSize">
+          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+          <span id={fieldProps} className="alitajs-dform-titleColor">
             {title}
           </span>
         </p>
@@ -58,12 +58,12 @@ const NomarInput: FC<INomarInputProps> = props => {
   }
 
   return (
-    <div className='alitajs-dform-fixNomarInputStyle'>
+    <div className="alitajs-dform-fixNomarInputStyle">
       <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
         <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
-          <div className='alitajs-dform-titleFontSize'>
-            {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-            <span id={fieldProps} className='alitajs-dform-titleColor'>
+          <div className="alitajs-dform-titleFontSize">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-titleColor">
               {title}
             </span>
           </div>
