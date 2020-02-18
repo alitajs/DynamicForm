@@ -153,7 +153,7 @@ const InitFormValue = {
   username: '张三',
 };
 
-const NewFieldPicker: FC<NewFieldPickerProps> = ({ onChange, value }) => {
+const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [selectFieldItem, setSelectFieldItem] = useState<IFormItemProps>();
@@ -164,9 +164,26 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ onChange, value }) => {
     // onChange && onChange(alitaDformExtraField);
     setModal2(false);
   };
+
+  const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
+    console.log('Failed:', errorInfo);
+  };
+
   const defaultFailed = (errorInfo: ValidateErrorEntity) => {
-    if (!errorInfo || !errorInfo.errorFields || errorInfo.errorFields.length === 0) {
-      onFinishFailed && onFinishFailed(errorInfo);
+    if (
+      !errorInfo ||
+      !errorInfo.errorFields ||
+      errorInfo.errorFields.length === 0 ||
+      onFinishFailed
+    ) {
+      onFinishFailed(errorInfo);
+
       return;
     }
     const scrollToField = (fieldKey: any) => {
@@ -176,15 +193,9 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ onChange, value }) => {
       }
     };
     scrollToField(errorInfo.errorFields[0].name[0]);
-    onFinishFailed && onFinishFailed(errorInfo);
-  };
-
-  const onFinish = (values: Store) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    console.log('Failed:', errorInfo);
+    if (onFinishFailed) {
+      onFinishFailed(errorInfo);
+    }
   };
 
   return (
@@ -270,7 +281,6 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ onChange, value }) => {
                     zIndex: 99,
                   }}
                   onClick={e => {
-                    console.log('Modal Click');
                     e.stopPropagation();
                     setSelectFieldItem({ ...item });
                     setModal(false);

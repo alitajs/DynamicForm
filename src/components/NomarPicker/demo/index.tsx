@@ -51,12 +51,14 @@ const citys = [
 
 interface PageProps {}
 
-const Page: FC<PageProps> = props => {
+const Page: FC<PageProps> = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
   };
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log(errorInfo);
   };
   const formsData = [

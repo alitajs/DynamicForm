@@ -7,21 +7,20 @@ import { List } from 'antd-mobile';
 import Form from 'rc-field-form';
 import NomarInput from '..';
 
-const TextClick: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarInput
-          fieldProps="userTitle"
-          required
-          placeholder="存在点击事件"
-          title="标题"
-          onClick={e => console.log(e)}
-          editable={false}
-        />
-      </List>
-    </Form>
-  );
-};
+const TextClick: FC = () => (
+  <Form>
+    <List>
+      <NomarInput
+        fieldProps="userTitle"
+        required
+        placeholder="存在点击事件"
+        title="标题"
+        // eslint-disable-next-line no-console
+        onClick={e => console.log(e)}
+        editable={false}
+      />
+    </List>
+  </Form>
+);
 
 export default TextClick;

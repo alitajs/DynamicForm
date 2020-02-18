@@ -31,13 +31,15 @@ const seasons = [
   ],
 ];
 
-const Page: FC = props => {
+const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
 
@@ -121,7 +123,8 @@ const Page: FC = props => {
   const formProps = {
     onFinish,
     data: formsData,
-    // formsValues,
+    onFinishFailed,
+    formsValues,
     form,
     isDev: true,
     // allDisabled: true,

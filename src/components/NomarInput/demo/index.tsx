@@ -17,29 +17,21 @@ const tailLayout = {
 
 interface PageProps {}
 
-const Page: FC<PageProps> = props => {
+const Page: FC<PageProps> = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
 
-  const extraImg = () => {
-    return <img src={PositionIcon} onClick={e => console.log(e)} />;
-  };
+  const extraImg = () => <img src={PositionIcon} />;
 
-  const photoImg = () => {
-    return (
-      <img
-        src={PhotoIcon}
-        style={{ width: '3rem', height: '2rem' }}
-        onClick={e => console.log(e)}
-      />
-    );
-  };
+  const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
 
   const formsData = [
     {
@@ -94,6 +86,7 @@ const Page: FC<PageProps> = props => {
       placeholder: '',
       title: '标题',
       editable: false,
+      // eslint-disable-next-line no-console
       onClick: () => console.log('点击事件'),
     },
     {

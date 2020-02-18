@@ -3,9 +3,10 @@
  * desc: 垂直选择框
  */
 import React, { FC } from 'react';
-import NomarPicker from '..';
 import Form from 'rc-field-form';
 import { List } from 'antd-mobile';
+import NomarPicker from '..';
+
 const seasons = [
   [
     {
@@ -29,20 +30,18 @@ const seasons = [
   ],
 ];
 
-const VerticalPicker: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarPicker
-          fieldProps="userPicker4"
-          title="季节"
-          placeholder="请选择"
-          data={seasons}
-          positionType="vertical"
-        />
-      </List>
-    </Form>
-  );
-};
+const VerticalPicker: FC = () => (
+  <Form>
+    <List>
+      <NomarPicker
+        fieldProps="userPicker4"
+        title="季节"
+        placeholder="请选择"
+        data={seasons}
+        positionType="vertical"
+      />
+    </List>
+  </Form>
+);
 
 export default VerticalPicker;

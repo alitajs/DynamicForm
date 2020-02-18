@@ -8,7 +8,7 @@ import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
-import { dateChange } from '../../../';
+import { dateChange } from '../../..';
 
 const tailLayout = {
   wrapperCol: { offset: 2, span: 20 },
@@ -17,10 +17,12 @@ const tailLayout = {
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
 

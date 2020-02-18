@@ -3,9 +3,10 @@
  * desc: 必选选择框
  */
 import React, { FC } from 'react';
-import NomarPicker from '..';
 import Form from 'rc-field-form';
 import { List } from 'antd-mobile';
+import NomarPicker from '..';
+
 const citys = [
   [
     {
@@ -16,23 +17,21 @@ const citys = [
       label: '厦门',
       value: '厦门',
     },
-  ]
-]
-  
-const RequiredSelect: FC = () =>{
-  return(
-    <Form>
-      <List>
-        <NomarPicker
-          fieldProps="userPicker2"
-          required={true}
-          title="城市"
-          placeholder="请选择"
-          data={citys}
-        />
-      </List>
-    </Form>
-  );
-}
+  ],
+];
+
+const RequiredSelect: FC = () => (
+  <Form>
+    <List>
+      <NomarPicker
+        fieldProps="userPicker2"
+        required
+        title="城市"
+        placeholder="请选择"
+        data={citys}
+      />
+    </List>
+  </Form>
+);
 
 export default RequiredSelect;

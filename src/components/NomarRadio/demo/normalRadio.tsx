@@ -4,8 +4,9 @@
  */
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import NomarRadio from '..';
 import Form from 'rc-field-form';
+import NomarRadio from '..';
+
 const radioList = [
   {
     label: '是',
@@ -16,19 +17,12 @@ const radioList = [
     value: 'no',
   },
 ];
-const NormalRedio: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarRadio
-          fieldProps="userRadio1"
-          required={true}
-          data={radioList}
-          title="发票"
-        />
-      </List>
-    </Form>
-  );
-};
+const NormalRedio: FC = () => (
+  <Form>
+    <List>
+      <NomarRadio fieldProps="userRadio1" required data={radioList} title="发票" />
+    </List>
+  </Form>
+);
 
 export default NormalRedio;

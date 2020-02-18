@@ -6,8 +6,6 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-import moment from 'moment';
-
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 
 const tailLayout = {
@@ -17,10 +15,12 @@ const tailLayout = {
 const RangeDatePicker: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
 
