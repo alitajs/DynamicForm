@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 import { Checkbox, List } from 'antd';
 import 'antd/lib/checkbox/style/index.less';
 import 'antd/lib/list/style/index.less';

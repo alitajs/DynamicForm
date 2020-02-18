@@ -18,8 +18,6 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
 const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   const [beginDate, setBeginDate] = useState();
   const [endDate, setEndDate] = useState();
-  const [beginValueFlag, setBeginValueFlag] = useState(false);
-  const [endValueFlag, setEndValueFlag] = useState(false);
   const {
     fieldProps,
     fieldProps2,
@@ -44,16 +42,10 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
           </span>
         </p>
         <div className="alitajs-dform-rangeDatePickerVerticalContent">
-          <div
-            className={classNames({
-              ['alitajs-dform-beginVerticalDatePickerStyle']: true,
-              ['alitajs-dform-valueColor']: beginValueFlag,
-            })}
-          >
+          <div className="alitajs-dform-beginVerticalDatePickerStyle">
             <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
               {form => {
                 setBeginDate(form.value);
-                if (form.value) setBeginValueFlag(true);
                 return (
                   <Field
                     name={fieldProps}
@@ -86,16 +78,10 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
             </Field>
           </div>
           <div className="alitajs-dform-line">——</div>
-          <div
-            className={classNames({
-              ['alitajs-dform-endVerticalDatePickerStyle']: true,
-              ['alitajs-dform-valueColor']: endValueFlag,
-            })}
-          >
+          <div className="alitajs-dform-endVerticalDatePickerStyle">
             <Field name={fieldProps2} rules={rules || [{ required, message: `请选择${title}` }]}>
               {form => {
                 setEndDate(form.value);
-                if (form.value) setEndValueFlag(true);
                 return (
                   <Field
                     name={fieldProps2}
@@ -126,16 +112,10 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
 
   return (
     <div className="alitajs-dform-rangeDatePickerStyle">
-      <div
-        className={classNames({
-          ['alitajs-dform-beginDatePickerStyle']: true,
-          ['alitajs-dform-valueColor']: beginValueFlag,
-        })}
-      >
+      <div className="alitajs-dform-beginDatePickerStyle">
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
           {form => {
             setBeginDate(form.value);
-            if (form.value) setBeginValueFlag(true);
             return (
               <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
                 <DatePicker
@@ -165,16 +145,10 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
         </Field>
       </div>
       <div className="alitajs-dform-line">——</div>
-      <div
-        className={classNames({
-          ['alitajs-dform-endDatePickerStyle']: true,
-          ['alitajs-dform-valueColor']: endValueFlag,
-        })}
-      >
+      <div className="alitajs-dform-endDatePickerStyle">
         <Field name={fieldProps2} rules={rules || [{ required, message: `请选择${title}` }]}>
           {form => {
             setEndDate(form.value);
-            if (form.value) setEndValueFlag(true);
             return (
               <Field name={fieldProps2} rules={rules || [{ required, message: `请选择${title}` }]}>
                 <DatePicker

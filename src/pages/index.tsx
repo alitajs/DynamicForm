@@ -119,6 +119,7 @@ const Page: FC = () => {
   ] as IFormItemProps[];
   const formsValues = {
     username: 0,
+    userdata: ['2013', '春'],
   };
   const formProps = {
     onFinish,

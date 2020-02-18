@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 import { DatePicker, List } from 'antd-mobile';
 import { changeDateFormat } from '../../utils';
 import classNames from 'classnames';
@@ -19,7 +19,6 @@ export interface INomarDatePickerProps extends DatePickerPropsType {
 }
 
 const NomarDatePicker: FC<INomarDatePickerProps> = props => {
-  const [valueFlag, setValueFlag] = React.useState(false);
   const {
     fieldProps,
     required = false,
@@ -33,66 +32,46 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div
-        className={classNames({
-          ['alitajs-dform-nomarDatePickerVerticalStyle']: true,
-          ['alitajs-dform-valueColor']: valueFlag,
-        })}
-      >
+      <div className="alitajs-dform-nomarDatePickerVerticalStyle">
         <p className="alitajs-dform-titleFontSize">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-titleColor">
             {title}
           </span>
         </p>
+
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-          {form => {
-            if (form.value) setValueFlag(true);
-            return (
-              <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-                <DatePicker
-                  {...otherProps}
-                  mode={modeType}
-                  title={title}
-                  format={value => changeDateFormat(value, modeType)}
-                >
-                  <List.Item arrow="horizontal" />
-                </DatePicker>
-              </Field>
-            );
-          }}
+          <DatePicker
+            {...otherProps}
+            mode={modeType}
+            title={title}
+            format={value => changeDateFormat(value, modeType)}
+          >
+            <List.Item arrow="horizontal" />
+          </DatePicker>
         </Field>
       </div>
     );
   }
 
   return (
-    <div className={valueFlag ? 'alitajs-dform-valueColor' : ''}>
-      <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-        {form => {
-          if (form.value) setValueFlag(true);
-          return (
-            <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-              <DatePicker
-                {...otherProps}
-                mode={modeType}
-                title={title}
-                format={value => changeDateFormat(value, modeType)}
-              >
-                <List.Item arrow="horizontal">
-                  <div className="alitajs-dform-titleFontSize">
-                    {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                    <span id={fieldProps} className="alitajs-dform-titleColor">
-                      {title}
-                    </span>
-                  </div>
-                </List.Item>
-              </DatePicker>
-            </Field>
-          );
-        }}
-      </Field>
-    </div>
+    <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+      <DatePicker
+        {...otherProps}
+        mode={modeType}
+        title={title}
+        format={value => changeDateFormat(value, modeType)}
+      >
+        <List.Item arrow="horizontal">
+          <div className="alitajs-dform-titleFontSize">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-titleColor">
+              {title}
+            </span>
+          </div>
+        </List.Item>
+      </DatePicker>
+    </Field>
   );
 };
 

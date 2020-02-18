@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 import { List } from 'antd-mobile';
 import { Radio } from 'antd';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
