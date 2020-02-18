@@ -14,6 +14,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  extra?: React.ReactNode | string;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {
@@ -26,18 +27,23 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     title,
     positionType = 'horizontal',
     hasStar = true,
+    extra = '',
     ...otherProps
   } = props;
 
-  if (positionType === 'vertical') {
+  if (positionType === 'vertical' || extra !== '') {
     return (
-      <div className='alitajs-dform-textAreaVerticalStyle'>
-        <p className='alitajs-dform-titleFontSize'>
-          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-          <span id={fieldProps} className='alitajs-dform-titleColor'>
-            {title}
-          </span>
-        </p>
+      <div className="alitajs-dform-textAreaVerticalStyle">
+        <div className="alitajs-dform-textAreaVerticalTitleStyle">
+          <p className="alitajs-dform-titleFontSize">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-titleColor">
+              {title}
+            </span>
+          </p>
+          {extra !== '' && <div className="alitajs-dform-extraStyle">{extra}</div>}
+        </div>
+
         <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
           <TextareaItem {...otherProps} style={coverStyle} rows={rows} />
         </Field>
@@ -50,11 +56,11 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
       style={{
         position: 'relative',
       }}
-      className='alitajs-dform-textAreaStyle'
+      className="alitajs-dform-textAreaStyle"
     >
       {required && (
         <span
-          className='alitajs-dform-redStar'
+          className="alitajs-dform-redStar"
           style={{
             position: 'absolute',
             top: '14px',
