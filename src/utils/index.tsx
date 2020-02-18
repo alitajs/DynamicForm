@@ -44,7 +44,8 @@ export const dateChange = (date: Date | string) => {
 export const getByteLen = (val: string) => {
   let len = 0;
   val.split('').forEach(item => {
-    if (item.match(`/[^\x00-\xff]/gi`) != null) {
+    // eslint-disable-next-line no-control-regex
+    if (item.match(/[^\x00-\xff]/gi) != null) {
       len += 2;
     } else {
       len += 1;
