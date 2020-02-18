@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Field } from 'rc-field-form';
+import Form, { Field, useForm } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
 import '../../styles/index.less';
 
@@ -17,5 +17,7 @@ const CustomField: FC<FieldProps> = props => {
     </div>
   );
 };
+
+export { useForm, Form };
 
 export default CustomField;
