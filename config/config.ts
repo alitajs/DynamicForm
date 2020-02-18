@@ -18,6 +18,6 @@ export default {
     join(__dirname, '..', 'config/plugin.ts'),
   ],
   theme: {
-    "alita-dform-select-color": "red"
-  }
+    'alita-dform-select-color': '#000',
+  },
 };

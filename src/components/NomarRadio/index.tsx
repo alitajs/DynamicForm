@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Field from '../Field';
 import { List } from 'antd-mobile';
 import { Radio } from 'antd';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
+import Field from '../Field';
 import 'antd/lib/radio/style/index.less';
 import '../../styles/index.less';
 

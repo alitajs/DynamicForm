@@ -3,7 +3,6 @@ import { DatePicker, List } from 'antd-mobile';
 import { Field } from 'rc-field-form';
 import { INomarDatePickerProps } from '../NomarDatePicker';
 import { changeDateFormat } from '../../utils';
-import classNames from 'classnames';
 
 import '../../styles/index.less';
 
