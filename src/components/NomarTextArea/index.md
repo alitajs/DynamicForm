@@ -33,6 +33,14 @@ theme: {
 }
 ```
 
+`area` 类型在属性 `editable` 设置为 `false` 时，文字样式会变淡，如果自定义的话可以在 `config/config.ts` 增加如下代码：
+
+```js
+theme: {
+  '@color-text-disabled': '#000',
+}
+```
+
 ## 组件使用
 
 ### NomarArea
