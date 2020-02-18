@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { FC, useEffect } from 'react';
 import { List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
@@ -89,7 +90,7 @@ export const defaultFailed = (
   onFinishFailed?: (errorInfo: ValidateErrorEntity) => void,
 ) => {
   if (!errorInfo || !errorInfo.errorFields || errorInfo.errorFields.length === 0) {
-    onFinishFailed && onFinishFailed(errorInfo);
+    if (onFinishFailed) onFinishFailed(errorInfo);
     return;
   }
   const scrollToField = (fieldKey: any) => {
@@ -99,7 +100,7 @@ export const defaultFailed = (
     }
   };
   scrollToField(errorInfo.errorFields[0].name[0]);
-  onFinishFailed && onFinishFailed(errorInfo);
+  if (onFinishFailed) onFinishFailed(errorInfo);
 };
 
 const DynamicForm: FC<IDynamicFormProps> = ({
@@ -123,16 +124,14 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   const changeData = data.map(item => {
     if (item.positionType === 'vertical' || !autoLineFeed) return item;
     if (item.title) {
-      let titleSize = getByteLen(item.title);
+      const titleSize = getByteLen(item.title);
       if (titleSize >= 16) {
         item.positionType = 'vertical';
-      } else {
-        if (item.type === 'input' || item.type === 'extraInput') {
-          if (titleSize > 8) {
-            item.labelNumber = titleSize / 2 + 1;
-          } else {
-            item.labelNumber = 5;
-          }
+      } else if (item.type === 'input' || item.type === 'extraInput') {
+        if (titleSize > 8) {
+          item.labelNumber = titleSize / 2 + 1;
+        } else {
+          item.labelNumber = 5;
         }
       }
     }

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';
 import { List, Button, WhiteSpace } from 'antd-mobile';
 import Form, { Field, useForm } from 'rc-field-form';
@@ -114,7 +115,8 @@ const getFormItem = (fieldItemKey: string) => {
 
 const getShowDeitItem = (editData?: IFormItemProps) => {
   if (!editData) return;
-  let { type, inputType, modeType, extraType, ...otherProps } = editData as any;
+  let { inputType, modeType, extraType } = editData as any;
+  const { type, ...otherProps } = editData as any;
   // 选择类型的初始值要手动转化一下 2/3
   if (inputType) {
     inputType = inputType[0] as InputItemPropsType['type'];
@@ -129,6 +131,7 @@ const getShowDeitItem = (editData?: IFormItemProps) => {
     otherProps.extraType = extraType;
   }
   const ShowItemComponent = FormItemType[type];
+  // eslint-disable-next-line consistent-return
   return <ShowItemComponent {...otherProps} />;
 };
 export const defaultFailed = (
@@ -136,7 +139,10 @@ export const defaultFailed = (
   onFinishFailed?: (errorInfo: ValidateErrorEntity) => void,
 ) => {
   if (!errorInfo || !errorInfo.errorFields || errorInfo.errorFields.length === 0) {
-    onFinishFailed && onFinishFailed(errorInfo);
+    if (onFinishFailed) {
+      onFinishFailed(errorInfo);
+    }
+
     return;
   }
   const scrollToField = (fieldKey: any) => {
@@ -146,7 +152,7 @@ export const defaultFailed = (
     }
   };
   scrollToField(errorInfo.errorFields[0].name[0]);
-  onFinishFailed && onFinishFailed(errorInfo);
+  if (onFinishFailed) onFinishFailed(errorInfo);
 };
 
 const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
@@ -175,6 +181,7 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
   }
   const [editData, setEditData] = useState(data);
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
     // 选择类型的初始值要手动转化一下 3/3
     const newFormItem = { ...values };
@@ -188,10 +195,11 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
     if (extraType && typeof extraType !== 'string') {
       newFormItem.extraType = extraType[0] as 'input' | 'select';
     }
-    onChange && onChange(newFormItem);
+    if (onChange) onChange(newFormItem);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
   return (

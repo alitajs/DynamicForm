@@ -28,11 +28,8 @@ export const changeDateFormat = (val: Date, modeType: string) => {
 
 export const dateChange = (date: Date | string) => {
   const stringDate = moment(date).format('YYYY-MM-DD-HH-mm-ss');
-  console.log(stringDate);
   const dateList = stringDate.split('-');
-  let numberDateList = dateList.map(item => {
-    return parseInt(item);
-  });
+  const numberDateList = dateList.map(item => parseInt(item, 10));
 
   return new Date(
     numberDateList[0],
@@ -45,8 +42,9 @@ export const dateChange = (date: Date | string) => {
 };
 
 export const getByteLen = (val: string) => {
-  var len = 0;
-  val.split('').map(item => {
+  let len = 0;
+  val.split('').forEach(item => {
+    // eslint-disable-next-line no-control-regex
     if (item.match(/[^\x00-\xff]/gi) != null) {
       len += 2;
     } else {

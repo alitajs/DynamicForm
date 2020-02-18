@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "0.2.6-beta.1",
+  "version": "0.2.7",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -42,6 +42,9 @@
     "check-prettier": "^1.0.3",
     "cross-env": "^6.0.3",
     "eslint": "5.10.0",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-unicorn": "^16.1.1",
     "father-build": "^1.17.2",
     "father-doc": "^1.0.0-alpha.15",
     "husky": "^3.1.0",

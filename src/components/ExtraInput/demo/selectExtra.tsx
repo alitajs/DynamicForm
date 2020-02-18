@@ -4,8 +4,9 @@
  */
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import ExtraInput from '..';
 import Form from 'rc-field-form';
+import ExtraInput from '..';
+
 const unitList = [
   [
     {
@@ -20,29 +21,24 @@ const unitList = [
       label: '亿元',
       value: '亿元',
     },
-  ]
-]
+  ],
+];
 
-const SelectExtra: FC = () => {
-  return (
-    <Form>
-      <List>
-        <ExtraInput
-          fieldProps="price"
-          fieldProps2="unit"
-          title="单价"
-          placeholder="输入价格"
-          placeholder2="选择区间"
-          required={true}
-          extraType="select"
-          data={unitList}
-        />
-      </List>
-    </Form>
-  );
-};
+const SelectExtra: FC = () => (
+  <Form>
+    <List>
+      <ExtraInput
+        fieldProps="price"
+        fieldProps2="unit"
+        title="单价"
+        placeholder="输入价格"
+        placeholder2="选择区间"
+        required
+        extraType="select"
+        data={unitList}
+      />
+    </List>
+  </Form>
+);
 
 export default SelectExtra;
-
-
-

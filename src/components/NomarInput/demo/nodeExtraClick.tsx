@@ -4,14 +4,12 @@
  */
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import NomarInput from '..';
 import Form from 'rc-field-form';
 import PositionIcon from '../../../assets/position_ico.png';
+import NomarInput from '..';
 
 const NodeExtraClick: FC = () => {
-  const extraImg = () => {
-    return <img src={PositionIcon} onClick={e => console.log(e)} />;
-  };
+  const extraImg = () => <img src={PositionIcon} />;
 
   return (
     <Form>

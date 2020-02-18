@@ -4,24 +4,22 @@
  */
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import NomarInput from '..';
 import Form from 'rc-field-form';
+import NomarInput from '..';
 
-const StringExtra: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarInput
-          fieldProps="userPrice"
-          required
-          placeholder="0.00"
-          title="价格"
-          extra="¥"
-          inputType="number"
-        />
-      </List>
-    </Form>
-  );
-};
+const StringExtra: FC = () => (
+  <Form>
+    <List>
+      <NomarInput
+        fieldProps="userPrice"
+        required
+        placeholder="0.00"
+        title="价格"
+        extra="¥"
+        inputType="number"
+      />
+    </List>
+  </Form>
+);
 
 export default StringExtra;

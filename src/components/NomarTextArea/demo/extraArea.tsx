@@ -8,26 +8,20 @@ import Form from 'rc-field-form';
 import NomarTextArea from '..';
 import PhotoIcon from '../../../assets/photo.png';
 
-const photoImg = () => {
-  return (
-    <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} onClick={e => console.log(e)} />
-  );
-};
+const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
 
-const ExtraArea = () => {
-  return (
-    <Form>
-      <List>
-        <NomarTextArea
-          fieldProps="idenPhone"
-          title="身份证"
-          placeholder="存在 extra 自动换行"
-          required
-          extra={photoImg()}
-        />
-      </List>
-    </Form>
-  );
-};
+const ExtraArea = () => (
+  <Form>
+    <List>
+      <NomarTextArea
+        fieldProps="idenPhone"
+        title="身份证"
+        placeholder="存在 extra 自动换行"
+        required
+        extra={photoImg()}
+      />
+    </List>
+  </Form>
+);
 
 export default ExtraArea;

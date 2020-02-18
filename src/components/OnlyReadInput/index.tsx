@@ -5,8 +5,8 @@ export interface IOnlyReadInputProps extends Omit<INomarInputProps, 'inputType'>
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-const OnlyReadInput: FC<IOnlyReadInputProps> = props => {
-  return <NomarInput {...props} editable={false} inputType="text" value={props.placeholder} />;
-};
+const OnlyReadInput: FC<IOnlyReadInputProps> = props => (
+  <NomarInput {...props} editable={false} inputType="text" value={props.placeholder} />
+);
 
 export default OnlyReadInput;
