@@ -118,10 +118,11 @@ const Page: FC = props => {
     {
       type: 'input',
       fieldProps: 'custPhone',
-      placeholder: '请输入',
-      title: '客户联系电话',
+      placeholder: '标题超过16字符自动开启，如需关闭，请设置 autoLineFeed',
+      title: '超长标题(自动开启双行模式)',
       inputType: 'text',
       positionType: 'vertical',
+      editable: false,
     },
     {
       type: 'select',
