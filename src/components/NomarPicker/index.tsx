@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Picker, List } from 'antd-mobile';
 import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 
 import '../../styles/index.less';
 
@@ -34,10 +34,10 @@ const NomarPicker: FC<INomarPickerProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className='alitajs-dform-nomarPickerVerticalStyle'>
-        <p className='alitajs-dform-titleFontSize'>
-          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-          <span id={fieldProps} className='alitajs-dform-titleColor'>
+      <div className="alitajs-dform-nomarPickerVerticalStyle">
+        <p className="alitajs-dform-titleFontSize">
+          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+          <span id={fieldProps} className="alitajs-dform-titleColor">
             {title}
           </span>
         </p>
@@ -68,9 +68,9 @@ const NomarPicker: FC<INomarPickerProps> = props => {
         title={title}
       >
         <List.Item arrow="horizontal">
-          <div className='alitajs-dform-titleFontSize'>
-            {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-            <span id={fieldProps} className='alitajs-dform-titleColor'>
+          <div className="alitajs-dform-titleFontSize">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-titleColor">
               {title}
             </span>
           </div>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TextareaItem, List } from 'antd-mobile';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 
 import '../../styles/index.less';
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
-import { Field } from 'rc-field-form';
 import { DatePicker, List } from 'antd-mobile';
+import Field from '../Field';
 import { changeDateFormat } from '../../utils';
 
 import '../../styles/index.less';
@@ -31,13 +31,14 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className='alitajs-dform-nomarDatePickerVerticalStyle'>
-        <p className='alitajs-dform-titleFontSize'>
-          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-          <span id={fieldProps} className='alitajs-dform-titleColor'>
+      <div className="alitajs-dform-nomarDatePickerVerticalStyle">
+        <p className="alitajs-dform-titleFontSize">
+          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+          <span id={fieldProps} className="alitajs-dform-titleColor">
             {title}
           </span>
         </p>
+
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
           <DatePicker
             {...otherProps}
@@ -61,9 +62,9 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
         format={value => changeDateFormat(value, modeType)}
       >
         <List.Item arrow="horizontal">
-          <div className='alitajs-dform-titleFontSize'>
-            {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-            <span id={fieldProps} className='alitajs-dform-titleColor'>
+          <div className="alitajs-dform-titleFontSize">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-titleColor">
               {title}
             </span>
           </div>

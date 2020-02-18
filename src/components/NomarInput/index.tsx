@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 
 import '../../styles/index.less';
 

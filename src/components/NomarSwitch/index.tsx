@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Switch, List } from 'antd-mobile';
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 
 import '../../styles/index.less';
 

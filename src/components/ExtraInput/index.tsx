@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
-import { Field } from 'rc-field-form';
+import Field from '../Field';
 import { NomarInput } from '..';
 import '../../styles/index.less';
 
@@ -21,6 +21,8 @@ export interface IExtraInputProps extends InputItemPropsType {
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
+  const [valueFlag, setValueFlag] = React.useState(false);
+
   const {
     inputType = 'text',
     fieldProps,
@@ -40,11 +42,29 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   const extraDiv = () => {
     if (extraType === 'select') {
       return (
-        <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <Picker style={coverStyle} title={title} data={data} cascade={false} extra={placeholder2}>
-            <List.Item arrow="horizontal"></List.Item>
-          </Picker>
-        </Field>
+        <div className={valueFlag ? 'alitajs-dform-valueColor' : ''}>
+          <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
+            {form => {
+              if (form.value) setValueFlag(true);
+              return (
+                <Field
+                  name={fieldProps2}
+                  rules={rules || [{ required, message: `请输入${title}` }]}
+                >
+                  <Picker
+                    style={coverStyle}
+                    title={title}
+                    data={data}
+                    cascade={false}
+                    extra={placeholder2}
+                  >
+                    <List.Item arrow="horizontal"></List.Item>
+                  </Picker>
+                </Field>
+              );
+            }}
+          </Field>
+        </div>
       );
     }
 

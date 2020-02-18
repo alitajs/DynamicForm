@@ -33,15 +33,15 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
 
   if (positionType === 'vertical') {
     return (
-      <div className='alitajs-dform-rangeDatePickerVerticalStyle'>
-        <p className='alitajs-dform-titleFontSize'>
-          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-          <span id={fieldProps} className='alitajs-dform-titleColor'>
+      <div className="alitajs-dform-rangeDatePickerVerticalStyle">
+        <p className="alitajs-dform-titleFontSize">
+          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+          <span id={fieldProps} className="alitajs-dform-titleColor">
             {title}
           </span>
         </p>
-        <div className='alitajs-dform-rangeDatePickerVerticalContent'>
-          <div className='alitajs-dform-beginVerticalDatePickerStyle'>
+        <div className="alitajs-dform-rangeDatePickerVerticalContent">
+          <div className="alitajs-dform-beginVerticalDatePickerStyle">
             <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
               {form => {
                 setBeginDate(form.value);
@@ -62,9 +62,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                       }}
                     >
                       <List.Item arrow="horizontal">
-                        <div className='alitajs-dform-titleFontSize'>
-                          {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-                          <span id={fieldProps} className='alitajs-dform-titleColor'>
+                        <div className="alitajs-dform-titleFontSize">
+                          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                          <span id={fieldProps} className="alitajs-dform-titleColor">
                             {title}
                           </span>
                           <span id={fieldProps2}></span>
@@ -76,8 +76,8 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
               }}
             </Field>
           </div>
-          <div className='alitajs-dform-line'>——</div>
-          <div className='alitajs-dform-endVerticalDatePickerStyle'>
+          <div className="alitajs-dform-line">——</div>
+          <div className="alitajs-dform-endVerticalDatePickerStyle">
             <Field name={fieldProps2} rules={rules || [{ required, message: `请选择${title}` }]}>
               {form => {
                 setEndDate(form.value);
@@ -110,8 +110,8 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   }
 
   return (
-    <div className='alitajs-dform-rangeDatePickerStyle'>
-      <div className='alitajs-dform-beginDatePickerStyle'>
+    <div className="alitajs-dform-rangeDatePickerStyle">
+      <div className="alitajs-dform-beginDatePickerStyle">
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
           {form => {
             setBeginDate(form.value);
@@ -129,9 +129,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   }}
                 >
                   <List.Item arrow="horizontal">
-                    <div className='alitajs-dform-titleFontSize'>
-                      {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-                      <span id={fieldProps} className='alitajs-dform-titleColor'>
+                    <div className="alitajs-dform-titleFontSize">
+                      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                      <span id={fieldProps} className="alitajs-dform-titleColor">
                         {title}
                       </span>
                       <span id={fieldProps2}></span>
@@ -143,8 +143,8 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
           }}
         </Field>
       </div>
-      <div className='alitajs-dform-line'>——</div>
-      <div className='alitajs-dform-endDatePickerStyle'>
+      <div className="alitajs-dform-line">——</div>
+      <div className="alitajs-dform-endDatePickerStyle">
         <Field name={fieldProps2} rules={rules || [{ required, message: `请选择${title}` }]}>
           {form => {
             setEndDate(form.value);
