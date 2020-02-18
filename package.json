@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "0.2.6-beta.1",
+  "version": "0.2.7",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,19 +28,22 @@
   "license": "MIT",
   "dependencies": {
     "antd-mobile": "^2.3.1",
-    "rc-field-form": "^0.0.0-alpha.30",
-    "copy-to-clipboard": "^3.2.0"
+    "copy-to-clipboard": "^3.2.0",
+    "rc-field-form": "^0.0.0-alpha.30"
   },
   "peerDependencies": {
-    "react": "^16.8.5",
+    "antd": "^3.26.7",
     "antd-mobile": "^2.3.1",
-    "antd": "^3.26.7"
+    "react": "^16.8.5"
   },
   "devDependencies": {
     "@umijs/fabric": "2.0.0-beta.4",
     "check-prettier": "^1.0.3",
     "cross-env": "^6.0.3",
     "eslint": "5.10.0",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-unicorn": "^16.1.1",
     "father-build": "^1.17.2",
     "father-doc": "^1.0.0-alpha.15",
     "husky": "^3.1.0",
