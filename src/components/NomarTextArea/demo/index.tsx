@@ -16,22 +16,16 @@ const tailLayout = {
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
+    // eslint-disable-next-line no-console
     console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
 
-  const photoImg = () => {
-    return (
-      <img
-        src={PhotoIcon}
-        style={{ width: '3rem', height: '2rem' }}
-        onClick={e => console.log(e)}
-      />
-    );
-  };
+  const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
 
   const formsData = [
     {

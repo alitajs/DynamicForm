@@ -5,8 +5,8 @@
 
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import ExtraInput from '..';
 import Form from 'rc-field-form';
+import ExtraInput from '..';
 
 const unitList = [
   [
@@ -25,23 +25,21 @@ const unitList = [
   ],
 ];
 
-const VerticalExtraInputAndSelect: FC = () => {
-  return (
-    <Form>
-      <List>
-        <ExtraInput
-          title="价格"
-          fieldProps="prices"
-          fieldProps2="priceUnit"
-          placeholder="输入长度"
-          placeholder2="选择长度单位"
-          positionType="vertical"
-          extraType="select"
-          data={unitList}
-        />
-      </List>
-    </Form>
-  );
-};
+const VerticalExtraInputAndSelect: FC = () => (
+  <Form>
+    <List>
+      <ExtraInput
+        title="价格"
+        fieldProps="prices"
+        fieldProps2="priceUnit"
+        placeholder="输入长度"
+        placeholder2="选择长度单位"
+        positionType="vertical"
+        extraType="select"
+        data={unitList}
+      />
+    </List>
+  </Form>
+);
 
 export default VerticalExtraInputAndSelect;

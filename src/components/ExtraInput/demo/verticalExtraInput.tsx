@@ -5,25 +5,23 @@
 
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import ExtraInput from '..';
 import Form from 'rc-field-form';
+import ExtraInput from '..';
 
-const VerticalExtraInput: FC = () => {
-  return (
-    <Form>
-      <List>
-        <ExtraInput
-          fieldProps="minLength"
-          fieldProps2="maxLength"
-          title="长度区间"
-          placeholder="输入长度"
-          placeholder2="输入长度"
-          positionType="vertical"
-          required
-        />
-      </List>
-    </Form>
-  );
-};
+const VerticalExtraInput: FC = () => (
+  <Form>
+    <List>
+      <ExtraInput
+        fieldProps="minLength"
+        fieldProps2="maxLength"
+        title="长度区间"
+        placeholder="输入长度"
+        placeholder2="输入长度"
+        positionType="vertical"
+        required
+      />
+    </List>
+  </Form>
+);
 
 export default VerticalExtraInput;

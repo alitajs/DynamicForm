@@ -13,14 +13,12 @@ const fruitsList = [
   { label: '香梨', value: '香梨' },
 ];
 
-const CheckboxPage: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarCheckBox title="喜欢的水果" required data={fruitsList} fieldProps="fruit" />
-      </List>
-    </Form>
-  );
-};
+const CheckboxPage: FC = () => (
+  <Form>
+    <List>
+      <NomarCheckBox title="喜欢的水果" required data={fruitsList} fieldProps="fruit" />
+    </List>
+  </Form>
+);
 
 export default CheckboxPage;

@@ -7,20 +7,18 @@ import { List } from 'antd-mobile';
 import Form from 'rc-field-form';
 import NomarSwitch from '..';
 
-const DisabledOff: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarSwitch
-          fieldProps='disabledOff'
-          placeholder='选择'
-          title='Disabled Off'
-          required={true}
-          disabled={true}
-        />
-      </List>
-    </Form>
-  )
-}
+const DisabledOff: FC = () => (
+  <Form>
+    <List>
+      <NomarSwitch
+        fieldProps="disabledOff"
+        placeholder="选择"
+        title="Disabled Off"
+        required
+        disabled
+      />
+    </List>
+  </Form>
+);
 
 export default DisabledOff;

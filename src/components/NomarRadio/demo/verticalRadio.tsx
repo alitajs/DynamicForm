@@ -4,8 +4,9 @@
  */
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
-import NomarRadio from '..';
 import Form from 'rc-field-form';
+import NomarRadio from '..';
+
 const dayList = [
   {
     label: '晴',
@@ -20,20 +21,18 @@ const dayList = [
     value: '雨',
   },
 ];
-const VerticalRadio: FC = () => {
-  return (
-    <Form>
-      <List>
-        <NomarRadio
-          fieldProps="userRadio4"
-          required={true}
-          data={dayList}
-          title="天气情况"
-          positionType="vertical"
-        />
-      </List>
-    </Form>
-  );
-};
+const VerticalRadio: FC = () => (
+  <Form>
+    <List>
+      <NomarRadio
+        fieldProps="userRadio4"
+        required
+        data={dayList}
+        title="天气情况"
+        positionType="vertical"
+      />
+    </List>
+  </Form>
+);
 
 export default VerticalRadio;
