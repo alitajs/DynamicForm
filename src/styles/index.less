@@ -1,19 +1,20 @@
 @import '~antd-mobile/lib/style/themes/default.less';
 
 @alita-dform-select-color: #000;
+@alita-dform-title-color: #000;
 
 .alitajs-dform-titleFontSize {
-  font-size: @input-font-size !important;
+  font-size: @input-font-size  !important;
 }
 
 .alitajs-dform-titleColor {
-  color: #000;
+  color: @alita-dform-title-color;
 }
 
 .alitajs-dform-value-color {
   :global {
     .am-list-extra {
-      color: @alita-dform-select-color !important;
+      color: @alita-dform-select-color  !important;
     }
   }
 }
