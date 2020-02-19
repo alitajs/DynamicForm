@@ -3,7 +3,7 @@
 @alita-dform-select-color: #000;
 
 .alitajs-dform-title-content {
-  font-size: @input-font-size  !important;
+  font-size: @input-font-size !important;
 }
 
 .alitajs-dform-title {
@@ -13,18 +13,18 @@
 .alitajs-dform-value-content {
   :global {
     .am-list-extra {
-      color: @alita-dform-select-color  !important;
+      color: @alita-dform-select-color !important;
     }
 
     .am-input-control {
       input {
-        color: @alita-dform-select-color ;
+        color: @alita-dform-select-color;
       }
     }
 
     .am-textarea-control {
       textarea {
-        color: @alita-dform-select-color ;
+        color: @alita-dform-select-color;
       }
     }
   }
@@ -126,57 +126,6 @@
       flex-basis: 70% !important;
       text-align: left !important;
     }
-  }
-}
-
-.alitajs-dform-rangeDatePickerStyle {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-
-  :global {
-    .am-list-item .am-list-line .am-list-arrow {
-      display: none;
-    }
-  }
-
-  .alitajs-dform-beginDatePickerStyle {
-    width: 65%;
-
-    :global {
-      .am-list-extra {
-        flex-basis: 50%;
-      }
-    }
-  }
-
-  .alitajs-dform-endDatePickerStyle {
-    width: 30%;
-
-    :global {
-      .am-list-line {
-        justify-content: flex-end;
-      }
-
-      .am-list-extra {
-        flex-basis: 100%;
-      }
-
-      .am-list-item {
-        padding-left: 0;
-      }
-    }
-  }
-
-  .alitajs-dform-line {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5%;
-    height: 88px;
-    border-bottom: 1px solid #ddd;
   }
 }
 
@@ -335,61 +284,97 @@
   }
 }
 
-.alitajs-dform-rangeDatePickerVerticalStyle {
-  p {
-    margin-bottom: 0;
-    padding-top: 28px;
-    padding-left: 30px;
-  }
-
-  .alitajs-dform-rangeDatePickerVerticalContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    .alitajs-dform-line {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 5%;
-      height: 88px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .alitajs-dform-beginVerticalDatePickerStyle {
-      width: 48%;
-
-      :global {
-        .am-list-content {
-          display: none;
-        }
-
-        .am-list-extra {
-          flex-basis: 90%;
-        }
-      }
-    }
-
-    .alitajs-dform-endVerticalDatePickerStyle {
-      width: 47%;
-
-      :global {
-        .am-list-extra {
-          flex-basis: 90%;
-        }
-
-        .am-list-line {
-          border-bottom: 0;
-        }
-
-        .am-list-item {
-          border-bottom: 1px solid #ddd;
-        }
+.alitajs-dform-range-date-picker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .alitajs-dform-range-horizontal {
+    :global {
+      .am-list-item .am-list-line .am-list-arrow {
+        display: none;
       }
     }
   }
+
+  .alitajs-dform-begin-picker {
+    width: 65%;
+
+    :global {
+      .am-list-extra {
+        flex-basis: 50%;
+      }
+    }
+  }
+
+  .alitajs-dform-begin-vertical-picker {
+    width: 48%;
+
+    :global {
+      .am-list-content {
+        display: none;
+      }
+
+      .am-list-extra {
+        flex-basis: 90%;
+        text-align: center;
+      }
+    }
+  }
+
+  .alitajs-dform-end-picker {
+    width: 30%;
+
+    :global {
+      .am-list-line {
+        justify-content: flex-end;
+      }
+
+      .am-list-extra {
+        flex-basis: 100%;
+      }
+
+      .am-list-item {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .alitajs-dform-end-vertical-picker {
+    width: 47%;
+
+    :global {
+      .am-list-extra {
+        flex-basis: 90%;
+      }
+
+      .am-list-line {
+        border-bottom: 0;
+      }
+
+      .am-list-item {
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+  .alitajs-dform-line {
+    display: inline-block;
+    min-width: 38px;
+    height: 100%;
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.45);
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: top;
+    pointer-events: none;
+  }
+}
+
+.alitajs-dform-range-date-picker-vertucal-title {
+  margin-bottom: 0;
+  padding-top: 28px;
+  padding-left: 30px;
 }
 
 .alitajs-dform-nomarCheckBoxStyle {

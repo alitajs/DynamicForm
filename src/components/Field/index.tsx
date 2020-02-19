@@ -7,6 +7,9 @@ const CustomField: FC<FieldProps> = props => {
   const [valueFlag, setValueFlag] = React.useState(false);
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
+    if (props.shouldUpdate && typeof props.shouldUpdate === 'function') {
+      props.shouldUpdate(prevValue, nextValue, {});
+    }
     setValueFlag(nextValue && nextValue[props.name as any]);
     return prevValue !== nextValue;
   };
