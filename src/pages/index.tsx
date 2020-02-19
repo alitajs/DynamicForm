@@ -111,9 +111,7 @@ const Page: FC = () => {
       fieldProps: 'datePicker1',
       fieldProps2: 'datePicker2',
       required: true,
-      placeholder: '请输入',
-      placeholder2: '请选择',
-      title: '时间(datetime)',
+      title: '时间区间',
       modeType: 'datetime',
     },
   ] as IFormItemProps[];
