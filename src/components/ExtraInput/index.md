@@ -27,24 +27,6 @@
 | positionType | 表单方向样式            | `horizontal` or `vertical` | `horizontal` | 否       |
 | hasStar      | 必填项红*展示与否的判断 | boolean                    | true         | 否       |
 
-## 备注
-
-`title` 大小默认设置为 `0.34rem`，如需自定义 `title` 大小，可以在 `config/config.ts` 文件下增加如下代码：
-
-```js
-theme: {
-  '@input-font-size': '0.28rem',
-}
-```
-
-`extraInput` 类型在属性 `editable` 设置为 `false` 时，文字样式会变淡，如果自定义的话可以在 `config/config.ts` 增加如下代码：
-
-```js
-theme: {
-  '@color-text-disabled': '#000',
-}
-```
-
 ## 组件使用
 
 ### PriceInput
