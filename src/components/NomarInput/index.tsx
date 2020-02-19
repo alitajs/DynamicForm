@@ -34,6 +34,28 @@ const NomarInput: FC<INomarInputProps> = props => {
     window.scrollTo(0, 0);
   };
 
+  const inputPage = () => (
+    <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+      <InputItem
+        {...otherProps}
+        type={inputType}
+        onBlur={() => {
+          onBlur();
+        }}
+        style={{ textAlign: positionType === 'horizontal' ? 'right' : 'left', ...coverStyle }}
+      >
+        {positionType === 'horizontal' && (
+          <div className="alitajs-dform-title-content">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-title">
+              {title}
+            </span>
+          </div>
+        )}
+      </InputItem>
+    </Field>
+  );
+
   if (positionType === 'vertical') {
     return (
       <div className="alitajs-dform-nomarInputVerticalStyle">
@@ -43,34 +65,12 @@ const NomarInput: FC<INomarInputProps> = props => {
             {title}
           </span>
         </p>
-        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <InputItem
-            onBlur={() => {
-              onBlur();
-            }}
-            {...otherProps}
-            type={inputType}
-            style={{ ...coverStyle }}
-          />
-        </Field>
+        {inputPage()}
       </div>
     );
   }
 
-  return (
-    <div className="alitajs-dform-fixNomarInputStyle">
-      <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
-          <div className="alitajs-dform-title-content">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-          </div>
-        </InputItem>
-      </Field>
-    </div>
-  );
+  return <div className="alitajs-dform-fixNomarInputStyle">{inputPage()}</div>;
 };
 
 export default NomarInput;
