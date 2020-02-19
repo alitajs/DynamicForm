@@ -3,7 +3,7 @@
 @alita-dform-select-color: #000;
 
 .alitajs-dform-titleFontSize {
-  font-size: @input-font-size !important;
+  font-size: @input-font-size  !important;
 }
 
 .alitajs-dform-titleColor {
@@ -13,7 +13,19 @@
 .alitajs-dform-value-color {
   :global {
     .am-list-extra {
-      color: @alita-dform-select-color !important;
+      color: @alita-dform-select-color  !important;
+    }
+
+    .am-input-control {
+      input {
+        color: @alita-dform-select-color ;
+      }
+    }
+
+    .am-textarea-control {
+      textarea {
+        color: @alita-dform-select-color ;
+      }
     }
   }
 }
