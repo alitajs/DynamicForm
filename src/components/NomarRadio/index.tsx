@@ -63,9 +63,9 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className="alitajs-dform-fixRadioVerticalStyle" key={fieldProps} style={coverStyle}>
-        <p className="alitajs-dform-titleFontSize">
+        <p className="alitajs-dform-title-content">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-titleColor">
+          <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
         </p>
@@ -86,9 +86,9 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   return (
     <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
-      <div className="alitajs-dform-titleFontSize">
+      <div className="alitajs-dform-title-content">
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={fieldProps} className="alitajs-dform-titleColor">
+        <span id={fieldProps} className="alitajs-dform-title">
           {title}
         </span>
       </div>

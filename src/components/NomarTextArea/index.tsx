@@ -35,9 +35,9 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     return (
       <div className="alitajs-dform-textAreaVerticalStyle">
         <div className="alitajs-dform-textAreaVerticalTitleStyle">
-          <p className="alitajs-dform-titleFontSize">
+          <p className="alitajs-dform-title-content">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-titleColor">
+            <span id={fieldProps} className="alitajs-dform-title">
               {title}
             </span>
           </p>

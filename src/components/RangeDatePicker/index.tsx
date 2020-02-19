@@ -34,9 +34,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   if (positionType === 'vertical') {
     return (
       <div className="alitajs-dform-rangeDatePickerVerticalStyle">
-        <p className="alitajs-dform-titleFontSize">
+        <p className="alitajs-dform-title-content">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-titleColor">
+          <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
         </p>
@@ -62,9 +62,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                       }}
                     >
                       <List.Item arrow="horizontal">
-                        <div className="alitajs-dform-titleFontSize">
+                        <div className="alitajs-dform-title-content">
                           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                          <span id={fieldProps} className="alitajs-dform-titleColor">
+                          <span id={fieldProps} className="alitajs-dform-title">
                             {title}
                           </span>
                           <span id={fieldProps2}></span>
@@ -129,9 +129,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   }}
                 >
                   <List.Item arrow="horizontal">
-                    <div className="alitajs-dform-titleFontSize">
+                    <div className="alitajs-dform-title-content">
                       {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                      <span id={fieldProps} className="alitajs-dform-titleColor">
+                      <span id={fieldProps} className="alitajs-dform-title">
                         {title}
                       </span>
                       <span id={fieldProps2}></span>
