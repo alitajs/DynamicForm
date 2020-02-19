@@ -46,7 +46,7 @@ theme: {
 
 ```js
 theme: {
-  '@alita-dform-value-size': 28px,
+  '@alita-dform-value-size': '0.28rem',
 }
 ```
 
