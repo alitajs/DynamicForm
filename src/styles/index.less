@@ -1,17 +1,16 @@
 @import '~antd-mobile/lib/style/themes/default.less';
 
 @alita-dform-select-color: #000;
-@alita-dform-title-color: #000;
 
-.alitajs-dform-titleFontSize {
+.alitajs-dform-title-content {
   font-size: @input-font-size  !important;
 }
 
-.alitajs-dform-titleColor {
-  color: @alita-dform-title-color;
+.alitajs-dform-title {
+  color: #000;
 }
 
-.alitajs-dform-value-color {
+.alitajs-dform-value-content {
   :global {
     .am-list-extra {
       color: @alita-dform-select-color  !important;
@@ -189,8 +188,8 @@
 
     .am-textarea-label {
       line-height: 55px;
-      .alitajs-dform-titleColor();
-      .alitajs-dform-titleFontSize();
+      .alitajs-dform-title();
+      .alitajs-dform-title-content();
     }
 
     .am-list-item {

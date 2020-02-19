@@ -28,9 +28,9 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
 
   return (
     <div className="alitajs-dform-nomarCheckBoxStyle">
-      <p className="alitajs-dform-titleFontSize">
+      <p className="alitajs-dform-title-content">
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={fieldProps} className="alitajs-dform-titleColor">
+        <span id={fieldProps} className="alitajs-dform-title">
           {title}
         </span>
       </p>

@@ -40,9 +40,9 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
         </Field>
       }
     >
-      <div className='alitajs-dform-titleFontSize'>
-        {required && hasStar && <span className='alitajs-dform-redStar'>*</span>}
-        <span id={fieldProps} className='alitajs-dform-titleColor'>
+      <div className="alitajs-dform-title-content">
+        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+        <span id={fieldProps} className="alitajs-dform-title">
           {title}
         </span>
       </div>
