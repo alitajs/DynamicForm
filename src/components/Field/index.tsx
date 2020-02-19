@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Form, { Field, useForm } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
+import classNames from 'classnames';
 import '../../styles/index.less';
 
 const CustomField: FC<FieldProps> = props => {
@@ -12,7 +13,12 @@ const CustomField: FC<FieldProps> = props => {
   };
 
   return (
-    <div className={valueFlag ? 'alitajs-dform-value-color' : ''}>
+    <div
+      className={classNames({
+        'alitajs-dform-value-color': valueFlag,
+        'alitajs-dform-value-size': true,
+      })}
+    >
       <Field {...props} shouldUpdate={shouldUpdate} />
     </div>
   );

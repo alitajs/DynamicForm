@@ -1,7 +1,8 @@
 @import '~antd-mobile/lib/style/themes/default.less';
 
-@alita-dform-select-color: #000;
+@alita-dform-value-color: #000;
 @alita-dform-title-color: #000;
+@alita-dform-value-size: 34px;
 
 .alitajs-dform-titleFontSize {
   font-size: @input-font-size  !important;
@@ -11,21 +12,53 @@
   color: @alita-dform-title-color;
 }
 
-.alitajs-dform-value-color {
+.alitajs-dform-value-size {
   :global {
     .am-list-extra {
-      color: @alita-dform-select-color  !important;
+      font-size: @alita-dform-value-size  !important;
     }
 
     .am-input-control {
       input {
-        color: @alita-dform-select-color ;
+        font-size: @alita-dform-value-size;
       }
     }
 
     .am-textarea-control {
       textarea {
-        color: @alita-dform-select-color ;
+        font-size: @alita-dform-value-size;
+      }
+    }
+
+    .ant-radio-wrapper {
+      span {
+        font-size: @alita-dform-value-size;
+      }
+    }
+  }
+}
+
+.alitajs-dform-value-color {
+  :global {
+    .am-list-extra {
+      color: @alita-dform-value-color  !important;
+    }
+
+    .am-input-control {
+      input {
+        color: @alita-dform-value-color ;
+      }
+    }
+
+    .am-textarea-control {
+      textarea {
+        color: @alita-dform-value-color ;
+      }
+    }
+
+    .ant-radio-wrapper {
+      span {
+        color: @alita-dform-value-color ;
       }
     }
   }
