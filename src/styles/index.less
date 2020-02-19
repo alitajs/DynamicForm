@@ -3,7 +3,7 @@
 @alita-dform-select-color: #000;
 
 .alitajs-dform-title-content {
-  font-size: @input-font-size !important;
+  font-size: @input-font-size  !important;
 }
 
 .alitajs-dform-title {
@@ -13,7 +13,7 @@
 .alitajs-dform-value-content {
   :global {
     .am-list-extra {
-      color: @alita-dform-select-color !important;
+      color: @alita-dform-select-color  !important;
     }
 
     .am-input-control {
@@ -290,6 +290,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+
   .alitajs-dform-range-horizontal {
     :global {
       .am-list-item .am-list-line .am-list-arrow {
@@ -304,6 +305,9 @@
     :global {
       .am-list-extra {
         flex-basis: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
@@ -358,6 +362,7 @@
       }
     }
   }
+
   .alitajs-dform-line {
     display: inline-block;
     min-width: 38px;
@@ -371,7 +376,7 @@
   }
 }
 
-.alitajs-dform-range-date-picker-vertucal-title {
+.alitajs-dform-range-date-picker-vertical-title {
   margin-bottom: 0;
   padding-top: 28px;
   padding-left: 30px;

@@ -39,6 +39,7 @@ const RangeDatePicker: FC = () => {
       fieldProps2: 'rangeTime4',
       title: '时间(month)',
       modeType: 'month',
+      positionType: 'horizontal',
     },
     {
       type: 'rangeDatePicker',

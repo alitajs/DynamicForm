@@ -40,7 +40,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-title-content alitajs-dform-range-date-picker-vertucal-title">
+        <p className="alitajs-dform-title-content alitajs-dform-range-date-picker-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
