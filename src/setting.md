@@ -18,16 +18,6 @@ theme: {
 }
 ```
 
-### 标题颜色
-
-`title` 颜色默认为 `#000`，如需修改，请增加如下代码：
-
-```js
-theme: {
-  '@alita-dform-title-color': 'red',
-}
-```
-
 ### 选中项和输入框的值颜色
 
 `select`、`date`、`rangeDatePicker` 等选中项的值颜色和 `placeholder`(提示文字) 颜色一样，不易区分用户是否已经选择。
@@ -36,17 +26,7 @@ theme: {
 
 ```js
 theme: {
-  '@alita-dform-value-color': 'blue',
-}
-```
-
-### 选中项和输入框的值文字大小
-
-`select`、`date`、`rangeDatePicker` 等选中项的值颜色和 `placeholder`(提示文字) 大小，如需修改，请增加如下代码：
-
-```js
-theme: {
-  '@alita-dform-value-size': '0.28rem',
+  '@alita-dform-select-color': 'blue',
 }
 ```
 
