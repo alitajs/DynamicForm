@@ -93,7 +93,7 @@ title: TextArea
 
 ### ExtraArea
 
-<code src="./demo/ExtraArea.tsx" />
+<code src="./demo/extraArea.tsx" />
 
 如需在 `DynamicForm` 中使用，请使用以下 `json`：
 
