@@ -121,7 +121,7 @@ const Page: FC = () => {
   };
   const formProps = {
     onFinish,
-    data: formsData,
+    data: { title: 'Card Title', data: formsData },
     onFinishFailed,
     formsValues,
     form,
@@ -129,14 +129,17 @@ const Page: FC = () => {
     // allDisabled: true,
   };
   return (
-    <DynamicForm {...formProps}>
+    <>
       <WhiteSpace size="xl" />
-      <Field {...tailLayout}>
-        <Button type="primary" onClick={() => form.submit()}>
-          Submit
-        </Button>
-      </Field>
-    </DynamicForm>
+      <DynamicForm {...formProps}>
+        <WhiteSpace size="xl" />
+        <Field {...tailLayout}>
+          <Button type="primary" onClick={() => form.submit()}>
+            Submit
+          </Button>
+        </Field>
+      </DynamicForm>
+    </>
   );
 };
 
