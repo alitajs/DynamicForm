@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
+
 import DynamicForm, { IFormItemProps } from '../DynamicForm';
 
 const tailLayout = {
@@ -31,6 +32,17 @@ const seasons = [
   ],
 ];
 
+const radioList = [
+  {
+    label: '是',
+    value: 'yes',
+  },
+  {
+    label: '否',
+    value: 'no',
+  },
+];
+
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
@@ -43,26 +55,7 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const radioList = [
-    {
-      label: '是',
-      value: 'yes',
-    },
-    {
-      label: '否',
-      value: 'no',
-    },
-  ];
-
   const formsData = [
-    {
-      type: 'radio',
-      fieldProps: 'userRadio1',
-      required: true,
-      data: radioList,
-      title: '发票',
-    },
-
     {
       type: 'input',
       fieldProps: 'username',
@@ -87,12 +80,6 @@ const Page: FC = () => {
       title: '用户选择',
     },
     {
-      type: 'text',
-      fieldProps: 'useronlyread',
-      placeholder: '请选择',
-      title: '只读信息',
-    },
-    {
       type: 'area',
       fieldProps: 'usertextarea',
       required: true,
@@ -107,22 +94,92 @@ const Page: FC = () => {
       modeType: 'datetime',
     },
     {
+      type: 'extraInput',
+      fieldProps: 'minPrice',
+      fieldProps2: 'maxPrice',
+      placeholder: '请输入1',
+      placeholder2: '请输入',
+      title: '价格区间',
+      required: true,
+    },
+    {
+      type: 'radio',
+      fieldProps: 'userRadio',
+      required: true,
+      title: '发票',
+      data: radioList,
+    },
+    {
       type: 'rangeDatePicker',
-      fieldProps: 'datePicker1',
-      fieldProps2: 'datePicker2',
+      fieldProps: 'datePicker3',
+      fieldProps2: 'datePicker4',
       required: true,
       title: '时间区间',
+      modeType: 'month',
+    },
+    {
+      type: 'input',
+      fieldProps: 'custPhone',
+      placeholder: '标题超过16字符自动开启，如需关闭，请设置 autoLineFeed',
+      title: '超长标题(自动开启双行模式)',
+      inputType: 'text',
+      positionType: 'vertical',
+      editable: false,
+    },
+    {
+      type: 'select',
+      fieldProps: 'timeAndWeather',
+      placeholder: '请选择',
+      title: '选择当前时间和天气',
+      data: seasons,
+    },
+    {
+      type: 'area',
+      fieldProps: 'busInfo',
+      placeholder: '多行输入',
+      title: '集团基本信息',
+      positionType: 'vertical',
+    },
+    {
+      type: 'date',
+      fieldProps: 'beginDate',
+      placeholder: '请选择',
+      title: '选择出发时间',
       modeType: 'datetime',
+      positionType: 'vertical',
+    },
+    {
+      type: 'extraInput',
+      fieldProps: 'minLength',
+      fieldProps2: 'maxLength',
+      placeholder: '请输入',
+      placeholder2: '请输入',
+      title: '长度区间',
+      positionType: 'vertical',
+    },
+    {
+      type: 'radio',
+      fieldProps: 'userRadio2',
+      title: '发票',
+      data: radioList,
+      positionType: 'vertical',
+    },
+    {
+      type: 'rangeDatePicker',
+      fieldProps: 'datePicker5',
+      fieldProps2: 'datePicker6',
+      title: '时间区间',
+      modeType: 'month',
+      positionType: 'vertical',
     },
   ] as IFormItemProps[];
   const formsValues = {
-    username: 0,
-    userdata: ['2013', '春'],
+    useronlyread: '原始文档，没有变更',
   };
   const formProps = {
     onFinish,
-    data: formsData,
     onFinishFailed,
+    data: { title: '用户数据上报', data: formsData },
     formsValues,
     form,
     isDev: false,
@@ -130,7 +187,7 @@ const Page: FC = () => {
   };
   return (
     <DynamicForm {...formProps}>
-      <WhiteSpace size="xl" />
+      <WhiteSpace size="sm" />
       <Field {...tailLayout}>
         <Button type="primary" onClick={() => form.submit()}>
           Submit

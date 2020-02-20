@@ -53,7 +53,32 @@ const Page: FC = () => {
       value: 'no',
     },
   ];
+  const formsData1 = [
+    {
+      type: 'radio',
+      fieldProps: 'userRadio11',
+      required: true,
+      data: radioList,
+      title: '发票',
+    },
 
+    {
+      type: 'input',
+      fieldProps: 'username1',
+      required: true,
+      placeholder: '请输入',
+      title: '用户名',
+      inputType: 'text',
+    },
+    {
+      type: 'select',
+      fieldProps: 'userdata1',
+      required: true,
+      placeholder: '请选择',
+      title: '用户数据',
+      data: seasons,
+    },
+  ] as IFormItemProps[];
   const formsData = [
     {
       type: 'radio',
@@ -121,7 +146,10 @@ const Page: FC = () => {
   };
   const formProps = {
     onFinish,
-    data: formsData,
+    data: [
+      { title: 'First Card Title', data: formsData1 },
+      { title: 'Second Card Title', data: formsData },
+    ],
     onFinishFailed,
     formsValues,
     form,
@@ -129,14 +157,17 @@ const Page: FC = () => {
     // allDisabled: true,
   };
   return (
-    <DynamicForm {...formProps}>
+    <>
       <WhiteSpace size="xl" />
-      <Field {...tailLayout}>
-        <Button type="primary" onClick={() => form.submit()}>
-          Submit
-        </Button>
-      </Field>
-    </DynamicForm>
+      <DynamicForm {...formProps}>
+        <WhiteSpace size="xl" />
+        <Field {...tailLayout}>
+          <Button type="primary" onClick={() => form.submit()}>
+            Submit
+          </Button>
+        </Field>
+      </DynamicForm>
+    </>
   );
 };
 
