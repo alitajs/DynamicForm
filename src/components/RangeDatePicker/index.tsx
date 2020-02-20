@@ -40,7 +40,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-title-content alitajs-dform-vertical-title">
+        <p className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
@@ -79,13 +79,11 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
               }}
             >
               <List.Item>
-                <div className="alitajs-dform-title-content">
-                  {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                  <span id={fieldProps} className="alitajs-dform-title">
-                    {title}
-                  </span>
-                  <span id={fieldProps2}></span>
-                </div>
+                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                <span id={fieldProps} className="alitajs-dform-title">
+                  {title}
+                </span>
+                <span id={fieldProps2}></span>
               </List.Item>
             </DatePicker>
           </Field>

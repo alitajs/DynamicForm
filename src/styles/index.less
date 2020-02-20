@@ -8,6 +8,7 @@
 
 .alitajs-dform-title {
   color: #000;
+  .alitajs-dform-title-content();
 }
 
 .alitajs-dform-vertical-title {
@@ -53,6 +54,7 @@
   height: 34px;
   margin-right: 6px;
   color: rgba(255, 72, 72, 1);
+  .alitajs-dform-title-content();
 }
 
 .alitajs-dform-fixRadioStyle {
@@ -104,6 +106,15 @@
 
     .am-input-label {
       display: none;
+    }
+  }
+}
+
+.alitajs-dform-vertical-picker {
+  :global {
+    .am-list-extra {
+      flex-basis: 100% !important;
+      text-align: left !important;
     }
   }
 }

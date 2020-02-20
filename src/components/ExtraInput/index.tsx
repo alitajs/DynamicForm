@@ -66,7 +66,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-title-content alitajs-dform-vertical-title">
+        <p className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
