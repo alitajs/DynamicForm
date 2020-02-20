@@ -32,16 +32,20 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     ...otherProps
   } = props;
 
-  if (positionType === 'vertical') {
-    return (
-      <div className="alitajs-dform-nomarPickerVerticalStyle">
-        <p className="alitajs-dform-title-content">
+  const isVertical = positionType === 'vertical';
+
+  return (
+    <>
+      {isVertical && (
+        <p className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
         </p>
-        <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+      )}
+      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}>
+        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
           <Picker
             {...otherProps}
             style={coverStyle}
@@ -50,33 +54,20 @@ const NomarPicker: FC<INomarPickerProps> = props => {
             data={data}
             title={title}
           >
-            <List.Item arrow="horizontal"></List.Item>
+            <List.Item arrow="horizontal">
+              {!isVertical && (
+                <div className="alitajs-dform-title-content">
+                  {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                  <span id={fieldProps} className="alitajs-dform-title">
+                    {title}
+                  </span>
+                </div>
+              )}
+            </List.Item>
           </Picker>
         </Field>
       </div>
-    );
-  }
-
-  return (
-    <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-      <Picker
-        {...otherProps}
-        style={coverStyle}
-        cascade={false}
-        extra={placeholder}
-        data={data}
-        title={title}
-      >
-        <List.Item arrow="horizontal">
-          <div className="alitajs-dform-title-content">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-          </div>
-        </List.Item>
-      </Picker>
-    </Field>
+    </>
   );
 };
 
