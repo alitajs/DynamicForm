@@ -29,16 +29,19 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
     ...otherProps
   } = props;
 
-  if (positionType === 'vertical') {
-    return (
-      <div className="alitajs-dform-nomarDatePickerVerticalStyle">
-        <p className="alitajs-dform-title-content">
+  const isVertical = positionType === 'vertical';
+
+  return (
+    <>
+      {isVertical && (
+        <p className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
         </p>
-
+      )}
+      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`}>
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
           <DatePicker
             {...otherProps}
@@ -46,31 +49,16 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
             title={title}
             format={value => changeDateFormat(value, modeType)}
           >
-            <List.Item arrow="horizontal" />
+            <List.Item arrow="horizontal">
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+            </List.Item>
           </DatePicker>
         </Field>
       </div>
-    );
-  }
-
-  return (
-    <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-      <DatePicker
-        {...otherProps}
-        mode={modeType}
-        title={title}
-        format={value => changeDateFormat(value, modeType)}
-      >
-        <List.Item arrow="horizontal">
-          <div className="alitajs-dform-title-content">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-          </div>
-        </List.Item>
-      </DatePicker>
-    </Field>
+    </>
   );
 };
 
