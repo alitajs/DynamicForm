@@ -10,6 +10,24 @@
   color: #000;
 }
 
+.alitajs-dform-vertical-title {
+  margin-bottom: 0;
+  padding-top: 28px;
+  padding-left: 30px;
+}
+
+.alitajs-dform-line {
+  display: inline-block;
+  min-width: 38px;
+  height: 100%;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: top;
+  pointer-events: none;
+}
+
 .alitajs-dform-value-content {
   :global {
     .am-list-extra {
@@ -70,7 +88,7 @@
   }
 }
 
-.alitajs-dform-fixNomarInputStyle {
+.alitajs-dform-input {
   :global {
     .am-input-extra {
       max-height: 88px;
@@ -78,16 +96,14 @@
   }
 }
 
-.alitajs-dform-nomarInputVerticalStyle {
-  p {
-    margin-bottom: 0;
-    padding-top: 28px;
-    padding-left: 30px;
-  }
-
+.alitajs-dform-vertical-input {
   :global {
     .am-input-extra {
       max-height: 88px;
+    }
+
+    .am-input-label {
+      display: none;
     }
   }
 }
@@ -264,23 +280,6 @@
     }
   }
 
-  .alitajs-dform-line {
-    display: inline-block;
-    min-width: 38px;
-    height: 100%;
-    font-size: 32px;
-    color: rgba(0, 0, 0, 0.45);
-    white-space: nowrap;
-    text-align: center;
-    vertical-align: top;
-    pointer-events: none;
-  }
-}
-
-.alitajs-dform-range-date-picker-vertical-title {
-  margin-bottom: 0;
-  padding-top: 28px;
-  padding-left: 30px;
 }
 
 .alitajs-dform-nomarCheckBoxStyle {

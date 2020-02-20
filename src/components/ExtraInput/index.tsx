@@ -53,7 +53,12 @@ const ExtraInput: FC<IExtraInputProps> = props => {
 
     return (
       <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }} />
+        <InputItem
+          {...otherProps}
+          type={inputType}
+          style={{ textAlign: 'right', ...coverStyle }}
+          placeholder={placeholder2}
+        />
       </Field>
     );
   };
@@ -61,7 +66,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-title-content alitajs-dform-range-date-picker-vertical-title">
+        <p className="alitajs-dform-title-content alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
