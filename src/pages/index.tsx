@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
+import { router } from 'umi';
 import DynamicForm, { IFormItemProps } from '../DynamicForm';
 
 const tailLayout = {
@@ -129,14 +130,20 @@ const Page: FC = () => {
     // allDisabled: true,
   };
   return (
-    <DynamicForm {...formProps}>
+    <>
+      <DynamicForm {...formProps}>
+        <WhiteSpace size="xl" />
+        <Field {...tailLayout}>
+          <Button type="primary" onClick={() => form.submit()}>
+            Submit
+          </Button>
+        </Field>
+      </DynamicForm>
       <WhiteSpace size="xl" />
-      <Field {...tailLayout}>
-        <Button type="primary" onClick={() => form.submit()}>
-          Submit
-        </Button>
-      </Field>
-    </DynamicForm>
+      <Button type="primary" onClick={() => router.push('/normallist')}>
+        下一页
+      </Button>
+    </>
   );
 };
 

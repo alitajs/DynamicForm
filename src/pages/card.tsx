@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
+import { router } from 'umi';
 import DynamicForm, { IFormItemProps } from '../DynamicForm';
 
 const tailLayout = {
@@ -139,6 +140,10 @@ const Page: FC = () => {
           </Button>
         </Field>
       </DynamicForm>
+      <WhiteSpace size="xl" />
+      <Button type="primary" onClick={() => router.push('/cardlist')}>
+        下一页
+      </Button>
     </>
   );
 };
