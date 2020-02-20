@@ -23,6 +23,17 @@
     "prettier": "prettier -c --write \"**/*\"",
     "format-imports": "cross-env import-sort --write '**/*.{js,jsx,ts,tsx}'"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -53,7 +64,8 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
     "lint-staged": "^9.5.0",
-    "stylelint": "^12.0.1"
+    "stylelint": "^12.0.1",
+    "yorkie": "^2.0.0"
   },
   "files": [
     "dist",

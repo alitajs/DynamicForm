@@ -10,19 +10,19 @@ title: TextArea
 
 ## API
 
-| 参数         | 说明                    | 类型                       | 默认值     | 是否必填 |
-| ------------ | ----------------------- | -------------------------- | ---------- | -------- |
-| type         | 表单类型                | string                     | ''         | 是       |
-| title        | 标题                    | string                     | ''         | 是       |
-| fieldProps   | 文本属性                | string                     | ''         | 是       |
-| placeholder  | placeholder             | string                     | ''         | 否       |
-| required     | 必填判断                | boolean                    | false      | 否       |
-| rows         | 行数                    | number                     | 3          | 否       |
-| editable     | 可编辑判断              | boolean                    | false      | true     |
-| labelNumber  | 标签的文字个数          | number                     | 5          | 否       |
-| positionType | 表单方向样式            | `horizontal` or `vertical` | `vertical` | 否       |
-| hasStar      | 必填项红*展示与否的判断 | boolean                    | true       | 否       |
-| extra        | 右边注释                | string or node             | ''         | 否       |
+| 参数         | 说明                     | 类型                       | 默认值     | 是否必填 |
+| ------------ | ------------------------ | -------------------------- | ---------- | -------- |
+| type         | 表单类型                 | string                     | ''         | 是       |
+| title        | 标题                     | string                     | ''         | 是       |
+| fieldProps   | 文本属性                 | string                     | ''         | 是       |
+| placeholder  | placeholder              | string                     | ''         | 否       |
+| required     | 必填判断                 | boolean                    | false      | 否       |
+| rows         | 行数                     | number                     | 3          | 否       |
+| editable     | 可编辑判断               | boolean                    | false      | true     |
+| labelNumber  | 标签的文字个数           | number                     | 5          | 否       |
+| positionType | 表单方向样式             | `horizontal` or `vertical` | `vertical` | 否       |
+| hasStar      | 必填项红\*展示与否的判断 | boolean                    | true       | 否       |
+| extra        | 右边注释                 | string or node             | ''         | 否       |
 
 ## 组件使用
 
@@ -83,15 +83,15 @@ title: TextArea
 
 ```json
 {
-  title: "备注",
-  fieldProps: "Remarks",
-  required: true,
-  placeholder: "请输入...",
-  positionType: "vertical",
+  "title": "备注",
+  "fieldProps": "Remarks",
+  "required": true,
+  "placeholder": "请输入...",
+  "positionType": "vertical"
 }
 ```
 
-### ExtraArea 
+### ExtraArea
 
 <code src="./demo/ExtraArea.tsx" />
 
@@ -99,14 +99,11 @@ title: TextArea
 
 ```json
 {
-  type: "area",
-  fieldProps: "idenPhone",
-  title: "身份证",
-  extra: photoImg(),
-  placeholder: "存在 extra 自动换行",
-  required: true,
+  "type": "area",
+  "fieldProps": "idenPhone",
+  "title": "身份证",
+  "extra": photoImg(),
+  "placeholder": "存在 extra 自动换行",
+  "required": true
 }
 ```
-
-
-

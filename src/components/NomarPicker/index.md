@@ -10,17 +10,17 @@ title: Select
 
 ## API
 
-| 参数         | 说明                    | 类型                       | 默认值       | 是否必填 |
-| ------------ | ----------------------- | -------------------------- | ------------ | -------- |
-| type         | 表单类型                | string                     | ''           | 是       |
-| title        | 标题                    | string                     | ''           | 是       |
-| data         | 数据源                  | list                       | []           | 是       |
-| fieldProps   | 文本属性                | string                     | false        | 是       |
-| placeholder  | placeholder             | string                     | ''           | 否       |
-| required     | 必填判断                | boolean                    | false        | 否       |
-| disabled     | 是否可编辑              | boolean                    | false        | 否       |
-| positionType | 表单方向样式            | `horizontal` or `vertical` | `horizontal` | 否       |
-| hasStar      | 必填项红*展示与否的判断 | boolean                    | true         | 否       |
+| 参数         | 说明                     | 类型                       | 默认值       | 是否必填 |
+| ------------ | ------------------------ | -------------------------- | ------------ | -------- |
+| type         | 表单类型                 | string                     | ''           | 是       |
+| title        | 标题                     | string                     | ''           | 是       |
+| data         | 数据源                   | list                       | []           | 是       |
+| fieldProps   | 文本属性                 | string                     | false        | 是       |
+| placeholder  | placeholder              | string                     | ''           | 否       |
+| required     | 必填判断                 | boolean                    | false        | 否       |
+| disabled     | 是否可编辑               | boolean                    | false        | 否       |
+| positionType | 表单方向样式             | `horizontal` or `vertical` | `horizontal` | 否       |
+| hasStar      | 必填项红\*展示与否的判断 | boolean                    | true         | 否       |
 
 ## 组件使用
 
@@ -32,11 +32,11 @@ title: Select
 
 ```json
 {
-  type: "select",
-  fieldProps: "userPicker1",
-  title: "季节",
-  placeholder: "请选择",
-  data: seasons,
+  "type": "select",
+  "fieldProps": "userPicker1",
+  "title": "季节",
+  "placeholder": "请选择",
+  "data": seasons
 }
 ```
 
@@ -48,14 +48,13 @@ title: Select
 
 ```json
 {
-  type: "select",
-  fieldProps: "userPicker2",
-  required: true,
-  title: "城市",
-  placeholder: "请选择",
-  data: citys,
+  "type": "select",
+  "fieldProps": "userPicker2",
+  "required": true,
+  "title": "城市",
+  "placeholder": "请选择",
+  "data": citys
 }
-
 ```
 
 ### OnlyRead
@@ -65,15 +64,14 @@ title: Select
 
 ```json
 {
-  type: "select",
-  fieldProps: "userPicker3",
-  required:true,
-  title: "城市(不可编辑)",
-  placeholder: "请选择",
-  data: citys,
-  disabled: true,
+  "type": "select",
+  "fieldProps": "userPicker3",
+  "required": true,
+  "title": "城市(不可编辑)",
+  "placeholder": "请选择",
+  "data": citys,
+  "disabled": true
 }
-
 ```
 
 ### VerticalPicker
@@ -83,18 +81,11 @@ title: Select
 
 ```json
 {
-  type: "select",
-  fieldProps: "userPicker4",
-  title: "季节",
-  placeholder: "请选择",
-  data: seasons,
-  positionType: "vertical",
+  "type": "select",
+  "fieldProps": "userPicker4",
+  "title": "季节",
+  "placeholder": "请选择",
+  "data": seasons,
+  "positionType": "vertical"
 }
 ```
-
-
-
-
-
-
-

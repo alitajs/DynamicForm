@@ -3,7 +3,7 @@
 @alita-dform-select-color: #000;
 
 .alitajs-dform-title-content {
-  font-size: @input-font-size  !important;
+  font-size: @input-font-size !important;
 }
 
 .alitajs-dform-title {
@@ -21,8 +21,8 @@
   display: inline-block;
   min-width: 38px;
   height: 100%;
-  font-size: 32px;
   color: rgba(0, 0, 0, 0.45);
+  font-size: 32px;
   white-space: nowrap;
   text-align: center;
   vertical-align: top;
@@ -32,7 +32,7 @@
 .alitajs-dform-value-content {
   :global {
     .am-list-extra {
-      color: @alita-dform-select-color  !important;
+      color: @alita-dform-select-color !important;
     }
 
     .am-input-control {
@@ -88,7 +88,6 @@
 
 .alitajs-dform-radio {
   :global {
-
     .ant-radio-inner::after {
       top: 8px;
       left: 8px;
@@ -106,7 +105,6 @@
     .ant-radio-wrapper {
       font-size: 30px;
     }
-
   }
 }
 
@@ -139,9 +137,9 @@
 .alitajs-dform-area {
   :global {
     .am-textarea-control textarea {
+      padding: 4px 10px;
       background-color: rgb(247, 246, 249);
       border-radius: 6px;
-      padding: 4px 10px;
     }
 
     .am-list-item {
@@ -186,8 +184,8 @@
 
     :global {
       .am-list-extra {
-        flex-basis: 50%;
         display: flex;
+        flex-basis: 50%;
         align-items: center;
         justify-content: center;
       }
@@ -240,12 +238,11 @@
       }
 
       .am-list-item {
-        border-bottom: 1px solid #ddd;
         padding-left: 0 !important;
+        border-bottom: 1px solid #ddd;
       }
     }
   }
-
 }
 
 .alitajs-dform-nomarCheckBoxStyle {
@@ -292,8 +289,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-  .alitajs-dform-extra-horizontal {}
 
   .alitajs-dform-begin-input {
     width: 65%;
