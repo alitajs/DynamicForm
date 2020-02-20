@@ -10,21 +10,21 @@ title: Input
 
 ## API
 
-| 参数         | 说明                    | 类型                       | 默认值       | 是否必填 |
-| ------------ | ----------------------- | -------------------------- | ------------ | -------- |
-| type         | 表单类型                | string                     | ''           | 是       |
-| title        | 标题                    | string                     | ''           | 是       |
-| fieldProps   | 文本属性                | string                     | false        | 是       |
-| placeholder  | placeholder             | string                     | ''           | 否       |
-| required     | 必填判断                | boolean                    | false        | 否       |
-| inputType    | html input 框类型       | string                     | text         | 否       |
-| clear        | 是否带清除功能          | boolean                    | false        | 否       |
-| editable     | 是否可编辑              | boolean                    | true         | 否       |
-| extra        | 右边注释                | string or node             | ''           | 否       |
-| onClick      | 文字点击事件            | function                   | null         | 否       |
-| labelNumber  | 标签的文字个数          | number                     | 5            | 否       |
-| positionType | 表单方向样式            | `horizontal` or `vertical` | `horizontal` | 否       |
-| hasStar      | 必填项红*展示与否的判断 | boolean                    | true         | 否       |
+| 参数         | 说明                     | 类型                       | 默认值       | 是否必填 |
+| ------------ | ------------------------ | -------------------------- | ------------ | -------- |
+| type         | 表单类型                 | string                     | ''           | 是       |
+| title        | 标题                     | string                     | ''           | 是       |
+| fieldProps   | 文本属性                 | string                     | false        | 是       |
+| placeholder  | placeholder              | string                     | ''           | 否       |
+| required     | 必填判断                 | boolean                    | false        | 否       |
+| inputType    | html input 框类型        | string                     | text         | 否       |
+| clear        | 是否带清除功能           | boolean                    | false        | 否       |
+| editable     | 是否可编辑               | boolean                    | true         | 否       |
+| extra        | 右边注释                 | string or node             | ''           | 否       |
+| onClick      | 文字点击事件             | function                   | null         | 否       |
+| labelNumber  | 标签的文字个数           | number                     | 5            | 否       |
+| positionType | 表单方向样式             | `horizontal` or `vertical` | `horizontal` | 否       |
+| hasStar      | 必填项红\*展示与否的判断 | boolean                    | true         | 否       |
 
 ## 组件使用
 
@@ -71,13 +71,13 @@ title: Input
 
 ```json
 {
-  type: "input",
-  fieldProps: "userClick",
-  placeholder: "0.00",
-  title: "价格",
-  extra: "¥",
-  inputType: "number",
-  required: true,
+  "type": "input",
+  "fieldProps": "userClick",
+  "placeholder": "0.00",
+  "title": "价格",
+  "extra": "¥",
+  "inputType": "number",
+  "required": true
 }
 ```
 
@@ -103,13 +103,13 @@ title: Input
 
 ```json
 {
-  type: "input",
-  fieldProps: "userTitle",
-  placeholder: "存在点击事件",
-  required: true,
-  title: "标题",
-  editable: false,
-  onClick: e => console.log(e)
+  "type": "input",
+  "fieldProps": "userTitle",
+  "placeholder": "存在点击事件",
+  "required": true,
+  "title": "标题",
+  "editable": false,
+  "onClick": e => console.log(e)
 }
 ```
 
@@ -119,14 +119,14 @@ title: Input
 
 ```json
 {
-  type: "input",
-  fieldProps: "usernameTooLong",
-  required: true,
-  placeholder: "请输入",
-  title: "标题名称过长",
-  labelNumber: 7,
-  inputType: "text",
-  clear: true,
+  "type": "input",
+  "fieldProps": "usernameTooLong",
+  "required": true,
+  "placeholder": "请输入",
+  "title": "标题名称过长",
+  "labelNumber": 7,
+  "inputType": "text",
+  "clear": true
 }
 ```
 
@@ -136,13 +136,13 @@ title: Input
 
 ```json
 {
-  type: "input",
-  fieldProps: "cardNumber",
-  required: true,
-  placeholder: "请输入",
-  title: "身份证号码",
-  inputType: "text",
-  clear: true,
-  positionType: "vertical"
+  "type": "input",
+  "fieldProps": "cardNumber",
+  "required": true,
+  "placeholder": "请输入",
+  "title": "身份证号码",
+  "inputType": "text",
+  "clear": true,
+  "positionType": "vertical"
 }
 ```

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
+import classnames from 'classnames';
 import Field from '../Field';
 import { NomarInput } from '..';
-import classnames from 'classnames';
 import '../../styles/index.less';
 
 export interface IExtraInputProps extends InputItemPropsType {
