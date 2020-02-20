@@ -33,6 +33,8 @@ const Page: FC = () => {
       fieldProps: 'textArea1',
       required: true,
       placeholder: '请输入...',
+      title: '公司简介',
+      positionType: 'horizontal',
     },
     {
       type: 'area',
@@ -56,7 +58,6 @@ const Page: FC = () => {
       title: '备注',
       placeholder: '请输入',
       required: true,
-      positionType: 'vertical',
     },
     {
       type: 'area',

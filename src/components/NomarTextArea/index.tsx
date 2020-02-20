@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { TextareaItem, List } from 'antd-mobile';
+import { TextareaItem } from 'antd-mobile';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
+import classnames from 'classnames';
 import Field from '../Field';
-
 import '../../styles/index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -25,55 +25,44 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     rules,
     rows = 3,
     title,
-    positionType = 'horizontal',
+    positionType = 'vertical',
     hasStar = true,
     extra = '',
     ...otherProps
   } = props;
 
-  if (positionType === 'vertical' || extra !== '') {
-    return (
-      <div className="alitajs-dform-textAreaVerticalStyle">
-        <div className="alitajs-dform-textAreaVerticalTitleStyle">
-          <p className="alitajs-dform-title-content">
+  let isVertical = positionType === 'vertical';
+  if (extra) isVertical = true;
+
+  return (
+    <>
+      <div className="alitajs-dform-area-title">
+        {isVertical && (
+          <p className="alitajs-dform-vertical-title">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
             <span id={fieldProps} className="alitajs-dform-title">
               {title}
             </span>
           </p>
-          {extra !== '' && <div className="alitajs-dform-extraStyle">{extra}</div>}
-        </div>
-
+        )}
+        {extra !== '' && <div className="alitajs-dform-area-extra">{extra}</div>}
+      </div>
+      <div
+        className={classnames({
+          'alitajs-dform-vertical-area': isVertical,
+          'alitajs-dform-area': true,
+        })}
+      >
         <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <TextareaItem {...otherProps} style={coverStyle} rows={rows} />
+          <TextareaItem {...otherProps} title={title} style={coverStyle} rows={rows}>
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-title">
+              {title}
+            </span>
+          </TextareaItem>
         </Field>
       </div>
-    );
-  }
-
-  return (
-    <List.Item
-      style={{
-        position: 'relative',
-      }}
-      className="alitajs-dform-textAreaStyle"
-    >
-      {required && (
-        <span
-          className="alitajs-dform-redStar"
-          style={{
-            position: 'absolute',
-            top: '14px',
-            zIndex: 2,
-          }}
-        >
-          *
-        </span>
-      )}
-      <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <TextareaItem {...otherProps} title={title} style={coverStyle} rows={rows} />
-      </Field>
-    </List.Item>
+    </>
   );
 };
 

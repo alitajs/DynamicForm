@@ -136,60 +136,35 @@
   }
 }
 
-.alitajs-dform-textAreaStyle {
+.alitajs-dform-area {
   :global {
-    .am-textarea-control {
-      padding: 0;
-    }
-
-    .am-textarea-label {
-      line-height: 55px;
-      .alitajs-dform-title();
-      .alitajs-dform-title-content();
+    .am-textarea-control textarea {
+      background-color: rgb(247, 246, 249);
+      border-radius: 6px;
+      padding: 4px 10px;
     }
 
     .am-list-item {
-      padding-right: 0 !important;
-      padding-left: 20px;
+      border-bottom: 1px solid #ddd !important;
     }
   }
 }
 
-.alitajs-dform-textAreaVerticalStyle {
-  margin-top: 14px;
-  margin-right: 30px;
-  margin-left: 30px;
+.alitajs-dform-area-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-right: 30px;
+}
 
-  .alitajs-dform-textAreaVerticalTitleStyle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    p {
-      flex: 1;
-      margin-bottom: 0;
-    }
-
-    .alitajs-dform-extraStyle {
-      display: flex;
-      flex: 1;
-      justify-content: flex-end;
-    }
-  }
-
+.alitajs-dform-vertical-area {
   :global {
-    .am-textarea-item {
-      padding-left: 0 !important;
-    }
-
-    .am-textarea-control {
-      border-bottom: 1px solid #ddd;
+    .am-textarea-label {
+      display: none;
     }
   }
 }
-
-
 
 .alitajs-dform-range-date-picker {
   display: flex;
