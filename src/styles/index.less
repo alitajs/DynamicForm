@@ -57,39 +57,6 @@
   .alitajs-dform-title-content();
 }
 
-.alitajs-dform-fixRadioStyle {
-  :global {
-    .ant-radio-inner {
-      width: 40px;
-      height: 40px;
-    }
-
-    .ant-radio-wrapper {
-      font-size: 30px;
-    }
-
-    .ant-radio-inner::after {
-      top: 6px;
-      left: 6px;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-    }
-  }
-}
-
-.alitajs-dform-fixRadioVerticalStyle {
-  margin-left: 30px;
-  padding: 21px 21px 21px 0;
-  border-bottom: 1px solid #ddd;
-
-  .alitajs-dform-titleDiv {
-    margin-bottom: 28px;
-    color: #999;
-    font-size: 24px;
-  }
-}
-
 .alitajs-dform-input {
   :global {
     .am-input-extra {
@@ -121,14 +88,25 @@
 
 .alitajs-dform-radio {
   :global {
-    .ant-radio-inner {
-      border-width: 2px;
-    }
 
     .ant-radio-inner::after {
       top: 5px;
       left: 5px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
     }
+
+    .ant-radio-inner {
+      width: 40px;
+      height: 40px;
+      border-width: 2px;
+    }
+
+    .ant-radio-wrapper {
+      font-size: 30px;
+    }
+
   }
 }
 
@@ -141,15 +119,6 @@
     .am-list-extra {
       flex-basis: 100% !important;
       text-align: left !important;
-    }
-
-    .ant-radio-inner {
-      border-width: 2px;
-    }
-
-    .ant-radio-inner::after {
-      top: 5px;
-      left: 5px;
     }
   }
 }

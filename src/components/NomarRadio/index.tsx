@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { List } from 'antd-mobile';
 import { Radio } from 'antd';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
+import classnames from 'classnames';
 import Field from '../Field';
 import 'antd/lib/radio/style/index.less';
 import '../../styles/index.less';
@@ -72,7 +73,12 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           </span>
         </p>
       )}
-      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-radio`}>
+      <div
+        className={classnames({
+          'alitajs-dform-vertical-radio': isVertical,
+          'alitajs-dform-radio': true,
+        })}
+      >
         <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
