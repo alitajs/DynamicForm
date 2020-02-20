@@ -30,46 +30,29 @@ const NomarInput: FC<INomarInputProps> = props => {
     ...otherProps
   } = props;
 
-  const onBlur = () => {
-    window.scrollTo(0, 0);
-  };
+  const isVertical = positionType === 'vertical';
 
-  if (positionType === 'vertical') {
-    return (
-      <div className="alitajs-dform-nomarInputVerticalStyle">
-        <p className="alitajs-dform-title-content">
+  return (
+    <>
+      {isVertical && (
+        <p className="alitajs-dform-title-content alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
         </p>
+      )}
+      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-input`}>
         <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <InputItem
-            onBlur={() => {
-              onBlur();
-            }}
-            {...otherProps}
-            type={inputType}
-            style={{ ...coverStyle }}
-          />
-        </Field>
-      </div>
-    );
-  }
-
-  return (
-    <div className="alitajs-dform-fixNomarInputStyle">
-      <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-        <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
-          <div className="alitajs-dform-title-content">
+          <InputItem {...otherProps} type={inputType} style={{ textAlign: 'right', ...coverStyle }}>
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
             <span id={fieldProps} className="alitajs-dform-title">
               {title}
             </span>
-          </div>
-        </InputItem>
-      </Field>
-    </div>
+          </InputItem>
+        </Field>
+      </div>
+    </>
   );
 };
 
