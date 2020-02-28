@@ -64,6 +64,8 @@ export interface IFormItemProps {
   labelNumber?: number;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  firstProps?: any;
+  secondProps?: any;
 }
 
 interface CardDForm extends CardHeaderPropsType {

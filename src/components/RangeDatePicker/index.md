@@ -23,6 +23,8 @@ title: RangeDatePicker
 | maxDate      | 最大可选日期             | date                       | ''         | 否       |
 | positionType | 表单方向样式             | `horizontal` or `vertical` | `vertical` | 否       |
 | hasStar      | 必填项红\*展示与否的判断 | boolean                    | true       | 否       |
+| firstProps   | 增加前表单的属性         | {}                         | {}         | 否       |
+| secondProps  | 增加后表单的属性         | {}                         | {}         | 否       |
 
 ## 备注
 
