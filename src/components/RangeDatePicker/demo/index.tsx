@@ -31,6 +31,12 @@ const RangeDatePicker: FC = () => {
       fieldProps2: 'rangeTime2',
       title: '时间(datetime)',
       modeType: 'datetime',
+      firstProps: {
+        onOk: (val: any) => {
+          // eslint-disable-next-line no-console
+          console.log(val);
+        },
+      },
     },
     {
       type: 'rangeDatePicker',

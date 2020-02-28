@@ -14,6 +14,8 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   maxDate?: Date;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  secondProps?: INomarDatePickerProps;
+  firstProps?: INomarDatePickerProps;
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
@@ -32,6 +34,8 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     maxDate,
     positionType = 'vertical',
     hasStar = true,
+    secondProps,
+    firstProps,
     ...otherProps
   } = props;
 
@@ -68,6 +72,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
           >
             <DatePicker
               {...otherProps}
+              {...firstProps}
               mode={modeType}
               extra={placeholder}
               minDate={minDate}
@@ -100,6 +105,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
           >
             <DatePicker
               {...otherProps}
+              {...secondProps}
               extra={placeholder2}
               mode={modeType}
               minDate={beginDate || minDate}
