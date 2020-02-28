@@ -19,6 +19,8 @@ export interface IExtraInputProps extends InputItemPropsType {
   positionType?: 'vertical' | 'horizontal';
   data?: any;
   hasStar?: boolean;
+  firstProps: InputItemPropsType;
+  secondProps: any;
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
@@ -35,6 +37,8 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     positionType = 'vertical',
     hasStar = true,
     data,
+    firstProps,
+    secondProps,
     ...otherProps
   } = props;
 
@@ -44,7 +48,14 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     if (extraType === 'select') {
       return (
         <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <Picker style={coverStyle} title={title} data={data} cascade={false} extra={placeholder2}>
+          <Picker
+            {...secondProps}
+            style={coverStyle}
+            title={title}
+            data={data}
+            cascade={false}
+            extra={placeholder2}
+          >
             <List.Item arrow="horizontal"></List.Item>
           </Picker>
         </Field>
@@ -55,6 +66,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
       <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
         <InputItem
           {...otherProps}
+          {...secondProps}
           type={inputType}
           style={{ textAlign: 'right', ...coverStyle }}
           placeholder={placeholder2}
@@ -82,6 +94,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
         <div className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-input`}>
           <NomarInput
             {...otherProps}
+            {...firstProps}
             required={required}
             rules={rules}
             coverStyle={{ textAlign: 'left', ...coverStyle }}

@@ -101,6 +101,18 @@ const Page: FC = () => {
       positionType: 'vertical',
       extraType: 'select',
       data: unitList,
+      firstProps: {
+        onChange: (val: any) => {
+          // eslint-disable-next-line no-console
+          console.log(val);
+        },
+      },
+      secondProps: {
+        onOk: (val: any) => {
+          // eslint-disable-next-line no-console
+          console.log(val);
+        },
+      },
     },
   ] as IFormItemProps[];
   const formsValues = {};
