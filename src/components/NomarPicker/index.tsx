@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Picker, List } from 'antd-mobile';
 import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
+import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
-
 import '../../styles/index.less';
 
 export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
@@ -10,7 +10,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   title: string;
   required?: boolean;
   fieldProps: string;
-  rules?: [];
+  rules?: Rule[];
   placeholder?: PickerPropsType['extra'];
   data?: PickerPropsType['data'];
   value?: PickerPropsType['value'];

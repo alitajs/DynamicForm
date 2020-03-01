@@ -32,7 +32,7 @@ theme: {
 
 ### 不可编辑时的文字颜色
 
-`input`, `extraInput`, `area` 类型在属性 `editable` 设置为 `false` 时，文字样式会变淡，如需修改，请增加一下代码：
+`input`, `extraInput`, `area` 类型在属性 `disabled` 设置为 `true`, 或者 `editable` 设置为 `false` 时，文字样式会变淡，如需修改，请增加一下代码：
 
 ```js
 theme: {

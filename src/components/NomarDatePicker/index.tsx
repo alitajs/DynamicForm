@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import { DatePicker, List } from 'antd-mobile';
+import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import { changeDateFormat } from '../../utils';
 
@@ -11,7 +12,7 @@ export interface INomarDatePickerProps extends DatePickerPropsType {
   fieldProps: string;
   required?: boolean;
   title: string;
-  rules?: [];
+  rules?: Rule[];
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;

@@ -5,7 +5,7 @@ import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import { CardHeaderPropsType } from 'antd-mobile/es/card/PropsType';
 import Form from 'rc-field-form';
-import { Store, FormInstance, ValidateErrorEntity } from 'rc-field-form/es/interface';
+import { Store, FormInstance, ValidateErrorEntity, Rule } from 'rc-field-form/es/interface';
 import { getByteLen } from './utils';
 
 import {
@@ -58,6 +58,7 @@ export interface IFormItemProps {
   modeType?: DatePickerPropsType['mode'];
   fieldProps2?: string;
   placeholder2?: string;
+  rules?: Rule[];
   extraType?: 'input' | 'select';
   editable?: boolean;
   rows?: number;
@@ -180,18 +181,16 @@ const renderCardMain = (formData: DFormData, allDisabled: boolean, autoLineFeed:
   );
 };
 
-const renderListMain = (formData: DFormData, allDisabled: boolean, autoLineFeed: boolean) => {
-  return (
-    <>
-      <List>
-        {changeData(formData as IFormItemProps[], autoLineFeed).map(item =>
-          getFormItem(item, allDisabled),
-        )}
-      </List>
-      <WhiteSpace size="lg" />
-    </>
-  );
-};
+const renderListMain = (formData: DFormData, allDisabled: boolean, autoLineFeed: boolean) => (
+  <>
+    <List>
+      {changeData(formData as IFormItemProps[], autoLineFeed).map(item =>
+        getFormItem(item, allDisabled),
+      )}
+    </List>
+    <WhiteSpace size="lg" />
+  </>
+);
 
 const renderMainList = (
   type: DFormType,

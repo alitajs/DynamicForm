@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
+import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 
 import '../../styles/index.less';
@@ -11,7 +12,7 @@ export interface INomarInputProps extends InputItemPropsType {
   title?: string;
   required?: boolean;
   fieldProps: string;
-  rules?: [];
+  rules?: Rule[];
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
