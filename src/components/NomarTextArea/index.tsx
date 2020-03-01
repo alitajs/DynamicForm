@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { TextareaItem } from 'antd-mobile';
+import { Rule } from 'rc-field-form/es/interface';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
@@ -10,7 +11,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   title?: string;
   required?: boolean;
   fieldProps: string;
-  rules?: [];
+  rules?: Rule[];
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;

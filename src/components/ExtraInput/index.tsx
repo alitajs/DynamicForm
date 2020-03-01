@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import classnames from 'classnames';
+import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import { NomarInput } from '..';
 import '../../styles/index.less';
@@ -12,7 +13,7 @@ export interface IExtraInputProps extends InputItemPropsType {
   fieldProps2?: string;
   placeholder2?: string;
   required?: boolean;
-  rules?: [];
+  rules?: Rule[];
   title: string;
   coverStyle?: React.CSSProperties;
   extraType?: 'input' | 'select';

@@ -83,7 +83,7 @@ const Page: FC<PageProps> = () => {
       type: 'input',
       fieldProps: 'userTitle',
       required: true,
-      placeholder: '',
+      placeholder: '存在点击事件',
       title: '标题',
       editable: false,
       // eslint-disable-next-line no-console
@@ -113,10 +113,17 @@ const Page: FC<PageProps> = () => {
       fieldProps: 'cardNumber',
       required: true,
       placeholder: '请输入',
-      title: '身份证号码',
+      title: '身份证号码(增加规则)',
       inputType: 'text',
       clear: true,
       positionType: 'vertical',
+      rules: [
+        { required: true, message: `请输入` },
+        {
+          pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
+          message: '名称只允许包含数字、字母和下划线',
+        },
+      ],
     },
   ] as IFormItemProps[];
   const formsValues = {

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Switch, List } from 'antd-mobile';
+import { Rule } from 'rc-field-form/es/interface';
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
 import Field from '../Field';
 
@@ -10,7 +11,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   title: string;
   required?: boolean;
   fieldProps: string;
-  rules?: [];
+  rules?: Rule[];
   placeholder?: string;
   hasStar?: boolean;
 }

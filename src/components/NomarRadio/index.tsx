@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
 import { Radio } from 'antd';
+import { Rule } from 'rc-field-form/es/interface';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
 import classnames from 'classnames';
 import Field from '../Field';
@@ -15,7 +16,7 @@ interface radioItem {
 export interface INomarRadioProps extends RadioGroupProps {
   fieldProps: string;
   title: string;
-  rules?: [];
+  rules?: Rule[];
   required?: boolean;
   placeholder?: string;
   data?: radioItem[] | [];
