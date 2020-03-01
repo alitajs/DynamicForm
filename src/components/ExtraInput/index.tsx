@@ -19,8 +19,8 @@ export interface IExtraInputProps extends InputItemPropsType {
   positionType?: 'vertical' | 'horizontal';
   data?: any;
   hasStar?: boolean;
-  firstProps: InputItemPropsType;
-  secondProps: any;
+  firstProps?: InputItemPropsType;
+  secondProps?: any;
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
