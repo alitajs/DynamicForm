@@ -23,6 +23,7 @@ export interface INomarRadioProps extends RadioGroupProps {
   positionType?: 'horizontal' | 'vertical';
   coverStyle?: React.CSSProperties;
   hasStar?: boolean;
+  radioType?: 'horizontal' | 'vertical';
 }
 
 const radioList = [
@@ -47,14 +48,24 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     data = radioList as any,
     positionType = 'horizontal',
     hasStar = true,
+    radioType = 'horizontal',
     ...otherProps
   } = props;
 
-  const isVertical = positionType === 'vertical';
+  let isVertical = positionType === 'vertical';
+  if (radioType === 'vertical') {
+    isVertical = true;
+  }
 
   const RadioGroup = () => (
     <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-      <Radio.Group className="alitajs-dform-fixRadioStyle" style={coverStyle} {...otherProps}>
+      <Radio.Group
+        className={classnames({
+          'alitajs-dform-vertical-radio-type': radioType === 'vertical',
+        })}
+        style={coverStyle}
+        {...otherProps}
+      >
         {data.map((item: radioItem) => (
           <Radio key={item.label} value={item.value}>
             {item.label}
