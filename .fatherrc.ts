@@ -15,18 +15,17 @@ export default {
   disableTypeCheck: true,
   cssModules: false,
   // lessInBabelMode: true,
-  // namedExports: {
-  //   'react-is': [
-  //     'isFragment',
-  //   ]
-  // },
+  namedExports: {
+    'react-is': ['isFragment'],
+    'react-dom': ['createPortal', 'findDOMNode'],
+  },
   extraBabelPlugins: [
     [
       'babel-plugin-import',
       { libraryName: 'antd-mobile', libraryDirectory: 'es', style: true },
       'antd-mobile',
     ],
-    ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
+    // ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
   ],
   extraPostCSSPlugins: [
     px2rem({
