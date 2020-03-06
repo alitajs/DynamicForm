@@ -4,6 +4,7 @@ import { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { router } from 'umi';
 import DynamicForm, { IFormItemProps } from '../DynamicForm';
+import Com from '@/components/Button';
 
 const tailLayout = {
   wrapperCol: { offset: 2, span: 20 },
@@ -129,10 +130,16 @@ const Page: FC = () => {
     isDev: false,
     // allDisabled: true,
   };
+  const comProps = {
+    fieldProps: 'datePicker111',
+    required: true,
+    title: '时间区间',
+  };
   return (
     <>
       <DynamicForm {...formProps}>
         <WhiteSpace size="xl" />
+        <Com {...comProps} />
         <Field {...tailLayout}>
           <Button type="primary" onClick={() => form.submit()}>
             Submit
