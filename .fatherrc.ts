@@ -25,7 +25,7 @@ export default {
       { libraryName: 'antd-mobile', libraryDirectory: 'es', style: true },
       'antd-mobile',
     ],
-    // ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
+    ['babel-plugin-import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
   ],
   extraPostCSSPlugins: [
     px2rem({

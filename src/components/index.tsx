@@ -8,3 +8,4 @@ export { default as NomarRadio } from './NomarRadio';
 export { default as RangeDatePicker } from './RangeDatePicker';
 export { default as ExtraInput } from './ExtraInput';
 export { default as NomarCheckBox } from './NomarCheckBox';
+export { default as CoverRadio } from './CoverRadio';
