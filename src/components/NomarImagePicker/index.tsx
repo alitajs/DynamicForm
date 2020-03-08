@@ -33,7 +33,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
   };
 
   return (
-    <>
+    <div className="alitajs-dform-image-picker">
       <p className="alitajs-dform-vertical-title">
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
         <span id={fieldProps} className="alitajs-dform-title">
@@ -50,7 +50,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
       >
         <ImagePicker {...otherProps} files={fileList} onChange={fileChange} />
       </Field>
-    </>
+    </div>
   );
 };
 
