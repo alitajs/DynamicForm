@@ -20,6 +20,7 @@ import {
   NomarRadio,
   NomarCheckBox,
   CoverRadio,
+  NomarImagePicker,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -36,6 +37,7 @@ const FormItemType = {
   rangeDatePicker: RangeDatePicker,
   checkbox: NomarCheckBox,
   coverRadio: CoverRadio,
+  image: NomarImagePicker,
 };
 
 export interface IFormItemProps {
@@ -50,6 +52,7 @@ export interface IFormItemProps {
     | 'radio'
     | 'rangeDatePicker'
     | 'coverRadio'
+    | 'image'
     | 'checkbox';
   title: string;
   fieldProps: string;

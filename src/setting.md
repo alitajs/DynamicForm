@@ -40,6 +40,15 @@ theme: {
 }
 ```
 
+### CoverRadio 选中时的背景颜色和文字颜色
+
+```js
+theme: {
+  '@alita-dform-radio-color': '#108ee9';
+  '@alita-dform-radio-font-color': '#fff';
+}
+```
+
 ## 二、时间类型赋值
 
 **日期字符串在不同浏览器有不同的实现，例如 new Date('2017-1-1') 在 Safari 上是 Invalid Date，而在 Chrome 上是能正常解析的。**
