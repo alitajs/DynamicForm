@@ -42,16 +42,21 @@ const Page = () => {
       fieldProps: 'insertImg',
       title: '请添加图片',
       required: true,
+      onChange: (files: any, type: string, index: number | undefined) => {
+        // eslint-disable-next-line no-console
+        console.log(files, type, index);
+      },
     },
     {
       type: 'image',
       fieldProps: 'showImg',
-      title: '展示图片',
+      title: '展示图片(限制上传的图片大小)',
       disableDelete: true,
       onImageClick: (index: number, files: any) => {
         // eslint-disable-next-line no-console
         console.log(index, files);
       },
+      limitSize: 2248,
     },
     {
       type: 'image',
@@ -63,7 +68,7 @@ const Page = () => {
   ] as IFormItemProps[];
 
   const formsValues = {
-    insertImg: fileList,
+    // insertImg: fileList,
     showImg: fileList,
     noInsertImg: fileList,
   };

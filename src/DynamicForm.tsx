@@ -74,6 +74,8 @@ export interface IFormItemProps {
   firstProps?: any;
   secondProps?: any;
   radioType?: 'vertical' | 'horizontal';
+  selectable?: boolean;
+  limitSize?: number;
 }
 
 interface CardDForm extends CardHeaderPropsType {
