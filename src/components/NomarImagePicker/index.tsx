@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import { ImagePicker } from 'antd-mobile';
+import { ImagePicker, Toast } from 'antd-mobile';
 import { ImagePickerPropTypes } from 'antd-mobile/es/image-picker/PropsType';
 import Field from '../Field';
 import '../../styles/index.less';
@@ -12,6 +12,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   fieldProps: string;
   rules?: Rule[];
   hasStar?: boolean;
+  limitSize?: number;
 }
 
 const NomarImagePicker: FC<INomarImagePickerProps> = props => {
@@ -22,15 +23,10 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     fieldProps,
     rules,
     hasStar = true,
-    onChange,
+    limitSize = 0,
     ...otherProps
   } = props;
   const [fileList, setFileList] = useState([]);
-
-  const fileChange = (files: any, type: string, index: number | undefined) => {
-    setFileList(files);
-    if (onChange) onChange(files, type, index);
-  };
 
   return (
     <div className="alitajs-dform-image-picker">
@@ -44,11 +40,20 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
-          setFileList(nextValue && nextValue[fieldProps as any]);
+          const files = nextValue[fieldProps] || [];
+          if (files && files.length > fileList.length) {
+            const lastFile = files[files.length - 1];
+            const { file = {} } = lastFile;
+            if (limitSize && file && file.size && file.size > limitSize) {
+              Toast.fail('图片过大', 1);
+              return false;
+            }
+          }
+          setFileList((nextValue && nextValue[fieldProps as any]) || []);
           return prevValue !== nextValue;
         }}
       >
-        <ImagePicker {...otherProps} files={fileList} onChange={fileChange} />
+        <ImagePicker {...otherProps} files={fileList} />
       </Field>
     </div>
   );
