@@ -21,6 +21,7 @@ import {
   NomarCheckBox,
   CoverRadio,
   NomarImagePicker,
+  NomarCustom,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -38,6 +39,7 @@ const FormItemType = {
   checkbox: NomarCheckBox,
   coverRadio: CoverRadio,
   image: NomarImagePicker,
+  custom: NomarCustom,
 };
 
 export interface IFormItemProps {
@@ -53,6 +55,7 @@ export interface IFormItemProps {
     | 'rangeDatePicker'
     | 'coverRadio'
     | 'image'
+    | 'custom'
     | 'checkbox';
   title: string;
   fieldProps: string;
@@ -76,6 +79,8 @@ export interface IFormItemProps {
   radioType?: 'vertical' | 'horizontal';
   selectable?: boolean;
   limitSize?: number;
+  CustomDom?: any;
+  customDomProps?: any;
 }
 
 interface CardDForm extends CardHeaderPropsType {
@@ -185,7 +190,6 @@ const renderCardMain = (formData: DFormData, allDisabled: boolean, autoLineFeed:
           )}
         </List>
       </Card>
-      <WhiteSpace size="lg" />
     </WingBlank>
   );
 };
