@@ -1,15 +1,17 @@
 @import '~antd-mobile/lib/style/themes/default.less';
 
+@alita-dform-title-font-size: @input-font-size;
+@alita-dform-title-color: #000;
 @alita-dform-select-color: #000;
 @alita-dform-radio-color: #108ee9;
 @alita-dform-radio-font-color: #fff;
 
 .alitajs-dform-title-content {
-  font-size: @input-font-size  !important;
+  font-size: @alita-dform-title-font-size  !important;
 }
 
 .alitajs-dform-title {
-  color: #000;
+  color: @alita-dform-title-color;
   .alitajs-dform-title-content();
 }
 

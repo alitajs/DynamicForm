@@ -8,13 +8,14 @@ title: 配置项
 
 下方提供几个自定义属性，用户可以在 `config/config.ts` 文件下进行编辑：
 
-### 标题大小
+### 标题大小和颜色
 
 `title` 大小默认为 `0.34rem`，如需修改，请增加如下代码：
 
 ```js
 theme: {
-  '@input-font-size': '0.28rem',
+  '@alita-dform-title-font-size': '0.28rem',
+  '@alita-dform-title-color': 'blue',
 }
 ```
 
