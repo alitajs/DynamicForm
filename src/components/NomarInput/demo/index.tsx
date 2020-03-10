@@ -106,6 +106,7 @@ const Page: FC<PageProps> = () => {
       placeholder: '请输入',
       title: '标题名称过长(超过14个字符自动换行)',
       inputType: 'text',
+      extra: photoImg(),
       clear: true,
     },
     {

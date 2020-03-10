@@ -81,6 +81,7 @@ export interface IFormItemProps {
   limitSize?: number;
   CustomDom?: any;
   customDomProps?: any;
+  subTitle?: string | React.ReactNode;
 }
 
 interface CardDForm extends CardHeaderPropsType {
