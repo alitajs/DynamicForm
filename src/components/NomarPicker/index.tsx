@@ -16,6 +16,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   value?: PickerPropsType['value'];
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -29,6 +30,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     data = [] as any,
     positionType = 'horizontal',
     hasStar = true,
+    subTitle,
     ...otherProps
   } = props;
 
@@ -37,12 +39,13 @@ const NomarPicker: FC<INomarPickerProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}>
         <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>

@@ -15,6 +15,7 @@ interface INomarCustomPorps {
   onChange?: (currentActiveLink: any) => void;
   customDomProps?: any;
   CustomDom: any;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarCustom: FC<INomarCustomPorps> = props => {
@@ -28,6 +29,7 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
     positionType = 'vertical',
     CustomDom,
     customDomProps,
+    subTitle,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -48,12 +50,13 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div
         className={classnames({

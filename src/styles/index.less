@@ -17,8 +17,12 @@
 
 .alitajs-dform-vertical-title {
   margin-bottom: 0;
-  padding-top: 28px;
+  padding-top: 20px;
   padding-left: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .alitajs-dform-line {
@@ -57,7 +61,7 @@
 
 .alitajs-dform-redStar {
   width: 14px;
-  height: 34px;
+  height: 50px;
   margin-right: 6px;
   color: rgba(255, 72, 72, 1);
   .alitajs-dform-title-content();
@@ -299,15 +303,14 @@
   }
 }
 
-.alitajs-dform-nomarCheckBoxStyle {
-  padding-top: 30px;
-  padding-left: 30px;
+.alitajs-dform-check-box {
+  padding-top: 16px;
 
   p {
     margin-bottom: 0;
   }
 
-  .alitajs-dform-itemStyle {
+  .alitajs-dform-check-box-item {
     display: flex;
     flex-direction: column;
   }
@@ -315,21 +318,21 @@
   // :global {
   .ant-checkbox-wrapper {
     margin-left: 30px;
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .ant-checkbox-inner {
-    width: 24px !important;
-    height: 24px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
 
   .ant-checkbox-inner::after {
-    width: 8px;
-    height: 13px;
+    width: 10px;
+    height: 16px;
   }
 
   .ant-list-item {
-    padding: 20px 0;
+    padding: 10px 0;
   }
 
   .ant-checkbox-group {

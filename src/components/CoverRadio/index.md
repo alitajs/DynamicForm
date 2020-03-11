@@ -22,6 +22,7 @@ title: CoverRadio
 | hasStar      | 必填项红\*展示与否的判断                                              | boolean                    | true         | 否           |
 | rules        | 规则校验(如需用到该字段，请重写 `required` 校验)                      | array                      | []           | 否           |
 | radioType    | 按钮方向为横向或者纵向，若为纵向，则默认 `positionType` 为 `vertical` | `vertical` or `horizontal` | `horizontal` | 否           |
+| subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效            | string or node             | ''           | 否           |
 
 ## 组件使用
 

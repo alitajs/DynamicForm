@@ -22,6 +22,7 @@ export interface IExtraInputProps extends InputItemPropsType {
   hasStar?: boolean;
   firstProps?: InputItemPropsType;
   secondProps?: any;
+  subTitle?: string | React.ReactNode;
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
@@ -40,6 +41,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     data,
     firstProps,
     secondProps,
+    subTitle,
     ...otherProps
   } = props;
 
@@ -79,12 +81,13 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div
         className={classnames({
