@@ -33,6 +33,8 @@ const Page: FC<PageProps> = () => {
 
   const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
 
+  const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
+
   const formsData = [
     {
       type: 'input',
@@ -42,6 +44,7 @@ const Page: FC<PageProps> = () => {
       title: '用户名',
       inputType: 'text',
       clear: true,
+      subTitle: subTitle(),
     },
     {
       type: 'input',
@@ -117,6 +120,7 @@ const Page: FC<PageProps> = () => {
       title: '身份证号码(增加规则)',
       inputType: 'text',
       clear: true,
+      subTitle: subTitle(),
       positionType: 'vertical',
       rules: [
         { required: true, message: `请输入` },

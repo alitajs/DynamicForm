@@ -22,6 +22,7 @@ interface ICoverRadioProps {
   rules?: Rule[];
   disabled?: boolean;
   onChange?: (currentActiveLink: string) => void;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarTab: FC<ICoverRadioProps> = props => {
@@ -37,6 +38,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     onChange,
     positionType = 'horizontal',
     radioType = 'horizontal',
+    subTitle,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -67,12 +69,13 @@ const NomarTab: FC<ICoverRadioProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div
         className={classnames({

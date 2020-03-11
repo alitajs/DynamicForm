@@ -24,6 +24,7 @@ export interface INomarRadioProps extends RadioGroupProps {
   coverStyle?: React.CSSProperties;
   hasStar?: boolean;
   radioType?: 'horizontal' | 'vertical';
+  subTitle?: string | React.ReactNode;
 }
 
 const radioList = [
@@ -49,6 +50,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     positionType = 'horizontal',
     hasStar = true,
     radioType = 'horizontal',
+    subTitle,
     ...otherProps
   } = props;
 
@@ -78,12 +80,13 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div
         className={classnames({

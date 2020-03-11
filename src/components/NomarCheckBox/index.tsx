@@ -14,6 +14,7 @@ interface INomarCheckBoxProps extends CheckboxGroupProps {
   data?: any;
   fieldProps: string;
   hasStar?: boolean;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
@@ -24,20 +25,22 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     required = false,
     data = [],
     hasStar = true,
+    subTitle,
     ...otherProps
   } = props;
 
   return (
-    <div className="alitajs-dform-nomarCheckBoxStyle">
-      <p className="alitajs-dform-title-content">
+    <div className="alitajs-dform-check-box">
+      <div className="alitajs-dform-vertical-title">
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
         <span id={fieldProps} className="alitajs-dform-title">
           {title}
         </span>
-      </p>
+        {subTitle}
+      </div>
       <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
         <Checkbox.Group style={{ width: '100%' }} {...otherProps}>
-          <div className="alitajs-dform-itemStyle">
+          <div className="alitajs-dform-check-box-item">
             {[...data].map(item => (
               <List.Item key={item.value}>
                 <Checkbox value={item.value}>{item.label}</Checkbox>

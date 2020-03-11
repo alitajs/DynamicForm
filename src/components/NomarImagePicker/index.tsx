@@ -13,6 +13,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   rules?: Rule[];
   hasStar?: boolean;
   limitSize?: number;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarImagePicker: FC<INomarImagePickerProps> = props => {
@@ -24,18 +25,20 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     rules,
     hasStar = true,
     limitSize = 0,
+    subTitle,
     ...otherProps
   } = props;
   const [fileList, setFileList] = useState([]);
 
   return (
     <div className="alitajs-dform-image-picker">
-      <p className="alitajs-dform-vertical-title">
+      <div className="alitajs-dform-vertical-title">
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
         <span id={fieldProps} className="alitajs-dform-title">
           {title}
         </span>
-      </p>
+        {subTitle}
+      </div>
       <Field
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}

@@ -16,6 +16,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
   extra?: React.ReactNode | string;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {
@@ -29,6 +30,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     positionType = 'vertical',
     hasStar = true,
     extra = '',
+    subTitle,
     ...otherProps
   } = props;
 
@@ -39,12 +41,13 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     <>
       <div className="alitajs-dform-area-title">
         {isVertical && (
-          <p className="alitajs-dform-vertical-title">
+          <div className="alitajs-dform-vertical-title">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
             <span id={fieldProps} className="alitajs-dform-title">
               {title}
             </span>
-          </p>
+            {subTitle}
+          </div>
         )}
         {extra !== '' && <div className="alitajs-dform-area-extra">{extra}</div>}
       </div>

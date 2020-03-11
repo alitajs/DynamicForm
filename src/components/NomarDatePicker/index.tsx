@@ -16,6 +16,7 @@ export interface INomarDatePickerProps extends DatePickerPropsType {
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarDatePicker: FC<INomarDatePickerProps> = props => {
@@ -27,6 +28,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
     modeType = 'date',
     positionType = 'horizontal',
     hasStar = true,
+    subTitle,
     ...otherProps
   } = props;
 
@@ -35,12 +37,13 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`}>
         <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>

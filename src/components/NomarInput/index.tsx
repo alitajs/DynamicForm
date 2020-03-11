@@ -16,6 +16,7 @@ export interface INomarInputProps extends InputItemPropsType {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  subTitle?: string | React.ReactNode;
 }
 
 const NomarInput: FC<INomarInputProps> = props => {
@@ -29,6 +30,7 @@ const NomarInput: FC<INomarInputProps> = props => {
     positionType = 'horizontal',
     hasStar = true,
     extra,
+    subTitle,
     ...otherProps
   } = props;
 
@@ -38,12 +40,13 @@ const NomarInput: FC<INomarInputProps> = props => {
     <>
       <div className="alitajs-dform-input-title">
         {isVertical && (
-          <p className="alitajs-dform-vertical-title">
+          <div className="alitajs-dform-vertical-title">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
             <span id={fieldProps} className="alitajs-dform-title">
               {title}
             </span>
-          </p>
+            {subTitle}
+          </div>
         )}
         {extra !== '' && isVertical && <div className="alitajs-dform-area-extra">{extra}</div>}
       </div>

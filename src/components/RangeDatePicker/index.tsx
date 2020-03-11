@@ -16,6 +16,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   hasStar?: boolean;
   secondProps?: INomarDatePickerProps;
   firstProps?: INomarDatePickerProps;
+  subTitle?: string | React.ReactNode;
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
@@ -36,6 +37,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     hasStar = true,
     secondProps,
     firstProps,
+    subTitle,
     ...otherProps
   } = props;
 
@@ -44,12 +46,13 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
   return (
     <>
       {isVertical && (
-        <p className="alitajs-dform-vertical-title">
+        <div className="alitajs-dform-vertical-title">
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
           </span>
-        </p>
+          {subTitle}
+        </div>
       )}
       <div
         className={classnames({
