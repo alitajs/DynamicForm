@@ -37,6 +37,15 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
 
+  const titleDiv = () => (
+    <>
+      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+      <span id={fieldProps} className="alitajs-dform-title">
+        {title}
+      </span>
+    </>
+  );
+
   return (
     <>
       <div className="alitajs-dform-area-title">
@@ -58,12 +67,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
         })}
       >
         <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <TextareaItem {...otherProps} title={title} style={coverStyle} rows={rows}>
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-          </TextareaItem>
+          <TextareaItem {...otherProps} title={titleDiv()} style={coverStyle} rows={rows} />
         </Field>
       </div>
     </>
