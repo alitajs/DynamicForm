@@ -3,11 +3,17 @@
 @alita-dform-title-font-size: @input-font-size;
 @alita-dform-title-color: #000;
 @alita-dform-select-color: #000;
+@alita-dform-select-font-size: @input-font-size;
 @alita-dform-radio-color: #108ee9;
 @alita-dform-radio-font-color: #fff;
 
 .alitajs-dform-title-content {
   font-size: @alita-dform-title-font-size  !important;
+}
+
+.alitajs-dform-item {
+  font-size: @alita-dform-select-font-size  !important;
+  color: @alita-dform-select-color  !important;
 }
 
 .alitajs-dform-title {
@@ -37,26 +43,44 @@
   pointer-events: none;
 }
 
+.alitajs-dform-placeholder {
+  .am-input-control input::placeholder {
+    // 自定义样式
+    font-size: @alita-dform-select-font-size;
+  }
+
+  .am-textarea-control textarea::placeholder {
+    // 自定义样式
+    font-size: @alita-dform-select-font-size;
+  }
+
+  .am-list-extra {
+    font-size: @alita-dform-select-font-size  !important;
+  }
+
+}
+
 .alitajs-dform-value-content {
 
-  // :global {
   .am-list-extra {
     color: @alita-dform-select-color  !important;
+    font-size: @alita-dform-select-font-size  !important;
   }
 
   .am-input-control {
     input {
       color: @alita-dform-select-color;
+      font-size: @alita-dform-select-font-size;
     }
   }
+
 
   .am-textarea-control {
     textarea {
       color: @alita-dform-select-color;
+      font-size: @alita-dform-select-font-size;
     }
   }
-
-  // }
 }
 
 .alitajs-dform-redStar {
@@ -77,17 +101,13 @@
 
 .alitajs-dform-input {
 
-  // :global {
   .am-input-extra {
     max-height: 88px;
   }
-
-  // }
 }
 
 .alitajs-dform-vertical-input {
 
-  // :global {
   .am-input-extra {
     max-height: 88px;
   }
@@ -95,24 +115,18 @@
   .am-input-label {
     display: none;
   }
-
-  // }
 }
 
 .alitajs-dform-vertical-picker {
 
-  // :global {
   .am-list-extra {
     flex-basis: 100% !important;
     text-align: left !important;
   }
-
-  // }
 }
 
 .alitajs-dform-radio {
 
-  // :global {
   .ant-radio-inner::after {
     top: 8px;
     left: 8px;
@@ -130,13 +144,10 @@
   .ant-radio-wrapper {
     font-size: 30px;
   }
-
-  // }
 }
 
 .alitajs-dform-vertical-radio {
 
-  // :global {
   .am-list-content {
     display: none;
   }
@@ -145,25 +156,19 @@
     flex-basis: 100% !important;
     text-align: left !important;
   }
-
-  // }
 
   .alitajs-dform-vertical-radio-type {
     display: flex;
     flex-direction: column;
 
-    // :global {
     .ant-radio-wrapper {
       padding-bottom: 10px;
     }
-
-    // }
   }
 }
 
 .alitajs-dform-vertical-date-picker {
 
-  // :global {
   .am-list-content {
     display: none;
   }
@@ -172,13 +177,10 @@
     flex-basis: 100% !important;
     text-align: left !important;
   }
-
-  // }
 }
 
 .alitajs-dform-area {
 
-  // :global {
   .am-textarea-control textarea {
     padding: 4px 10px;
     background-color: rgb(247, 246, 249);
@@ -198,8 +200,6 @@
   .am-textarea-control {
     margin-left: -30px;
   }
-
-  // }
 }
 
 .alitajs-dform-area-title {
@@ -212,12 +212,9 @@
 
 .alitajs-dform-vertical-area {
 
-  // :global {
   .am-textarea-label {
     display: none;
   }
-
-  // }
 }
 
 .alitajs-dform-range-date-picker {
@@ -229,32 +226,25 @@
 
   .alitajs-dform-range-horizontal {
 
-    // :global {
     .am-list-item .am-list-line .am-list-arrow {
       display: none;
     }
-
-    // }
   }
 
   .alitajs-dform-begin-picker {
     width: 65%;
 
-    // :global {
     .am-list-extra {
       display: flex;
       flex-basis: 50%;
       align-items: center;
       justify-content: center;
     }
-
-    // }
   }
 
   .alitajs-dform-begin-vertical-picker {
     width: 48%;
 
-    // :global {
     .am-list-content {
       display: none;
     }
@@ -263,14 +253,11 @@
       flex-basis: 90%;
       text-align: center;
     }
-
-    // }
   }
 
   .alitajs-dform-end-picker {
     width: 30%;
 
-    // :global {
     .am-list-line {
       justify-content: flex-end;
     }
@@ -282,14 +269,11 @@
     .am-list-item {
       padding-left: 0;
     }
-
-    // }
   }
 
   .alitajs-dform-end-vertical-picker {
     width: 47%;
 
-    // :global {
     .am-list-extra {
       flex-basis: 90%;
     }
@@ -302,8 +286,6 @@
       padding-left: 0 !important;
       border-bottom: 1px solid #ddd;
     }
-
-    // }
   }
 }
 
@@ -417,6 +399,7 @@
     width: 100%;
 
     .alitajs-dform-cover-radio-wrapper {
+      font-size: @alita-dform-select-font-size;
       padding: 5px 30px;
       display: flex;
       align-items: center;

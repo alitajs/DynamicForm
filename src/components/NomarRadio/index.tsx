@@ -69,7 +69,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         {...otherProps}
       >
         {data.map((item: radioItem) => (
-          <Radio key={item.label} value={item.value}>
+          <Radio key={item.label} value={item.value} className="alitajs-dform-item">
             {item.label}
           </Radio>
         ))}
