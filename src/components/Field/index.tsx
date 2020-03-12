@@ -15,7 +15,7 @@ const CustomField: FC<FieldProps> = props => {
   };
 
   return (
-    <div className={valueFlag ? 'alitajs-dform-value-content' : ''}>
+    <div className={valueFlag ? 'alitajs-dform-value-content' : 'alitajs-dform-placeholder'}>
       <Field {...props} shouldUpdate={shouldUpdate} />
     </div>
   );

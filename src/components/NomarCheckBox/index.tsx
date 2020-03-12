@@ -43,7 +43,9 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
           <div className="alitajs-dform-check-box-item">
             {[...data].map(item => (
               <List.Item key={item.value}>
-                <Checkbox value={item.value}>{item.label}</Checkbox>
+                <Checkbox value={item.value} className="alitajs-dform-item">
+                  {item.label}
+                </Checkbox>
               </List.Item>
             ))}
           </div>
