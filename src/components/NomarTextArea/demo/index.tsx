@@ -51,6 +51,10 @@ const Page: FC = () => {
       placeholder: '请输入',
       labelNumber: 8,
       required: true,
+      coverStyle: {
+        border: '1px solid #108ee9',
+        background: '#fff',
+      },
     },
     {
       type: 'area',
