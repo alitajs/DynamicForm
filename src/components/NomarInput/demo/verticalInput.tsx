@@ -18,6 +18,13 @@ const VerticalInput: FC = () => (
         inputType="text"
         clear
         positionType="vertical"
+        rules={[
+          { required: true, message: `请输入` },
+          {
+            pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
+            message: '名称只允许包含数字、字母和下划线',
+          },
+        ]}
       />
     </List>
   </Form>

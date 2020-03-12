@@ -167,7 +167,6 @@ type data = CardDForm[];
 interface IFormItemProps {
   type:
     | 'input'
-    | 'text'
     | 'select'
     | 'area'
     | 'date'
@@ -192,6 +191,14 @@ interface IFormItemProps {
   labelNumber?: number;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  firstProps?: any;
+  secondProps?: any;
+  radioType?: 'vertical' | 'horizontal';
+  selectable?: boolean;
+  limitSize?: number;
+  CustomDom?: any;
+  customDomProps?: any;
+  subTitle?: string | React.ReactNode;
 }
 ```
 

@@ -43,6 +43,17 @@ const radioList = [
   },
 ];
 
+const sexList = [
+  {
+    label: '男',
+    value: 'man',
+  },
+  {
+    label: '女',
+    value: 'woman',
+  },
+];
+
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
@@ -82,8 +93,13 @@ const Page: FC = () => {
     {
       type: 'area',
       fieldProps: 'usertextarea',
-      required: true,
       placeholder: '多行输入',
+      title: '备注',
+      positionType: 'horizontal',
+      coverStyle: {
+        border: '1px solid #108ee9',
+        background: '#fff',
+      },
     },
     {
       type: 'date',
@@ -108,6 +124,12 @@ const Page: FC = () => {
       required: true,
       title: '发票',
       data: radioList,
+    },
+    {
+      type: 'coverRadio',
+      title: '性别',
+      data: sexList,
+      fieldProps: 'userSex',
     },
     {
       type: 'rangeDatePicker',
@@ -165,6 +187,13 @@ const Page: FC = () => {
       positionType: 'vertical',
     },
     {
+      type: 'coverRadio',
+      title: '性别',
+      data: sexList,
+      positionType: 'vertical',
+      fieldProps: 'userSex2',
+    },
+    {
       type: 'rangeDatePicker',
       fieldProps: 'datePicker5',
       fieldProps2: 'datePicker6',
@@ -175,6 +204,8 @@ const Page: FC = () => {
   ] as IFormItemProps[];
   const formsValues = {
     useronlyread: '原始文档，没有变更',
+    userSex: 'man',
+    userSex2: 'woman',
   };
   const formProps = {
     onFinish,

@@ -17,6 +17,9 @@ const UserName: FC = () => (
         title="用户名"
         inputType="text"
         clear
+        coverStyle={{
+          textAlign: 'left',
+        }}
       />
     </List>
   </Form>

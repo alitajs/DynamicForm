@@ -12,7 +12,6 @@ import {
   NomarInput,
   NomarPicker,
   NomarSwitch,
-  OnlyReadInput,
   NomarTextArea,
   NomarDatePicker,
   ExtraInput,
@@ -28,7 +27,6 @@ import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
 
 const FormItemType = {
   input: NomarInput,
-  text: OnlyReadInput,
   select: NomarPicker,
   area: NomarTextArea,
   date: NomarDatePicker,
@@ -45,7 +43,6 @@ const FormItemType = {
 export interface IFormItemProps {
   type:
     | 'input'
-    | 'text'
     | 'select'
     | 'area'
     | 'date'

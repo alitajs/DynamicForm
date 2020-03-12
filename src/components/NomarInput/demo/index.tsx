@@ -40,11 +40,14 @@ const Page: FC<PageProps> = () => {
       type: 'input',
       fieldProps: 'username',
       required: true,
-      placeholder: '请输入',
+      placeholder: '输入项居左',
       title: '用户名',
       inputType: 'text',
       clear: true,
       subTitle: subTitle(),
+      coverStyle: {
+        textAlign: 'left',
+      },
     },
     {
       type: 'input',
