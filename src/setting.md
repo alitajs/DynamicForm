@@ -19,14 +19,15 @@ theme: {
 }
 ```
 
-### 选中项和输入框的值颜色
+### 选中项和输入框的值颜色和大小
 
 `select`、`date`、`rangeDatePicker` 等选中项的值颜色和 `placeholder`(提示文字) 颜色一样，不易区分用户是否已经选择。
 
-增加如下属性可以直接修改表单选中项和输入框值的颜色。
+增加如下属性可以直接修改表单选中项和输入框值的颜色和文字大小。
 
 ```js
 theme: {
+   '@alita-dform-select-font-size': '0.34rem',
   '@alita-dform-select-color': 'blue',
 }
 ```
