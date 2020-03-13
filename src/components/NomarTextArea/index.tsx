@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { TextareaItem } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
+// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
