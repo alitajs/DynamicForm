@@ -4,7 +4,13 @@ title: 配置项
 
 # 可配置项
 
-## 一、自定义属性
+## 一、使用说明
+
+安装 `dform` 会自动安装上 `rc-field-form`，若用户自行安装 `rc-field-form`，**可能会导致 `rc-field-form` 版本不一致而报错。**
+
+**demo 中所有需要从 `rc-field-form` 导出使用的字段都可以在 `dform` 中导出使用。**
+
+## 二、自定义属性
 
 下方提供几个自定义属性，用户可以在 `config/config.ts` 文件下进行编辑：
 
@@ -51,7 +57,7 @@ theme: {
 }
 ```
 
-## 二、时间类型赋值
+## 三、时间类型赋值
 
 **日期字符串在不同浏览器有不同的实现，例如 new Date('2017-1-1') 在 Safari 上是 Invalid Date，而在 Chrome 上是能正常解析的。**
 

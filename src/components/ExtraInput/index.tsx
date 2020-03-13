@@ -3,6 +3,7 @@ import { InputItem, Picker, List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
+// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import Field from '../Field';
 import { NomarInput } from '..';
 import '../../styles/index.less';
