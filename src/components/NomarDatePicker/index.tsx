@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
+import { PropsType } from 'antd-mobile/es/date-picker/index';
 import { DatePicker, List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
@@ -7,8 +7,8 @@ import { changeDateFormat } from '../../utils';
 
 import '../../styles/index.less';
 
-export interface INomarDatePickerProps extends DatePickerPropsType {
-  modeType?: DatePickerPropsType['mode'];
+export interface INomarDatePickerProps extends PropsType {
+  modeType?: PropsType['mode'];
   fieldProps: string;
   required?: boolean;
   title: string;

@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "1.0.7",
+  "version": "1.1.1",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,9 +39,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "antd-mobile": "^2.3.1",
     "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.2.0",
-    "rc-field-form": "^0.0.1"
+    "rc-field-form": "^1.1.0"
   },
   "peerDependencies": {
     "antd": "^3.26.7",
