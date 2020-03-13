@@ -16,6 +16,18 @@ const DateTime = () => (
         title="时间(datetime)"
         modeType="datetime"
         required
+        firstProps={{
+          onOk: val => {
+            // eslint-disable-next-line no-console
+            console.log(val);
+          },
+        }}
+        secondProps={{
+          onOk: val => {
+            // eslint-disable-next-line no-console
+            console.log(val);
+          },
+        }}
       />
     </List>
   </Form>

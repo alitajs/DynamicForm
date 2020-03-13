@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { DatePicker, List } from 'antd-mobile';
 import classnames from 'classnames';
 import Field from '../Field';
+import { PropsType } from 'antd-mobile/es/date-picker/index';
 import { INomarDatePickerProps } from '../NomarDatePicker';
 import { changeDateFormat } from '../../utils';
 
@@ -14,8 +15,8 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   maxDate?: Date;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
-  secondProps?: INomarDatePickerProps;
-  firstProps?: INomarDatePickerProps;
+  secondProps?: PropsType;
+  firstProps?: PropsType;
   subTitle?: string | React.ReactNode;
 }
 
