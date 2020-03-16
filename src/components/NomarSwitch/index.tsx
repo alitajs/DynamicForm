@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Switch, List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
-// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
 import Field from '../Field';
 

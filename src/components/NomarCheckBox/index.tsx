@@ -4,7 +4,6 @@ import 'antd/lib/checkbox/style/index.less';
 import 'antd/lib/list/style/index.less';
 import { CheckboxGroupProps } from 'antd/lib/checkbox/index';
 import { Rule } from 'rc-field-form/es/interface';
-// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import Field from '../Field';
 import '../../styles/index.less';
 

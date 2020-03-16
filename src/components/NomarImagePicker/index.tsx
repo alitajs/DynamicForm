@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import { ImagePicker, Toast } from 'antd-mobile';
 import { ImagePickerPropTypes } from 'antd-mobile/es/image-picker/PropsType';
 import Field from '../Field';

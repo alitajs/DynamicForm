@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { PropsType } from 'antd-mobile/es/date-picker/index';
 import { DatePicker, List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
-// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import Field from '../Field';
 import { changeDateFormat } from '../../utils';
 

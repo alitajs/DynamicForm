@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { List } from 'antd-mobile';
 import { Radio } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
-// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import { RadioGroupProps } from 'antd/lib/radio/interface';
 import classnames from 'classnames';
 import Field from '../Field';
