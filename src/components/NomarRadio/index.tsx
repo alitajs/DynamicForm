@@ -5,6 +5,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import { RadioGroupProps } from 'antd/lib/radio/interface';
 import classnames from 'classnames';
 import Field from '../Field';
+import NomarRadioGroup from './radioGroup';
 import 'antd/lib/radio/style/index.less';
 import '../../styles/index.less';
 
@@ -46,7 +47,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     rules,
     title,
     placeholder,
-    data = radioList as any,
+    data,
     positionType = 'horizontal',
     hasStar = true,
     radioType = 'horizontal',
@@ -61,19 +62,13 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   const RadioGroup = () => (
     <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-      <Radio.Group
-        className={classnames({
-          'alitajs-dform-vertical-radio-type': radioType === 'vertical',
-        })}
-        style={coverStyle}
-        {...otherProps}
-      >
-        {data.map((item: radioItem) => (
-          <Radio key={item.label} value={item.value} className="alitajs-dform-item">
-            {item.label}
-          </Radio>
-        ))}
-      </Radio.Group>
+      <NomarRadioGroup
+        data={data}
+        positionType={positionType}
+        radioType={radioType}
+        // initValue={initValue}
+        // onChange={onChange}
+      />
     </Field>
   );
 
