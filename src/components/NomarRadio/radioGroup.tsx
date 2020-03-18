@@ -15,6 +15,7 @@ export interface INomarRadioGroupProps {
   radioType?: 'horizontal' | 'vertical';
   initValue?: string | number;
   disabled?: boolean;
+  onChange?: (currentActiveLink: string) => void;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = props => {
@@ -38,11 +39,11 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     setContext(
       [...dataList].map(item => {
         const initItem = item;
-        // if (initItem.value === initValue) {
-        //   initItem.flag = true;
-        // } else {
-        initItem.flag = false;
-        // }
+        if (initItem.value === initValue) {
+          initItem.flag = true;
+        } else {
+          initItem.flag = false;
+        }
         initItem.moveFlag = false;
         return initItem;
       }),
@@ -77,12 +78,23 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
       {context.map((item: IDataItem) => (
         <div
           key={item.value}
+          className={classnames({
+            'alitajs-dform-radio-wrapper': true,
+            'alitajs-dform-radio-wrapper-item-vertical': radioType === 'vertical',
+          })}
           onClick={e => {
             radioClick(e, item);
           }}
         >
-          <div style={{ width: '0.3rem', height: '0.3rem', background: 'red' }}></div>
-          {item.label}
+          <div
+            className={classnames({
+              'alitajs-dform-radio-button': true,
+              'alitajs-dform-radio-checked': item.flag,
+            })}
+          >
+            {item.flag && <div className="alitajs-dform-radio-inner-button"></div>}
+          </div>
+          <div className="alitajs-dform-radio-label">{item.label}</div>
         </div>
       ))}
     </div>
