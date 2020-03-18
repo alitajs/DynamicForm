@@ -47,7 +47,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     isVertical = true;
   }
 
-  const radioGroup = () => (
+  const RadioGroup = () => (
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
@@ -83,7 +83,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           'alitajs-dform-radio': true,
         })}
       >
-        <List.Item key={fieldProps} style={coverStyle} extra={radioGroup()}>
+        <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
