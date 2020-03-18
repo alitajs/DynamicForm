@@ -62,6 +62,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         radioType={radioType}
         initValue={initValue}
         onChange={onChange}
+        coverStyle={coverStyle}
       />
     </Field>
   );
@@ -83,7 +84,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           'alitajs-dform-radio': true,
         })}
       >
-        <List.Item key={fieldProps} style={coverStyle} extra={RadioGroup()}>
+        <List.Item key={fieldProps} extra={RadioGroup()}>
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}

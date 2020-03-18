@@ -104,7 +104,6 @@ const Page: FC<PageProps> = () => {
       required: true,
       data: foodList,
       title: '喜欢的食物',
-      // positionType: 'vertical',
       radioType: 'vertical',
     },
   ] as IFormItemProps[];
