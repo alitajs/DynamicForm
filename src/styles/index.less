@@ -7,6 +7,16 @@
 @alita-dform-radio-color: #108ee9;
 @alita-dform-radio-font-color: #fff;
 
+@keyframes colorful {
+  0% {
+    background-color: #fff;
+  }
+
+  100% {
+    background-color: @alita-dform-radio-color;
+  }
+}
+
 .alitajs-dform-title-content {
   font-size: @alita-dform-title-font-size  !important;
 }
@@ -127,43 +137,72 @@
 
 .alitajs-dform-radio {
 
-  .ant-radio-inner::after {
-    top: 8px;
-    left: 8px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+  .am-list-extra {
+    flex-basis: 50% !important;
   }
 
-  .ant-radio-inner {
-    width: 40px;
-    height: 40px;
-    border-width: 2px;
+  .alitajs-dform-radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    .alitajs-dform-radio-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .alitajs-dform-radio-button {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #d9d9d9;
+        border-radius: 50%;
+        padding: 8px;
+
+        .alitajs-dform-radio-inner-button {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: @alita-dform-radio-color;
+        }
+      }
+
+
+      .alitajs-dform-radio-checked {
+        border: 2px solid @alita-dform-radio-color;
+        box-shadow: 0 0 2px;
+      }
+
+      .alitajs-dform-radio-label {
+        font-size: @alita-dform-select-font-size;
+        color: @alita-dform-select-color;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+    }
+
+    .alitajs-dform-radio-wrapper-item-vertical {
+      padding-bottom: 14px;
+      padding-top: 14px;
+    }
   }
 
-  .ant-radio-wrapper {
-    font-size: 30px;
+  .alitajs-dform-radio-position {
+    justify-content: flex-end;
+  }
+
+  .alitajs-dform-radio-item-vertical {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 .alitajs-dform-vertical-radio {
-
-  .am-list-content {
-    display: none;
-  }
+  .alitajs-dform-radio();
 
   .am-list-extra {
     flex-basis: 100% !important;
-    text-align: left !important;
-  }
-
-  .alitajs-dform-vertical-radio-type {
-    display: flex;
-    flex-direction: column;
-
-    .ant-radio-wrapper {
-      padding-bottom: 10px;
-    }
   }
 }
 
@@ -324,8 +363,6 @@
   .ant-checkbox-group {
     border-bottom: 1px solid #ddd;
   }
-
-  // }
 }
 
 .alitajs-dform-extra-input {
@@ -406,16 +443,6 @@
       justify-content: center;
       margin-left: 20px;
       color: @alita-dform-select-color;
-    }
-
-    @keyframes colorful {
-      0% {
-        background-color: #fff;
-      }
-
-      100% {
-        background-color: @alita-dform-radio-color;
-      }
     }
 
     .alitajs-dform-cover-radio-wrapper-checked {

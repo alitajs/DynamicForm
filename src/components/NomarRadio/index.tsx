@@ -1,11 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { List } from 'antd-mobile';
-import { Radio } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
-import { RadioGroupProps } from 'antd/lib/radio/interface';
 import classnames from 'classnames';
 import Field from '../Field';
-import 'antd/lib/radio/style/index.less';
+import NomarRadioGroup from './radioGroup';
 import '../../styles/index.less';
 
 interface radioItem {
@@ -13,7 +11,7 @@ interface radioItem {
   value: string;
 }
 
-export interface INomarRadioProps extends RadioGroupProps {
+export interface INomarRadioProps {
   fieldProps: string;
   title: string;
   rules?: Rule[];
@@ -25,33 +23,23 @@ export interface INomarRadioProps extends RadioGroupProps {
   hasStar?: boolean;
   radioType?: 'horizontal' | 'vertical';
   subTitle?: string | React.ReactNode;
+  onChange?: (currentActiveLink: string) => void;
 }
 
-const radioList = [
-  {
-    label: '是',
-    value: true,
-  },
-  {
-    label: '否',
-    value: false,
-  },
-];
-
 const NomarRadio: FC<INomarRadioProps> = props => {
+  const [initValue, setInitValue] = useState('');
   const {
     coverStyle,
     fieldProps,
     required = false,
     rules,
     title,
-    placeholder,
-    data = radioList as any,
+    data = [],
     positionType = 'horizontal',
     hasStar = true,
     radioType = 'horizontal',
     subTitle,
-    ...otherProps
+    onChange,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -60,20 +48,21 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   }
 
   const RadioGroup = () => (
-    <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-      <Radio.Group
-        className={classnames({
-          'alitajs-dform-vertical-radio-type': radioType === 'vertical',
-        })}
-        style={coverStyle}
-        {...otherProps}
-      >
-        {data.map((item: radioItem) => (
-          <Radio key={item.label} value={item.value} className="alitajs-dform-item">
-            {item.label}
-          </Radio>
-        ))}
-      </Radio.Group>
+    <Field
+      name={fieldProps}
+      rules={rules || [{ required, message: `请选择${title}` }]}
+      shouldUpdate={(prevValue: any, nextValue: any) => {
+        setInitValue(nextValue && nextValue[fieldProps as any]);
+        return prevValue !== nextValue;
+      }}
+    >
+      <NomarRadioGroup
+        data={data}
+        positionType={positionType}
+        radioType={radioType}
+        initValue={initValue}
+        onChange={onChange}
+      />
     </Field>
   );
 

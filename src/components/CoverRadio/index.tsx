@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
-import RadioGroup from './radioGroup';
+import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
 import '../../styles/index.less';
 
@@ -46,7 +46,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     isVertical = true;
   }
 
-  const radioGroup = () => (
+  const RadioGroup = () => (
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
@@ -55,7 +55,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
         return prevValue !== nextValue;
       }}
     >
-      <RadioGroup
+      <CoverRadioGroup
         data={data}
         positionType={positionType}
         radioType={radioType}
@@ -83,7 +83,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
           'alitajs-dform-vertical-cover-radio': isVertical,
         })}
       >
-        <List.Item key={fieldProps} extra={radioGroup()}>
+        <List.Item key={fieldProps} extra={RadioGroup()}>
           {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
           <span id={fieldProps} className="alitajs-dform-title">
             {title}
