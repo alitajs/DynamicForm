@@ -16,6 +16,7 @@ export interface INomarRadioGroupProps {
   initValue?: string | number;
   disabled?: boolean;
   onChange?: (currentActiveLink: string) => void;
+  coverStyle?: React.CSSProperties;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = props => {
@@ -26,6 +27,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     radioType = 'horizontal',
     initValue,
     disabled = false,
+    coverStyle,
   } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
 
@@ -94,7 +96,9 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
           >
             {item.flag && <div className="alitajs-dform-radio-inner-button"></div>}
           </div>
-          <div className="alitajs-dform-radio-label">{item.label}</div>
+          <div className="alitajs-dform-radio-label" style={coverStyle}>
+            {item.label}
+          </div>
         </div>
       ))}
     </div>

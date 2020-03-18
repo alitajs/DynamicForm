@@ -16,6 +16,7 @@ interface IRadioGroup {
   radioType?: 'horizontal' | 'vertical';
   initValue?: string | number;
   disabled?: boolean;
+  coverStyle?: React.CSSProperties;
 }
 
 const RadioGroup: FC<IRadioGroup> = props => {
@@ -26,6 +27,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
     radioType = 'horizontal',
     initValue = '',
     disabled = false,
+    coverStyle,
   } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
 
@@ -99,6 +101,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
             'alitajs-dform-cover-radio-wrapper-margin': isVertical,
             'alitajs-dform-cover-radio-wrapper-cover': item.moveFlag && !item.flag,
           })}
+          style={coverStyle}
           onMouseDown={() => {
             radioMove(true, item);
           }}

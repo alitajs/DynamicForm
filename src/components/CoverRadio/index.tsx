@@ -23,11 +23,13 @@ interface ICoverRadioProps {
   disabled?: boolean;
   onChange?: (currentActiveLink: string) => void;
   subTitle?: string | React.ReactNode;
+  coverStyle?: React.CSSProperties;
 }
 
 const NomarTab: FC<ICoverRadioProps> = props => {
   const [initValue, setInitValue] = useState('');
   const {
+    coverStyle,
     fieldProps,
     required = false,
     hasStar = true,
@@ -62,6 +64,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
         initValue={initValue}
         onChange={onChange}
         disabled={disabled}
+        coverStyle={coverStyle}
       />
     </Field>
   );

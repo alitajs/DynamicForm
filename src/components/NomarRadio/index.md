@@ -25,6 +25,7 @@ title: Radio
 | radioType    | 按钮方向为横向或者纵向，若为纵向，则默认 `positionType` 为 `vertical` | `vertical` or `horizontal` | `horizontal` |
 | 否           |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效            | string or node             | ''           | 否           |
+| coverStyle   | 自定义每个选项的样式，例如高度，内外边距等                            | object                     | {}           | 否           |
 
 ## 组件使用
 
