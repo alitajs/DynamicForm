@@ -331,39 +331,46 @@
 }
 
 .alitajs-dform-check-box {
-  padding-top: 16px;
+  .alitajs-dform-box-content {
+    padding-left: 30px;
+    font-size: @alita-dform-select-font-size;
 
-  p {
-    margin-bottom: 0;
-  }
+    .alitajs-dform-box-wrapper {
+      padding-bottom: 14px;
+      padding-top: 14px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-  .alitajs-dform-check-box-item {
-    display: flex;
-    flex-direction: column;
-  }
+      .alitajs-dform-box-botton {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #d9d9d9;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-  // :global {
-  .ant-checkbox-wrapper {
-    margin-left: 30px;
-    font-size: 30px;
-  }
+        .alitajs-dform-box-tick {
+          width: 10px;
+          height: 20px;
+          border-bottom: 3px solid #fff;
+          border-right: 3px solid #fff;
+          transform: rotate(40deg);
+        }
+      }
 
-  .ant-checkbox-inner {
-    width: 28px !important;
-    height: 28px !important;
-  }
+      .alitajs-dform-box-botton-checked {
+        background-color: @alita-dform-radio-color;
+        border: 2px solid @alita-dform-radio-color;
+        box-shadow: 0 0 3px @alita-dform-radio-color;
+      }
 
-  .ant-checkbox-inner::after {
-    width: 10px;
-    height: 16px;
-  }
-
-  .ant-list-item {
-    padding: 10px 0;
-  }
-
-  .ant-checkbox-group {
-    border-bottom: 1px solid #ddd;
+      .alitajs-dform-box-label {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+    }
   }
 }
 
@@ -445,7 +452,8 @@
       justify-content: center;
       margin-left: 20px;
       color: @alita-dform-select-color;
-      margin-bottom: 14px;
+      // margin-bottom: 7px;
+      // margin-top: 7px;
     }
 
     .alitajs-dform-cover-radio-wrapper-checked {
