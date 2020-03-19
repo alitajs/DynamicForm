@@ -1,13 +1,10 @@
-import React, { FC } from 'react';
-import { Checkbox, List } from 'antd';
-import 'antd/lib/checkbox/style/index.less';
-import 'antd/lib/list/style/index.less';
-import { CheckboxGroupProps } from 'antd/lib/checkbox/index';
+import React, { FC, useState } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
+import CheckBoxGroup from './checkBoxgroup';
 import '../../styles/index.less';
 
-interface INomarCheckBoxProps extends CheckboxGroupProps {
+interface INomarCheckBoxProps {
   title: string;
   rules?: Rule[];
   required?: boolean;
@@ -15,10 +12,15 @@ interface INomarCheckBoxProps extends CheckboxGroupProps {
   fieldProps: string;
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
+  coverStyle?: React.CSSProperties;
+  onChange?: (currentActiveLink: (string | number)[]) => void;
+  disabled?: boolean;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
+  const [initValue, setInitValue] = useState([]);
   const {
+    coverStyle,
     fieldProps,
     title,
     rules,
@@ -26,7 +28,8 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     data = [],
     hasStar = true,
     subTitle,
-    ...otherProps
+    onChange,
+    disabled = false,
   } = props;
 
   return (
@@ -38,18 +41,21 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
         </span>
         {subTitle}
       </div>
-      <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-        <Checkbox.Group style={{ width: '100%' }} {...otherProps}>
-          <div className="alitajs-dform-check-box-item">
-            {[...data].map(item => (
-              <List.Item key={item.value}>
-                <Checkbox value={item.value} className="alitajs-dform-item">
-                  {item.label}
-                </Checkbox>
-              </List.Item>
-            ))}
-          </div>
-        </Checkbox.Group>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          setInitValue(nextValue && nextValue[fieldProps as any]);
+          return prevValue !== nextValue;
+        }}
+      >
+        <CheckBoxGroup
+          data={data}
+          onChange={onChange}
+          coverStyle={coverStyle}
+          initValue={initValue}
+          disabled={disabled}
+        />
       </Field>
     </div>
   );
