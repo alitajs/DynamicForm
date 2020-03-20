@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
+import difference from 'lodash/difference';
 
 export interface IDataItem {
   label: string;
@@ -19,20 +20,24 @@ interface ICheckBoxGroup {
 const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
   const { data, onChange, initValue = [], coverStyle, disabled = false } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
+  const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
 
   useEffect(() => {
-    const dataList = JSON.parse(JSON.stringify(data));
-    setContext(
-      [...dataList].map(item => {
-        const initItem = item;
-        if (initValue.indexOf(initItem.value) !== -1) {
-          initItem.flag = true;
-        } else {
-          initItem.flag = false;
-        }
-        return initItem;
-      }),
-    );
+    if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
+      const dataList = JSON.parse(JSON.stringify(data));
+      setContext(
+        [...dataList].map(item => {
+          const initItem = item;
+          if (initValue.indexOf(initItem.value) !== -1) {
+            initItem.flag = true;
+          } else {
+            initItem.flag = false;
+          }
+          return initItem;
+        }),
+      );
+      setPreInitValue(initValue);
+    }
   }, [data, initValue]);
 
   const boxClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
