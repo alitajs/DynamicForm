@@ -48,7 +48,7 @@ theme: {
 }
 ```
 
-### CoverRadio 选中时的背景颜色和文字颜色
+### CoverRadio, NomarRadio, NomarCheckBox, MultiplePicker 选中时的背景颜色和文字颜色
 
 ```js
 theme: {

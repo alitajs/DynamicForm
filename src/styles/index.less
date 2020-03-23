@@ -530,8 +530,14 @@
 }
 
 .alitajs-dform-multiple-picker {
+
   .am-modal-header {
     padding: 0px !important;
+  }
+
+  .alitajs-dform-multiple-picker-content {
+    overflow-y: auto;
+    max-height: 800px;
   }
 
   .alitajs-dform-multiple-picker-item {
@@ -568,4 +574,37 @@
       }
     }
   }
+}
+
+.alitajs-dform-multiple {
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .alitajs-dform-multiple-tltle {
+    width: 40%;
+  }
+
+  .alitajs-dform-multiple-value {
+    font-size: @alita-dform-select-font-size;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .alitajs-dform-multiple-input {
+      width: 100%;
+      border: 0px;
+      color: @alita-dform-select-color;
+    }
+  }
+
+}
+
+.alitajs-dform-right {
+  width: 30px !important;
+  height: 30px !important;
+  margin-left: 16px;
 }

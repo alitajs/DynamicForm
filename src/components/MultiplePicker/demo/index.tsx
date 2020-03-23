@@ -25,8 +25,6 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const extraImg = () => <img src={PositionIcon} />;
-
   const foodList = [
     {
       label: '宫保鸡丁',
@@ -53,19 +51,36 @@ const Page: FC = () => {
   const formsData = [
     {
       type: 'multiplePicker',
-      fieldProps: 'food',
+      fieldProps: 'myFood',
+      required: true,
       data: foodList,
-      title: '选择喜欢的食物',
+      title: '选择我喜欢的食物',
+      placeholder: '请选择我喜欢的食物',
+      onChange: (e: (string | number)[]) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      },
+    },
+    {
+      type: 'multiplePicker',
+      fieldProps: 'youFood',
+      data: foodList,
+      title: '选择你喜欢的食物(不可编辑)',
+      disabled: true,
       placeholder: '请选择',
+      positionType: 'vertical',
     },
   ] as IFormItemProps[];
-  const formsValues = {};
+  const formsValues = {
+    youFood: ['红烧肉'],
+  };
   const formProps = {
     onFinish,
     onFinishFailed,
     data: formsData,
     formsValues,
     form,
+    autoLineFeed: false,
   };
   return (
     <DynamicForm {...formProps}>

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import { Modal, List } from 'antd-mobile';
-import { NomarInput } from '../index';
+import difference from 'lodash/difference';
 import classnames from 'classnames';
 import '../../styles/index.less';
 
@@ -21,38 +21,54 @@ interface IMultiplePickerGroupProps {
   required?: boolean;
   hasStar?: boolean;
   rules?: Rule[];
-  onChange?: (currentActiveLink: []) => void;
+  onChange?: (currentActiveLink: (string | number)[]) => void;
   subTitle?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
   placeholder?: string;
   extra?: string | React.ReactNode;
+  initValue?: (string | number)[];
+  disabled?: boolean;
 }
 
 const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
-  const { data = [], onChange, title, ...otherProps } = props;
+  const {
+    data = [],
+    title,
+    placeholder = '请选择',
+    onChange,
+    disabled = false,
+    positionType = 'horizontal',
+    initValue = [],
+  } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
+  const [preContext, setPreContext] = useState<IDataItem[]>([]);
+  const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
   const [modalFlag, setModalFlag] = useState<boolean>(false);
+  const [multipleLabel, setMultipleLabel] = useState<string>('');
 
-  const selectIconNode = (
-    <div
-      onClick={() => {
-        setModalFlag(true);
-      }}
-      className="am-list-arrow am-list-arrow-horizontal"
-    ></div>
-  );
+  const isVertical = positionType === 'vertical';
 
   useEffect(() => {
-    const dataList = JSON.parse(JSON.stringify(data));
-    setContext(
-      [...dataList].map(item => {
-        const initItem = item;
-        initItem.flag = false;
-        return initItem;
-      }),
-    );
-  }, [data]);
+    if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
+      const dataList = JSON.parse(JSON.stringify(data));
+      const selLabelList: (string | number)[] = [];
+      setContext(
+        [...dataList].map(item => {
+          const initItem = item;
+          if (initValue.indexOf(initItem.value) !== -1) {
+            initItem.flag = true;
+            selLabelList.push(item.label);
+          } else {
+            initItem.flag = false;
+          }
+          return initItem;
+        }),
+      );
+      setMultipleLabel(selLabelList.join(','));
+      setPreInitValue(initValue);
+    }
+  }, [data, initValue]);
 
   const pickerClick = (val: IDataItem) => {
     const dataList = JSON.parse(JSON.stringify(context));
@@ -65,35 +81,91 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     );
   };
 
+  const openMoal = () => {
+    if (disabled) return;
+    setPreContext([...context]);
+    setModalFlag(true);
+  };
+
+  const onCancel = () => {
+    setModalFlag(false);
+    setContext([...preContext]);
+  };
+
+  const onConfirm = () => {
+    const selLabelList = context.filter(it => it.flag).map(item => item.label);
+    const selValueList = context.filter(it => it.flag).map(item => item.value);
+    setMultipleLabel(selLabelList.join(','));
+    setModalFlag(false);
+    if (onChange) onChange(selValueList);
+  };
+
   return (
     <>
-      <NomarInput
-        {...otherProps}
-        title={title}
-        labelNumber={10}
-        extra={selectIconNode}
-        onClick={() => {
-          setModalFlag(!modalFlag);
-        }}
-        editable={false}
-      />
+      <div className="am-list-item am-list-item-middle alitajs-dform-multiple">
+        <div className="am-list-line">
+          {!isVertical && <div className="alitajs-dform-multiple-tltle">{props.children}</div>}
+          <div
+            className="alitajs-dform-multiple-value"
+            style={{
+              width: isVertical ? '100%' : '60%',
+            }}
+          >
+            <input
+              type="text"
+              value={multipleLabel}
+              readOnly
+              style={{
+                textAlign: isVertical ? 'left' : 'right',
+              }}
+              className="alitajs-dform-multiple-input"
+              placeholder={placeholder}
+              onClick={() => {
+                openMoal();
+              }}
+            />
+            <img
+              className="alitajs-dform-right"
+              src="data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2226%22%20viewBox%3D%220%200%2016%2026%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cg%20id%3D%22UI-KIT_%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%229.9%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6%22%20transform%3D%22translate(-5809.000000%2C%20-8482.000000)%22%20fill%3D%22%23C7C7CC%22%3E%3Cpolygon%20id%3D%22Disclosure-Indicator%22%20points%3D%225811%208482%205809%208484%205820.5%208495%205809%208506%205811%208508%205825%208495%22%3E%3C%2Fpolygon%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+              alt=""
+              onClick={() => {
+                openMoal();
+              }}
+            />
+          </div>
+        </div>
+      </div>
       <Modal
         popup
         visible={modalFlag}
         onClose={() => {
-          setModalFlag(false);
+          onCancel();
         }}
         className="alitajs-dform-multiple-picker"
         animationType="slide-up"
         title={
           <div className="am-picker-popup-header">
-            <div className="am-picker-popup-item am-picker-popup-header-left">取消</div>
+            <div
+              className="am-picker-popup-item am-picker-popup-header-left"
+              onClick={() => {
+                onCancel();
+              }}
+            >
+              取消
+            </div>
             <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
-            <div className="am-picker-popup-item am-picker-popup-header-right">确定</div>
+            <div
+              className="am-picker-popup-item am-picker-popup-header-right"
+              onClick={() => {
+                onConfirm();
+              }}
+            >
+              确定
+            </div>
           </div>
         }
       >
-        <List>
+        <List className="alitajs-dform-multiple-picker-content">
           {[...context].map(item => (
             <Item>
               <div
