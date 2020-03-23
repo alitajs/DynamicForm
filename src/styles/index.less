@@ -528,3 +528,44 @@
     flex-basis: 100% !important;
   }
 }
+
+.alitajs-dform-multiple-picker {
+  .am-modal-header {
+    padding: 0px !important;
+  }
+
+  .alitajs-dform-multiple-picker-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .alitajs-dform-multiple-picker-label {
+      font-size: @alita-dform-select-font-size;
+      color: #000;
+    }
+
+    .alitajs-dform-multiple-picker-checked {
+      color: @alita-dform-radio-color;
+    }
+
+    .alitajs-dform-multiple-picker-right {
+      width: 40px;
+      height: 40px;
+      // border: 1px solid red;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .alitajs-dform-multiple-picker-tick {
+        width: 10px;
+        height: 20px;
+        border-bottom: 3px solid @alita-dform-radio-color;
+        border-right: 3px solid @alita-dform-radio-color;
+        transform: rotate(40deg);
+      }
+    }
+  }
+}
