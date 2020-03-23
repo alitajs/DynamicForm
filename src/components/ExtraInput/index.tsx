@@ -23,6 +23,7 @@ export interface IExtraInputProps extends InputItemPropsType {
   firstProps?: InputItemPropsType;
   secondProps?: any;
   subTitle?: string | React.ReactNode;
+  hidden?: boolean;
 }
 
 const ExtraInput: FC<IExtraInputProps> = props => {
@@ -42,6 +43,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     firstProps,
     secondProps,
     subTitle,
+    hidden = false,
     ...otherProps
   } = props;
 
@@ -80,41 +82,45 @@ const ExtraInput: FC<IExtraInputProps> = props => {
 
   return (
     <>
-      {isVertical && (
-        <div className="alitajs-dform-vertical-title">
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-          {subTitle}
-        </div>
+      {!hidden && (
+        <React.Fragment>
+          {isVertical && (
+            <div className="alitajs-dform-vertical-title">
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+              {subTitle}
+            </div>
+          )}
+          <div
+            className={classnames({
+              'alitajs-dform-extra-input': true,
+              'alitajs-dform-extra-horizontal': !isVertical,
+            })}
+          >
+            <div className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-input`}>
+              <NomarInput
+                {...otherProps}
+                {...firstProps}
+                required={required}
+                rules={rules}
+                coverStyle={{ textAlign: 'left', ...coverStyle }}
+                fieldProps={fieldProps}
+                title={title}
+                extra=""
+              />
+            </div>
+            {extraType === 'input' && <div className="alitajs-dform-line">~</div>}
+            <div
+              className={`alitajs-dform-end${isVertical ? '-vertical' : ''}-input`}
+              style={{ width: isVertical ? '' : '' }}
+            >
+              {extraDiv()}
+            </div>
+          </div>
+        </React.Fragment>
       )}
-      <div
-        className={classnames({
-          'alitajs-dform-extra-input': true,
-          'alitajs-dform-extra-horizontal': !isVertical,
-        })}
-      >
-        <div className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-input`}>
-          <NomarInput
-            {...otherProps}
-            {...firstProps}
-            required={required}
-            rules={rules}
-            coverStyle={{ textAlign: 'left', ...coverStyle }}
-            fieldProps={fieldProps}
-            title={title}
-            extra=""
-          />
-        </div>
-        {extraType === 'input' && <div className="alitajs-dform-line">~</div>}
-        <div
-          className={`alitajs-dform-end${isVertical ? '-vertical' : ''}-input`}
-          style={{ width: isVertical ? '' : '' }}
-        >
-          {extraDiv()}
-        </div>
-      </div>
     </>
   );
 };

@@ -15,6 +15,7 @@ interface INomarCheckBoxProps {
   coverStyle?: React.CSSProperties;
   onChange?: (currentActiveLink: (string | number)[]) => void;
   disabled?: boolean;
+  hidden?: boolean;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
@@ -30,34 +31,39 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     subTitle,
     onChange,
     disabled = false,
+    hidden = false,
   } = props;
 
   return (
-    <div className="alitajs-dform-check-box">
-      <div className="alitajs-dform-vertical-title">
-        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={fieldProps} className="alitajs-dform-title">
-          {title}
-        </span>
-        {subTitle}
-      </div>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        shouldUpdate={(prevValue: any, nextValue: any) => {
-          setInitValue(nextValue && nextValue[fieldProps as any]);
-          return prevValue !== nextValue;
-        }}
-      >
-        <CheckBoxGroup
-          data={data}
-          onChange={onChange}
-          coverStyle={coverStyle}
-          initValue={initValue}
-          disabled={disabled}
-        />
-      </Field>
-    </div>
+    <>
+      {!hidden && (
+        <div className="alitajs-dform-check-box">
+          <div className="alitajs-dform-vertical-title">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-title">
+              {title}
+            </span>
+            {subTitle}
+          </div>
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            shouldUpdate={(prevValue: any, nextValue: any) => {
+              setInitValue(nextValue && nextValue[fieldProps as any]);
+              return prevValue !== nextValue;
+            }}
+          >
+            <CheckBoxGroup
+              data={data}
+              onChange={onChange}
+              coverStyle={coverStyle}
+              initValue={initValue}
+              disabled={disabled}
+            />
+          </Field>
+        </div>
+      )}
+    </>
   );
 };
 

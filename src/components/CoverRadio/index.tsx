@@ -24,6 +24,7 @@ interface ICoverRadioProps {
   onChange?: (currentActiveLink: string) => void;
   subTitle?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
+  hidden?: boolean;
 }
 
 const NomarTab: FC<ICoverRadioProps> = props => {
@@ -40,6 +41,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     onChange,
     positionType = 'horizontal',
     radioType = 'horizontal',
+    hidden = false,
     subTitle,
   } = props;
 
@@ -71,28 +73,32 @@ const NomarTab: FC<ICoverRadioProps> = props => {
 
   return (
     <>
-      {isVertical && (
-        <div className="alitajs-dform-vertical-title">
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-          {subTitle}
-        </div>
+      {!hidden && (
+        <React.Fragment>
+          {isVertical && (
+            <div className="alitajs-dform-vertical-title">
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+              {subTitle}
+            </div>
+          )}
+          <div
+            className={classnames({
+              'alitajs-dform-cover-radio': true,
+              'alitajs-dform-vertical-cover-radio': isVertical,
+            })}
+          >
+            <List.Item key={fieldProps} extra={RadioGroup()}>
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+            </List.Item>
+          </div>
+        </React.Fragment>
       )}
-      <div
-        className={classnames({
-          'alitajs-dform-cover-radio': true,
-          'alitajs-dform-vertical-cover-radio': isVertical,
-        })}
-      >
-        <List.Item key={fieldProps} extra={RadioGroup()}>
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-        </List.Item>
-      </div>
     </>
   );
 };

@@ -26,6 +26,8 @@ title: Radio
 | 否           |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效            | string or node             | ''           | 否           |
 | coverStyle   | 自定义每个选项的样式，例如高度，内外边距等                            | object                     | {}           | 否           |
+| hidden       | 字段展示与否的判断                                                    | boolean                    | false        | 否           |
+
 
 ## 组件使用
 
