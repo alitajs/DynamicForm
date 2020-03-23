@@ -28,6 +28,8 @@ title: Input
 | rules        | 规则校验(如需用到该字段，请重写 `required` 校验)                                                                                      | array                      | []           | 否       |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效                                                                            | string or node             | ''           | 否       |
 | coverStyle   | 自定义输入框样式                                                                                                                      | object                     | {}           | 否       |
+| hidden       | 字段展示与否的判断                                                                                                                    | boolean                    | false        | 否       |
+
 
 ## 组件使用
 

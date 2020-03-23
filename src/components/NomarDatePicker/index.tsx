@@ -17,6 +17,7 @@ export interface INomarDatePickerProps extends PropsType {
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
+  hidden?: boolean;
 }
 
 const NomarDatePicker: FC<INomarDatePickerProps> = props => {
@@ -29,6 +30,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
     positionType = 'horizontal',
     hasStar = true,
     subTitle,
+    hidden = false,
     ...otherProps
   } = props;
 
@@ -36,32 +38,36 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
 
   return (
     <>
-      {isVertical && (
-        <div className="alitajs-dform-vertical-title">
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-          {subTitle}
-        </div>
-      )}
-      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`}>
-        <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-          <DatePicker
-            {...otherProps}
-            mode={modeType}
-            title={title}
-            format={value => changeDateFormat(value, modeType)}
-          >
-            <List.Item arrow="horizontal">
+      {!hidden && (
+        <React.Fragment>
+          {isVertical && (
+            <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
               <span id={fieldProps} className="alitajs-dform-title">
                 {title}
               </span>
-            </List.Item>
-          </DatePicker>
-        </Field>
-      </div>
+              {subTitle}
+            </div>
+          )}
+          <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`}>
+            <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+              <DatePicker
+                {...otherProps}
+                mode={modeType}
+                title={title}
+                format={value => changeDateFormat(value, modeType)}
+              >
+                <List.Item arrow="horizontal">
+                  {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                  <span id={fieldProps} className="alitajs-dform-title">
+                    {title}
+                  </span>
+                </List.Item>
+              </DatePicker>
+            </Field>
+          </div>
+        </React.Fragment>
+      )}
     </>
   );
 };

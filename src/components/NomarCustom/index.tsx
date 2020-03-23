@@ -16,6 +16,7 @@ interface INomarCustomPorps {
   customDomProps?: any;
   CustomDom: any;
   subTitle?: string | React.ReactNode;
+  hidden?: boolean;
 }
 
 const NomarCustom: FC<INomarCustomPorps> = props => {
@@ -30,6 +31,7 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
     CustomDom,
     customDomProps,
     subTitle,
+    hidden = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -49,28 +51,32 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
 
   return (
     <>
-      {isVertical && (
-        <div className="alitajs-dform-vertical-title">
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-          {subTitle}
-        </div>
+      {!hidden && (
+        <React.Fragment>
+          {isVertical && (
+            <div className="alitajs-dform-vertical-title">
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+              {subTitle}
+            </div>
+          )}
+          <div
+            className={classnames({
+              'alitajs-dform-dom': true,
+              'alitajs-dform-vertical-dom': isVertical,
+            })}
+          >
+            <List.Item key={fieldProps} extra={dom()}>
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+            </List.Item>
+          </div>
+        </React.Fragment>
       )}
-      <div
-        className={classnames({
-          'alitajs-dform-dom': true,
-          'alitajs-dform-vertical-dom': isVertical,
-        })}
-      >
-        <List.Item key={fieldProps} extra={dom()}>
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-        </List.Item>
-      </div>
     </>
   );
 };

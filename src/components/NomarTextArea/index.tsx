@@ -17,6 +17,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   hasStar?: boolean;
   extra?: React.ReactNode | string;
   subTitle?: string | React.ReactNode;
+  hidden?: boolean;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {
@@ -31,6 +32,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     hasStar = true,
     extra = '',
     subTitle,
+    hidden = false,
     ...otherProps
   } = props;
 
@@ -48,28 +50,32 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
 
   return (
     <>
-      <div className="alitajs-dform-area-title">
-        {isVertical && (
-          <div className="alitajs-dform-vertical-title">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-            {subTitle}
+      {!hidden && (
+        <React.Fragment>
+          <div className="alitajs-dform-area-title">
+            {isVertical && (
+              <div className="alitajs-dform-vertical-title">
+                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                <span id={fieldProps} className="alitajs-dform-title">
+                  {title}
+                </span>
+                {subTitle}
+              </div>
+            )}
+            {extra !== '' && <div className="alitajs-dform-area-extra">{extra}</div>}
           </div>
-        )}
-        {extra !== '' && <div className="alitajs-dform-area-extra">{extra}</div>}
-      </div>
-      <div
-        className={classnames({
-          'alitajs-dform-vertical-area': isVertical,
-          'alitajs-dform-area': true,
-        })}
-      >
-        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <TextareaItem {...otherProps} title={titleDiv()} style={coverStyle} rows={rows} />
-        </Field>
-      </div>
+          <div
+            className={classnames({
+              'alitajs-dform-vertical-area': isVertical,
+              'alitajs-dform-area': true,
+            })}
+          >
+            <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+              <TextareaItem {...otherProps} title={titleDiv()} style={coverStyle} rows={rows} />
+            </Field>
+          </div>
+        </React.Fragment>
+      )}
     </>
   );
 };

@@ -24,6 +24,8 @@ title: NomarImagePicker
 | onChange      | files 值发生变化触发的回调函数, operationType 操作类型有添加，移除，如果是移除操作，则第三个参数代表的是移除图片的索引 | `(files: Object, operationType: string, index: number): void` |        | 否       |
 | limitSize     | 图片大小限制, 度量长度为 `kb`                                                                                          | number                                                        |        | 否       |
 | subTitle      | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效                                                             | string or node                                                | ''     | 否       |
+| hidden        | 字段展示与否的判断                                                                                                     | boolean                                                       | false  | 否       |
+
 
 ## 组件使用
 

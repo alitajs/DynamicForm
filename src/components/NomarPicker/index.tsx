@@ -17,6 +17,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
+  hidden?: boolean;
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -31,6 +32,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     positionType = 'horizontal',
     hasStar = true,
     subTitle,
+    hidden = false,
     ...otherProps
   } = props;
 
@@ -38,38 +40,42 @@ const NomarPicker: FC<INomarPickerProps> = props => {
 
   return (
     <>
-      {isVertical && (
-        <div className="alitajs-dform-vertical-title">
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-          {subTitle}
-        </div>
+      {!hidden && (
+        <React.Fragment>
+          {isVertical && (
+            <div className="alitajs-dform-vertical-title">
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+              {subTitle}
+            </div>
+          )}
+          <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}>
+            <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+              <Picker
+                {...otherProps}
+                style={coverStyle}
+                cascade={false}
+                extra={placeholder}
+                data={data}
+                title={title}
+              >
+                <List.Item arrow="horizontal">
+                  {!isVertical && (
+                    <div className="alitajs-dform-title-content">
+                      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                      <span id={fieldProps} className="alitajs-dform-title">
+                        {title}
+                      </span>
+                    </div>
+                  )}
+                </List.Item>
+              </Picker>
+            </Field>
+          </div>
+        </React.Fragment>
       )}
-      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}>
-        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <Picker
-            {...otherProps}
-            style={coverStyle}
-            cascade={false}
-            extra={placeholder}
-            data={data}
-            title={title}
-          >
-            <List.Item arrow="horizontal">
-              {!isVertical && (
-                <div className="alitajs-dform-title-content">
-                  {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                  <span id={fieldProps} className="alitajs-dform-title">
-                    {title}
-                  </span>
-                </div>
-              )}
-            </List.Item>
-          </Picker>
-        </Field>
-      </div>
     </>
   );
 };

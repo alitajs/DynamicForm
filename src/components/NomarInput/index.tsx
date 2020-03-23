@@ -17,6 +17,7 @@ export interface INomarInputProps extends InputItemPropsType {
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
+  hidden?: boolean;
 }
 
 const NomarInput: FC<INomarInputProps> = props => {
@@ -31,6 +32,7 @@ const NomarInput: FC<INomarInputProps> = props => {
     hasStar = true,
     extra,
     subTitle,
+    hidden = false,
     ...otherProps
   } = props;
 
@@ -38,34 +40,38 @@ const NomarInput: FC<INomarInputProps> = props => {
 
   return (
     <>
-      <div className="alitajs-dform-input-title">
-        {isVertical && (
-          <div className="alitajs-dform-vertical-title">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-            {subTitle}
+      {!hidden && (
+        <React.Fragment>
+          <div className="alitajs-dform-input-title">
+            {isVertical && (
+              <div className="alitajs-dform-vertical-title">
+                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                <span id={fieldProps} className="alitajs-dform-title">
+                  {title}
+                </span>
+                {subTitle}
+              </div>
+            )}
+            {extra !== '' && isVertical && <div className="alitajs-dform-area-extra">{extra}</div>}
           </div>
-        )}
-        {extra !== '' && isVertical && <div className="alitajs-dform-area-extra">{extra}</div>}
-      </div>
 
-      <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-input`}>
-        <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-          <InputItem
-            {...otherProps}
-            extra={isVertical ? '' : extra}
-            type={inputType}
-            style={{ textAlign: isVertical ? 'left' : 'right', ...coverStyle }}
-          >
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-          </InputItem>
-        </Field>
-      </div>
+          <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-input`}>
+            <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+              <InputItem
+                {...otherProps}
+                extra={isVertical ? '' : extra}
+                type={inputType}
+                style={{ textAlign: isVertical ? 'left' : 'right', ...coverStyle }}
+              >
+                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                <span id={fieldProps} className="alitajs-dform-title">
+                  {title}
+                </span>
+              </InputItem>
+            </Field>
+          </div>
+        </React.Fragment>
+      )}
     </>
   );
 };

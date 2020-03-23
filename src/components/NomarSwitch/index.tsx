@@ -14,6 +14,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   rules?: Rule[];
   placeholder?: string;
   hasStar?: boolean;
+  hidden?: boolean;
 }
 
 const NomarSwitch: FC<INomarSwitchProps> = props => {
@@ -25,29 +26,34 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
     rules,
     placeholder,
     hasStar = true,
+    hidden = false,
     ...otherProps
   } = props;
   return (
-    <List.Item
-      key={fieldProps}
-      style={coverStyle}
-      extra={
-        <Field
-          name={fieldProps}
-          valuePropName="checked"
-          rules={rules || [{ required, message: `请输入${title}` }]}
+    <React.Fragment>
+      {!hidden && (
+        <List.Item
+          key={fieldProps}
+          style={coverStyle}
+          extra={
+            <Field
+              name={fieldProps}
+              valuePropName="checked"
+              rules={rules || [{ required, message: `请输入${title}` }]}
+            >
+              <Switch {...otherProps} />
+            </Field>
+          }
         >
-          <Switch {...otherProps} />
-        </Field>
-      }
-    >
-      <div className="alitajs-dform-title-content">
-        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={fieldProps} className="alitajs-dform-title">
-          {title}
-        </span>
-      </div>
-    </List.Item>
+          <div className="alitajs-dform-title-content">
+            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+            <span id={fieldProps} className="alitajs-dform-title">
+              {title}
+            </span>
+          </div>
+        </List.Item>
+      )}
+    </React.Fragment>
   );
 };
 
