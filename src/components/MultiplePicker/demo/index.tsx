@@ -66,13 +66,14 @@ const Page: FC = () => {
       fieldProps: 'youFood',
       data: foodList,
       title: '选择你喜欢的食物(不可编辑)',
-      disabled: true,
+      // disabled: true,
       placeholder: '请选择',
       positionType: 'vertical',
+      maxValueLength: 1,
     },
   ] as IFormItemProps[];
   const formsValues = {
-    youFood: ['红烧肉'],
+    youFood: ['红烧肉', '清蒸小黄鱼'],
   };
   const formProps = {
     onFinish,

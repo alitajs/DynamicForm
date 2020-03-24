@@ -25,6 +25,7 @@ interface IMultiplePickerProps {
   placeholder?: string;
   extra?: string | React.ReactNode;
   disabled?: boolean;
+  maxValueLength?: number;
 }
 
 const MultiplePicker: FC<IMultiplePickerProps> = props => {
@@ -37,36 +38,41 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
     hasStar = true,
     positionType = 'horizontal',
     subTitle,
+    hidden = false,
   } = props;
   const isVertical = positionType === 'vertical';
   return (
     <>
-      <div className="alitajs-dform-input-title">
-        {isVertical && (
-          <div className="alitajs-dform-vertical-title">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
-              {title}
-            </span>
-            {subTitle}
+      {!hidden && (
+        <React.Fragment>
+          <div className="alitajs-dform-input-title">
+            {isVertical && (
+              <div className="alitajs-dform-vertical-title">
+                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+                <span id={fieldProps} className="alitajs-dform-title">
+                  {title}
+                </span>
+                {subTitle}
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        shouldUpdate={(prevValue: any, nextValue: any) => {
-          setInitValue(nextValue && nextValue[fieldProps as any]);
-          return prevValue !== nextValue;
-        }}
-      >
-        <MultiplePickerGroup {...props} initValue={initValue}>
-          {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-          <span id={fieldProps} className="alitajs-dform-title">
-            {title}
-          </span>
-        </MultiplePickerGroup>
-      </Field>
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            shouldUpdate={(prevValue: any, nextValue: any) => {
+              setInitValue(nextValue && nextValue[fieldProps as any]);
+              return prevValue !== nextValue;
+            }}
+          >
+            <MultiplePickerGroup {...props} initValue={initValue}>
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={fieldProps} className="alitajs-dform-title">
+                {title}
+              </span>
+            </MultiplePickerGroup>
+          </Field>
+        </React.Fragment>
+      )}
     </>
   );
 };

@@ -29,6 +29,7 @@ interface IMultiplePickerGroupProps {
   extra?: string | React.ReactNode;
   initValue?: (string | number)[];
   disabled?: boolean;
+  maxValueLength?: number;
 }
 
 const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
@@ -40,10 +41,13 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     disabled = false,
     positionType = 'horizontal',
     initValue = [],
+    maxValueLength,
+    coverStyle,
   } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
   const [preContext, setPreContext] = useState<IDataItem[]>([]);
   const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
+  const [selList, setSelList] = useState<(string | number)[]>([]);
   const [modalFlag, setModalFlag] = useState<boolean>(false);
   const [multipleLabel, setMultipleLabel] = useState<string>('');
 
@@ -53,12 +57,18 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
       const dataList = JSON.parse(JSON.stringify(data));
       const selLabelList: (string | number)[] = [];
+      const selValueList: (string | number)[] = [];
       setContext(
         [...dataList].map(item => {
           const initItem = item;
           if (initValue.indexOf(initItem.value) !== -1) {
-            initItem.flag = true;
-            selLabelList.push(item.label);
+            if (!maxValueLength || (maxValueLength && maxValueLength > selValueList.length)) {
+              initItem.flag = true;
+              selLabelList.push(item.label);
+              selValueList.push(item.value);
+            } else {
+              initItem.flag = false;
+            }
           } else {
             initItem.flag = false;
           }
@@ -67,15 +77,28 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
       );
       setMultipleLabel(selLabelList.join(','));
       setPreInitValue(initValue);
+      setSelList(selValueList);
     }
   }, [data, initValue]);
 
   const pickerClick = (val: IDataItem) => {
     const dataList = JSON.parse(JSON.stringify(context));
+    if (selList.indexOf(val.value) !== -1) {
+      selList.splice(selList.indexOf(val.value), 1);
+    } else {
+      selList.push(val.value);
+    }
+    if (maxValueLength && selList.length > maxValueLength) {
+      selList.shift();
+    }
     setContext(
       [...dataList].map(item => {
         const initItem = item;
-        if (initItem.value === val.value) initItem.flag = !initItem.flag;
+        if (selList.indexOf(initItem.value) !== -1) {
+          initItem.flag = true;
+        } else {
+          initItem.flag = false;
+        }
         return initItem;
       }),
     );
@@ -179,6 +202,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
                     'alitajs-dform-multiple-picker-label': true,
                     'alitajs-dform-multiple-picker-checked': item.flag,
                   })}
+                  style={coverStyle}
                 >
                   {item.label}
                 </div>
