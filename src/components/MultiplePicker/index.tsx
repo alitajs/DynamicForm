@@ -1,32 +1,8 @@
 import React, { FC, useState } from 'react';
-import { Rule } from 'rc-field-form/es/interface';
 import MultiplePickerGroup from './multiplePickerGroup';
+import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
 import '../../styles/index.less';
-
-interface IDataItem {
-  label: string;
-  value: string;
-  flag?: boolean;
-}
-
-interface IMultiplePickerProps {
-  data: IDataItem[];
-  fieldProps: string;
-  title: string;
-  positionType?: 'horizontal' | 'vertical';
-  required?: boolean;
-  hasStar?: boolean;
-  rules?: Rule[];
-  onChange?: (currentActiveLink: (string | number)[]) => void;
-  subTitle?: string | React.ReactNode;
-  coverStyle?: React.CSSProperties;
-  hidden?: boolean;
-  placeholder?: string;
-  extra?: string | React.ReactNode;
-  disabled?: boolean;
-  maxValueLength?: number;
-}
 
 const MultiplePicker: FC<IMultiplePickerProps> = props => {
   const [initValue, setInitValue] = useState([]);
