@@ -1,24 +1,7 @@
 import React, { FC } from 'react';
-import { Rule } from 'rc-field-form/es/interface';
-
 import Field from '../Field';
+import { IAddressPickerProps } from './interface';
 import '../../styles/index.less';
-
-export interface IAddressPickerProps {
-  fieldProps: string;
-  title: string;
-  positionType?: 'horizontal' | 'vertical';
-  required?: boolean;
-  hasStar?: boolean;
-  rules?: Rule[];
-  onChange?: (currentActiveLink: (string | number)[]) => void;
-  subTitle?: string | React.ReactNode;
-  coverStyle?: React.CSSProperties;
-  hidden?: boolean;
-  placeholder?: string;
-  extra?: string | React.ReactNode;
-  disabled?: boolean;
-}
 
 const AddressPicker: FC<IAddressPickerProps> = props => {
   const {

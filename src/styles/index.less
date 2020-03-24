@@ -529,15 +529,15 @@
   }
 }
 
+.alitajs-dform-modal-content {
+  overflow-y: auto;
+  max-height: 800px;
+}
+
 .alitajs-dform-multiple-picker {
 
   .am-modal-header {
     padding: 0px !important;
-  }
-
-  .alitajs-dform-multiple-picker-content {
-    overflow-y: auto;
-    max-height: 800px;
   }
 
   .alitajs-dform-multiple-picker-item {
@@ -576,25 +576,26 @@
   }
 }
 
-.alitajs-dform-multiple {
+.alitajs-dform-input-item {
   height: 44px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
-  .alitajs-dform-multiple-tltle {
+  .alitajs-dform-input-tltle {
+    font-size: @alita-dform-title-font-size;
     width: 40%;
   }
 
-  .alitajs-dform-multiple-value {
+  .alitajs-dform-input-value {
     font-size: @alita-dform-select-font-size;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 
-    .alitajs-dform-multiple-input {
+    .alitajs-dform-input-text {
       width: 100%;
       border: 0px;
       color: @alita-dform-select-color;
@@ -608,3 +609,5 @@
   height: 30px !important;
   margin-left: 16px;
 }
+
+.alitajs-dform-address {}
