@@ -1,38 +1,13 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Rule } from 'rc-field-form/es/interface';
 import { Modal, List } from 'antd-mobile';
 import difference from 'lodash/difference';
 import classnames from 'classnames';
+import { IMultiplePickerProps, IDataItem } from './interface';
 import '../../styles/index.less';
 
 const { Item } = List;
 
-interface IDataItem {
-  label: string;
-  value: string;
-  flag?: boolean;
-}
-
-interface IMultiplePickerGroupProps {
-  data: IDataItem[];
-  fieldProps: string;
-  title: string;
-  positionType?: 'horizontal' | 'vertical';
-  required?: boolean;
-  hasStar?: boolean;
-  rules?: Rule[];
-  onChange?: (currentActiveLink: (string | number)[]) => void;
-  subTitle?: string | React.ReactNode;
-  coverStyle?: React.CSSProperties;
-  hidden?: boolean;
-  placeholder?: string;
-  extra?: string | React.ReactNode;
-  initValue?: (string | number)[];
-  disabled?: boolean;
-  maxValueLength?: number;
-}
-
-const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
+const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
   const {
     data = [],
     title,
@@ -44,6 +19,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     maxValueLength,
     coverStyle,
   } = props;
+
   const [context, setContext] = useState<IDataItem[]>([]);
   const [preContext, setPreContext] = useState<IDataItem[]>([]);
   const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
