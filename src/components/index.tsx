@@ -11,3 +11,4 @@ export { default as NomarCheckBox } from './NomarCheckBox';
 export { default as CoverRadio } from './CoverRadio';
 export { default as NomarImagePicker } from './NomarImagePicker';
 export { default as NomarCustom } from './NomarCustom';
+export { default as MultiplePicker } from './MultiplePicker';

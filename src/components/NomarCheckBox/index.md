@@ -23,6 +23,9 @@ title: CheckBox
 | subTitle    | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node | ''     | 否       |
 | hidden      | 字段展示与否的判断                                         | boolean        | false  | 否       |
 
+## 备注
+
+勾选框颜色可配置，请前往[可配置](https://dform.alitajs.com/setting)页面查看。
 
 ## 组件使用
 

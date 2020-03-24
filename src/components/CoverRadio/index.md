@@ -25,6 +25,11 @@ title: CoverRadio
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效            | string or node             | ''           | 否           |
 | coverStyle   | 自定义每个选项的样式，例如高度，内外边距等                            | object                     | {}           | 否           |
 | hidden       | 字段展示与否的判断                                                    | boolean                    | false        | 否           |
+| onChange     | 值改变事件                                                            | object                     | (e) => void  | 否           |
+
+## 备注
+
+选中项颜色可配置，请前往[可配置](https://dform.alitajs.com/setting)页面查看。
 
 ## 组件使用
 

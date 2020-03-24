@@ -54,6 +54,29 @@ const sexList = [
   },
 ];
 
+const foodList = [
+  {
+    label: '宫保鸡丁',
+    value: '宫保鸡丁',
+  },
+  {
+    label: '可乐鸡翅',
+    value: '可乐鸡翅',
+  },
+  {
+    label: '爆炒虾仁',
+    value: '爆炒虾仁',
+  },
+  {
+    label: '清蒸小黄鱼',
+    value: '清蒸小黄鱼',
+  },
+  {
+    label: '红烧肉',
+    value: '红烧肉',
+  },
+];
+
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
@@ -82,6 +105,13 @@ const Page: FC = () => {
       placeholder: '请选择',
       title: '用户数据',
       data: seasons,
+    },
+    {
+      type: 'multiplePicker',
+      fieldProps: 'userFood',
+      data: foodList,
+      title: '选择喜欢的食物(多选)',
+      placeholder: '请选择',
     },
     {
       type: 'switch',
@@ -206,6 +236,7 @@ const Page: FC = () => {
     useronlyread: '原始文档，没有变更',
     userSex: 'man',
     userSex2: 'woman',
+    userFood: ['爆炒虾仁', '红烧肉'],
   };
   const formProps = {
     onFinish,

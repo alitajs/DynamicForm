@@ -22,8 +22,8 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
-  const [beginDate, setBeginDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [beginDate, setBeginDate] = useState<Date>();
+  const [endDate, setEndDate] = useState<Date>();
   const {
     fieldProps,
     fieldProps2,

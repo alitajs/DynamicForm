@@ -21,6 +21,7 @@ import {
   CoverRadio,
   NomarImagePicker,
   NomarCustom,
+  MultiplePicker,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -38,6 +39,7 @@ const FormItemType = {
   coverRadio: CoverRadio,
   image: NomarImagePicker,
   custom: NomarCustom,
+  multiplePicker: MultiplePicker,
 };
 
 export interface IFormItemProps {
@@ -53,6 +55,7 @@ export interface IFormItemProps {
     | 'coverRadio'
     | 'image'
     | 'custom'
+    | 'multiplePicker'
     | 'checkbox';
   title: string;
   fieldProps: string;
@@ -79,6 +82,7 @@ export interface IFormItemProps {
   CustomDom?: any;
   customDomProps?: any;
   subTitle?: string | React.ReactNode;
+  maxValueLength?: number;
 }
 
 interface CardDForm extends CardHeaderPropsType {
