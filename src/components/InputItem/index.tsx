@@ -3,10 +3,20 @@ import { IInputItemProps } from './interface';
 import '../../styles/index.less';
 
 const InputItem: FC<IInputItemProps> = props => {
-  const { isVertical = false, value = '', placeholder = '', onClick, readOnly = false } = props;
+  const {
+    isVertical = false,
+    value = '',
+    placeholder = '',
+    onClick,
+    readOnly = false,
+    onChange,
+  } = props;
 
   const inputItemClick = () => {
     if (onClick) onClick();
+  };
+  const inputItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange(e);
   };
   return (
     <div className="am-list-item am-list-item-middle alitajs-dform-input-item">
@@ -27,6 +37,9 @@ const InputItem: FC<IInputItemProps> = props => {
             readOnly={readOnly}
             style={{
               textAlign: isVertical ? 'left' : 'right',
+            }}
+            onChange={e => {
+              inputItemChange(e);
             }}
             className="alitajs-dform-input-text"
             placeholder={placeholder}

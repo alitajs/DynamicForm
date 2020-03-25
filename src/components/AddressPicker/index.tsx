@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Field from '../Field';
+import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps } from './interface';
 import '../../styles/index.less';
 
@@ -33,7 +34,7 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
             )}
           </div>
           <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-            <div></div>
+            <AddressPickerGroup {...props} />
           </Field>
         </React.Fragment>
       )}

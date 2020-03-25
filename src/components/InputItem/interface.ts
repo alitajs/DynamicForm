@@ -4,4 +4,5 @@ export interface IInputItemProps {
   placeholder?: string;
   readOnly?: boolean;
   onClick?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
