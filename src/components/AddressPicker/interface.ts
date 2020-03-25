@@ -1,5 +1,11 @@
 import { Rule } from 'rc-field-form/es/interface';
 
+export interface IModalData {
+  label: string;
+  value: string | number;
+  flag?: boolean;
+}
+
 export interface IAddressPickerProps {
   fieldProps: string;
   title: string;

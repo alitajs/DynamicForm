@@ -162,7 +162,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
                   {item.label}
                 </div>
                 <div className="alitajs-dform-multiple-picker-right">
-                  {item.flag && <div className="alitajs-dform-multiple-picker-tick"></div>}
+                  {item.flag && <div className="alitajs-dform-tick"></div>}
                 </div>
               </div>
             </Item>

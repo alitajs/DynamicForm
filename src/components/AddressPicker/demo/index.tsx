@@ -28,10 +28,10 @@ const Page: FC = () => {
   const formsData = [
     {
       type: 'addressPicker',
-      fieldProps: 'myFood',
+      fieldProps: 'myAddr',
       required: true,
-      title: '选择我喜欢的食物',
-      placeholder: '请选择我喜欢的食物',
+      title: '居住地址',
+      placeholder: '选择当前居住城市',
       onChange: (e: (string | number)[]) => {
         // eslint-disable-next-line no-console
         console.log(e);
@@ -39,8 +39,8 @@ const Page: FC = () => {
     },
     {
       type: 'addressPicker',
-      fieldProps: 'youFood',
-      title: '选择你喜欢的食物(不可编辑)',
+      fieldProps: 'youAddr',
+      title: '工作地址',
       disabled: true,
       placeholder: '请选择',
       positionType: 'vertical',
@@ -55,6 +55,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
+    isDev: true,
   };
   return (
     <DynamicForm {...formProps}>
