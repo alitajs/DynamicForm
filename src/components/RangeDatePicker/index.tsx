@@ -107,7 +107,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                 name={fieldProps2}
                 rules={rules || [{ required, message: `请选择${title}` }]}
                 shouldUpdate={(prevValue: any, nextValue: any) => {
-                  setBeginDate(nextValue && nextValue[fieldProps2 as any]);
+                  setEndDate(nextValue && nextValue[fieldProps2 as any]);
                   return prevValue !== nextValue;
                 }}
               >
