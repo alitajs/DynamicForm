@@ -65,12 +65,7 @@ const InitFormData = [
     placeholder: '请输入',
     title: '用户名',
     inputType: 'text',
-  },
-  {
-    type: 'text',
-    fieldProps: 'useronlyread',
-    placeholder: '请选择',
-    title: '只读信息',
+    positionType: 'horizontal',
   },
   {
     type: 'select',
@@ -79,12 +74,15 @@ const InitFormData = [
     placeholder: '请选择',
     title: '用户数据',
     data: seasons,
+    positionType: 'horizontal',
   },
   {
     type: 'area',
     fieldProps: 'usertextarea',
     required: true,
+    positionType: 'horizontal',
     placeholder: '多行输入',
+    title: '多行输入',
   },
   {
     type: 'date',
@@ -93,6 +91,7 @@ const InitFormData = [
     placeholder: '请选择',
     title: '用户时间选择',
     modeType: 'datetime',
+    positionType: 'horizontal',
   },
   {
     type: 'switch',
@@ -100,6 +99,7 @@ const InitFormData = [
     required: true,
     placeholder: '请选择',
     title: '用户选择',
+    positionType: 'horizontal',
   },
   {
     type: 'date',
@@ -108,6 +108,7 @@ const InitFormData = [
     placeholder: '请选择',
     title: '用户时间选择',
     modeType: 'datetime',
+    positionType: 'horizontal',
   },
   {
     type: 'radio',
@@ -116,15 +117,7 @@ const InitFormData = [
     placeholder: '请选择',
     title: '用户选择1',
     data: radioList,
-  },
-  {
-    type: 'radio',
-    fieldProps: 'userRadio2',
-    required: true,
-    placeholder: '请选择',
-    title: '用户选择1',
-    data: radioList,
-    positionType: 'vertical',
+    positionType: 'horizontal',
   },
   {
     type: 'extraInput',
@@ -136,6 +129,7 @@ const InitFormData = [
     title: '单位选择',
     data: seasonsUti,
     extraType: 'select',
+    positionType: 'horizontal',
   },
   {
     type: 'rangeDatePicker',
@@ -146,6 +140,7 @@ const InitFormData = [
     placeholder2: '请选择',
     title: '时间(datetime)',
     modeType: 'datetime',
+    positionType: 'horizontal',
   },
 ] as IFormItemProps[];
 
@@ -274,7 +269,8 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
                 <div
                   style={{
                     width: '100%',
-                    height: '1.32rem',
+                    // height: '1.32rem',
+                    height: '100%',
                     position: 'absolute',
                     top: '0',
                     left: '0',
