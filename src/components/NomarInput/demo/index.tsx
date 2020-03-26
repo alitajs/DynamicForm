@@ -145,6 +145,7 @@ const Page: FC<PageProps> = () => {
     data: formsData,
     formsValues,
     form,
+    isDev: true,
   };
   return (
     <DynamicForm {...formProps}>

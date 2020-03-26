@@ -107,6 +107,7 @@ const Page: FC<PageProps> = () => {
     onFinishFailed,
     formsValues,
     data: formsData,
+    isDev: true,
   };
 
   return (

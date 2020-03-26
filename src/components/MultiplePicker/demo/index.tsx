@@ -82,6 +82,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
+    isDev: true,
   };
   return (
     <DynamicForm {...formProps}>

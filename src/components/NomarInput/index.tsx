@@ -33,10 +33,16 @@ const NomarInput: FC<INomarInputProps> = props => {
     extra,
     subTitle,
     hidden = false,
+    onBlur,
     ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
+
+  const inputOnBlur = (val: string | undefined) => {
+    window.scrollTo(0, 0);
+    if (onBlur) onBlur(val);
+  };
 
   return (
     <>
@@ -62,6 +68,9 @@ const NomarInput: FC<INomarInputProps> = props => {
                 extra={isVertical ? '' : extra}
                 type={inputType}
                 style={{ textAlign: isVertical ? 'left' : 'right', ...coverStyle }}
+                onBlur={val => {
+                  inputOnBlur(val);
+                }}
               >
                 {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
                 <span id={fieldProps} className="alitajs-dform-title">

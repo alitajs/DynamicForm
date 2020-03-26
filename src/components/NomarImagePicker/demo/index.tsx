@@ -80,6 +80,7 @@ const Page = () => {
     data: formsData,
     formsValues,
     form,
+    isDev: true,
   };
 
   return (
