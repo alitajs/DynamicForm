@@ -244,7 +244,7 @@ const Page: FC = () => {
     data: formsData,
     formsValues,
     form,
-    isDev: false,
+    isDev: true,
     // allDisabled: true,
   };
   return (

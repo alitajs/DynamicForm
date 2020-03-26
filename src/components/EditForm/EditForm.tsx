@@ -17,6 +17,10 @@ import {
   ExtraInput,
   RangeDatePicker,
   NomarRadio,
+  CoverRadio,
+  MultiplePicker,
+  NomarImagePicker,
+  NomarCheckBox,
 } from '..';
 
 const FormItemType = {
@@ -28,6 +32,10 @@ const FormItemType = {
   radio: NomarRadio,
   extraInput: ExtraInput,
   rangeDatePicker: RangeDatePicker,
+  coverRadio: CoverRadio,
+  multiplePicker: MultiplePicker,
+  image: NomarImagePicker,
+  checkbox: NomarCheckBox,
 };
 
 const radioList = [
@@ -232,7 +240,12 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
     if (positionType && typeof positionType !== 'string') {
       newFormItem.positionType = positionType[0] as 'inhorizontalput' | 'vertical';
     }
-    if (type === 'radio' || type === 'coverRadio' || type === 'checkbox') {
+    if (
+      type === 'radio' ||
+      type === 'coverRadio' ||
+      type === 'checkbox' ||
+      type === 'multiplePicker'
+    ) {
       newFormItem.data = radioList;
     }
     if (type === 'select' || type === 'extraInput') {

@@ -82,6 +82,7 @@ const Page: FC = () => {
     data: formsData,
     formsValues,
     form,
+    isDev: true,
   };
 
   return (

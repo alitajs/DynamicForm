@@ -83,6 +83,7 @@ export interface IFormItemProps {
   customDomProps?: any;
   subTitle?: string | React.ReactNode;
   maxValueLength?: number;
+  onBlur?: (value?: string) => void;
 }
 
 interface CardDForm extends CardHeaderPropsType {

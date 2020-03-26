@@ -33,6 +33,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     extra = '',
     subTitle,
     hidden = false,
+    onBlur,
     ...otherProps
   } = props;
 
@@ -47,6 +48,11 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
       </span>
     </>
   );
+
+  const inputOnBlur = (val: string | undefined) => {
+    window.scrollTo(0, 0);
+    if (onBlur) onBlur(val);
+  };
 
   return (
     <>
@@ -71,7 +77,15 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
             })}
           >
             <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-              <TextareaItem {...otherProps} title={titleDiv()} style={coverStyle} rows={rows} />
+              <TextareaItem
+                {...otherProps}
+                title={titleDiv()}
+                style={coverStyle}
+                rows={rows}
+                onBlur={val => {
+                  inputOnBlur(val);
+                }}
+              />
             </Field>
           </div>
         </React.Fragment>

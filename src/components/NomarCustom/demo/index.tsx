@@ -88,6 +88,7 @@ const Page: FC = () => {
     onFinishFailed,
     data: formsData,
     formsValues,
+    isDev: true,
   };
   return (
     <DynamicForm {...formProps}>
