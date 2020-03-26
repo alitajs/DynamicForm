@@ -12,7 +12,6 @@ import {
   NomarInput,
   NomarPicker,
   NomarSwitch,
-  OnlyReadInput,
   NomarTextArea,
   NomarDatePicker,
   ExtraInput,
@@ -22,7 +21,6 @@ import {
 
 const FormItemType = {
   input: NomarInput,
-  text: OnlyReadInput,
   select: NomarPicker,
   area: NomarTextArea,
   date: NomarDatePicker,
@@ -31,6 +29,17 @@ const FormItemType = {
   extraInput: ExtraInput,
   rangeDatePicker: RangeDatePicker,
 };
+
+const radioList = [
+  {
+    label: '是',
+    value: 'yes',
+  },
+  {
+    label: '否',
+    value: 'no',
+  },
+];
 
 export interface IEditFormProps {
   data?: IFormItemProps; // 动态表单数据
@@ -49,16 +58,31 @@ const EditFormItemLabel = {
   fieldProps2: '副绑定关键字',
   placeholder2: '副输入提示',
   extraType: '扩展类型',
+  type: '类型',
+  positionType: '位置',
 };
 // inputType:'text' | 'bankCard' | 'phone' | 'password' | 'number' | 'digit' | 'money';
 // modeType:mode?: 'datetime' | 'date' | 'year' | 'month' | 'time';
 const EditFormItemType = {
   title: NomarInput,
   fieldProps: NomarInput,
-  required: NomarRadio,
+  required: NomarSwitch,
   placeholder: NomarInput,
   disabled: NomarRadio,
   data: NomarInput,
+  type: NomarInput,
+  positionType: (props: any) => (
+    <NomarPicker
+      data={[
+        ['horizontal', 'vertical'].map((item: string) => ({
+          value: item,
+          label: item,
+        })),
+      ]}
+      cols={1}
+      {...props}
+    />
+  ),
   inputType: (props: any) => (
     <NomarPicker
       data={[
@@ -109,13 +133,14 @@ const getFormItem = (fieldItemKey: string) => {
       key={`alita-dform-edit-${fieldItemKey}`}
       fieldProps={fieldItemKey}
       title={title}
+      editable={fieldItemKey !== 'type'}
     />
   );
 };
 
 const getShowDeitItem = (editData?: IFormItemProps) => {
   if (!editData) return;
-  let { inputType, modeType, extraType } = editData as any;
+  let { inputType, modeType, extraType, positionType } = editData as any;
   const { type, ...otherProps } = editData as any;
   // 选择类型的初始值要手动转化一下 2/3
   if (inputType) {
@@ -129,6 +154,11 @@ const getShowDeitItem = (editData?: IFormItemProps) => {
   if (extraType) {
     extraType = extraType[0] as DatePickerPropsType['mode'];
     otherProps.extraType = extraType;
+  }
+  if (positionType) {
+    // eslint-disable-next-line prefer-destructuring
+    positionType = positionType[0];
+    otherProps.positionType = positionType;
   }
   const ShowItemComponent = FormItemType[type];
   // eslint-disable-next-line consistent-return
@@ -179,13 +209,17 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
   if (data.extraType) {
     data.extraType = [data.extraType];
   }
-  const [editData, setEditData] = useState(data);
+  if (data.positionType) {
+    data.positionType = [data.positionType];
+  }
+  const [editData, setEditData] = useState({ ...data });
+
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
     // 选择类型的初始值要手动转化一下 3/3
     const newFormItem = { ...values };
-    const { inputType, modeType, extraType } = newFormItem;
+    const { inputType, modeType, extraType, type, positionType } = newFormItem;
     if (inputType && typeof inputType !== 'string') {
       newFormItem.inputType = inputType[0] as InputItemPropsType['type'];
     }
@@ -195,6 +229,16 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
     if (extraType && typeof extraType !== 'string') {
       newFormItem.extraType = extraType[0] as 'input' | 'select';
     }
+    if (positionType && typeof positionType !== 'string') {
+      newFormItem.positionType = positionType[0] as 'inhorizontalput' | 'vertical';
+    }
+    if (type === 'radio' || type === 'coverRadio' || type === 'checkbox') {
+      newFormItem.data = radioList;
+    }
+    if (type === 'select' || type === 'extraInput') {
+      newFormItem.data = [radioList];
+    }
+    // newFormItem.type = 'input';
     if (onChange) onChange(newFormItem);
   };
 
@@ -209,7 +253,7 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
       </Form>
       <Form
         form={form}
-        initialValues={editData}
+        initialValues={{ ...editData }}
         onFinish={onFinish}
         onFinishFailed={(errorInfo: ValidateErrorEntity) =>
           defaultFailed(errorInfo, onFinishFailed)
@@ -221,7 +265,8 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
       >
         <List renderHeader={() => '编辑数据'}>
           {Object.keys(data || {})
-            .filter(i => i !== 'type' && i !== 'data')
+            .filter(i => i !== 'data')
+            // .filter(i => i !== 'type' && i !== 'data')
             .map(fieldItemKey => getFormItem(fieldItemKey))}
         </List>
         <WhiteSpace size="lg"></WhiteSpace>
