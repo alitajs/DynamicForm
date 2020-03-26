@@ -68,6 +68,7 @@ const RangeDatePicker: FC = () => {
     data: formsData,
     formsValues,
     form,
+    isDev: true,
   };
 
   return (

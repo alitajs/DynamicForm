@@ -118,6 +118,7 @@ const Page: FC<PageProps> = () => {
     form,
     onFinishFailed,
     onFinish,
+    isDev: true,
   };
   return (
     <DynamicForm {...formProps}>
