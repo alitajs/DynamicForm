@@ -80,7 +80,7 @@ const InitFormData = [
     type: 'area',
     fieldProps: 'usertextarea',
     required: true,
-    positionType: 'horizontal',
+    positionType: 'vertical',
     placeholder: '请输入',
     title: '多行输入框',
   },
@@ -120,7 +120,7 @@ const InitFormData = [
     title: '多类型输入框',
     data: seasonsUti,
     extraType: 'select',
-    positionType: 'horizontal',
+    positionType: 'vertical',
   },
   {
     type: 'rangeDatePicker',
@@ -131,7 +131,7 @@ const InitFormData = [
     placeholder2: '请选择',
     title: '时间区间选择框',
     modeType: 'datetime',
-    positionType: 'horizontal',
+    positionType: 'vertical',
   },
   {
     type: 'coverRadio',
