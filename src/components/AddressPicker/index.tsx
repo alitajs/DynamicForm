@@ -1,10 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps } from './interface';
 import '../../styles/index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = props => {
+  const [initValue, setInitValue] = useState([]);
+
   const {
     fieldProps,
     rules,
@@ -33,8 +35,15 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
               </div>
             )}
           </div>
-          <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-            <AddressPickerGroup {...props} />
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            shouldUpdate={(prevValue: any, nextValue: any) => {
+              setInitValue(nextValue && nextValue[fieldProps as any]);
+              return prevValue !== nextValue;
+            }}
+          >
+            <AddressPickerGroup {...props} initValue={initValue} />
           </Field>
         </React.Fragment>
       )}

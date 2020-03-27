@@ -1,27 +1,57 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Modal, Flex, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { IModalData, IAddressPickerProps } from './interface';
-import { data1, data2, data3, resetListAndLabel } from '../../utils';
+import { resetLabel } from '../../utils';
 import { InputItem } from '..';
 import '../../styles/index.less';
 
 const { Item } = List;
 
 const AddressPickerGroup: FC<IAddressPickerProps> = props => {
-  const { placeholder = '请选择', positionType = 'horizontal', title, disabled = false } = props;
+  const {
+    data = [],
+    placeholder = '请选择',
+    positionType = 'horizontal',
+    title,
+    disabled = false,
+    onChangeLevel,
+    onChange,
+    level = 3,
+    placeholderList = [],
+    initValue = {},
+  } = props;
 
   // input 框的值
   const [inputLabel, setInputLabel] = useState<string>('');
   const [modalFlag, setModalFlag] = useState<boolean>(false);
 
-  // 弹框选中的值
-  const [labelList, setLabelList] = useState<string[]>(['请选择省']);
+  // 弹框选中的头部文字列表
+  const [labelList, setLabelList] = useState<string[]>(
+    placeholderList && placeholderList.length ? [placeholderList[0]] : ['请选择'],
+  );
+
+  // value 值列表
+  const [valueList, setValueList] = useState<(string | number)[]>([]);
 
   // 当前列表数据
-  const [dataList, setDataList] = useState<IModalData[] | []>(data1);
+  const [dataList, setDataList] = useState<IModalData[] | []>([]);
+
+  // 当前所在层级数字
+  const [nowLevel, setNowLevel] = useState<number>(0);
 
   const isVertical = positionType === 'vertical';
+
+  useEffect(() => {
+    if (data.length === 0) return;
+    setDataList(
+      data.map(item => {
+        const newItem = item;
+        newItem.flag = false;
+        return newItem;
+      }),
+    );
+  }, [data]);
 
   const openMoal = () => {
     if (disabled) return;
@@ -32,26 +62,66 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     setModalFlag(false);
   };
 
-  const onConfirm = () => {};
+  const onConfirm = () => {
+    const newLabelList = JSON.parse(JSON.stringify(labelList));
+    if (nowLevel !== level) newLabelList.pop();
+    setInputLabel(newLabelList.join(','));
+    setModalFlag(false);
+  };
 
   const listClick = (val: any) => {
-    const newList = JSON.parse(JSON.stringify(labelList));
-    newList.splice(newList.length - 1, 1, val.label);
-    const obj = resetListAndLabel(newList);
+    // 选中数据的时候刷新列表
     setDataList(
-      JSON.parse(JSON.stringify(obj.data)).map((item: any) => {
-        if (item.value === val.value) item.flag = true;
-        return item;
+      [...dataList].map((item: any) => {
+        const newItem = item;
+        if (item.value === val.value) newItem.flag = true;
+        else newItem.flag = false;
+        return newItem;
       }),
     );
-    setLabelList(obj.list);
+
+    const newList = JSON.parse(JSON.stringify(labelList));
+    const newValueList = JSON.parse(JSON.stringify(valueList));
+
+    // 设置当前层级
+    newList.splice(newList.length - 1, 1, val.label);
+    newValueList.push(val.value);
+    let insLevel = nowLevel;
+    if (nowLevel !== level) insLevel += 1;
+    setNowLevel(insLevel);
+
+    // 调用改变层级的事件给用户
+    if (onChangeLevel) onChangeLevel(insLevel);
+
+    // 如果层级符合，将数据放入input 中，并且关闭弹框
+    const newLabelList = JSON.parse(JSON.stringify(newList));
+    if (insLevel === level) {
+      if (insLevel !== level) newLabelList.pop();
+      setInputLabel(newLabelList.join(','));
+      setModalFlag(false);
+    }
+
+    // 设置头部展示列表和值列表
+    setLabelList(resetLabel(newList, placeholderList));
+    setValueList(newValueList);
+
+    if (onChange) onChange({ label: newLabelList, value: newValueList });
   };
 
   const labelClick = (index: number) => {
+    // 设置当前的层级
+    setNowLevel(index);
+
     const newLabelList = labelList.splice(0, index);
-    const obj = resetListAndLabel(newLabelList);
-    setDataList(obj.data);
-    setLabelList(obj.list);
+    const newValueList = valueList.splice(0, index);
+
+    // 调用改变层级的事件给用户
+    if (onChangeLevel) onChangeLevel(newLabelList.length);
+    if (onChange) onChange({ label: newLabelList, value: newValueList });
+
+    // 设置头部展示列表
+    setLabelList(resetLabel(JSON.parse(JSON.stringify(newLabelList)), placeholderList));
+    setValueList(newValueList);
   };
 
   const listReverse = [];
@@ -70,6 +140,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         isVertical={isVertical}
         value={inputLabel}
         placeholder={placeholder}
+        readOnly
         onClick={() => {
           openMoal();
         }}
@@ -134,15 +205,16 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
           <div className="alitajs-dform-address-list">
             <List>
               {[...dataList].map(item => (
-                <Item key={item.value} className="alitajs-dform-address-list-content">
+                <Item key={item.value}>
                   <div
+                    className="alitajs-dform-address-list-content"
                     onClick={() => {
                       listClick(item);
                     }}
                   >
-                    {item.label}
+                    <div>{item.label}</div>
+                    {item.flag && <div className="alitajs-dform-tick"></div>}
                   </div>
-                  {item.flag && <div className="alitajs-dform-tick"></div>}
                 </Item>
               ))}
             </List>

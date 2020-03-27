@@ -31,6 +31,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
   const isVertical = positionType === 'vertical';
 
   useEffect(() => {
+    if (!data || data.length === 0) return;
     if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
       const dataList = JSON.parse(JSON.stringify(data));
       const selLabelList: (string | number)[] = [];
@@ -161,9 +162,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
                 >
                   {item.label}
                 </div>
-                <div className="alitajs-dform-multiple-picker-right">
-                  {item.flag && <div className="alitajs-dform-tick"></div>}
-                </div>
+                {item.flag && <div className="alitajs-dform-tick"></div>}
               </div>
             </Item>
           ))}
