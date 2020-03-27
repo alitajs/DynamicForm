@@ -20,9 +20,9 @@ export interface IAddressPickerProps {
   placeholder?: string;
   extra?: string | React.ReactNode;
   disabled?: boolean;
-  level?: number;
+  level: number;
   data?: IModalData[];
-  onChangeLevel?: (currentActiveLink: any) => void;
-  placeholderList?: string[];
+  onChangeLevel: (currentActiveLink: any) => void;
+  placeholderList: string[];
   initValue?: any;
 }

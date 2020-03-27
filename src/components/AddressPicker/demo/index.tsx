@@ -70,7 +70,8 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const [addrData, setAddrData] = useState<IAddrDataProps[] | []>(data1);
+  const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>(data1);
+  const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>(data1);
 
   const resetList3 = (nowLevel: number) => {
     let data: { label: string; value: string }[] = [];
@@ -90,7 +91,7 @@ const Page: FC = () => {
       default:
         break;
     }
-    setAddrData(data);
+    setHomeAddrData(data);
     Toast.hide();
   };
   const resetList4 = (nowLevel: number) => {
@@ -114,7 +115,7 @@ const Page: FC = () => {
       default:
         break;
     }
-    setAddrData(data);
+    setWorkAddrData(data);
     Toast.hide();
   };
 
@@ -126,7 +127,7 @@ const Page: FC = () => {
       title: '居住地址',
       placeholder: '选择当前居住城市',
       level: 3,
-      data: addrData,
+      data: homeAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区'],
       onChangeLevel: nowLevel => {
         // Toast.loading('加载中', 1);
@@ -143,7 +144,7 @@ const Page: FC = () => {
       placeholder: '请选择',
       positionType: 'vertical',
       level: 4,
-      data: addrData,
+      data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: nowLevel => {
         // Toast.loading('加载中', 1);

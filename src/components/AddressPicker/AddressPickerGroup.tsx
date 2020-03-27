@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, Flex, List } from 'antd-mobile';
 import classnames from 'classnames';
+import difference from 'lodash/difference';
 import { IModalData, IAddressPickerProps } from './interface';
 import { resetLabel } from '../../utils';
 import { InputItem } from '..';
@@ -25,6 +26,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   // input 框的值
   const [inputLabel, setInputLabel] = useState<string>('');
   const [modalFlag, setModalFlag] = useState<boolean>(false);
+
+  const [preInitValue, setPreInitValue] = useState<any>({});
 
   // 弹框选中的头部文字列表
   const [labelList, setLabelList] = useState<string[]>(
@@ -51,6 +54,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         return newItem;
       }),
     );
+    setPreInitValue(initValue);
   }, [data]);
 
   const openMoal = () => {
