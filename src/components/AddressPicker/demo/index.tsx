@@ -73,7 +73,7 @@ const Page: FC = () => {
   const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>(data1);
   const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>(data1);
 
-  const resetList3 = (nowLevel: number) => {
+  const resetHomeAddrList = (nowLevel: number) => {
     let data: { label: string; value: string }[] = [];
     switch (nowLevel) {
       case 0:
@@ -94,7 +94,7 @@ const Page: FC = () => {
     setHomeAddrData(data);
     Toast.hide();
   };
-  const resetList4 = (nowLevel: number) => {
+  const resetWorkAddrList = (nowLevel: number) => {
     let data: { label: string; value: string }[] = [];
     switch (nowLevel) {
       case 0:
@@ -134,7 +134,7 @@ const Page: FC = () => {
         console.log(nowLevel, value);
         Toast.loading('加载中', 1);
         setTimeout(() => {
-          resetList3(nowLevel);
+          resetHomeAddrList(nowLevel);
         }, 500);
       },
     },
@@ -151,7 +151,7 @@ const Page: FC = () => {
       onChangeLevel: (nowLevel: number, value: number | string) => {
         // eslint-disable-next-line no-console
         console.log(nowLevel, value);
-        resetList4(nowLevel);
+        resetWorkAddrList(nowLevel);
       },
     },
   ] as IFormItemProps[];

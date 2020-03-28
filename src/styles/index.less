@@ -628,11 +628,17 @@
 }
 
 .alitajs-dform-address {
+
+  .am-modal-header {
+    padding: 0px !important;
+  }
+
   .alitajs-dform-address-content {
     max-height: 800px;
 
     .alitajs-dform-address-value {
-      padding: 30px;
+      padding: 0 30px;
+
 
       .alitajs-dform-address-value-item {
         font-size: @alita-dform-select-font-size;
@@ -640,6 +646,13 @@
 
       .alitajs-dform-address-value-select {
         color: @alita-dform-radio-color;
+        border-bottom: 4px solid @alita-dform-radio-color;
+        width: fit-content;
+      }
+
+      .alitajs-dform-address-value-item-label {
+        padding-top: 30px;
+        padding-bottom: 30px;
       }
     }
 

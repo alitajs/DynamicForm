@@ -219,13 +219,19 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
                   key={label}
                   className={classnames({
                     'alitajs-dform-address-value-item': true,
-                    'alitajs-dform-address-value-select': index + 1 === labelList.length,
                   })}
                   onClick={() => {
                     labelClick(index);
                   }}
                 >
-                  {label}
+                  <div
+                    className={classnames({
+                      'alitajs-dform-address-value-item-label': true,
+                      'alitajs-dform-address-value-select': index + 1 === labelList.length,
+                    })}
+                  >
+                    {label}
+                  </div>
                 </Flex.Item>
               ))}
               {listReverse.map((val: any) => (
