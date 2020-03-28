@@ -130,6 +130,7 @@ const Page: FC = () => {
       data: homeAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区'],
       onChangeLevel: (nowLevel: number, value: number | string) => {
+        // eslint-disable-next-line no-console
         console.log(nowLevel, value);
         Toast.loading('加载中', 1);
         setTimeout(() => {
@@ -147,7 +148,9 @@ const Page: FC = () => {
       level: 4,
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
-      onChangeLevel: nowLevel => {
+      onChangeLevel: (nowLevel: number, value: number | string) => {
+        // eslint-disable-next-line no-console
+        console.log(nowLevel, value);
         resetList4(nowLevel);
       },
     },
