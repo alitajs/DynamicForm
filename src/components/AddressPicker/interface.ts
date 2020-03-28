@@ -22,7 +22,7 @@ export interface IAddressPickerProps {
   disabled?: boolean;
   level: number;
   data?: IModalData[];
-  onChangeLevel: (currentActiveLink: any) => void;
+  onChangeLevel: (currentActiveLink: any, value: string | number) => void;
   placeholderList: string[];
   initValue?: any;
 }

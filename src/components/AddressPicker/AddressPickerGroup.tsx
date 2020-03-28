@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, Flex, List } from 'antd-mobile';
 import classnames from 'classnames';
-import difference from 'lodash/difference';
 import { IModalData, IAddressPickerProps } from './interface';
 import { resetLabel } from '../../utils';
 import { InputItem } from '..';
@@ -26,8 +25,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   // input 框的值
   const [inputLabel, setInputLabel] = useState<string>('');
   const [modalFlag, setModalFlag] = useState<boolean>(false);
-
-  const [preInitValue, setPreInitValue] = useState<any>({});
+  const [changeFlag, setChangeFlag] = useState<boolean>(true);
 
   // 弹框选中的头部文字列表
   const [labelList, setLabelList] = useState<string[]>(
@@ -46,16 +44,43 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   const isVertical = positionType === 'vertical';
 
   useEffect(() => {
+    if (onChange) onChange({ label: [], value: [] });
+  }, []);
+
+  useEffect(() => {
     if (data.length === 0) return;
     setDataList(
       data.map(item => {
         const newItem = item;
-        newItem.flag = false;
+        if (newItem.value === valueList[valueList.length - 1]) {
+          newItem.flag = true;
+        } else newItem.flag = false;
         return newItem;
       }),
     );
-    setPreInitValue(initValue);
   }, [data]);
+
+  useEffect(() => {
+    if (initValue && Object.keys(initValue).length && changeFlag) {
+      const { label = [], value = [] } = initValue;
+      setDataList(
+        data.map(item => {
+          const newItem = item;
+          if (newItem.value === value[value.length]) {
+            newItem.flag = true;
+          } else newItem.flag = false;
+          return newItem;
+        }),
+      );
+      const newLabelList = resetLabel(JSON.parse(JSON.stringify([...label])), placeholderList);
+      setLabelList(newLabelList);
+      setNowLevel(value.length);
+      if (onChangeLevel) onChangeLevel(label.length, JSON.parse(JSON.stringify(value)).pop());
+      setInputLabel(label.join(','));
+      setValueList(value);
+      setChangeFlag(false);
+    }
+  }, [initValue]);
 
   const openMoal = () => {
     if (disabled) return;
@@ -70,6 +95,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
     if (nowLevel !== level) newLabelList.pop();
     setInputLabel(newLabelList.join(','));
+    if (onChange) onChange({ label: newLabelList, value: valueList });
     setModalFlag(false);
   };
 
@@ -89,27 +115,29 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
 
     // 设置当前层级
     newList.splice(newList.length - 1, 1, val.label);
-    newValueList.push(val.value);
     let insLevel = nowLevel;
     if (nowLevel !== level) insLevel += 1;
     setNowLevel(insLevel);
 
     // 调用改变层级的事件给用户
-    if (onChangeLevel) onChangeLevel(insLevel);
+    if (onChangeLevel) onChangeLevel(insLevel, val.value);
 
     // 如果层级符合，将数据放入input 中，并且关闭弹框
     const newLabelList = JSON.parse(JSON.stringify(newList));
     if (insLevel === level) {
       if (insLevel !== level) newLabelList.pop();
       setInputLabel(newLabelList.join(','));
+      if (onChange) onChange({ label: newLabelList, value: newValueList });
       setModalFlag(false);
     }
+    if (newValueList.length === insLevel) {
+      newValueList.pop();
+    }
+    newValueList.push(val.value);
 
     // 设置头部展示列表和值列表
     setLabelList(resetLabel(newList, placeholderList));
     setValueList(newValueList);
-
-    if (onChange) onChange({ label: newLabelList, value: newValueList });
   };
 
   const labelClick = (index: number) => {
@@ -120,8 +148,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     const newValueList = valueList.splice(0, index);
 
     // 调用改变层级的事件给用户
-    if (onChangeLevel) onChangeLevel(newLabelList.length);
-    if (onChange) onChange({ label: newLabelList, value: newValueList });
+    if (onChangeLevel) onChangeLevel(newLabelList.length, newValueList[newValueList.length - 1]);
 
     // 设置头部展示列表
     setLabelList(resetLabel(JSON.parse(JSON.stringify(newLabelList)), placeholderList));

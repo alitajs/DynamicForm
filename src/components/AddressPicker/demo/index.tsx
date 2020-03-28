@@ -129,11 +129,12 @@ const Page: FC = () => {
       level: 3,
       data: homeAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区'],
-      onChangeLevel: nowLevel => {
-        // Toast.loading('加载中', 1);
-        // setTimeout(() => {
-        resetList3(nowLevel);
-        // }, 1000);
+      onChangeLevel: (nowLevel: number, value: number | string) => {
+        console.log(nowLevel, value);
+        Toast.loading('加载中', 1);
+        setTimeout(() => {
+          resetList3(nowLevel);
+        }, 500);
       },
     },
     {
@@ -147,18 +148,15 @@ const Page: FC = () => {
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: nowLevel => {
-        // Toast.loading('加载中', 1);
-        // setTimeout(() => {
         resetList4(nowLevel);
-        // }, 1000);
       },
     },
   ] as IFormItemProps[];
 
   const formsValues = {
     homeAddr: {
-      label: ['福建省', '漳州市'],
-      value: ['1', '12'],
+      value: ['1', '12', '114'],
+      label: ['福建省', '漳州市', '台江区'],
     },
   };
 
