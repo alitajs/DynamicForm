@@ -15,7 +15,6 @@ export interface IAddressPickerProps {
   rules?: Rule[];
   onChange?: (currentActiveLink: any) => void;
   subTitle?: string | React.ReactNode;
-  coverStyle?: React.CSSProperties;
   hidden?: boolean;
   placeholder?: string;
   extra?: string | React.ReactNode;

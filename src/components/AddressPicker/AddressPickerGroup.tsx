@@ -20,6 +20,9 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     level = 3,
     placeholderList = [],
     initValue = {},
+    required = false,
+    hasStar = true,
+    fieldProps,
   } = props;
 
   // input 框的值
@@ -179,7 +182,10 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
           setInputLabel(e.target.value);
         }}
       >
-        {title}
+        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+        <span id={fieldProps} className="alitajs-dform-title">
+          {title}
+        </span>
       </InputItem>
       <Modal
         popup

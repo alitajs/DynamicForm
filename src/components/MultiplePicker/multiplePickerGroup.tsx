@@ -19,6 +19,9 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
     initValue = [],
     maxValueLength,
     coverStyle,
+    required = false,
+    hasStar = true,
+    fieldProps,
   } = props;
 
   const [context, setContext] = useState<IDataItem[]>([]);
@@ -112,7 +115,10 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
         }}
         readOnly
       >
-        {title}
+        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+        <span id={fieldProps} className="alitajs-dform-title">
+          {title}
+        </span>
       </InputItem>
       <Modal
         popup

@@ -18,7 +18,7 @@ interface IAddrDataProps {
   value: string | number;
 }
 
-const data1 = [
+const provinceData = [
   { label: '福建省', value: '1' },
   { label: '广东省', value: '2' },
   { label: '江西省', value: '3' },
@@ -29,7 +29,7 @@ const data1 = [
   { label: '新疆省', value: '8' },
 ];
 
-const data2 = [
+const cityData = [
   { label: '福州市', value: '11' },
   { label: '漳州市', value: '12' },
   { label: '泉州市', value: '13' },
@@ -39,7 +39,7 @@ const data2 = [
   { label: '南平市', value: '17' },
 ];
 
-const data3 = [
+const countryData = [
   { label: '鼓楼区', value: '111' },
   { label: '芗城区', value: '112' },
   { label: '闽侯县', value: '113' },
@@ -49,7 +49,7 @@ const data3 = [
   { label: '苍山区', value: '117' },
 ];
 
-const data4 = [
+const streetData = [
   { label: '美丽的街道', value: '1111' },
   { label: '好看的街道', value: '1112' },
   { label: '阳光大道', value: '1113' },
@@ -70,23 +70,23 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>(data1);
-  const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>(data1);
+  const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>(provinceData);
+  const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>(provinceData);
 
   const resetHomeAddrList = (nowLevel: number) => {
     let data: { label: string; value: string }[] = [];
     switch (nowLevel) {
       case 0:
-        data = data1;
+        data = provinceData;
         break;
       case 1:
-        data = data2;
+        data = cityData;
         break;
       case 2:
-        data = data3;
+        data = countryData;
         break;
       case 3:
-        data = data3;
+        data = streetData;
         break;
       default:
         break;
@@ -98,19 +98,16 @@ const Page: FC = () => {
     let data: { label: string; value: string }[] = [];
     switch (nowLevel) {
       case 0:
-        data = data1;
+        data = provinceData;
         break;
       case 1:
-        data = data2;
+        data = cityData;
         break;
       case 2:
-        data = data3;
+        data = countryData;
         break;
       case 3:
-        data = data4;
-        break;
-      case 4:
-        data = data4;
+        data = streetData;
         break;
       default:
         break;
