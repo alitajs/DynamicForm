@@ -56,7 +56,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
               <Picker
                 {...otherProps}
                 style={coverStyle}
-                cascade={false}
+                // cascade={false}
                 extra={placeholder}
                 data={data}
                 title={title}

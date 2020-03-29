@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { FC, useEffect } from 'react';
-import { List, Card, WingBlank, WhiteSpace } from 'antd-mobile';
+import { List, Card, WingBlank } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import { CardHeaderPropsType } from 'antd-mobile/es/card/PropsType';
@@ -210,7 +210,6 @@ const renderListMain = (formData: DFormData, allDisabled: boolean, autoLineFeed:
         getFormItem(item, allDisabled),
       )}
     </List>
-    <WhiteSpace size="lg" />
   </>
 );
 
