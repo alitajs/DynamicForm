@@ -54,9 +54,9 @@ const NomarPicker: FC<INomarPickerProps> = props => {
           <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}>
             <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
               <Picker
+                cascade={false}
                 {...otherProps}
                 style={coverStyle}
-                // cascade={false}
                 extra={placeholder}
                 data={data}
                 title={title}
