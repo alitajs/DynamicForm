@@ -1,51 +1,273 @@
-import React, { FC, useState } from 'react';
-import { IAddressPickerProps } from './interface';
+import React, { FC, useState, useEffect } from 'react';
+import { Modal, Flex, List } from 'antd-mobile';
+import classnames from 'classnames';
+import { IModalData, IAddressPickerProps } from './interface';
+import { resetLabel } from '../../utils';
+import { InputItem } from '..';
 import '../../styles/index.less';
 
-const AddressPickerGroup: FC<IAddressPickerProps> = props => {
-  const { placeholder = '请选择', positionType = 'horizontal' } = props;
+const { Item } = List;
 
+const AddressPickerGroup: FC<IAddressPickerProps> = props => {
+  const {
+    data = [],
+    placeholder = '请选择',
+    positionType = 'horizontal',
+    title,
+    disabled = false,
+    onChangeLevel,
+    onChange,
+    level = 3,
+    placeholderList = [],
+    initValue = {},
+    required = false,
+    hasStar = true,
+    fieldProps,
+    labelNumber = 5,
+    coverStyle,
+  } = props;
+
+  // input 框的值
   const [inputLabel, setInputLabel] = useState<string>('');
+  const [modalFlag, setModalFlag] = useState<boolean>(false);
+  const [changeFlag, setChangeFlag] = useState<boolean>(true);
+
+  // 弹框选中的头部文字列表
+  const [labelList, setLabelList] = useState<string[]>(
+    placeholderList && placeholderList.length ? [placeholderList[0]] : ['请选择'],
+  );
+
+  // value 值列表
+  const [valueList, setValueList] = useState<(string | number)[]>([]);
+
+  // 当前列表数据
+  const [dataList, setDataList] = useState<IModalData[] | []>([]);
+
+  // 当前所在层级数字
+  const [nowLevel, setNowLevel] = useState<number>(0);
 
   const isVertical = positionType === 'vertical';
 
-  const openMoal = () => {};
+  useEffect(() => {
+    if (onChange) onChange({ label: [], value: [] });
+  }, []);
+
+  useEffect(() => {
+    if (data.length === 0) return;
+    setDataList(
+      data.map(item => {
+        const newItem = item;
+        if (newItem.value === valueList[valueList.length - 1]) {
+          newItem.flag = true;
+        } else newItem.flag = false;
+        return newItem;
+      }),
+    );
+  }, [data]);
+
+  useEffect(() => {
+    if (initValue && Object.keys(initValue).length && changeFlag) {
+      const { label = [], value = [] } = initValue;
+      setDataList(
+        data.map(item => {
+          const newItem = item;
+          if (newItem.value === value[value.length]) {
+            newItem.flag = true;
+          } else newItem.flag = false;
+          return newItem;
+        }),
+      );
+      const newLabelList = resetLabel(JSON.parse(JSON.stringify([...label])), placeholderList);
+      setLabelList(newLabelList);
+      setNowLevel(value.length);
+      if (onChangeLevel) onChangeLevel(label.length, JSON.parse(JSON.stringify(value)).pop());
+      setInputLabel(label.join(','));
+      setValueList(value);
+      setChangeFlag(false);
+    }
+  }, [initValue]);
+
+  const openMoal = () => {
+    if (disabled) return;
+    setModalFlag(true);
+  };
+
+  const onCancel = () => {
+    setModalFlag(false);
+  };
+
+  const onConfirm = () => {
+    const newLabelList = JSON.parse(JSON.stringify(labelList));
+    if (nowLevel !== level) newLabelList.pop();
+    setInputLabel(newLabelList.join(','));
+    if (onChange) onChange({ label: newLabelList, value: valueList });
+    setModalFlag(false);
+  };
+
+  const listClick = (val: any) => {
+    // 选中数据的时候刷新列表
+    setDataList(
+      [...dataList].map((item: any) => {
+        const newItem = item;
+        if (item.value === val.value) newItem.flag = true;
+        else newItem.flag = false;
+        return newItem;
+      }),
+    );
+
+    const newList = JSON.parse(JSON.stringify(labelList));
+    const newValueList = JSON.parse(JSON.stringify(valueList));
+
+    // 设置当前层级
+    newList.splice(newList.length - 1, 1, val.label);
+    let insLevel = nowLevel;
+    if (nowLevel !== level) insLevel += 1;
+    setNowLevel(insLevel);
+
+    // 调用改变层级的事件给用户
+    if (onChangeLevel) onChangeLevel(insLevel, val.value);
+
+    // 如果层级符合，将数据放入input 中，并且关闭弹框
+    const newLabelList = JSON.parse(JSON.stringify(newList));
+    if (insLevel === level) {
+      if (insLevel !== level) newLabelList.pop();
+      setInputLabel(newLabelList.join(','));
+      if (onChange) onChange({ label: newLabelList, value: newValueList });
+      setModalFlag(false);
+    }
+    if (newValueList.length === insLevel) {
+      newValueList.pop();
+    }
+    newValueList.push(val.value);
+
+    // 设置头部展示列表和值列表
+    setLabelList(resetLabel(newList, placeholderList));
+    setValueList(newValueList);
+  };
+
+  const labelClick = (index: number) => {
+    // 设置当前的层级
+    setNowLevel(index);
+
+    const newLabelList = labelList.splice(0, index);
+    const newValueList = valueList.splice(0, index);
+
+    // 调用改变层级的事件给用户
+    if (onChangeLevel) onChangeLevel(newLabelList.length, newValueList[newValueList.length - 1]);
+
+    // 设置头部展示列表
+    setLabelList(resetLabel(JSON.parse(JSON.stringify(newLabelList)), placeholderList));
+    setValueList(newValueList);
+  };
+
+  const listReverse = [];
+  // eslint-disable-next-line no-plusplus
+  for (let i = labelList.length; i < 4; i++) {
+    listReverse.push(
+      Math.random()
+        .toString(36)
+        .substring(7),
+    );
+  }
 
   return (
     <>
-      <div className="am-list-item am-list-item-middle alitajs-dform-address">
-        <div className="am-list-line">
-          {!isVertical && <div className="alitajs-dform-multiple-tltle">{props.children}</div>}
-          <div
-            className="alitajs-dform-multiple-value"
-            style={{
-              width: isVertical ? '100%' : '60%',
-            }}
-          >
-            <input
-              type="text"
-              value={inputLabel}
-              readOnly
-              style={{
-                textAlign: isVertical ? 'left' : 'right',
-              }}
-              className="alitajs-dform-multiple-input"
-              placeholder={placeholder}
+      <InputItem
+        isVertical={isVertical}
+        value={inputLabel}
+        placeholder={placeholder}
+        readOnly
+        coverStyle={coverStyle}
+        labelNumber={labelNumber}
+        onClick={() => {
+          openMoal();
+        }}
+        onChange={e => {
+          setInputLabel(e.target.value);
+        }}
+      >
+        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+        <span id={fieldProps} className="alitajs-dform-title">
+          {title}
+        </span>
+      </InputItem>
+      <Modal
+        popup
+        visible={modalFlag}
+        onClose={() => {
+          onCancel();
+        }}
+        className="alitajs-dform-address"
+        animationType="slide-up"
+        title={
+          <div className="am-picker-popup-header">
+            <div
+              className="am-picker-popup-item am-picker-popup-header-left"
               onClick={() => {
-                openMoal();
+                onCancel();
               }}
-            />
-            <img
-              className="alitajs-dform-right"
-              src="data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2226%22%20viewBox%3D%220%200%2016%2026%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cg%20id%3D%22UI-KIT_%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%229.9%E5%9F%BA%E7%A1%80%E5%85%83%E4%BB%B6%22%20transform%3D%22translate(-5809.000000%2C%20-8482.000000)%22%20fill%3D%22%23C7C7CC%22%3E%3Cpolygon%20id%3D%22Disclosure-Indicator%22%20points%3D%225811%208482%205809%208484%205820.5%208495%205809%208506%205811%208508%205825%208495%22%3E%3C%2Fpolygon%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-              alt=""
+            >
+              取消
+            </div>
+            <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
+            <div
+              className="am-picker-popup-item am-picker-popup-header-right"
               onClick={() => {
-                openMoal();
+                onConfirm();
               }}
-            />
+            >
+              确定
+            </div>
+          </div>
+        }
+      >
+        <div className="alitajs-dform-address-content">
+          <div className="alitajs-dform-address-value">
+            <Flex align="start">
+              {[...labelList].map((label: any, index: number) => (
+                <Flex.Item
+                  key={label}
+                  className={classnames({
+                    'alitajs-dform-address-value-item': true,
+                  })}
+                  onClick={() => {
+                    labelClick(index);
+                  }}
+                >
+                  <div
+                    className={classnames({
+                      'alitajs-dform-address-value-item-label': true,
+                      'alitajs-dform-address-value-select': index + 1 === labelList.length,
+                    })}
+                  >
+                    {label}
+                  </div>
+                </Flex.Item>
+              ))}
+              {listReverse.map((val: any) => (
+                <Flex.Item key={val}></Flex.Item>
+              ))}
+            </Flex>
+          </div>
+          <div className="alitajs-dform-address-list">
+            <List>
+              {[...dataList].map(item => (
+                <Item key={item.value}>
+                  <div
+                    className="alitajs-dform-address-list-content"
+                    onClick={() => {
+                      listClick(item);
+                    }}
+                  >
+                    <div>{item.label}</div>
+                    {item.flag && <div className="alitajs-dform-tick"></div>}
+                  </div>
+                </Item>
+              ))}
+            </List>
           </div>
         </div>
-      </div>
+      </Modal>
     </>
   );
 };

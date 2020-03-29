@@ -18,6 +18,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   extra?: React.ReactNode | string;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {

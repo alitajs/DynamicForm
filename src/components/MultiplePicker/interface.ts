@@ -22,4 +22,5 @@ export interface IMultiplePickerProps {
   initValue?: (string | number)[];
   disabled?: boolean;
   maxValueLength?: number;
+  labelNumber?: number;
 }

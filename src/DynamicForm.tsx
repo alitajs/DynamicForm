@@ -22,6 +22,7 @@ import {
   NomarImagePicker,
   NomarCustom,
   MultiplePicker,
+  AddressPicker,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -40,6 +41,7 @@ const FormItemType = {
   image: NomarImagePicker,
   custom: NomarCustom,
   multiplePicker: MultiplePicker,
+  addressPicker: AddressPicker,
 };
 
 export interface IFormItemProps {
@@ -56,6 +58,7 @@ export interface IFormItemProps {
     | 'image'
     | 'custom'
     | 'multiplePicker'
+    | 'addressPicker'
     | 'checkbox';
   title: string;
   fieldProps: string;
@@ -84,6 +87,9 @@ export interface IFormItemProps {
   subTitle?: string | React.ReactNode;
   maxValueLength?: number;
   onBlur?: (value?: string) => void;
+  level?: number;
+  onChangeLevel?: (val: any) => void;
+  placeholderList: string[];
 }
 
 interface CardDForm extends CardHeaderPropsType {

@@ -19,6 +19,10 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
     initValue = [],
     maxValueLength,
     coverStyle,
+    required = false,
+    hasStar = true,
+    fieldProps,
+    labelNumber = 5,
   } = props;
 
   const [context, setContext] = useState<IDataItem[]>([]);
@@ -31,6 +35,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
   const isVertical = positionType === 'vertical';
 
   useEffect(() => {
+    if (!data || data.length === 0) return;
     if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
       const dataList = JSON.parse(JSON.stringify(data));
       const selLabelList: (string | number)[] = [];
@@ -106,12 +111,17 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
         isVertical={isVertical}
         value={multipleLabel}
         placeholder={placeholder}
+        labelNumber={labelNumber}
+        coverStyle={coverStyle}
         onClick={() => {
           openMoal();
         }}
         readOnly
       >
-        {title}
+        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+        <span id={fieldProps} className="alitajs-dform-title">
+          {title}
+        </span>
       </InputItem>
       <Modal
         popup
@@ -157,13 +167,10 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
                     'alitajs-dform-multiple-picker-label': true,
                     'alitajs-dform-multiple-picker-checked': item.flag,
                   })}
-                  style={coverStyle}
                 >
                   {item.label}
                 </div>
-                <div className="alitajs-dform-multiple-picker-right">
-                  {item.flag && <div className="alitajs-dform-multiple-picker-tick"></div>}
-                </div>
+                {item.flag && <div className="alitajs-dform-tick"></div>}
               </div>
             </Item>
           ))}

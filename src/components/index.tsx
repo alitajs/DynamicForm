@@ -13,3 +13,4 @@ export { default as NomarImagePicker } from './NomarImagePicker';
 export { default as NomarCustom } from './NomarCustom';
 export { default as MultiplePicker } from './MultiplePicker';
 export { default as InputItem } from './InputItem';
+export { default as AddressPicker } from './AddressPicker';
