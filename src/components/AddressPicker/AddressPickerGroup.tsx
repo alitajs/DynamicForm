@@ -23,6 +23,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     required = false,
     hasStar = true,
     fieldProps,
+    labelNumber = 5,
+    coverStyle,
   } = props;
 
   // input 框的值
@@ -175,6 +177,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         value={inputLabel}
         placeholder={placeholder}
         readOnly
+        coverStyle={coverStyle}
+        labelNumber={labelNumber}
         onClick={() => {
           openMoal();
         }}

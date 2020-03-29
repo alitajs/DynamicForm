@@ -22,6 +22,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
     required = false,
     hasStar = true,
     fieldProps,
+    labelNumber = 5,
   } = props;
 
   const [context, setContext] = useState<IDataItem[]>([]);
@@ -110,6 +111,8 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
         isVertical={isVertical}
         value={multipleLabel}
         placeholder={placeholder}
+        labelNumber={labelNumber}
+        coverStyle={coverStyle}
         onClick={() => {
           openMoal();
         }}
@@ -164,7 +167,6 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
                     'alitajs-dform-multiple-picker-label': true,
                     'alitajs-dform-multiple-picker-checked': item.flag,
                   })}
-                  style={coverStyle}
                 >
                   {item.label}
                 </div>

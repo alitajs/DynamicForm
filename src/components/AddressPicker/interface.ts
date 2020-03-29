@@ -24,4 +24,6 @@ export interface IAddressPickerProps {
   onChangeLevel: (currentActiveLink: any, value: string | number) => void;
   placeholderList: string[];
   initValue?: any;
+  labelNumber?: number;
+  coverStyle?: React.CSSProperties;
 }

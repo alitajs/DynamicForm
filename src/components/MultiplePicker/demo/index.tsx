@@ -54,7 +54,8 @@ const Page: FC = () => {
       fieldProps: 'myFood',
       required: true,
       data: foodList,
-      title: '选择我喜欢的食物',
+      title: '我喜欢的食物',
+      labelNumber: 7,
       placeholder: '请选择我喜欢的食物',
       onChange: (e: (string | number)[]) => {
         // eslint-disable-next-line no-console

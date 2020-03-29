@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import classnames from 'classnames';
 import { IInputItemProps } from './interface';
 import '../../styles/index.less';
 
@@ -10,7 +11,18 @@ const InputItem: FC<IInputItemProps> = props => {
     onClick,
     readOnly = false,
     onChange,
+    labelNumber = 5,
+    coverStyle = {},
   } = props;
+
+  const labelCls = classnames('am-input-label', 'alitajs-dform-input-tltle', {
+    'am-input-label-2': labelNumber === 2,
+    'am-input-label-3': labelNumber === 3,
+    'am-input-label-4': labelNumber === 4,
+    'am-input-label-5': labelNumber === 5,
+    'am-input-label-6': labelNumber === 6,
+    'am-input-label-7': labelNumber === 7,
+  });
 
   const inputItemClick = () => {
     if (onClick) onClick();
@@ -18,14 +30,16 @@ const InputItem: FC<IInputItemProps> = props => {
   const inputItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(e);
   };
+
   return (
     <div className="am-list-item am-list-item-middle alitajs-dform-input-item">
       <div className="am-list-line">
-        {!isVertical && <div className="alitajs-dform-input-tltle">{props.children}</div>}
+        {!isVertical && <div className={labelCls}>{props.children}</div>}
         <div
           className="alitajs-dform-input-value"
           style={{
-            width: isVertical ? '100%' : '60%',
+            // width: isVertical ? '100%' : '60%',
+            flex: '1',
           }}
           onClick={() => {
             inputItemClick();
@@ -37,6 +51,7 @@ const InputItem: FC<IInputItemProps> = props => {
             readOnly={readOnly}
             style={{
               textAlign: isVertical ? 'left' : 'right',
+              ...coverStyle,
             }}
             onChange={e => {
               inputItemChange(e);
