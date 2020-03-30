@@ -8,50 +8,20 @@ import { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 // 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
+import countryList from '../../../utils/country.json';
 
 interface IAddrDataProps {
   label: string;
   value: string | number;
 }
 
-const provinceData = [
-  { label: '福建省', value: '1' },
-  { label: '广东省', value: '2' },
-  { label: '江西省', value: '3' },
-  { label: '广西省', value: '4' },
-  { label: '江苏省', value: '5' },
-  { label: '浙江省', value: '6' },
-  { label: '内蒙省', value: '7' },
-  { label: '新疆省', value: '8' },
-];
-
-const cityData = [
-  { label: '福州市', value: '11' },
-  { label: '漳州市', value: '12' },
-  { label: '泉州市', value: '13' },
-  { label: '厦门市', value: '14' },
-  { label: '三明市', value: '15' },
-  { label: '莆田市', value: '16' },
-  { label: '南平市', value: '17' },
-];
-
-const countryData = [
-  { label: '鼓楼区', value: '111' },
-  { label: '芗城区', value: '112' },
-  { label: '闽侯县', value: '113' },
-  { label: '台江区', value: '114' },
-  { label: '龙文区', value: '115' },
-  { label: '晋安区', value: '116' },
-  { label: '苍山区', value: '117' },
-];
-
 const streetData = [
-  { label: '美丽的街道', value: '1111' },
-  { label: '好看的街道', value: '1112' },
-  { label: '阳光大道', value: '1113' },
-  { label: '头头是道', value: '1114' },
-  { label: '热闹的街道', value: '1115' },
-  { label: '玲琅满目', value: '1116' },
+  { label: '街道1', value: '1111' },
+  { label: '街道2', value: '1112' },
+  { label: '街道3', value: '1113' },
+  { label: '街道4', value: '1114' },
+  { label: '街道5', value: '1115' },
+  { label: '街道6', value: '1116' },
 ];
 
 const Page: FC = () => {
@@ -66,23 +36,39 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>(provinceData);
-  const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>(provinceData);
+  const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>([]);
+  const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>([]);
 
-  const resetHomeAddrList = (nowLevel: number) => {
+  const resetHomeAddrList = (values: (number | string)[]) => {
     let data: { label: string; value: string }[] = [];
-    switch (nowLevel) {
+    switch (values.length) {
       case 0:
-        data = provinceData;
+        data = Object.keys(countryList).map(val => ({
+          label: countryList[val].name,
+          value: val,
+        }));
         break;
       case 1:
-        data = cityData;
+        data = Object.keys(countryList[values[0]].child).map(val => ({
+          label: countryList[values[0]].child[val].name,
+          value: val,
+        }));
         break;
       case 2:
-        data = countryData;
+        // eslint-disable-next-line no-case-declarations
+        const cityData1 = countryList[values[0]].child;
+        data = Object.keys(cityData1[values[1]].child).map(val => ({
+          label: cityData1[values[1]].child[val],
+          value: val,
+        }));
         break;
       case 3:
-        data = streetData;
+        // eslint-disable-next-line no-case-declarations
+        const cityData2 = countryList[values[0]].child;
+        data = Object.keys(cityData2[values[1]].child).map(val => ({
+          label: cityData2[values[1]].child[val],
+          value: val,
+        }));
         break;
       default:
         break;
@@ -90,19 +76,33 @@ const Page: FC = () => {
     setHomeAddrData(data);
     Toast.hide();
   };
-  const resetWorkAddrList = (nowLevel: number) => {
+  const resetWorkAddrList = (values: (number | string)[]) => {
     let data: { label: string; value: string }[] = [];
-    switch (nowLevel) {
+    switch (values.length) {
       case 0:
-        data = provinceData;
+        data = Object.keys(countryList).map(val => ({
+          label: countryList[val].name,
+          value: val,
+        }));
         break;
       case 1:
-        data = cityData;
+        data = Object.keys(countryList[values[0]].child).map(val => ({
+          label: countryList[values[0]].child[val].name,
+          value: val,
+        }));
         break;
       case 2:
-        data = countryData;
+        // eslint-disable-next-line no-case-declarations
+        const cityData1 = countryList[values[0]].child;
+        data = Object.keys(cityData1[values[1]].child).map(val => ({
+          label: cityData1[values[1]].child[val],
+          value: val,
+        }));
         break;
       case 3:
+        data = streetData;
+        break;
+      case 4:
         data = streetData;
         break;
       default:
@@ -122,12 +122,12 @@ const Page: FC = () => {
       level: 3,
       data: homeAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区'],
-      onChangeLevel: (nowLevel: number, value: number | string) => {
+      onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
-        console.log(nowLevel, value);
+        console.log(values);
         Toast.loading('加载中', 1);
         setTimeout(() => {
-          resetHomeAddrList(nowLevel);
+          resetHomeAddrList(values);
         }, 500);
       },
     },
@@ -141,18 +141,17 @@ const Page: FC = () => {
       level: 4,
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
-      onChangeLevel: (nowLevel: number, value: number | string) => {
+      onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
-        console.log(nowLevel, value);
-        resetWorkAddrList(nowLevel);
+        resetWorkAddrList(values);
       },
     },
   ] as IFormItemProps[];
 
   const formsValues = {
     homeAddr: {
-      value: ['1', '12', '114'],
-      label: ['福建省', '漳州市', '台江区'],
+      value: ['350000', '350100', '350102'],
+      label: ['福建省', '福州市', '鼓楼区'],
     },
   };
 
