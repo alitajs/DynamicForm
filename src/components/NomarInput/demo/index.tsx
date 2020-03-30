@@ -2,7 +2,7 @@
  * title: 基础 输入框
  * desc: 表单使用 demo
  */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
@@ -10,11 +10,13 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 import PositionIcon from '../../../assets/position_ico.png';
 import PhotoIcon from '../../../assets/photo.png';
+import PwdIcon from '../../../assets/look.png';
 
 interface PageProps {}
 
 const Page: FC<PageProps> = () => {
   const [form] = useForm();
+  const [pwdInputType, setPwdInputType] = useState<boolean>(true);
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -30,6 +32,15 @@ const Page: FC<PageProps> = () => {
   const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
 
   const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
+
+  const pwdImg = () => (
+    <img
+      src={PwdIcon}
+      onClick={() => {
+        setPwdInputType(!pwdInputType);
+      }}
+    />
+  );
 
   const formsData = [
     {
@@ -53,6 +64,14 @@ const Page: FC<PageProps> = () => {
       title: '年龄',
       editable: false,
       inputType: 'text',
+    },
+    {
+      type: 'input',
+      fieldProps: 'userPwd',
+      required: true,
+      title: '请设置密码',
+      extra: pwdImg(),
+      inputType: pwdInputType ? 'password' : 'text',
     },
     {
       type: 'input',
@@ -85,11 +104,13 @@ const Page: FC<PageProps> = () => {
       type: 'input',
       fieldProps: 'userTitle',
       required: true,
-      placeholder: '存在点击事件',
+      placeholder: '点击获取表单全部数据',
       title: '标题',
       editable: false,
-      // eslint-disable-next-line no-console
-      onClick: () => console.log('点击事件'),
+      onClick: () => {
+        // eslint-disable-next-line no-console
+        console.log(form.getFieldsValue());
+      },
     },
     {
       type: 'input',
@@ -134,6 +155,8 @@ const Page: FC<PageProps> = () => {
     userAge: '这里只读不可编辑',
     username4: '点击图标事件',
     username6: '存在点击事件',
+    userTitle: '点击获取表单全部数据',
+    userPwd: '123456',
   };
   const formProps = {
     onFinish,

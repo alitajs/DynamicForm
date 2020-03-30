@@ -80,7 +80,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
       const newLabelList = resetLabel(JSON.parse(JSON.stringify([...label])), placeholderList);
       setLabelList(newLabelList);
       setNowLevel(value.length);
-      if (onChangeLevel) onChangeLevel(label.length, JSON.parse(JSON.stringify(value)).pop());
+      if (onChangeLevel) onChangeLevel(value);
       setInputLabel(label.join(','));
       setValueList(value);
       setChangeFlag(false);
@@ -124,9 +124,6 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     if (nowLevel !== level) insLevel += 1;
     setNowLevel(insLevel);
 
-    // 调用改变层级的事件给用户
-    if (onChangeLevel) onChangeLevel(insLevel, val.value);
-
     // 如果层级符合，将数据放入input 中，并且关闭弹框
     const newLabelList = JSON.parse(JSON.stringify(newList));
     if (insLevel === level) {
@@ -143,6 +140,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     // 设置头部展示列表和值列表
     setLabelList(resetLabel(newList, placeholderList));
     setValueList(newValueList);
+    // 调用改变层级的事件给用户
+    if (onChangeLevel) onChangeLevel(newValueList);
   };
 
   const labelClick = (index: number) => {
@@ -152,12 +151,11 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     const newLabelList = labelList.splice(0, index);
     const newValueList = valueList.splice(0, index);
 
-    // 调用改变层级的事件给用户
-    if (onChangeLevel) onChangeLevel(newLabelList.length, newValueList[newValueList.length - 1]);
-
     // 设置头部展示列表
     setLabelList(resetLabel(JSON.parse(JSON.stringify(newLabelList)), placeholderList));
     setValueList(newValueList);
+    // 调用改变层级的事件给用户
+    if (onChangeLevel) onChangeLevel(newValueList);
   };
 
   const listReverse = [];
