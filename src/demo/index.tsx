@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import { useForm } from 'rc-field-form';
-import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-
-import DynamicForm, { IFormItemProps } from '../DynamicForm';
+import DynamicForm, { IFormItemProps, Store, ValidateErrorEntity, useForm } from '@alitajs/dform';
 
 const seasons = [
   [

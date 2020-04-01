@@ -5,10 +5,7 @@
 
 import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import { useForm } from 'rc-field-form';
-import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-// 所有需要从 rc-field-form 中导出的字段都可以在 dform 中导出
-import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
+import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
 
 const fileList = [
   {
