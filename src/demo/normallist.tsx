@@ -1,13 +1,7 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import { Field, useForm } from 'rc-field-form';
-import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 
-import DynamicForm, { IFormItemProps } from '../DynamicForm';
-
-const tailLayout = {
-  wrapperCol: { offset: 2, span: 20 },
-};
+import DynamicForm, { IFormItemProps, Store, ValidateErrorEntity, useForm } from '@alitajs/dform';
 
 const seasons = [
   [
@@ -212,14 +206,13 @@ const Page: FC = () => {
     // allDisabled: true,
   };
   return (
-    <DynamicForm {...formProps}>
+    <>
+      <DynamicForm {...formProps} />
       <WhiteSpace size="sm" />
-      <Field {...tailLayout}>
-        <Button type="primary" onClick={() => form.submit()}>
-          Submit
-        </Button>
-      </Field>
-    </DynamicForm>
+      <Button type="primary" onClick={() => form.submit()}>
+        Submit
+      </Button>
+    </>
   );
 };
 
