@@ -25,6 +25,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     fieldProps,
     labelNumber = 5,
     coverStyle,
+    onClick,
   } = props;
 
   // input 框的值
@@ -178,6 +179,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         coverStyle={coverStyle}
         labelNumber={labelNumber}
         onClick={() => {
+          if (onClick) onClick();
           openMoal();
         }}
         onChange={e => {

@@ -26,6 +26,7 @@ title: MultiplePicker
 | coverStyle     | 选择项改变事件                                                                                                                        | object         | {}          | 否       |
 | maxValueLength | 最大可选长度，初始赋值如果大于该值，根据选项顺序获取指定的选中项                                                                      | number         |             | 否       |
 | labelNumber    | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number         | 5           | 否       |
+| onClick        | 文字点击事件                                                                                                                          | function       | null        | 否       |
 
 ## 备注
 

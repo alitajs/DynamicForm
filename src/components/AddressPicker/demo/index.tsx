@@ -127,6 +127,9 @@ const Page: FC = () => {
           resetHomeAddrList(values);
         }, 500);
       },
+      onClick: () => {
+        console.log(123);
+      },
     },
     {
       type: 'addressPicker',

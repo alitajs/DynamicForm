@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -24,6 +24,7 @@
     "prettier": "prettier -c --write \"**/*\"",
     "format-imports": "cross-env import-sort --write '**/*.{js,jsx,ts,tsx}'"
   },
+  "repository": "https://github.com/alitajs/DynamicForm",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
