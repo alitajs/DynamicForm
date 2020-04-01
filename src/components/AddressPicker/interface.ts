@@ -26,4 +26,5 @@ export interface IAddressPickerProps {
   initValue?: any;
   labelNumber?: number;
   coverStyle?: React.CSSProperties;
+  onClick?: () => void;
 }

@@ -23,4 +23,5 @@ export interface IMultiplePickerProps {
   disabled?: boolean;
   maxValueLength?: number;
   labelNumber?: number;
+  onClick?: () => void;
 }

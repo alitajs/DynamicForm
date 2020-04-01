@@ -23,6 +23,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
     hasStar = true,
     fieldProps,
     labelNumber = 5,
+    onClick,
   } = props;
 
   const [context, setContext] = useState<IDataItem[]>([]);
@@ -114,6 +115,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
         labelNumber={labelNumber}
         coverStyle={coverStyle}
         onClick={() => {
+          if (onClick) onClick();
           openMoal();
         }}
         readOnly
