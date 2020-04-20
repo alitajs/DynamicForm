@@ -34,6 +34,7 @@ const Page: FC = () => {
       required: true,
       data: fruitsList,
       fieldProps: 'fruit',
+      chunk: 2,
     },
   ] as IFormItemProps[];
 

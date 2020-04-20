@@ -1,6 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { Flex } from 'antd-mobile';
 import difference from 'lodash/difference';
+import chunkLodash from 'lodash/chunk';
+
+const { Item } = Flex;
 
 export interface IDataItem {
   label: string;
@@ -15,10 +19,11 @@ interface ICheckBoxGroup {
   initValue?: (string | number)[];
   disabled?: boolean;
   coverStyle?: React.CSSProperties;
+  chunk?: number;
 }
 
 const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
-  const { data, onChange, initValue = [], coverStyle, disabled = false } = props;
+  const { data, onChange, initValue = [], coverStyle, disabled = false, chunk = 1 } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
   const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
 
@@ -54,33 +59,38 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     if (onChange) onChange(values);
   };
 
-  return (
-    <div className="alitajs-dform-box-content">
-      {[...context].map((item: IDataItem) => (
-        <div
-          key={item.value}
-          className={classnames({
-            'alitajs-dform-box-wrapper': true,
-          })}
-          onClick={e => {
-            boxClick(e, item);
-          }}
-        >
-          <div
-            className={classnames({
-              'alitajs-dform-box-botton': true,
-              'alitajs-dform-box-botton-checked': item.flag,
-            })}
-          >
-            {item.flag && <div className="alitajs-dform-box-tick"></div>}
-          </div>
-          <div className="alitajs-dform-box-label" style={coverStyle}>
-            {item.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+  const aa = () =>
+    chunkLodash([...context], chunk).map((list: IDataItem[], index: number) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <Flex key={index}>
+        {[...list].map((item: IDataItem) => (
+          <Item key={item.value}>
+            <div
+              className={classnames({
+                'alitajs-dform-box-wrapper': true,
+              })}
+              onClick={e => {
+                boxClick(e, item);
+              }}
+            >
+              <div
+                className={classnames({
+                  'alitajs-dform-box-botton': true,
+                  'alitajs-dform-box-botton-checked': item.flag,
+                })}
+              >
+                {item.flag && <div className="alitajs-dform-box-tick"></div>}
+              </div>
+              <div className="alitajs-dform-box-label" style={coverStyle}>
+                {item.label}
+              </div>
+            </div>
+          </Item>
+        ))}
+      </Flex>
+    ));
+
+  return <div className="alitajs-dform-box-content">{aa()}</div>;
 };
 
 export default CheckBoxGroup;
