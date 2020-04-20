@@ -16,6 +16,7 @@ interface INomarCheckBoxProps {
   onChange?: (currentActiveLink: (string | number)[]) => void;
   disabled?: boolean;
   hidden?: boolean;
+  chunk?: number;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
@@ -32,6 +33,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     onChange,
     disabled = false,
     hidden = false,
+    chunk = 1,
   } = props;
 
   return (
@@ -59,6 +61,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
               coverStyle={coverStyle}
               initValue={initValue}
               disabled={disabled}
+              chunk={chunk}
             />
           </Field>
         </div>

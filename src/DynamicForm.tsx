@@ -89,7 +89,8 @@ export interface IFormItemProps {
   onBlur?: (value?: string) => void;
   level?: number;
   onChangeLevel?: (val: any) => void;
-  placeholderList: string[];
+  placeholderList?: string[];
+  chunk?: number;
 }
 
 interface CardDForm extends CardHeaderPropsType {
