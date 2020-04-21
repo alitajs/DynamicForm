@@ -24,6 +24,8 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
     fieldProps,
     labelNumber = 5,
     onClick,
+    leftContent = '取消',
+    rightContent = '确定',
   } = props;
 
   const [context, setContext] = useState<IDataItem[]>([]);
@@ -141,7 +143,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
                 onCancel();
               }}
             >
-              取消
+              {leftContent}
             </div>
             <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
             <div
@@ -150,7 +152,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
                 onConfirm();
               }}
             >
-              确定
+              {rightContent}
             </div>
           </div>
         }

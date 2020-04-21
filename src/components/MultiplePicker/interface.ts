@@ -24,4 +24,6 @@ export interface IMultiplePickerProps {
   maxValueLength?: number;
   labelNumber?: number;
   onClick?: () => void;
+  leftContent?: React.ReactNode | string;
+  rightContent?: React.ReactNode | string;
 }
