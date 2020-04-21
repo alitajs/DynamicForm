@@ -91,6 +91,8 @@ export interface IFormItemProps {
   onChangeLevel?: (val: any) => void;
   placeholderList?: string[];
   chunk?: number;
+  leftContent?: string | React.ReactNode;
+  rightContent?: string | React.ReactNode;
 }
 
 interface CardDForm extends CardHeaderPropsType {

@@ -26,6 +26,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     labelNumber = 5,
     coverStyle,
     onClick,
+    leftContent = '取消',
+    rightContent = '确定',
   } = props;
 
   // input 框的值
@@ -207,7 +209,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
                 onCancel();
               }}
             >
-              取消
+              {leftContent}
             </div>
             <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
             <div
@@ -216,7 +218,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
                 onConfirm();
               }}
             >
-              确定
+              {rightContent}
             </div>
           </div>
         }

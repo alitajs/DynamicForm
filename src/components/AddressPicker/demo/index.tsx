@@ -4,8 +4,13 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace, Toast } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
-import countryList from '../../../utils/country.json';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+  countryList,
+} from '@alitajs/dform';
 
 interface IAddrDataProps {
   label: string;
@@ -128,7 +133,8 @@ const Page: FC = () => {
         }, 500);
       },
       onClick: () => {
-        console.log(123);
+        // eslint-disable-next-line no-console
+        console.log('存在点击事件');
       },
     },
     {
