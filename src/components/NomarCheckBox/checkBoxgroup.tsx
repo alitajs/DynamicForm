@@ -28,6 +28,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
   const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
 
   useEffect(() => {
+    if (!data || data.length === 0) return;
     if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
       const dataList = JSON.parse(JSON.stringify(data));
       setContext(
