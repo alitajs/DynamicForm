@@ -23,8 +23,9 @@ export interface INomarRadioProps {
   hasStar?: boolean;
   radioType?: 'horizontal' | 'vertical';
   subTitle?: string | React.ReactNode;
-  onChange?: (currentActiveLink: string) => void;
+  onChange?: (currentActiveLink: string | number) => void;
   hidden?: boolean;
+  disabled?: boolean;
 }
 
 const NomarRadio: FC<INomarRadioProps> = props => {
@@ -42,6 +43,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     subTitle,
     onChange,
     hidden = false,
+    disabled = false,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -65,6 +67,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         initValue={initValue}
         onChange={onChange}
         coverStyle={coverStyle}
+        disabled={disabled}
       />
     </Field>
   );

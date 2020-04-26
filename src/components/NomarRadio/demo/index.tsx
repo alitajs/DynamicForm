@@ -88,7 +88,7 @@ const Page: FC<PageProps> = () => {
       fieldProps: 'userRadio3',
       required: true,
       data: radioList,
-      title: '发票',
+      title: '发票(只读)',
       disabled: true,
     },
     {
