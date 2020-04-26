@@ -29,7 +29,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     rules,
     rows = 3,
     title,
-    positionType = 'vertical',
+    positionType = 'horizontal',
     hasStar = true,
     extra = '',
     subTitle,
@@ -81,7 +81,10 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
               <TextareaItem
                 {...otherProps}
                 title={titleDiv()}
-                style={coverStyle}
+                style={{
+                  textAlign: rows === 1 ? 'right' : 'left',
+                  ...coverStyle,
+                }}
                 rows={rows}
                 onBlur={val => {
                   inputOnBlur(val);

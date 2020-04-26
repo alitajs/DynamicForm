@@ -24,17 +24,25 @@ const Page: FC = () => {
   const formsData = [
     {
       type: 'area',
+      title: '学校概况',
+      fieldProps: 'textArea0',
+      placeholder: '支持输入值过长自动换行',
+      rows: 1,
+      autoHeight: true,
+    },
+    {
+      type: 'area',
       fieldProps: 'textArea1',
       required: true,
       placeholder: '请输入...',
       title: '公司简介',
-      positionType: 'horizontal',
     },
     {
       type: 'area',
       fieldProps: 'textArea2',
       title: '有标题',
       placeholder: '只读，不可编辑',
+      positionType: 'vertical',
       rows: 3,
       editable: false,
     },
@@ -47,7 +55,7 @@ const Page: FC = () => {
       required: true,
       coverStyle: {
         border: '1px solid #108ee9',
-        background: '#fff',
+        background: 'rgb(247, 246, 249)',
       },
     },
     {

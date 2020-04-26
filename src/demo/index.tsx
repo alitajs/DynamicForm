@@ -118,10 +118,8 @@ const Page: FC = () => {
       fieldProps: 'usertextarea',
       placeholder: '多行输入',
       title: '备注',
-      positionType: 'horizontal',
       coverStyle: {
         border: '1px solid #108ee9',
-        background: '#fff',
       },
     },
     {

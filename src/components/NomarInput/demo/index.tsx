@@ -63,6 +63,15 @@ const Page: FC<PageProps> = () => {
       inputType: 'text',
     },
     {
+      type: 'area',
+      fieldProps: 'area',
+      required: true,
+      title: '学校概况',
+      placeholder: '支持输入值过长自动换行',
+      rows: 1,
+      autoHeight: true,
+    },
+    {
       type: 'input',
       fieldProps: 'userPwd',
       required: true,
