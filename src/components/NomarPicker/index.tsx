@@ -18,6 +18,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  onClick?: () => void;
 }
 
 const NomarPicker: FC<INomarPickerProps> = props => {
@@ -33,6 +34,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     hasStar = true,
     subTitle,
     hidden = false,
+    onClick,
     ...otherProps
   } = props;
 
@@ -51,7 +53,13 @@ const NomarPicker: FC<INomarPickerProps> = props => {
               {subTitle}
             </div>
           )}
-          <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}>
+          <div
+            className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}
+            onClick={e => {
+              e.stopPropagation();
+              if (onClick) onClick();
+            }}
+          >
             <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
               <Picker
                 cascade={false}
