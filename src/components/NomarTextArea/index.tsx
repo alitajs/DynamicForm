@@ -38,6 +38,8 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     ...otherProps
   } = props;
 
+  let autoFocusInst: { focus: () => void } | null = null;
+
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
 
@@ -77,9 +79,18 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
               'alitajs-dform-area': true,
             })}
           >
-            <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+            <Field
+              name={fieldProps}
+              rules={rules || [{ required, message: `请输入${title}` }]}
+              shouldUpdate={(prevValue: any, nextValue: any) => {
+                if (autoFocusInst) autoFocusInst.focus();
+                return prevValue !== nextValue;
+              }}
+            >
               <TextareaItem
                 {...otherProps}
+                // eslint-disable-next-line no-return-assign
+                ref={(el: any) => (autoFocusInst = el)}
                 title={titleDiv()}
                 style={{
                   textAlign: rows === 1 ? 'right' : 'left',
