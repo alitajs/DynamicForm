@@ -39,7 +39,11 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
 
   useEffect(() => {
     if (!data || data.length === 0) return;
-    if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
+    if (
+      context.length === 0 ||
+      preInitValue.length !== 0 ||
+      difference(initValue, preInitValue).length !== 0
+    ) {
       const dataList = JSON.parse(JSON.stringify(data));
       const selLabelList: (string | number)[] = [];
       const selValueList: (string | number)[] = [];

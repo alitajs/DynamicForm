@@ -19,7 +19,10 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     onChange,
     level = 3,
     placeholderList = [],
-    initValue = {},
+    initValue = {
+      label: [],
+      value: [],
+    },
     required = false,
     hasStar = true,
     fieldProps,
@@ -69,7 +72,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   }, [data]);
 
   useEffect(() => {
-    if (initValue && Object.keys(initValue).length && changeFlag) {
+    if (initValue && Object.keys(initValue).length) {
       const { label = [], value = [] } = initValue;
       setDataList(
         data.map(item => {
