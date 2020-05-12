@@ -15,8 +15,15 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
     positionType = 'horizontal',
     subTitle,
     hidden = false,
+    onChange,
   } = props;
   const isVertical = positionType === 'vertical';
+
+  const fieldChange = (values: any, flag: string) => {
+    if (flag === 'init') return;
+    if (onChange) onChange(values);
+  };
+
   return (
     <>
       {!hidden && (
@@ -40,7 +47,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <MultiplePickerGroup {...props} initValue={initValue}>
+            <MultiplePickerGroup {...props} initValue={initValue} onChange={fieldChange}>
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
               <span id={fieldProps} className="alitajs-dform-title">
                 {title}

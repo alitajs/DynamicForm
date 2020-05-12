@@ -1,6 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, Flex, List } from 'antd-mobile';
 import classnames from 'classnames';
+import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
 import { IModalData, IAddressPickerProps } from './interface';
 import { resetLabel } from '../../utils';
 import { InputItem } from '..';
@@ -36,12 +38,13 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   // input 框的值
   const [inputLabel, setInputLabel] = useState<string>('');
   const [modalFlag, setModalFlag] = useState<boolean>(false);
-  const [changeFlag, setChangeFlag] = useState<boolean>(true);
 
   // 弹框选中的头部文字列表
   const [labelList, setLabelList] = useState<string[]>(
     placeholderList && placeholderList.length ? [placeholderList[0]] : ['请选择'],
   );
+
+  const [preInitValue, setPreInitValue] = useState({});
 
   // value 值列表
   const [valueList, setValueList] = useState<(string | number)[]>([]);
@@ -72,7 +75,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   }, [data]);
 
   useEffect(() => {
-    if (initValue && Object.keys(initValue).length) {
+    if (!isEqual(preInitValue, initValue)) {
       const { label = [], value = [] } = initValue;
       setDataList(
         data.map(item => {
@@ -89,7 +92,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
       if (onChangeLevel) onChangeLevel(value);
       setInputLabel(label.join(','));
       setValueList(value);
-      setChangeFlag(false);
+      setPreInitValue(initValue);
     }
   }, [initValue]);
 

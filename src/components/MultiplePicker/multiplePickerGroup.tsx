@@ -1,6 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile';
 import difference from 'lodash/difference';
+import _ from 'lodash';
+import differenceWith from 'lodash/differenceWith';
 import classnames from 'classnames';
 import { IMultiplePickerProps, IDataItem } from './interface';
 import { InputItem } from '..';
@@ -8,7 +10,11 @@ import '../../styles/index.less';
 
 const { Item } = List;
 
-const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
+interface IMultiplePickerGroupProps extends Omit<IMultiplePickerProps, 'onChange'> {
+  onChange: (values: any, flag: string) => void;
+}
+
+const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
   const {
     data = [],
     title,
@@ -36,6 +42,32 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
   const [multipleLabel, setMultipleLabel] = useState<string>('');
 
   const isVertical = positionType === 'vertical';
+
+  useEffect(() => {
+    const dataList = JSON.parse(JSON.stringify(data));
+    const selLabelList: (string | number)[] = [];
+    const selValueList: (string | number)[] = [];
+    const nowContext = dataList.map(item => {
+      const initItem = item;
+      if (initValue.indexOf(initItem.value) !== -1) {
+        if (!maxValueLength || (maxValueLength && maxValueLength > selValueList.length)) {
+          initItem.flag = true;
+          selLabelList.push(item.label);
+          selValueList.push(item.value);
+        } else {
+          initItem.flag = false;
+        }
+      } else {
+        initItem.flag = false;
+      }
+      return initItem;
+    });
+    setContext(nowContext);
+    if (differenceWith(nowContext, preContext, _.isEqual)) {
+      if (data.length === 0) setMultipleLabel('');
+      if (onChange) onChange(selValueList, 'init');
+    }
+  }, [data]);
 
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -68,7 +100,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
       setPreInitValue(initValue);
       setSelList(selValueList);
     }
-  }, [data, initValue]);
+  }, [initValue]);
 
   const pickerClick = (val: IDataItem) => {
     const dataList = JSON.parse(JSON.stringify(context));
@@ -102,6 +134,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
   const onCancel = () => {
     setModalFlag(false);
     setContext([...preContext]);
+    setSelList([...preInitValue]);
   };
 
   const onConfirm = () => {
@@ -109,7 +142,7 @@ const MultiplePickerGroup: FC<IMultiplePickerProps> = props => {
     const selValueList = context.filter(it => it.flag).map(item => item.value);
     setMultipleLabel(selLabelList.join(','));
     setModalFlag(false);
-    if (onChange) onChange(selValueList);
+    if (onChange) onChange(selValueList, 'change');
   };
 
   return (
