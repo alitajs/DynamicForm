@@ -62,9 +62,17 @@ const InitFormData = [
     type: 'input',
     fieldProps: 'username',
     required: true,
-    placeholder: '请输入',
+    placeholder: '暂无数据',
     title: '输入框',
     inputType: 'text',
+    positionType: 'horizontal',
+  },
+  {
+    type: 'text',
+    fieldProps: 'usertext',
+    required: true,
+    placeholder: '请输入',
+    title: '文本框',
     positionType: 'horizontal',
   },
   {

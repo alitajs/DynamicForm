@@ -23,6 +23,7 @@ import {
   NomarCustom,
   MultiplePicker,
   AddressPicker,
+  NomarText,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -42,6 +43,7 @@ const FormItemType = {
   custom: NomarCustom,
   multiplePicker: MultiplePicker,
   addressPicker: AddressPicker,
+  text: NomarText,
 };
 
 export interface IFormItemProps {
@@ -59,6 +61,7 @@ export interface IFormItemProps {
     | 'custom'
     | 'multiplePicker'
     | 'addressPicker'
+    | 'text'
     | 'checkbox';
   title: string;
   fieldProps: string;

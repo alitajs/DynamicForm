@@ -1,8 +1,8 @@
 ---
-title: NomarImagePicker
+title: ImagePicker
 ---
 
-# NomarImagePicker
+# ImagePicker
 
 ## 代码演示
 
