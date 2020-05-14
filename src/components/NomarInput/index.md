@@ -20,6 +20,7 @@ title: Input
 | inputType    | html input 框类型                                                                                                                     | string                     | text         | 否       |
 | clear        | 是否带清除功能                                                                                                                        | boolean                    | false        | 否       |
 | editable     | 是否可编辑                                                                                                                            | boolean                    | true         | 否       |
+| disabled     | 不建议采用该属性！具体请看如下备注！                                                                                                  | boolean                    | true         | 否       |
 | extra        | 右边注释                                                                                                                              | string or node             | ''           | 否       |
 | onClick      | 文字点击事件                                                                                                                          | function                   | null         | 否       |
 | labelNumber  | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | 5            | 否       |
@@ -30,6 +31,13 @@ title: Input
 | coverStyle   | 自定义输入框样式                                                                                                                      | object                     | {}           | 否       |
 | hidden       | 字段展示与否的判断                                                                                                                    | boolean                    | false        | 否       |
 
+## 备注
+
+`NomarInput` 组件若需设置成只读状态，建议使用 `editable = false` 属性，`editable = false` 时，组件点击事件依旧可用。
+
+若设置成 `disabled = true`，则组件在 `ios` 或者 `safari 浏览器` 上值会变浅。
+
+如果有需求为：组件不可编辑的状态下 `onClick` 事件失效，则请采用 `NomarText` 组件。
 
 ## 组件使用
 

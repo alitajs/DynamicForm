@@ -21,6 +21,7 @@ import {
   MultiplePicker,
   NomarImagePicker,
   NomarCheckBox,
+  NomarText,
 } from '..';
 
 const FormItemType = {
@@ -36,6 +37,7 @@ const FormItemType = {
   multiplePicker: MultiplePicker,
   image: NomarImagePicker,
   checkbox: NomarCheckBox,
+  text: NomarText,
 };
 
 const radioList = [

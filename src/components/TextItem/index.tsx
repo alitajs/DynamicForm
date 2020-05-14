@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
-import { IInputItemProps } from './interface';
+import { ITextItemProps } from './interface';
 import '../../styles/index.less';
 
-const InputItem: FC<IInputItemProps> = props => {
+const TextItem: FC<ITextItemProps> = props => {
   const {
     isVertical = false,
     value = '',
-    placeholder = '',
+    placeholder = '请输入',
     onClick,
-    readOnly = false,
-    onChange,
     labelNumber = 5,
     coverStyle = {},
+    extra,
+    disabled,
   } = props;
 
   const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
@@ -25,45 +25,37 @@ const InputItem: FC<IInputItemProps> = props => {
   });
 
   const inputItemClick = () => {
-    if (onClick) onClick();
-  };
-  const inputItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) onChange(e);
+    if (disabled) return;
+    if (onClick) onClick(value);
   };
 
   return (
-    <div className="am-list-item am-list-item-middle alitajs-dform-input-item">
+    <div className="am-list-item am-list-item-middle alitajs-dform-text-item">
       <div className="am-list-line">
         {!isVertical && <div className={labelCls}>{props.children}</div>}
         <div
-          className="alitajs-dform-input-value"
+          className="alitajs-dform-text-value"
           style={{
-            // width: isVertical ? '100%' : '60%',
             flex: '1',
           }}
           onClick={() => {
             inputItemClick();
           }}
         >
-          <input
-            type="text"
-            value={value}
-            readOnly={readOnly}
+          <div
+            className={value ? 'alitajs-dform-text-text' : 'alitajs-dform-placeholder'}
             style={{
               textAlign: isVertical ? 'left' : 'right',
               ...coverStyle,
             }}
-            onChange={e => {
-              inputItemChange(e);
-            }}
-            className="alitajs-dform-input-text"
-            placeholder={placeholder}
-          />
-          <div className="am-list-arrow am-list-arrow-horizontal" />
+          >
+            {value || placeholder}
+          </div>
+          {!isVertical && <div className="am-input-extra">{extra}</div>}
         </div>
       </div>
     </div>
   );
 };
 
-export default InputItem;
+export default TextItem;

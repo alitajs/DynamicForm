@@ -21,6 +21,7 @@
   font-size: @alita-dform-title-font-size  !important;
 }
 
+
 .alitajs-dform-item {
   font-size: @alita-dform-select-font-size  !important;
   color: @alita-dform-select-color  !important;
@@ -54,10 +55,14 @@
 }
 
 .alitajs-dform-placeholder {
+  font-size: @alita-dform-select-font-size;
+  color: #888;
+  width: 100%;
+
   .am-input-control input::placeholder {
     // 自定义样式
     font-size: @alita-dform-select-font-size;
-    color: #888;
+    color: #888 !important;
   }
 
   .am-textarea-control textarea::placeholder {
@@ -620,7 +625,6 @@
       color: @alita-dform-select-color;
     }
   }
-
 }
 
 .alitajs-dform-right {
@@ -666,6 +670,36 @@
         align-items: center;
         justify-content: space-between;
       }
+    }
+  }
+}
+
+.alitajs-dform-text-item {
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  // align-items: center;
+
+  justify-content: center;
+
+
+  // .alitajs-dform-text-tltle {
+  //   font-size: @alita-dform-title-font-size;
+  //   color: @alita-dform-title-color;
+  //   // width: 40%;
+  // }
+
+  .alitajs-dform-text-value {
+    font-size: @alita-dform-select-font-size;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .alitajs-dform-text-text {
+      width: 100%;
+      border: 0px;
+      color: @alita-dform-select-color;
     }
   }
 }

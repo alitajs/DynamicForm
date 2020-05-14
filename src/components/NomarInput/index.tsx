@@ -58,7 +58,7 @@ const NomarInput: FC<INomarInputProps> = props => {
                 {subTitle}
               </div>
             )}
-            {extra !== '' && isVertical && <div className="alitajs-dform-area-extra">{extra}</div>}
+            {extra !== '' && isVertical && <div className="alitajs-dform-extra">{extra}</div>}
           </div>
 
           <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-input`}>

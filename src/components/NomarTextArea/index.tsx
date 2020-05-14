@@ -71,7 +71,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
                 {subTitle}
               </div>
             )}
-            {extra !== '' && <div className="alitajs-dform-area-extra">{extra}</div>}
+            {extra !== '' && <div className="alitajs-dform-extra">{extra}</div>}
           </div>
           <div
             className={classnames({
