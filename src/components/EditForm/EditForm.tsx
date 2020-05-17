@@ -248,6 +248,7 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
       type === 'radio' ||
       type === 'coverRadio' ||
       type === 'checkbox' ||
+      type === 'picker' ||
       type === 'multiplePicker'
     ) {
       newFormItem.data = radioList;
