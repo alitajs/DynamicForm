@@ -21,7 +21,7 @@ interface ICoverRadioProps {
   hasStar?: boolean;
   rules?: Rule[];
   disabled?: boolean;
-  onChange?: (currentActiveLink: string) => void;
+  onChange?: (currentActiveLink: string | number) => void;
   subTitle?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
@@ -50,6 +50,10 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     isVertical = true;
   }
 
+  const radioChange = (e: string | number) => {
+    if (onChange && e !== initValue) onChange(e);
+  };
+
   const RadioGroup = () => (
     <Field
       name={fieldProps}
@@ -64,7 +68,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
         positionType={positionType}
         radioType={radioType}
         initValue={initValue}
-        onChange={onChange}
+        onChange={radioChange}
         disabled={disabled}
         coverStyle={coverStyle}
       />
