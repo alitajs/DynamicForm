@@ -3,7 +3,7 @@
  * desc: 表单使用 demo
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
 
@@ -36,7 +36,6 @@ const foodList = [
 ];
 
 const Page = () => {
-  const [flag, setFlag] = useState(true);
   const [form] = useForm();
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -52,7 +51,7 @@ const Page = () => {
     {
       type: 'coverRadio',
       fieldProps: 'sex',
-      data: flag ? sexList : foodList,
+      data: sexList,
       title: '性别',
       required: true,
       onChange: (val: any) => {
@@ -93,16 +92,8 @@ const Page = () => {
     isDev: true,
   };
 
-  const click = () => {
-    setFlag(false);
-    form.setFieldsValue({
-      man: '',
-    });
-  };
-
   return (
     <>
-      <Button onClick={click}>修改</Button>
       <DynamicForm {...formProps} />
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
