@@ -10,7 +10,7 @@ import { getByteLen } from './utils';
 
 import {
   NomarInput,
-  NomarPicker,
+  NomarSelect,
   NomarSwitch,
   NomarTextArea,
   NomarDatePicker,
@@ -30,7 +30,7 @@ import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
 
 const FormItemType = {
   input: NomarInput,
-  select: NomarPicker,
+  select: NomarSelect,
   area: NomarTextArea,
   date: NomarDatePicker,
   switch: NomarSwitch,

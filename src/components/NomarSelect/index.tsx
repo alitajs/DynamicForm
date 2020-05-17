@@ -5,7 +5,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import '../../styles/index.less';
 
-export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
+export interface INomarSelectProps extends Omit<PickerPropsType, 'data'> {
   coverStyle?: React.CSSProperties;
   title: string;
   required?: boolean;
@@ -21,7 +21,7 @@ export interface INomarPickerProps extends Omit<PickerPropsType, 'data'> {
   onClick?: () => void;
 }
 
-const NomarPicker: FC<INomarPickerProps> = props => {
+const NomarPicker: FC<INomarSelectProps> = props => {
   const {
     coverStyle,
     title,

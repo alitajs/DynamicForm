@@ -79,7 +79,7 @@ title: Select
 }
 ```
 
-### VerticalPicker
+### VerticalSelect
 
 <code src="./demo/verticalPicker.tsx" />
 如需在 `DynamicForm` 中使用，请使用以下 `json`：
