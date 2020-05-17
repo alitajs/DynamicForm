@@ -5,13 +5,10 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
-import PositionIcon from '../../../assets/position_ico.png';
 import PhotoIcon from '../../../assets/photo.png';
 
 const Page: FC = () => {
   const [form] = useForm();
-
-  const extraImg = () => <img src={PositionIcon} />;
 
   const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
 
