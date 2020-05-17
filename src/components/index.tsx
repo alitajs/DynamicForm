@@ -5,6 +5,7 @@ export { default as InputItem } from './InputItem';
 export { default as MultiplePicker } from './MultiplePicker';
 export { default as NomarInput } from './NomarInput';
 export { default as NomarSelect } from './NomarSelect';
+export { default as NomarPicker } from './NomarPicker';
 export { default as NomarSwitch } from './NomarSwitch';
 export { default as NomarTextArea } from './NomarTextArea';
 export { default as NomarDatePicker } from './NomarDatePicker';
