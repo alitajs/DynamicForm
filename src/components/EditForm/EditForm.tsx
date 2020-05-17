@@ -10,7 +10,7 @@ import { IFormItemProps } from '../../DynamicForm';
 
 import {
   NomarInput,
-  NomarPicker,
+  NomarSelect,
   NomarSwitch,
   NomarTextArea,
   NomarDatePicker,
@@ -26,7 +26,7 @@ import {
 
 const FormItemType = {
   input: NomarInput,
-  select: NomarPicker,
+  select: NomarSelect,
   area: NomarTextArea,
   date: NomarDatePicker,
   switch: NomarSwitch,
@@ -82,7 +82,7 @@ const EditFormItemType = {
   data: NomarInput,
   type: NomarInput,
   positionType: (props: any) => (
-    <NomarPicker
+    <NomarSelect
       data={[
         ['horizontal', 'vertical'].map((item: string) => ({
           value: item,
@@ -94,7 +94,7 @@ const EditFormItemType = {
     />
   ),
   inputType: (props: any) => (
-    <NomarPicker
+    <NomarSelect
       data={[
         ['text', 'bankCard', 'phone', 'password', 'number', 'digit', 'money'].map(
           (item: string) => ({
@@ -108,7 +108,7 @@ const EditFormItemType = {
     />
   ),
   modeType: (props: any) => (
-    <NomarPicker
+    <NomarSelect
       data={[
         ['datetime', 'date', 'year', 'month', 'time'].map((item: string) => ({
           value: item,
@@ -122,7 +122,7 @@ const EditFormItemType = {
   fieldProps2: NomarInput,
   placeholder2: NomarInput,
   extraType: (props: any) => (
-    <NomarPicker
+    <NomarSelect
       data={[
         ['input', 'select'].map((item: string) => ({
           value: item,
