@@ -51,6 +51,10 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     isVertical = true;
   }
 
+  const radioChange = (e: string | number) => {
+    if (onChange && e !== initValue) onChange(e);
+  };
+
   const RadioGroup = () => (
     <Field
       name={fieldProps}
@@ -65,7 +69,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         positionType={positionType}
         radioType={radioType}
         initValue={initValue}
-        onChange={onChange}
+        onChange={radioChange}
         coverStyle={coverStyle}
         disabled={disabled}
       />
