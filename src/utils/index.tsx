@@ -55,24 +55,18 @@ export const getByteLen = (val: string) => {
 };
 
 export const resetLabel = (list: string[] = [], placeholderList: string[] = []) => {
-  // switch (list.length) {
-  //   case 0:
-  //     list.push('请选择省');
-  //     break;
-  //   case 1:
-  //     list.push('请选择市');
-  //     break;
-  //   case 2:
-  //     list.push('请选择区/县');
-  //     break;
-  //   case 3:
-  //     break;
-  //   default:
-  //     break;
-  // }
-  // return list;
-
   if (list.length === placeholderList.length) return list;
   list.push(placeholderList[list.length]);
   return list;
+};
+
+export const filterObjList = (label: string = '', data: any = [], value: string | number = '') => {
+  if (data && data.length) {
+    let filList = [];
+    filList = data.filter((it: { [x: string]: string | number }) => {
+      return it[label] === value;
+    });
+    return filList;
+  }
+  return [];
 };
