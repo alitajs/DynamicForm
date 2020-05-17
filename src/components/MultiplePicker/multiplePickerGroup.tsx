@@ -32,6 +32,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     onClick,
     leftContent = '取消',
     rightContent = '确定',
+    height,
   } = props;
 
   const [context, setContext] = useState<IDataItem[]>([]);
@@ -169,6 +170,9 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         visible={modalFlag}
         onClose={() => {
           onCancel();
+        }}
+        style={{
+          height,
         }}
         className="alitajs-dform-multiple-picker"
         animationType="slide-up"

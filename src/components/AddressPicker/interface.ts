@@ -29,4 +29,5 @@ export interface IAddressPickerProps {
   onClick?: () => void;
   leftContent?: string | React.ReactNode;
   rightContent?: string | React.ReactNode;
+  height?: number | string;
 }

@@ -34,6 +34,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     onClick,
     leftContent = '取消',
     rightContent = '确定',
+    height,
   } = props;
 
   // input 框的值
@@ -205,6 +206,9 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         visible={modalFlag}
         onClose={() => {
           onCancel();
+        }}
+        style={{
+          height,
         }}
         className="alitajs-dform-address"
         animationType="slide-up"
