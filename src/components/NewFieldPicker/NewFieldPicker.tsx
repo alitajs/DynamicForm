@@ -23,27 +23,16 @@ const radioList = [
 ];
 
 const seasons = [
-  [
-    {
-      label: '2013',
-      value: '2013',
-    },
-    {
-      label: '2014',
-      value: '2014',
-    },
-  ],
-  [
-    {
-      label: '春',
-      value: '春',
-    },
-    {
-      label: '夏',
-      value: '夏',
-    },
-  ],
+  {
+    label: '春',
+    value: '春',
+  },
+  {
+    label: '夏',
+    value: '夏',
+  },
 ];
+
 const seasonsUti = [
   [
     {
@@ -76,7 +65,7 @@ const InitFormData = [
     positionType: 'horizontal',
   },
   {
-    type: 'select',
+    type: 'picker',
     fieldProps: 'userdata',
     required: true,
     placeholder: '请选择',
