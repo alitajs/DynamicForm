@@ -32,6 +32,7 @@ title: AddressPicker
 | onClick         | 文字点击事件                                                                                                                          | function                   | null        | 否           |
 | leftContent     | 弹框头部左侧文字                                                                                                                      | `string` or `node`         | `取消`      | 否           |
 | rightContent    | 弹框头部右侧文字                                                                                                                      | `string` or `node`         | `确定`      | 否           |
+| height          | 固定弹框高度                                                                                                                          | `number` or `string`       | null        | 否           |
 
 
 ## 备注

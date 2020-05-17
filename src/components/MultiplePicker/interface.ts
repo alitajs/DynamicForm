@@ -26,4 +26,5 @@ export interface IMultiplePickerProps {
   onClick?: () => void;
   leftContent?: React.ReactNode | string;
   rightContent?: React.ReactNode | string;
+  height?: number | string;
 }
