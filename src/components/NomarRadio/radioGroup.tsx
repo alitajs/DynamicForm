@@ -15,7 +15,7 @@ export interface INomarRadioGroupProps {
   radioType?: 'horizontal' | 'vertical';
   initValue?: string | number;
   disabled?: boolean;
-  onChange?: (currentActiveLink: string | number) => void;
+  onChange: (currentActiveLink: string | number | undefined, flag: string) => void;
   coverStyle?: React.CSSProperties;
 }
 
@@ -37,12 +37,14 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
   }
 
   useEffect(() => {
+    let flag = false;
     const dataList = JSON.parse(JSON.stringify(data));
     setContext(
       [...dataList].map(item => {
         const initItem = item;
         if (initItem.value === initValue) {
           initItem.flag = true;
+          flag = true;
         } else {
           initItem.flag = false;
         }
@@ -50,12 +52,13 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
         return initItem;
       }),
     );
+    if (!flag) onChange(undefined, 'init');
   }, [data, initValue]);
 
   const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
     e.stopPropagation();
     if (disabled) return;
-    if (onChange) onChange(dataItem.value);
+    onChange(dataItem.value, 'change');
     setContext(
       context.map((item: IDataItem) => {
         const selItem = item;

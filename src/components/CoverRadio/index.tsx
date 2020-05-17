@@ -21,7 +21,7 @@ interface ICoverRadioProps {
   hasStar?: boolean;
   rules?: Rule[];
   disabled?: boolean;
-  onChange?: (currentActiveLink: string | number) => void;
+  onChange?: (currentActiveLink: string | number | undefined) => void;
   subTitle?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
@@ -50,8 +50,9 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     isVertical = true;
   }
 
-  const radioChange = (e: string | number) => {
-    if (onChange && e !== initValue) onChange(e);
+  const radioChange = (e: string | number | undefined, flag?: string) => {
+    console.log(flag);
+    if (onChange && e !== initValue && flag === 'change') onChange(e);
   };
 
   const RadioGroup = () => (

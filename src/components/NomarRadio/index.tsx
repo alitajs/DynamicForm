@@ -23,7 +23,7 @@ export interface INomarRadioProps {
   hasStar?: boolean;
   radioType?: 'horizontal' | 'vertical';
   subTitle?: string | React.ReactNode;
-  onChange?: (currentActiveLink: string | number) => void;
+  onChange?: (currentActiveLink: string | number | undefined) => void;
   hidden?: boolean;
   disabled?: boolean;
 }
@@ -51,8 +51,8 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     isVertical = true;
   }
 
-  const radioChange = (e: string | number) => {
-    if (onChange && e !== initValue) onChange(e);
+  const radioChange = (e: string | number | undefined, flag: string) => {
+    if (onChange && e !== initValue && flag === 'change') onChange(e);
   };
 
   const RadioGroup = () => (
