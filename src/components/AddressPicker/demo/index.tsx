@@ -118,7 +118,6 @@ const Page: FC = () => {
     {
       type: 'addressPicker',
       fieldProps: 'homeAddr',
-      required: true,
       title: '居住地址',
       placeholder: '选择当前居住城市',
       level: 3,
@@ -142,6 +141,7 @@ const Page: FC = () => {
       fieldProps: 'workAddr',
       title: '工作地址',
       // disabled: true,
+      required: true,
       placeholder: '请选择',
       positionType: 'vertical',
       level: 4,

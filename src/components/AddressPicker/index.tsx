@@ -5,7 +5,7 @@ import { IAddressPickerProps } from './interface';
 import '../../styles/index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = props => {
-  const [initValue, setInitValue] = useState([]);
+  const [initValue, setInitValue] = useState(undefined);
 
   const {
     fieldProps,

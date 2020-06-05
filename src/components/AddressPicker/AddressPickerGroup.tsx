@@ -22,10 +22,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     onChange,
     level = 3,
     placeholderList = [],
-    initValue = {
-      label: [],
-      value: [],
-    },
+    initValue = undefined,
     required = false,
     hasStar = true,
     fieldProps,
@@ -60,7 +57,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   const isVertical = positionType === 'vertical';
 
   useEffect(() => {
-    if (onChange) onChange({ label: [], value: [] });
+    if (onChange) onChange(undefined);
   }, []);
 
   useEffect(() => {
@@ -78,7 +75,11 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
 
   useEffect(() => {
     if (!isEqual(preInitValue, initValue)) {
-      const { label = [], value = [] } = initValue;
+      let newInitValue = initValue;
+      if (!newInitValue) {
+        newInitValue = { label: [], value: [] };
+      }
+      const { label = [], value = [] } = newInitValue;
       setDataList(
         data.map(item => {
           const newItem = item;
@@ -94,7 +95,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
       if (onChangeLevel) onChangeLevel(value);
       setInputLabel(label.join(','));
       setValueList(value);
-      setPreInitValue(initValue);
+      setPreInitValue(newInitValue);
     }
   }, [initValue]);
 
@@ -111,7 +112,13 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
     if (nowLevel !== level) newLabelList.pop();
     setInputLabel(newLabelList.join(','));
-    if (onChange) onChange({ label: newLabelList, value: valueList });
+    if (onChange) {
+      if (newLabelList.length) {
+        onChange({ label: newLabelList, value: valueList });
+      } else {
+        onChange(undefined);
+      }
+    }
     setModalFlag(false);
   };
 
