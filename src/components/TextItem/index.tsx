@@ -38,15 +38,15 @@ const TextItem: FC<ITextItemProps> = props => {
           style={{
             flex: '1',
           }}
-          onClick={() => {
-            inputItemClick();
-          }}
         >
           <div
             className={value ? 'alitajs-dform-text-text' : 'alitajs-dform-placeholder'}
             style={{
               textAlign: isVertical ? 'left' : 'right',
               ...coverStyle,
+            }}
+            onClick={() => {
+              inputItemClick();
             }}
           >
             {value || placeholder}
