@@ -33,6 +33,7 @@ title: AddressPicker
 | leftContent     | 弹框头部左侧文字                                                                                                                      | `string` or `node`         | `取消`      | 否           |
 | rightContent    | 弹框头部右侧文字                                                                                                                      | `string` or `node`         | `确定`      | 否           |
 | height          | 固定弹框高度                                                                                                                          | `number` or `string`       | null        | 否           |
+| noData          | 无数据时展示的效果                                                                                                                    | string or node             | '暂无数据'  | 否           |
 
 
 ## 备注

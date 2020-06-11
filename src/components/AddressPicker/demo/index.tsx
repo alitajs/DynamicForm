@@ -102,7 +102,7 @@ const Page: FC = () => {
         }));
         break;
       case 3:
-        data = streetData;
+        data = [];
         break;
       case 4:
         data = streetData;
@@ -151,6 +151,7 @@ const Page: FC = () => {
         // eslint-disable-next-line no-console
         resetWorkAddrList(values);
       },
+      noData: <div>暂无街道数据</div>,
     },
   ] as IFormItemProps[];
 
