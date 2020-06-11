@@ -57,11 +57,32 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
 
   const isVertical = positionType === 'vertical';
 
+  const onConfirm = () => {
+    const newLabelList = JSON.parse(JSON.stringify(labelList));
+    if (nowLevel !== level) newLabelList.pop();
+    setInputLabel(newLabelList.join(','));
+    if (onChange) {
+      if (newLabelList.length) {
+        onChange({ label: newLabelList, value: valueList });
+      } else {
+        onChange(undefined);
+      }
+    }
+    setModalFlag(false);
+  };
+
   useEffect(() => {
     if (onChange) onChange(undefined);
   }, []);
 
   useEffect(() => {
+    if (data.length === 0 && valueList.length) {
+      onConfirm();
+      const newLabelList = JSON.parse(JSON.stringify(labelList));
+      newLabelList.pop();
+      setLabelList(newLabelList);
+      setNowLevel(nowLevel - 1);
+    }
     if (data.length === 0) return;
     setDataList(
       data.map(item => {
@@ -109,20 +130,6 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     setModalFlag(false);
   };
 
-  const onConfirm = () => {
-    const newLabelList = JSON.parse(JSON.stringify(labelList));
-    if (nowLevel !== level) newLabelList.pop();
-    setInputLabel(newLabelList.join(','));
-    if (onChange) {
-      if (newLabelList.length) {
-        onChange({ label: newLabelList, value: valueList });
-      } else {
-        onChange(undefined);
-      }
-    }
-    setModalFlag(false);
-  };
-
   const listClick = (val: any) => {
     // 选中数据的时候刷新列表
     setDataList(
@@ -160,6 +167,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     setLabelList(resetLabel(newList, placeholderList));
     setValueList(newValueList);
     // 调用改变层级的事件给用户
+    console.log('onChangeLevel ------ listClick');
     if (onChangeLevel) onChangeLevel(newValueList);
   };
 
@@ -175,6 +183,15 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     setValueList(newValueList);
     // 调用改变层级的事件给用户
     if (onChangeLevel) onChangeLevel(newValueList);
+  };
+
+  const inputClick = () => {
+    if (onClick) onClick();
+    if (data.length === 0) {
+      const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, valueList.length - 1);
+      if (onChangeLevel) onChangeLevel(newValueList);
+    }
+    openMoal();
   };
 
   const listReverse = [];
@@ -196,10 +213,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         readOnly
         coverStyle={coverStyle}
         labelNumber={labelNumber}
-        onClick={() => {
-          if (onClick) onClick();
-          openMoal();
-        }}
+        onClick={inputClick}
         onChange={e => {
           setInputLabel(e.target.value);
         }}
