@@ -195,13 +195,13 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
 
   const inputClick = () => {
     if (onClick) onClick();
-    if (data.length === 0) {
+    if (data.length === 0 && nowLevel !== level) {
       const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, valueList.length - 1);
       if (onChangeLevel) onChangeLevel(newValueList);
       if (newValueList.length) {
         setNowLevel(newValueList.length);
       }
-    }
+    } else if (onChangeLevel) onChangeLevel(valueList);
     openMoal();
   };
 
