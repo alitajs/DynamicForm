@@ -101,6 +101,8 @@ export interface IFormItemProps {
   rightContent?: string | React.ReactNode;
   onClick?: any;
   height?: number | string;
+  noData?: string | React.ReactNode;
+  loading?: boolean;
 }
 
 interface CardDForm extends CardHeaderPropsType {
