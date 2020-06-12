@@ -102,7 +102,7 @@ const Page: FC = () => {
         }));
         break;
       case 3:
-        data = [];
+        data = streetData;
         break;
       default:
         break;

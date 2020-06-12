@@ -116,9 +116,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
       );
       const newLabelList = resetLabel(JSON.parse(JSON.stringify([...label])), placeholderList);
       setNowLevel(value.length);
-      if (data.length === 0) {
+      if (data.length === 0 && value.length !== level) {
         newLabelList.pop();
-        // setNowLevel(value.length - 1);
       }
       setLabelList(newLabelList);
       setInputLabel(label.join(','));
@@ -195,13 +194,13 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
 
   const inputClick = () => {
     if (onClick) onClick();
-    if (data.length === 0 && nowLevel !== level) {
+    if (data.length === 0) {
       const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, valueList.length - 1);
       if (onChangeLevel) onChangeLevel(newValueList);
       if (newValueList.length) {
         setNowLevel(newValueList.length);
       }
-    } else if (onChangeLevel) onChangeLevel(valueList);
+    }
     openMoal();
   };
 
