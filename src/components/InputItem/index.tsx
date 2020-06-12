@@ -15,6 +15,8 @@ const InputItem: FC<IInputItemProps> = props => {
     coverStyle = {},
   } = props;
 
+  let inputRef: HTMLInputElement | null;
+
   const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
     'am-input-label-2': labelNumber === 2,
     'am-input-label-3': labelNumber === 3,
@@ -47,11 +49,17 @@ const InputItem: FC<IInputItemProps> = props => {
         >
           <input
             type="text"
+            // eslint-disable-next-line no-return-assign
+            ref={el => (inputRef = el)}
             value={value}
             readOnly={readOnly}
             style={{
               textAlign: isVertical ? 'left' : 'right',
               ...coverStyle,
+            }}
+            unselectable="on"
+            onFocus={() => {
+              inputRef.blur();
             }}
             onChange={e => {
               inputItemChange(e);
