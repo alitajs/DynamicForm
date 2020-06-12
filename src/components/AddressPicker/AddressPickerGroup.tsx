@@ -32,7 +32,8 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     leftContent = '取消',
     rightContent = '确定',
     height,
-    noData = '暂无数据',
+    noData = '',
+    loading = true,
   } = props;
 
   // input 框的值
@@ -294,7 +295,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
               ))}
             </Flex>
           </div>
-          {data.length === 0 && <div>{noData}</div>}
+          {data.length === 0 && !loading && <div>{noData}</div>}
           <div
             className="alitajs-dform-address-list"
             style={{ display: data.length ? '' : 'none' }}

@@ -34,6 +34,7 @@ title: AddressPicker
 | rightContent    | 弹框头部右侧文字                                                                                                                      | `string` or `node`         | `确定`      | 否           |
 | height          | 固定弹框高度                                                                                                                          | `number` or `string`       | null        | 否           |
 | noData          | 无数据时展示的效果                                                                                                                    | string or node             | '暂无数据'  | 否           |
+| loading         | loading 为 `true` 时，noData 数据不会展示                                                                                             | boolean                    | true        | 否           |
 
 
 ## 备注
