@@ -102,7 +102,7 @@ const Page: FC = () => {
         }));
         break;
       case 3:
-        data = [];
+        data = streetData;
         break;
       case 4:
         data = streetData;
@@ -149,7 +149,6 @@ const Page: FC = () => {
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
-        console.log(values);
         resetWorkAddrList(values);
       },
       noData: <div>暂无街道数据</div>,
