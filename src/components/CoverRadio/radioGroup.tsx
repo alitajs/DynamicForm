@@ -73,7 +73,6 @@ const RadioGroup: FC<IRadioGroup> = props => {
   const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
     e.stopPropagation();
     if (disabled) return;
-    onChange(dataItem.value, 'change');
     setContext(
       context.map((item: IDataItem) => {
         const selItem = item;
