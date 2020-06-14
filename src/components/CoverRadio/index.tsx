@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
+import { IAliasProps } from '../../DynamicForm';
 import '../../styles/index.less';
 
 interface IDataItem {
@@ -25,10 +26,13 @@ interface ICoverRadioProps {
   subTitle?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
+  alias?: IAliasProps;
 }
 
 const NomarTab: FC<ICoverRadioProps> = props => {
   const [initValue, setInitValue] = useState('');
+  const [aliasData, setAliasData] = useState<any[]>([]);
+
   const {
     coverStyle,
     fieldProps,
@@ -43,15 +47,28 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     radioType = 'horizontal',
     hidden = false,
     subTitle,
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
   } = props;
 
   let isVertical = positionType === 'vertical';
+  const { label = 'label', value = 'value' } = alias;
+
+  useEffect(() => {
+    const newData = data.map(item => ({
+      label: item[label],
+      value: item[value],
+    }));
+    setAliasData(newData);
+  }, [data]);
+
   if (radioType === 'vertical') {
     isVertical = true;
   }
 
   const radioChange = (e: string | number | undefined, flag?: string) => {
-    console.log(flag);
     if (onChange && e !== initValue && flag === 'change') onChange(e);
   };
 
@@ -65,7 +82,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
       }}
     >
       <CoverRadioGroup
-        data={data}
+        data={aliasData}
         positionType={positionType}
         radioType={radioType}
         initValue={initValue}

@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
 import NomarRadioGroup from './radioGroup';
+import { IAliasProps } from '../../DynamicForm';
 import '../../styles/index.less';
 
 interface radioItem {
@@ -26,10 +27,13 @@ export interface INomarRadioProps {
   onChange?: (currentActiveLink: string | number | undefined) => void;
   hidden?: boolean;
   disabled?: boolean;
+  alias?: IAliasProps;
 }
 
 const NomarRadio: FC<INomarRadioProps> = props => {
   const [initValue, setInitValue] = useState('');
+  const [aliasData, setAliasData] = useState<any[]>([]);
+
   const {
     coverStyle,
     fieldProps,
@@ -44,9 +48,23 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     onChange,
     hidden = false,
     disabled = false,
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
   } = props;
 
   let isVertical = positionType === 'vertical';
+  const { label = 'label', value = 'value' } = alias;
+
+  useEffect(() => {
+    const newData = data.map(item => ({
+      label: item[label],
+      value: item[value],
+    }));
+    setAliasData(newData);
+  }, [data]);
+
   if (radioType === 'vertical') {
     isVertical = true;
   }
@@ -65,7 +83,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
       }}
     >
       <NomarRadioGroup
-        data={data}
+        data={aliasData}
         positionType={positionType}
         radioType={radioType}
         initValue={initValue}

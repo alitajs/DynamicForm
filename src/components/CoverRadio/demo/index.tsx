@@ -8,8 +8,8 @@ import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
 
 const sexList = [
-  { label: '男', value: 'man' },
-  { label: '女', value: 'woman' },
+  { sexName: '男', sexId: 'man' },
+  { sexName: '女', sexId: 'woman' },
 ];
 
 const foodList = [
@@ -57,6 +57,10 @@ const Page = () => {
       onChange: (val: any) => {
         // eslint-disable-next-line no-console
         console.log(val);
+      },
+      alias: {
+        label: 'sexName',
+        value: 'sexId',
       },
     },
     {

@@ -34,24 +34,24 @@ const dayList = [
 
 const foodList = [
   {
-    label: '宫保鸡丁',
-    value: '宫保鸡丁',
+    foodName: '宫保鸡丁',
+    foodId: '宫保鸡丁',
   },
   {
-    label: '可乐鸡翅',
-    value: '可乐鸡翅',
+    foodName: '可乐鸡翅',
+    foodId: '可乐鸡翅',
   },
   {
-    label: '爆炒虾仁',
-    value: '爆炒虾仁',
+    foodName: '爆炒虾仁',
+    foodId: '爆炒虾仁',
   },
   {
-    label: '清蒸小黄鱼',
-    value: '清蒸小黄鱼',
+    foodName: '清蒸小黄鱼',
+    foodId: '清蒸小黄鱼',
   },
   {
-    label: '红烧肉',
-    value: '红烧肉',
+    foodName: '红烧肉',
+    foodId: '红烧肉',
   },
 ];
 
@@ -102,12 +102,16 @@ const Page: FC<PageProps> = () => {
       data: foodList,
       title: '喜欢的食物',
       radioType: 'vertical',
+      alias: {
+        label: 'foodId',
+        value: 'foodName',
+      },
     },
   ] as IFormItemProps[];
   const formsValues = {
     userRadio1: 'yes',
-    userRadio2: '晴',
     userRadio3: 'no',
+    userRadio4: '爆炒虾仁',
   };
   const formProps = {
     data: formsData,
