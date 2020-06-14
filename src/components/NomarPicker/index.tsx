@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
 import Field from '../Field';
@@ -6,6 +6,7 @@ import '../../styles/index.less';
 
 const NomarPicker: FC<INomarPickerProps> = props => {
   const [initValue, setInitValue] = useState('');
+  const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
     fieldProps,
@@ -17,9 +18,23 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     subTitle,
     hidden = false,
     onChange,
+    data,
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
   } = props;
 
   const isVertical = positionType === 'vertical';
+  const { label = 'label', value = 'value' } = alias;
+
+  useEffect(() => {
+    const newData = data.map(item => ({
+      label: item[label],
+      value: item[value],
+    }));
+    setAliasData(newData);
+  }, [data]);
 
   const fieldChange = (values: any, flag: string) => {
     if (flag === 'init') return;
@@ -48,7 +63,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <PickerGroup {...props} initValue={initValue} onChange={fieldChange}>
+            <PickerGroup {...props} initValue={initValue} onChange={fieldChange} data={aliasData}>
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
               <span id={fieldProps} className="alitajs-dform-title">
                 {title}

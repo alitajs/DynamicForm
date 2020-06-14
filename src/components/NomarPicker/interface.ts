@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
+import { IAliasProps } from '../../DynamicForm';
 
 export interface IDataItem {
   label: string;
@@ -22,4 +23,5 @@ export interface INomarPickerProps {
   disabled?: boolean;
   labelNumber?: number;
   onClick?: (val: string | number) => void;
+  alias?: IAliasProps;
 }

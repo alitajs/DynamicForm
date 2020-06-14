@@ -29,6 +29,11 @@ import {
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
 
+export interface IAliasProps {
+  label: string;
+  value: string | number;
+}
+
 const FormItemType = {
   input: NomarInput,
   select: NomarSelect,
@@ -103,6 +108,7 @@ export interface IFormItemProps {
   height?: number | string;
   noData?: string | React.ReactNode;
   loading?: boolean;
+  alias?: IAliasProps;
 }
 
 interface CardDForm extends CardHeaderPropsType {

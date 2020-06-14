@@ -19,6 +19,21 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
+  const aliasCityList = [
+    {
+      cityId: '深圳',
+      cityName: 'shenzhen',
+    },
+    {
+      cityId: '杭州',
+      cityName: 'hangzhou',
+    },
+    {
+      cityId: '广州',
+      cityName: 'guangzhou',
+    },
+  ];
+
   const cityList = [
     {
       label: '北京',
@@ -27,18 +42,6 @@ const Page: FC = () => {
     {
       label: '上海',
       value: 'shanghai',
-    },
-    {
-      label: '广州',
-      value: 'guangzhou',
-    },
-    {
-      label: '深圳',
-      value: 'shenzhen',
-    },
-    {
-      label: '杭州',
-      value: 'hangzhou',
     },
     {
       label: '福州',
@@ -51,10 +54,14 @@ const Page: FC = () => {
       type: 'picker',
       fieldProps: 'myCity',
       required: true,
-      data: cityList,
+      data: aliasCityList,
       title: '我喜欢的城市',
       labelNumber: 7,
       placeholder: '请选择我喜欢的城市',
+      alias: {
+        label: 'cityId',
+        value: 'cityName',
+      },
     },
     {
       type: 'picker',
