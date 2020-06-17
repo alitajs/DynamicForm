@@ -7,13 +7,13 @@ import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
 
 const fruitsList = [
-  { label: '苹果', value: '苹果' },
-  { label: '香蕉', value: '香蕉' },
-  { label: '橙子', value: '橙子' },
-  { label: '西瓜', value: '西瓜' },
-  { label: '哈密瓜', value: '哈密瓜' },
-  { label: '菠萝', value: '菠萝' },
-  { label: '香梨', value: '香梨' },
+  { foodId: 'apple', foodName: '苹果' },
+  { foodId: 'banana', foodName: '香蕉' },
+  { foodId: 'orange', foodName: '橙子' },
+  { foodId: 'watermelon', foodName: '西瓜' },
+  { foodId: 'hami', foodName: '哈密瓜' },
+  { foodId: 'pineapple', foodName: '菠萝' },
+  { foodId: 'pear', foodName: '香梨' },
 ];
 
 const Page: FC = () => {
@@ -35,11 +35,15 @@ const Page: FC = () => {
       data: fruitsList,
       fieldProps: 'fruit',
       chunk: 2,
+      alias: {
+        label: 'foodName',
+        value: 'foodId',
+      },
     },
   ] as IFormItemProps[];
 
   const formsValues = {
-    fruit: ['西瓜', '橙子'],
+    fruit: ['watermelon', 'orange'],
   };
 
   const formProps = {
