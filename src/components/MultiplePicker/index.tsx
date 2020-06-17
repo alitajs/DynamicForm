@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
@@ -6,6 +6,8 @@ import '../../styles/index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = props => {
   const [initValue, setInitValue] = useState([]);
+  const [aliasData, setAliasData] = useState<any[]>([]);
+
   const {
     fieldProps,
     rules,
@@ -16,8 +18,22 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
     subTitle,
     hidden = false,
     onChange,
+    data = [],
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
   } = props;
   const isVertical = positionType === 'vertical';
+  const { label = 'label', value = 'value' } = alias;
+
+  useEffect(() => {
+    const newData = data.map(item => ({
+      label: item[label],
+      value: item[value],
+    }));
+    setAliasData(newData);
+  }, [data]);
 
   const fieldChange = (values: any, flag: string) => {
     if (flag === 'init') return;
@@ -47,7 +63,12 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <MultiplePickerGroup {...props} initValue={initValue} onChange={fieldChange}>
+            <MultiplePickerGroup
+              {...props}
+              data={aliasData}
+              initValue={initValue}
+              onChange={fieldChange}
+            >
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
               <span id={fieldProps} className="alitajs-dform-title">
                 {title}
