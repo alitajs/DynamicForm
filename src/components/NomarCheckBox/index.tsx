@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import CheckBoxGroup from './checkBoxgroup';
+import { IAliasProps } from '../../DynamicForm';
 import '../../styles/index.less';
 
 interface INomarCheckBoxProps {
@@ -17,10 +18,12 @@ interface INomarCheckBoxProps {
   disabled?: boolean;
   hidden?: boolean;
   chunk?: number;
+  alias?: IAliasProps;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
   const [initValue, setInitValue] = useState([]);
+  const [aliasData, setAliasData] = useState<any[]>([]);
   const {
     coverStyle,
     fieldProps,
@@ -34,7 +37,21 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     disabled = false,
     hidden = false,
     chunk = 1,
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
   } = props;
+
+  const { label = 'label', value = 'value' } = alias;
+
+  useEffect(() => {
+    const newData = data.map((item: any) => ({
+      label: item[label],
+      value: item[value],
+    }));
+    setAliasData(newData);
+  }, [data]);
 
   return (
     <>
@@ -56,7 +73,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
             }}
           >
             <CheckBoxGroup
-              data={data}
+              data={aliasData}
               onChange={onChange}
               coverStyle={coverStyle}
               initValue={initValue}
