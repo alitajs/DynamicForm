@@ -20,24 +20,24 @@ const Page: FC = () => {
 
   const foodList = [
     {
-      label: '宫保鸡丁',
-      value: '宫保鸡丁',
+      foodName: '宫保鸡丁',
+      foodId: '宫保鸡丁',
     },
     {
-      label: '可乐鸡翅',
-      value: '可乐鸡翅',
+      foodName: '可乐鸡翅',
+      foodId: '可乐鸡翅',
     },
     {
-      label: '爆炒虾仁',
-      value: '爆炒虾仁',
+      foodName: '爆炒虾仁',
+      foodId: '爆炒虾仁',
     },
     {
-      label: '清蒸小黄鱼',
-      value: '清蒸小黄鱼',
+      foodName: '清蒸小黄鱼',
+      foodId: '清蒸小黄鱼',
     },
     {
-      label: '红烧肉',
-      value: '红烧肉',
+      foodName: '红烧肉',
+      foodId: '红烧肉',
     },
   ];
 
@@ -54,6 +54,10 @@ const Page: FC = () => {
         // eslint-disable-next-line no-console
         console.log(e);
       },
+      alias: {
+        label: 'foodName',
+        value: 'foodId',
+      },
     },
     {
       type: 'multiplePicker',
@@ -64,6 +68,10 @@ const Page: FC = () => {
       placeholder: '请选择',
       positionType: 'vertical',
       maxValueLength: 1,
+      alias: {
+        label: 'foodName',
+        value: 'foodId',
+      },
     },
   ] as IFormItemProps[];
   const formsValues = {
