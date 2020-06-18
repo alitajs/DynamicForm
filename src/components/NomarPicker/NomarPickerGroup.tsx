@@ -13,6 +13,7 @@ interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
 const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   const [visible, setvisible] = useState<boolean>(false);
   const [pickerLabel, setPickerLabel] = useState<string>('');
+  const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const {
     data = [],
     title,
@@ -31,9 +32,13 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   const isVertical = positionType === 'vertical';
 
   useEffect(() => {
-    const filterList = filterObjList('value', data, initValue);
+    if (initValue) setPreValue(initValue);
+    let nowValue = initValue;
+    if (!initValue && preValue) nowValue = preValue;
+    const filterList = filterObjList('value', data, nowValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
+      onChange(nowValue, 'init');
     } else {
       setPickerLabel('');
       onChange(undefined, 'init');
@@ -42,9 +47,13 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
 
   useEffect(() => {
     if (data && data.length) {
-      const filterList = filterObjList('value', data, initValue);
+      let nowValue = initValue;
+      if (!initValue && preValue) nowValue = preValue;
+      const filterList = filterObjList('value', data, nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
+        setPreValue(initValue);
+        onChange(nowValue, 'init');
       } else {
         onChange(undefined, 'init');
         setPickerLabel('');
