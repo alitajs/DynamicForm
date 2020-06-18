@@ -30,6 +30,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
     coverStyle,
   } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
+  const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
 
   let isVertical = positionType === 'vertical';
   if (radioType === 'vertical') {
@@ -37,12 +38,15 @@ const RadioGroup: FC<IRadioGroup> = props => {
   }
 
   useEffect(() => {
+    if (initValue) setPreValue(initValue);
     let flag = false;
+    let nowValue = initValue;
+    if (!initValue && preValue) nowValue = preValue;
     const dataList = JSON.parse(JSON.stringify(data));
     setContext(
       [...dataList].map(item => {
         const initItem = item;
-        if (initItem.value === initValue) {
+        if (initItem.value === nowValue) {
           initItem.flag = true;
           flag = true;
         } else {
@@ -52,7 +56,11 @@ const RadioGroup: FC<IRadioGroup> = props => {
         return initItem;
       }),
     );
-    if (!flag) onChange(undefined, 'init');
+    if (!flag) {
+      onChange(undefined, 'init');
+    } else {
+      onChange(nowValue, 'init');
+    }
   }, [data, initValue]);
 
   const radioMove = (flag: boolean, val: IDataItem) => {

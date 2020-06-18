@@ -1,8 +1,4 @@
-/**
- * title: 基础 单选框
- * desc: 表单使用 demo
- */
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
 
@@ -55,10 +51,29 @@ const foodList = [
   },
 ];
 
-interface PageProps {}
-
-const Page: FC<PageProps> = () => {
+const DfromRadioTextPage: FC = () => {
   const [form] = useForm();
+  const [delayData, setDelayData] = useState<any[]>([]);
+  const [delayValData, setDelayValData] = useState<any[]>([]);
+  const [formVal, setForVal] = useState<any>({});
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDelayData(radioList);
+    }, 3000);
+    setTimeout(() => {
+      setDelayValData(foodList);
+    }, 1000);
+    setTimeout(() => {
+      setForVal({
+        delayData: 'yes',
+        delayValue: '红烧肉',
+        userRadio1: 'xxx',
+        userRadio2: '雨',
+      });
+    }, 2000);
+  }, []);
+
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -67,7 +82,7 @@ const Page: FC<PageProps> = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-  const formsData = [
+  const formsData = ([
     {
       type: 'radio',
       fieldProps: 'userRadio1',
@@ -86,36 +101,49 @@ const Page: FC<PageProps> = () => {
       data: dayList,
       positionType: 'vertical',
       title: '天气情况',
+      onChange: (e: string | number) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      },
     },
     {
       type: 'radio',
-      fieldProps: 'userRadio3',
+      fieldProps: 'delayData',
       required: true,
-      data: radioList,
+      data: delayData,
       title: '发票(只读)',
-      disabled: true,
+      // disabled: true,
+      onChange: (e: string | number) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      },
     },
     {
       type: 'radio',
-      fieldProps: 'userRadio4',
+      fieldProps: 'delayValue',
       required: true,
-      data: foodList,
+      data: delayValData,
       title: '喜欢的食物',
       radioType: 'vertical',
+      onChange: (e: string | number) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      },
       alias: {
         label: 'foodId',
         value: 'foodName',
       },
     },
-  ] as IFormItemProps[];
+  ] as unknown) as IFormItemProps[];
+
   const formsValues = {
-    userRadio1: 'yes',
-    userRadio3: 'no',
-    userRadio4: '爆炒虾仁',
+    userRadio1: 'xxx',
   };
+
   const formProps = {
     data: formsData,
-    formsValues,
+    // formsValues,
+    formsValues: formVal,
     form,
     onFinishFailed,
     onFinish,
@@ -132,4 +160,4 @@ const Page: FC<PageProps> = () => {
   );
 };
 
-export default Page;
+export default DfromRadioTextPage;
