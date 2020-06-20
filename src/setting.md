@@ -38,13 +38,13 @@ theme: {
 }
 ```
 
-### placeholader 颜色
+### placeholder 颜色
 
 `input`, `extraInput`, `area` 等 `palceholder` 的颜色：
 
 ```js
 theme: {
-  '@alita-dform-placeholader': '#888',
+  '@alita-dform-placeholder': '#888',
 }
 ```
 
