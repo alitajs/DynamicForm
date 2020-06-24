@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
 
@@ -53,26 +53,6 @@ const foodList = [
 
 const DfromRadioTextPage: FC = () => {
   const [form] = useForm();
-  const [delayData, setDelayData] = useState<any[]>([]);
-  const [delayValData, setDelayValData] = useState<any[]>([]);
-  const [formVal, setForVal] = useState<any>({});
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDelayData(radioList);
-    }, 3000);
-    setTimeout(() => {
-      setDelayValData(foodList);
-    }, 1000);
-    setTimeout(() => {
-      setForVal({
-        delayData: 'yes',
-        delayValue: '红烧肉',
-        userRadio1: 'xxx',
-        userRadio2: '雨',
-      });
-    }, 2000);
-  }, []);
 
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -82,7 +62,7 @@ const DfromRadioTextPage: FC = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-  const formsData = ([
+  const formsData = [
     {
       type: 'radio',
       fieldProps: 'userRadio1',
@@ -98,52 +78,33 @@ const DfromRadioTextPage: FC = () => {
       type: 'radio',
       fieldProps: 'userRadio2',
       required: true,
+      disabled: true,
       data: dayList,
       positionType: 'vertical',
       title: '天气情况',
-      onChange: (e: string | number) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      },
     },
     {
       type: 'radio',
-      fieldProps: 'delayData',
+      fieldProps: 'userRadio3',
       required: true,
-      data: delayData,
-      title: '发票(只读)',
-      // disabled: true,
-      onChange: (e: string | number) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      },
-    },
-    {
-      type: 'radio',
-      fieldProps: 'delayValue',
-      required: true,
-      data: delayValData,
+      data: foodList,
       title: '喜欢的食物',
       radioType: 'vertical',
-      onChange: (e: string | number) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      },
       alias: {
         label: 'foodId',
         value: 'foodName',
       },
     },
-  ] as unknown) as IFormItemProps[];
+  ] as IFormItemProps[];
 
   const formsValues = {
-    userRadio1: 'xxx',
+    userRadio2: '雨',
+    userRadio3: '红烧肉',
   };
 
   const formProps = {
     data: formsData,
-    // formsValues,
-    formsValues: formVal,
+    formsValues,
     form,
     onFinishFailed,
     onFinish,
