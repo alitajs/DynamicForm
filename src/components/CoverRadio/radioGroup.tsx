@@ -56,6 +56,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
         return initItem;
       }),
     );
+    if (initValue === preValue) return;
     if (!flag) {
       onChange(undefined, 'init');
     } else {
