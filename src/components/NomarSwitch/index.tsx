@@ -39,7 +39,7 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
             <Field
               name={fieldProps}
               valuePropName="checked"
-              rules={rules || [{ required, message: `请输入${title}` }]}
+              rules={rules || [{ required, message: `请选择${title}` }]}
             >
               <Switch {...otherProps} />
             </Field>

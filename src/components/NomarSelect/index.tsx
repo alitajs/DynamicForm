@@ -60,7 +60,7 @@ const NomarPicker: FC<INomarSelectProps> = props => {
               if (onClick) onClick();
             }}
           >
-            <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
+            <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
               <Picker
                 cascade={false}
                 {...otherProps}
