@@ -31,7 +31,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
     placeholder2 = '结束时间',
     required = false,
     modeType = 'date',
-    rules = [],
+    rules,
     title,
     minDate,
     maxDate,
