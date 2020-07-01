@@ -133,6 +133,7 @@ export interface IDynamicFormProps {
   isDev?: boolean; // 手动声明是开发模式
   onValuesChange?: (values: any) => void; // 字段改变时抛出事件
   autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
+  failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
 }
 
 const nodeEnvIsDev = process.env.NODE_ENV === 'development';
@@ -146,18 +147,20 @@ export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
 export const defaultFailed = (
   errorInfo: ValidateErrorEntity,
   onFinishFailed?: (errorInfo: ValidateErrorEntity) => void,
+  failScroll?: boolean,
 ) => {
   if (!errorInfo || !errorInfo.errorFields || errorInfo.errorFields.length === 0) {
     if (onFinishFailed) onFinishFailed(errorInfo);
     return;
   }
   const scrollToField = (fieldKey: any) => {
-    const labelNode = document.getElementById(`aliat-dform-${fieldKey}`);
+    const labelNode = document.getElementById(`alita-dform-${fieldKey}`);
     if (labelNode) {
-      labelNode.scrollIntoView(true);
+      // labelNode.scrollIntoView(true);
+      labelNode.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
     }
   };
-  scrollToField(errorInfo.errorFields[0].name[0]);
+  if (failScroll) scrollToField(errorInfo.errorFields[0].name[0]);
   if (onFinishFailed) onFinishFailed(errorInfo);
 };
 
@@ -263,6 +266,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   onValuesChange,
   isDev,
   autoLineFeed = true,
+  failScroll = true,
 }) => {
   useEffect(() => {
     form.setFieldsValue(formsValues as Store);
@@ -282,7 +286,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         initialValues={formsValues}
         onFinish={onFinish}
         onFinishFailed={(errorInfo: ValidateErrorEntity) =>
-          defaultFailed(errorInfo, onFinishFailed)
+          defaultFailed(errorInfo, onFinishFailed, failScroll)
         }
         onValuesChange={onValuesChange}
       >

@@ -101,7 +101,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={fieldProps} className="alitajs-dform-title">
+              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                 {title}
               </span>
               {subTitle}
@@ -115,7 +115,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           >
             <List.Item key={fieldProps} extra={RadioGroup()}>
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={fieldProps} className="alitajs-dform-title">
+              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                 {title}
               </span>
             </List.Item>
