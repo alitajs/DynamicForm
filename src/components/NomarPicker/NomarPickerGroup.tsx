@@ -92,6 +92,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
         </span>
       </InputItem>
       <Picker
+        title={title}
         visible={visible}
         data={data}
         cols={1}
