@@ -161,7 +161,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         readOnly
       >
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={fieldProps} className="alitajs-dform-title">
+        <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
           {title}
         </span>
       </InputItem>

@@ -59,7 +59,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
         <div className="alitajs-dform-check-box">
           <div className="alitajs-dform-vertical-title">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={fieldProps} className="alitajs-dform-title">
+            <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
               {title}
             </span>
             {subTitle}

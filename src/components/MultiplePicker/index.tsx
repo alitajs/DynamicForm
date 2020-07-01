@@ -48,7 +48,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
             {isVertical && (
               <div className="alitajs-dform-vertical-title">
                 {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span id={fieldProps} className="alitajs-dform-title">
+                <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                   {title}
                 </span>
                 {subTitle}
@@ -70,7 +70,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
               onChange={fieldChange}
             >
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={fieldProps} className="alitajs-dform-title">
+              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                 {title}
               </span>
             </MultiplePickerGroup>

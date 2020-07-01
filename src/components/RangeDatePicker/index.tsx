@@ -53,7 +53,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={fieldProps} className="alitajs-dform-title">
+              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                 {title}
               </span>
               {subTitle}
@@ -69,7 +69,10 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
               width: isVertical ? '' : '100%',
             }}
           >
-            <div className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-picker`}>
+            <div
+              id={`alita-dform-${fieldProps2}`}
+              className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-picker`}
+            >
               <Field
                 name={fieldProps}
                 rules={rules || [{ required, message: `请选择${title}` }]}
@@ -93,7 +96,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                 >
                   <List.Item>
                     {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                    <span id={fieldProps} className="alitajs-dform-title">
+                    <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                       {title}
                     </span>
                     <span id={fieldProps2}></span>

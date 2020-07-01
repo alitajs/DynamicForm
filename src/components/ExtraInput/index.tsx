@@ -68,7 +68,11 @@ const ExtraInput: FC<IExtraInputProps> = props => {
     }
 
     return (
-      <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
+      <Field
+        id={`alita-dform-${fieldProps}`}
+        name={fieldProps2}
+        rules={rules || [{ required, message: `请输入${title}` }]}
+      >
         <InputItem
           {...otherProps}
           {...secondProps}
@@ -87,7 +91,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={fieldProps} className="alitajs-dform-title">
+              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
                 {title}
               </span>
               {subTitle}
@@ -115,6 +119,7 @@ const ExtraInput: FC<IExtraInputProps> = props => {
             <div
               className={`alitajs-dform-end${isVertical ? '-vertical' : ''}-input`}
               style={{ width: isVertical ? '' : '' }}
+              id={`alita-dform-${fieldProps2}`}
             >
               {extraDiv()}
             </div>
