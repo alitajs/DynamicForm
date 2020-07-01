@@ -27,6 +27,7 @@ title: 首页
 | allDisabled    | 全部不可交互，展示状态                               | `boolean`                                             | false  | 否       |
 | onValuesChange | 字段改变时抛出事件                                   | `(values: any) => void;`                              | 无     | 否       |
 | isDev          | 手动声明开发模式                                     | `boolean`                                             | false  | 否       |
+| failScroll     | 表单提交失败,滚动到错误的字段位置                    | `boolean`                                             | true   | 否       |
 
 ## 特性
 
@@ -110,57 +111,6 @@ const formData = [
 <DynamicForm data={formData} />;
 ```
 
-
-## 四种态表单类型
-
-### NORMAL
-
-<code src="./demo/index.tsx" />
-
-#### data 数据类型
-
-```tsx | pure
-type data = IFormItemProps[];
-// IFormItemProps 类型定义见页面最下方
-```
-
-### NORMALLIST
-
-<code src="./demo/normallist.tsx" />
-
-#### data 数据类型
-
-```tsx | pure
-type data = IFormItemProps[][];
-```
-
-### CARD
-
-<code src="./demo/card.tsx" />
-
-#### data 数据类型
-
-```tsx | pure
-type data = CardDForm;
-interface CardDForm{
-  title?: React.ReactNode;
-  /** need url of img, if this is string. */
-  thumb?: React.ReactNode;
-  extra?: React.ReactNode;
-  data:IFormItemProps[],
-};
-```
-
-### CARDLIST
-
-<code src="./demo/cardlist.tsx" />
-
-#### data 数据类型
-
-```tsx | pure
-type data = CardDForm[];
-
-```
 ## IFormItemProps 类型定义
 
 ```ts | pure
