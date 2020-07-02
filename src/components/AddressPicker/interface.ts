@@ -32,4 +32,5 @@ export interface IAddressPickerProps {
   height?: number | string;
   noData?: string | React.ReactNode;
   loading?: boolean;
+  asyncLoad?: boolean;
 }

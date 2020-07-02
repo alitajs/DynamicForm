@@ -14,58 +14,25 @@ title: 配置项
 
 下方提供几个自定义属性，用户可以在 `config/config.ts` 文件下进行编辑：
 
-### 标题大小和颜色
-
-`title` 大小默认为 `0.34rem`，如需修改，请增加如下代码：
-
 ```js
 theme: {
-  '@alita-dform-title-font-size': '0.28rem',
+  '@alita-dform-title-font-size': '28',
   '@alita-dform-title-color': 'blue',
+  ...
 }
 ```
 
-### 选中项和输入框的值颜色和大小
+| 参数                            | 说明                                                             | 默认值    |
+| ------------------------------- | ---------------------------------------------------------------- | --------- |
+| `@alita-dform-title-font-size`  | 标题大小                                                         | 34        |
+| `@alita-dform-title-color`      | 标题颜色                                                         | `blue`    |
+| `@alita-dform-select-font-size` | 选中项和输入框的值大小                                           | 34        |
+| `@alita-dform-select-color`     | 选中项和输入框的值颜色                                           | `blue`    |
+| `@alita-dform-placeholder`      | `placeholder` 的颜色                                             | `#888`    |
+| `@color-text-disabled`          | 不可编辑的文字颜色                                               | `#000`    |
+| `@alita-dform-radio-color`      | CoverRadio, Radio, CheckBox, MultiplePicker 选中时的颜色         | `#108ee9` |
+| `@alita-dform-radio-font-color` | CoverRadio, Radio, CheckBox, MultiplePicker 选中时的文字颜色颜色 | `#fff`    |
 
-`select`、`date`、`rangeDatePicker` 等选中项的值颜色和 `placeholder`(提示文字) 颜色一样，不易区分用户是否已经选择。
-
-增加如下属性可以直接修改表单选中项和输入框值的颜色和文字大小。
-
-```js
-theme: {
-   '@alita-dform-select-font-size': '0.34rem',
-  '@alita-dform-select-color': 'blue',
-}
-```
-
-### placeholder 颜色
-
-`input`, `extraInput`, `area` 等 `palceholder` 的颜色：
-
-```js
-theme: {
-  '@alita-dform-placeholder': '#888',
-}
-```
-
-### 不可编辑时的文字颜色
-
-`input`, `extraInput`, `area` 类型在属性 `disabled` 设置为 `true`, 或者 `editable` 设置为 `false` 时，文字样式会变淡，如需修改，请增加一下代码：
-
-```js
-theme: {
-  '@color-text-disabled': '#000',
-}
-```
-
-### CoverRadio, NomarRadio, NomarCheckBox, MultiplePicker 选中时的背景颜色和文字颜色
-
-```js
-theme: {
-  '@alita-dform-radio-color': '#108ee9';
-  '@alita-dform-radio-font-color': '#fff';
-}
-```
 
 ## 三、时间类型赋值
 

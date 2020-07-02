@@ -104,6 +104,9 @@ const Page: FC = () => {
       case 3:
         data = streetData;
         break;
+      case 4:
+        data = streetData;
+        break;
       default:
         break;
     }
@@ -122,8 +125,7 @@ const Page: FC = () => {
       placeholderList: ['请选择省', '请选择市', '请选择区'],
       onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
-        console.log(values);
-        Toast.loading('加载中', 1);
+        Toast.loading('加载中', 0.5);
         setTimeout(() => {
           resetHomeAddrList(values);
         }, 500);
@@ -137,6 +139,7 @@ const Page: FC = () => {
       type: 'addressPicker',
       fieldProps: 'workAddr',
       title: '工作地址',
+      asyncLoad: false,
       // disabled: true,
       required: true,
       placeholder: '请选择',
@@ -146,9 +149,8 @@ const Page: FC = () => {
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
-        setTimeout(() => {
-          resetWorkAddrList(values);
-        }, 500);
+        console.log(values);
+        resetWorkAddrList(values);
       },
       noData: <div>暂无街道数据</div>,
     },

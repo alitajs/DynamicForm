@@ -109,6 +109,7 @@ export interface IFormItemProps {
   noData?: string | React.ReactNode;
   loading?: boolean;
   alias?: IAliasProps;
+  asyncLoad?: boolean;
 }
 
 interface CardDForm extends CardHeaderPropsType {
