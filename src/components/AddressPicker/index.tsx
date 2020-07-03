@@ -41,13 +41,11 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
-              // if (asyncLoad) {
-              //   setInitValue(prevValue && prevValue[fieldProps as any]);
-              // } else {
-              //   setInitValue(nextValue && nextValue[fieldProps as any]);
-              // }
-              setInitValue(nextValue && nextValue[fieldProps as any]);
-              console.log(nextValue[fieldProps as any]);
+              if (asyncLoad) {
+                setInitValue(prevValue && prevValue[fieldProps as any]);
+              } else {
+                setInitValue(nextValue && nextValue[fieldProps as any]);
+              }
               return !isEqual(prevValue, nextValue);
             }}
           >
