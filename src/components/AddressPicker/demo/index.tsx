@@ -1,13 +1,16 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable no-case-declarations */
 /**
  * title: 基础 选址
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace, Toast } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
-import CountryList from '@bang88/china-city-data';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+  countryList,
+} from '@alitajs/dform';
 
 interface IAddrDataProps {
   label: string;
@@ -29,28 +32,38 @@ const Page: FC = () => {
   const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>([]);
   const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>([]);
 
-  const queryList = (list: any, val: string) => {
-    let newList: any[] = [];
-    list.map((item: { value: string; children: any[] }) => {
-      if (item.value === val) {
-        newList = item.children;
-      }
-      if (item.children && Array.isArray(item.children)) {
-        const vals = queryList(item.children, val);
-        if (vals && vals.length > 0) newList = vals;
-      }
-    });
-    return newList;
-  };
-
   const resetHomeAddrList = (values: (number | string)[]) => {
     let data: { label: string; value: string }[] = [];
     switch (values.length) {
       case 0:
-        data = CountryList;
+        data = Object.keys(countryList).map(val => ({
+          label: countryList[val].name,
+          value: val,
+        }));
+        break;
+      case 1:
+        data = Object.keys(countryList[values[0]].child).map(val => ({
+          label: countryList[values[0]].child[val].name,
+          value: val,
+        }));
+        break;
+      case 2:
+        // eslint-disable-next-line no-case-declarations
+        const cityData1 = countryList[values[0]].child;
+        data = Object.keys(cityData1[values[1]].child).map(val => ({
+          label: cityData1[values[1]].child[val],
+          value: val,
+        }));
+        break;
+      case 3:
+        // eslint-disable-next-line no-case-declarations
+        const cityData2 = countryList[values[0]].child;
+        data = Object.keys(cityData2[values[1]].child).map(val => ({
+          label: cityData2[values[1]].child[val],
+          value: val,
+        }));
         break;
       default:
-        data = queryList(CountryList, values[values.length - 1]);
         break;
     }
     setHomeAddrData(data);
@@ -60,10 +73,32 @@ const Page: FC = () => {
     let data: { label: string; value: string }[] = [];
     switch (values.length) {
       case 0:
-        data = CountryList;
+        data = Object.keys(countryList).map(val => ({
+          label: countryList[val].name,
+          value: val,
+        }));
+        break;
+      case 1:
+        data = Object.keys(countryList[values[0]].child).map(val => ({
+          label: countryList[values[0]].child[val].name,
+          value: val,
+        }));
+        break;
+      case 2:
+        // eslint-disable-next-line no-case-declarations
+        const cityData1 = countryList[values[0]].child;
+        data = Object.keys(cityData1[values[1]].child).map(val => ({
+          label: cityData1[values[1]].child[val],
+          value: val,
+        }));
+        break;
+      case 3:
+        data = streetData;
+        break;
+      case 4:
+        data = streetData;
         break;
       default:
-        data = queryList(CountryList, values[values.length - 1]);
         break;
     }
     setWorkAddrData(data);
@@ -115,7 +150,7 @@ const Page: FC = () => {
 
   const formsValues = {
     homeAddr: {
-      value: ['35', '3501', '350102'],
+      value: ['350000', '350100', '350102'],
       label: ['福建省', '福州市', '鼓楼区'],
     },
   };
