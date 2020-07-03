@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "1.7.1-alpha1",
+  "version": "1.7.3",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -40,12 +40,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@bang88/china-city-data": "^1.0.0",
     "antd-mobile": "^2.3.1",
     "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.2.0",
     "dayjs": "^1.8.28",
     "lodash": "^4.17.15",
-    "rc-field-form": "^1.4.0"
+    "rc-field-form": "^1.7.0"
   },
   "peerDependencies": {
     "antd-mobile": "^2.3.1",

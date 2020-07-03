@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import isEqual from 'lodash/isEqual';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps } from './interface';
@@ -41,12 +40,13 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
-              if (asyncLoad) {
-                setInitValue(prevValue && prevValue[fieldProps as any]);
-              } else {
-                setInitValue(nextValue && nextValue[fieldProps as any]);
-              }
-              return !isEqual(prevValue, nextValue);
+              // if (asyncLoad) {
+              //   setInitValue(prevValue && prevValue[fieldProps as any]);
+              // } else {
+              //   setInitValue(nextValue && nextValue[fieldProps as any]);
+              // }
+              setInitValue(nextValue && nextValue[fieldProps as any]);
+              return prevValue !== nextValue;
             }}
           >
             <AddressPickerGroup {...props} initValue={initValue} />
