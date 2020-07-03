@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 /**
  * 时间展示类型改变事件
@@ -8,26 +8,26 @@ export const changeDateFormat = (val: Date, modeType: string) => {
   let dateFormat = '';
   switch (modeType) {
     case 'datetime':
-      dateFormat = moment(val).format('YYYY-MM-DD HH:mm');
+      dateFormat = dayjs(val).format('YYYY-MM-DD HH:mm');
       break;
     case 'month':
-      dateFormat = moment(val).format('YYYY-MM');
+      dateFormat = dayjs(val).format('YYYY-MM');
       break;
     case 'time':
-      dateFormat = moment(val).format('hh:mm');
+      dateFormat = dayjs(val).format('hh:mm');
       break;
     case 'year':
-      dateFormat = moment(val).format('YYYY');
+      dateFormat = dayjs(val).format('YYYY');
       break;
     default:
-      dateFormat = moment(val).format('YYYY-MM-DD');
+      dateFormat = dayjs(val).format('YYYY-MM-DD');
       break;
   }
   return dateFormat;
 };
 
 export const dateChange = (date: Date | string) => {
-  const stringDate = moment(date).format('YYYY-MM-DD-HH-mm-ss');
+  const stringDate = dayjs(date).format('YYYY-MM-DD-HH-mm-ss');
   const dateList = stringDate.split('-');
   const numberDateList = dateList.map(item => parseInt(item, 10));
 
