@@ -120,7 +120,7 @@ const Page: FC = () => {
 
   const formsValues = {
     homeAddr: {
-      value: ['350000', '350100', '350102'],
+      value: ['35', '3501', '350102'],
       label: ['福建省', '福州市', '鼓楼区'],
     },
   };
