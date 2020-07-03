@@ -79,7 +79,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   }, []);
 
   useEffect(() => {
-    if (data.length === 0 && valueList.length) {
+    if (data.length === 0 && valueList.length && level !== nowLevel) {
       onConfirm();
       setDelFlag(true);
       const newLabelList = JSON.parse(JSON.stringify(labelList));
