@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import isEqual from 'lodash/isEqual';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps } from './interface';
@@ -47,8 +46,7 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
               //   setInitValue(nextValue && nextValue[fieldProps as any]);
               // }
               setInitValue(nextValue && nextValue[fieldProps as any]);
-              console.log(nextValue[fieldProps as any]);
-              return !isEqual(prevValue, nextValue);
+              return prevValue !== nextValue;
             }}
           >
             <AddressPickerGroup {...props} initValue={initValue} />

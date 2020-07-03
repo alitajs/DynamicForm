@@ -14,15 +14,6 @@ interface IAddrDataProps {
   value: string | number;
 }
 
-const streetData = [
-  { label: '街道1', value: '1111' },
-  { label: '街道2', value: '1112' },
-  { label: '街道3', value: '1113' },
-  { label: '街道4', value: '1114' },
-  { label: '街道5', value: '1115' },
-  { label: '街道6', value: '1116' },
-];
-
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
@@ -92,9 +83,9 @@ const Page: FC = () => {
         // eslint-disable-next-line no-console
         Toast.loading('加载中', 0.5);
         console.log(values);
-        // setTimeout(() => {
-        resetHomeAddrList(values);
-        // }, 500);
+        setTimeout(() => {
+          resetHomeAddrList(values);
+        }, 500);
       },
       onClick: () => {
         // eslint-disable-next-line no-console
