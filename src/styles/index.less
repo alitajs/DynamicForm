@@ -364,8 +364,12 @@
 
 .alitajs-dform-check-box {
   .alitajs-dform-box-content {
-    padding-left: 30 * @hd;
+    padding-left: 15 * @hd;
     font-size: @alita-dform-select-font-size;
+
+    .am-flexbox:last-child {
+      border-bottom: 0.5 * @hd solid #ddd;
+    }
 
     .alitajs-dform-box-wrapper {
       padding-bottom: 7 * @hd;
@@ -532,8 +536,9 @@
 
 .alitajs-dform-image-picker {
   .am-image-picker-list {
-    border-bottom: 1 * @hd solid #ddd;
-    padding-left: 0 * @hd;
+    border-bottom: 0.5 * @hd solid #ddd;
+    padding-left: 0;
+    margin-bottom: 0;
   }
 
   .am-image-picker {
