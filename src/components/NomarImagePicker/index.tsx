@@ -15,6 +15,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   limitSize?: number;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  extra?: string | React.ReactNode;
 }
 
 const NomarImagePicker: FC<INomarImagePickerProps> = props => {
@@ -28,6 +29,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     limitSize = 0,
     subTitle,
     hidden = false,
+    extra = '',
     ...otherProps
   } = props;
   const [fileList, setFileList] = useState([]);
@@ -36,12 +38,15 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     <React.Fragment>
       {!hidden && (
         <div className="alitajs-dform-image-picker">
-          <div className="alitajs-dform-vertical-title">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
-              {title}
-            </span>
-            {subTitle}
+          <div className="alitajs-dform-input-title">
+            <div className="alitajs-dform-vertical-title">
+              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                {title}
+              </span>
+              {subTitle}
+            </div>
+            {extra !== '' && <div className="alitajs-dform-extra">{extra}</div>}
           </div>
           <Field
             name={fieldProps}
