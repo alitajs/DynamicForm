@@ -25,6 +25,7 @@ title: ImagePicker
 | limitSize     | 图片大小限制, 度量长度为 `kb`                                                                                          | number                                                        |        | 否       |
 | subTitle      | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效                                                             | string or node                                                | ''     | 否       |
 | hidden        | 字段展示与否的判断                                                                                                     | boolean                                                       | false  | 否       |
+| extra         | 右边注释                                                                                                               | string or node                                                | ''     | 否       |
 
 
 ## 组件使用

@@ -26,7 +26,6 @@ title: 首页
 ## 特性
 
 1. 当 title 超过 15 个字节，会自动开始双行模式，可以通过显示设置 positionType 关闭。
-2. 根据传入数据自动识别表单类型，分别是 'NORMAL' | 'NORMALLIST' | 'CARD' | 'CARDLIST';（可在页面下方看到所有类型的展示样式。）
 
 ## 表单组件
 
@@ -118,6 +117,13 @@ interface IFormItemProps {
     | 'extraInput'
     | 'radio'
     | 'rangeDatePicker'
+    | 'coverRadio'
+    | 'image'
+    | 'custom'
+    | 'multiplePicker'
+    | 'addressPicker'
+    | 'text'
+    | 'picker'
     | 'checkbox';
   title: string;
   fieldProps: string;
@@ -129,6 +135,7 @@ interface IFormItemProps {
   modeType?: DatePickerPropsType['mode'];
   fieldProps2?: string;
   placeholder2?: string;
+  rules?: Rule[];
   extraType?: 'input' | 'select';
   editable?: boolean;
   rows?: number;
@@ -143,6 +150,20 @@ interface IFormItemProps {
   CustomDom?: any;
   customDomProps?: any;
   subTitle?: string | React.ReactNode;
+  maxValueLength?: number;
+  onBlur?: (value?: string) => void;
+  level?: number;
+  onChangeLevel?: (val: any) => void;
+  placeholderList?: string[];
+  chunk?: number;
+  leftContent?: string | React.ReactNode;
+  rightContent?: string | React.ReactNode;
+  onClick?: any;
+  height?: number | string;
+  noData?: string | React.ReactNode;
+  loading?: boolean;
+  alias?: IAliasProps;
+  asyncLoad?: boolean;
 }
 ```
 
