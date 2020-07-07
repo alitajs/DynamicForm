@@ -60,7 +60,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     if (onChange) onChange(values);
   };
 
-  const aa = () =>
+  const BoxContent = () =>
     chunkLodash([...context], chunk).map((list: IDataItem[], index: number) => (
       // eslint-disable-next-line react/no-array-index-key
       <Flex key={index}>
@@ -91,7 +91,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
       </Flex>
     ));
 
-  return <div className="alitajs-dform-box-content">{aa()}</div>;
+  return <div className="alitajs-dform-box-content">{BoxContent()}</div>;
 };
 
 export default CheckBoxGroup;

@@ -357,7 +357,7 @@
 
     .am-list-item {
       padding-left: 0 !important;
-      border-bottom: 1 * @hd solid #ddd;
+      border-bottom: 0.5 * @hd solid #ddd;
     }
   }
 }
@@ -406,6 +406,33 @@
         padding-left: 8 * @hd;
         padding-right: 8 * @hd;
       }
+    }
+  }
+}
+
+.alitajs-dform-extra {
+  position: relative;
+
+  .alitajs-dform-file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    overflow: hidden;
+
+    // input[type="file"]::-webkit-file-upload-button {
+    //   width: 100%;
+    //   position: absolute;
+    //   right: 0px;
+    // }
+  }
+
+  .alitajs-dform-file-extra {
+    font-size: @alita-dform-title-font-size;
+
+    .alitajs-dform-file-img {
+      width: 18 * @hd;
+      height: 18 * @hd;
     }
   }
 }
@@ -722,5 +749,40 @@
 
   .am-input-extra {
     max-height: 33 * @hd;
+  }
+}
+
+.alitajs-dform-file {
+
+  .alitajs-dform-file-content {
+    padding-left: 15 * @hd;
+    padding-top: 6 * @hd;
+    border-bottom: 0.5 * @hd solid #ddd;
+
+    .alitajs-dform-file-item {
+      display: flex;
+      align-items: center;
+      padding-bottom: 6 * @hd;
+      padding-right: 15 * @hd;
+
+      .alitajs-dform-file-title {
+        font-size: @alita-dform-select-font-size;
+        font-family: PingFangSC-Regular,
+          PingFang SC;
+        font-weight: 400;
+        color: rgba(51, 51, 51, 1);
+        padding-right: 8 * @hd;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        max-width: calc(100% - 18 * @hd);
+      }
+
+      .alitajs-dform-close {
+        width: 12 * @hd;
+        height: 12 * @hd;
+      }
+    }
   }
 }
