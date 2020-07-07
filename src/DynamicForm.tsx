@@ -25,6 +25,7 @@ import {
   AddressPicker,
   NomarText,
   NomarPicker,
+  NomarFile,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -51,6 +52,7 @@ const FormItemType = {
   addressPicker: AddressPicker,
   text: NomarText,
   picker: NomarPicker,
+  file: NomarFile,
 };
 
 export interface IFormItemProps {
@@ -70,6 +72,7 @@ export interface IFormItemProps {
     | 'addressPicker'
     | 'text'
     | 'picker'
+    | 'file'
     | 'checkbox';
   title: string;
   fieldProps: string;

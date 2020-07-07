@@ -14,6 +14,7 @@ export { default as NomarCheckBox } from './NomarCheckBox';
 export { default as NomarImagePicker } from './NomarImagePicker';
 export { default as NomarCustom } from './NomarCustom';
 export { default as NomarText } from './NomarText';
+export { default as NomarFile } from './NomarFile';
 export { default as OnlyReadInput } from './OnlyReadInput';
 export { default as RangeDatePicker } from './RangeDatePicker';
 export { default as TextItem } from './TextItem';
