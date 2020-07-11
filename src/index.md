@@ -157,7 +157,7 @@ export default Page;
 
 如果你连 `JSON` 格式的 `data` 也懒得写，那么 `isDev` 字段开启开发者模式，让你鼠标点一点就能编辑好一串 `JSON`，视频会告诉你用起来多舒服。
 
-视频若打不开请直接点开[视频不会实在不会搞，你们直接点开链接看吧](https://v.qq.com/x/page/u3108c1l2o8.html)链接。
+视频若打不开请直接点开[@alitajs/dform 可视化开发者模式](https://v.qq.com/x/page/u3108c1l2o8.html)链接。
 
 <video src="https://v.qq.com/x/page/u3108c1l2o8.html" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
 
