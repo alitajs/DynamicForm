@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "1.7.8",
+  "version": "1.7.9",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",

@@ -18,6 +18,7 @@ export interface INomarTextProps {
   labelNumber?: number;
   onClick?: (val: string) => void;
   disabled?: boolean;
+  maxLine?: number;
 }
 
 const NomarText: FC<INomarTextProps> = props => {
@@ -35,6 +36,7 @@ const NomarText: FC<INomarTextProps> = props => {
     placeholder = '',
     labelNumber = 5,
     disabled = false,
+    maxLine,
     onClick,
   } = props;
 
@@ -66,6 +68,8 @@ const NomarText: FC<INomarTextProps> = props => {
               labelNumber={labelNumber}
               onClick={onClick}
               disabled={disabled}
+              maxLine={maxLine}
+              fieldProps={fieldProps}
             >
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
               <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">

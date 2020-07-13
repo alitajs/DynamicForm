@@ -101,6 +101,9 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
         onDismiss={() => {
           setvisible(false);
         }}
+        onVisibleChange={() => {
+          setvisible(false);
+        }}
       />
     </>
   );
