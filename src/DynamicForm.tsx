@@ -113,6 +113,7 @@ export interface IFormItemProps {
   loading?: boolean;
   alias?: IAliasProps;
   asyncLoad?: boolean;
+  maxLine?: number;
 }
 
 interface CardDForm extends CardHeaderPropsType {

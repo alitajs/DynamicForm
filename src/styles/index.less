@@ -739,11 +739,24 @@
     align-items: center;
     justify-content: center;
 
-    .alitajs-dform-text-text {
+    .alitajs-dform-text-content {
       width: 100%;
       border: 0 * @hd;
-      color: @alita-dform-select-color;
-      word-break: break-all;
+      display: flex;
+      flex-direction: column;
+
+      .alitajs-dform-text-text {
+        color: @alita-dform-select-color;
+        word-break: break-all;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .alitajs-dform-text-overflow {
+        text-align: right;
+        color: @alita-dform-radio-color;
+      }
     }
   }
 

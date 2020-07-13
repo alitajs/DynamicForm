@@ -7,4 +7,6 @@ export interface ITextItemProps {
   coverStyle?: React.CSSProperties;
   extra?: string | React.ReactNode;
   disabled?: boolean;
+  maxLine?: number;
+  fieldProps?: string;
 }

@@ -1,9 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { ITextItemProps } from './interface';
 import '../../styles/index.less';
 
 const TextItem: FC<ITextItemProps> = props => {
+  const [overflowFlag, setOverflowFlag] = useState<boolean>(true); // 展开收起标识
+  const [lineHeightFlag, setLineHeightFlag] = useState<boolean>(false); // 文字行数是否超过 maxLength
+
   const {
     isVertical = false,
     value = '',
@@ -12,8 +15,24 @@ const TextItem: FC<ITextItemProps> = props => {
     labelNumber = 5,
     coverStyle = {},
     extra,
+    maxLine,
     disabled,
+    fieldProps,
   } = props;
+
+  useEffect(() => {
+    const textIds = document.getElementById(`text-${fieldProps}`);
+    if (maxLine && textIds) {
+      // eslint-disable-next-line prefer-destructuring
+      const lineHeight = window.getComputedStyle(textIds, null).lineHeight;
+      const delValue = (textIds?.clientHeight + 2) / parseInt(lineHeight, 10);
+      if (delValue > maxLine) {
+        setLineHeightFlag(true);
+      } else {
+        setLineHeightFlag(false);
+      }
+    }
+  }, [value]);
 
   const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
     'am-input-label-2': labelNumber === 2,
@@ -40,16 +59,33 @@ const TextItem: FC<ITextItemProps> = props => {
           }}
         >
           <div
-            className={value ? 'alitajs-dform-text-text' : 'alitajs-dform-placeholder'}
-            style={{
-              textAlign: isVertical ? 'left' : 'right',
-              ...coverStyle,
-            }}
+            className={value ? 'alitajs-dform-text-content' : 'alitajs-dform-placeholder'}
             onClick={() => {
               inputItemClick();
             }}
           >
-            {value || placeholder}
+            <div
+              id={`text-${fieldProps}`}
+              className="alitajs-dform-text-text"
+              style={{
+                textAlign: isVertical ? 'left' : 'right',
+                WebkitLineClamp: maxLine,
+                display: maxLine && overflowFlag && lineHeightFlag ? '-webkit-box' : '',
+                ...coverStyle,
+              }}
+            >
+              {value || placeholder}
+            </div>
+            {maxLine && lineHeightFlag && (
+              <div
+                className="alitajs-dform-text-overflow"
+                onClick={() => {
+                  setOverflowFlag(!overflowFlag);
+                }}
+              >
+                {overflowFlag ? '更多' : '收起'}
+              </div>
+            )}
           </div>
           {!isVertical && <div className="am-input-extra">{extra}</div>}
         </div>
