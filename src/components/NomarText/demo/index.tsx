@@ -35,6 +35,7 @@ const Page: FC = () => {
       subTitle: subTitle(),
       coverStyle: {
         textAlign: 'left',
+        color: 'blue',
       },
       onClick: () => {
         console.log();

@@ -6,6 +6,7 @@ import '../../styles/index.less';
 const TextItem: FC<ITextItemProps> = props => {
   const [overflowFlag, setOverflowFlag] = useState<boolean>(true); // 展开收起标识
   const [lineHeightFlag, setLineHeightFlag] = useState<boolean>(false); // 文字行数是否超过 maxLength
+  const [currentCoverStyle, setCurrentCoverStyle] = useState({});
 
   const {
     isVertical = false,
@@ -32,6 +33,9 @@ const TextItem: FC<ITextItemProps> = props => {
         setLineHeightFlag(false);
       }
     }
+    let newStyle = coverStyle;
+    if (!value && coverStyle.color) delete newStyle.color;
+    setCurrentCoverStyle({ ...newStyle });
   }, [value]);
 
   const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
@@ -71,7 +75,7 @@ const TextItem: FC<ITextItemProps> = props => {
                 textAlign: isVertical ? 'left' : 'right',
                 WebkitLineClamp: maxLine,
                 display: maxLine && overflowFlag && lineHeightFlag ? '-webkit-box' : '',
-                ...coverStyle,
+                ...currentCoverStyle,
               }}
             >
               {value || placeholder}
