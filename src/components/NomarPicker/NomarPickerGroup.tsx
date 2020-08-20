@@ -93,7 +93,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       </InputItem>
       <Picker
         title={title}
-        visible={visible}
+        visible={visible && data.length > 0}
         data={data}
         cols={1}
         value={[initValue]}

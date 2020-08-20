@@ -33,10 +33,15 @@ const TextItem: FC<ITextItemProps> = props => {
         setLineHeightFlag(false);
       }
     }
-    let newStyle = coverStyle;
-    if (!value && coverStyle.color) delete newStyle.color;
-    setCurrentCoverStyle({ ...newStyle });
   }, [value]);
+
+  useEffect(() => {
+    if (coverStyle && Object.keys(coverStyle).length) {
+      let newStyle = JSON.parse(JSON.stringify(coverStyle));
+      if (!value && coverStyle.color) delete newStyle.color;
+      setCurrentCoverStyle({ ...newStyle });
+    }
+  }, [value, coverStyle]);
 
   const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
     'am-input-label-2': labelNumber === 2,
