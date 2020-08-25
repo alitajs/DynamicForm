@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { InputItem } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
+import classnames from 'classnames';
 import Field from '../Field';
 
 import '../../styles/index.less';
@@ -34,6 +35,7 @@ const NomarInput: FC<INomarInputProps> = props => {
     subTitle,
     hidden = false,
     onBlur,
+    editable = true,
     ...otherProps
   } = props;
 
@@ -61,12 +63,21 @@ const NomarInput: FC<INomarInputProps> = props => {
             {extra !== '' && isVertical && <div className="alitajs-dform-extra">{extra}</div>}
           </div>
 
-          <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-input`}>
+          <div
+            className={classnames({
+              [`alitajs-dform${isVertical ? '-vertical' : ''}-input`]: true,
+              'alitajs-dform-disabled': !editable,
+            })}
+          >
             <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
               <InputItem
                 {...otherProps}
                 extra={isVertical ? '' : extra}
                 type={inputType}
+                editable={editable}
+                className={classnames({
+                  'alitajs-dform-disabled': !editable,
+                })}
                 style={{ textAlign: isVertical ? 'left' : 'right', ...coverStyle }}
                 onBlur={val => {
                   inputOnBlur(val);

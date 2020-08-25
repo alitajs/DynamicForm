@@ -75,7 +75,9 @@ const Page: FC = () => {
     },
   ] as IFormItemProps[];
 
-  const formsValues = {};
+  const formsValues = {
+    textArea2: '只读，不可编辑',
+  };
 
   const formProps = {
     onFinish,

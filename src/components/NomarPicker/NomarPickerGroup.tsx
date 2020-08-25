@@ -34,7 +34,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   useEffect(() => {
     if (initValue) setPreValue(initValue);
     let nowValue = initValue;
-    if (!initValue && preValue) nowValue = preValue;
+    // if (!initValue && preValue) nowValue = preValue;
     const filterList = filterObjList('value', data, nowValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
@@ -85,6 +85,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
         coverStyle={coverStyle}
         readOnly
         onClick={fieldClick}
+        disabled={disabled}
       >
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
         <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
