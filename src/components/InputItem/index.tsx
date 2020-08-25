@@ -13,6 +13,7 @@ const InputItem: FC<IInputItemProps> = props => {
     onChange,
     labelNumber = 5,
     coverStyle = {},
+    disabled = false,
   } = props;
 
   let inputRef: HTMLInputElement | null;
@@ -64,7 +65,10 @@ const InputItem: FC<IInputItemProps> = props => {
             onChange={e => {
               inputItemChange(e);
             }}
-            className="alitajs-dform-input-text"
+            className={classnames({
+              'alitajs-dform-input-text': true,
+              'alitajs-dform-disabled': disabled,
+            })}
             placeholder={placeholder}
           />
           <div className="am-list-arrow am-list-arrow-horizontal" />

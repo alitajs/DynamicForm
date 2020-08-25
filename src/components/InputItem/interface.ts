@@ -7,4 +7,5 @@ export interface IInputItemProps {
   labelNumber?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   coverStyle?: React.CSSProperties;
+  disabled?: boolean;
 }

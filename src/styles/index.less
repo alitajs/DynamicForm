@@ -7,6 +7,7 @@
 @alita-dform-radio-color: #108ee9;
 @alita-dform-radio-font-color: #fff;
 @alita-dform-placeholder: #888;
+@color-text-disabled: #000;
 
 @keyframes colorful {
   0% {
@@ -84,7 +85,28 @@
 
 }
 
+.alitajs-dform-disabled {
+
+  .am-input-control {
+    input {
+      color: @color-text-disabled  !important;
+      font-size: @alita-dform-select-font-size;
+    }
+  }
+
+  .am-textarea-control {
+    textarea {
+      color: @color-text-disabled  !important;
+      font-size: @alita-dform-select-font-size;
+    }
+  }
+}
+
 .alitajs-dform-value-content {
+
+  .alitajs-dform-disabled {
+    color: @color-text-disabled  !important;
+  }
 
   .am-list-extra {
     color: @alita-dform-select-color ;

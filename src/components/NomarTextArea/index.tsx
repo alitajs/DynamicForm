@@ -35,6 +35,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     subTitle,
     hidden = false,
     onBlur,
+    editable = true,
     ...otherProps
   } = props;
 
@@ -77,6 +78,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
             className={classnames({
               'alitajs-dform-vertical-area': isVertical,
               'alitajs-dform-area': true,
+              'alitajs-dform-disabled': !editable,
             })}
           >
             <Field
@@ -92,6 +94,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
                 // eslint-disable-next-line no-return-assign
                 // ref={(el: any) => (autoFocusInst = el)}
                 title={titleDiv()}
+                editable={editable}
                 style={{
                   textAlign: rows === 1 ? 'right' : 'left',
                   ...coverStyle,
