@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { PropsType } from 'antd-mobile/es/date-picker/index';
 import { DatePicker, List } from 'antd-mobile';
+import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import { changeDateFormat } from '../../utils';
@@ -31,6 +32,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
     hasStar = true,
     subTitle,
     hidden = false,
+    disabled = false,
     ...otherProps
   } = props;
 
@@ -49,12 +51,18 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
               {subTitle}
             </div>
           )}
-          <div className={`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`}>
+          <div
+            className={classnames({
+              [`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`]: true,
+              'alitajs-dform-disabled': disabled,
+            })}
+          >
             <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
               <DatePicker
                 {...otherProps}
                 mode={modeType}
                 title={title}
+                disabled={disabled}
                 format={value => changeDateFormat(value, modeType)}
               >
                 <List.Item arrow="horizontal">

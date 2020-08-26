@@ -75,7 +75,10 @@ const TextItem: FC<ITextItemProps> = props => {
           >
             <div
               id={`text-${fieldProps}`}
-              className="alitajs-dform-text-text"
+              className={classnames({
+                'alitajs-dform-text-text': true,
+                'alitajs-dform-disabled': disabled && value,
+              })}
               style={{
                 textAlign: isVertical ? 'left' : 'right',
                 WebkitLineClamp: maxLine,
