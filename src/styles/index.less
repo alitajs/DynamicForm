@@ -73,9 +73,9 @@
     color: @alita-dform-placeholder;
   }
 
-  .am-list-extra {
+  .am-list-item .am-list-line .am-list-extra {
     font-size: @alita-dform-select-font-size  !important;
-    color: @alita-dform-placeholder  !important;
+    color: @alita-dform-placeholder ;
   }
 
   .alitajs-dform-input-value input::placeholder {
@@ -85,30 +85,13 @@
 
 }
 
-.alitajs-dform-disabled {
-
-  .am-input-control {
-    input {
-      color: @color-text-disabled  !important;
-      font-size: @alita-dform-select-font-size;
-    }
-  }
-
-  .am-textarea-control {
-    textarea {
-      color: @color-text-disabled  !important;
-      font-size: @alita-dform-select-font-size;
-    }
-  }
-}
-
 .alitajs-dform-value-content {
 
   .alitajs-dform-disabled {
     color: @color-text-disabled  !important;
   }
 
-  .am-list-extra {
+  .am-list-item .am-list-line .am-list-extra {
     color: @alita-dform-select-color ;
     font-size: @alita-dform-select-font-size  !important;
   }
@@ -131,6 +114,27 @@
   .alitajs-dform-input-value input::placeholder {
     font-size: @alita-dform-select-font-size;
     color: @alita-dform-placeholder  !important;
+  }
+}
+
+.alitajs-dform-disabled {
+
+  .am-input-control {
+    input {
+      color: @color-text-disabled  !important;
+      font-size: @alita-dform-select-font-size;
+    }
+  }
+
+  .am-textarea-control {
+    textarea {
+      color: @color-text-disabled  !important;
+      font-size: @alita-dform-select-font-size;
+    }
+  }
+
+  .am-list-item .am-list-line .am-list-extra {
+    color: @color-text-disabled ;
   }
 }
 

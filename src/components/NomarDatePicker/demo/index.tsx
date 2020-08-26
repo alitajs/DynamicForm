@@ -30,6 +30,7 @@ const Page: FC = () => {
       fieldProps: 'Date',
       modeType: 'date',
       title: 'Date',
+      disabled: true,
       maxDate: new Date(),
       minDate: new Date(),
     },

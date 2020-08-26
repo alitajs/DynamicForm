@@ -56,6 +56,8 @@ const Page: FC = () => {
       required: true,
       title: '身份证',
       extra: photoImg(),
+      placeholder: '暂无数据',
+      disabled: true,
       inputType: 'number',
       onClick: (vals: string) => {
         // eslint-disable-next-line no-console
@@ -68,7 +70,6 @@ const Page: FC = () => {
       required: true,
       placeholder: '点击获取表单全部数据',
       title: '标题',
-      editable: false,
       onClick: () => {
         // eslint-disable-next-line no-console
         console.log(form.getFieldsValue());
