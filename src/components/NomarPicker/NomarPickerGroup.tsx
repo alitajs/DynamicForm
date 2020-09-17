@@ -27,6 +27,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     hasStar = true,
     fieldProps,
     labelNumber = 5,
+    extra = '',
     onClick,
   } = props;
   const isVertical = positionType === 'vertical';
@@ -86,6 +87,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
         readOnly
         onClick={fieldClick}
         disabled={disabled}
+        extra={extra}
       >
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
         <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">

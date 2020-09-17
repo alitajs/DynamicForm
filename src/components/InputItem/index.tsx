@@ -14,6 +14,7 @@ const InputItem: FC<IInputItemProps> = props => {
     labelNumber = 5,
     coverStyle = {},
     disabled = false,
+    extra = '',
   } = props;
 
   let inputRef: HTMLInputElement | null;
@@ -71,7 +72,7 @@ const InputItem: FC<IInputItemProps> = props => {
             })}
             placeholder={placeholder}
           />
-          <div className="am-list-arrow am-list-arrow-horizontal" />
+          {extra ? extra : <div className="am-list-arrow am-list-arrow-horizontal" />}
         </div>
       </div>
     </div>

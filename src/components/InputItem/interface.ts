@@ -8,4 +8,5 @@ export interface IInputItemProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   coverStyle?: React.CSSProperties;
   disabled?: boolean;
+  extra?: string | React.ReactNode;
 }

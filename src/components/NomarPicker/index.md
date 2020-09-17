@@ -27,3 +27,4 @@ title: Picker
 | labelNumber  | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | 5                                  | 否       |
 | coverStyle   | 自定义选择框样式                                                                                                                      | object                     | {}                                 | 否       |
 | alias        | data 数据源的别名                                                                                                                     | object                     | { label: 'label', value: 'value' } | 否       |
+| extra        | 右边注释                                                                                                                              | `string`  or   `node`      | ''                                 | 否       |
