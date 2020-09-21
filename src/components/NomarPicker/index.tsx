@@ -5,7 +5,7 @@ import Field from '../Field';
 import '../../styles/index.less';
 
 const NomarPicker: FC<INomarPickerProps> = props => {
-  const [initValue, setInitValue] = useState('');
+  const [initValue, setInitValue] = useState(undefined);
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {

@@ -75,7 +75,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   };
 
   useEffect(() => {
-    if (onChange) onChange(undefined);
+    // if (onChange) onChange(undefined);
   }, []);
 
   useEffect(() => {

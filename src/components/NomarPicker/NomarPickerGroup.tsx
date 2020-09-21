@@ -21,7 +21,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     onChange,
     disabled = false,
     positionType = 'horizontal',
-    initValue = '',
+    initValue,
     coverStyle,
     required = false,
     hasStar = true,
@@ -50,6 +50,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     if (data && data.length) {
       let nowValue = initValue;
       if (!initValue && preValue) nowValue = preValue;
+      if (initValue === '') nowValue = '';
       const filterList = filterObjList('value', data, nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
