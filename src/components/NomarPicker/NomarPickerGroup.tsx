@@ -67,9 +67,9 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   }, [data]);
 
   const fieldClick = () => {
+    if (onClick) onClick(initValue);
     if (disabled) return;
     setvisible(true);
-    if (onClick) onClick(initValue);
   };
 
   const onOK = (val: (string | number)[]) => {
