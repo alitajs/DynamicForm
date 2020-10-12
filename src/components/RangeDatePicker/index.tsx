@@ -92,6 +92,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   format={value => changeDateFormat(value, modeType)}
                   onChange={e => {
                     setBeginDate(e);
+                    if (firstProps?.onChange) firstProps?.onChange(e);
                   }}
                 >
                   <List.Item>
@@ -125,6 +126,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   format={value => changeDateFormat(value, modeType)}
                   onChange={e => {
                     setEndDate(e);
+                    if (secondProps?.onChange) secondProps?.onChange(e);
                   }}
                 >
                   <List.Item arrow="horizontal"></List.Item>

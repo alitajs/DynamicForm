@@ -41,16 +41,18 @@ export const dateChange = (date: Date | string) => {
   );
 };
 
-export const getByteLen = (val: string) => {
+export const getByteLen = (val: string | React.ReactNode) => {
   let len = 0;
-  val.split('').forEach(item => {
-    // eslint-disable-next-line no-control-regex
-    if (item.match(/[^\x00-\xff]/gi) != null) {
-      len += 2;
-    } else {
-      len += 1;
-    }
-  });
+  if (typeof val === 'string') {
+    val.split('').forEach(item => {
+      // eslint-disable-next-line no-control-regex
+      if (item.match(/[^\x00-\xff]/gi) != null) {
+        len += 2;
+      } else {
+        len += 1;
+      }
+    });
+  }
   return len;
 };
 
