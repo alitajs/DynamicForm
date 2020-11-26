@@ -34,8 +34,9 @@ const Page = () => {
     {
       type: 'image',
       fieldProps: 'insertImg',
-      title: '请添加图片',
+      title: '请添加图片(自动压缩)',
       required: true,
+      compressRatio: 0.5,
       onChange: (files: any, type: string, index: number | undefined) => {
         // eslint-disable-next-line no-console
         console.log(files, type, index);

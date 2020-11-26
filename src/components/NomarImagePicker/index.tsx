@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import { ImagePicker, Toast } from 'antd-mobile';
 import { ImagePickerPropTypes } from 'antd-mobile/es/image-picker/PropsType';
 import Field from '../Field';
+import { transformFile } from '../../utils';
 import '../../styles/index.less';
 
 export interface INomarImagePickerProps extends ImagePickerPropTypes {
@@ -16,6 +17,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   extra?: string | React.ReactNode;
+  compressRatio?: number;
 }
 
 const NomarImagePicker: FC<INomarImagePickerProps> = props => {
@@ -30,6 +32,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     subTitle,
     hidden = false,
     extra = '',
+    compressRatio,
     ...otherProps
   } = props;
   const [fileList, setFileList] = useState([]);
@@ -59,6 +62,19 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
                 if (limitSize && file && file.size && file.size > limitSize) {
                   Toast.fail('图片过大', 1);
                   return false;
+                }
+                if (compressRatio && lastFile.url.indexOf('base64,') !== -1) {
+                  transformFile(lastFile.file, compressRatio).then((newFile: any) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(newFile);
+                    reader.onload = function({ target }) {
+                      files[files.length - 1] = {
+                        ...files[files.length - 1],
+                        file: newFile,
+                        url: target?.result,
+                      };
+                    };
+                  });
                 }
               }
               setFileList((nextValue && nextValue[fieldProps as any]) || []);
