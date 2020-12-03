@@ -33,9 +33,19 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     hidden = false,
     extra = '',
     compressRatio,
+    onChange,
     ...otherProps
   } = props;
   const [fileList, setFileList] = useState([]);
+
+  const imageChange = (files: any, operationType: string, index: number | undefined) => {
+    const lastFile = files[files.length - 1];
+    const { file = {} } = lastFile;
+    if (limitSize && file && file.size && file.size > limitSize) {
+      return;
+    }
+    if (onChange) onChange(files, operationType, index);
+  };
 
   return (
     <React.Fragment>
@@ -81,7 +91,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <ImagePicker {...otherProps} files={fileList} />
+            <ImagePicker {...otherProps} onChange={imageChange} files={fileList} />
           </Field>
         </div>
       )}
