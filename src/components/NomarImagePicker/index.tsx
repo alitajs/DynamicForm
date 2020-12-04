@@ -39,10 +39,12 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
   const [fileList, setFileList] = useState([]);
 
   const imageChange = (files: any, operationType: string, index: number | undefined) => {
-    const lastFile = files[files.length - 1];
-    const { file = {} } = lastFile;
-    if (limitSize && file && file.size && file.size > limitSize) {
-      return;
+    if (files.length >= 0) {
+      const lastFile = files[files.length - 1];
+      const { file = {} } = lastFile;
+      if (limitSize && file && file.size && file.size > limitSize) {
+        return;
+      }
     }
     if (onChange) onChange(files, operationType, index);
   };
