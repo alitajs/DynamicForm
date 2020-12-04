@@ -70,6 +70,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   }
 
   const radioChange = (e: string | number | undefined, flag: string) => {
+    console.log(e,flag)
     if (onChange && e !== initValue && flag === 'change') onChange(e);
   };
 
