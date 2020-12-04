@@ -31,7 +31,6 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
   } = props;
   const [context, setContext] = useState<IDataItem[]>([]);
   const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
-  const [activeValue, setActiveValue] = useState({});
   let isVertical = positionType === 'vertical';
   if (radioType === 'vertical') {
     isVertical = true;
@@ -56,61 +55,40 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
         return initItem;
       }),
     );
-    if (initValue === preValue) return;
-    if (!flag) {
-      onChange(undefined, 'init');
-    } 
+    // if (initValue === preValue) return;
+    // if (!flag) {
+    //   onChange(undefined, 'init');
+    // } 
     // else {
     //   onChange(nowValue, 'init');
-    // }
-
-    // if(activeValue.value){
-    //   onChange(activeValue.value, 'init');
-    // }else{
-    //   onChange(undefined, 'init');
     // }
   }, [data, initValue]);
 
   useEffect(()=>{
-    console.log('activeValue-------',activeValue);
-    onChange(activeValue.value, 'change');
-  },[activeValue])
 
-  useEffect(()=>{
-    console.log('Context-------',context);
-    console.log()
-  },[context])
+    onChange(preValue, 'change');
+  },[JSON.stringify(preValue)])
+       
   const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
     e.stopPropagation();
     if (disabled) return;
-    console.log('dataItem--',dataItem)
-    if(activeValue.value===dataItem.value){
-      setActiveValue({})
+    if(preValue===dataItem.value){
+      setPreValue(undefined)
     }else{
-      setActiveValue(dataItem)
+      setPreValue(dataItem.value)
     }
-    
     setContext(
       context.map((item: IDataItem) => {
         const selItem = item;
-        if(activeValue.value){
-          if(dataItem.value === activeValue.value){
+        if(preValue){
+          if(dataItem.value === preValue){
             selItem.flag = false;
           }else if(item.value === dataItem.value){
-            console.log('selItem--------',selItem)
             selItem.flag = true;
           }
         }else if(item.value === dataItem.value){
-          console.log('第一次')
             selItem.flag = true;
         }
-
-        //   if(dataItem.value === item.value){
-        //     selItem.flag = true;
-        //   }else{
-        //     selItem.flag = true;
-        //   }
-        
         return selItem;
       }),
     );

@@ -80,6 +80,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
       rules={rules || [{ required, message: `请选择${title}` }]}
       shouldUpdate={(prevValue: any, nextValue: any) => {
         setInitValue(nextValue && nextValue[fieldProps as any]);
+        console.log(prevValue !== nextValue)
         return prevValue !== nextValue;
       }}
     >
