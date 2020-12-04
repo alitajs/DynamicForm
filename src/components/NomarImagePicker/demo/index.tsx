@@ -46,12 +46,12 @@ const Page = () => {
       type: 'image',
       fieldProps: 'showImg',
       title: '展示图片(限制上传的图片大小)',
-      disableDelete: true,
+      // disableDelete: true,
       onImageClick: (index: number, files: any) => {
         // eslint-disable-next-line no-console
         console.log(index, files);
       },
-      limitSize: 2248,
+      limitSize: 3 * 1024 * 1024,
     },
     {
       type: 'image',
