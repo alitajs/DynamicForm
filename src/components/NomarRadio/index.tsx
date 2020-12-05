@@ -58,6 +58,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
+    if (data.length === 0) return;
     const newData = data.map(item => ({
       label: item[label],
       value: item[value],
@@ -70,7 +71,6 @@ const NomarRadio: FC<INomarRadioProps> = props => {
   }
 
   const radioChange = (e: string | number | undefined, flag: string) => {
-    console.log(e,flag)
     if (onChange && e !== initValue && flag === 'change') onChange(e);
   };
 
@@ -80,7 +80,6 @@ const NomarRadio: FC<INomarRadioProps> = props => {
       rules={rules || [{ required, message: `请选择${title}` }]}
       shouldUpdate={(prevValue: any, nextValue: any) => {
         setInitValue(nextValue && nextValue[fieldProps as any]);
-        console.log(prevValue !== nextValue)
         return prevValue !== nextValue;
       }}
     >
