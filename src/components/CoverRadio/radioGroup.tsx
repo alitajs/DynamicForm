@@ -29,70 +29,81 @@ const RadioGroup: FC<IRadioGroup> = props => {
     disabled = false,
     coverStyle,
   } = props;
-  const [context, setContext] = useState<IDataItem[]>([]);
   const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
-
+  const [activeValue, setActiveValue] = useState<string | number | undefined>(undefined);
   let isVertical = positionType === 'vertical';
   if (radioType === 'vertical') {
     isVertical = true;
   }
 
   useEffect(() => {
-    if (initValue) setPreValue(initValue);
-    let flag = false;
-    let nowValue = initValue;
-    if (!initValue && preValue) nowValue = preValue;
-    const dataList = JSON.parse(JSON.stringify(data));
-    setContext(
-      [...dataList].map(item => {
-        const initItem = item;
-        if (initItem.value === nowValue) {
-          initItem.flag = true;
-          flag = true;
-        } else {
-          initItem.flag = false;
-        }
-        initItem.moveFlag = false;
-        return initItem;
-      }),
-    );
-    if (initValue === preValue) return;
-    if (!flag) {
+    if (data.length === 0) {
       onChange(undefined, 'init');
-    } else {
-      onChange(nowValue, 'init');
+      return;
     }
-  }, [data, initValue]);
+    let newValue = initValue;
+    // 判断是否使用初始值，满足延迟赋数据源的情况
+    if (preValue && !initValue) {
+      newValue = preValue;
+      setPreValue(undefined);
+    }
+    const filter = data.filter(item => item.value === newValue);
+    if (filter && filter.length) {
+      setActiveValue(newValue);
+      onChange(newValue, 'init');
+    } else {
+      setActiveValue(undefined);
+      onChange(undefined, 'init');
+    }
+  }, [data]);
 
-  const radioMove = (flag: boolean, val: IDataItem) => {
-    if (disabled) return;
-    setContext(
-      context.map((item: IDataItem) => {
-        const selItem = item;
-        if (item.value === val.value) {
-          selItem.moveFlag = flag;
-        } else {
-          selItem.moveFlag = false;
-        }
-        return selItem;
-      }),
-    );
-  };
+  useEffect(() => {
+    // 存在延迟数据源的情况，将值保存
+    if (data.length === 0 && initValue) setPreValue(initValue);
+    if (data.length === 0) {
+      onChange(undefined, 'init');
+      return;
+    }
+    const filter = data.filter(item => item.value === initValue);
+    if (filter && filter.length) {
+      setActiveValue(initValue);
+      onChange(initValue, 'init');
+    } else {
+      setActiveValue(undefined);
+      onChange(undefined, 'init');
+    }
+  }, [initValue]);
+
+  // const radioMove = (flag: boolean, val: IDataItem) => {
+  //   if (disabled) return;
+  //   setContext(
+  //     context.map((item: IDataItem) => {
+  //       const selItem = item;
+  //       if (item.value === val.value) {
+  //         selItem.moveFlag = flag;
+  //       } else {
+  //         selItem.moveFlag = false;
+  //       }
+  //       return selItem;
+  //     }),
+  //   );
+  // };
 
   const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
     e.stopPropagation();
     if (disabled) return;
-    setContext(
-      context.map((item: IDataItem) => {
-        const selItem = item;
-        if (item.value === dataItem.value) {
-          selItem.flag = true;
-        } else {
-          selItem.flag = false;
-        }
-        return selItem;
-      }),
-    );
+    const filter = data.filter(item => item.value === dataItem?.value);
+    if (filter && filter.length) {
+      if (dataItem?.value === initValue) {
+        onChange(undefined, 'change');
+        setActiveValue(undefined);
+      } else {
+        onChange(dataItem?.value, 'change');
+        setActiveValue(dataItem?.value);
+      }
+    } else {
+      onChange(undefined, 'change');
+    }
   };
 
   return (
@@ -103,22 +114,22 @@ const RadioGroup: FC<IRadioGroup> = props => {
         'alitajs-dform-cover-radio-item-vertical': radioType === 'vertical',
       })}
     >
-      {[...context].map((item: IDataItem) => (
+      {data.map((item: IDataItem) => (
         <div
           key={item.value}
           className={classnames({
             'alitajs-dform-cover-radio-wrapper': true,
-            'alitajs-dform-cover-radio-wrapper-checked': item.flag,
+            'alitajs-dform-cover-radio-wrapper-checked': item.value && item.value === activeValue,
             'alitajs-dform-cover-radio-wrapper-margin': isVertical,
-            'alitajs-dform-cover-radio-wrapper-cover': item.moveFlag && !item.flag,
+            'alitajs-dform-cover-radio-wrapper-cover': item.moveFlag && item.value !== activeValue,
           })}
           style={coverStyle}
-          onMouseDown={() => {
-            radioMove(true, item);
-          }}
-          onMouseUp={() => {
-            radioMove(false, item);
-          }}
+          // onMouseDown={() => {
+          //   radioMove(true, item);
+          // }}
+          // onMouseUp={() => {
+          //   radioMove(false, item);
+          // }}
           onClick={e => {
             radioClick(e, item);
           }}

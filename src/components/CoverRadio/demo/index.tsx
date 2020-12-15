@@ -67,8 +67,12 @@ const Page = () => {
       type: 'coverRadio',
       fieldProps: 'sex2',
       data: sexList,
-      title: '选择您的性别(不可编辑)',
+      title: '选择您的性别',
       positionType: 'vertical',
+      alias: {
+        label: 'sexName',
+        value: 'sexId',
+      },
       disabled: true,
     },
     {
