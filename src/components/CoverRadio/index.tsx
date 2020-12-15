@@ -57,7 +57,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = data.map(item => ({
+    const newData = (data || []).map(item => ({
       label: item[label],
       value: item[value],
     }));
