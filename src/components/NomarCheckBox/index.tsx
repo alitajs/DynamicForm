@@ -22,7 +22,7 @@ interface INomarCheckBoxProps {
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
-  const [initValue, setInitValue] = useState([]);
+  const [initValue, setInitValue] = useState<string | undefined>();
   const [aliasData, setAliasData] = useState<any[]>([]);
   const {
     coverStyle,
@@ -53,6 +53,10 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     setAliasData(newData);
   }, [data]);
 
+  const boxChange = (e: string[] | number[] | undefined, flag: 'init' | 'change') => {
+    if (onChange && flag === 'change' && e !== initValue) onchange(e);
+  };
+
   return (
     <>
       {!hidden && (
@@ -68,13 +72,18 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
-              setInitValue(nextValue && nextValue[fieldProps as any]);
+              if (nextValue && nextValue[fieldProps]) {
+                setInitValue(JSON.stringify(nextValue[fieldProps]));
+              } else {
+                setInitValue(undefined);
+              }
+              // setInitValue(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
             }}
           >
             <CheckBoxGroup
               data={aliasData}
-              onChange={onChange}
+              onChange={boxChange}
               coverStyle={coverStyle}
               initValue={initValue}
               disabled={disabled}

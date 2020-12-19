@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { Flex } from 'antd-mobile';
-import difference from 'lodash/difference';
 import chunkLodash from 'lodash/chunk';
 
 const { Item } = Flex;
@@ -15,61 +14,79 @@ export interface IDataItem {
 
 interface ICheckBoxGroup {
   data: IDataItem[];
-  onChange?: (currentActiveLink: (string | number)[]) => void;
-  initValue?: (string | number)[];
+  onChange: (currentActiveLink: (string | number)[] | undefined, flag: 'init' | 'change') => void;
+  initValue?: string | undefined;
   disabled?: boolean;
   coverStyle?: React.CSSProperties;
   chunk?: number;
 }
 
 const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
-  const { data, onChange, initValue = [], coverStyle, disabled = false, chunk = 1 } = props;
-  const [context, setContext] = useState<IDataItem[]>([]);
-  const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
+  const { data = [], onChange, initValue, coverStyle, disabled = false, chunk = 1 } = props;
+  const [preValue, setPreValue] = useState<string | undefined>('[]');
+  useEffect(() => {
+    // 存在延迟赋值的情况将值保存
+    if (data.length === 0 && initValue) {
+      setPreValue(initValue);
+    }
+
+    if (!data || data.length === 0) {
+      onChange(undefined, 'init');
+      return;
+    }
+    const newInitValue = initValue ? JSON.parse(initValue) : [];
+    const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
+    if (filter && filter.length) {
+      const newValue = filter.map(item => item?.value);
+      onChange(newValue, 'init');
+    } else {
+      onChange(undefined, 'init');
+    }
+  }, [initValue]);
 
   useEffect(() => {
-    if (!data || data.length === 0) return;
-    if (context.length === 0 || difference(initValue, preInitValue).length !== 0) {
-      const dataList = JSON.parse(JSON.stringify(data));
-      setContext(
-        [...dataList].map(item => {
-          const initItem = item;
-          if (initValue.indexOf(initItem.value) !== -1) {
-            initItem.flag = true;
-          } else {
-            initItem.flag = false;
-          }
-          return initItem;
-        }),
-      );
-      setPreInitValue(initValue);
+    // 存在延迟赋值的情况将值保存
+    if (data.length === 0) {
+      onChange(undefined, 'init');
+      return;
     }
-  }, [data, initValue]);
+    let newValue = initValue;
+    // 判断是否使用初始值，满足延迟赋数据源的情况
+    if (preValue && !initValue) {
+      newValue = preValue;
+      setPreValue(undefined);
+    }
+
+    const newInitValue = newValue ? JSON.parse(newValue) : [];
+    const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
+    if (filter && filter.length) {
+      const newValue = filter.map(item => item?.value);
+      onChange(newValue, 'init');
+    } else {
+      onChange(undefined, 'init');
+    }
+  }, [data]);
 
   const boxClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
     e.stopPropagation();
     if (disabled) return;
-    const values: (string | number)[] = [];
-    const newData = context.map((item: IDataItem) => {
-      const selItem = item;
-      if (item.value === dataItem.value) selItem.flag = !item.flag;
-      if (selItem.flag) values.push(selItem.value);
-      return selItem;
-    });
-    setContext(newData);
-    if (onChange) onChange(values);
+    const newInitValue = initValue ? JSON.parse(initValue) : [];
+    if (newInitValue.indexOf(dataItem.value) !== -1) {
+      newInitValue.splice(newInitValue.indexOf(dataItem.value), 1);
+    } else {
+      newInitValue.push(dataItem.value);
+    }
+    onChange(newInitValue && newInitValue.length ? newInitValue : undefined, 'change');
   };
 
   const BoxContent = () =>
-    chunkLodash([...context], chunk).map((list: IDataItem[], index: number) => (
+    chunkLodash([...data], chunk).map((list: IDataItem[], index: number) => (
       // eslint-disable-next-line react/no-array-index-key
       <Flex key={index}>
         {[...list].map((item: IDataItem) => (
           <Item key={item.value}>
             <div
-              className={classnames({
-                'alitajs-dform-box-wrapper': true,
-              })}
+              className="alitajs-dform-box-wrapper"
               onClick={e => {
                 boxClick(e, item);
               }}
@@ -77,10 +94,13 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
               <div
                 className={classnames({
                   'alitajs-dform-box-botton': true,
-                  'alitajs-dform-box-botton-checked': item.flag,
+                  'alitajs-dform-box-botton-checked':
+                    JSON.parse(initValue || '[]').indexOf(item.value) !== -1,
                 })}
               >
-                {item.flag && <div className="alitajs-dform-box-tick"></div>}
+                {JSON.parse(initValue || '[]').indexOf(item.value) !== -1 && (
+                  <div className="alitajs-dform-box-tick"></div>
+                )}
               </div>
               <div className="alitajs-dform-box-label" style={coverStyle}>
                 {item.label}
