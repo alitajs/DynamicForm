@@ -53,8 +53,8 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     setAliasData(newData);
   }, [data]);
 
-  const boxChange = (e: string[] | number[] | undefined, flag: 'init' | 'change') => {
-    if (onChange && flag === 'change' && e !== initValue) onchange(e);
+  const boxChange = (e: (string | number)[] | undefined, flag: 'init' | 'change') => {
+    if (onChange && flag === 'change' && e !== initValue) onChange(e || []);
   };
 
   return (
