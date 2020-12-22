@@ -1,8 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile';
-import difference from 'lodash/difference';
-import _ from 'lodash';
-import differenceWith from 'lodash/differenceWith';
 import classnames from 'classnames';
 import { IMultiplePickerProps, IDataItem } from './interface';
 import { InputItem } from '..';
@@ -22,7 +19,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     onChange,
     disabled = false,
     positionType = 'horizontal',
-    initValue = [],
+    initValue,
     maxValueLength,
     coverStyle,
     required = false,
@@ -32,118 +29,72 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     onClick,
     leftContent = '取消',
     rightContent = '确定',
+    hidden = false,
     height,
   } = props;
 
-  const [context, setContext] = useState<IDataItem[]>([]);
-  const [preContext, setPreContext] = useState<IDataItem[]>([]);
-  const [preInitValue, setPreInitValue] = useState<(string | number)[]>([]);
-  const [selList, setSelList] = useState<(string | number)[]>([]);
-  const [modalFlag, setModalFlag] = useState<boolean>(false);
-  const [multipleLabel, setMultipleLabel] = useState<string>('');
+  const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
+  const [modalFlag, setModalFlag] = useState<boolean>(false); // 弹框标识
+  const [multipleLabel, setMultipleLabel] = useState<string>(''); // 表单上展示的 label 列表
 
   const isVertical = positionType === 'vertical';
 
+  /**
+   * 设值
+   * @param da 数据源
+   * @param val 值
+   */
+  const setValues = (da: IDataItem[], val: string | undefined, flag = 'init') => {
+    const filter = data.filter(item => JSON.parse(val || '[]')?.indexOf(item.value) !== -1);
+    const labels = filter.map(item => item.label);
+    const values = filter.map(item => item.value);
+    setMultipleLabel(labels.join(','));
+    setSelValueList(values);
+    onChange(values, flag);
+  };
+
   useEffect(() => {
-    const dataList = JSON.parse(JSON.stringify(data));
-    const selLabelList: (string | number)[] = [];
-    const selValueList: (string | number)[] = [];
-    const nowContext = dataList.map(item => {
-      const initItem = item;
-      if (initValue.indexOf(initItem.value) !== -1) {
-        if (!maxValueLength || (maxValueLength && maxValueLength > selValueList.length)) {
-          initItem.flag = true;
-          selLabelList.push(item.label);
-          selValueList.push(item.value);
-        } else {
-          initItem.flag = false;
-        }
-      } else {
-        initItem.flag = false;
-      }
-      return initItem;
-    });
-    setContext(nowContext);
-    if (differenceWith(nowContext, preContext, _.isEqual)) {
-      if (data.length === 0) setMultipleLabel('');
-      if (onChange) onChange(selValueList, 'init');
+    if (!data || data.length === 0) {
+      onChange(undefined, 'init');
+      return;
     }
+    setValues(data, initValue);
   }, [data]);
 
   useEffect(() => {
-    if (!data || data.length === 0) return;
-    if (
-      context.length === 0 ||
-      preInitValue.length !== 0 ||
-      difference(initValue, preInitValue).length !== 0
-    ) {
-      const dataList = JSON.parse(JSON.stringify(data));
-      const selLabelList: (string | number)[] = [];
-      const selValueList: (string | number)[] = [];
-      setContext(
-        [...dataList].map(item => {
-          const initItem = item;
-          if (initValue.indexOf(initItem.value) !== -1) {
-            if (!maxValueLength || (maxValueLength && maxValueLength > selValueList.length)) {
-              initItem.flag = true;
-              selLabelList.push(item.label);
-              selValueList.push(item.value);
-            } else {
-              initItem.flag = false;
-            }
-          } else {
-            initItem.flag = false;
-          }
-          return initItem;
-        }),
-      );
-      setMultipleLabel(selLabelList.join(','));
-      setPreInitValue(initValue);
-      setSelList(selValueList);
+    if (!data || data.length === 0) {
+      onChange(undefined, 'init');
+      return;
     }
-  }, [initValue]);
+    setValues(data, initValue);
+  }, [initValue, data, hidden]);
 
   const pickerClick = (val: IDataItem) => {
-    const dataList = JSON.parse(JSON.stringify(context));
-    if (selList.indexOf(val.value) !== -1) {
-      selList.splice(selList.indexOf(val.value), 1);
+    let list = JSON.parse(JSON.stringify(selValueList));
+    if (list.indexOf(val.value) !== -1) {
+      list.splice(list.indexOf(val.value), 1);
     } else {
-      selList.push(val.value);
+      list.push(val.value);
     }
-    if (maxValueLength && selList.length > maxValueLength) {
-      selList.shift();
+    if (maxValueLength && list.length > maxValueLength) {
+      list.shift();
     }
-    setContext(
-      [...dataList].map(item => {
-        const initItem = item;
-        if (selList.indexOf(initItem.value) !== -1) {
-          initItem.flag = true;
-        } else {
-          initItem.flag = false;
-        }
-        return initItem;
-      }),
-    );
+    setSelValueList(list);
   };
 
   const openMoal = () => {
     if (disabled) return;
-    setPreContext([...context]);
+    setValues(data, initValue);
     setModalFlag(true);
   };
 
   const onCancel = () => {
     setModalFlag(false);
-    setContext([...preContext]);
-    setSelList([...preInitValue]);
   };
 
   const onConfirm = () => {
-    const selLabelList = context.filter(it => it.flag).map(item => item.label);
-    const selValueList = context.filter(it => it.flag).map(item => item.value);
-    setMultipleLabel(selLabelList.join(','));
     setModalFlag(false);
-    if (onChange) onChange(selValueList, 'change');
+    setValues(data, JSON.stringify(selValueList), 'change');
   };
 
   return (
@@ -199,7 +150,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         }
       >
         <List className="alitajs-dform-modal-content">
-          {[...context].map(item => (
+          {[...data].map(item => (
             <Item key={item.value}>
               <div
                 className="alitajs-dform-multiple-picker-item"
@@ -210,12 +161,15 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
                 <div
                   className={classnames({
                     'alitajs-dform-multiple-picker-label': true,
-                    'alitajs-dform-multiple-picker-checked': item.flag,
+                    'alitajs-dform-multiple-picker-checked':
+                      selValueList.indexOf(item?.value) !== -1,
                   })}
                 >
                   {item.label}
                 </div>
-                {item.flag && <div className="alitajs-dform-tick"></div>}
+                {selValueList.indexOf(item?.value) !== -1 && (
+                  <div className="alitajs-dform-tick"></div>
+                )}
               </div>
             </Item>
           ))}

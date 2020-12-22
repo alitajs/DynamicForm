@@ -4,7 +4,6 @@ import { IAliasProps } from '../../DynamicForm';
 export interface IDataItem {
   label: string;
   value: string;
-  flag?: boolean;
 }
 
 export interface IMultiplePickerProps {
@@ -20,7 +19,7 @@ export interface IMultiplePickerProps {
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
   placeholder?: string;
-  initValue?: (string | number)[];
+  initValue?: string | undefined;
   disabled?: boolean;
   maxValueLength?: number;
   labelNumber?: number;
