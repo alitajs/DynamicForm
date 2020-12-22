@@ -29,7 +29,6 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     onClick,
     leftContent = '取消',
     rightContent = '确定',
-    hidden = false,
     height,
   } = props;
 
@@ -59,15 +58,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
       return;
     }
     setValues(data, initValue);
-  }, [data]);
-
-  useEffect(() => {
-    if (!data || data.length === 0) {
-      onChange(undefined, 'init');
-      return;
-    }
-    setValues(data, initValue);
-  }, [initValue, data, hidden]);
+  }, [initValue, data]);
 
   const pickerClick = (val: IDataItem) => {
     let list = JSON.parse(JSON.stringify(selValueList));
