@@ -115,6 +115,8 @@ export interface IFormItemProps {
   asyncLoad?: boolean;
   maxLine?: number;
   compressRatio?: number;
+  onChange?: (val: (string | number)[] | string | number | boolean) => void;
+  hidden?: boolean;
 }
 
 interface CardDForm extends CardHeaderPropsType {
@@ -195,6 +197,9 @@ export const getDFormType = (data: DFormData): DFormType => {
 
 const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
   oldData.map(item => {
+    if (item?.hidden) {
+      item.required = false;
+    }
     if (item.positionType === 'vertical' || !autoLineFeed) return item;
     if (item.title) {
       const titleSize = getByteLen(item.title);
