@@ -46,7 +46,7 @@
     "copy-to-clipboard": "^3.2.0",
     "dayjs": "^1.8.28",
     "lodash": "^4.17.15",
-    "rc-field-form": "1.14.0"
+    "rc-field-form": "1.17.3"
   },
   "peerDependencies": {
     "antd-mobile": "^2.3.1",

@@ -32,7 +32,6 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   const isVertical = positionType === 'vertical';
 
   useEffect(() => {
-    console.log(initValue);
     if (data.length === 0 && initValue) setPreValue(initValue);
     if (data.length === 0) {
       onChange(undefined, 'init');
@@ -41,7 +40,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     const filterList = data.filter(item => item?.value === initValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
-      onChange(initValue, 'init');
+      // onChange(initValue, 'init');
     } else {
       setPickerLabel('');
       onChange(undefined, 'init');
@@ -58,7 +57,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       const filterList = data.filter(item => item?.value === nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
-        onChange(nowValue, 'init');
+        // onChange(nowValue, 'init');
       } else {
         onChange(undefined, 'init');
         setPickerLabel('');
