@@ -22,7 +22,7 @@ export interface INomarPickerProps {
   initValue?: string | number;
   disabled?: boolean;
   labelNumber?: number;
-  onClick?: (val: string | number) => void;
+  onClick?: (val: string | number | undefined) => void;
   alias?: IAliasProps;
   extra?: string | React.ReactNode;
 }
