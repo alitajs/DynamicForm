@@ -28,7 +28,7 @@ const Page: FC = () => {
   const [homeAddrData, setHomeAddrData] = useState<IAddrDataProps[] | []>([]);
   const [workAddrData, setWorkAddrData] = useState<IAddrDataProps[] | []>([]);
 
-  const queryList = (list: any, val: string) => {
+  const queryList = (list: any, val: string | number) => {
     let newList: any[] = [];
     list.map((item: { value: string; children: any[] }) => {
       if (item.value === val) {
@@ -67,6 +67,14 @@ const Page: FC = () => {
       case 0:
         data = CountryList;
         break;
+      case 3:
+        data = [
+          { label: '街道1', value: '街道1' },
+          { label: '街道2', value: '街道2' },
+          { label: '街道3', value: '街道3' },
+          { label: '街道4', value: '街道4' },
+        ];
+        break;
       default:
         data = queryList(CountryList, values[values.length - 1]);
         break;
@@ -87,31 +95,22 @@ const Page: FC = () => {
       onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
         Toast.loading('加载中', 0.5);
-        console.log(values);
         setTimeout(() => {
           resetHomeAddrList(values);
         }, 500);
-      },
-      onClick: () => {
-        // eslint-disable-next-line no-console
-        console.log('存在点击事件');
       },
     },
     {
       type: 'addressPicker',
       fieldProps: 'workAddr',
       title: '工作地址',
-      asyncLoad: false,
-      // disabled: true,
       required: true,
       placeholder: '请选择',
       positionType: 'vertical',
-      level: 4,
+      // level: 4,
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: (values: (string | number)[]) => {
-        // eslint-disable-next-line no-console
-        console.log(values);
         resetWorkAddrList(values);
       },
       noData: <div>暂无街道数据</div>,

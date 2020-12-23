@@ -20,7 +20,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     disabled = false,
     onChangeLevel,
     onChange,
-    level = 3,
+    level,
     placeholderList = [],
     initValue = undefined,
     required = false,
@@ -29,15 +29,15 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     labelNumber = 5,
     coverStyle,
     onClick,
-    leftContent = '取消',
-    rightContent = '确定',
-    height,
+    height = '50vh',
     noData = '',
     loading = true,
   } = props;
 
   // input 框的值
   const [inputLabel, setInputLabel] = useState<string>('');
+
+  // 弹框标识
   const [modalFlag, setModalFlag] = useState<boolean>(false);
 
   // 弹框选中的头部文字列表
@@ -45,13 +45,11 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     placeholderList && placeholderList.length ? [placeholderList[0]] : ['请选择'],
   );
 
-  const [preInitValue, setPreInitValue] = useState({});
-
   // value 值列表
   const [valueList, setValueList] = useState<(string | number)[]>([]);
 
   // 当前列表数据
-  const [dataList, setDataList] = useState<IModalData[] | []>([]);
+  // const [dataList, setDataList] = useState<IModalData[] | []>([]);
 
   // 当前所在层级数字
   const [nowLevel, setNowLevel] = useState<number>(0);
@@ -60,72 +58,11 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
 
   const isVertical = positionType === 'vertical';
 
-  const onConfirm = () => {
-    const newLabelList = JSON.parse(JSON.stringify(labelList));
-    if (nowLevel !== level) newLabelList.pop();
-    setInputLabel(newLabelList.join(','));
-    if (onChange) {
-      if (newLabelList.length) {
-        onChange({ label: newLabelList, value: valueList });
-      } else {
-        onChange(undefined);
-      }
-    }
-    setModalFlag(false);
-  };
+  const onConfirm = () => {};
 
-  useEffect(() => {
-    // if (onChange) onChange(undefined);
-  }, []);
+  useEffect(() => {}, [data]);
 
-  useEffect(() => {
-    if (data.length === 0 && valueList.length) {
-      onConfirm();
-      setDelFlag(true);
-      const newLabelList = JSON.parse(JSON.stringify(labelList));
-      newLabelList.pop();
-      setLabelList(newLabelList);
-      setNowLevel(nowLevel - 1);
-    }
-    if (data.length === 0) return;
-    setDataList(
-      data.map(item => {
-        const newItem = item;
-        if (newItem.value === valueList[valueList.length - 1]) {
-          newItem.flag = true;
-        } else newItem.flag = false;
-        return newItem;
-      }),
-    );
-  }, [data]);
-
-  useEffect(() => {
-    if (!isEqual(preInitValue, initValue)) {
-      let newInitValue = initValue;
-      if (!newInitValue) {
-        newInitValue = { label: [], value: [] };
-      }
-      const { label = [], value = [] } = newInitValue;
-      setDataList(
-        data.map(item => {
-          const newItem = item;
-          if (newItem.value === value[value.length]) {
-            newItem.flag = true;
-          } else newItem.flag = false;
-          return newItem;
-        }),
-      );
-      const newLabelList = resetLabel(JSON.parse(JSON.stringify([...label])), placeholderList);
-      setNowLevel(value.length);
-      if (data.length === 0 && value.length !== level) {
-        newLabelList.pop();
-      }
-      setLabelList(newLabelList);
-      setInputLabel(label.join(','));
-      setValueList(value);
-      setPreInitValue(newInitValue);
-    }
-  }, [initValue]);
+  useEffect(() => {}, [initValue]);
 
   const openMoal = () => {
     if (disabled) return;
@@ -137,70 +74,44 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   };
 
   const listClick = (val: any) => {
-    // 选中数据的时候刷新列表
-    setDataList(
-      [...dataList].map((item: any) => {
-        const newItem = item;
-        if (item.value === val.value) newItem.flag = true;
-        else newItem.flag = false;
-        return newItem;
-      }),
-    );
-    const newList = JSON.parse(JSON.stringify(labelList));
-    const newValueList = JSON.parse(JSON.stringify(valueList));
-
-    if (delFlag) {
-      newValueList.pop();
-    }
-    // 设置当前层级
-    newList.splice(newList.length - 1, 1, val.label);
-    let insLevel = nowLevel;
-    if (nowLevel !== level) insLevel += 1;
-    setNowLevel(insLevel);
-
-    // 如果层级符合，将数据放入input 中，并且关闭弹框
-    const newLabelList = JSON.parse(JSON.stringify(newList));
-    if (insLevel === level) {
-      if (insLevel !== level) newLabelList.pop();
-      setInputLabel(newLabelList.join(','));
-      if (onChange) onChange({ label: newLabelList, value: newValueList });
-      setModalFlag(false);
-    }
-    if (newValueList.length === insLevel) {
-      newValueList.pop();
-    }
-    newValueList.push(val.value);
-
-    // 设置头部展示列表和值列表
-    setLabelList(resetLabel(newList, placeholderList));
-    setValueList(newValueList);
-    // 调用改变层级的事件给用户
+    let newValueList = [...valueList, val?.value];
+    // 调用 onChangeLevel 让用户修改数据源
     if (onChangeLevel) onChangeLevel(newValueList);
+
+    // 保存value 值
+    setValueList(newValueList);
+
+    // 设置弹框顶部选中label 的值
+    const newLabelList = JSON.parse(JSON.stringify(labelList));
+    // 如果有层级约束
+    if (level) {
+      console.log(level);
+      if (nowLevel === level) {
+        //如果当前为最后一级，则替换掉原有值
+        newLabelList.splice(newLabelList.length - 1, 1, val?.label);
+      } else if (nowLevel + 1 === level) {
+        // 如果当前
+        newLabelList.push(val?.label);
+      } else {
+        newLabelList.pop();
+        newLabelList.push(val?.label);
+        newLabelList.push(
+          placeholderList.length >= newLabelList.length
+            ? placeholderList[newLabelList.length]
+            : '请选择',
+        );
+      }
+      setLabelList(newLabelList);
+    } else {
+    }
   };
 
-  const labelClick = (index: number) => {
-    // 设置当前的层级
-    setNowLevel(index);
-    setDelFlag(false);
-
-    const newLabelList = labelList.splice(0, index);
-    const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, index);
-
-    // 设置头部展示列表
-    setLabelList(resetLabel(JSON.parse(JSON.stringify(newLabelList)), placeholderList));
-    setValueList(newValueList);
-    // 调用改变层级的事件给用户
-    if (onChangeLevel) onChangeLevel(newValueList);
-  };
+  const labelClick = (index: number) => {};
 
   const inputClick = () => {
     if (onClick) onClick();
     if (data.length === 0) {
-      const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, valueList.length - 1);
-      if (onChangeLevel) onChangeLevel(newValueList);
-      if (newValueList.length) {
-        setNowLevel(newValueList.length);
-      }
+      if (onChangeLevel) onChangeLevel([]);
     }
     openMoal();
   };
@@ -247,23 +158,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         animationType="slide-up"
         title={
           <div className="am-picker-popup-header">
-            <div
-              className="am-picker-popup-item am-picker-popup-header-left"
-              onClick={() => {
-                onCancel();
-              }}
-            >
-              {leftContent}
-            </div>
             <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
-            <div
-              className="am-picker-popup-item am-picker-popup-header-right"
-              onClick={() => {
-                onConfirm();
-              }}
-            >
-              {rightContent}
-            </div>
           </div>
         }
       >
@@ -295,13 +190,12 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
               ))}
             </Flex>
           </div>
-          {data.length === 0 && !loading && <div>{noData}</div>}
           <div
             className="alitajs-dform-address-list"
             style={{ display: data.length ? '' : 'none' }}
           >
             <List>
-              {[...dataList].map(item => (
+              {[...data].map(item => (
                 <Item key={item.value}>
                   <div
                     className="alitajs-dform-address-list-content"

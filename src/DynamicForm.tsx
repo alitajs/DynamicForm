@@ -112,7 +112,6 @@ export interface IFormItemProps {
   noData?: string | React.ReactNode;
   loading?: boolean;
   alias?: IAliasProps;
-  asyncLoad?: boolean;
   maxLine?: number;
   compressRatio?: number;
   onChange?: (val: (string | number)[] | string | number | boolean) => void;
