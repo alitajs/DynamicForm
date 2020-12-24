@@ -43,13 +43,13 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
    * @param da 数据源
    * @param val 值
    */
-  const setValues = (da: IDataItem[], val: string | undefined, flag = 'init') => {
+  const setValues = (da: IDataItem[], val: string | undefined, flag = 'init', effectFlag = '') => {
     const filter = da.filter(item => JSON.parse(val || '[]')?.indexOf(item.value) !== -1);
     const labels = filter.map(item => item.label);
     const values = filter.map(item => item.value);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
-    if (flag === 'init' && filter && filter.length) return;
+    if (flag === 'init' && filter && filter.length && effectFlag === 'initValue') return;
     onChange(values, flag);
   };
 
@@ -58,8 +58,15 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
       onChange(undefined, 'init');
       return;
     }
-    setValues(data, initValue);
-  }, [initValue, data]);
+    setValues(data, initValue, 'init', 'initValue');
+  }, [initValue]);
+  useEffect(() => {
+    if (!data || data.length === 0) {
+      onChange(undefined, 'init');
+      return;
+    }
+    setValues(data, initValue, 'init', 'data');
+  }, [data]);
 
   const pickerClick = (val: IDataItem) => {
     let list = JSON.parse(JSON.stringify(selValueList));
