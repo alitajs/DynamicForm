@@ -40,10 +40,6 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     const filterList = data.filter(item => item?.value === initValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
-      // onChange(initValue, 'init');
-    } else {
-      setPickerLabel('');
-      onChange(undefined, 'init');
     }
   }, [initValue]);
 
@@ -57,7 +53,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       const filterList = data.filter(item => item?.value === nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
-        // onChange(nowValue, 'init');
+        if (preValue) onChange(nowValue, 'init');
       } else {
         onChange(undefined, 'init');
         setPickerLabel('');
