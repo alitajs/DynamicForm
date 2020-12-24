@@ -37,11 +37,9 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     const newInitValue = initValue ? JSON.parse(initValue) : [];
     const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
     if (filter && filter.length) {
-      const newValue = filter.map(item => item?.value);
-      onChange(newValue, 'init');
-    } else {
-      onChange(undefined, 'init');
+      return;
     }
+    onChange(undefined, 'init');
   }, [initValue]);
 
   useEffect(() => {
@@ -60,11 +58,9 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     const newInitValue = newValue ? JSON.parse(newValue) : [];
     const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
     if (filter && filter.length) {
-      const newValue = filter.map(item => item?.value);
-      onChange(newValue, 'init');
-    } else {
-      onChange(undefined, 'init');
+      return;
     }
+    onChange(undefined, 'init');
   }, [data]);
 
   const boxClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {

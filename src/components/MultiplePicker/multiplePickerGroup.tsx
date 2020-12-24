@@ -44,11 +44,12 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
    * @param val 值
    */
   const setValues = (da: IDataItem[], val: string | undefined, flag = 'init') => {
-    const filter = data.filter(item => JSON.parse(val || '[]')?.indexOf(item.value) !== -1);
+    const filter = da.filter(item => JSON.parse(val || '[]')?.indexOf(item.value) !== -1);
     const labels = filter.map(item => item.label);
     const values = filter.map(item => item.value);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
+    if (flag === 'init' && filter && filter.length) return;
     onChange(values, flag);
   };
 
