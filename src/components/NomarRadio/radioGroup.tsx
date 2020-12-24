@@ -50,7 +50,9 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     const filter = data.filter(item => item.value === newValue);
     if (filter && filter.length) {
       setActiveValue(newValue);
-      // onChange(newValue, 'init');
+      if (preValue) {
+        onChange(newValue, 'init');
+      }
     } else {
       setActiveValue(undefined);
       onChange(undefined, 'init');
@@ -68,10 +70,8 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     if (filter && filter.length) {
       setActiveValue(initValue);
       // onChange(initValue, 'init');
-    } else {
-      setActiveValue(undefined);
-      onChange(undefined, 'init');
     }
+    console.log(initValue);
   }, [initValue]);
 
   const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
