@@ -1,17 +1,23 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, Flex, List } from 'antd-mobile';
 import classnames from 'classnames';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import _ from 'lodash';
-import isEqual from 'lodash/isEqual';
-import { IModalData, IAddressPickerProps } from './interface';
-import { resetLabel } from '../../utils';
+import { IAddressPickerProps } from './interface';
 import { InputItem } from '..';
 import '../../styles/index.less';
 
 const { Item } = List;
 
-const AddressPickerGroup: FC<IAddressPickerProps> = props => {
+interface valueProps {
+  label: (string | number)[];
+  value: (string | number)[];
+}
+
+interface AddressPickerGroupProps extends Omit<IAddressPickerProps, 'onChange'> {
+  onChange: (val: valueProps | undefined, flag: 'init' | 'change') => void;
+}
+
+const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
   const {
     data = [],
     placeholder = '请选择',
@@ -30,8 +36,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     coverStyle,
     onClick,
     height = '50vh',
-    noData = '',
-    loading = true,
+    rightContent = '确定',
   } = props;
 
   // input 框的值
@@ -48,50 +53,72 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
   // value 值列表
   const [valueList, setValueList] = useState<(string | number)[]>([]);
 
-  // 当前列表数据
-  // const [dataList, setDataList] = useState<IModalData[] | []>([]);
-
   // 当前所在层级数字
   const [nowLevel, setNowLevel] = useState<number>(0);
 
-  const [delFlag, setDelFlag] = useState<boolean>(false);
-
   const isVertical = positionType === 'vertical';
 
-  const onConfirm = () => {};
+  const onConfirm = () => {
+    const newLabelList = [...labelList];
+    if (nowLevel !== level) {
+      newLabelList.splice(newLabelList.length - 1, 1);
+    }
+    let val = undefined;
+    if (valueList && valueList.length) {
+      val = { label: newLabelList, value: valueList };
+    }
+    onChange(val, 'change');
+    setInputLabel(newLabelList.join(','));
+    setModalFlag(false);
+  };
 
   useEffect(() => {}, [data]);
 
-  useEffect(() => {}, [initValue]);
+  useEffect(() => {
+    if (!initValue) return;
+    const newValue = JSON.parse(initValue);
+    const { value = [], label = [] } = newValue;
+    setInputLabel(label.join(','));
+    setLabelList(label);
+    setValueList(value);
+    setNowLevel(value.length);
+    onChangeLevel(value);
+    // onChange(newValue, 'init');
+  }, [initValue]);
 
+  /**
+   * 打开弹窗
+   */
   const openMoal = () => {
     if (disabled) return;
     setModalFlag(true);
   };
 
+  /**
+   * 取消按钮点击事件
+   */
   const onCancel = () => {
     setModalFlag(false);
   };
 
+  /**
+   * 列表点击事件
+   */
   const listClick = (val: any) => {
-    let newValueList = [...valueList, val?.value];
-    // 调用 onChangeLevel 让用户修改数据源
-    if (onChangeLevel) onChangeLevel(newValueList);
-
-    // 保存value 值
-    setValueList(newValueList);
+    let newValueList = [...valueList];
 
     // 设置弹框顶部选中label 的值
-    const newLabelList = JSON.parse(JSON.stringify(labelList));
+    const newLabelList = [...labelList];
     // 如果有层级约束
     if (level) {
-      console.log(level);
       if (nowLevel === level) {
         //如果当前为最后一级，则替换掉原有值
         newLabelList.splice(newLabelList.length - 1, 1, val?.label);
+        newValueList.splice(newValueList.length - 1, 1, val?.value);
       } else if (nowLevel + 1 === level) {
-        // 如果当前
-        newLabelList.push(val?.label);
+        newLabelList.splice(newLabelList.length - 1, 1, val?.label);
+        setNowLevel(nowLevel + 1);
+        newValueList.push(val?.value);
       } else {
         newLabelList.pop();
         newLabelList.push(val?.label);
@@ -100,14 +127,37 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
             ? placeholderList[newLabelList.length]
             : '请选择',
         );
+        setNowLevel(nowLevel + 1);
+        newValueList.push(val?.value);
       }
       setLabelList(newLabelList);
-    } else {
     }
+
+    // 调用 onChangeLevel 让用户修改数据源
+    if (onChangeLevel) onChangeLevel(newValueList);
+
+    // 保存value 值
+    setValueList(newValueList);
   };
 
-  const labelClick = (index: number) => {};
+  /**
+   * 选中值点击事件
+   */
+  const labelClick = (index: number) => {
+    const newValueList = valueList.splice(0, index);
+    const newLabelList = labelList.splice(0, index);
+    if (level !== index + 1) {
+      newLabelList.push(placeholderList[index]);
+    }
+    setValueList(newValueList);
+    setLabelList(newLabelList);
+    onChangeLevel(newValueList);
+    setNowLevel(index);
+  };
 
+  /**
+   * 输入框点击事件
+   */
   const inputClick = () => {
     if (onClick) onClick();
     if (data.length === 0) {
@@ -159,6 +209,14 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
         title={
           <div className="am-picker-popup-header">
             <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
+            <div
+              className="am-picker-popup-item am-picker-popup-header-right"
+              onClick={() => {
+                onConfirm();
+              }}
+            >
+              {rightContent}
+            </div>
           </div>
         }
       >

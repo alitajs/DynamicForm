@@ -16,9 +16,14 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
     positionType = 'horizontal',
     subTitle,
     hidden = false,
+    onChange,
   } = props;
 
   const isVertical = positionType === 'vertical';
+
+  const fieldChange = (val: (number | string)[] | undefined, flag: 'change' | 'init') => {
+    if (flag === 'change' && onChange) onChange(val);
+  };
 
   return (
     <>
@@ -48,7 +53,7 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <AddressPickerGroup {...props} initValue={initValue} />
+            <AddressPickerGroup {...props} initValue={initValue} onChange={fieldChange} />
           </Field>
         </React.Fragment>
       )}
