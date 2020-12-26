@@ -50,7 +50,10 @@ const RadioGroup: FC<IRadioGroup> = props => {
     const filter = data.filter(item => item.value === newValue);
     if (filter && filter.length) {
       setActiveValue(newValue);
-      // onChange(newValue, 'init');
+      if (preValue) {
+        // 如果存在原始值的话 需要修改下表单值
+        onChange(newValue, 'init');
+      }
     } else {
       setActiveValue(undefined);
       onChange(undefined, 'init');
@@ -67,27 +70,8 @@ const RadioGroup: FC<IRadioGroup> = props => {
     const filter = data.filter(item => item.value === initValue);
     if (filter && filter.length) {
       setActiveValue(initValue);
-      // onChange(initValue, 'init');
-    } else {
-      setActiveValue(undefined);
-      onChange(undefined, 'init');
     }
   }, [initValue]);
-
-  // const radioMove = (flag: boolean, val: IDataItem) => {
-  //   if (disabled) return;
-  //   setContext(
-  //     context.map((item: IDataItem) => {
-  //       const selItem = item;
-  //       if (item.value === val.value) {
-  //         selItem.moveFlag = flag;
-  //       } else {
-  //         selItem.moveFlag = false;
-  //       }
-  //       return selItem;
-  //     }),
-  //   );
-  // };
 
   const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
     e.stopPropagation();
@@ -95,13 +79,16 @@ const RadioGroup: FC<IRadioGroup> = props => {
     const filter = data.filter(item => item.value === dataItem?.value);
     if (filter && filter.length) {
       if (dataItem?.value === initValue) {
+        console.log(data, initValue);
         onChange(undefined, 'change');
         setActiveValue(undefined);
       } else {
+        console.log(data, initValue);
         onChange(dataItem?.value, 'change');
         setActiveValue(dataItem?.value);
       }
     } else {
+      console.log(data, initValue);
       onChange(undefined, 'change');
     }
   };
