@@ -39,23 +39,16 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     rightContent = '确定',
   } = props;
 
-  // input 框的值
-  const [inputLabel, setInputLabel] = useState<string>('');
-
-  // 弹框标识
-  const [modalFlag, setModalFlag] = useState<boolean>(false);
+  const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
+  const [modalFlag, setModalFlag] = useState<boolean>(false); // 弹框标识
 
   // 弹框选中的头部文字列表
   const [labelList, setLabelList] = useState<string[]>(
     placeholderList && placeholderList.length ? [placeholderList[0]] : ['请选择'],
   );
 
-  // value 值列表
-  const [valueList, setValueList] = useState<(string | number)[]>([]);
-
-  // 当前所在层级数字
-  const [nowLevel, setNowLevel] = useState<number>(0);
-
+  const [valueList, setValueList] = useState<(string | number)[]>([]); // value 值列表
+  const [nowLevel, setNowLevel] = useState<number>(0); // 当前所在层级数字
   const isVertical = positionType === 'vertical';
 
   const onConfirm = () => {
@@ -76,13 +69,16 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
 
   useEffect(() => {
     if (!initValue) return;
+
     const newValue = JSON.parse(initValue);
     const { value = [], label = [] } = newValue;
     setInputLabel(label.join(','));
     setLabelList(label);
     setValueList(value);
     setNowLevel(value.length);
-    onChangeLevel(value);
+    if (valueList.length === 0) {
+      onChangeLevel(value);
+    }
     // onChange(newValue, 'init');
   }, [initValue]);
 

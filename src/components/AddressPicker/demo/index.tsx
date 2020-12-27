@@ -94,20 +94,17 @@ const Page: FC = () => {
       placeholderList: ['请选择省', '请选择市', '请选择区'],
       onChangeLevel: (values: (string | number)[]) => {
         // eslint-disable-next-line no-console
-        Toast.loading('加载中', 0.5);
-        setTimeout(() => {
-          resetHomeAddrList(values);
-        }, 500);
+        resetHomeAddrList(values);
       },
     },
     {
       type: 'addressPicker',
       fieldProps: 'workAddr',
       title: '工作地址',
-      required: true,
+      // required: true,
       placeholder: '请选择',
       positionType: 'vertical',
-      // level: 4,
+      level: 4,
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: (values: (string | number)[]) => {
