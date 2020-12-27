@@ -49,7 +49,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     const values = filter.map(item => item.value);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
-    if (flag === 'init' && filter && filter.length && effectFlag === 'initValue') return;
+    if ((flag === 'init' && filter && filter.length) || effectFlag === 'initValue') return;
     onChange(values, flag);
   };
 

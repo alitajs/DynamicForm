@@ -39,7 +39,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     if (filter && filter.length) {
       return;
     }
-    onChange(undefined, 'init');
+    // onChange(undefined, 'init');
   }, [initValue]);
 
   useEffect(() => {

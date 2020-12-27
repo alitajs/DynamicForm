@@ -35,11 +35,14 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     if (data.length === 0 && initValue) setPreValue(initValue);
     if (data.length === 0) {
       onChange(undefined, 'init');
+      setPickerLabel('');
       return;
     }
     const filterList = data.filter(item => item?.value === initValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
+    } else {
+      setPickerLabel('');
     }
   }, [initValue]);
 
