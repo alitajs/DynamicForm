@@ -39,6 +39,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
   useEffect(() => {
     if (data.length === 0) {
       onChange(undefined, 'init');
+      setActiveValue(undefined);
       return;
     }
     let newValue = initValue;
@@ -65,11 +66,14 @@ const RadioGroup: FC<IRadioGroup> = props => {
     if (data.length === 0 && initValue) setPreValue(initValue);
     if (data.length === 0) {
       onChange(undefined, 'init');
+      setActiveValue(undefined);
       return;
     }
     const filter = data.filter(item => item.value === initValue);
     if (filter && filter.length) {
       setActiveValue(initValue);
+    } else {
+      setActiveValue(undefined);
     }
   }, [initValue]);
 
