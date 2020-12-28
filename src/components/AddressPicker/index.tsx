@@ -44,11 +44,12 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
-              if (nextValue && nextValue[fieldProps] && prevValue !== nextValue) {
-                setInitValue(JSON.stringify(nextValue[fieldProps]));
-              } else {
-                setInitValue(undefined);
-              }
+              // if (nextValue && nextValue[fieldProps] && prevValue !== nextValue) {
+              //   setInitValue(JSON.stringify(nextValue[fieldProps]));
+              // } else {
+              //   setInitValue(undefined);
+              // }
+              setInitValue(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
             }}
           >

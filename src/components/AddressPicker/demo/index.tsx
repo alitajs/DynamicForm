@@ -15,6 +15,12 @@ interface IAddrDataProps {
 
 const Page: FC = () => {
   const [form] = useForm();
+  const [formsValues] = useState({
+    homeAddr: {
+      label: ['福建省', '福州市', '鼓楼区'],
+      value: ['35', '3501', '350102'],
+    },
+  });
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -62,10 +68,15 @@ const Page: FC = () => {
     Toast.hide();
   };
   const resetWorkAddrList = (values: (number | string)[]) => {
+    console.log(values);
     let data: { label: string; value: string }[] = [];
     switch (values.length) {
       case 0:
         data = CountryList;
+        break;
+      case 1:
+      case 2:
+        data = queryList(CountryList, values[values.length - 1]);
         break;
       case 3:
         data = [
@@ -76,7 +87,6 @@ const Page: FC = () => {
         ];
         break;
       default:
-        data = queryList(CountryList, values[values.length - 1]);
         break;
     }
     setWorkAddrData(data);
@@ -104,22 +114,19 @@ const Page: FC = () => {
       // required: true,
       placeholder: '请选择',
       positionType: 'vertical',
-      level: 4,
+      // level: 4,
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: (values: (string | number)[]) => {
-        resetWorkAddrList(values);
+        Toast.show('加载中');
+        setTimeout(() => {
+          resetWorkAddrList(values);
+          Toast.hide();
+        }, 1000);
       },
       noData: <div>暂无街道数据</div>,
     },
   ] as IFormItemProps[];
-
-  const formsValues = {
-    homeAddr: {
-      value: ['35', '3501', '350102'],
-      label: ['福建省', '福州市', '鼓楼区'],
-    },
-  };
 
   const formProps = {
     onFinish,

@@ -728,25 +728,40 @@
     .alitajs-dform-address-value {
       padding: 0 15 * @hd;
 
-      .alitajs-dform-address-value-item {
-        font-size: @alita-dform-select-font-size;
-      }
+      .alitajs-dform-address-label {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
 
-      .alitajs-dform-address-value-select {
-        color: @alita-dform-radio-color;
-        border-bottom: 2 * @hd solid @alita-dform-radio-color;
-        width: fit-content;
-      }
+        .alitajs-dform-circle {
+          width: 6 * @hd;
+          height: 6 * @hd;
+          border-radius: 50%;
+          background-color: @alita-dform-radio-color ;
+          border: 1 * @hd solid @alita-dform-radio-color;
+        }
 
-      .alitajs-dform-address-value-item-label {
-        padding-top: 15 * @hd;
-        padding-bottom: 15 * @hd;
+        .alitajs-dform-circle-current {
+          background-color: transparent;
+        }
+
+        .alitajs-dform-address-value-item-label {
+          padding: 6*@hd 0 6*@hd 30*@hd;
+          text-align: left;
+          color: @alita-dform-title-color;
+          font-size: @alita-dform-select-font-size;
+        }
+
+        .alitajs-dform-address-value-select {
+          color: @alita-dform-radio-color;
+        }
       }
     }
 
     .alitajs-dform-address-list {
       flex: 1;
       overflow: auto;
+      padding-bottom: 100px;
 
       .alitajs-dform-address-list-content {
         display: flex;
@@ -763,7 +778,6 @@
   display: flex;
   flex-direction: row;
   // align-items: center;
-
   justify-content: center;
 
 

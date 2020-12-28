@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Modal, Flex, List } from 'antd-mobile';
+import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
 import _ from 'lodash';
 import { IAddressPickerProps } from './interface';
@@ -37,6 +37,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     onClick,
     height = '50vh',
     rightContent = '确定',
+    leftContent = '取消',
   } = props;
 
   const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
@@ -52,7 +53,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
   const isVertical = positionType === 'vertical';
 
   const onConfirm = () => {
-    const newLabelList = [...labelList];
+    const newLabelList = JSON.parse(JSON.stringify(labelList));
     if (nowLevel !== level) {
       newLabelList.splice(newLabelList.length - 1, 1);
     }
@@ -65,12 +66,16 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     setModalFlag(false);
   };
 
-  useEffect(() => {}, [data]);
+  useEffect(() => {
+    if (!level && data.length === 0) {
+      onConfirm();
+    }
+  }, [data]);
 
   useEffect(() => {
     if (!initValue) return;
 
-    const newValue = JSON.parse(initValue);
+    const newValue = JSON.parse(JSON.stringify(initValue));
     const { value = [], label = [] } = newValue;
     setInputLabel(label.join(','));
     setLabelList(label);
@@ -79,7 +84,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     if (valueList.length === 0) {
       onChangeLevel(value);
     }
-    // onChange(newValue, 'init');
   }, [initValue]);
 
   /**
@@ -112,6 +116,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         newLabelList.splice(newLabelList.length - 1, 1, val?.label);
         newValueList.splice(newValueList.length - 1, 1, val?.value);
       } else if (nowLevel + 1 === level) {
+        // 如果当前选择后为最后一级
         newLabelList.splice(newLabelList.length - 1, 1, val?.label);
         setNowLevel(nowLevel + 1);
         newValueList.push(val?.value);
@@ -127,11 +132,21 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         newValueList.push(val?.value);
       }
       setLabelList(newLabelList);
+    } else {
+      newLabelList.pop();
+      newLabelList.push(val?.label);
+      newLabelList.push(
+        placeholderList.length > newLabelList.length
+          ? placeholderList[newLabelList.length]
+          : '请选择',
+      );
+      setNowLevel(nowLevel + 1);
+      newValueList.push(val?.value);
+      setLabelList(newLabelList);
     }
 
     // 调用 onChangeLevel 让用户修改数据源
     if (onChangeLevel) onChangeLevel(newValueList);
-
     // 保存value 值
     setValueList(newValueList);
   };
@@ -156,8 +171,28 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
    */
   const inputClick = () => {
     if (onClick) onClick();
+    // 如果无列表数据代表用户首次打开
     if (data.length === 0) {
-      if (onChangeLevel) onChangeLevel([]);
+      if (level) {
+        if (onChangeLevel) onChangeLevel([]);
+      } else {
+        const newLabelList = [...labelList];
+        const newValueList = [...valueList];
+        newLabelList.splice(newLabelList.length - 1, 1);
+        newValueList.splice(newValueList.length - 1, 1);
+        if (nowLevel !== level) {
+          newLabelList.push(placeholderList[newLabelList.length]);
+        }
+        if (onChangeLevel) onChangeLevel(newValueList);
+        setLabelList(newLabelList);
+        setValueList(newValueList);
+      }
+    } else {
+      const newLabelList = [...labelList];
+      if (nowLevel !== level) {
+        newLabelList.push(placeholderList[newLabelList.length]);
+        setLabelList(newLabelList);
+      }
     }
     openMoal();
   };
@@ -194,9 +229,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       <Modal
         popup
         visible={modalFlag}
-        onClose={() => {
-          onCancel();
-        }}
         style={{
           height,
         }}
@@ -204,6 +236,14 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         animationType="slide-up"
         title={
           <div className="am-picker-popup-header">
+            <div
+              className="am-picker-popup-item am-picker-popup-header-left"
+              onClick={() => {
+                onConfirm();
+              }}
+            >
+              {leftContent}
+            </div>
             <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
             <div
               className="am-picker-popup-item am-picker-popup-header-right"
@@ -218,31 +258,30 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       >
         <div className="alitajs-dform-address-content">
           <div className="alitajs-dform-address-value">
-            <Flex align="start">
-              {[...labelList].map((label: any, index: number) => (
-                <Flex.Item
-                  key={label}
+            {[...labelList].map((label: any, index: number) => (
+              <div
+                key={label}
+                onClick={() => {
+                  labelClick(index);
+                }}
+                className="alitajs-dform-address-label"
+              >
+                <div
                   className={classnames({
-                    'alitajs-dform-address-value-item': true,
+                    'alitajs-dform-circle': true,
+                    'alitajs-dform-circle-current': index + 1 === labelList.length,
                   })}
-                  onClick={() => {
-                    labelClick(index);
-                  }}
+                />
+                <div
+                  className={classnames({
+                    'alitajs-dform-address-value-item-label': true,
+                    'alitajs-dform-address-value-select': index + 1 === labelList.length,
+                  })}
                 >
-                  <div
-                    className={classnames({
-                      'alitajs-dform-address-value-item-label': true,
-                      'alitajs-dform-address-value-select': index + 1 === labelList.length,
-                    })}
-                  >
-                    {label}
-                  </div>
-                </Flex.Item>
-              ))}
-              {listReverse.map((val: any) => (
-                <Flex.Item key={val}></Flex.Item>
-              ))}
-            </Flex>
+                  {label}
+                </div>
+              </div>
+            ))}
           </div>
           <div
             className="alitajs-dform-address-list"
@@ -258,7 +297,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
                     }}
                   >
                     <div>{item.label}</div>
-                    {item.flag && <div className="alitajs-dform-tick"></div>}
+                    {valueList.indexOf(item.value) !== -1 && (
+                      <div className="alitajs-dform-tick"></div>
+                    )}
                   </div>
                 </Item>
               ))}
