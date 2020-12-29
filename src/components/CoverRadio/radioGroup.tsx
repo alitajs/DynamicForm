@@ -83,7 +83,6 @@ const RadioGroup: FC<IRadioGroup> = props => {
     const filter = data.filter(item => item.value === dataItem?.value);
     if (filter && filter.length) {
       if (dataItem?.value === initValue) {
-        console.log(data, initValue);
         onChange(undefined, 'change');
         setActiveValue(undefined);
       } else {

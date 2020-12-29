@@ -50,6 +50,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
 
   const [valueList, setValueList] = useState<(string | number)[]>([]); // value 值列表
   const [nowLevel, setNowLevel] = useState<number>(0); // 当前所在层级数字
+  const [delFlag, setDelFlag] = useState<boolean>(false); // listClick 赋值前是否需要删除最后一个值
   const isVertical = positionType === 'vertical';
 
   const onConfirm = () => {
@@ -95,13 +96,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
   };
 
   /**
-   * 取消按钮点击事件
-   */
-  const onCancel = () => {
-    setModalFlag(false);
-  };
-
-  /**
    * 列表点击事件
    */
   const listClick = (val: any) => {
@@ -134,17 +128,20 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       setLabelList(newLabelList);
     } else {
       newLabelList.pop();
+      if (delFlag) {
+        newValueList.pop();
+      } else {
+        setNowLevel(nowLevel + 1);
+      }
       newLabelList.push(val?.label);
       newLabelList.push(
         placeholderList.length > newLabelList.length
           ? placeholderList[newLabelList.length]
           : '请选择',
       );
-      setNowLevel(nowLevel + 1);
       newValueList.push(val?.value);
       setLabelList(newLabelList);
     }
-
     // 调用 onChangeLevel 让用户修改数据源
     if (onChangeLevel) onChangeLevel(newValueList);
     // 保存value 值
@@ -155,6 +152,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
    * 选中值点击事件
    */
   const labelClick = (index: number) => {
+    if (delFlag) setDelFlag(false);
     if (index === valueList.length) return;
     const newValueList = valueList.splice(0, index);
     const newLabelList = labelList.splice(0, index);
@@ -177,20 +175,16 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       if (level) {
         if (onChangeLevel) onChangeLevel([]);
       } else {
+        if (valueList && valueList.length) setDelFlag(true);
         const newLabelList = [...labelList];
         const newValueList = [...valueList];
-        newLabelList.splice(newLabelList.length - 1, 1);
         newValueList.splice(newValueList.length - 1, 1);
-        if (nowLevel !== level) {
-          newLabelList.push(placeholderList[newLabelList.length]);
-        }
         if (onChangeLevel) onChangeLevel(newValueList);
         setLabelList(newLabelList);
-        setValueList(newValueList);
       }
     } else {
       const newLabelList = [...labelList];
-      if (nowLevel !== level) {
+      if (nowLevel !== level && valueList.length === labelList.length) {
         newLabelList.push(placeholderList[newLabelList.length]);
         setLabelList(newLabelList);
       }

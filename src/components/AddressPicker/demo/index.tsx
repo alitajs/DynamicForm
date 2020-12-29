@@ -80,10 +80,10 @@ const Page: FC = () => {
         break;
       case 3:
         data = [
-          { label: '街道1', value: '街道1' },
-          { label: '街道2', value: '街道2' },
-          { label: '街道3', value: '街道3' },
-          { label: '街道4', value: '街道4' },
+          { label: '街道1', value: 'street1' },
+          { label: '街道2', value: 'street2' },
+          { label: '街道3', value: 'street3' },
+          { label: '街道4', value: 'street4' },
         ];
         break;
       default:
@@ -111,10 +111,8 @@ const Page: FC = () => {
       type: 'addressPicker',
       fieldProps: 'workAddr',
       title: '工作地址',
-      // required: true,
       placeholder: '请选择',
       positionType: 'vertical',
-      // level: 4,
       data: workAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区', '请选择街道'],
       onChangeLevel: (values: (string | number)[]) => {
@@ -122,7 +120,7 @@ const Page: FC = () => {
         setTimeout(() => {
           resetWorkAddrList(values);
           Toast.hide();
-        }, 1000);
+        }, 100);
       },
       noData: <div>暂无街道数据</div>,
     },
