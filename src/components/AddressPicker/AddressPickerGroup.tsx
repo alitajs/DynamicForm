@@ -155,6 +155,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
    * 选中值点击事件
    */
   const labelClick = (index: number) => {
+    if (index === valueList.length) return;
     const newValueList = valueList.splice(0, index);
     const newLabelList = labelList.splice(0, index);
     if (level !== index + 1) {
