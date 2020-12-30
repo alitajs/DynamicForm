@@ -35,7 +35,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     labelNumber = 5,
     coverStyle,
     onClick,
-    height = '50vh',
+    height = '70vh',
     rightContent = '确定',
     leftContent = '取消',
   } = props;
@@ -55,19 +55,23 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
 
   const onConfirm = () => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
+    // 如果当前的层级不相等的话，说明labelList 存在 placeholder 的值，要删掉
     if (nowLevel !== level) {
       newLabelList.splice(newLabelList.length - 1, 1);
     }
+    // 赋值
     let val = undefined;
     if (valueList && valueList.length) {
       val = { label: newLabelList, value: valueList };
     }
+    //设值
     onChange(val, 'change');
     setInputLabel(newLabelList.join(','));
-    setModalFlag(false);
+    setModalFlag(false); // 关闭弹框
   };
 
   useEffect(() => {
+    // 如果列表已经无数据，且非固定层级的情况下就自动执行确认的操作
     if (!level && data.length === 0) {
       onConfirm();
     }
@@ -75,14 +79,14 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
 
   useEffect(() => {
     if (!initValue) return;
-
     const newValue = JSON.parse(JSON.stringify(initValue));
     const { value = [], label = [] } = newValue;
     setInputLabel(label.join(','));
     setLabelList(label);
     setValueList(value);
     setNowLevel(value.length);
-    if (valueList.length === 0) {
+    // 如果有层级、有初始化值，无数据列表的情况下执行 onChangeLevel，保证 data 有值
+    if (valueList.length === 0 && level) {
       onChangeLevel(value);
     }
   }, [initValue]);
@@ -128,8 +132,10 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       setLabelList(newLabelList);
     } else {
       newLabelList.pop();
+      // 如果无固定层级，且为最后一个层级的话，选值时要先删除最后一个值
       if (delFlag) {
         newValueList.pop();
+        setDelFlag(false);
       } else {
         setNowLevel(nowLevel + 1);
       }
@@ -284,17 +290,22 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
           >
             <List>
               {[...data].map(item => (
-                <Item key={item.value}>
-                  <div
-                    className="alitajs-dform-address-list-content"
-                    onClick={() => {
-                      listClick(item);
-                    }}
-                  >
-                    <div>{item.label}</div>
-                    {valueList.indexOf(item.value) !== -1 && (
-                      <div className="alitajs-dform-tick"></div>
-                    )}
+                <Item
+                  key={item.value}
+                  onClick={() => {
+                    listClick(item);
+                  }}
+                >
+                  <div className="alitajs-dform-address-list-item">
+                    <div
+                      className={classnames({
+                        'alitajs-dform-address-list-item-tick':
+                          valueList.indexOf(item.value) !== -1,
+                      })}
+                    >
+                      {item.label}
+                    </div>
+                    {valueList.indexOf(item.value) !== -1 && <div className="alitajs-dform-tick" />}
                   </div>
                 </Item>
               ))}

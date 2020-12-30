@@ -68,7 +68,7 @@ const Page: FC = () => {
     Toast.hide();
   };
   const resetWorkAddrList = (values: (number | string)[]) => {
-    console.log(values);
+    console.log('workAddr', values);
     let data: { label: string; value: string }[] = [];
     switch (values.length) {
       case 0:
