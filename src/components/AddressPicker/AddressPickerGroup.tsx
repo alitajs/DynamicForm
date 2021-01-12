@@ -56,7 +56,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
   const onConfirm = () => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
     // 如果当前的层级不相等的话，说明labelList 存在 placeholder 的值，要删掉
-    if (nowLevel !== level) {
+    if (nowLevel !== level && !delFlag) {
       newLabelList.splice(newLabelList.length - 1, 1);
     }
     // 赋值
@@ -147,6 +147,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       );
       newValueList.push(val?.value);
       setLabelList(newLabelList);
+      if (document.getElementById('alitajs-dform-address-list-id')) {
+        document.getElementById('alitajs-dform-address-list-id').scrollTop = 0;
+      }
     }
     // 调用 onChangeLevel 让用户修改数据源
     if (onChangeLevel) onChangeLevel(newValueList);
@@ -169,6 +172,10 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     setLabelList(newLabelList);
     onChangeLevel(newValueList);
     setNowLevel(index);
+
+    if (document.getElementById('alitajs-dform-address-list-id')) {
+      document.getElementById('alitajs-dform-address-list-id').scrollTop = 0;
+    }
   };
 
   /**
@@ -190,7 +197,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       }
     } else {
       const newLabelList = [...labelList];
-      if (nowLevel !== level && valueList.length === labelList.length) {
+      if (nowLevel !== level && valueList.length === labelList.length && !delFlag) {
         newLabelList.push(placeholderList[newLabelList.length]);
         setLabelList(newLabelList);
       }
@@ -233,15 +240,14 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         style={{
           height,
         }}
+        onClose={() => setModalFlag(false)}
         className="alitajs-dform-address"
         animationType="slide-up"
         title={
           <div className="am-picker-popup-header">
             <div
               className="am-picker-popup-item am-picker-popup-header-left"
-              onClick={() => {
-                onConfirm();
-              }}
+              onClick={() => setModalFlag(false)}
             >
               {leftContent}
             </div>
@@ -269,22 +275,20 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
               >
                 <div
                   className={classnames({
-                    'alitajs-dform-circle': true,
-                    'alitajs-dform-circle-current': index + 1 === labelList.length,
-                  })}
-                />
-                <div
-                  className={classnames({
                     'alitajs-dform-address-value-item-label': true,
                     'alitajs-dform-address-value-select': index + 1 === labelList.length,
                   })}
                 >
                   {label}
                 </div>
+                {index + 1 === labelList.length && (
+                  <div className="alitajs-dform-address-underline" />
+                )}
               </div>
             ))}
           </div>
           <div
+            id="alitajs-dform-address-list-id"
             className="alitajs-dform-address-list"
             style={{ display: data.length ? '' : 'none' }}
           >

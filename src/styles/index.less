@@ -726,30 +726,30 @@
     flex-direction: column;
 
     .alitajs-dform-address-value {
-      padding: 0 15 * @hd;
+      display: flex;
+      // align-items: center;
+      justify-content: flex-start;
+      padding: 15*@hd 15*@hd 1*@hd 15*@hd;
+      overflow-x: auto;
 
       .alitajs-dform-address-label {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+        padding-right: 12 * @hd;
 
-        .alitajs-dform-circle {
-          width: 6 * @hd;
-          height: 6 * @hd;
-          border-radius: 50%;
-          background-color: @alita-dform-radio-color ;
-          border: 1 * @hd solid @alita-dform-radio-color;
-        }
-
-        .alitajs-dform-circle-current {
-          background-color: transparent;
+        .alitajs-dform-address-underline {
+          background-color: @alita-dform-radio-color;
+          height: 3 * @hd;
+          width: 100%;
+          border-radius: 10 * @hd;
         }
 
         .alitajs-dform-address-value-item-label {
-          padding: 6*@hd 0 6*@hd 30*@hd;
           text-align: left;
           color: @alita-dform-title-color;
           font-size: @alita-dform-select-font-size;
+          padding-bottom: 8 * @hd;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
 
         .alitajs-dform-address-value-select {

@@ -4,6 +4,11 @@ title: AddressPicker
 
 # AddressPicker
 
+> 注意：`AddressPicker` 的 `formsValues` **不建议放在页面上直接定义变量**，
+> 建议放在使用 `useState` 或者类似 `dva` 的仓库进行存储。
+> 因为 `data` 地址数据源改变时，会渲染整个 JSON 数据，`formsValues` 会取旧值进行渲染，导致页面数据展示错误。
+> 可看演示demo。
+
 ## 代码演示
 
 <code src="./demo/index.tsx" />
@@ -17,7 +22,7 @@ title: AddressPicker
 | fieldProps      | 文本属性                                                                                                                              | boolean                    | false       | 是           |
 | onChangeLevel   | 层级改变事件                                                                                                                          | function                   | (e) => void | 是           |
 | placeholderList | 用户选择提示列表                                                                                                                      | object                     | []          | 是           |
-| level           | 总层级数                                                                                                                              | number                     | 无          | 是           |
+| level           | 总层级数。 若不设值，则默认是灵活不固定的层级。当 `data` 数据源为空时，默认为最后一个层级，弹框自动关闭                               | number                     | 无          | 否           |
 | data            | 当前列表选项的值                                                                                                                      | object                     | []          | 是           |
 | required        | 必填判断                                                                                                                              | boolean                    | false       | 否           |
 | coverStyle      | 自定义输入框样式                                                                                                                      | object                     | {}          | 否           |
