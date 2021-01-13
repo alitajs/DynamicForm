@@ -5,7 +5,7 @@ import { IAddressPickerProps } from './interface';
 import '../../styles/index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = props => {
-  const [initValue, setInitValue] = useState(undefined);
+  const [initValue, setInitValue] = useState<string | undefined>();
 
   const {
     fieldProps,
@@ -16,10 +16,14 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
     positionType = 'horizontal',
     subTitle,
     hidden = false,
-    asyncLoad = true,
+    onChange,
   } = props;
 
   const isVertical = positionType === 'vertical';
+
+  const fieldChange = (val: (number | string)[] | undefined, flag: 'change' | 'init') => {
+    if (flag === 'change' && onChange) onChange(val);
+  };
 
   return (
     <>
@@ -40,16 +44,16 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
-              // if (asyncLoad) {
-              //   setInitValue(prevValue && prevValue[fieldProps as any]);
+              // if (nextValue && nextValue[fieldProps] && prevValue !== nextValue) {
+              //   setInitValue(JSON.stringify(nextValue[fieldProps]));
               // } else {
-              //   setInitValue(nextValue && nextValue[fieldProps as any]);
+              //   setInitValue(undefined);
               // }
               setInitValue(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
             }}
           >
-            <AddressPickerGroup {...props} initValue={initValue} />
+            <AddressPickerGroup {...props} initValue={initValue} onChange={fieldChange} />
           </Field>
         </React.Fragment>
       )}

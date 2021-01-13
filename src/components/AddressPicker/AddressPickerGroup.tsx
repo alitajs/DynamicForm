@@ -1,17 +1,23 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Modal, Flex, List } from 'antd-mobile';
+import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import _ from 'lodash';
-import isEqual from 'lodash/isEqual';
-import { IModalData, IAddressPickerProps } from './interface';
-import { resetLabel } from '../../utils';
+import { IAddressPickerProps } from './interface';
 import { InputItem } from '..';
 import '../../styles/index.less';
 
 const { Item } = List;
 
-const AddressPickerGroup: FC<IAddressPickerProps> = props => {
+interface valueProps {
+  label: (string | number)[];
+  value: (string | number)[];
+}
+
+interface AddressPickerGroupProps extends Omit<IAddressPickerProps, 'onChange'> {
+  onChange: (val: valueProps | undefined, flag: 'init' | 'change') => void;
+}
+
+const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
   const {
     data = [],
     placeholder = '请选择',
@@ -20,7 +26,7 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     disabled = false,
     onChangeLevel,
     onChange,
-    level = 3,
+    level,
     placeholderList = [],
     initValue = undefined,
     required = false,
@@ -29,177 +35,171 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
     labelNumber = 5,
     coverStyle,
     onClick,
-    leftContent = '取消',
+    height = '70vh',
     rightContent = '确定',
-    height,
-    noData = '',
-    loading = true,
+    leftContent = '取消',
   } = props;
 
-  // input 框的值
-  const [inputLabel, setInputLabel] = useState<string>('');
-  const [modalFlag, setModalFlag] = useState<boolean>(false);
+  const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
+  const [modalFlag, setModalFlag] = useState<boolean>(false); // 弹框标识
 
   // 弹框选中的头部文字列表
   const [labelList, setLabelList] = useState<string[]>(
     placeholderList && placeholderList.length ? [placeholderList[0]] : ['请选择'],
   );
 
-  const [preInitValue, setPreInitValue] = useState({});
-
-  // value 值列表
-  const [valueList, setValueList] = useState<(string | number)[]>([]);
-
-  // 当前列表数据
-  const [dataList, setDataList] = useState<IModalData[] | []>([]);
-
-  // 当前所在层级数字
-  const [nowLevel, setNowLevel] = useState<number>(0);
-
-  const [delFlag, setDelFlag] = useState<boolean>(false);
-
+  const [valueList, setValueList] = useState<(string | number)[]>([]); // value 值列表
+  const [nowLevel, setNowLevel] = useState<number>(0); // 当前所在层级数字
+  const [delFlag, setDelFlag] = useState<boolean>(false); // listClick 赋值前是否需要删除最后一个值
   const isVertical = positionType === 'vertical';
 
   const onConfirm = () => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
-    if (nowLevel !== level) newLabelList.pop();
-    setInputLabel(newLabelList.join(','));
-    if (onChange) {
-      if (newLabelList.length) {
-        onChange({ label: newLabelList, value: valueList });
-      } else {
-        onChange(undefined);
-      }
+    // 如果当前的层级不相等的话，说明labelList 存在 placeholder 的值，要删掉
+    if (nowLevel !== level && !delFlag) {
+      newLabelList.splice(newLabelList.length - 1, 1);
     }
-    setModalFlag(false);
+    // 赋值
+    let val = undefined;
+    if (valueList && valueList.length) {
+      val = { label: newLabelList, value: valueList };
+    }
+    //设值
+    onChange(val, 'change');
+    setInputLabel(newLabelList.join(','));
+    setModalFlag(false); // 关闭弹框
   };
 
   useEffect(() => {
-    // if (onChange) onChange(undefined);
-  }, []);
-
-  useEffect(() => {
-    if (data.length === 0 && valueList.length) {
+    // 如果列表已经无数据，且非固定层级的情况下就自动执行确认的操作
+    if (!level && data.length === 0) {
       onConfirm();
-      setDelFlag(true);
-      const newLabelList = JSON.parse(JSON.stringify(labelList));
-      newLabelList.pop();
-      setLabelList(newLabelList);
-      setNowLevel(nowLevel - 1);
     }
-    if (data.length === 0) return;
-    setDataList(
-      data.map(item => {
-        const newItem = item;
-        if (newItem.value === valueList[valueList.length - 1]) {
-          newItem.flag = true;
-        } else newItem.flag = false;
-        return newItem;
-      }),
-    );
   }, [data]);
 
   useEffect(() => {
-    if (!isEqual(preInitValue, initValue)) {
-      let newInitValue = initValue;
-      if (!newInitValue) {
-        newInitValue = { label: [], value: [] };
-      }
-      const { label = [], value = [] } = newInitValue;
-      setDataList(
-        data.map(item => {
-          const newItem = item;
-          if (newItem.value === value[value.length]) {
-            newItem.flag = true;
-          } else newItem.flag = false;
-          return newItem;
-        }),
-      );
-      const newLabelList = resetLabel(JSON.parse(JSON.stringify([...label])), placeholderList);
-      setNowLevel(value.length);
-      if (data.length === 0 && value.length !== level) {
-        newLabelList.pop();
-      }
-      setLabelList(newLabelList);
-      setInputLabel(label.join(','));
-      setValueList(value);
-      setPreInitValue(newInitValue);
+    if (!initValue) return;
+    const newValue = JSON.parse(JSON.stringify(initValue));
+    const { value = [], label = [] } = newValue;
+    setInputLabel(label.join(','));
+    setLabelList(label);
+    setValueList(value);
+    setNowLevel(value.length);
+    // 如果有层级、有初始化值，无数据列表的情况下执行 onChangeLevel，保证 data 有值
+    if (valueList.length === 0 && level) {
+      onChangeLevel(value);
     }
   }, [initValue]);
 
+  /**
+   * 打开弹窗
+   */
   const openMoal = () => {
     if (disabled) return;
     setModalFlag(true);
   };
 
-  const onCancel = () => {
-    setModalFlag(false);
-  };
-
+  /**
+   * 列表点击事件
+   */
   const listClick = (val: any) => {
-    // 选中数据的时候刷新列表
-    setDataList(
-      [...dataList].map((item: any) => {
-        const newItem = item;
-        if (item.value === val.value) newItem.flag = true;
-        else newItem.flag = false;
-        return newItem;
-      }),
-    );
-    const newList = JSON.parse(JSON.stringify(labelList));
-    const newValueList = JSON.parse(JSON.stringify(valueList));
+    let newValueList = [...valueList];
 
-    if (delFlag) {
-      newValueList.pop();
+    // 设置弹框顶部选中label 的值
+    const newLabelList = [...labelList];
+    // 如果有层级约束
+    if (level) {
+      if (nowLevel === level) {
+        //如果当前为最后一级，则替换掉原有值
+        newLabelList.splice(newLabelList.length - 1, 1, val?.label);
+        newValueList.splice(newValueList.length - 1, 1, val?.value);
+      } else if (nowLevel + 1 === level) {
+        // 如果当前选择后为最后一级
+        newLabelList.splice(newLabelList.length - 1, 1, val?.label);
+        setNowLevel(nowLevel + 1);
+        newValueList.push(val?.value);
+      } else {
+        newLabelList.pop();
+        newLabelList.push(val?.label);
+        newLabelList.push(
+          placeholderList.length >= newLabelList.length
+            ? placeholderList[newLabelList.length]
+            : '请选择',
+        );
+        setNowLevel(nowLevel + 1);
+        newValueList.push(val?.value);
+      }
+      setLabelList(newLabelList);
+    } else {
+      newLabelList.pop();
+      // 如果无固定层级，且为最后一个层级的话，选值时要先删除最后一个值
+      if (delFlag) {
+        newValueList.pop();
+        setDelFlag(false);
+      } else {
+        setNowLevel(nowLevel + 1);
+      }
+      newLabelList.push(val?.label);
+      newLabelList.push(
+        placeholderList.length > newLabelList.length
+          ? placeholderList[newLabelList.length]
+          : '请选择',
+      );
+      newValueList.push(val?.value);
+      setLabelList(newLabelList);
+      if (document.getElementById('alitajs-dform-address-list-id')) {
+        document.getElementById('alitajs-dform-address-list-id').scrollTop = 0;
+      }
     }
-    // 设置当前层级
-    newList.splice(newList.length - 1, 1, val.label);
-    let insLevel = nowLevel;
-    if (nowLevel !== level) insLevel += 1;
-    setNowLevel(insLevel);
-
-    // 如果层级符合，将数据放入input 中，并且关闭弹框
-    const newLabelList = JSON.parse(JSON.stringify(newList));
-    if (insLevel === level) {
-      if (insLevel !== level) newLabelList.pop();
-      setInputLabel(newLabelList.join(','));
-      if (onChange) onChange({ label: newLabelList, value: newValueList });
-      setModalFlag(false);
-    }
-    if (newValueList.length === insLevel) {
-      newValueList.pop();
-    }
-    newValueList.push(val.value);
-
-    // 设置头部展示列表和值列表
-    setLabelList(resetLabel(newList, placeholderList));
-    setValueList(newValueList);
-    // 调用改变层级的事件给用户
+    // 调用 onChangeLevel 让用户修改数据源
     if (onChangeLevel) onChangeLevel(newValueList);
+    // 保存value 值
+    setValueList(newValueList);
   };
 
+  /**
+   * 选中值点击事件
+   */
   const labelClick = (index: number) => {
-    // 设置当前的层级
-    setNowLevel(index);
-    setDelFlag(false);
-
+    if (delFlag) setDelFlag(false);
+    if (index === valueList.length) return;
+    const newValueList = valueList.splice(0, index);
     const newLabelList = labelList.splice(0, index);
-    const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, index);
-
-    // 设置头部展示列表
-    setLabelList(resetLabel(JSON.parse(JSON.stringify(newLabelList)), placeholderList));
+    if (level !== index + 1) {
+      newLabelList.push(placeholderList[index]);
+    }
     setValueList(newValueList);
-    // 调用改变层级的事件给用户
-    if (onChangeLevel) onChangeLevel(newValueList);
+    setLabelList(newLabelList);
+    onChangeLevel(newValueList);
+    setNowLevel(index);
+
+    if (document.getElementById('alitajs-dform-address-list-id')) {
+      document.getElementById('alitajs-dform-address-list-id').scrollTop = 0;
+    }
   };
 
+  /**
+   * 输入框点击事件
+   */
   const inputClick = () => {
     if (onClick) onClick();
+    // 如果无列表数据代表用户首次打开
     if (data.length === 0) {
-      const newValueList = JSON.parse(JSON.stringify(valueList)).splice(0, valueList.length - 1);
-      if (onChangeLevel) onChangeLevel(newValueList);
-      if (newValueList.length) {
-        setNowLevel(newValueList.length);
+      if (level) {
+        if (onChangeLevel) onChangeLevel([]);
+      } else {
+        if (valueList && valueList.length) setDelFlag(true);
+        const newLabelList = [...labelList];
+        const newValueList = [...valueList];
+        newValueList.splice(newValueList.length - 1, 1);
+        if (onChangeLevel) onChangeLevel(newValueList);
+        setLabelList(newLabelList);
+      }
+    } else {
+      const newLabelList = [...labelList];
+      if (nowLevel !== level && valueList.length === labelList.length && !delFlag) {
+        newLabelList.push(placeholderList[newLabelList.length]);
+        setLabelList(newLabelList);
       }
     }
     openMoal();
@@ -237,21 +237,17 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
       <Modal
         popup
         visible={modalFlag}
-        onClose={() => {
-          onCancel();
-        }}
         style={{
           height,
         }}
+        onClose={() => setModalFlag(false)}
         className="alitajs-dform-address"
         animationType="slide-up"
         title={
           <div className="am-picker-popup-header">
             <div
               className="am-picker-popup-item am-picker-popup-header-left"
-              onClick={() => {
-                onCancel();
-              }}
+              onClick={() => setModalFlag(false)}
             >
               {leftContent}
             </div>
@@ -269,48 +265,51 @@ const AddressPickerGroup: FC<IAddressPickerProps> = props => {
       >
         <div className="alitajs-dform-address-content">
           <div className="alitajs-dform-address-value">
-            <Flex align="start">
-              {[...labelList].map((label: any, index: number) => (
-                <Flex.Item
-                  key={label}
+            {[...labelList].map((label: any, index: number) => (
+              <div
+                key={label}
+                onClick={() => {
+                  labelClick(index);
+                }}
+                className="alitajs-dform-address-label"
+              >
+                <div
                   className={classnames({
-                    'alitajs-dform-address-value-item': true,
+                    'alitajs-dform-address-value-item-label': true,
+                    'alitajs-dform-address-value-select': index + 1 === labelList.length,
                   })}
-                  onClick={() => {
-                    labelClick(index);
-                  }}
                 >
-                  <div
-                    className={classnames({
-                      'alitajs-dform-address-value-item-label': true,
-                      'alitajs-dform-address-value-select': index + 1 === labelList.length,
-                    })}
-                  >
-                    {label}
-                  </div>
-                </Flex.Item>
-              ))}
-              {listReverse.map((val: any) => (
-                <Flex.Item key={val}></Flex.Item>
-              ))}
-            </Flex>
+                  {label}
+                </div>
+                {index + 1 === labelList.length && (
+                  <div className="alitajs-dform-address-underline" />
+                )}
+              </div>
+            ))}
           </div>
-          {data.length === 0 && !loading && <div>{noData}</div>}
           <div
+            id="alitajs-dform-address-list-id"
             className="alitajs-dform-address-list"
             style={{ display: data.length ? '' : 'none' }}
           >
             <List>
-              {[...dataList].map(item => (
-                <Item key={item.value}>
-                  <div
-                    className="alitajs-dform-address-list-content"
-                    onClick={() => {
-                      listClick(item);
-                    }}
-                  >
-                    <div>{item.label}</div>
-                    {item.flag && <div className="alitajs-dform-tick"></div>}
+              {[...data].map(item => (
+                <Item
+                  key={item.value}
+                  onClick={() => {
+                    listClick(item);
+                  }}
+                >
+                  <div className="alitajs-dform-address-list-item">
+                    <div
+                      className={classnames({
+                        'alitajs-dform-address-list-item-tick':
+                          valueList.indexOf(item.value) !== -1,
+                      })}
+                    >
+                      {item.label}
+                    </div>
+                    {valueList.indexOf(item.value) !== -1 && <div className="alitajs-dform-tick" />}
                   </div>
                 </Item>
               ))}

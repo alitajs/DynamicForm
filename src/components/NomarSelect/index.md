@@ -27,7 +27,7 @@ title: Select
 | onClick      | 表单字段点击事件                                           | () => void                 | ''           | 否       |
 
 
-## 组件使用
+<!-- ## 组件使用
 
 ### NormalSelect
 
@@ -93,4 +93,4 @@ title: Select
   "data": seasons,
   "positionType": "vertical"
 }
-```
+``` -->

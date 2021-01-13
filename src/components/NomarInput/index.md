@@ -39,7 +39,7 @@ title: Input
 
 如果有需求为：组件不可编辑的状态下 `onClick` 事件失效，则请采用 `NomarText` 组件。
 
-## 组件使用
+<!-- ## 组件使用
 
 ### NomarInput
 
@@ -168,4 +168,4 @@ title: Input
     },
   ],
 }
-```
+``` -->
