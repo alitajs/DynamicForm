@@ -4,6 +4,10 @@ title: 首页
 
 # @alitajs/dform
 
+## 组件化代码演示
+
+[组件化使用](/component-usage)
+
 ## 代码演示
 
 <code src="./demo/index.tsx" />
@@ -26,6 +30,8 @@ title: 首页
 ## 特性
 
 1. 当 title 超过 15 个字节，会自动开始双行模式，可以通过显示设置 positionType 关闭。
+
+2. **日期字符串在不同浏览器有不同的实现，例如 new Date('2017-1-1') 在 Safari 上是 Invalid Date，而在 Chrome 上是能正常解析的。在设值时，如果是日期字符串请先用 `dateChange(val)` 进行转化下，`dateChange` 可以在 `@alitajs/dform` 中导出。**
 
 ## 介绍
 
