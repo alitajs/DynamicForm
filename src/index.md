@@ -6,7 +6,7 @@ title: 首页
 
 ## 组件化代码演示
 
-[组件化使用](/component-usage)
+**[组件化使用](/component-usage)**
 
 ## 代码演示
 
