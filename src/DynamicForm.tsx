@@ -143,7 +143,7 @@ export interface IDynamicFormProps {
   failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
 }
 
-const nodeEnvIsDev = process.env.NODE_ENV === 'development';
+// const nodeEnvIsDev = process.env.NODE_ENV === 'development';
 
 export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
   const { type, disabled = allDisabled, ...otherProps } = formItem;
@@ -285,8 +285,8 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   const dFormType = getDFormType(data);
 
   // 开启条件是开发模式，并且data没有传，或者data传空数组[]
-  const showAddItem =
-    isDev || (nodeEnvIsDev && (!data || (data instanceof Array && data.length === 0)));
+  // const showAddItem =
+  //   isDev || (nodeEnvIsDev && (!data || (data instanceof Array && data.length === 0)));
 
   const rederChildren = renderMainList(dFormType, data, allDisabled, autoLineFeed);
   return (

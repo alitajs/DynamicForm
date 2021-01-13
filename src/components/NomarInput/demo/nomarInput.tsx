@@ -5,7 +5,7 @@
 import React, { FC } from 'react';
 import { List } from 'antd-mobile';
 import Form from 'rc-field-form';
-import NomarInput from '..';
+import { NomarInput } from '@alitajs/dform';
 
 const UserName: FC = () => (
   <Form>
