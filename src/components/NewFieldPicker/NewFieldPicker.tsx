@@ -1,14 +1,15 @@
-import React, { FC, useState } from 'react';
-import { Button, WingBlank, WhiteSpace, Modal, List } from 'antd-mobile';
+import React, { FC, useState, useEffect } from 'react';
+import { Modal, Button, WingBlank, WhiteSpace, List } from 'antd-mobile';
 import copy from 'copy-to-clipboard';
 import Form from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-import { IFormItemProps, getFormItem } from '../../DynamicForm';
+import { IFormItemProps, getFormItem, DFormData } from '../../DynamicForm';
 import EditForm from '../EditForm/EditForm';
 
 interface NewFieldPickerProps {
   onChange?: (t: any) => void;
   value?: IFormItemProps[];
+  data: DFormData;
 }
 
 const radioList = [
@@ -165,7 +166,7 @@ const InitFormValue = {
   username: '张三',
 };
 
-const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
+const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [selectFieldItem, setSelectFieldItem] = useState<IFormItemProps>();
@@ -176,6 +177,10 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
     // onChange && onChange(alitaDformExtraField);
     setModal2(false);
   };
+
+  useEffect(() => {
+    setAlitaDformExtraField([]);
+  }, [data]);
 
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -235,7 +240,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
           type="primary"
           onClick={() => setModal(true)}
           style={{
-            width: '50%',
+            width: '48%',
           }}
         >
           新增表单
@@ -243,9 +248,18 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
         <Button
           inline
           type="primary"
-          onClick={() => copy(JSON.stringify(alitaDformExtraField))}
+          onClick={() => {
+            //  这里兼容下低代码平台
+            try {
+              const d = Array.from(data as Array<any>);
+              copy(JSON.stringify(d.concat(alitaDformExtraField)));
+            } catch (error) {
+              copy(JSON.stringify(alitaDformExtraField));
+            }
+          }}
           style={{
-            width: '50%',
+            width: '48%',
+            marginLeft: '1%',
           }}
         >
           拷贝配置
@@ -255,10 +269,10 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
       <Modal
         popup
         visible={modal}
-        onClose={() => setModal(false)}
+        onClose={() => setModal2(false)}
         animationType="slide-up"
         style={{
-          height: '12rem',
+          height: '60vh',
         }}
       >
         <Form
@@ -308,7 +322,15 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
           </List>
         </Form>
       </Modal>
-      <Modal popup visible={modal2} onClose={() => setModal2(false)} animationType="slide-up">
+      <Modal
+        popup
+        visible={modal2}
+        onClose={() => setModal2(false)}
+        animationType="slide-up"
+        style={{
+          height: '60vh',
+        }}
+      >
         <List
           renderHeader={() => (
             <div

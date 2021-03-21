@@ -303,7 +303,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         {rederChildren}
         {children}
       </Form>
-      {isDev && <NewFieldPicker />}
+      {isDev && <NewFieldPicker data={data} />}
     </>
   );
 };
