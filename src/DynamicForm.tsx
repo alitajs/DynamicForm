@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { List, Card, WingBlank } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
@@ -116,6 +116,8 @@ export interface IFormItemProps {
   compressRatio?: number;
   onChange?: (val: (string | number)[] | string | number | boolean) => void;
   hidden?: boolean;
+  defaultValue?: any;
+  coverStyle?: React.CSSProperties;
 }
 
 interface CardDForm extends CardHeaderPropsType {
@@ -278,7 +280,19 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   autoLineFeed = true,
   failScroll = true,
 }) => {
+  const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   useEffect(() => {
+    if (defaultValueFlag) {
+      if (getDFormType(data) === 'NORMAL') {
+        const filter = data.filter((dataItem: any) => dataItem?.defaultValue !== undefined);
+        if (filter && filter.length) {
+          filter.forEach((filterItem: any) => {
+            formsValues[filterItem?.fieldProps] = filterItem.defaultValue;
+          });
+          setDefaultValueFlag(false);
+        }
+      }
+    }
     form.setFieldsValue(formsValues as Store);
   }, [formsValues]);
 
