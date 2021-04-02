@@ -2,8 +2,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import { IAliasProps } from '../../DynamicForm';
 
 export interface IDataItem {
-  label: string;
-  value: string;
+  [key: string]: string | number;
 }
 
 export interface INomarPickerProps {

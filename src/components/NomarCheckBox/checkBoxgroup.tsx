@@ -6,10 +6,7 @@ import chunkLodash from 'lodash/chunk';
 const { Item } = Flex;
 
 export interface IDataItem {
-  label: string;
-  value: string | number;
-  flag?: boolean;
-  moveFlag?: boolean;
+  [key: string]: string | number | boolean;
 }
 
 interface ICheckBoxGroup {

@@ -3,10 +3,7 @@ import classnames from 'classnames';
 import '../../styles/index.less';
 
 export interface IDataItem {
-  label: string;
-  value: string | number;
-  flag?: boolean;
-  moveFlag?: boolean;
+  [key: string]: string | number | boolean;
 }
 
 interface IRadioGroup {

@@ -8,8 +8,7 @@ import { IAliasProps } from '../../DynamicForm';
 import '../../styles/index.less';
 
 interface radioItem {
-  label: string;
-  value: string;
+  [key: string]: string | number;
 }
 
 export interface INomarRadioProps {

@@ -8,8 +8,7 @@ import { IAliasProps } from '../../DynamicForm';
 import '../../styles/index.less';
 
 interface IDataItem {
-  label: string;
-  value: string;
+  [key: string]: string | number;
 }
 
 interface ICoverRadioProps {
