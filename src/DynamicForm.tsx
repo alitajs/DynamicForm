@@ -118,6 +118,7 @@ export interface IFormItemProps {
   hidden?: boolean;
   defaultValue?: any;
   coverStyle?: React.CSSProperties;
+  renderHeader?: string | React.ReactNode;
 }
 
 interface CardDForm extends CardHeaderPropsType {
@@ -148,9 +149,14 @@ export interface IDynamicFormProps {
 // const nodeEnvIsDev = process.env.NODE_ENV === 'development';
 
 export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
-  const { type, disabled = allDisabled, ...otherProps } = formItem;
+  const { type, disabled = allDisabled, renderHeader, ...otherProps } = formItem;
   const FormItemComponent = FormItemType[formItem.type];
-  return <FormItemComponent {...otherProps} key={formItem.fieldProps} disabled={disabled} />;
+  return (
+    <React.Fragment>
+      {renderHeader}
+      <FormItemComponent {...otherProps} key={formItem.fieldProps} disabled={disabled} />
+    </React.Fragment>
+  );
 };
 
 export const defaultFailed = (

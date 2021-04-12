@@ -27,6 +27,7 @@ title: ImagePicker
 | hidden        | 字段展示与否的判断                                                                                                     | boolean                                                       | false  | 否       |
 | extra         | 右边注释                                                                                                               | string or node                                                | ''     | 否       |
 | compressRatio | 压缩比率(0~1)                                                                                                          | number                                                        | 1      | 否       |
+| renderHeader  | 组件头部                                                                                                               | `number` or `string`                                          | -      | 否       |
 
 
 ## 组件使用

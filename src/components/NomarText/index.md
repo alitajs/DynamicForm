@@ -28,3 +28,4 @@ title: Text
 | coverStyle   | 自定义输入框样式                                                                                                                      | object                     | {}           | 否       |
 | hidden       | 字段展示与否的判断                                                                                                                    | boolean                    | false        | 否       |
 | maxLine      | 文字行数过长时，自动隐藏，可通过点击 `更多` 和 `收起` 进行内容的缩放                                                                  | number                     |              | 否       |
+| renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -            | 否       |

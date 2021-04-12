@@ -28,3 +28,4 @@ title: Picker
 | coverStyle   | 自定义选择框样式                                                                                                                      | object                     | {}                                 | 否       |
 | alias        | data 数据源的别名                                                                                                                     | object                     | { label: 'label', value: 'value' } | 否       |
 | extra        | 右边注释                                                                                                                              | `string`  or   `node`      | ''                                 | 否       |
+| renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -                                  | 否       |

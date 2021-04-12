@@ -31,6 +31,7 @@ title: MultiplePicker
 | rightContent   | 弹框头部右侧文字                                                                                                                      | `string` or `node`   | `确定`                             | 否       |
 | height         | 固定弹框高度                                                                                                                          | `number` or `string` | null                               | 否       |
 | alias          | data 数据源的别名                                                                                                                     | object               | { label: 'label', value: 'value' } | 否       |
+| renderHeader   | 组件头部                                                                                                                              | `number` or `string` | -                                  | 否       |
 
 ## 备注
 

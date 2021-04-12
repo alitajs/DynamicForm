@@ -29,6 +29,7 @@ title: Radio
 | hidden       | 字段展示与否的判断                                                    | boolean                    | false                              | 否           |
 | onChange     | 值改变事件                                                            | object                     | (e) => void                        | 否           |
 | alias        | data 数据源的别名                                                     | object                     | { label: 'label', value: 'value' } | 否           |
+| renderHeader | 组件头部                                                              | `number` or `string`       | -                                  | 否           |
 
 ## 备注
 

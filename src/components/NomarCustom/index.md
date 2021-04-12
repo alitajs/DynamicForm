@@ -23,6 +23,7 @@ title: Custom
 | customDomProps | 自定义样式传入的值                                         | Object                     | {}     | 否         |
 | subTitle       | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node             | ''     | 否         |
 | hidden         | 字段展示与否的判断                                         | boolean                    | false  | 否         |
+| renderHeader   | 组件头部                                                   | `number` or `string`       | -      | 否         |
 
 
 ## 自定义组件开发教程
