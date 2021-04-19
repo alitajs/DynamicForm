@@ -119,6 +119,7 @@ export interface IFormItemProps {
   defaultValue?: any;
   coverStyle?: React.CSSProperties;
   renderHeader?: string | React.ReactNode;
+  initKey?: string | number;
 }
 
 interface CardDForm extends CardHeaderPropsType {
@@ -287,6 +288,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   failScroll = true,
 }) => {
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
+
   useEffect(() => {
     if (defaultValueFlag) {
       if (getDFormType(data) === 'NORMAL') {

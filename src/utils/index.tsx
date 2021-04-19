@@ -1,4 +1,22 @@
 import dayjs from 'dayjs';
+import { FormInstance } from 'rc-field-form/es/interface';
+
+export const getInitKeyValue = ({
+  form,
+  key,
+  data,
+}: {
+  form: FormInstance;
+  key: string | number;
+  data: any[];
+}) => {
+  const filter = data.filter(item => item?.initKey === key);
+  const obj = {} as any;
+  filter.forEach(item => {
+    obj[item.fieldProps] = form.getFieldValue(item.fieldProps);
+  });
+  return obj;
+};
 
 /**
  * 时间展示类型改变事件
