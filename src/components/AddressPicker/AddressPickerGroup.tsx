@@ -38,6 +38,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     height = '70vh',
     rightContent = '确定',
     leftContent = '取消',
+    noData = '',
+    loading = false,
   } = props;
 
   const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
@@ -288,6 +290,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
               </div>
             ))}
           </div>
+          {data && data.length === 0 && !loading && noData}
           <div
             id="alitajs-dform-address-list-id"
             className="alitajs-dform-address-list"
