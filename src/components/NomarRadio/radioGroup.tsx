@@ -97,6 +97,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
         'alitajs-dform-radio-group': true,
         'alitajs-dform-radio-position': !isVertical,
         'alitajs-dform-radio-item-vertical': radioType === 'vertical',
+        'alitajs-dform-disabled': disabled,
       })}
     >
       {data.map((item: IDataItem) => (

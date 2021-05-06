@@ -225,6 +225,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         value={inputLabel}
         placeholder={placeholder}
         readOnly
+        disabled={disabled}
         coverStyle={coverStyle}
         labelNumber={labelNumber}
         onClick={inputClick}
@@ -301,7 +302,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
                 <Item
                   key={item.value}
                   onClick={() => {
-                    listClick(item);
+                    listClick(item); 
                   }}
                 >
                   <div className="alitajs-dform-address-list-item">
