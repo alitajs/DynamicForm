@@ -15,10 +15,10 @@ export default {
   disableTypeCheck: true,
   cssModules: false,
   // lessInBabelMode: true,
-  namedExports: {
-    'react-is': ['isFragment'],
-    'react-dom': ['createPortal', 'findDOMNode'],
-  },
+  // namedExports: {
+  //   'react-is': ['isFragment'],
+  //   'react-dom': ['createPortal', 'findDOMNode'],
+  // },
   extraBabelPlugins: [
     [
       'babel-plugin-import',
