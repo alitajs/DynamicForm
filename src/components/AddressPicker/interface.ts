@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
+import { IAliasProps } from '../../DynamicForm';
 
 export interface IModalData {
   label: string;
@@ -33,4 +34,5 @@ export interface IAddressPickerProps {
   noData?: string | React.ReactNode;
   loading?: boolean;
   className?: string;
+  alias?: IAliasProps;
 }

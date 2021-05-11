@@ -39,7 +39,13 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     noData = '',
     loading = false,
     className = '',
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
   } = props;
+
+  const { label = 'label', value = 'value' } = alias;
 
   const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
   const [modalFlag, setModalFlag] = useState<boolean>(false); // 弹框标识
@@ -81,14 +87,13 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
   useEffect(() => {
     if (!initValue) return;
     const newValue = JSON.parse(JSON.stringify(initValue));
-    const { value = [], label = [] } = newValue;
-    setInputLabel(label.join(','));
-    setLabelList(label);
-    setValueList(value);
-    setNowLevel(value.length);
+    setInputLabel(newValue?.label.join(','));
+    setLabelList(newValue?.label);
+    setValueList(newValue?.value);
+    setNowLevel(newValue?.value.length);
     // 如果有层级、有初始化值，无数据列表的情况下执行 onChangeLevel，保证 data 有值
     if (valueList.length === 0 && level) {
-      onChangeLevel(value);
+      onChangeLevel(newValue?.value);
     }
   }, [initValue]);
 
@@ -112,23 +117,23 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     if (level) {
       if (nowLevel === level) {
         // 如果当前为最后一级，则替换掉原有值
-        newLabelList.splice(newLabelList.length - 1, 1, val?.label);
-        newValueList.splice(newValueList.length - 1, 1, val?.value);
+        newLabelList.splice(newLabelList.length - 1, 1, val[label]);
+        newValueList.splice(newValueList.length - 1, 1, val[value]);
       } else if (nowLevel + 1 === level) {
         // 如果当前选择后为最后一级
-        newLabelList.splice(newLabelList.length - 1, 1, val?.label);
+        newLabelList.splice(newLabelList.length - 1, 1, val[label]);
         setNowLevel(nowLevel + 1);
-        newValueList.push(val?.value);
+        newValueList.push(val[value]);
       } else {
         newLabelList.pop();
-        newLabelList.push(val?.label);
+        newLabelList.push(val[label]);
         newLabelList.push(
           placeholderList.length >= newLabelList.length
             ? placeholderList[newLabelList.length]
             : '请选择',
         );
         setNowLevel(nowLevel + 1);
-        newValueList.push(val?.value);
+        newValueList.push(val[value]);
       }
       setLabelList(newLabelList);
     } else {
@@ -269,9 +274,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       >
         <div className="alitajs-dform-address-content">
           <div className="alitajs-dform-address-value">
-            {[...labelList].map((label: any, index: number) => (
+            {[...labelList].map((labelText: any, index: number) => (
               <div
-                key={label}
+                key={labelText}
                 onClick={() => {
                   labelClick(index);
                 }}
@@ -283,7 +288,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
                     'alitajs-dform-address-value-select': index + 1 === labelList.length,
                   })}
                 >
-                  {label}
+                  {labelText}
                 </div>
                 {index + 1 === labelList.length && (
                   <div className="alitajs-dform-address-underline" />
@@ -300,7 +305,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
             <List>
               {[...data].map(item => (
                 <Item
-                  key={item.value}
+                  key={item[value]}
                   onClick={() => {
                     listClick(item);
                   }}
@@ -309,12 +314,12 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
                     <div
                       className={classnames({
                         'alitajs-dform-address-list-item-tick':
-                          valueList.indexOf(item.value) !== -1,
+                          valueList.indexOf(item[value]) !== -1,
                       })}
                     >
-                      {item.label}
+                      {item[label]}
                     </div>
-                    {valueList.indexOf(item.value) !== -1 && <div className="alitajs-dform-tick" />}
+                    {valueList.indexOf(item[value]) !== -1 && <div className="alitajs-dform-tick" />}
                   </div>
                 </Item>
               ))}

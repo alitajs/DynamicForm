@@ -39,6 +39,7 @@ title: AddressPicker
 | loading | loading 为 `true` 时，noData 数据不会展示 | boolean | false | 否 |
 | renderHeader | 组件头部 | `number` or `string` | - | 否 |
 | className | 类名 | string | - | 否 |
+| alias | data 数据源的别名 | object | { label: 'label', value: 'value' } | 否 |
 
 ## 备注
 
