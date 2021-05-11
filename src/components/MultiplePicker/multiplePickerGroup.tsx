@@ -22,9 +22,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     initValue,
     maxValueLength,
     coverStyle,
-    required = false,
-    hasStar = true,
-    fieldProps,
+    className = '',
     labelNumber = 5,
     onClick,
     leftContent = '取消',
@@ -70,7 +68,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
   }, [data]);
 
   const pickerClick = (val: IDataItem) => {
-    let list = JSON.parse(JSON.stringify(selValueList));
+    const list = JSON.parse(JSON.stringify(selValueList));
     if (list.indexOf(val.value) !== -1) {
       list.splice(list.indexOf(val.value), 1);
     } else {
@@ -105,6 +103,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}
+        className={className}
         onClick={() => {
           if (onClick) onClick();
           openMoal();
@@ -147,7 +146,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         }
       >
         <List className="alitajs-dform-modal-content">
-          {[...data].map(item => (
+          {data.map(item => (
             <Item key={item.value}>
               <div
                 className="alitajs-dform-multiple-picker-item"

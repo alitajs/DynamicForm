@@ -15,6 +15,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   placeholder?: string;
   hasStar?: boolean;
   hidden?: boolean;
+  className?: string;
 }
 
 const NomarSwitch: FC<INomarSwitchProps> = props => {
@@ -27,6 +28,7 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
     placeholder,
     hasStar = true,
     hidden = false,
+    className = '',
     ...otherProps
   } = props;
   return (
@@ -35,6 +37,7 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
         <List.Item
           key={fieldProps}
           style={coverStyle}
+          className={className}
           extra={
             <Field
               name={fieldProps}

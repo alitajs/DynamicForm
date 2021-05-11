@@ -19,6 +19,7 @@ export interface INomarSelectProps extends Omit<PickerPropsType, 'data'> {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 const NomarPicker: FC<INomarSelectProps> = props => {
@@ -35,6 +36,7 @@ const NomarPicker: FC<INomarSelectProps> = props => {
     subTitle,
     hidden = false,
     onClick,
+    className,
     ...otherProps
   } = props;
 
@@ -65,6 +67,7 @@ const NomarPicker: FC<INomarSelectProps> = props => {
                 cascade={false}
                 {...otherProps}
                 style={coverStyle}
+                className={className}
                 extra={placeholder}
                 data={data}
                 title={title}

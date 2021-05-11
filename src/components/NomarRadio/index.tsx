@@ -27,6 +27,7 @@ export interface INomarRadioProps {
   hidden?: boolean;
   disabled?: boolean;
   alias?: IAliasProps;
+  className?: string;
 }
 
 const NomarRadio: FC<INomarRadioProps> = props => {
@@ -51,6 +52,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
       label: 'label',
       value: 'value',
     },
+    className = '',
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -90,6 +92,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         onChange={radioChange}
         coverStyle={coverStyle}
         disabled={disabled}
+        className={className}
       />
     </Field>
   );

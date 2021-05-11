@@ -14,6 +14,7 @@ interface INomarCheckBoxProps {
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
+  className?: string;
   onChange?: (currentActiveLink: (string | number)[]) => void;
   disabled?: boolean;
   hidden?: boolean;
@@ -27,6 +28,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
   const {
     coverStyle,
     fieldProps,
+    className = '',
     title,
     rules,
     required = false,
@@ -88,6 +90,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
               initValue={initValue}
               disabled={disabled}
               chunk={chunk}
+              className={className}
             />
           </Field>
         </div>

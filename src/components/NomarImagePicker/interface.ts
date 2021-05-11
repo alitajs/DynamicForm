@@ -18,6 +18,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   hidden?: boolean;
   extra?: string | React.ReactNode;
   compressRatio?: number;
+  className?: string;
 }
 
 export interface ImagePickerGroupProps {

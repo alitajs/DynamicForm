@@ -1,7 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
-import _ from 'lodash';
 import { IAddressPickerProps } from './interface';
 import { InputItem } from '..';
 import '../../styles/index.less';
@@ -31,7 +30,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     initValue = undefined,
     required = false,
     hasStar = true,
-    fieldProps,
     labelNumber = 5,
     coverStyle,
     onClick,
@@ -40,6 +38,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
     leftContent = '取消',
     noData = '',
     loading = false,
+    className = '',
   } = props;
 
   const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
@@ -62,11 +61,11 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
       newLabelList.splice(newLabelList.length - 1, 1);
     }
     // 赋值
-    let val = undefined;
+    let val;
     if (valueList && valueList.length) {
       val = { label: newLabelList, value: valueList };
     }
-    //设值
+    // 设值
     onChange(val, 'change');
     setInputLabel(newLabelList.join(','));
     setModalFlag(false); // 关闭弹框
@@ -105,14 +104,14 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
    * 列表点击事件
    */
   const listClick = (val: any) => {
-    let newValueList = [...valueList];
+    const newValueList = [...valueList];
 
     // 设置弹框顶部选中label 的值
     const newLabelList = [...labelList];
     // 如果有层级约束
     if (level) {
       if (nowLevel === level) {
-        //如果当前为最后一级，则替换掉原有值
+        // 如果当前为最后一级，则替换掉原有值
         newLabelList.splice(newLabelList.length - 1, 1, val?.label);
         newValueList.splice(newValueList.length - 1, 1, val?.value);
       } else if (nowLevel + 1 === level) {
@@ -227,6 +226,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         readOnly
         disabled={disabled}
         coverStyle={coverStyle}
+        className={className}
         labelNumber={labelNumber}
         onClick={inputClick}
         onChange={e => {

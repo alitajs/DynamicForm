@@ -9,4 +9,5 @@ export interface ITextItemProps {
   disabled?: boolean;
   maxLine?: number;
   fieldProps?: string;
+  className?: string;
 }

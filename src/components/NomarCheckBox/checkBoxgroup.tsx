@@ -16,10 +16,11 @@ interface ICheckBoxGroup {
   disabled?: boolean;
   coverStyle?: React.CSSProperties;
   chunk?: number;
+  className?: string;
 }
 
 const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
-  const { data = [], onChange, initValue, coverStyle, disabled = false, chunk = 1 } = props;
+  const { data = [], onChange, initValue, coverStyle, className = '', disabled = false, chunk = 1 } = props;
   const [preValue, setPreValue] = useState<string | undefined>('[]');
   useEffect(() => {
     // 存在延迟赋值的情况将值保存
@@ -29,13 +30,13 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
 
     if (!data || data.length === 0) {
       onChange(undefined, 'init');
-      return;
+      // return;
     }
-    const newInitValue = initValue ? JSON.parse(initValue) : [];
-    const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
-    if (filter && filter.length) {
-      return;
-    }
+    // const newInitValue = initValue ? JSON.parse(initValue) : [];
+    // const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
+    // if (filter && filter.length) {
+    //   return;
+    // }
     // onChange(undefined, 'init');
   }, [initValue]);
 
@@ -95,7 +96,10 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
                   <div className="alitajs-dform-box-tick"></div>
                 )}
               </div>
-              <div className="alitajs-dform-box-label" style={coverStyle}>
+              <div className={classnames({
+                'alitajs-dform-box-label': true,
+                [className]: className
+              })} style={coverStyle}>
                 {item.label}
               </div>
             </div>

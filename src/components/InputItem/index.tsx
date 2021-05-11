@@ -15,6 +15,7 @@ const InputItem: FC<IInputItemProps> = props => {
     coverStyle = {},
     disabled = false,
     extra = '',
+    className = ''
   } = props;
 
   let inputRef: HTMLInputElement | null;
@@ -61,7 +62,7 @@ const InputItem: FC<IInputItemProps> = props => {
             }}
             unselectable="on"
             onFocus={() => {
-              inputRef.blur();
+              if (inputRef) inputRef.blur();
             }}
             onChange={e => {
               inputItemChange(e);
@@ -69,10 +70,11 @@ const InputItem: FC<IInputItemProps> = props => {
             className={classnames({
               'alitajs-dform-input-text': true,
               'alitajs-dform-disabled': disabled,
+              [className]: className,
             })}
             placeholder={placeholder}
           />
-          {extra ? extra : <div className="am-list-arrow am-list-arrow-horizontal" />}
+          {extra || <div className="am-list-arrow am-list-arrow-horizontal" />}
         </div>
       </div>
     </div>

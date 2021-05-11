@@ -57,23 +57,23 @@ const FormItemType = {
 
 export interface IFormItemProps {
   type:
-    | 'input'
-    | 'select'
-    | 'area'
-    | 'date'
-    | 'switch'
-    | 'extraInput'
-    | 'radio'
-    | 'rangeDatePicker'
-    | 'coverRadio'
-    | 'image'
-    | 'custom'
-    | 'multiplePicker'
-    | 'addressPicker'
-    | 'text'
-    | 'picker'
-    | 'file'
-    | 'checkbox';
+  | 'input'
+  | 'select'
+  | 'area'
+  | 'date'
+  | 'switch'
+  | 'extraInput'
+  | 'radio'
+  | 'rangeDatePicker'
+  | 'coverRadio'
+  | 'image'
+  | 'custom'
+  | 'multiplePicker'
+  | 'addressPicker'
+  | 'text'
+  | 'picker'
+  | 'file'
+  | 'checkbox';
   title: string;
   fieldProps: string;
   required?: boolean;
@@ -120,6 +120,7 @@ export interface IFormItemProps {
   coverStyle?: React.CSSProperties;
   renderHeader?: string | React.ReactNode;
   initKey?: string | number;
+  className?: string;
 }
 
 interface CardDForm extends CardHeaderPropsType {

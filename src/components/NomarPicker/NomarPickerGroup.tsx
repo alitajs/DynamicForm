@@ -11,7 +11,7 @@ interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
 
 const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   const [visible, setvisible] = useState<boolean>(false);
-  const [pickerLabel, setPickerLabel] = useState<string>('');
+  const [pickerLabel, setPickerLabel] = useState<string | number>('');
   // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const {
     data = [],
@@ -24,9 +24,9 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     coverStyle,
     required = false,
     hasStar = true,
-    fieldProps,
     labelNumber = 5,
     extra = '',
+    className,
     onClick,
   } = props;
   const isVertical = positionType === 'vertical';
@@ -49,7 +49,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
 
   useEffect(() => {
     if (data && data.length) {
-      let nowValue = initValue;
+      const nowValue = initValue;
       // if (!initValue && preValue) {
       //   nowValue = preValue;
       //   setPreValue(undefined);
@@ -83,7 +83,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     <>
       <InputItem
         isVertical={isVertical}
-        value={pickerLabel}
+        value={`${pickerLabel}`}
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}
@@ -91,6 +91,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
         onClick={fieldClick}
         disabled={disabled}
         extra={extra}
+        className={className}
       >
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
         <span className="alitajs-dform-title">

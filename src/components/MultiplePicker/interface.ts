@@ -28,4 +28,5 @@ export interface IMultiplePickerProps {
   rightContent?: React.ReactNode | string;
   height?: number | string;
   alias?: IAliasProps;
+  className?: string;
 }

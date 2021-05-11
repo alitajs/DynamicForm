@@ -19,6 +19,7 @@ const TextItem: FC<ITextItemProps> = props => {
     maxLine,
     disabled,
     fieldProps,
+    className = '',
   } = props;
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const TextItem: FC<ITextItemProps> = props => {
 
   useEffect(() => {
     if (coverStyle && Object.keys(coverStyle).length) {
-      let newStyle = JSON.parse(JSON.stringify(coverStyle));
+      const newStyle = JSON.parse(JSON.stringify(coverStyle));
       if (!value && coverStyle.color) delete newStyle.color;
       setCurrentCoverStyle({ ...newStyle });
     }
@@ -78,6 +79,7 @@ const TextItem: FC<ITextItemProps> = props => {
               className={classnames({
                 'alitajs-dform-text-text': true,
                 'alitajs-dform-disabled': disabled && value,
+                [className]: className,
               })}
               style={{
                 textAlign: isVertical ? 'left' : 'right',

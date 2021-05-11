@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import '../../styles/index.less';
 
 export interface IDataItem {
-  [key: string]: string | number | boolean;
+  [key: string]: string | number | undefined;
 }
 
 export interface INomarRadioGroupProps {
@@ -14,6 +14,7 @@ export interface INomarRadioGroupProps {
   disabled?: boolean;
   onChange: (currentActiveLink: string | number | undefined, flag: string) => void;
   coverStyle?: React.CSSProperties;
+  className?: string;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = props => {
@@ -25,6 +26,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     initValue,
     disabled = false,
     coverStyle,
+    className = '',
   } = props;
   const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const [activeValue, setActiveValue] = useState<string | number | undefined>(undefined);
@@ -119,7 +121,10 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
           >
             {item.value === activeValue && <div className="alitajs-dform-radio-inner-button"></div>}
           </div>
-          <div className="alitajs-dform-radio-label" style={coverStyle}>
+          <div className={classnames({
+            'alitajs-dform-radio-label': true,
+            [className]: className
+          })} style={coverStyle}>
             {item.label}
           </div>
         </div>

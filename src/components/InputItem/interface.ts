@@ -9,4 +9,5 @@ export interface IInputItemProps {
   coverStyle?: React.CSSProperties;
   disabled?: boolean;
   extra?: string | React.ReactNode;
+  className?: string;
 }

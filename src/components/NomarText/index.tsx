@@ -19,6 +19,7 @@ export interface INomarTextProps {
   onClick?: (val: string) => void;
   disabled?: boolean;
   maxLine?: number;
+  className?: string;
 }
 
 const NomarText: FC<INomarTextProps> = props => {
@@ -38,6 +39,7 @@ const NomarText: FC<INomarTextProps> = props => {
     disabled = false,
     maxLine,
     onClick,
+    className = '',
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -70,6 +72,7 @@ const NomarText: FC<INomarTextProps> = props => {
               disabled={disabled}
               maxLine={maxLine}
               fieldProps={fieldProps}
+              className={className}
             >
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
               <span className="alitajs-dform-title">

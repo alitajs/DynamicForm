@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import '../../styles/index.less';
 
 export interface IDataItem {
-  [key: string]: string | number | boolean;
+  [key: string]: string | number;
 }
 
 interface IRadioGroup {
@@ -14,6 +14,7 @@ interface IRadioGroup {
   initValue?: string | number;
   disabled?: boolean;
   coverStyle?: React.CSSProperties;
+  className?: string;
 }
 
 const RadioGroup: FC<IRadioGroup> = props => {
@@ -25,6 +26,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
     initValue = '',
     disabled = false,
     coverStyle,
+    className = '',
   } = props;
   const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const [activeValue, setActiveValue] = useState<string | number | undefined>(undefined);
@@ -83,12 +85,10 @@ const RadioGroup: FC<IRadioGroup> = props => {
         onChange(undefined, 'change');
         setActiveValue(undefined);
       } else {
-        console.log(data, initValue);
         onChange(dataItem?.value, 'change');
         setActiveValue(dataItem?.value);
       }
     } else {
-      console.log(data, initValue);
       onChange(undefined, 'change');
     }
   };
@@ -109,6 +109,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
             'alitajs-dform-cover-radio-wrapper-checked': item.value && item.value === activeValue,
             'alitajs-dform-cover-radio-wrapper-margin': isVertical,
             'alitajs-dform-cover-radio-wrapper-cover': item.moveFlag && item.value !== activeValue,
+            [className]: className
           })}
           style={coverStyle}
           // onMouseDown={() => {

@@ -19,6 +19,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  className?: string;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = props => {
@@ -36,6 +37,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     hidden = false,
     onBlur,
     editable = true,
+    className = '',
     ...otherProps
   } = props;
 
@@ -99,6 +101,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
                   textAlign: rows === 1 ? 'right' : 'left',
                   ...coverStyle,
                 }}
+                className={className}
                 rows={rows}
                 onBlur={val => {
                   inputOnBlur(val);

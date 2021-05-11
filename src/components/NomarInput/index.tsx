@@ -19,6 +19,7 @@ export interface INomarInputProps extends InputItemPropsType {
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  className?: string;
 }
 
 const NomarInput: FC<INomarInputProps> = props => {
@@ -36,6 +37,7 @@ const NomarInput: FC<INomarInputProps> = props => {
     hidden = false,
     onBlur,
     editable = true,
+    className = '',
     ...otherProps
   } = props;
 
@@ -77,6 +79,7 @@ const NomarInput: FC<INomarInputProps> = props => {
                 editable={editable}
                 className={classnames({
                   'alitajs-dform-disabled': !editable,
+                  [className]: className
                 })}
                 style={{ textAlign: isVertical ? 'left' : 'right', ...coverStyle }}
                 onBlur={val => {

@@ -10,26 +10,27 @@ title: Radio
 
 ## API
 
-| 参数         | 说明                                                                  | 类型                       | 默认值                             | 是否必填     |
-| ------------ | --------------------------------------------------------------------- | -------------------------- | ---------------------------------- | ------------ |
-| type         | 表单类型                                                              | string                     | ''                                 | 是           |
-| title        | 标题                                                                  | string                     | ''                                 | 是           |
-| data         | 数据                                                                  | list                       | []                                 | 是           |
-| fieldProps   | 文本属性                                                              | boolean                    | false                              | 是           |
-| placeholder  | placeholder                                                           | string                     | ''                                 | 否           |
-| required     | 必填判断                                                              | boolean                    | false                              | 否           |
-| disabled     | 是否可编辑                                                            | boolean                    | false                              | 否           |
-| positionType | 样式类型                                                              | `vertical` or `horizontal` | false                              | `horizontal` |
-| hasStar      | 必填项红\*展示与否的判断                                              | boolean                    | true                               | 否           |
-| rules        | 规则校验(如需用到该字段，请重写 `required` 校验)                      | array                      | []                                 | 否           |
-| radioType    | 按钮方向为横向或者纵向，若为纵向，则默认 `positionType` 为 `vertical` | `vertical` or `horizontal` | `horizontal`                       |
-| 否           |
-| subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效            | string or node             | ''                                 | 否           |
-| coverStyle   | 自定义每个选项的样式，例如高度，内外边距等                            | object                     | {}                                 | 否           |
-| hidden       | 字段展示与否的判断                                                    | boolean                    | false                              | 否           |
-| onChange     | 值改变事件                                                            | object                     | (e) => void                        | 否           |
-| alias        | data 数据源的别名                                                     | object                     | { label: 'label', value: 'value' } | 否           |
-| renderHeader | 组件头部                                                              | `number` or `string`       | -                                  | 否           |
+| 参数 | 说明 | 类型 | 默认值 | 是否必填 |
+| --- | --- | --- | --- | --- |
+| type | 表单类型 | string | '' | 是 |
+| title | 标题 | string | '' | 是 |
+| data | 数据 | list | [] | 是 |
+| fieldProps | 文本属性 | boolean | false | 是 |
+| placeholder | placeholder | string | '' | 否 |
+| required | 必填判断 | boolean | false | 否 |
+| disabled | 是否可编辑 | boolean | false | 否 |
+| positionType | 样式类型 | `vertical` or `horizontal` | false | `horizontal` |
+| hasStar | 必填项红\*展示与否的判断 | boolean | true | 否 |
+| rules | 规则校验(如需用到该字段，请重写 `required` 校验) | array | [] | 否 |
+| radioType | 按钮方向为横向或者纵向，若为纵向，则默认 `positionType` 为 `vertical` | `vertical` or `horizontal` | `horizontal` |
+| 否 |
+| subTitle | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node | '' | 否 |
+| coverStyle | 自定义每个选项的样式，例如高度，内外边距等 | object | {} | 否 |
+| hidden | 字段展示与否的判断 | boolean | false | 否 |
+| onChange | 值改变事件 | object | (e) => void | 否 |
+| alias | data 数据源的别名 | object | { label: 'label', value: 'value' } | 否 |
+| renderHeader | 组件头部 | `number` or `string` | - | 否 |
+| className | 类名 | string | - | 否 |
 
 ## 备注
 

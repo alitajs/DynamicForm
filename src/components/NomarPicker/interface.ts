@@ -24,4 +24,5 @@ export interface INomarPickerProps {
   onClick?: (val: string | number | undefined) => void;
   alias?: IAliasProps;
   extra?: string | React.ReactNode;
+  className?: string;
 }
