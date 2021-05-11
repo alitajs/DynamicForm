@@ -50,7 +50,7 @@ const NomarText: FC<INomarTextProps> = props => {
             {isVertical && (
               <div className="alitajs-dform-vertical-title">
                 {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                <span className="alitajs-dform-title">
                   {title}
                 </span>
                 {subTitle}
@@ -72,7 +72,7 @@ const NomarText: FC<INomarTextProps> = props => {
               fieldProps={fieldProps}
             >
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+              <span className="alitajs-dform-title">
                 {title}
               </span>
             </TextItem>

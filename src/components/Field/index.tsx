@@ -3,7 +3,8 @@ import Form, { Field, useForm } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
 import '../../styles/index.less';
 
-const CustomField: FC<FieldProps> = props => {
+
+const CustomField: FC<FieldProps> = (props: any) => {
   const [valueFlag, setValueFlag] = React.useState(false);
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
@@ -15,7 +16,7 @@ const CustomField: FC<FieldProps> = props => {
   };
 
   return (
-    <div className={valueFlag ? 'alitajs-dform-value-content' : 'alitajs-dform-placeholder'}>
+    <div id={`alita-dform-${props?.name}`} className={valueFlag ? 'alitajs-dform-value-content' : 'alitajs-dform-placeholder'}>
       <Field {...props} shouldUpdate={shouldUpdate} />
     </div>
   );

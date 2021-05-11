@@ -30,6 +30,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
     leftContent = '取消',
     rightContent = '确定',
     height,
+    children,
   } = props;
 
   const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
@@ -110,10 +111,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         }}
         readOnly
       >
-        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
-          {title}
-        </span>
+        {children}
       </InputItem>
       <Modal
         popup

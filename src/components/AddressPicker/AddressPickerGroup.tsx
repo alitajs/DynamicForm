@@ -234,7 +234,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
         }}
       >
         {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+        <span className="alitajs-dform-title">
           {title}
         </span>
       </InputItem>
@@ -302,7 +302,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = props => {
                 <Item
                   key={item.value}
                   onClick={() => {
-                    listClick(item); 
+                    listClick(item);
                   }}
                 >
                   <div className="alitajs-dform-address-list-item">

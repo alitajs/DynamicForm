@@ -53,7 +53,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+              <span className="alitajs-dform-title">
                 {title}
               </span>
               {subTitle}
@@ -70,7 +70,6 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
             }}
           >
             <div
-              id={`alita-dform-${fieldProps2}`}
               className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-picker`}
             >
               <Field
@@ -97,7 +96,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                 >
                   <List.Item>
                     {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                    <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                    <span className="alitajs-dform-title">
                       {title}
                     </span>
                     <span id={fieldProps2}></span>
@@ -126,7 +125,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   format={value => changeDateFormat(value, modeType)}
                   onChange={e => {
                     setEndDate(e);
-                    secondProps?.onChange && secondProps?.onChange(e);
+                    secondProps && secondProps?.onChange && secondProps?.onChange(e);
                   }}
                 >
                   <List.Item arrow="horizontal"></List.Item>

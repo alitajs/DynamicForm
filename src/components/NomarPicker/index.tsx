@@ -48,7 +48,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
             {isVertical && (
               <div className="alitajs-dform-vertical-title">
                 {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                <span className="alitajs-dform-title">
                   {title}
                 </span>
                 {subTitle}
@@ -65,7 +65,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
           >
             <PickerGroup {...props} initValue={initValue} onChange={fieldChange} data={aliasData}>
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+              <span className="alitajs-dform-title">
                 {title}
               </span>
             </PickerGroup>

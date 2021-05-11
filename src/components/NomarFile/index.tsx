@@ -46,7 +46,7 @@ const NomarFile: FC<INomarFileProps> = props => {
             <div className="alitajs-dform-input-title">
               <div className="alitajs-dform-vertical-title">
                 {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                <span className="alitajs-dform-title">
                   {title}
                 </span>
                 {subTitle}

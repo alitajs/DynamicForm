@@ -45,7 +45,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+              <span className="alitajs-dform-title">
                 {title}
               </span>
               {subTitle}
@@ -67,7 +67,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = props => {
               >
                 <List.Item arrow="horizontal">
                   {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                  <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                  <span className="alitajs-dform-title">
                     {title}
                   </span>
                 </List.Item>
