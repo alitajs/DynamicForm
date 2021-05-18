@@ -28,7 +28,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     coverStyle,
     className = '',
   } = props;
-  const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
+  // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const [activeValue, setActiveValue] = useState<string | number | undefined>(undefined);
   let isVertical = positionType === 'vertical';
   if (radioType === 'vertical') {
@@ -41,36 +41,35 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
       setActiveValue(undefined);
       return;
     }
-    let newValue = initValue;
+    const newValue = initValue;
     // 判断是否使用初始值，满足延迟赋数据源的情况
-    if (preValue && !initValue) {
-      newValue = preValue;
-      setPreValue(undefined);
-    }
+    // if (preValue && !initValue) {
+    //   newValue = preValue;
+    //   setPreValue(undefined);
+    // }
     const filter = data.filter(item => item.value === newValue);
     if (filter && filter.length) {
       setActiveValue(newValue);
-      if (preValue) {
-        onChange(newValue, 'init');
-      }
+      // if (preValue) {
+      //   onChange(newValue, 'init');
+      // }
     } else {
       setActiveValue(undefined);
-      onChange(undefined, 'init');
+      // onChange(undefined, 'init');
     }
   }, [data]);
 
   useEffect(() => {
     // 存在延迟数据源的情况，将值保存
-    if (data.length === 0 && initValue) setPreValue(initValue);
+    // if (data.length === 0 && initValue) setPreValue(initValue);
     if (data.length === 0) {
-      onChange(undefined, 'init');
+      // onChange(undefined, 'init');
       setActiveValue(undefined);
       return;
     }
     const filter = data.filter(item => item.value === initValue);
     if (filter && filter.length) {
       setActiveValue(initValue);
-      // onChange(initValue, 'init');
     } else {
       setActiveValue(undefined);
     }
