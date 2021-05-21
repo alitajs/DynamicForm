@@ -37,7 +37,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
 
   useEffect(() => {
     if (data.length === 0) {
-      onChange(undefined, 'init');
+      // onChange(undefined, 'init');
       setActiveValue(undefined);
       return;
     }
