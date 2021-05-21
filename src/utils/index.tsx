@@ -32,7 +32,7 @@ export const changeDateFormat = (val: Date, modeType: string) => {
       dateFormat = dayjs(val).format('YYYY-MM');
       break;
     case 'time':
-      dateFormat = dayjs(val).format('hh:mm');
+      dateFormat = dayjs(val).format('HH:mm');
       break;
     case 'year':
       dateFormat = dayjs(val).format('YYYY');
