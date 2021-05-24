@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
-import CheckBoxGroup from './checkBoxgroup';
+import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../DynamicForm';
 import '../../styles/index.less';
 
@@ -17,6 +17,7 @@ interface INomarCheckBoxProps {
   className?: string;
   onChange?: (currentActiveLink: (string | number)[]) => void;
   disabled?: boolean;
+  disableItem?: (items: IDataItem) => boolean;
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
@@ -65,9 +66,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
         <div className="alitajs-dform-check-box">
           <div className="alitajs-dform-vertical-title">
             {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span className="alitajs-dform-title">
-              {title}
-            </span>
+            <span className="alitajs-dform-title">{title}</span>
             {subTitle}
           </div>
           <Field
@@ -84,6 +83,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
             }}
           >
             <CheckBoxGroup
+              disableItem={props.disableItem}
               data={aliasData}
               onChange={boxChange}
               coverStyle={coverStyle}

@@ -26,6 +26,7 @@ title: CheckBox
 | alias | data 数据源的别名 | object | { label: 'label', value: 'value' } | 否 |
 | renderHeader | 组件头部 | `number` or `string` | - | 否 |
 | className | 类名 | string | - | 否 |
+| disableItem | 禁用子项，这是一个函数，最终返回`boolean`，参数为当前循环的 item，返回 `true` 则禁用 | (item) => `boolean` | - | 否 |
 
 ## 备注
 
