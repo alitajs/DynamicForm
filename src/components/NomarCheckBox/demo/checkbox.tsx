@@ -16,7 +16,13 @@ const fruitsList = [
 const CheckboxPage: FC = () => (
   <Form>
     <List>
-      <NomarCheckBox title="喜欢的水果" required data={fruitsList} fieldProps="fruit" />
+      <NomarCheckBox
+        title="喜欢的水果"
+        required
+        data={fruitsList}
+        fieldProps="fruit"
+        disableItem={x => ['香梨', '哈密瓜'].some(a => x.value === a)}
+      />
     </List>
   </Form>
 );
