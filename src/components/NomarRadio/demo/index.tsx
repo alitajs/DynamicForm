@@ -87,6 +87,7 @@ const DfromRadioTextPage: FC = () => {
       type: 'radio',
       fieldProps: 'userRadio3',
       required: true,
+      allowUnChecked: false,
       data: foodList,
       title: '喜欢的食物',
       radioType: 'vertical',

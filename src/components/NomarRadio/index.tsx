@@ -28,6 +28,7 @@ export interface INomarRadioProps {
   disabled?: boolean;
   alias?: IAliasProps;
   className?: string;
+  allowUnChecked?: boolean;
 }
 
 const NomarRadio: FC<INomarRadioProps> = props => {
@@ -38,6 +39,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     coverStyle,
     fieldProps,
     required = false,
+    allowUnChecked = true,
     rules,
     title,
     data = [],
@@ -85,6 +87,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
       }}
     >
       <NomarRadioGroup
+        allowUnChecked={allowUnChecked}
         data={aliasData}
         positionType={positionType}
         radioType={radioType}
@@ -104,9 +107,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
           )}
@@ -118,9 +119,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
           >
             <List.Item key={fieldProps} extra={RadioGroup()}>
               {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              <span className="alitajs-dform-title">{title}</span>
             </List.Item>
           </div>
         </React.Fragment>
