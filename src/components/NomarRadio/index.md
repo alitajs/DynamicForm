@@ -31,6 +31,7 @@ title: Radio
 | alias | data 数据源的别名 | object | { label: 'label', value: 'value' } | 否 |
 | renderHeader | 组件头部 | `number` or `string` | - | 否 |
 | className | 类名 | string | - | 否 |
+| allowUnChecked | 允许取消选中 | boolean | true | 否 |
 
 ## 备注
 
