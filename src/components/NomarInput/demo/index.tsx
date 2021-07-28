@@ -4,7 +4,12 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 import PositionIcon from '../../../assets/position_ico.png';
 import PhotoIcon from '../../../assets/photo.png';
 import PwdIcon from '../../../assets/look.png';
@@ -22,14 +27,17 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const extraImg = () => <img src={PositionIcon} />;
+  const extraImg = () => <img src={PositionIcon} style={{ width: '0.5rem' }} />;
 
-  const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
+  const photoImg = () => (
+    <img src={PhotoIcon} style={{ width: '1rem', height: '0.5rem' }} />
+  );
 
   const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
 
   const pwdImg = () => (
     <img
+      style={{ width: '0.6rem' }}
       src={PwdIcon}
       onClick={() => {
         setPwdInputType(!pwdInputType);
@@ -44,7 +52,7 @@ const Page: FC = () => {
       required: true,
       placeholder: '输入项居左',
       title: '用户名',
-      inputType: 'text',
+      inputType: 'bankCard',
       clear: true,
       subTitle: subTitle(),
       coverStyle: {
@@ -57,8 +65,9 @@ const Page: FC = () => {
       required: true,
       placeholder: '请输入',
       title: '年龄',
-      editable: false,
+      // editable: false,
       inputType: 'text',
+      clear: true,
     },
     {
       type: 'area',

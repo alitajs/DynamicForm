@@ -1,0 +1,64 @@
+@import '../../styles/index.less';
+
+.alitajs-dform-cover-radio {
+  .am-list-extra {
+    flex-basis: 50% !important;
+  }
+
+  .alitajs-dform-cover-radio-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .alitajs-dform-cover-radio-wrapper {
+      font-size: @alita-dform-value-font-size;
+      padding: 3 * @hd 15 * @hd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 20 * @hd;
+      color: @alita-dform-value-color;
+      // margin-bottom: 7 * @hd;
+      // margin-top: 7 * @hd;
+    }
+
+    .alitajs-dform-cover-radio-wrapper-checked {
+      .alitajs-dform-cover-radio-wrapper();
+      background-color: @alita-dform-radio-color;
+      color: @alita-dform-radio-font-color;
+      animation-name: colorful;
+      animation-duration: 1s;
+    }
+
+    .alitajs-dform-cover-radio-wrapper-margin {
+      margin-left: 0 * @hd;
+      margin-right: 20 * @hd;
+    }
+
+    .alitajs-dform-cover-radio-wrapper-cover {
+      // border: 1 * @hd solid @alita-dform-radio-color;
+      color: @alita-dform-radio-color;
+    }
+  }
+
+  .alitajs-dform-cover-radio-item-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .alitajs-dform-cover-radio-position {
+    justify-content: flex-end !important;
+  }
+}
+
+.alitajs-dform-vertical-cover-radio {
+  .alitajs-dform-cover-radio();
+
+  .am-list-content {
+    display: none;
+  }
+
+  .am-list-extra {
+    flex-basis: 100% !important;
+  }
+}

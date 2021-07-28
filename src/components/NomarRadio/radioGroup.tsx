@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
-import '../../styles/index.less';
+import './index.less';
 
 export interface IDataItem {
   [key: string]: string | number | undefined;
@@ -12,13 +12,16 @@ export interface INomarRadioGroupProps {
   radioType?: 'horizontal' | 'vertical';
   initValue?: string | number;
   disabled?: boolean;
-  onChange: (currentActiveLink: string | number | undefined, flag: string) => void;
+  onChange: (
+    currentActiveLink: string | number | undefined,
+    flag: string,
+  ) => void;
   coverStyle?: React.CSSProperties;
   className?: string;
   allowUnChecked?: boolean;
 }
 
-const RadioGroup: FC<INomarRadioGroupProps> = props => {
+const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
   const {
     data = [],
     onChange,
@@ -31,7 +34,9 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     allowUnChecked,
   } = props;
   // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
-  const [activeValue, setActiveValue] = useState<string | number | undefined>(undefined);
+  const [activeValue, setActiveValue] = useState<string | number | undefined>(
+    undefined,
+  );
   let isVertical = positionType === 'vertical';
   if (radioType === 'vertical') {
     isVertical = true;
@@ -49,7 +54,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     //   newValue = preValue;
     //   setPreValue(undefined);
     // }
-    const filter = data.filter(item => item.value === newValue);
+    const filter = data.filter((item) => item.value === newValue);
     if (filter && filter.length) {
       setActiveValue(newValue);
       // if (preValue) {
@@ -69,7 +74,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
       setActiveValue(undefined);
       return;
     }
-    const filter = data.filter(item => item.value === initValue);
+    const filter = data.filter((item) => item.value === initValue);
     if (filter && filter.length) {
       setActiveValue(initValue);
     } else {
@@ -77,10 +82,13 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
     }
   }, [initValue]);
 
-  const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
+  const radioClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    dataItem: IDataItem,
+  ) => {
     e.stopPropagation();
     if (disabled) return;
-    const filter = data.filter(item => item.value === dataItem?.value);
+    const filter = data.filter((item) => item.value === dataItem?.value);
     if (filter && filter.length) {
       if (dataItem?.value === initValue) {
         if (allowUnChecked) {
@@ -110,9 +118,10 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
           key={item.value}
           className={classnames({
             'alitajs-dform-radio-wrapper': true,
-            'alitajs-dform-radio-wrapper-item-vertical': radioType === 'vertical',
+            'alitajs-dform-radio-wrapper-item-vertical':
+              radioType === 'vertical',
           })}
-          onClick={e => {
+          onClick={(e) => {
             radioClick(e, item);
           }}
         >
@@ -122,7 +131,9 @@ const RadioGroup: FC<INomarRadioGroupProps> = props => {
               'alitajs-dform-radio-checked': item.value === activeValue,
             })}
           >
-            {item.value === activeValue && <div className="alitajs-dform-radio-inner-button"></div>}
+            {item.value === activeValue && (
+              <div className="alitajs-dform-radio-inner-button"></div>
+            )}
           </div>
           <div
             className={classnames({

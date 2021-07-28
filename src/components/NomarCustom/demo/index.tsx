@@ -4,7 +4,12 @@
  */
 import React, { FC, useState, useEffect } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 interface IDemoPage {
   name: string;
@@ -13,9 +18,11 @@ interface IDemoPage {
   initValue?: string;
 }
 
-const showDemoPage = () => <div style={{ textAlign: 'left' }}>This is a display page</div>;
+const showDemoPage = () => (
+  <div style={{ textAlign: 'left' }}>This is a display page</div>
+);
 
-const demoPage: FC<IDemoPage> = props => {
+const demoPage: FC<IDemoPage> = (props) => {
   const { name, onChange, initValue } = props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [value, setValue] = useState('');
@@ -31,7 +38,7 @@ const demoPage: FC<IDemoPage> = props => {
         <input
           value={value}
           type="text"
-          onChange={e => {
+          onChange={(e) => {
             setValue(e.target.value);
             if (onChange) onChange(e.target.value);
           }}

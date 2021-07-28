@@ -4,7 +4,7 @@ import copy from 'copy-to-clipboard';
 import Form from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { IFormItemProps, getFormItem, DFormData } from '../../DynamicForm';
-import EditForm from '../EditForm/EditForm';
+// import EditForm from '../EditForm/EditForm';
 
 interface NewFieldPickerProps {
   onChange?: (t: any) => void;
@@ -170,7 +170,9 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [selectFieldItem, setSelectFieldItem] = useState<IFormItemProps>();
-  const [alitaDformExtraField, setAlitaDformExtraField] = useState<IFormItemProps[]>(value || []);
+  const [alitaDformExtraField, setAlitaDformExtraField] = useState<
+    IFormItemProps[]
+  >(value || []);
   const onSelectFieldItem = (formItem: IFormItemProps) => {
     alitaDformExtraField.push({ ...formItem });
     setAlitaDformExtraField(alitaDformExtraField);
@@ -193,16 +195,6 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
   };
 
   const defaultFailed = (errorInfo: ValidateErrorEntity) => {
-    if (
-      !errorInfo ||
-      !errorInfo.errorFields ||
-      errorInfo.errorFields.length === 0 ||
-      onFinishFailed
-    ) {
-      onFinishFailed(errorInfo);
-
-      return;
-    }
     const scrollToField = (fieldKey: any) => {
       const labelNode = document.getElementById(`aliat-dform-${fieldKey}`);
       if (labelNode) {
@@ -210,9 +202,19 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
       }
     };
     scrollToField(errorInfo.errorFields[0].name[0]);
-    if (onFinishFailed) {
+
+    if (
+      !errorInfo ||
+      !errorInfo.errorFields ||
+      errorInfo.errorFields.length === 0 ||
+      onFinishFailed
+    ) {
       onFinishFailed(errorInfo);
+      return;
     }
+    // if (onFinishFailed) {
+    //   onFinishFailed(errorInfo);
+    // }
   };
 
   return (
@@ -230,7 +232,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
             </div>
           )}
         >
-          {alitaDformExtraField.map(item => getFormItem(item, false))}
+          {alitaDformExtraField.map((item) => getFormItem(item, false))}
         </List>
       </Form>
 
@@ -278,7 +280,9 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
         <Form
           initialValues={InitFormValue}
           onFinish={onFinish}
-          onFinishFailed={(errorInfo: ValidateErrorEntity) => defaultFailed(errorInfo)}
+          onFinishFailed={(errorInfo: ValidateErrorEntity) =>
+            defaultFailed(errorInfo)
+          }
         >
           <List
             renderHeader={() => (
@@ -294,7 +298,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
               textAlign: 'left',
             }}
           >
-            {InitFormData.map(item => (
+            {InitFormData.map((item) => (
               <div style={{ position: 'relative' }} key={item.fieldProps}>
                 {getFormItem(item, false)}
                 <div
@@ -307,7 +311,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
                     left: '0',
                     zIndex: 99,
                   }}
-                  onClick={e => {
+                  onClick={(e) => {
                     e.stopPropagation();
                     setSelectFieldItem({ ...item });
                     setModal(false);
@@ -342,7 +346,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
             </div>
           )}
         >
-          <EditForm data={selectFieldItem} onChange={onSelectFieldItem} />
+          {/* <EditForm data={selectFieldItem} onChange={onSelectFieldItem} /> */}
         </List>
       </Modal>
     </>

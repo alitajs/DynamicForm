@@ -1,14 +1,21 @@
 import React, { FC } from 'react';
 import { INomarFileProps, INomarFileItemProps } from './interface';
-import CloseIcon from '../../assets/close.png';
-import '../../styles/index.less';
+import ClosePng from '../../assets/close.png';
+import './index.less';
+
+const prefixCls = 'alitajs-dform-file';
 
 interface IFileGroupProps extends INomarFileProps {
   initValue: INomarFileItemProps[];
 }
 
-const FileGroup: FC<IFileGroupProps> = props => {
-  const { initValue = [], onChange, onClick, alias = { id: 'id', title: 'title' } } = props;
+const FileGroup: FC<IFileGroupProps> = (props) => {
+  const {
+    initValue = [],
+    onChange,
+    onClick,
+    alias = { id: 'id', title: 'title' },
+  } = props;
 
   const del = (index: number) => {
     const newData = JSON.parse(JSON.stringify(initValue));
@@ -21,11 +28,11 @@ const FileGroup: FC<IFileGroupProps> = props => {
   };
 
   return (
-    <div className="alitajs-dform-file-content">
+    <div className={`${prefixCls}-content`}>
       {initValue.map((item: INomarFileItemProps, index: number) => (
-        <div key={item[alias.id || 'id']} className="alitajs-dform-file-item">
+        <div key={item[alias.id || 'id']} className={`${prefixCls}-item`}>
           <span
-            className="alitajs-dform-file-title"
+            className={`${prefixCls}-title`}
             onClick={() => {
               itemClick(item);
             }}
@@ -36,7 +43,7 @@ const FileGroup: FC<IFileGroupProps> = props => {
             onClick={() => {
               del(index);
             }}
-            src={CloseIcon}
+            src={ClosePng}
             alt=""
             className="alitajs-dform-close"
           />

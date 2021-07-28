@@ -1,0 +1,60 @@
+@import '../../styles/index.less';
+
+@textPrefixCls: alitajs-dform-text-item;
+
+.@{textPrefixCls} {
+  min-height: @alita-dform-height;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  // .alitajs-dform-text-tltle {
+  //   font-size: @alita-dform-title-font-size;
+  //   color: @alita-dform-title-color;
+  //   // width: 40%;
+  // }
+
+  .text-item {
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .@{prefixCls}-placeholder {
+    .@{textPrefixCls}-text {
+      color: @alita-dform-placeholder;
+      .text-item();
+    }
+  }
+
+  &-content {
+    width: 100%;
+    border: 0 * @hd;
+    display: flex;
+    flex-direction: column;
+    .@{textPrefixCls}-text {
+      color: @alita-dform-value-color;
+      .text-item();
+    }
+  }
+
+  &-value {
+    font-size: @alita-dform-value-font-size;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  &-overflow {
+    text-align: right;
+    color: @alita-dform-radio-color;
+  }
+
+  .am-input-extra {
+    max-height: 33 * @hd;
+  }
+}

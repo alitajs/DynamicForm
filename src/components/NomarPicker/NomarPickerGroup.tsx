@@ -1,19 +1,17 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker } from 'antd-mobile';
 import { INomarPickerProps } from './interface';
-import { InputItem } from '..';
-import '../../styles/index.less';
-
+import { TextItem } from '..';
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
   onChange: (values: number | string | undefined, flag: string) => void;
   initValue?: string | number;
 }
 
-const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
+const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   const [visible, setvisible] = useState<boolean>(false);
-  const [pickerLabel, setPickerLabel] = useState<string | number>('');
-  // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
+  const [pickerLabel, setPickerLabel] = useState<any>('');
   const {
+    children,
     data = [],
     title,
     placeholder = '请选择',
@@ -22,8 +20,6 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
     positionType = 'horizontal',
     initValue,
     coverStyle,
-    required = false,
-    hasStar = true,
     labelNumber = 5,
     extra = '',
     className,
@@ -39,7 +35,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       setPickerLabel('');
       return;
     }
-    const filterList = data.filter(item => item?.value === initValue);
+    const filterList = data.filter((item) => item?.value === initValue);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
     } else {
@@ -54,7 +50,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       //   nowValue = preValue;
       //   setPreValue(undefined);
       // }
-      const filterList = data.filter(item => item?.value === nowValue);
+      const filterList = data.filter((item) => item?.value === nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
         // if (preValue) onChange(nowValue, 'init');
@@ -81,23 +77,19 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
 
   return (
     <>
-      <InputItem
+      <TextItem
         isVertical={isVertical}
         value={`${pickerLabel}`}
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}
-        readOnly
         onClick={fieldClick}
         disabled={disabled}
         extra={extra}
         className={className}
       >
-        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span className="alitajs-dform-title">
-          {title}
-        </span>
-      </InputItem>
+        {children}
+      </TextItem>
       <Picker
         title={title}
         visible={visible && data.length > 0}

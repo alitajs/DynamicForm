@@ -67,11 +67,30 @@ const UserName: FC = () => {
     <div>
       <Form {...formProps}>
         <List>
-          <NomarInput fieldProps="username" required placeholder="请输入" title="用户名" />
+          <NomarInput
+            fieldProps="username"
+            required
+            placeholder="请输入"
+            title="用户名"
+          />
           <NomarRadio fieldProps="sex" title="性别" data={sexData} />
-          <NomarDatePicker fieldProps="date" placeholder="请选择" title="出生年月" />
-          <NomarPicker fieldProps="weather" placeholder="请选择" title="天气" data={weatherData} />
-          <MultiplePicker fieldProps="motion" placeholder="请选择" title="特长" data={motionData} />
+          <NomarDatePicker
+            fieldProps="date"
+            placeholder="请选择"
+            title="出生年月"
+          />
+          <NomarPicker
+            fieldProps="weather"
+            placeholder="请选择"
+            title="天气"
+            data={weatherData}
+          />
+          <MultiplePicker
+            fieldProps="motion"
+            placeholder="请选择"
+            title="特长"
+            data={motionData}
+          />
         </List>
       </Form>
       <Button onClick={() => form.submit()}>submit</Button>

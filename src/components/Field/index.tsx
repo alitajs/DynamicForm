@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Form, { Field, useForm } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
+import { allPrefixCls } from '../../const/index';
 import '../../styles/index.less';
-
 
 const CustomField: FC<FieldProps> = (props: any) => {
   const [valueFlag, setValueFlag] = React.useState(false);
@@ -16,7 +16,14 @@ const CustomField: FC<FieldProps> = (props: any) => {
   };
 
   return (
-    <div id={`alita-dform-${props?.name}`} className={valueFlag ? 'alitajs-dform-value-content' : 'alitajs-dform-placeholder'}>
+    <div
+      id={`alita-dform-${props?.name}`}
+      // className={
+      //   valueFlag
+      //     ? `${allPrefixCls}-value-content`
+      //     : `${allPrefixCls}-placeholder`
+      // }
+    >
       <Field {...props} shouldUpdate={shouldUpdate} />
     </div>
   );

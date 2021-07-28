@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
-
+import classnames from 'classnames';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
-import '../../styles/index.less';
+import { allPrefixCls } from '../../const/index';
 
-const NomarImagePicker: FC<INomarImagePickerProps> = props => {
+const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
   const [initValue, setInitValue] = useState([]);
   const {
     coverStyle,
@@ -22,23 +22,32 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
     ...otherProps
   } = props;
 
-  const imageChange = (files: ImageFile[], operationType: string, index: number | undefined) => {
+  const imageChange = (
+    files: ImageFile[],
+    operationType: string,
+    index: number | undefined,
+  ) => {
     if (onChange) onChange(files, operationType, index);
   };
 
   return (
-    <React.Fragment>
+    <div className={`${allPrefixCls}-vertical-item`}>
       {!hidden && (
-        <div className="alitajs-dform-image-picker">
-          <div className="alitajs-dform-input-title">
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-              {subTitle}
-            </div>
-            {extra !== '' && <div className="alitajs-dform-extra">{extra}</div>}
+        <React.Fragment>
+          <div
+            className={classnames({
+              [`${allPrefixCls}-title`]: true,
+              [`${allPrefixCls}-vertical-title`]: true,
+            })}
+          >
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+            {subTitle}
+            {extra !== '' && (
+              <div className={`${allPrefixCls}-extra`}>{extra}</div>
+            )}
           </div>
           <Field
             name={fieldProps}
@@ -55,9 +64,9 @@ const NomarImagePicker: FC<INomarImagePickerProps> = props => {
               limitSize={limitSize}
             />
           </Field>
-        </div>
+        </React.Fragment>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

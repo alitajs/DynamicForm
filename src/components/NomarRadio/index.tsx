@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Field from '../Field';
 import NomarRadioGroup from './radioGroup';
 import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import './index.less';
 
 interface radioItem {
   [key: string]: string | number;
@@ -31,7 +31,7 @@ export interface INomarRadioProps {
   allowUnChecked?: boolean;
 }
 
-const NomarRadio: FC<INomarRadioProps> = props => {
+const NomarRadio: FC<INomarRadioProps> = (props) => {
   const [initValue, setInitValue] = useState('');
   const [aliasData, setAliasData] = useState<any[]>([]);
 
@@ -62,7 +62,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   useEffect(() => {
     if (data.length === 0) return;
-    const newData = data.map(item => ({
+    const newData = data.map((item) => ({
       label: item[label],
       value: item[value],
     }));
@@ -106,7 +106,9 @@ const NomarRadio: FC<INomarRadioProps> = props => {
         <React.Fragment>
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
               <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
@@ -118,7 +120,9 @@ const NomarRadio: FC<INomarRadioProps> = props => {
             })}
           >
             <List.Item key={fieldProps} extra={RadioGroup()}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
               <span className="alitajs-dform-title">{title}</span>
             </List.Item>
           </div>

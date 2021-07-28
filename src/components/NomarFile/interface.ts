@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 export interface INomarFileItemProps {
   id: string | number;
   title: string;
+  [key: string]: any;
 }
 
 export interface INomarFileProps {

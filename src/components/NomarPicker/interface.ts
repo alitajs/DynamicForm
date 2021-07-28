@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
+import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 import { IAliasProps } from '../../DynamicForm';
 
 export interface IDataItem {
@@ -6,7 +7,7 @@ export interface IDataItem {
 }
 
 export interface INomarPickerProps {
-  data: IDataItem[];
+  data: PickerData[];
   fieldProps: string;
   title: string;
   positionType?: 'horizontal' | 'vertical';

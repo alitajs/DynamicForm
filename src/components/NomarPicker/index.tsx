@@ -1,10 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
+import classnames from 'classnames';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
+import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
-import '../../styles/index.less';
 
-const NomarPicker: FC<INomarPickerProps> = props => {
+const NomarPicker: FC<INomarPickerProps> = (props) => {
   const [initValue, setInitValue] = useState(undefined);
   const [aliasData, setAliasData] = useState<any[]>([]);
 
@@ -18,6 +19,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     subTitle,
     hidden = false,
     onChange,
+    extra,
     data,
     alias = {
       label: 'label',
@@ -29,7 +31,7 @@ const NomarPicker: FC<INomarPickerProps> = props => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = data.map(item => ({
+    const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
     }));
@@ -41,20 +43,26 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     if (onChange && values !== initValue) onChange(values);
   };
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
-          <div className="alitajs-dform-input-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
-                {subTitle}
-              </div>
-            )}
-          </div>
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
+            </div>
+          )}
           <Field
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
@@ -63,16 +71,23 @@ const NomarPicker: FC<INomarPickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <PickerGroup {...props} initValue={initValue} onChange={fieldChange} data={aliasData}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+            <PickerGroup
+              {...props}
+              initValue={initValue}
+              onChange={fieldChange}
+              data={aliasData}
+            >
+              <div className={`${allPrefixCls}-title`}>
+                {required && hasStar && (
+                  <div className={`${allPrefixCls}-redStar`}>*</div>
+                )}
+                <div>{title}</div>
+              </div>
             </PickerGroup>
           </Field>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 

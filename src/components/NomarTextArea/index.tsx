@@ -4,7 +4,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
-import '../../styles/index.less';
+import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
   coverStyle?: React.CSSProperties;
@@ -22,7 +22,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   className?: string;
 }
 
-const NomarTextArea: FC<INomarTextAreaProps> = props => {
+const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
   const {
     coverStyle,
     required = false,
@@ -49,9 +49,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
   const titleDiv = () => (
     <>
       {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-      <span className="alitajs-dform-title">
-        {title}
-      </span>
+      <span className="alitajs-dform-title">{title}</span>
     </>
   );
 
@@ -67,8 +65,13 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
           <div className="alitajs-dform-area-title">
             {isVertical && (
               <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
+                {required && hasStar && (
+                  <span className="alitajs-dform-redStar">*</span>
+                )}
+                <span
+                  id={`alita-dform-${fieldProps}`}
+                  className="alitajs-dform-title"
+                >
                   {title}
                 </span>
                 {subTitle}
@@ -103,7 +106,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
                 }}
                 className={className}
                 rows={rows}
-                onBlur={val => {
+                onBlur={(val) => {
                   inputOnBlur(val);
                 }}
               />

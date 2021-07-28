@@ -1,0 +1,63 @@
+@import '../../styles/index.less';
+
+.alitajs-dform-check-box {
+  .alitajs-dform-box-content {
+    color: @alita-dform-value-color;
+    padding-left: 15 * @hd;
+    font-size: @alita-dform-value-font-size;
+
+    // .am-flexbox:last-child {
+    //   border-bottom: 0.5 * @hd solid #ddd;
+    // }
+
+    .alitajs-dform-box-wrapper {
+      padding-bottom: 7 * @hd;
+      padding-top: 7 * @hd;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &.alitajs-dform-box-wrapper-disabled {
+        .alitajs-dform-box-botton {
+          background: #d9d9d9;
+        }
+        .alitajs-dform-box-label {
+          color: #aaa;
+        }
+      }
+
+      .alitajs-dform-box-botton {
+        width: 20 * @hd;
+        height: 20 * @hd;
+        border: 1 * @hd solid #d9d9d9;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        .alitajs-dform-box-tick {
+          width: 5 * @hd;
+          height: 10 * @hd;
+          border-bottom: 2 * @hd solid #fff;
+          border-right: 2 * @hd solid #fff;
+          transform: rotate(40deg);
+          margin-bottom: 2 * @hd;
+        }
+      }
+
+      .alitajs-dform-box-botton-checked {
+        width: 20 * @hd;
+        height: 20 * @hd;
+        background-color: @alita-dform-radio-color;
+        border: 2 * @hd solid @alita-dform-radio-color;
+        box-shadow: 0 0 2 * @hd @alita-dform-radio-color;
+      }
+
+      .alitajs-dform-box-label {
+        padding-left: 8 * @hd;
+        padding-right: 8 * @hd;
+      }
+    }
+  }
+}

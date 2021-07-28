@@ -12,7 +12,10 @@ export interface IDataItem {
 
 interface ICheckBoxGroup {
   data: IDataItem[];
-  onChange: (currentActiveLink: (string | number)[] | undefined, flag: 'init' | 'change') => void;
+  onChange: (
+    currentActiveLink: (string | number)[] | undefined,
+    flag: 'init' | 'change',
+  ) => void;
   initValue?: string | undefined;
   disabled?: boolean;
   disableItem?: (items: IDataItem) => boolean;
@@ -21,7 +24,7 @@ interface ICheckBoxGroup {
   className?: string;
 }
 
-const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
+const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   const {
     data = [],
     onChange,
@@ -64,7 +67,9 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     }
 
     const newInitValue = newValue ? JSON.parse(newValue) : [];
-    const filter = data.filter(item => newInitValue.indexOf(item.value) !== -1);
+    const filter = data.filter(
+      (item) => newInitValue.indexOf(item.value) !== -1,
+    );
     if (filter && filter.length) {
       return;
     }
@@ -78,7 +83,10 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
     } else {
       newInitValue.push(dataItem.value);
     }
-    onChange(newInitValue && newInitValue.length ? newInitValue : undefined, 'change');
+    onChange(
+      newInitValue && newInitValue.length ? newInitValue : undefined,
+      'change',
+    );
   };
 
   const BoxContent = () =>
@@ -94,7 +102,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = props => {
                   'alitajs-dform-box-wrapper': true,
                   'alitajs-dform-box-wrapper-disabled': _disabled,
                 })}
-                onClick={e => {
+                onClick={(e) => {
                   e.stopPropagation();
                   if (_disabled) return;
                   boxClick(item);

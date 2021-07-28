@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
+import React from 'react';
 import { IAliasProps } from '../../DynamicForm';
 
 export interface IDataItem {
@@ -29,4 +30,5 @@ export interface IMultiplePickerProps {
   height?: number | string;
   alias?: IAliasProps;
   className?: string;
+  extra?: string | React.ReactNode;
 }

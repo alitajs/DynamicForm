@@ -2,16 +2,17 @@ import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { IMultiplePickerProps, IDataItem } from './interface';
-import { InputItem } from '..';
-import '../../styles/index.less';
+import { TextItem } from '..';
+import './index.less';
 
 const { Item } = List;
 
-interface IMultiplePickerGroupProps extends Omit<IMultiplePickerProps, 'onChange'> {
+interface IMultiplePickerGroupProps
+  extends Omit<IMultiplePickerProps, 'onChange'> {
   onChange: (values: any, flag: string) => void;
 }
 
-const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
+const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
   const {
     data = [],
     title,
@@ -42,13 +43,24 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
    * @param da 数据源
    * @param val 值
    */
-  const setValues = (da: IDataItem[], val: string | undefined, flag = 'init', effectFlag = '') => {
-    const filter = da.filter(item => JSON.parse(val || '[]')?.indexOf(item.value) !== -1);
-    const labels = filter.map(item => item.label);
-    const values = filter.map(item => item.value);
+  const setValues = (
+    da: IDataItem[],
+    val: string | undefined,
+    flag = 'init',
+    effectFlag = '',
+  ) => {
+    const filter = da.filter(
+      (item) => JSON.parse(val || '[]')?.indexOf(item.value) !== -1,
+    );
+    const labels = filter.map((item) => item.label);
+    const values = filter.map((item) => item.value);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
-    if ((flag === 'init' && filter && filter.length) || effectFlag === 'initValue') return;
+    if (
+      (flag === 'init' && filter && filter.length) ||
+      effectFlag === 'initValue'
+    )
+      return;
     onChange(values, flag);
   };
 
@@ -97,7 +109,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
 
   return (
     <>
-      <InputItem
+      <TextItem
         isVertical={isVertical}
         value={multipleLabel}
         placeholder={placeholder}
@@ -108,10 +120,9 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
           if (onClick) onClick();
           openMoal();
         }}
-        readOnly
       >
         {children}
-      </InputItem>
+      </TextItem>
       <Modal
         popup
         visible={modalFlag}
@@ -133,7 +144,9 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
             >
               {leftContent}
             </div>
-            <div className="am-picker-popup-item am-picker-popup-title">{title}</div>
+            <div className="am-picker-popup-item am-picker-popup-title">
+              {title}
+            </div>
             <div
               className="am-picker-popup-item am-picker-popup-header-right"
               onClick={() => {
@@ -146,7 +159,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = props => {
         }
       >
         <List className="alitajs-dform-modal-content">
-          {data.map(item => (
+          {data.map((item) => (
             <Item key={item.value}>
               <div
                 className="alitajs-dform-multiple-picker-item"

@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import { NomarInput } from '..';
-import '../../styles/index.less';
+import './index.less';
 
 export interface IExtraInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
@@ -26,7 +26,7 @@ export interface IExtraInputProps extends InputItemPropsType {
   hidden?: boolean;
 }
 
-const ExtraInput: FC<IExtraInputProps> = props => {
+const ExtraInput: FC<IExtraInputProps> = (props) => {
   const {
     inputType = 'text',
     fieldProps,
@@ -52,7 +52,10 @@ const ExtraInput: FC<IExtraInputProps> = props => {
   const extraDiv = () => {
     if (extraType === 'select') {
       return (
-        <Field name={fieldProps2} rules={rules || [{ required, message: `请输入${title}` }]}>
+        <Field
+          name={fieldProps2}
+          rules={rules || [{ required, message: `请输入${title}` }]}
+        >
           <Picker
             {...secondProps}
             style={coverStyle}
@@ -89,10 +92,10 @@ const ExtraInput: FC<IExtraInputProps> = props => {
         <React.Fragment>
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
           )}
@@ -102,7 +105,11 @@ const ExtraInput: FC<IExtraInputProps> = props => {
               'alitajs-dform-extra-horizontal': !isVertical,
             })}
           >
-            <div className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-input`}>
+            <div
+              className={`alitajs-dform-begin${
+                isVertical ? '-vertical' : ''
+              }-input`}
+            >
               <NomarInput
                 {...otherProps}
                 {...firstProps}
@@ -114,9 +121,13 @@ const ExtraInput: FC<IExtraInputProps> = props => {
                 extra=""
               />
             </div>
-            {extraType === 'input' && <div className="alitajs-dform-line">~</div>}
+            {extraType === 'input' && (
+              <div className="alitajs-dform-line">~</div>
+            )}
             <div
-              className={`alitajs-dform-end${isVertical ? '-vertical' : ''}-input`}
+              className={`alitajs-dform-end${
+                isVertical ? '-vertical' : ''
+              }-input`}
               style={{ width: isVertical ? '' : '' }}
             >
               {extraDiv()}

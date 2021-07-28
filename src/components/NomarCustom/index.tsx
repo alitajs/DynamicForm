@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
-import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
-import '../../styles/index.less';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
 interface INomarCustomPorps {
   fieldProps: string;
@@ -17,9 +17,10 @@ interface INomarCustomPorps {
   CustomDom: any;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  extra?: string | React.ReactNode;
 }
 
-const NomarCustom: FC<INomarCustomPorps> = props => {
+const NomarCustom: FC<INomarCustomPorps> = (props) => {
   const [initValue, setInitValue] = useState<any>();
   const {
     fieldProps,
@@ -27,14 +28,12 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
     hasStar = true,
     rules,
     title,
-    positionType = 'vertical',
     CustomDom,
     customDomProps,
     subTitle,
+    extra,
     hidden = false,
   } = props;
-
-  const isVertical = positionType === 'vertical';
 
   const dom = () => (
     <Field
@@ -50,34 +49,33 @@ const NomarCustom: FC<INomarCustomPorps> = props => {
   );
 
   return (
-    <>
+    <div className={`${allPrefixCls}-vertical-item`}>
       {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-              {subTitle}
-            </div>
-          )}
+        <div
+          className={classnames({
+            // 'alitajs-dform-dom': true,
+            'alitajs-dform-vertical-dom': true,
+          })}
+        >
           <div
             className={classnames({
-              'alitajs-dform-dom': true,
-              'alitajs-dform-vertical-dom': isVertical,
+              [`${allPrefixCls}-title`]: true,
+              [`${allPrefixCls}-vertical-title`]: true,
             })}
           >
-            <List.Item key={fieldProps} extra={dom()}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-            </List.Item>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+            {subTitle}
+            {extra !== '' && (
+              <div className={`${allPrefixCls}-extra`}>{extra}</div>
+            )}
           </div>
-        </React.Fragment>
+          {dom()}
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

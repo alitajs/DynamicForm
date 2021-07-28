@@ -3,8 +3,14 @@ import { ImagePicker, Toast } from 'antd-mobile';
 import { ImageFile, ImagePickerGroupProps } from './interface';
 import { transformFile } from '../../utils';
 
-const ImagePickerGroup: FC<ImagePickerGroupProps> = props => {
-  const { onChange, initValue = [], limitSize, compressRatio, ...otherProps } = props;
+const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
+  const {
+    onChange,
+    initValue = [],
+    limitSize,
+    compressRatio,
+    ...otherProps
+  } = props;
 
   const checkFileLimit = (file: ImageFile) => {
     if (limitSize && file && file.size && file.size > limitSize) {
@@ -14,7 +20,11 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = props => {
     return true;
   };
 
-  const imageChange = (files: ImageFile[], operationType: string, index: number | undefined) => {
+  const imageChange = (
+    files: ImageFile[] | any,
+    operationType: string,
+    index: number | undefined,
+  ) => {
     if (files && files.length > initValue.length) {
       const lastFile = files[files.length - 1];
       const { file = {} } = lastFile;
@@ -22,7 +32,7 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = props => {
         transformFile(lastFile.file, compressRatio).then((newFile: any) => {
           const reader = new FileReader();
           reader.readAsDataURL(newFile);
-          reader.onload = function({ target }) {
+          reader.onload = function ({ target }) {
             if (!checkFileLimit(newFile)) return;
             files[files.length - 1] = {
               ...files[files.length - 1],
@@ -35,7 +45,9 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = props => {
     }
     onChange(files, operationType, index);
   };
-  return <ImagePicker {...otherProps} onChange={imageChange} files={initValue} />;
+  return (
+    <ImagePicker {...otherProps} onChange={imageChange} files={initValue} />
+  );
 };
 
 export default ImagePickerGroup;

@@ -1,0 +1,72 @@
+@import '../../styles/index.less';
+
+.alitajs-dform-range-date-picker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .alitajs-dform-range-horizontal {
+    .am-list-item .am-list-line .am-list-arrow {
+      display: none;
+    }
+  }
+
+  .alitajs-dform-begin-picker {
+    width: 65%;
+
+    .am-list-extra {
+      display: flex;
+      flex-basis: 50%;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .alitajs-dform-begin-vertical-picker {
+    width: 48%;
+
+    .am-list-content {
+      display: none;
+    }
+
+    .am-list-extra {
+      flex-basis: 90%;
+      text-align: center;
+    }
+  }
+
+  .alitajs-dform-end-picker {
+    width: 30%;
+
+    .am-list-line {
+      justify-content: flex-end;
+    }
+
+    .am-list-extra {
+      flex-basis: 100%;
+    }
+
+    .am-list-item {
+      padding-left: 0;
+    }
+  }
+
+  .alitajs-dform-end-vertical-picker {
+    width: 47%;
+
+    .am-list-extra {
+      flex-basis: 90%;
+    }
+
+    .am-list-line {
+      border-bottom: 0;
+    }
+
+    .am-list-item {
+      padding-left: 0 !important;
+      border-bottom: 0.5 * @hd solid #ddd;
+    }
+  }
+}

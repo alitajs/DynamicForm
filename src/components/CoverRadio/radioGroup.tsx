@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
-import '../../styles/index.less';
+import './index.less';
 
 export interface IDataItem {
   [key: string]: string | number;
@@ -8,7 +8,10 @@ export interface IDataItem {
 
 interface IRadioGroup {
   data: IDataItem[];
-  onChange: (currentActiveLink: string | number | undefined, flag: string) => void;
+  onChange: (
+    currentActiveLink: string | number | undefined,
+    flag: string,
+  ) => void;
   positionType?: 'horizontal' | 'vertical';
   radioType?: 'horizontal' | 'vertical';
   initValue?: string | number;
@@ -17,7 +20,7 @@ interface IRadioGroup {
   className?: string;
 }
 
-const RadioGroup: FC<IRadioGroup> = props => {
+const RadioGroup: FC<IRadioGroup> = (props) => {
   const {
     data,
     onChange,
@@ -28,8 +31,12 @@ const RadioGroup: FC<IRadioGroup> = props => {
     coverStyle,
     className = '',
   } = props;
-  const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
-  const [activeValue, setActiveValue] = useState<string | number | undefined>(undefined);
+  const [preValue, setPreValue] = useState<string | number | undefined>(
+    undefined,
+  );
+  const [activeValue, setActiveValue] = useState<string | number | undefined>(
+    undefined,
+  );
   let isVertical = positionType === 'vertical';
   if (radioType === 'vertical') {
     isVertical = true;
@@ -47,7 +54,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
       newValue = preValue;
       setPreValue(undefined);
     }
-    const filter = data.filter(item => item.value === newValue);
+    const filter = data.filter((item) => item.value === newValue);
     if (filter && filter.length) {
       setActiveValue(newValue);
       if (preValue) {
@@ -68,7 +75,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
       setActiveValue(undefined);
       return;
     }
-    const filter = data.filter(item => item.value === initValue);
+    const filter = data.filter((item) => item.value === initValue);
     if (filter && filter.length) {
       setActiveValue(initValue);
     } else {
@@ -76,10 +83,13 @@ const RadioGroup: FC<IRadioGroup> = props => {
     }
   }, [initValue]);
 
-  const radioClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, dataItem: IDataItem) => {
+  const radioClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    dataItem: IDataItem,
+  ) => {
     e.stopPropagation();
     if (disabled) return;
-    const filter = data.filter(item => item.value === dataItem?.value);
+    const filter = data.filter((item) => item.value === dataItem?.value);
     if (filter && filter.length) {
       if (dataItem?.value === initValue) {
         onChange(undefined, 'change');
@@ -106,10 +116,12 @@ const RadioGroup: FC<IRadioGroup> = props => {
           key={item.value}
           className={classnames({
             'alitajs-dform-cover-radio-wrapper': true,
-            'alitajs-dform-cover-radio-wrapper-checked': item.value && item.value === activeValue,
+            'alitajs-dform-cover-radio-wrapper-checked':
+              item.value && item.value === activeValue,
             'alitajs-dform-cover-radio-wrapper-margin': isVertical,
-            'alitajs-dform-cover-radio-wrapper-cover': item.moveFlag && item.value !== activeValue,
-            [className]: className
+            'alitajs-dform-cover-radio-wrapper-cover':
+              item.moveFlag && item.value !== activeValue,
+            [className]: className,
           })}
           style={coverStyle}
           // onMouseDown={() => {
@@ -118,7 +130,7 @@ const RadioGroup: FC<IRadioGroup> = props => {
           // onMouseUp={() => {
           //   radioMove(false, item);
           // }}
-          onClick={e => {
+          onClick={(e) => {
             radioClick(e, item);
           }}
         >

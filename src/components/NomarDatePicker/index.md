@@ -1,5 +1,10 @@
 ---
 title: Date
+group:
+  title: Date
+nav:
+  title: 组件
+  path: /components
 ---
 
 # Date
@@ -27,77 +32,8 @@ title: Date
 | hidden       | 字段展示与否的判断                                         | boolean                    | false        | 否       |
 | renderHeader | 组件头部                                                   | `number` or `string`       | -            | 否       |
 
-
 ## 备注
 
 **日期字符串在不同浏览器有不同的实现，例如 new Date('2017-1-1') 在 Safari 上是 Invalid Date，而在 Chrome 上是能正常解析的。**
 
 **在设值时，如果是日期字符串请先用 `dateChange(val)` 进行转化下，`dateChange` 可以在 `@alitajs/dform` 中导出。**
-
-## 组件使用
-
-### Date
-
-<code src="./demo/date.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
-{
-  "type": "date",
-  "fieldProps": "Date",
-  "modeType": "date",
-  "title": "Date",
-  "maxDate": new Date(),
-  "minDate": new Date()
-}
-```
-
-### Month
-
-<code src="./demo/month.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
-{
-  "type": "date",
-  "fieldProps": "Month",
-  "modeType": "month",
-  "title": "Month",
-  "required": true
-}
-```
-
-### DateTime
-
-<code src="./demo/datetime.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
-{
-  "type": "date",
-  "fieldProps": "DateTime",
-  "modeType": "datetime",
-  "title": "DateTime",
-  "required": true
-}
-```
-
-### VerticalDatePicker
-
-<code src="./demo/verticalDatePicker.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
-{
-  "type": "date",
-  "fieldProps": "DateTimeVertical",
-  "modeType": "datetime",
-  "title": "DateTimeVertical",
-  "required": true,
-  "positionType": "vertical"
-}
-```

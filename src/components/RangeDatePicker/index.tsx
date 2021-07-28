@@ -6,7 +6,7 @@ import Field from '../Field';
 import { INomarDatePickerProps } from '../NomarDatePicker';
 import { changeDateFormat } from '../../utils';
 
-import '../../styles/index.less';
+import './index.less';
 
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
   fieldProps2?: string;
@@ -21,7 +21,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   hidden?: boolean;
 }
 
-const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
+const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
   const [beginDate, setBeginDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const {
@@ -52,10 +52,10 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
         <React.Fragment>
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
           )}
@@ -70,7 +70,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
             }}
           >
             <div
-              className={`alitajs-dform-begin${isVertical ? '-vertical' : ''}-picker`}
+              className={`alitajs-dform-begin${
+                isVertical ? '-vertical' : ''
+              }-picker`}
             >
               <Field
                 name={fieldProps}
@@ -88,24 +90,28 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   minDate={minDate}
                   maxDate={endDate || maxDate}
                   title={title}
-                  format={value => changeDateFormat(value, modeType)}
-                  onChange={e => {
+                  format={(value) => changeDateFormat(value, modeType)}
+                  onChange={(e) => {
                     setBeginDate(e);
                     firstProps?.onChange && firstProps?.onChange(e);
                   }}
                 >
                   <List.Item>
-                    {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                    <span className="alitajs-dform-title">
-                      {title}
-                    </span>
+                    {required && hasStar && (
+                      <span className="alitajs-dform-redStar">*</span>
+                    )}
+                    <span className="alitajs-dform-title">{title}</span>
                     <span id={fieldProps2}></span>
                   </List.Item>
                 </DatePicker>
               </Field>
             </div>
             <div className="alitajs-dform-line">~</div>
-            <div className={`alitajs-dform-end${isVertical ? '-vertical' : ''}-picker`}>
+            <div
+              className={`alitajs-dform-end${
+                isVertical ? '-vertical' : ''
+              }-picker`}
+            >
               <Field
                 name={fieldProps2}
                 rules={rules || [{ required, message: `请选择${title}` }]}
@@ -122,10 +128,12 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = props => {
                   minDate={beginDate || minDate}
                   maxDate={maxDate}
                   title={title}
-                  format={value => changeDateFormat(value, modeType)}
-                  onChange={e => {
+                  format={(value) => changeDateFormat(value, modeType)}
+                  onChange={(e) => {
                     setEndDate(e);
-                    secondProps && secondProps?.onChange && secondProps?.onChange(e);
+                    secondProps &&
+                      secondProps?.onChange &&
+                      secondProps?.onChange(e);
                   }}
                 >
                   <List.Item arrow="horizontal"></List.Item>

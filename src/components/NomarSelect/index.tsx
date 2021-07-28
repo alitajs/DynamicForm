@@ -22,7 +22,7 @@ export interface INomarSelectProps extends Omit<PickerPropsType, 'data'> {
   className?: string;
 }
 
-const NomarPicker: FC<INomarSelectProps> = props => {
+const NomarPicker: FC<INomarSelectProps> = (props) => {
   const {
     coverStyle,
     title,
@@ -48,21 +48,24 @@ const NomarPicker: FC<INomarSelectProps> = props => {
         <React.Fragment>
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
           )}
           <div
             className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation();
               if (onClick) onClick();
             }}
           >
-            <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
+            <Field
+              name={fieldProps}
+              rules={rules || [{ required, message: `请选择${title}` }]}
+            >
               <Picker
                 cascade={false}
                 {...otherProps}
@@ -75,10 +78,10 @@ const NomarPicker: FC<INomarSelectProps> = props => {
                 <List.Item arrow="horizontal">
                   {!isVertical && (
                     <div className="alitajs-dform-title-content">
-                      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                      <span className="alitajs-dform-title">
-                        {title}
-                      </span>
+                      {required && hasStar && (
+                        <span className="alitajs-dform-redStar">*</span>
+                      )}
+                      <span className="alitajs-dform-title">{title}</span>
                     </div>
                   )}
                 </List.Item>

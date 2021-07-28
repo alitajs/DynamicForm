@@ -1,10 +1,12 @@
 import React, { FC, useState } from 'react';
+import classnames from 'classnames';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
-import { IAddressPickerProps } from './interface';
-import '../../styles/index.less';
+import { IAddressPickerProps, valueProps } from './interface';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
-const AddressPicker: FC<IAddressPickerProps> = props => {
+const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const [initValue, setInitValue] = useState<string | undefined>();
 
   const {
@@ -16,30 +18,40 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
     positionType = 'horizontal',
     subTitle,
     hidden = false,
+    extra,
     onChange,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
-  const fieldChange = (val: (number | string)[] | undefined, flag: 'change' | 'init') => {
+  const fieldChange = (
+    val: valueProps | undefined,
+    flag: 'change' | 'init',
+  ) => {
     if (flag === 'change' && onChange) onChange(val);
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
-          <div className="alitajs-dform-input-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
-                {subTitle}
-              </div>
-            )}
-          </div>
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
+            </div>
+          )}
           <Field
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
@@ -53,11 +65,16 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
               return prevValue !== nextValue;
             }}
           >
-            <AddressPickerGroup {...props} initValue={initValue} onChange={fieldChange} />
+            <AddressPickerGroup
+              {...props}
+              extra={isVertical ? '' : extra}
+              initValue={initValue}
+              onChange={fieldChange}
+            />
           </Field>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 

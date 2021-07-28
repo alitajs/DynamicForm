@@ -1,7 +1,7 @@
 export { default as AddressPicker } from './AddressPicker';
 export { default as CoverRadio } from './CoverRadio';
 export { default as ExtraInput } from './ExtraInput';
-export { default as InputItem } from './InputItem';
+export { default as InputItemAA } from './InputItemaaa';
 export { default as MultiplePicker } from './MultiplePicker';
 export { default as NomarInput } from './NomarInput';
 export { default as NomarSelect } from './NomarSelect';
@@ -18,3 +18,4 @@ export { default as NomarFile } from './NomarFile';
 export { default as OnlyReadInput } from './OnlyReadInput';
 export { default as RangeDatePicker } from './RangeDatePicker';
 export { default as TextItem } from './TextItem';
+export { default as InputItem } from './InputItem';

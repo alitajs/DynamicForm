@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
 import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import './index.less';
 
 interface IDataItem {
   [key: string]: string | number;
@@ -27,9 +27,10 @@ interface ICoverRadioProps {
   className?: string;
   hidden?: boolean;
   alias?: IAliasProps;
+  [key: string]: any;
 }
 
-const NomarTab: FC<ICoverRadioProps> = props => {
+const NomarTab: FC<ICoverRadioProps> = (props) => {
   const [initValue, setInitValue] = useState('');
   const [aliasData, setAliasData] = useState<any[]>([]);
 
@@ -58,7 +59,7 @@ const NomarTab: FC<ICoverRadioProps> = props => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = (data || []).map(item => ({
+    const newData = (data || []).map((item) => ({
       label: item[label],
       value: item[value],
     }));
@@ -101,10 +102,10 @@ const NomarTab: FC<ICoverRadioProps> = props => {
         <React.Fragment>
           {isVertical && (
             <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
               {subTitle}
             </div>
           )}
@@ -115,10 +116,10 @@ const NomarTab: FC<ICoverRadioProps> = props => {
             })}
           >
             <List.Item key={fieldProps} extra={RadioGroup()}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
+              {required && hasStar && (
+                <span className="alitajs-dform-redStar">*</span>
+              )}
+              <span className="alitajs-dform-title">{title}</span>
             </List.Item>
           </div>
         </React.Fragment>

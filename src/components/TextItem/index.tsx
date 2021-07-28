@@ -1,9 +1,13 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { ITextItemProps } from './interface';
-import '../../styles/index.less';
+import { allPrefixCls } from '../../const/index';
 
-const TextItem: FC<ITextItemProps> = props => {
+import './index.less';
+
+const prefixCls = 'alitajs-dform-text-item';
+
+const TextItem: FC<ITextItemProps> = (props) => {
   const [overflowFlag, setOverflowFlag] = useState<boolean>(true); // 展开收起标识
   const [lineHeightFlag, setLineHeightFlag] = useState<boolean>(false); // 文字行数是否超过 maxLength
   const [currentCoverStyle, setCurrentCoverStyle] = useState({});
@@ -20,6 +24,7 @@ const TextItem: FC<ITextItemProps> = props => {
     disabled,
     fieldProps,
     className = '',
+    arrow = true,
   } = props;
 
   useEffect(() => {
@@ -44,13 +49,14 @@ const TextItem: FC<ITextItemProps> = props => {
     }
   }, [value, coverStyle]);
 
-  const labelCls = classnames('am-input-label', 'alitajs-dform-item', {
-    'am-input-label-2': labelNumber === 2,
-    'am-input-label-3': labelNumber === 3,
-    'am-input-label-4': labelNumber === 4,
-    'am-input-label-5': labelNumber === 5,
-    'am-input-label-6': labelNumber === 6,
-    'am-input-label-7': labelNumber === 7,
+  const labelCls = classnames({
+    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
+    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
+    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
+    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
+    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
+    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
+    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
   });
 
   const inputItemClick = () => {
@@ -59,50 +65,47 @@ const TextItem: FC<ITextItemProps> = props => {
   };
 
   return (
-    <div className="am-list-item am-list-item-middle alitajs-dform-text-item">
-      <div className="am-list-line">
-        {!isVertical && <div className={labelCls}>{props.children}</div>}
+    <div className={prefixCls}>
+      {!isVertical && <div className={labelCls}>{props.children}</div>}
+      <div className={`${prefixCls}-value`}>
         <div
-          className="alitajs-dform-text-value"
-          style={{
-            flex: '1',
+          className={
+            value ? `${prefixCls}-content` : `${allPrefixCls}-placeholder`
+          }
+          onClick={() => {
+            inputItemClick();
           }}
         >
           <div
-            className={value ? 'alitajs-dform-text-content' : 'alitajs-dform-placeholder'}
-            onClick={() => {
-              inputItemClick();
+            id={`text-${fieldProps}`}
+            className={classnames({
+              [`${prefixCls}-text`]: true,
+              'alitajs-dform-disabled': disabled && value,
+              [className]: className,
+            })}
+            style={{
+              textAlign: isVertical ? 'left' : 'right',
+              WebkitLineClamp: maxLine,
+              display:
+                maxLine && overflowFlag && lineHeightFlag ? '-webkit-box' : '',
+              ...currentCoverStyle,
             }}
           >
+            {value || placeholder}
+          </div>
+          {maxLine && lineHeightFlag && (
             <div
-              id={`text-${fieldProps}`}
-              className={classnames({
-                'alitajs-dform-text-text': true,
-                'alitajs-dform-disabled': disabled && value,
-                [className]: className,
-              })}
-              style={{
-                textAlign: isVertical ? 'left' : 'right',
-                WebkitLineClamp: maxLine,
-                display: maxLine && overflowFlag && lineHeightFlag ? '-webkit-box' : '',
-                ...currentCoverStyle,
+              className={`${prefixCls}-overflow`}
+              onClick={() => {
+                setOverflowFlag(!overflowFlag);
               }}
             >
-              {value || placeholder}
+              {overflowFlag ? '更多' : '收起'}
             </div>
-            {maxLine && lineHeightFlag && (
-              <div
-                className="alitajs-dform-text-overflow"
-                onClick={() => {
-                  setOverflowFlag(!overflowFlag);
-                }}
-              >
-                {overflowFlag ? '更多' : '收起'}
-              </div>
-            )}
-          </div>
-          {!isVertical && <div className="am-input-extra">{extra}</div>}
+          )}
         </div>
+        {arrow && <div className={`${allPrefixCls}-arrow-horizontal`} />}
+        {!isVertical && <div className="am-input-extra">{extra}</div>}
       </div>
     </div>
   );

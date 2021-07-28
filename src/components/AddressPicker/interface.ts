@@ -35,4 +35,10 @@ export interface IAddressPickerProps {
   loading?: boolean;
   className?: string;
   alias?: IAliasProps;
+  [key: string]: any;
+}
+
+export interface valueProps {
+  label: (string | number)[];
+  value: (string | number)[];
 }

@@ -3,7 +3,8 @@ import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
 interface INomarCheckBoxProps {
   title: string;
@@ -23,7 +24,7 @@ interface INomarCheckBoxProps {
   alias?: IAliasProps;
 }
 
-const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
+const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const [initValue, setInitValue] = useState<string | undefined>();
   const [aliasData, setAliasData] = useState<any[]>([]);
   const {
@@ -56,18 +57,22 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     setAliasData(newData);
   }, [data]);
 
-  const boxChange = (e: (string | number)[] | undefined, flag: 'init' | 'change') => {
+  const boxChange = (
+    e: (string | number)[] | undefined,
+    flag: 'init' | 'change',
+  ) => {
     if (onChange && flag === 'change' && e !== initValue) onChange(e || []);
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}-item`}>
       {!hidden && (
         <div className="alitajs-dform-check-box">
-          <div className="alitajs-dform-vertical-title">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span className="alitajs-dform-title">{title}</span>
-            {subTitle}
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
           </div>
           <Field
             name={fieldProps}
@@ -95,7 +100,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
           </Field>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
