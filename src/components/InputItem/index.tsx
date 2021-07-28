@@ -15,7 +15,7 @@ const InputItem: FC<IInputItemProps> = props => {
     coverStyle = {},
     disabled = false,
     extra = '',
-    className = ''
+    className = '',
   } = props;
 
   let inputRef: HTMLInputElement | null;
