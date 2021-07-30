@@ -4,6 +4,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -47,10 +48,12 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
   if (extra) isVertical = true;
 
   const titleDiv = () => (
-    <>
-      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-      <span className="alitajs-dform-title">{title}</span>
-    </>
+    <div className={`${allPrefixCls}-title`}>
+      {required && hasStar && (
+        <div className={`${allPrefixCls}-redStar`}>*</div>
+      )}
+      <div>{title}</div>
+    </div>
   );
 
   const inputOnBlur = (val: string | undefined) => {
@@ -59,31 +62,30 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
-          <div className="alitajs-dform-area-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && (
-                  <span className="alitajs-dform-redStar">*</span>
-                )}
-                <span
-                  id={`alita-dform-${fieldProps}`}
-                  className="alitajs-dform-title"
-                >
-                  {title}
-                </span>
-                {subTitle}
-              </div>
-            )}
-            {extra !== '' && <div className="alitajs-dform-extra">{extra}</div>}
-          </div>
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
+            </div>
+          )}
           <div
             className={classnames({
-              'alitajs-dform-vertical-area': isVertical,
-              'alitajs-dform-area': true,
-              'alitajs-dform-disabled': !editable,
+              [`${allPrefixCls}-vertical-area`]: isVertical,
+              [`${allPrefixCls}-disabled`]: !editable,
             })}
           >
             <Field
@@ -96,8 +98,6 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
             >
               <TextareaItem
                 {...otherProps}
-                // eslint-disable-next-line no-return-assign
-                // ref={(el: any) => (autoFocusInst = el)}
                 title={titleDiv()}
                 editable={editable}
                 style={{
@@ -114,7 +114,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
           </div>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 import PhotoIcon from '../../../assets/photo.png';
 
 const Page: FC = () => {
@@ -19,7 +24,9 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const photoImg = () => <img src={PhotoIcon} style={{ width: '3rem', height: '2rem' }} />;
+  const photoImg = () => (
+    <img src={PhotoIcon} style={{ width: '1rem', height: '0.5rem' }} />
+  );
 
   const formsData = [
     {

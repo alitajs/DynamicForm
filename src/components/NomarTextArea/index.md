@@ -35,7 +35,7 @@ nav:
 | renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -            | 否       |
 | className    | 类名                                                                                                                                  | string                     | -            | 否       |
 
-## 组件使用
+<!-- ## 组件使用
 
 ### NomarArea
 
@@ -117,4 +117,4 @@ nav:
   "placeholder": "存在 extra 自动换行",
   "required": true
 }
-```
+``` -->
