@@ -84,6 +84,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
           )}
           <div
             className={classnames({
+              [`${allPrefixCls}-area`]: true,
               [`${allPrefixCls}-vertical-area`]: isVertical,
               [`${allPrefixCls}-disabled`]: !editable,
             })}
