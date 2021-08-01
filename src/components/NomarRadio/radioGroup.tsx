@@ -1,6 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
+
+const prefixCls = 'alitajs-dform-radio';
 
 export interface IDataItem {
   [key: string]: string | number | undefined;
@@ -107,19 +110,19 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
   return (
     <div
       className={classnames({
-        'alitajs-dform-radio-group': true,
-        'alitajs-dform-radio-position': !isVertical,
-        'alitajs-dform-radio-item-vertical': radioType === 'vertical',
-        'alitajs-dform-disabled': disabled,
+        [`${prefixCls}-group`]: true,
+        [`${prefixCls}-position`]: !isVertical,
+        [`${prefixCls}-item-vertical`]: radioType === 'vertical',
+        [`${allPrefixCls}-disabled`]: disabled,
       })}
+      style={coverStyle}
     >
       {data.map((item: IDataItem) => (
         <div
           key={item.value}
           className={classnames({
-            'alitajs-dform-radio-wrapper': true,
-            'alitajs-dform-radio-wrapper-item-vertical':
-              radioType === 'vertical',
+            [`${prefixCls}-wrapper`]: true,
+            [`${prefixCls}-wrapper-item-vertical`]: radioType === 'vertical',
           })}
           onClick={(e) => {
             radioClick(e, item);
@@ -127,20 +130,19 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
         >
           <div
             className={classnames({
-              'alitajs-dform-radio-button': true,
-              'alitajs-dform-radio-checked': item.value === activeValue,
+              [`${prefixCls}-button`]: true,
+              [`${prefixCls}-checked`]: item.value === activeValue,
             })}
           >
             {item.value === activeValue && (
-              <div className="alitajs-dform-radio-inner-button"></div>
+              <div className={`${prefixCls}-inner-button`}></div>
             )}
           </div>
           <div
             className={classnames({
-              'alitajs-dform-radio-label': true,
+              [`${prefixCls}-label`]: true,
               [className]: className,
             })}
-            style={coverStyle}
           >
             {item.label}
           </div>

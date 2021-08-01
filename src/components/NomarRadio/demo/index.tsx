@@ -1,6 +1,11 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 const radioList = [
   {
@@ -78,6 +83,17 @@ const DfromRadioTextPage: FC = () => {
       type: 'radio',
       fieldProps: 'userRadio2',
       required: true,
+      data: radioList,
+      title: '内容靠左',
+      labelNumber: 5,
+      coverStyle: {
+        justifyContent: 'flex-start',
+      },
+    },
+    {
+      type: 'radio',
+      fieldProps: 'userRadio3',
+      required: true,
       disabled: true,
       data: dayList,
       positionType: 'vertical',
@@ -85,7 +101,7 @@ const DfromRadioTextPage: FC = () => {
     },
     {
       type: 'radio',
-      fieldProps: 'userRadio3',
+      fieldProps: 'userRadio4',
       required: true,
       allowUnChecked: false,
       data: foodList,
@@ -99,8 +115,8 @@ const DfromRadioTextPage: FC = () => {
   ] as IFormItemProps[];
 
   const formsValues = {
-    userRadio2: '雨',
-    userRadio3: '红烧肉',
+    userRadio3: '雨',
+    userRadio4: '红烧肉',
   };
 
   const formProps = {
