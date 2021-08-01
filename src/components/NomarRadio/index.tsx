@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect } from 'react';
-import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';

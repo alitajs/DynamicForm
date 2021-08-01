@@ -1,6 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
+
+const prefixCls = 'alitajs-dform-cover-radio';
 
 export interface IDataItem {
   [key: string]: string | number;
@@ -106,30 +109,24 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
   return (
     <div
       className={classnames({
-        'alitajs-dform-cover-radio-group': true,
-        'alitajs-dform-cover-radio-position': !isVertical,
-        'alitajs-dform-cover-radio-item-vertical': radioType === 'vertical',
+        [`${prefixCls}-group`]: true,
+        [`${prefixCls}-position`]: !isVertical,
+        [`${prefixCls}-item-vertical`]: radioType === 'vertical',
       })}
     >
       {data.map((item: IDataItem) => (
         <div
           key={item.value}
           className={classnames({
-            'alitajs-dform-cover-radio-wrapper': true,
-            'alitajs-dform-cover-radio-wrapper-checked':
+            [`${prefixCls}-wrapper`]: true,
+            [`${prefixCls}-wrapper-checked`]:
               item.value && item.value === activeValue,
-            'alitajs-dform-cover-radio-wrapper-margin': isVertical,
-            'alitajs-dform-cover-radio-wrapper-cover':
+            [`${prefixCls}-wrapper-margin`]: isVertical,
+            [`${prefixCls}-wrapper-cover`]:
               item.moveFlag && item.value !== activeValue,
             [className]: className,
           })}
           style={coverStyle}
-          // onMouseDown={() => {
-          //   radioMove(true, item);
-          // }}
-          // onMouseUp={() => {
-          //   radioMove(false, item);
-          // }}
           onClick={(e) => {
             radioClick(e, item);
           }}
