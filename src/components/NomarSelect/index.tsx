@@ -2,8 +2,10 @@ import React, { FC } from 'react';
 import { Picker, List } from 'antd-mobile';
 import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
+import classnames from 'classnames';
+import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
-import '../../styles/index.less';
+import './index.less';
 
 export interface INomarSelectProps extends Omit<PickerPropsType, 'data'> {
   coverStyle?: React.CSSProperties;
@@ -37,26 +39,35 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
     hidden = false,
     onClick,
     className,
+    extra,
     ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
           {isVertical && (
-            <div className="alitajs-dform-vertical-title">
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
               {required && hasStar && (
-                <span className="alitajs-dform-redStar">*</span>
+                <div className={`${allPrefixCls}-redStar`}>*</div>
               )}
-              <span className="alitajs-dform-title">{title}</span>
+              <div>{title}</div>
               {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
             </div>
           )}
           <div
-            className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}
+            className={`alitajs-dform${isVertical ? '-vertical' : ''}-select`}
             onClick={(e) => {
               e.stopPropagation();
               if (onClick) onClick();
@@ -77,11 +88,11 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
               >
                 <List.Item arrow="horizontal">
                   {!isVertical && (
-                    <div className="alitajs-dform-title-content">
+                    <div className={`${allPrefixCls}-title`}>
                       {required && hasStar && (
-                        <span className="alitajs-dform-redStar">*</span>
+                        <div className={`${allPrefixCls}-redStar`}>*</div>
                       )}
-                      <span className="alitajs-dform-title">{title}</span>
+                      <div>{title}</div>
                     </div>
                   )}
                 </List.Item>
@@ -90,7 +101,7 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
           </div>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 
