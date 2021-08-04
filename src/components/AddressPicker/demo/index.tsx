@@ -4,7 +4,12 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace, Toast } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 import CountryList from '@bang88/china-city-data';
 
@@ -133,7 +138,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>
