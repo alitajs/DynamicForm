@@ -11,7 +11,9 @@
     "strict": true,
     "paths": {
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+      "@@/*": ["src/.umi/*"],
+      "@alitajs/dform": ["src/index.tsx"],
+      "@alitajs/dform/src/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true
   },

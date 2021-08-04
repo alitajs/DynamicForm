@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { IAddressPickerProps, valueProps } from './interface';
-import { TextItem } from '..';
+import TextItem from '../TextItem';
 import './index.less';
 
 const { Item } = List;
