@@ -5,7 +5,7 @@ import { INomarPickerProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 
-const NomarPicker: FC<INomarPickerProps> = (props) => {
+const NomarPicker: FC<INomarPickerProps> = props => {
   const [initValue, setInitValue] = useState(undefined);
   const [aliasData, setAliasData] = useState<any[]>([]);
 
