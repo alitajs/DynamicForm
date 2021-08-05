@@ -41,6 +41,10 @@
     "rmc-feedback": "^2.0.0"
   },
   "devDependencies": {
+    "@alita/test": "^0.0.3",
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
+    "umi-test": "^1.9.6",
     "@types/lodash": "^4.14.171",
     "@umijs/test": "^3.0.5",
     "dumi": "^1.0.16",
@@ -50,7 +54,7 @@
     "father-build": "^1.17.2",
     "gh-pages": "^3.0.0",
     "lint-staged": "^10.0.7",
-    "prettier": "2.2.1",
+    "prettier": "^2.2.1",
     "yorkie": "^2.0.0"
   }
 }
