@@ -1,28 +1,14 @@
-/**
- * title: 基础 单选框
- * desc: 表单使用 demo
- */
-
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, {
-  IFormItemProps,
-  useForm,
-  Store,
-  ValidateErrorEntity,
-} from '@alitajs/dform';
+import DynamicForm, { IFormItemProps, useForm } from '@alitajs/dform';
 
-const Page: FC = () => {
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+}
+
+const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
 
   const aliasCityList = [
     {
@@ -85,8 +71,7 @@ const Page: FC = () => {
     data: formsData,
     formsValues,
     form,
-    autoLineFeed: false,
-    isDev: true,
+    failScroll: false,
   };
   return (
     <>
