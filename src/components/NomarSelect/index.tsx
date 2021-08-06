@@ -6,44 +6,60 @@ import classnames from 'classnames';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 import './index.less';
-
-export interface INomarSelectProps extends Omit<PickerPropsType, 'data'> {
-  coverStyle?: React.CSSProperties;
-  title: string;
-  required?: boolean;
-  fieldProps: string;
-  rules?: Rule[];
-  placeholder?: PickerPropsType['extra'];
-  data?: PickerPropsType['data'];
-  value?: PickerPropsType['value'];
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-  onClick?: () => void;
-  className?: string;
-}
+import { INomarSelectProps } from './interface'
+import SelectGroup from './NomarSelectGroup';
+import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 
 const NomarPicker: FC<INomarSelectProps> = (props) => {
   const {
-    coverStyle,
     title,
     required = false,
     fieldProps,
     rules,
-    placeholder,
-    data = [] as any,
+    data= [] as any,
     positionType = 'horizontal',
     hasStar = true,
     subTitle,
     hidden = false,
-    onClick,
-    className,
+    onChange,
     extra,
-    ...otherProps
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
+    // ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
+  const { label = 'label', value = 'value' } = alias;
+  // const [visible, setvisible] = React.useState<boolean>(false);
+  const [initValue, setInitValue] = React.useState();
+  const [aliasData, setAliasData] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    console.log(data)
+    let newAllArray: PickerData[]=[]
+    for(let i=0;i<data.length;i++){
+      const newData = data[i].map((item: any) => ({
+        label: item[label],
+        value: item[value],
+      }));
+      newAllArray.push(newData)
+    }
+    // 重新做成数组
+    console.log(newAllArray)
+    // const newData = data.map((item: any) => ({
+    //   label: item[label],
+    //   value: item[value],
+    // }));
+    setAliasData(newAllArray);
+  }, [data]);
+
+  const fieldChange = (values: any, flag: string) => {
+    // console.log("onChange"+onChange+"数据是："+values);
+    if (flag === 'init') return;
+    if (onChange && values !== initValue) onChange(values);
+  };
 
   return (
     <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
@@ -66,39 +82,30 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
               )}
             </div>
           )}
-          <div
-            className={`alitajs-dform${isVertical ? '-vertical' : ''}-select`}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (onClick) onClick();
-            }}
-          >
             <Field
               name={fieldProps}
               rules={rules || [{ required, message: `请选择${title}` }]}
+              shouldUpdate={(prevValue: any, nextValue: any) => {
+                // let mystr:string = nextValue && nextValue[fieldProps as any]
+                setInitValue(nextValue && nextValue[fieldProps as any])
+                // setInitValue(mystr.split(","));
+                return prevValue !== nextValue;
+              }}            
             >
-              <Picker
-                cascade={false}
-                {...otherProps}
-                style={coverStyle}
-                className={className}
-                extra={placeholder}
-                data={data}
-                title={title}
-              >
-                <List.Item arrow="horizontal">
-                  {!isVertical && (
-                    <div className={`${allPrefixCls}-title`}>
-                      {required && hasStar && (
-                        <div className={`${allPrefixCls}-redStar`}>*</div>
-                      )}
-                      <div>{title}</div>
-                    </div>
+              <SelectGroup
+                {...props}
+                initValue={ initValue }
+                onChange={fieldChange}
+                data={aliasData}
+                >
+                <div className={`${allPrefixCls}-title`}>
+                  {required && hasStar && (
+                    <div className={`${allPrefixCls}-redStar`}>*</div>
                   )}
-                </List.Item>
-              </Picker>
+                  <div>{title}</div>
+                </div>
+              </SelectGroup>
             </Field>
-          </div>
         </React.Fragment>
       )}
     </div>

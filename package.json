@@ -41,16 +41,18 @@
     "rmc-feedback": "^2.0.0"
   },
   "devDependencies": {
+    "@alita/test": "^0.0.4",
     "@types/lodash": "^4.14.171",
     "@umijs/test": "^3.0.5",
     "dumi": "^1.0.16",
     "dumi-theme-mobile": "^1.1.6",
-    "postcss-plugin-px2rem": "^0.8.1",
-    "react": "^16.12.0",
     "father-build": "^1.17.2",
     "gh-pages": "^3.0.0",
     "lint-staged": "^10.0.7",
+    "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^2.2.1",
+    "react": "^16.12.0",
+    "umi-test": "^1.9.6",
     "yorkie": "^2.0.0"
   }
 }
