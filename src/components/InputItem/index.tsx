@@ -41,7 +41,10 @@ const InputItem: FC<IInputItemProps> = props => {
       <div className="am-list-line">
         {!isVertical && <div className={labelCls}>{props.children}</div>}
         <div
-          className="alitajs-dform-input-value"
+          className={classnames({
+            "alitajs-dform-input-value": true,
+            "alitajs-dform-input-disabled": disabled,
+          })}
           style={{
             // width: isVertical ? '100%' : '60%',
             flex: '1',
