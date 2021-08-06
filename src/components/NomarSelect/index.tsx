@@ -47,7 +47,8 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
     // console.log(newAllArray)
     setAliasData(newAllArray);
   }, [data]);
-
+true
+false
   const fieldChange = (values: any, flag: string) => {
     // console.log("onChange"+onChange+"数据是："+values);
     if (flag === 'init') return;

@@ -7,7 +7,7 @@ import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 export interface INomarSelectProps {
     cols?:number | string;
     type?: string;
-    data: PickerData[];
+    data: PickerData[] | any;
     value?: PickerPropsType['value'];
     positionType?: 'vertical' | 'horizontal';
     title: string;
