@@ -27,17 +27,15 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
       label: 'label',
       value: 'value',
     },
-    // ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
-  // const [visible, setvisible] = React.useState<boolean>(false);
   const [initValue, setInitValue] = React.useState();
   const [aliasData, setAliasData] = React.useState<any[]>([]);
 
   React.useEffect(() => {
-    console.log(data)
+    // console.log(data)
     let newAllArray: PickerData[]=[]
     for(let i=0;i<data.length;i++){
       const newData = data[i].map((item: any) => ({
@@ -46,12 +44,7 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
       }));
       newAllArray.push(newData)
     }
-    // 重新做成数组
-    console.log(newAllArray)
-    // const newData = data.map((item: any) => ({
-    //   label: item[label],
-    //   value: item[value],
-    // }));
+    // console.log(newAllArray)
     setAliasData(newAllArray);
   }, [data]);
 
@@ -60,7 +53,6 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
     if (flag === 'init') return;
     if (onChange && values !== initValue) onChange(values);
   };
-
   return (
     <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (

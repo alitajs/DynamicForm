@@ -52,10 +52,6 @@
     "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^2.2.1",
     "react": "^16.12.0",
-<<<<<<< HEAD
-    "umi-test": "^1.9.6",
-=======
->>>>>>> 4166cfb5b1380e96d706f660a329341d747b456c
     "yorkie": "^2.0.0"
   }
 }

@@ -33,18 +33,15 @@ const NomarPicker: FC<INomarPickerProps> = props => {
 
 
   useEffect(() => {
-    console.log(data);
     const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
     }));
     setAliasData(newData);
-    console.log(newData);
   }, [data]);
   // onChange(val[0], 'change');
   
   const fieldChange = (values: any, flag: string) => {
-    console.log("onChange"+onChange+"数据是："+values);
     if (flag === 'init') return;
     if (onChange && values !== initValue) onChange(values);
   };
@@ -73,7 +70,6 @@ const NomarPicker: FC<INomarPickerProps> = props => {
             name={fieldProps}
             rules={rules || [{ required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
-              console.log("在修改InitValue值");
               setInitValue(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
             }}

@@ -51,14 +51,11 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> =(props) =>{
         setPickerLabel('');
         return;
       } else {
-        console.log(Object.prototype.toString.call(initValue)); 
+        // console.log(Object.prototype.toString.call(initValue)); 
         setPickerLabel(initValue)
-
         pickerLabel=initValue
         setPickerLabel(setPickerLabel)
       }
-
-
       let allDate:string="";
       for(let myI=0;myI<data.length;myI++){
         let mydata=data.filter((item) => item?.value === initValue)
@@ -70,58 +67,41 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> =(props) =>{
         pickerLabel=allDate
         setPickerLabel(pickerLabel)
       }
-      console.log(pickerLabel);
-      
+      // console.log(pickerLabel);
     }, [initValue]);
 
-  useEffect(() => {
-    if (data && data.length) {
-      const nowValue = initValue;
-
-      console.log(data)
-
-      const filterList = data.filter((item) => item?.value === nowValue);
-      // console.log(filterList);
-      if (filterList && filterList.length) {
-        setPickerLabel(filterList[0].label);
-        // if (preValue) onChange(nowValue, 'init');
+    useEffect(() => {
+      if (data && data.length) {
+        const nowValue = initValue;
+        // console.log(data)
+        const filterList = data.filter((item) => item?.value === nowValue);
+        // console.log(filterList);
+        if (filterList && filterList.length) {
+          setPickerLabel(filterList[0].label);
+          // if (preValue) onChange(nowValue, 'init');
+        } else {
+          // onChange(undefined, 'init');
+          setPickerLabel('');
+        }
       } else {
         // onChange(undefined, 'init');
         setPickerLabel('');
       }
-    } else {
-      // onChange(undefined, 'init');
-      setPickerLabel('');
-    }
-  }, [data]);
-    
-  useEffect(()=>{
-    // console.log(sValue)
-    if(sValue===undefined){
-    }
-    // pickerLabel=sValue
-    // setPickerLabel(pickerLabel)
-    // console.log( `${pickerLabel}`.split(",") );
-  },[sValue])
-
+    }, [data]);
+    useEffect(()=>{
+      if(sValue===undefined){
+      }
+    },[sValue])
       //打开
-      const fieldClick = () => {
-        if (onClick) onClick(initValue);
-        if (disabled) return;
-        setvisible(true);
-      };
-    
+    const fieldClick = () => {
+      if (onClick) onClick(initValue);
+      if (disabled) return;
+      setvisible(true);
+    };
       //确定
       const onOK = (val: (string | number)[]) => {
-        // console.log(`${val}`);
-        // let str = toString(val);
         onChange( val, 'change');
         setvisible(false);
-        // if(val===undefined){
-        // }
-
-        // console.log(val[0]);
-        // setSValue(val)
       };
 
     return (
