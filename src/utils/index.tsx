@@ -25,7 +25,7 @@ export const getInitKeyValue = ({
 export const changeDateFormat = (
   val: Date,
   modeType: string,
-  format: string | undefined | ((value: Date) => string),
+  format?: string | undefined | ((value: Date) => string),
 ) => {
   let dateFormat = '';
   switch (modeType) {

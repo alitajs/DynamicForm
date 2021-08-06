@@ -3,7 +3,7 @@ import { DatePicker, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { PropsType } from 'antd-mobile/es/date-picker/index';
 import Field from '../Field';
-import { INomarDatePickerProps } from '../NomarDatePicker';
+import { INomarDatePickerProps } from '../NomarDatePicker/interface';
 import { changeDateFormat } from '../../utils';
 
 import './index.less';

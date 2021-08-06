@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker } from 'antd-mobile';
 import { INomarPickerProps } from './interface';
-import { TextItem } from '..';
+import TextItem from '../TextItem';
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
   onChange: (values: number | string | undefined, flag: string) => void;
   initValue?: string | number;
@@ -86,7 +86,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <TextItem
         isVertical={isVertical}
         value={`${pickerLabel}`}
@@ -115,7 +115,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
           setvisible(false);
         }}
       />
-    </>
+    </React.Fragment>
   );
 };
 
