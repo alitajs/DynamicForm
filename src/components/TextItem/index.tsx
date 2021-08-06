@@ -25,6 +25,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     fieldProps,
     className = '',
     arrow = true,
+    ellipsis = false,
   } = props;
 
   useEffect(() => {
@@ -67,17 +68,23 @@ const TextItem: FC<ITextItemProps> = (props) => {
   return (
     <div className={prefixCls}>
       {!isVertical && <div className={labelCls}>{props.children}</div>}
-      <div className={`${prefixCls}-value`}>
+      <div
+        className={classnames({
+          [`${prefixCls}-value`]: true,
+          [`${allPrefixCls}-ellipsis`]: ellipsis,
+        })}
+      >
         <div
-          className={
-            value ? `${prefixCls}-content` : `${allPrefixCls}-placeholder`
-          }
+          className={classnames({
+            [`${prefixCls}-content`]: !!value,
+            [`${allPrefixCls}-placeholder`]: !value,
+            [`${allPrefixCls}-ellipsis`]: ellipsis,
+          })}
           onClick={() => {
             inputItemClick();
           }}
         >
           <div
-            id={`text-${fieldProps}`}
             className={classnames({
               [`${prefixCls}-text`]: true,
               'alitajs-dform-disabled': disabled && value,

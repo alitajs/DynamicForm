@@ -20,4 +20,5 @@ export interface INomarDatePickerProps extends PropsType {
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {
   onChange: (e: any) => void;
   initValue: Date | undefined;
+  arrow?: boolean;
 }

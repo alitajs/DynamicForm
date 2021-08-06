@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from 'react';
 import PopupDatePicker from 'rmc-date-picker/lib/Popup';
 import RCDatePicker from 'rmc-date-picker/lib/DatePicker';
 import DatePickerLocale from 'rmc-date-picker/lib/locale/zh_CN';
-import dayjs from 'dayjs';
 import { changeDateFormat } from '../../utils';
 import { INomarDatePickerGroupProps } from './interface';
 import { TextItem } from '..';
@@ -28,6 +27,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     className,
     format,
     onValueChange,
+    arrow = true,
     children,
     ...otherProps
   } = props;
@@ -99,6 +99,8 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
         onClick={() => {
           setVisible(true);
         }}
+        arrow={arrow}
+        ellipsis={true}
       >
         {children}
       </TextItem>
