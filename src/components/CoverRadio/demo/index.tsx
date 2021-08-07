@@ -5,7 +5,12 @@
 
 import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },
@@ -97,7 +102,7 @@ const Page = () => {
     data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
   };
 
   return (

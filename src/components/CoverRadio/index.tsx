@@ -90,46 +90,58 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
   return (
     <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
-        <div
-          className={classnames({
-            [prefixCls]: true,
-            [`${allPrefixCls}-vertical-radio`]: isVertical,
-          })}
-        >
+        <React.Fragment>
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+            </div>
+          )}
           <div
-            className={classnames(labelCls, {
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: isVertical,
+            className={classnames({
+              [prefixCls]: true,
+              [`${allPrefixCls}-vertical-radio`]: isVertical,
             })}
           >
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-            {subTitle}
+            <div className={`${prefixCls}-field`}>
+              <Field
+                name={fieldProps}
+                rules={rules || [{ required, message: `请选择${title}` }]}
+                shouldUpdate={(prevValue: any, nextValue: any) => {
+                  setInitValue(nextValue && nextValue[fieldProps as any]);
+                  return prevValue !== nextValue;
+                }}
+              >
+                <CoverRadioGroup
+                  data={aliasData}
+                  positionType={positionType}
+                  radioType={radioType}
+                  initValue={initValue}
+                  onChange={radioChange}
+                  disabled={disabled}
+                  coverStyle={coverStyle}
+                  className={className}
+                  labelNumber={labelNumber}
+                >
+                  <div className={`${allPrefixCls}-title`}>
+                    {required && hasStar && (
+                      <div className={`${allPrefixCls}-redStar`}>*</div>
+                    )}
+                    <div>{title}</div>
+                  </div>
+                </CoverRadioGroup>
+              </Field>
+            </div>
           </div>
-          <div className={`${prefixCls}-field`}>
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请选择${title}` }]}
-              shouldUpdate={(prevValue: any, nextValue: any) => {
-                setInitValue(nextValue && nextValue[fieldProps as any]);
-                return prevValue !== nextValue;
-              }}
-            >
-              <CoverRadioGroup
-                data={aliasData}
-                positionType={positionType}
-                radioType={radioType}
-                initValue={initValue}
-                onChange={radioChange}
-                disabled={disabled}
-                coverStyle={coverStyle}
-                className={className}
-              />
-            </Field>
-          </div>
-        </div>
+        </React.Fragment>
       )}
     </div>
   );

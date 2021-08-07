@@ -22,6 +22,7 @@ export interface INomarRadioGroupProps {
   coverStyle?: React.CSSProperties;
   className?: string;
   allowUnChecked?: boolean;
+  labelNumber: number;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
@@ -35,6 +36,8 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     coverStyle,
     className = '',
     allowUnChecked,
+    labelNumber = 5,
+    children,
   } = props;
   // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
@@ -44,6 +47,16 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
   if (radioType === 'vertical') {
     isVertical = true;
   }
+
+  const labelCls = classnames({
+    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
+    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
+    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
+    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
+    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
+    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
+    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
+  });
 
   useEffect(() => {
     if (data.length === 0) {
@@ -110,44 +123,61 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
   return (
     <div
       className={classnames({
-        [`${prefixCls}-group`]: true,
-        [`${prefixCls}-position`]: !isVertical,
-        [`${prefixCls}-item-vertical`]: radioType === 'vertical',
-        [`${allPrefixCls}-disabled`]: disabled,
+        [prefixCls]: true,
+        [`${allPrefixCls}-vertical-radio`]: isVertical,
       })}
-      style={coverStyle}
     >
-      {data.map((item: IDataItem) => (
+      {!isVertical && (
         <div
-          key={item.value}
-          className={classnames({
-            [`${prefixCls}-wrapper`]: true,
-            [`${prefixCls}-wrapper-item-vertical`]: radioType === 'vertical',
+          className={classnames(labelCls, {
+            [`${allPrefixCls}-title`]: true,
+            [`${allPrefixCls}-vertical-title`]: isVertical,
           })}
-          onClick={(e) => {
-            radioClick(e, item);
-          }}
         >
-          <div
-            className={classnames({
-              [`${prefixCls}-button`]: true,
-              [`${prefixCls}-checked`]: item.value === activeValue,
-            })}
-          >
-            {item.value === activeValue && (
-              <div className={`${prefixCls}-inner-button`}></div>
-            )}
-          </div>
-          <div
-            className={classnames({
-              [`${prefixCls}-label`]: true,
-              [className]: className,
-            })}
-          >
-            {item.label}
-          </div>
+          {children}
         </div>
-      ))}
+      )}
+      <div
+        className={classnames({
+          [`${prefixCls}-group`]: true,
+          [`${prefixCls}-position`]: !isVertical,
+          [`${prefixCls}-item-vertical`]: radioType === 'vertical',
+          [`${allPrefixCls}-disabled`]: disabled,
+        })}
+        style={coverStyle}
+      >
+        {data.map((item: IDataItem) => (
+          <div
+            key={item.value}
+            className={classnames({
+              [`${prefixCls}-wrapper`]: true,
+              [`${prefixCls}-wrapper-item-vertical`]: radioType === 'vertical',
+            })}
+            onClick={(e) => {
+              radioClick(e, item);
+            }}
+          >
+            <div
+              className={classnames({
+                [`${prefixCls}-button`]: true,
+                [`${prefixCls}-checked`]: item.value === activeValue,
+              })}
+            >
+              {item.value === activeValue && (
+                <div className={`${prefixCls}-inner-button`}></div>
+              )}
+            </div>
+            <div
+              className={classnames({
+                [`${prefixCls}-label`]: true,
+                [className]: className,
+              })}
+            >
+              {item.label}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

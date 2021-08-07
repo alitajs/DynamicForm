@@ -64,16 +64,6 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
-  const labelCls = classnames({
-    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
-    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
-    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
-    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
-    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
-    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
-    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
-  });
-
   useEffect(() => {
     if (data.length === 0) return;
     const newData = data.map((item) => ({
@@ -94,24 +84,21 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
   return (
     <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
-        <div
-          className={classnames({
-            [prefixCls]: true,
-            [`${allPrefixCls}-vertical-radio`]: isVertical,
-          })}
-        >
-          <div
-            className={classnames(labelCls, {
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: isVertical,
-            })}
-          >
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-            {subTitle}
-          </div>
+        <React.Fragment>
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+            </div>
+          )}
           <div className={`${prefixCls}-field`}>
             <Field
               name={fieldProps}
@@ -131,10 +118,18 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
                 coverStyle={coverStyle}
                 disabled={disabled}
                 className={className}
-              />
+                labelNumber={labelNumber}
+              >
+                <div className={`${allPrefixCls}-title`}>
+                  {required && hasStar && (
+                    <div className={`${allPrefixCls}-redStar`}>*</div>
+                  )}
+                  <div>{title}</div>
+                </div>
+              </NomarRadioGroup>
             </Field>
           </div>
-        </div>
+        </React.Fragment>
       )}
     </div>
   );
