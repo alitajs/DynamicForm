@@ -58,7 +58,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> =(props) =>{
       }
       let allDate:string="";
       for(let myI=0;myI<data.length;myI++){
-        let mydata=data.filter((item) => item?.value === initValue)
+        let mydata=data.filter((item:any) => item?.value === initValue)
         allDate=allDate+","+mydata
       }
       if(allDate.length===0 || allDate.length===data.length){
@@ -74,7 +74,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> =(props) =>{
       if (data && data.length) {
         const nowValue = initValue;
         // console.log(data)
-        const filterList = data.filter((item) => item?.value === nowValue);
+        const filterList = data.filter((item:any) => item?.value === nowValue);
         // console.log(filterList);
         if (filterList && filterList.length) {
           setPickerLabel(filterList[0].label);
