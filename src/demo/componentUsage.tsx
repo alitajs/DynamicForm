@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { List, Button } from 'antd-mobile';
+import { WhiteSpace, Button } from 'antd-mobile';
 import {
   NomarInput,
   NomarPicker,
@@ -66,33 +66,32 @@ const UserName: FC = () => {
   return (
     <div>
       <Form {...formProps}>
-        <List>
-          <NomarInput
-            fieldProps="username"
-            required
-            placeholder="请输入"
-            title="用户名"
-          />
-          <NomarRadio fieldProps="sex" title="性别" data={sexData} />
-          <NomarDatePicker
-            fieldProps="date"
-            placeholder="请选择"
-            title="出生年月"
-          />
-          <NomarPicker
-            fieldProps="weather"
-            placeholder="请选择"
-            title="天气"
-            data={weatherData}
-          />
-          <MultiplePicker
-            fieldProps="motion"
-            placeholder="请选择"
-            title="特长"
-            data={motionData}
-          />
-        </List>
+        <NomarInput
+          fieldProps="username"
+          required
+          placeholder="请输入"
+          title="用户名"
+        />
+        <NomarRadio fieldProps="sex" title="性别" data={sexData} />
+        <NomarDatePicker
+          fieldProps="date"
+          placeholder="请选择"
+          title="出生年月"
+        />
+        <NomarPicker
+          fieldProps="weather"
+          placeholder="请选择"
+          title="天气"
+          data={weatherData}
+        />
+        <MultiplePicker
+          fieldProps="motion"
+          placeholder="请选择"
+          title="特长"
+          data={motionData}
+        />
       </Form>
+      <WhiteSpace />
       <Button onClick={() => form.submit()}>submit</Button>
     </div>
   );

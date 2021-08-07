@@ -4,7 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 import PositionIcon from '../../../assets/position_ico.png';
 
 const Page: FC = () => {
@@ -22,20 +27,18 @@ const Page: FC = () => {
   const extraImg = () => <img src={PositionIcon} />;
 
   const unitList = [
-    [
-      {
-        label: '元',
-        value: '元',
-      },
-      {
-        label: '万元',
-        value: '万元',
-      },
-      {
-        label: '亿元',
-        value: '亿元',
-      },
-    ],
+    {
+      label: '元',
+      value: '元',
+    },
+    {
+      label: '万元',
+      value: '万元',
+    },
+    {
+      label: '亿元',
+      value: '亿元',
+    },
   ];
 
   const formsData = [
@@ -44,78 +47,74 @@ const Page: FC = () => {
       fieldProps: 'minPrise',
       fieldProps2: 'maxPrise',
       title: '价格区间(数字输入)',
-      placeholder: '输入最小价格',
-      placeholder2: '输入最大价格',
+      firstProps: { placeholder: '输入最小价格' },
+      secondProps: { extra: '¥', placeholder: '输入最大价格' },
       required: true,
-      inputType: 'number',
-      labelNumber: 8,
-      extra: '¥',
     },
     {
       type: 'extraInput',
       fieldProps: 'minPosition',
       fieldProps2: 'maxPosition',
       title: '位置区间',
-      placeholder: '选择最小位置',
-      placeholder2: '选择最大位置',
-      required: true,
-      inputType: 'text',
-      extra: extraImg(),
+      firstProps: { placeholder: '选择最小位置' },
+      secondProps: { placeholder: '选择最大位置', extra: extraImg() },
       positionType: 'horizontal',
+      disabled: true,
     },
     {
       type: 'extraInput',
       fieldProps: 'minLength',
       fieldProps2: 'maxLength',
       title: '长度区间',
-      placeholder: '输入长度',
-      placeholder2: '输入长度',
-      required: true,
+      firstProps: { placeholder: '输入长度' },
+      secondProps: { placeholder: '输入长度' },
     },
     {
       type: 'extraInput',
       fieldProps: 'price',
       fieldProps2: 'unit',
       title: '单价',
-      placeholder: '输入价格',
-      placeholder2: '选择区间',
-      required: true,
+      placeholder2: '',
       extraType: 'select',
-      data: unitList,
       positionType: 'horizontal',
+      secondProps: { data: unitList, placeholder: '选择区间' },
+      firstProps: { placeholder: '输入价格' },
     },
     {
       type: 'extraInput',
       title: '价格',
       fieldProps: 'prices',
       fieldProps2: 'priceUnit',
-      placeholder: '输入长度',
-      placeholder2: '选择长度单位',
       positionType: 'vertical',
       extraType: 'select',
-      data: unitList,
       firstProps: {
+        placeholder: '输入长度',
         onChange: (val: any) => {
           // eslint-disable-next-line no-console
           console.log(val);
         },
       },
       secondProps: {
-        onOk: (val: any) => {
+        placeholder: '选择长度单位',
+        data: unitList,
+        onChange: (val: any) => {
           // eslint-disable-next-line no-console
           console.log(val);
         },
       },
     },
   ] as IFormItemProps[];
-  const formsValues = {};
+  const formsValues = {
+    minPrise: '11',
+    maxPrise: '22',
+  };
   const formProps = {
     onFinish,
     onFinishFailed,
     data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>

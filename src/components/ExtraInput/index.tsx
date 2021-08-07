@@ -1,24 +1,23 @@
-import React, { FC } from 'react';
-import { InputItem, Picker, List } from 'antd-mobile';
+import React, { FC, useState } from 'react';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
+import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
-import { NomarInput } from '..';
+import { StringAndUdfEvent } from '../../PropsType';
+import { InputItem } from '..';
+import { allPrefixCls } from '../../const/index';
 import './index.less';
 
-export interface IExtraInputProps extends InputItemPropsType {
-  inputType?: InputItemPropsType['type'];
+export interface IExtraInputProps {
   fieldProps: string;
   fieldProps2?: string;
-  placeholder2?: string;
   required?: boolean;
   rules?: Rule[];
   title: string;
   coverStyle?: React.CSSProperties;
   extraType?: 'input' | 'select';
   positionType?: 'vertical' | 'horizontal';
-  data?: any;
   hasStar?: boolean;
   firstProps?: InputItemPropsType;
   secondProps?: any;
@@ -27,45 +26,55 @@ export interface IExtraInputProps extends InputItemPropsType {
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
+  const [pickerInitValue, setPickerInitValue] = useState(undefined);
   const {
-    inputType = 'text',
     fieldProps,
     fieldProps2,
     title,
     required,
     rules,
     coverStyle,
-    placeholder2,
     extraType = 'input',
     positionType = 'vertical',
     hasStar = true,
-    data,
     firstProps,
     secondProps,
     subTitle,
     hidden = false,
-    ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
+
+  const inputOnBlur = (val: string | undefined) => {
+    // window.scrollTo(0, 0);
+    if (firstProps && firstProps.onBlur) firstProps.onBlur(val);
+  };
+
+  const fieldChange = (values: any, flag: string) => {
+    if (flag === 'init') return;
+    if (secondProps && secondProps?.onChange && values !== pickerInitValue) {
+      secondProps.onChange(values);
+    }
+  };
 
   const extraDiv = () => {
     if (extraType === 'select') {
       return (
         <Field
           name={fieldProps2}
-          rules={rules || [{ required, message: `请输入${title}` }]}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            setPickerInitValue(nextValue && nextValue[fieldProps2 as any]);
+            return prevValue !== nextValue;
+          }}
         >
-          <Picker
+          <PickerGroup
             {...secondProps}
-            style={coverStyle}
+            initValue={pickerInitValue}
+            onChange={fieldChange}
+            labelNumber={0}
             title={title}
-            data={data}
-            cascade={false}
-            extra={placeholder2}
-          >
-            <List.Item arrow="horizontal"></List.Item>
-          </Picker>
+          />
         </Field>
       );
     }
@@ -76,66 +85,84 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         rules={rules || [{ required, message: `请输入${title}` }]}
       >
         <InputItem
-          {...otherProps}
-          {...secondProps}
-          type={inputType}
+          labelNumber={0}
           style={{ textAlign: 'right', ...coverStyle }}
-          placeholder={placeholder2}
+          {...secondProps}
         />
       </Field>
     );
   };
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
           {isVertical && (
-            <div className="alitajs-dform-vertical-title">
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
               {required && hasStar && (
-                <span className="alitajs-dform-redStar">*</span>
+                <div className={`${allPrefixCls}-redStar`}>*</div>
               )}
-              <span className="alitajs-dform-title">{title}</span>
+              <div>{title}</div>
               {subTitle}
             </div>
           )}
           <div
             className={classnames({
-              'alitajs-dform-extra-input': true,
-              'alitajs-dform-extra-horizontal': !isVertical,
+              [`${allPrefixCls}-extra-input`]: true,
+              [`${allPrefixCls}-extra-horizontal`]: !isVertical,
             })}
           >
             <div
-              className={`alitajs-dform-begin${
+              className={`${allPrefixCls}-begin${
                 isVertical ? '-vertical' : ''
               }-input`}
             >
-              <NomarInput
-                {...otherProps}
-                {...firstProps}
-                required={required}
-                rules={rules}
-                coverStyle={{ textAlign: 'left', ...coverStyle }}
-                fieldProps={fieldProps}
-                title={title}
-                extra=""
-              />
+              <Field
+                name={fieldProps}
+                rules={rules || [{ required, message: `请输入${title}` }]}
+              >
+                <InputItem
+                  {...firstProps}
+                  extra=""
+                  coverStyle={{
+                    textAlign: 'center',
+                    ...coverStyle,
+                  }}
+                  onBlur={(val: StringAndUdfEvent) => {
+                    inputOnBlur(val);
+                  }}
+                  isVertical={isVertical}
+                >
+                  {!isVertical && (
+                    <div className={`${allPrefixCls}-title`}>
+                      {required && hasStar && (
+                        <div className={`${allPrefixCls}-redStar`}>*</div>
+                      )}
+                      <div>{title}</div>
+                    </div>
+                  )}
+                </InputItem>
+              </Field>
             </div>
             {extraType === 'input' && (
-              <div className="alitajs-dform-line">~</div>
+              <div className={`${allPrefixCls}-line`}>~</div>
             )}
             <div
-              className={`alitajs-dform-end${
+              className={`${allPrefixCls}-end${
                 isVertical ? '-vertical' : ''
               }-input`}
-              style={{ width: isVertical ? '' : '' }}
             >
               {extraDiv()}
             </div>
           </div>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 
