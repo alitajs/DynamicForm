@@ -1,15 +1,16 @@
 import React, { FC, useState } from 'react';
-import { DatePicker, List } from 'antd-mobile';
 import classnames from 'classnames';
 import { PropsType } from 'antd-mobile/es/date-picker/index';
 import Field from '../Field';
 import { INomarDatePickerProps } from '../NomarDatePicker/interface';
 import { changeDateFormat } from '../../utils';
+import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
+import { allPrefixCls } from '../../const/index';
 
 import './index.less';
 
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
-  fieldProps2?: string;
+  fieldProps2: string;
   placeholder2?: string;
   minDate?: Date;
   maxDate?: Date;
@@ -30,39 +31,46 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     placeholder = '开始时间',
     placeholder2 = '结束时间',
     required = false,
-    modeType = 'date',
     rules,
     title,
     minDate,
     maxDate,
+    modeType = 'date',
     positionType = 'vertical',
     hasStar = true,
     secondProps,
     firstProps,
     subTitle,
     hidden = false,
+    labelNumber = 5,
+    coverStyle = {},
     ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <>
+    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
       {!hidden && (
         <React.Fragment>
           {isVertical && (
-            <div className="alitajs-dform-vertical-title">
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
               {required && hasStar && (
-                <span className="alitajs-dform-redStar">*</span>
+                <div className={`${allPrefixCls}-redStar`}>*</div>
               )}
-              <span className="alitajs-dform-title">{title}</span>
+              <div>{title}</div>
               {subTitle}
             </div>
           )}
           <div
             className={classnames({
-              'alitajs-dform-range-horizontal': !isVertical,
-              'alitajs-dform-range-date-picker': true,
+              [`${allPrefixCls}-range-horizontal`]: !isVertical,
+              [`${allPrefixCls}-range-date-picker`]: true,
             })}
             style={{
               justifyContent: isVertical ? 'space-between' : 'center',
@@ -70,7 +78,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             }}
           >
             <div
-              className={`alitajs-dform-begin${
+              className={`${allPrefixCls}-begin${
                 isVertical ? '-vertical' : ''
               }-picker`}
             >
@@ -82,33 +90,41 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
                   return prevValue !== nextValue;
                 }}
               >
-                <DatePicker
+                <DatePickerGroup
                   {...otherProps}
                   {...firstProps}
-                  mode={modeType}
-                  extra={placeholder}
-                  minDate={minDate}
-                  maxDate={endDate || maxDate}
-                  title={title}
-                  format={(value) => changeDateFormat(value, modeType)}
                   onChange={(e) => {
                     setBeginDate(e);
                     firstProps?.onChange && firstProps?.onChange(e);
                   }}
+                  fieldProps={fieldProps}
+                  title={title}
+                  initValue={beginDate}
+                  labelNumber={isVertical ? 0 : labelNumber}
+                  coverStyle={{
+                    textAlign: 'center',
+                    ...coverStyle,
+                  }}
+                  arrow={false}
+                  minDate={minDate}
+                  maxDate={endDate || maxDate}
+                  mode={modeType}
+                  format={(value) => changeDateFormat(value, modeType)}
                 >
-                  <List.Item>
-                    {required && hasStar && (
-                      <span className="alitajs-dform-redStar">*</span>
-                    )}
-                    <span className="alitajs-dform-title">{title}</span>
-                    <span id={fieldProps2}></span>
-                  </List.Item>
-                </DatePicker>
+                  {!isVertical && (
+                    <div className={`${allPrefixCls}-title`}>
+                      {required && hasStar && (
+                        <div className={`${allPrefixCls}-redStar`}>*</div>
+                      )}
+                      <div>{title}</div>
+                    </div>
+                  )}
+                </DatePickerGroup>
               </Field>
             </div>
-            <div className="alitajs-dform-line">~</div>
+            <div className={`${allPrefixCls}-line`}>~</div>
             <div
-              className={`alitajs-dform-end${
+              className={`${allPrefixCls}-end${
                 isVertical ? '-vertical' : ''
               }-picker`}
             >
@@ -120,30 +136,34 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
                   return prevValue !== nextValue;
                 }}
               >
-                <DatePicker
+                <DatePickerGroup
                   {...otherProps}
                   {...secondProps}
-                  extra={placeholder2}
-                  mode={modeType}
-                  minDate={beginDate || minDate}
-                  maxDate={maxDate}
-                  title={title}
-                  format={(value) => changeDateFormat(value, modeType)}
                   onChange={(e) => {
                     setEndDate(e);
                     secondProps &&
                       secondProps?.onChange &&
                       secondProps?.onChange(e);
                   }}
-                >
-                  <List.Item arrow="horizontal"></List.Item>
-                </DatePicker>
+                  fieldProps={fieldProps2}
+                  title={title}
+                  initValue={endDate}
+                  labelNumber={0}
+                  coverStyle={{
+                    textAlign: 'center',
+                    ...coverStyle,
+                  }}
+                  mode={modeType}
+                  format={(value) => changeDateFormat(value, modeType)}
+                  minDate={beginDate || minDate}
+                  maxDate={maxDate}
+                />
               </Field>
             </div>
           </div>
         </React.Fragment>
       )}
-    </>
+    </div>
   );
 };
 

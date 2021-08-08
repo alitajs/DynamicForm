@@ -4,7 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 const RangeDatePicker: FC = () => {
   const [form] = useForm();
@@ -31,6 +36,7 @@ const RangeDatePicker: FC = () => {
           console.log(val);
         },
       },
+      disabled: true,
     },
     {
       type: 'rangeDatePicker',
@@ -40,6 +46,7 @@ const RangeDatePicker: FC = () => {
       title: '时间(month)',
       modeType: 'month',
       positionType: 'horizontal',
+      labelNumber: 7,
     },
     {
       type: 'rangeDatePicker',
@@ -61,7 +68,7 @@ const RangeDatePicker: FC = () => {
     data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
   };
 
   return (

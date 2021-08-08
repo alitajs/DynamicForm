@@ -11,4 +11,5 @@ export interface ITextItemProps {
   fieldProps?: string;
   className?: string;
   arrow?: boolean;
+  ellipsis?: boolean;
 }
