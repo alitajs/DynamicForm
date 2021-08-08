@@ -52,7 +52,6 @@ const Page: FC = () => {
       required: true,
       placeholder: '输入项居左',
       title: '用户名',
-      // inputType: 'bankCard',
       clear: true,
       subTitle: subTitle(),
       coverStyle: {
@@ -62,7 +61,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'userAge',
-      required: true,
       placeholder: '请输入',
       title: '年龄',
       editable: false,
@@ -72,7 +70,6 @@ const Page: FC = () => {
     {
       type: 'area',
       fieldProps: 'area',
-      required: true,
       title: '学校概况',
       placeholder: '支持输入值过长自动换行',
       rows: 1,
@@ -81,7 +78,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'userPwd',
-      required: true,
       title: '请设置密码',
       extra: pwdImg(),
       inputType: pwdInputType ? 'password' : 'text',
@@ -89,7 +85,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'userPrice',
-      required: true,
       placeholder: '0.00',
       title: '价格',
       extra: '¥',
@@ -98,7 +93,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'userPosition',
-      required: true,
       placeholder: '请定位',
       title: '定位',
       extra: extraImg(),
@@ -107,7 +101,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'username5',
-      required: true,
       placeholder: '',
       title: '身份证',
       extra: photoImg(),
@@ -116,7 +109,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'userTitle',
-      required: true,
       placeholder: '点击获取表单全部数据',
       title: '标题',
       editable: false,
@@ -128,7 +120,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'titleTooLong',
-      required: true,
       placeholder: '请输入',
       title: '标题名称过长',
       labelNumber: 7,
@@ -138,7 +129,6 @@ const Page: FC = () => {
     {
       type: 'input',
       fieldProps: 'titleTooLong2',
-      required: true,
       placeholder: '请输入',
       title: '标题名称过长(超过14个字符自动换行)',
       inputType: 'text',
@@ -177,7 +167,7 @@ const Page: FC = () => {
     data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>

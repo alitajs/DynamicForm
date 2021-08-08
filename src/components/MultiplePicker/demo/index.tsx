@@ -4,7 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -49,6 +54,7 @@ const Page: FC = () => {
       data: foodList,
       title: '我喜欢的食物',
       labelNumber: 7,
+      hidden: true,
       placeholder: '请选择我喜欢的食物',
       onChange: (e: (string | number)[]) => {
         // eslint-disable-next-line no-console
@@ -84,7 +90,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>

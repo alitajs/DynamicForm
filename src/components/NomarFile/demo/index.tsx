@@ -60,7 +60,7 @@ const Page: FC = () => {
         });
       },
     },
-  ] as IFormItemProps[];
+  ] as unknown as IFormItemProps[];
 
   const formProps = {
     form,
@@ -70,13 +70,13 @@ const Page: FC = () => {
     formsValues: {
       contract: contractList,
     },
-    isDev: true,
+    isDev: false,
   };
 
   return (
     <>
       <DynamicForm {...formProps} />
-      <WhiteSpace size="sm" />
+      <WhiteSpace size="lg" />
       <Button
         type="primary"
         onClick={() => {

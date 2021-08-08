@@ -5,6 +5,7 @@ import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -62,60 +63,47 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div
-              className={classnames({
-                [`${allPrefixCls}-title`]: true,
-                [`${allPrefixCls}-vertical-title`]: true,
-              })}
-            >
-              {required && hasStar && (
-                <div className={`${allPrefixCls}-redStar`}>*</div>
-              )}
-              <div>{title}</div>
-              {subTitle}
-              {extra !== '' && isVertical && (
-                <div className={`${allPrefixCls}-extra`}>{extra}</div>
-              )}
-            </div>
-          )}
-          <div
-            className={classnames({
-              [`${allPrefixCls}-area`]: true,
-              [`${allPrefixCls}-vertical-area`]: isVertical,
-              [`${allPrefixCls}-disabled`]: !editable,
-            })}
-          >
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请输入${title}` }]}
-              shouldUpdate={(prevValue: any, nextValue: any) => {
-                // if (autoFocusInst) autoFocusInst.focus();
-                return prevValue !== nextValue;
-              }}
-            >
-              <TextareaItem
-                {...otherProps}
-                title={titleDiv()}
-                editable={editable}
-                style={{
-                  textAlign: rows === 1 ? 'right' : 'left',
-                  ...coverStyle,
-                }}
-                className={className}
-                rows={rows}
-                onBlur={(val) => {
-                  inputOnBlur(val);
-                }}
-              />
-            </Field>
-          </div>
-        </React.Fragment>
-      )}
-    </div>
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+    >
+      <div
+        className={classnames({
+          [`${allPrefixCls}-area`]: true,
+          [`${allPrefixCls}-vertical-area`]: isVertical,
+          [`${allPrefixCls}-disabled`]: !editable,
+        })}
+      >
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请输入${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            // if (autoFocusInst) autoFocusInst.focus();
+            return prevValue !== nextValue;
+          }}
+        >
+          <TextareaItem
+            {...otherProps}
+            title={titleDiv()}
+            editable={editable}
+            style={{
+              textAlign: rows === 1 ? 'right' : 'left',
+              ...coverStyle,
+            }}
+            className={className}
+            rows={rows}
+            onBlur={(val) => {
+              inputOnBlur(val);
+            }}
+          />
+        </Field>
+      </div>
+    </Title>
   );
 };
 

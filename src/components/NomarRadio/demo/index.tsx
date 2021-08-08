@@ -125,7 +125,7 @@ const DfromRadioTextPage: FC = () => {
     form,
     onFinishFailed,
     onFinish,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>

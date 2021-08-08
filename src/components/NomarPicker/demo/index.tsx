@@ -86,7 +86,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>

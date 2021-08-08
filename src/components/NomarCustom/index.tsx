@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 
 interface INomarCustomPorps {
@@ -49,33 +50,24 @@ const NomarCustom: FC<INomarCustomPorps> = (props) => {
   );
 
   return (
-    <div className={`${allPrefixCls}-vertical-item`}>
-      {!hidden && (
-        <div
-          className={classnames({
-            // 'alitajs-dform-dom': true,
-            'alitajs-dform-vertical-dom': true,
-          })}
-        >
-          <div
-            className={classnames({
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: true,
-            })}
-          >
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-            {subTitle}
-            {extra !== '' && (
-              <div className={`${allPrefixCls}-extra`}>{extra}</div>
-            )}
-          </div>
-          {dom()}
-        </div>
-      )}
-    </div>
+    <Title
+      positionType="vertical"
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+    >
+      <div
+        className={classnames({
+          // 'alitajs-dform-dom': true,
+          'alitajs-dform-vertical-dom': true,
+        })}
+      >
+        {dom()}
+      </div>
+    </Title>
   );
 };
 

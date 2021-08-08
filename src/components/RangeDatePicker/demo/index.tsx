@@ -36,7 +36,6 @@ const RangeDatePicker: FC = () => {
           console.log(val);
         },
       },
-      disabled: true,
     },
     {
       type: 'rangeDatePicker',

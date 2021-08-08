@@ -105,6 +105,7 @@ const Page: FC = () => {
       title: '居住地址',
       placeholder: '选择当前居住城市',
       level: 3,
+      required: true,
       data: homeAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区'],
       onChangeLevel: (values: (string | number)[]) => {

@@ -24,7 +24,9 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const extraImg = () => <img src={PositionIcon} />;
+  const extraImg = () => (
+    <img src={PositionIcon} style={{ width: '0.6rem', height: '0.6rem' }} />
+  );
 
   const unitList = [
     {

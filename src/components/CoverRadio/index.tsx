@@ -5,6 +5,7 @@ import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
 import { IAliasProps } from '../../DynamicForm';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-cover-radio';
@@ -61,16 +62,6 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
-  const labelCls = classnames({
-    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
-    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
-    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
-    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
-    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
-    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
-    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
-  });
-
   useEffect(() => {
     const newData = (data || []).map((item) => ({
       label: item[label],
@@ -88,50 +79,52 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
-      {!hidden && (
-        <div
-          className={classnames({
-            [prefixCls]: true,
-            [`${allPrefixCls}-vertical-radio`]: isVertical,
-          })}
-        >
-          <div
-            className={classnames(labelCls, {
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: isVertical,
-            })}
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={''}
+    >
+      <div
+        className={classnames({
+          [prefixCls]: true,
+          [`${allPrefixCls}-vertical-radio`]: isVertical,
+        })}
+      >
+        <div className={`${prefixCls}-field`}>
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            shouldUpdate={(prevValue: any, nextValue: any) => {
+              setInitValue(nextValue && nextValue[fieldProps as any]);
+              return prevValue !== nextValue;
+            }}
           >
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-            {subTitle}
-          </div>
-          <div className={`${prefixCls}-field`}>
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请选择${title}` }]}
-              shouldUpdate={(prevValue: any, nextValue: any) => {
-                setInitValue(nextValue && nextValue[fieldProps as any]);
-                return prevValue !== nextValue;
-              }}
+            <CoverRadioGroup
+              data={aliasData}
+              positionType={positionType}
+              radioType={radioType}
+              initValue={initValue}
+              onChange={radioChange}
+              disabled={disabled}
+              coverStyle={coverStyle}
+              className={className}
+              labelNumber={labelNumber}
             >
-              <CoverRadioGroup
-                data={aliasData}
-                positionType={positionType}
-                radioType={radioType}
-                initValue={initValue}
-                onChange={radioChange}
-                disabled={disabled}
-                coverStyle={coverStyle}
-                className={className}
-              />
-            </Field>
-          </div>
+              <div className={`${allPrefixCls}-title`}>
+                {required && hasStar && (
+                  <div className={`${allPrefixCls}-redStar`}>*</div>
+                )}
+                <div>{title}</div>
+              </div>
+            </CoverRadioGroup>
+          </Field>
         </div>
-      )}
-    </div>
+      </div>
+    </Title>
   );
 };
 

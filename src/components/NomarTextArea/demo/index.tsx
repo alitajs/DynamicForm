@@ -77,6 +77,7 @@ const Page: FC = () => {
       fieldProps: 'idenPhone',
       title: '身份证',
       extra: photoImg(),
+      positionType: 'vertical',
       placeholder: '存在 extra 自动换行',
       required: true,
     },
@@ -92,7 +93,7 @@ const Page: FC = () => {
     data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
   };
 
   return (
