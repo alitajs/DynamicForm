@@ -4,6 +4,7 @@ import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 import FileIcon from '../../assets/file.png';
+import Title from '../Title';
 
 const prefixCls = 'alitajs-dform-file';
 
@@ -52,31 +53,28 @@ const NomarFile: FC<INomarFileProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}-item`}>
-      {!hidden && (
-        <div className={prefixCls}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-            {subTitle}
-            <div className={`${allPrefixCls}-extra`}>{extraContent()}</div>
-          </div>
-
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            shouldUpdate={(prevValue: any, nextValue: any) => {
-              setInitValue(nextValue && nextValue[fieldProps as any]);
-              return prevValue !== nextValue;
-            }}
-          >
-            <FileGroup {...props} initValue={initValue} onChange={fileChange} />
-          </Field>
-        </div>
-      )}
-    </div>
+    <Title
+      positionType="vertical"
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extraContent()}
+    >
+      <div className={prefixCls}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            setInitValue(nextValue && nextValue[fieldProps as any]);
+            return prevValue !== nextValue;
+          }}
+        >
+          <FileGroup {...props} initValue={initValue} onChange={fileChange} />
+        </Field>
+      </div>
+    </Title>
   );
 };
 

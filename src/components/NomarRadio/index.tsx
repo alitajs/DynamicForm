@@ -5,6 +5,7 @@ import Field from '../Field';
 import NomarRadioGroup from './radioGroup';
 import { allPrefixCls } from '../../const/index';
 import { IAliasProps } from '../../DynamicForm';
+import Title from '../Title';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-radio';
@@ -32,6 +33,7 @@ export interface INomarRadioProps {
   className?: string;
   allowUnChecked?: boolean;
   labelNumber?: number;
+  extra?: string | React.ReactNode;
 }
 
 const NomarRadio: FC<INomarRadioProps> = (props) => {
@@ -59,6 +61,7 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
     },
     className = '',
     labelNumber = 5,
+    extra,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -82,56 +85,46 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div
-              className={classnames({
-                [`${allPrefixCls}-title`]: true,
-                [`${allPrefixCls}-vertical-title`]: true,
-              })}
-            >
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+    >
+      <div className={`${prefixCls}-field`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            setInitValue(nextValue && nextValue[fieldProps as any]);
+            return prevValue !== nextValue;
+          }}
+        >
+          <NomarRadioGroup
+            allowUnChecked={allowUnChecked}
+            data={aliasData}
+            positionType={positionType}
+            radioType={radioType}
+            initValue={initValue}
+            onChange={radioChange}
+            coverStyle={coverStyle}
+            disabled={disabled}
+            className={className}
+            labelNumber={labelNumber}
+          >
+            <div className={`${allPrefixCls}-title`}>
               {required && hasStar && (
                 <div className={`${allPrefixCls}-redStar`}>*</div>
               )}
               <div>{title}</div>
-              {subTitle}
             </div>
-          )}
-          <div className={`${prefixCls}-field`}>
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请选择${title}` }]}
-              shouldUpdate={(prevValue: any, nextValue: any) => {
-                setInitValue(nextValue && nextValue[fieldProps as any]);
-                return prevValue !== nextValue;
-              }}
-            >
-              <NomarRadioGroup
-                allowUnChecked={allowUnChecked}
-                data={aliasData}
-                positionType={positionType}
-                radioType={radioType}
-                initValue={initValue}
-                onChange={radioChange}
-                coverStyle={coverStyle}
-                disabled={disabled}
-                className={className}
-                labelNumber={labelNumber}
-              >
-                <div className={`${allPrefixCls}-title`}>
-                  {required && hasStar && (
-                    <div className={`${allPrefixCls}-redStar`}>*</div>
-                  )}
-                  <div>{title}</div>
-                </div>
-              </NomarRadioGroup>
-            </Field>
-          </div>
-        </React.Fragment>
-      )}
-    </div>
+          </NomarRadioGroup>
+        </Field>
+      </div>
+    </Title>
   );
 };
 

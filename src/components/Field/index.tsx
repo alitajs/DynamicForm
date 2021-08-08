@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import Form, { Field, useForm } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
-import { allPrefixCls } from '../../const/index';
 import '../../styles/index.less';
 
 const CustomField: FC<FieldProps> = (props: any) => {

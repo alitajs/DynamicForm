@@ -25,8 +25,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     level,
     placeholderList = [],
     initValue = undefined,
-    required = false,
-    hasStar = true,
+    children,
     labelNumber = 5,
     coverStyle,
     onClick,
@@ -242,10 +241,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         onClick={inputClick}
         fieldProps={fieldProps}
       >
-        {required && hasStar && (
-          <span className="alitajs-dform-redStar">*</span>
-        )}
-        <span className="alitajs-dform-title">{title}</span>
+        {children}
       </TextItem>
       <Modal
         popup

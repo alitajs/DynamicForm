@@ -4,6 +4,7 @@ import Field from '../Field';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../DynamicForm';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 
 interface INomarCheckBoxProps {
@@ -65,42 +66,42 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}-item`}>
-      {!hidden && (
-        <div className="alitajs-dform-check-box">
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            shouldUpdate={(prevValue: any, nextValue: any) => {
-              if (nextValue && nextValue[fieldProps]) {
-                setInitValue(JSON.stringify(nextValue[fieldProps]));
-              } else {
-                setInitValue(undefined);
-              }
-              // setInitValue(nextValue && nextValue[fieldProps as any]);
-              return prevValue !== nextValue;
-            }}
-          >
-            <CheckBoxGroup
-              disableItem={props.disableItem}
-              data={aliasData}
-              onChange={boxChange}
-              coverStyle={coverStyle}
-              initValue={initValue}
-              disabled={disabled}
-              chunk={chunk}
-              className={className}
-            />
-          </Field>
-        </div>
-      )}
-    </div>
+    <Title
+      positionType="vertical"
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra=""
+    >
+      <div className={`${allPrefixCls}-check-box`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            if (nextValue && nextValue[fieldProps]) {
+              setInitValue(JSON.stringify(nextValue[fieldProps]));
+            } else {
+              setInitValue(undefined);
+            }
+            // setInitValue(nextValue && nextValue[fieldProps as any]);
+            return prevValue !== nextValue;
+          }}
+        >
+          <CheckBoxGroup
+            disableItem={props.disableItem}
+            data={aliasData}
+            onChange={boxChange}
+            coverStyle={coverStyle}
+            initValue={initValue}
+            disabled={disabled}
+            chunk={chunk}
+            className={className}
+          />
+        </Field>
+      </div>
+    </Title>
   );
 };
 

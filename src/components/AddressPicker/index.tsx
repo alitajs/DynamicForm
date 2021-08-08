@@ -4,6 +4,7 @@ import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps, valueProps } from './interface';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
@@ -32,49 +33,38 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div
-              className={classnames({
-                [`${allPrefixCls}-title`]: true,
-                [`${allPrefixCls}-vertical-title`]: true,
-              })}
-            >
-              {required && hasStar && (
-                <div className={`${allPrefixCls}-redStar`}>*</div>
-              )}
-              <div>{title}</div>
-              {subTitle}
-              {extra !== '' && isVertical && (
-                <div className={`${allPrefixCls}-extra`}>{extra}</div>
-              )}
-            </div>
-          )}
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            shouldUpdate={(prevValue: any, nextValue: any) => {
-              // if (nextValue && nextValue[fieldProps] && prevValue !== nextValue) {
-              //   setInitValue(JSON.stringify(nextValue[fieldProps]));
-              // } else {
-              //   setInitValue(undefined);
-              // }
-              setInitValue(nextValue && nextValue[fieldProps as any]);
-              return prevValue !== nextValue;
-            }}
-          >
-            <AddressPickerGroup
-              {...props}
-              extra={isVertical ? '' : extra}
-              initValue={initValue}
-              onChange={fieldChange}
-            />
-          </Field>
-        </React.Fragment>
-      )}
-    </div>
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+    >
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          setInitValue(nextValue && nextValue[fieldProps as any]);
+          return prevValue !== nextValue;
+        }}
+      >
+        <AddressPickerGroup
+          {...props}
+          extra={isVertical ? '' : extra}
+          initValue={initValue}
+          onChange={fieldChange}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </AddressPickerGroup>
+      </Field>
+    </Title>
   );
 };
 

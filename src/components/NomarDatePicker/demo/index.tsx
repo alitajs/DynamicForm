@@ -70,13 +70,13 @@ const Page: FC = () => {
     onFinishFailed,
     data: formsData,
     formsValues,
-    isDev: true,
+    isDev: false,
   };
 
   return (
     <>
       <DynamicForm {...formProps} />
-      <WhiteSpace size="sm" />
+      <WhiteSpace size="lg" />
       <Button
         type="primary"
         onClick={() => {

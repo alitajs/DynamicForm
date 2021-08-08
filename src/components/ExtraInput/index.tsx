@@ -7,6 +7,7 @@ import Field from '../Field';
 import { StringAndUdfEvent } from '../../PropsType';
 import { InputItem } from '..';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 
 export interface IExtraInputProps {
@@ -94,75 +95,65 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div
-              className={classnames({
-                [`${allPrefixCls}-title`]: true,
-                [`${allPrefixCls}-vertical-title`]: true,
-              })}
-            >
-              {required && hasStar && (
-                <div className={`${allPrefixCls}-redStar`}>*</div>
-              )}
-              <div>{title}</div>
-              {subTitle}
-            </div>
-          )}
-          <div
-            className={classnames({
-              [`${allPrefixCls}-extra-input`]: true,
-              [`${allPrefixCls}-extra-horizontal`]: !isVertical,
-            })}
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra=""
+    >
+      <div
+        className={classnames({
+          [`${allPrefixCls}-extra-input`]: true,
+          [`${allPrefixCls}-extra-horizontal`]: !isVertical,
+        })}
+      >
+        <div
+          className={`${allPrefixCls}-begin${
+            isVertical ? '-vertical' : ''
+          }-input`}
+        >
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请输入${title}` }]}
           >
-            <div
-              className={`${allPrefixCls}-begin${
-                isVertical ? '-vertical' : ''
-              }-input`}
+            <InputItem
+              {...firstProps}
+              extra=""
+              coverStyle={{
+                textAlign: 'center',
+                ...coverStyle,
+              }}
+              onBlur={(val: StringAndUdfEvent) => {
+                inputOnBlur(val);
+              }}
+              isVertical={isVertical}
             >
-              <Field
-                name={fieldProps}
-                rules={rules || [{ required, message: `请输入${title}` }]}
-              >
-                <InputItem
-                  {...firstProps}
-                  extra=""
-                  coverStyle={{
-                    textAlign: 'center',
-                    ...coverStyle,
-                  }}
-                  onBlur={(val: StringAndUdfEvent) => {
-                    inputOnBlur(val);
-                  }}
-                  isVertical={isVertical}
-                >
-                  {!isVertical && (
-                    <div className={`${allPrefixCls}-title`}>
-                      {required && hasStar && (
-                        <div className={`${allPrefixCls}-redStar`}>*</div>
-                      )}
-                      <div>{title}</div>
-                    </div>
+              {!isVertical && (
+                <div className={`${allPrefixCls}-title`}>
+                  {required && hasStar && (
+                    <div className={`${allPrefixCls}-redStar`}>*</div>
                   )}
-                </InputItem>
-              </Field>
-            </div>
-            {extraType === 'input' && (
-              <div className={`${allPrefixCls}-line`}>~</div>
-            )}
-            <div
-              className={`${allPrefixCls}-end${
-                isVertical ? '-vertical' : ''
-              }-input`}
-            >
-              {extraDiv()}
-            </div>
-          </div>
-        </React.Fragment>
-      )}
-    </div>
+                  <div>{title}</div>
+                </div>
+              )}
+            </InputItem>
+          </Field>
+        </div>
+        {extraType === 'input' && (
+          <div className={`${allPrefixCls}-line`}>~</div>
+        )}
+        <div
+          className={`${allPrefixCls}-end${
+            isVertical ? '-vertical' : ''
+          }-input`}
+        >
+          {extraDiv()}
+        </div>
+      </div>
+    </Title>
   );
 };
 
