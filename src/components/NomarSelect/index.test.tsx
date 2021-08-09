@@ -2,9 +2,10 @@ import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarSelect from './index';
-import DynamicForm, { IFormItemProps } from '../../';
-import { Button } from 'antd-mobile';
-//选择季节
+import BasicText from './testDemo/basic'
+import CoupletText from './testDemo/couplet'
+
+// //选择季节
 const seasons = [
   [
     {
@@ -27,19 +28,6 @@ const seasons = [
     },
   ],
 ];
-//选择城市
-const citys = [
-  [
-    {
-      label: '福州',
-      value: '福州',
-    },
-    {
-      label: '厦门',
-      value: '厦门',
-    },
-  ],
-]
 
 const myProps = {
   type: 'select',
@@ -48,29 +36,6 @@ const myProps = {
   placeholder: '请选择',
   data: seasons,
 }
-const formsValues = {
-  userPicker2: ['厦门'],
-  // userPicker3: ['福州'],
-};
-
-const formsData = [
-  {
-    type: 'select',
-    fieldProps: 'userPicker1',
-    title: '季节',
-    placeholder: '请选择',
-    data: seasons,
-  },
-  {
-    type: 'select',
-    fieldProps: 'userPicker2',
-    required: true,
-    title: '城市(不可编辑)',
-    placeholder: '请选择',
-    data: citys,
-    disabled: true,
-  },
-] as IFormItemProps[]
 
 it('passes picker a11y test', async () => {
   const { container, getByText } = render(
@@ -87,31 +52,8 @@ it('passes picker a11y test', async () => {
 test('renders Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
-
-  function Basic({ onFinish, onFinishFailed }: any) {
-    const [form] = Form.useForm();
-    // const [formsValues] = React.useState(myProps)
-    const formProps = {
-      form,
-      onFinish,
-      onFinishFailed,
-      formsValues,
-      data: formsData,
-      autoLineFeed: false,
-      isDev: true,
-    };
-    return (
-      <>
-        <DynamicForm {...formProps}></DynamicForm>
-        <Button type="primary" onClick={() => form.submit()}>
-          Submit
-        </Button>
-      </>
-    )
-  }
-
   const { getByText } = render(
-    <Basic onFinish={onFinish} onFinishFailed={onFinishFailed}></Basic>,
+    <BasicText onFinish={onFinish} onFinishFailed={onFinishFailed} />
   );
   //第一个选择季节
   fireEvent.click(getByText("请选择"));
@@ -126,9 +68,20 @@ test('renders Basic', async () => {
   })
   //选择城市
   fireEvent.click(getByText("厦门"));
-  // expect(getByText('确定')).toHaveClass("am-picker-popup-header-right");
-  // expect(getByText('福州')).toHaveClass("am-picker-col-item");
-  // fireEvent.click(getByText('福州'));
-  // fireEvent.click(getByText('确定'));
   fireEvent.click(getByText("Submit"));
 })
+
+test('render couplet', async () => {
+  const { getByText } = render(<CoupletText />);
+  expect(getByText('请选择延迟赋值'));
+  await sleep(1100);
+  expect(getByText('上海'));
+  fireEvent.click(getByText('delayValue值改为北京'));
+  expect(getByText('北京'));
+  fireEvent.click(getByText('请选择改值后及联'));
+  fireEvent.click(getByText('确定'));
+  expect(getByText('福州'));
+  await sleep(2100);
+  expect(getByText('杭州'));
+});
+
