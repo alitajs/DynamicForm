@@ -1,15 +1,12 @@
 import React, { FC } from 'react';
-import { Picker, List } from 'antd-mobile';
-import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
-import { Rule } from 'rc-field-form/es/interface';
-import classnames from 'classnames';
+import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 import Title from '../Title';
 import './index.less';
 import { INomarSelectProps } from './interface'
 import SelectGroup from './NomarSelectGroup';
-import { PickerData } from 'antd-mobile/lib/picker/PropsType';
+
 
 const NomarPicker: FC<INomarSelectProps> = (props) => {
   const {
@@ -32,7 +29,7 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
-  const [initValue, setInitValue] = React.useState();
+  let [initValue, setInitValue] = React.useState<any>();
   const [aliasData, setAliasData] = React.useState<any[]>([]);
 
   React.useEffect(() => {
@@ -70,8 +67,8 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
-          // let mystr:string = nextValue && nextValue[fieldProps as any]
-          setInitValue(nextValue && nextValue[fieldProps as any])
+          initValue = (nextValue && nextValue[fieldProps as any])
+          setInitValue(initValue)
           // setInitValue(mystr.split(","));
           return prevValue !== nextValue;
         }}
