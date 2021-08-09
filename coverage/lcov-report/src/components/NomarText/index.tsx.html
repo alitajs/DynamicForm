@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -147,19 +147,7 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,7 +173,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,19 +197,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,6 +243,7 @@ import classnames from 'classnames';
 import Field from '../Field';
 import { TextItem } from '../..';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 &nbsp;
 export interface INomarTextProps {
   positionType?: 'vertical' | 'horizontal';
@@ -310,55 +287,42 @@ const NomarText: FC&lt;INomarTextProps&gt; = <span class="fstat-no" title="funct
   const isVertical = <span class="cstat-no" title="statement not covered" >positionType === 'vertical';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}&gt;
-      {!hidden &amp;&amp; (
-        &lt;React.Fragment&gt;
-          {isVertical &amp;&amp; (
-            &lt;div
-              className={classnames({
-                [`${allPrefixCls}-title`]: true,
-                [`${allPrefixCls}-vertical-title`]: true,
-              })}
-            &gt;
-              {required &amp;&amp; hasStar &amp;&amp; (
-                &lt;div className={`${allPrefixCls}-redStar`}&gt;*&lt;/div&gt;
-              )}
-              &lt;div&gt;{title}&lt;/div&gt;
-              {subTitle}
-              {extra !== '' &amp;&amp; isVertical &amp;&amp; (
-                &lt;div className={`${allPrefixCls}-extra`}&gt;{extra}&lt;/div&gt;
-              )}
-            &lt;/div&gt;
-          )}
-          &lt;Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请输入${title}` }]}
-          &gt;
-            &lt;TextItem
-              placeholder={placeholder}
-              value="123"
-              extra={extra}
-              coverStyle={coverStyle}
-              isVertical={isVertical}
-              labelNumber={labelNumber}
-              onClick={onClick}
-              disabled={disabled}
-              maxLine={maxLine}
-              fieldProps={fieldProps}
-              className={className}
-              arrow={false}
-            &gt;
-              &lt;div className={`${allPrefixCls}-title`}&gt;
-                {required &amp;&amp; hasStar &amp;&amp; (
-                  &lt;div className={`${allPrefixCls}-redStar`}&gt;*&lt;/div&gt;
-                )}
-                &lt;div&gt;{title}&lt;/div&gt;
-              &lt;/div&gt;
-            &lt;/TextItem&gt;
-          &lt;/Field&gt;
-        &lt;/React.Fragment&gt;
-      )}
-    &lt;/div&gt;
+    &lt;Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+    &gt;
+      &lt;Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请输入${title}` }]}
+      &gt;
+        &lt;TextItem
+          placeholder={placeholder}
+          value="123"
+          extra={extra}
+          coverStyle={coverStyle}
+          isVertical={isVertical}
+          labelNumber={labelNumber}
+          onClick={onClick}
+          disabled={disabled}
+          maxLine={maxLine}
+          fieldProps={fieldProps}
+          className={className}
+          arrow={false}
+        &gt;
+          &lt;div className={`${allPrefixCls}-title`}&gt;
+            {required &amp;&amp; hasStar &amp;&amp; (
+              &lt;div className={`${allPrefixCls}-redStar`}&gt;*&lt;/div&gt;
+            )}
+            &lt;div&gt;{title}&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/TextItem&gt;
+      &lt;/Field&gt;
+    &lt;/Title&gt;
   );
 };
 &nbsp;
@@ -370,7 +334,7 @@ export default NomarText;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Aug 09 2021 09:32:13 GMT+0800 (中国标准时间)
+                at Mon Aug 09 2021 09:51:35 GMT+0800 (中国标准时间)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

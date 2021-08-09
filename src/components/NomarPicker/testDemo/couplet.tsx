@@ -6,7 +6,7 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
-} from '@alitajs/dform';
+} from '../../../index';
 
 const pickerData = [
   {

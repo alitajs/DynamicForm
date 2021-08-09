@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -167,19 +167,7 @@
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
 <a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a>
-<a name='L123'></a><a href='#L123'>123</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,7 +192,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,17 +253,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,8 +268,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,6 +284,7 @@ import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
+import Title from '../Title';
 import './index.less';
 &nbsp;
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -365,60 +342,47 @@ const NomarTextArea: FC&lt;INomarTextAreaProps&gt; = <span class="fstat-no" titl
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}&gt;
-      {!hidden &amp;&amp; (
-        &lt;React.Fragment&gt;
-          {isVertical &amp;&amp; (
-            &lt;div
-              className={classnames({
-                [`${allPrefixCls}-title`]: true,
-                [`${allPrefixCls}-vertical-title`]: true,
-              })}
-            &gt;
-              {required &amp;&amp; hasStar &amp;&amp; (
-                &lt;div className={`${allPrefixCls}-redStar`}&gt;*&lt;/div&gt;
-              )}
-              &lt;div&gt;{title}&lt;/div&gt;
-              {subTitle}
-              {extra !== '' &amp;&amp; isVertical &amp;&amp; (
-                &lt;div className={`${allPrefixCls}-extra`}&gt;{extra}&lt;/div&gt;
-              )}
-            &lt;/div&gt;
-          )}
-          &lt;div
-            className={classnames({
-              [`${allPrefixCls}-area`]: true,
-              [`${allPrefixCls}-vertical-area`]: isVertical,
-              [`${allPrefixCls}-disabled`]: !editable,
-            })}
-          &gt;
-            &lt;Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请输入${title}` }]}
-              shouldUpdate={<span class="fstat-no" title="function not covered" >(p</span>revValue: any, nextValue: any) =&gt; {
-                // if (autoFocusInst) autoFocusInst.focus();
-<span class="cstat-no" title="statement not covered" >                return prevValue !== nextValue;</span>
-              }}
-            &gt;
-              &lt;TextareaItem
-                {...otherProps}
-                title={titleDiv()}
-                editable={editable}
-                style={{
-                  textAlign: rows === 1 ? 'right' : 'left',
-                  ...coverStyle,
-                }}
-                className={className}
-                rows={rows}
-                onBlur={<span class="fstat-no" title="function not covered" >(v</span>al) =&gt; {
-<span class="cstat-no" title="statement not covered" >                  inputOnBlur(val);</span>
-                }}
-              /&gt;
-            &lt;/Field&gt;
-          &lt;/div&gt;
-        &lt;/React.Fragment&gt;
-      )}
-    &lt;/div&gt;
+    &lt;Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+    &gt;
+      &lt;div
+        className={classnames({
+          [`${allPrefixCls}-area`]: true,
+          [`${allPrefixCls}-vertical-area`]: isVertical,
+          [`${allPrefixCls}-disabled`]: !editable,
+        })}
+      &gt;
+        &lt;Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请输入${title}` }]}
+          shouldUpdate={<span class="fstat-no" title="function not covered" >(p</span>revValue: any, nextValue: any) =&gt; {
+            // if (autoFocusInst) autoFocusInst.focus();
+<span class="cstat-no" title="statement not covered" >            return prevValue !== nextValue;</span>
+          }}
+        &gt;
+          &lt;TextareaItem
+            {...otherProps}
+            title={titleDiv()}
+            editable={editable}
+            style={{
+              textAlign: rows === 1 ? 'right' : 'left',
+              ...coverStyle,
+            }}
+            className={className}
+            rows={rows}
+            onBlur={<span class="fstat-no" title="function not covered" >(v</span>al) =&gt; {
+<span class="cstat-no" title="statement not covered" >              inputOnBlur(val);</span>
+            }}
+          /&gt;
+        &lt;/Field&gt;
+      &lt;/div&gt;
+    &lt;/Title&gt;
   );
 };
 &nbsp;
@@ -430,7 +394,7 @@ export default NomarTextArea;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Aug 09 2021 09:32:13 GMT+0800 (中国标准时间)
+                at Mon Aug 09 2021 09:51:35 GMT+0800 (中国标准时间)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

@@ -279,12 +279,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -295,127 +295,127 @@
  * title: 基础 选择框
  * desc: 表单使用 demo
  */
-import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
-&nbsp;
-const seasons = <span class="cstat-no" title="statement not covered" >[</span>
-  [
-    {
-      label: '2013',
-      value: '2013',
-    },
-    {
-      label: '2014',
-      value: '2014',
-    },
-  ],
-  [
-    {
-      label: '春',
-      value: '春',
-    },
-    {
-      label: '夏',
-      value: '夏',
-    },
-  ],
-];
-&nbsp;
-const citys = <span class="cstat-no" title="statement not covered" >[</span>
-  [
-    {
-      label: '福州',
-      value: '福州',
-    },
-    {
-      label: '厦门',
-      value: '厦门',
-    },
-  ],
-];
-&nbsp;
-interface PageProps {}
-&nbsp;
-const Page: FC&lt;PageProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-  const [form] = <span class="cstat-no" title="statement not covered" >useForm();</span>
-  const onFinish = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alues: Store) =&gt; {</span>
-    // eslint-disable-next-line no-console
-<span class="cstat-no" title="statement not covered" >    console.log('Success:', values);</span>
-  };
-  const onFinishFailed = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>rrorInfo: ValidateErrorEntity) =&gt; {</span>
-    // eslint-disable-next-line no-console
-<span class="cstat-no" title="statement not covered" >    console.log(errorInfo);</span>
-  };
-  const formsData = <span class="cstat-no" title="statement not covered" >[</span>
-    {
-      type: 'select',
-      fieldProps: 'userPicker1',
-      title: '季节',
-      placeholder: '请选择',
-      data: seasons,
-    },
-    {
-      type: 'select',
-      fieldProps: 'userPicker2',
-      required: true,
-      title: '城市',
-      placeholder: '请选择',
-      data: citys,
-    },
-    {
-      type: 'select',
-      fieldProps: 'userPicker3',
-      required: true,
-      title: '城市(不可编辑)',
-      placeholder: '请选择',
-      data: citys,
-      disabled: true,
-    },
-    {
-      type: 'select',
-      fieldProps: 'verticalPicker',
-      title: '季节',
-      placeholder: '请选择',
-      data: seasons,
-      positionType: 'vertical',
-    },
-  ] as IFormItemProps[];
-&nbsp;
-  const formsValues = <span class="cstat-no" title="statement not covered" >{</span>
-    userPicker2: ['厦门'],
-    userPicker3: ['福州'],
-  };
-&nbsp;
-  const formProps = <span class="cstat-no" title="statement not covered" >{</span>
-    form,
-    onFinish,
-    onFinishFailed,
-    formsValues,
-    data: formsData,
-    isDev: true,
-  };
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;&gt;
-      &lt;DynamicForm {...formProps} /&gt;
-      &lt;WhiteSpace size="sm" /&gt;
-      &lt;Button type="primary" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >form.submit()}</span>&gt;
-        Submit
-      &lt;/Button&gt;
-    &lt;/&gt;
-  );
-};
-&nbsp;
-export default Page;
-&nbsp;</pre></td></tr></table></pre>
+ import React, { FC } from 'react';
+ import { Button, WhiteSpace } from 'antd-mobile';
+ import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+ 
+ const seasons = <span class="cstat-no" title="statement not covered" >[</span>
+   [
+     {
+       label: '2013',
+       value: '2013',
+     },
+     {
+       label: '2014',
+       value: '2014',
+     },
+   ],
+   [
+     {
+       label: '春',
+       value: '春',
+     },
+     {
+       label: '夏',
+       value: '夏',
+     },
+   ],
+ ];
+ 
+ const citys = <span class="cstat-no" title="statement not covered" >[</span>
+   [
+     {
+       label: '福州',
+       value: '福州',
+     },
+     {
+       label: '厦门',
+       value: '厦门',
+     },
+   ],
+ ];
+ 
+ interface PageProps {}
+ 
+ const Page: FC&lt;PageProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+   const [form] = <span class="cstat-no" title="statement not covered" >useForm();</span>
+   const onFinish = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alues: Store) =&gt; {</span>
+     // eslint-disable-next-line no-console
+<span class="cstat-no" title="statement not covered" >     console.log('Success:', values);</span>
+   };
+   const onFinishFailed = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>rrorInfo: ValidateErrorEntity) =&gt; {</span>
+     // eslint-disable-next-line no-console
+<span class="cstat-no" title="statement not covered" >     console.log(errorInfo);</span>
+   };
+   const formsData = <span class="cstat-no" title="statement not covered" >[</span>
+     {
+       type: 'select',
+       fieldProps: 'userPicker1',
+       title: '季节',
+       placeholder: '请选择',
+       data: seasons,
+     },
+     {
+       type: 'select',
+       fieldProps: 'userPicker2',
+       required: true,
+       title: '城市',
+       placeholder: '请选择',
+       data: citys,
+     },
+     {
+       type: 'select',
+       fieldProps: 'userPicker3',
+       required: true,
+       title: '城市(不可编辑)',
+       placeholder: '请选择',
+       data: citys,
+       disabled: true,
+     },
+     {
+       type: 'select',
+       fieldProps: 'verticalPicker',
+       title: '季节',
+       placeholder: '请选择',
+       data: seasons,
+       positionType: 'vertical',
+     },
+   ] as IFormItemProps[];
+ 
+   const formsValues = <span class="cstat-no" title="statement not covered" >{</span>
+     userPicker2: ['厦门'],
+     userPicker3: ['福州'],
+   };
+ 
+   const formProps = <span class="cstat-no" title="statement not covered" >{</span>
+     form,
+     onFinish,
+     onFinishFailed,
+     formsValues,
+     data: formsData,
+     autoLineFeed: false,
+     isDev: true,
+   };
+ 
+<span class="cstat-no" title="statement not covered" >   return (</span>
+     &lt;&gt;
+       &lt;DynamicForm {...formProps} /&gt;
+       &lt;WhiteSpace size="sm" /&gt;
+       &lt;Button type="primary" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >form.submit()}</span>&gt;
+         Submit
+       &lt;/Button&gt;
+     &lt;/&gt;
+   );
+ };
+ 
+ export default Page;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Aug 09 2021 09:32:13 GMT+0800 (中国标准时间)
+                at Mon Aug 09 2021 09:51:35 GMT+0800 (中国标准时间)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>
