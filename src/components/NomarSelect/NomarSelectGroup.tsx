@@ -95,7 +95,6 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
       setPickerLabel('');
     }
   }, [data]);
-
   //打开
   const fieldClick = () => {
     if (onClick) onClick(initValue);
