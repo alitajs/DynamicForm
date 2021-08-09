@@ -39,6 +39,7 @@ const NomarInput: FC<INomarInputProps> = (props) => {
     editable = true,
     className = '',
     disabled = false,
+    defaultValue,
     ...otherProps
   } = props;
 
@@ -62,6 +63,7 @@ const NomarInput: FC<INomarInputProps> = (props) => {
       <Field
         name={fieldProps}
         rules={rules || [{ required, message: `请输入${title}` }]}
+        initialValue={defaultValue}
       >
         <InputItem
           {...otherProps}
