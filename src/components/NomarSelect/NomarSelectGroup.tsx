@@ -63,11 +63,11 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
       setPickerLabel(initValue)
     }
     let allDate: any = [];
-    // let allDate: string = "";
-    for (let myI = 0; myI < data.length; myI++) {
-      let [mydata] = data[myI].filter((item: any) => item?.value === initValue[myI])
+    data.forEach((val: any, index: any) => {
+      let [mydata] = val.filter((item: any) => item?.value === initValue[index])
       allDate.push(mydata.label)
-    }
+    });
+
     if (allDate && allDate.length) {
       setPickerLabel(allDate.join(","));
     } else {
@@ -82,10 +82,11 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     }
     if (data && data.length) {
       let allDate: any = [];
-      for (let myI = 0; myI < data.length; myI++) {
-        let [mydata] = data[myI].filter((item: any) => item?.value === initValue[myI])
+      data.forEach((val: any, index: any) => {
+        let [mydata] = val.filter((item: any) => item?.value === initValue[index])
         allDate.push(mydata?.label)
-      }
+      });
+
       if (allDate && allDate.length) {
         setPickerLabel(allDate.join(""));
       } else {
