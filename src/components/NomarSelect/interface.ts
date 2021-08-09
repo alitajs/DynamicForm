@@ -25,8 +25,9 @@ export interface INomarSelectProps {
     extra?: string | React.ReactNode;
     coverStyle?: React.CSSProperties;
     // initValue?: string | number;
-    onChange?: (currentActiveLink: string | number) => void;
+    onChange?: (event: (string | number)[]) => void;
     labelNumber?: number;
     alias?: IAliasProps;
+    defaultValue? : any;
   }
   
