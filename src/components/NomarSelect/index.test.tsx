@@ -52,13 +52,13 @@ it('passes picker a11y test', async () => {
 test('renders Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
-  const { getByText } = render(
+  const { getByText, getAllByText } = render(
     <BasicText onFinish={onFinish} onFinishFailed={onFinishFailed} />
   );
   //第一个选择季节
-  fireEvent.click(getByText("请选择"));
+  fireEvent.click(getAllByText("请选择")[0]);
   fireEvent.click(getByText("取消"));
-  fireEvent.click(getByText("请选择"));
+  fireEvent.click(getAllByText("请选择")[0]);
   expect(getByText('确定')).toHaveClass("am-picker-popup-header-right");
   fireEvent.click(getByText('2013'))
   fireEvent.click(getByText('春'))
@@ -67,7 +67,6 @@ test('renders Basic', async () => {
     expect(getByText("2013,春")).toHaveClass("alitajs-dform-text-item-text")
   })
   //选择城市
-  fireEvent.click(getByText("厦门"));
   fireEvent.click(getByText("Submit"));
 })
 

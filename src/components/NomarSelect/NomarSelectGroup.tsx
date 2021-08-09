@@ -12,7 +12,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
   //是否显示
   const [visible, setvisible] = useState<boolean>(false);
   // 显示出来的选择数据
-  let [pickerLabel, setPickerLabel] = useState<any>('');
+  const [pickerLabel, setPickerLabel] = useState<any>('');
 
   const {
     disabled = false,
@@ -40,59 +40,62 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-  //数据
-  const [sValue, setSValue] = React.useState<any>();
+  // useEffect(() => {
+  //   if (data.length === 0) {
+  //     setPickerLabel('');
+  //     return;
+  //   } else {
+  //     console.log(data);
+  //     for (let myI = 0; myI < data.length; myI++) {
+  //       const filterList = data.filter((item:any) => item?.value === initValue);
+
+  //     }
+  //     setPickerLabel(initValue)
+  //   }
+
+  // }, [initValue]);
 
   useEffect(() => {
-    // console.log(fieldProps, initValue, preValue);
-    // if (data.length === 0 && initValue) setPreValue(initValue);
     if (data.length === 0) {
-      // onChange(undefined, 'init');
       setPickerLabel('');
       return;
     } else {
-      // console.log(Object.prototype.toString.call(initValue)); 
       setPickerLabel(initValue)
-      pickerLabel = initValue
-      setPickerLabel(setPickerLabel)
     }
+    let allDate: any = [];
     // let allDate: string = "";
-    // for (let myI = 0; myI < data.length; myI++) {
-    //   let mydata = data.filter((item: any) => item?.value === initValue)
-    //   allDate = allDate + "," + mydata
-    // }
-    // if (allDate.length === 0 || allDate.length === data.length) {
-    //   setPickerLabel('');
-    // } else {
-    //   pickerLabel = allDate
-    //   setPickerLabel(pickerLabel)
-    // }
-    // console.log(pickerLabel);
+    for (let myI = 0; myI < data.length; myI++) {
+      let [mydata] = data[myI].filter((item: any) => item?.value === initValue[myI])
+      allDate.push(mydata.label)
+    }
+    if (allDate && allDate.length) {
+      setPickerLabel(allDate.join(","));
+    } else {
+      setPickerLabel("")
+    }
   }, [initValue]);
 
   useEffect(() => {
+    if (data.length == 0) {
+      setPickerLabel('');
+      return
+    }
     if (data && data.length) {
-      const nowValue = initValue;
-      // console.log(data)
-      const filterList = data.filter((item: any) => item?.value === nowValue);
-      // console.log(filterList);
-      if (filterList && filterList.length) {
-        setPickerLabel(filterList[0].label);
-        // if (preValue) onChange(nowValue, 'init');
+      let allDate: any = [];
+      for (let myI = 0; myI < data.length; myI++) {
+        let [mydata] = data[myI].filter((item: any) => item?.value === initValue[myI])
+        allDate.push(mydata?.label)
+      }
+      if (allDate && allDate.length) {
+        setPickerLabel(allDate.join(""));
       } else {
-        // onChange(undefined, 'init');
-        setPickerLabel('');
+        setPickerLabel("");
       }
     } else {
-      // onChange(undefined, 'init');
       setPickerLabel('');
     }
   }, [data]);
 
-  useEffect(() => {
-    if (sValue === undefined) {
-    }
-  }, [sValue])
   //打开
   const fieldClick = () => {
     if (onClick) onClick(initValue);
@@ -124,11 +127,9 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         title={title}
         visible={visible && data.length > 0}
         data={data}
-        // cols={data.length}
         cascade={false}
         value={initValue ? `${initValue}`.split(",") : undefined}
         onOk={onOK}
-        // onChange={v => setSValue(v)}
         onDismiss={() => {
           setvisible(false);
         }}

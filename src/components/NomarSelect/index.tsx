@@ -29,11 +29,10 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
-  let [initValue, setInitValue] = React.useState<any>();
+  const [initValue, setInitValue] = React.useState<any>();
   const [aliasData, setAliasData] = React.useState<any[]>([]);
 
   React.useEffect(() => {
-    // console.log(data)
     let newAllArray: PickerData[] = []
     for (let i = 0; i < data.length; i++) {
       const newData = data[i].map((item: any) => ({
@@ -42,13 +41,11 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
       }));
       newAllArray.push(newData)
     }
-    // console.log(newAllArray)
     setAliasData(newAllArray);
   }, [data]);
 
 
   const fieldChange = (values: any, flag: string) => {
-    // console.log("onChange"+onChange+"数据是："+values);
     if (flag === 'init') return;
     if (onChange && values !== initValue) onChange(values);
   };
@@ -67,9 +64,7 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
-          initValue = (nextValue && nextValue[fieldProps as any])
-          setInitValue(initValue)
-          // setInitValue(mystr.split(","));
+          setInitValue(nextValue && nextValue[fieldProps as any])
           return prevValue !== nextValue;
         }}
       >
