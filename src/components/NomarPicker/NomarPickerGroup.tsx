@@ -35,7 +35,9 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
       setPickerLabel('');
       return;
     }
+    // console.log(data);
     const filterList = data.filter((item) => item?.value === initValue);
+    // console.log(filterList)
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
     } else {
@@ -46,11 +48,14 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   useEffect(() => {
     if (data && data.length) {
       const nowValue = initValue;
-      // if (!initValue && preValue) {
-      //   nowValue = preValue;
-      //   setPreValue(undefined);
-      // }
+        // if (!initValue && preValue) {
+        //   nowValue = preValue;
+        //   setPreValue(undefined);
+        // }
+        // console.log(nowValue);
+        
       const filterList = data.filter((item) => item?.value === nowValue);
+      // console.log(data);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
         // if (preValue) onChange(nowValue, 'init');
@@ -90,6 +95,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
       >
         {children}
       </TextItem>
+      
       <Picker
         title={title}
         visible={visible && data.length > 0}

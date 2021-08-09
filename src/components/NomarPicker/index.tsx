@@ -6,7 +6,8 @@ import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
 import Field from '../Field';
 
-const NomarPicker: FC<INomarPickerProps> = (props) => {
+
+const NomarPicker: FC<INomarPickerProps> = props => {
   const [initValue, setInitValue] = useState(undefined);
   const [aliasData, setAliasData] = useState<any[]>([]);
 
@@ -31,6 +32,7 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
   const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
+
   useEffect(() => {
     const newData = data.map((item: any) => ({
       label: item[label],
@@ -38,7 +40,8 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
     }));
     setAliasData(newData);
   }, [data]);
-
+  // onChange(val[0], 'change');
+  
   const fieldChange = (values: any, flag: string) => {
     if (flag === 'init') return;
     if (onChange && values !== initValue) onChange(values);
