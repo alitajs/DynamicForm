@@ -124,21 +124,22 @@ test('renders Basic', async () => {
   fireEvent.click(getByText('福州市'));
   fireEvent.click(getByText('台江区'));
   fireEvent.click(getByText('确定'));
+  expect(getByText('福建省,福州市,台江区')).toHaveClass(
+    'alitajs-dform-text-item-text',
+  );
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
-    expect(getByText('福建省,福州市,台江区')).toHaveClass(
-      'alitajs-dform-text-item-text',
-    );
-    fireEvent.click(getByText('Submit'));
+    expect(onFinish).toBeCalled();
   });
-  expect(onFinish).toBeCalled();
+
   fireEvent.click(getByText('福建省,福州市,台江区'));
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('确定'));
+  expect(getByText('选择当前居住城市')).toHaveClass(
+    'alitajs-dform-text-item-text',
+  );
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
-    expect(getByText('选择当前居住城市')).toHaveClass(
-      'alitajs-dform-text-item-text',
-    );
-    fireEvent.click(getByText('Submit'));
+    expect(onFinishFailed).toBeCalled();
   });
-  expect(onFinishFailed).toBeCalled();
 });
