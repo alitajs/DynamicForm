@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import React, { FC, useEffect, useState } from 'react';
-import { List } from 'antd-mobile';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import Form from 'rc-field-form';
@@ -14,23 +13,23 @@ import { getByteLen } from './utils';
 import './index.less';
 
 import {
-  NomarInput,
-  NomarSelect,
-  NomarSwitch,
-  NomarTextArea,
-  NomarDatePicker,
+  DformInput,
+  DformSelect,
+  DformSwitch,
+  DformTextArea,
+  DformDatePicker,
   ExtraInput,
   RangeDatePicker,
-  NomarRadio,
-  NomarCheckBox,
+  DformRadio,
+  DformCheckBox,
   CoverRadio,
-  NomarImagePicker,
-  NomarCustom,
+  DformImagePicker,
+  DformCustom,
   MultiplePicker,
   AddressPicker,
-  NomarText,
-  NomarPicker,
-  NomarFile,
+  DformText,
+  DformPicker,
+  DformFile,
 } from './components';
 
 import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
@@ -41,23 +40,23 @@ export interface IAliasProps {
 }
 
 const FormItemType = {
-  input: NomarInput,
-  select: NomarSelect,
-  area: NomarTextArea,
-  date: NomarDatePicker,
-  switch: NomarSwitch,
-  radio: NomarRadio,
+  input: DformInput,
+  select: DformSelect,
+  area: DformTextArea,
+  date: DformDatePicker,
+  switch: DformSwitch,
+  radio: DformRadio,
   extraInput: ExtraInput,
   rangeDatePicker: RangeDatePicker,
-  checkbox: NomarCheckBox,
+  checkbox: DformCheckBox,
   coverRadio: CoverRadio,
-  image: NomarImagePicker,
-  custom: NomarCustom,
+  image: DformImagePicker,
+  custom: DformCustom,
   multiplePicker: MultiplePicker,
   addressPicker: AddressPicker,
-  text: NomarText,
-  picker: NomarPicker,
-  file: NomarFile,
+  text: DformText,
+  picker: DformPicker,
+  file: DformFile,
 } as any;
 
 export interface IFormItemProps {
@@ -131,7 +130,7 @@ export interface IFormItemProps {
 export type DFormData = IFormItemProps[];
 
 export interface IDynamicFormProps {
-  data: DFormData; // 动态表单数据
+  data?: DFormData; // 动态表单数据
   form: FormInstance; // 表单对象
   formsValues?: Store;
   allDisabled?: boolean; // 全部不可交互，展示状态
@@ -292,7 +291,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         }
         onValuesChange={onValuesChange}
       >
-        {rederChildren}
+        {!!data.length && rederChildren}
         {children}
       </Form>
       {isDev && <NewFieldPicker data={data} />}

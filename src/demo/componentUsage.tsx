@@ -1,11 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
 import { WhiteSpace, Button } from 'antd-mobile';
-import {
-  NomarInput,
-  NomarPicker,
-  NomarRadio,
-  NomarDatePicker,
-  Form,
+import DynamicForm, {
+  DformInput,
+  DformPicker,
+  DformRadio,
+  DformDatePicker,
   useForm,
   Store,
   ValidateErrorEntity,
@@ -36,19 +35,10 @@ const UserName: FC = () => {
 
   useEffect(() => {
     setFormsValues({
-      username: '小明',
       sex: 'man',
       motion: ['羽毛球', '乒乓球'],
     });
   }, []);
-
-  useEffect(() => {
-    const vals = form.getFieldsValue();
-    form.setFieldsValue({
-      ...vals,
-      ...formsValues,
-    });
-  }, [formsValues]);
 
   const onFinish = (values: Store) => {
     console.log(values);
@@ -61,24 +51,26 @@ const UserName: FC = () => {
     form,
     onFinish,
     onFinishFailed,
+    formsValues,
   };
 
   return (
     <div>
-      <Form {...formProps}>
-        <NomarInput
+      <DynamicForm {...formProps}>
+        <DformInput
           fieldProps="username"
           required
           placeholder="请输入"
           title="用户名"
+          defaultValue="小红"
         />
-        <NomarRadio fieldProps="sex" title="性别" data={sexData} />
-        <NomarDatePicker
+        <DformRadio fieldProps="sex" title="性别" data={sexData} />
+        <DformDatePicker
           fieldProps="date"
           placeholder="请选择"
           title="出生年月"
         />
-        <NomarPicker
+        <DformPicker
           fieldProps="weather"
           placeholder="请选择"
           title="天气"
@@ -90,7 +82,7 @@ const UserName: FC = () => {
           title="特长"
           data={motionData}
         />
-      </Form>
+      </DynamicForm>
       <WhiteSpace />
       <Button onClick={() => form.submit()}>submit</Button>
     </div>
