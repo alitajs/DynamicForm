@@ -1,6 +1,7 @@
 import { InputEventHandler, StringAndUdfEvent, StringEvent } from '@/PropsType';
 
 export interface IInputItemProps {
+  fieldProps: string;
   isVertical?: boolean;
   value?: string;
   placeholder?: string;

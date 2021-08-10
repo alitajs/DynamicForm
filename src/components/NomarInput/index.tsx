@@ -67,6 +67,7 @@ const NomarInput: FC<INomarInputProps> = (props) => {
       >
         <InputItem
           {...otherProps}
+          fieldProps={fieldProps}
           extra={isVertical ? '' : extra}
           type={inputType}
           editable={editable}

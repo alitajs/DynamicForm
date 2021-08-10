@@ -26,6 +26,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
     type = 'text',
     clear = false,
     maxLength,
+    fieldProps,
   } = props;
 
   const [clearShow, setClearShow] = useState<boolean>(false);
@@ -110,6 +111,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
         <input
           type={inputType}
           value={value}
+          aria-label={fieldProps}
           readOnly={!editable || disabled}
           style={{
             textAlign: isVertical ? 'left' : 'right',
