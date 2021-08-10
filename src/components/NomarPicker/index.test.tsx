@@ -35,8 +35,13 @@ it('passes picker a11y test', async () => {
 test('render Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
+  const onChange = jest.fn();
   const { getByText } = render(
-    <BasicText onFinish={onFinish} onFinishFailed={onFinishFailed} />,
+    <BasicText
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onChange={onChange}
+    />,
   );
   expect(getByText('福州'));
   await waitFor(() => {
@@ -44,7 +49,10 @@ test('render Basic', async () => {
   });
   expect(onFinishFailed).toBeCalled();
   fireEvent.click(getByText('请选择我喜欢的城市'));
+  fireEvent.click(getByText('取消'));
+  fireEvent.click(getByText('请选择我喜欢的城市'));
   fireEvent.click(getByText('确定'));
+  expect(onChange).toBeCalled();
   await waitFor(() => {
     expect(getByText('深圳')).toHaveClass('alitajs-dform-text-item-text');
   });
@@ -52,6 +60,7 @@ test('render Basic', async () => {
     fireEvent.click(getByText('Submit'));
   });
   expect(onFinish).toBeCalled();
+  fireEvent.click(getByText('不可点击'));
 });
 
 test('render couplet', async () => {
@@ -66,4 +75,6 @@ test('render couplet', async () => {
   expect(getByText('福州'));
   await sleep(2100);
   expect(getByText('杭州'));
+  fireEvent.click(getByText('设不存在的值'));
+  expect(getByText('请选择延迟赋数据源'));
 });

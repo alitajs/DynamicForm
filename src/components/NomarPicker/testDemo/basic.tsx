@@ -5,9 +5,10 @@ import DynamicForm, { IFormItemProps, useForm } from '../../../index';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
+  onChange: any;
 }
 
-const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
+const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
 
   const aliasCityList = [
@@ -53,6 +54,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
         label: 'cityId',
         value: 'cityName',
       },
+      onChange: (e) => onChange(e),
     },
     {
       type: 'picker',
@@ -60,6 +62,21 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
       data: cityList,
       title: '选择你喜欢的城市',
       positionType: 'vertical',
+    },
+    {
+      type: 'picker',
+      fieldProps: 'disabledClick',
+      data: cityList,
+      title: 'disabled点击',
+      placeholder: '不可点击',
+      disabled: true,
+    },
+    {
+      type: 'picker',
+      fieldProps: 'noData',
+      data: [],
+      title: '数据源为空',
+      placeholder: '数据源为空',
     },
   ] as IFormItemProps[];
   const formsValues = {

@@ -111,6 +111,16 @@ const Couplet: FC = () => {
       >
         delayValue值改为北京
       </Button>
+      <Button
+        onClick={() => {
+          setFormsValues({
+            ...formsValues,
+            delayData: 'zhangzhou',
+          });
+        }}
+      >
+        设不存在的值
+      </Button>
     </div>
   );
 };
