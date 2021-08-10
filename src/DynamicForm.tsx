@@ -61,23 +61,23 @@ const FormItemType = {
 
 export interface IFormItemProps {
   type:
-  | 'input'
-  | 'select'
-  | 'area'
-  | 'date'
-  | 'switch'
-  | 'extraInput'
-  | 'radio'
-  | 'rangeDatePicker'
-  | 'coverRadio'
-  | 'image'
-  | 'custom'
-  | 'multiplePicker'
-  | 'addressPicker'
-  | 'text'
-  | 'picker'
-  | 'file'
-  | 'checkbox';
+    | 'input'
+    | 'select'
+    | 'area'
+    | 'date'
+    | 'switch'
+    | 'extraInput'
+    | 'radio'
+    | 'rangeDatePicker'
+    | 'coverRadio'
+    | 'image'
+    | 'custom'
+    | 'multiplePicker'
+    | 'addressPicker'
+    | 'text'
+    | 'picker'
+    | 'file'
+    | 'checkbox';
   title: string;
   fieldProps: string;
   required?: boolean;
@@ -175,7 +175,7 @@ export const defaultFailed = (
     const labelNode = document.getElementById(`alita-dform-${fieldKey}`);
     if (labelNode) {
       // labelNode.scrollIntoView(true);
-      labelNode.scrollIntoView?.({
+      labelNode.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
         inline: 'center',
@@ -256,6 +256,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   failScroll = true,
 }) => {
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
+  const [errorValue, setErrorValue] = useState<any>({});
 
   useEffect(() => {
     if (defaultValueFlag) {
@@ -280,19 +281,45 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   // const dFormType = getDFormType(data);
 
   const rederChildren = renderListMain(data, allDisabled, autoLineFeed);
+  const childs = React.Children.toArray(children);
+
   return (
     <>
       <Form
         form={form}
         initialValues={formsValues}
         onFinish={onFinish}
-        onFinishFailed={(errorInfo: ValidateErrorEntity) =>
-          defaultFailed(errorInfo, onFinishFailed, failScroll)
-        }
-        onValuesChange={onValuesChange}
+        onFinishFailed={(errorInfo: ValidateErrorEntity) => {
+          const { errorFields = [] } = errorInfo;
+          const errorObj = {} as any;
+          errorFields.forEach((item: any) => {
+            errorObj[item[`name`][0]] = item[`errors`][0];
+          });
+          setErrorValue(errorObj);
+          defaultFailed(errorInfo, onFinishFailed, failScroll);
+        }}
+        onValuesChange={(values: any) => {
+          const errorObj = { ...errorValue };
+          const key = Object.keys(values)[0];
+          if (errorObj[key]) {
+            errorObj[key] = undefined;
+            setErrorValue(errorObj);
+          }
+          if (onValuesChange) onValuesChange(values);
+        }}
       >
         {!!data.length && rederChildren}
-        {children}
+        {childs &&
+          typeof children === 'function' &&
+          children({ error: errorValue })}
+        {childs &&
+          childs.map((child) => {
+            if (!React.isValidElement(child)) return;
+            return React.cloneElement(child, {
+              ...child.props,
+              errorValue,
+            });
+          })}
       </Form>
       {isDev && <NewFieldPicker data={data} />}
     </>

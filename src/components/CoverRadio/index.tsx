@@ -31,6 +31,7 @@ interface ICoverRadioProps {
   hidden?: boolean;
   alias?: IAliasProps;
   labelNumber?: number;
+  errorValue: { [key: string]: string };
 }
 
 const NomarTab: FC<ICoverRadioProps> = (props) => {
@@ -57,6 +58,7 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
       value: 'value',
     },
     labelNumber = 5,
+    errorValue,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -86,7 +88,9 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
       hasStar={hasStar}
       title={title}
       subTitle={subTitle}
-      extra={''}
+      extra=""
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div
         className={classnames({

@@ -24,6 +24,7 @@ export interface IExtraInputProps {
   secondProps?: any;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  errorValue: { [key: string]: string };
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
@@ -42,6 +43,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     secondProps,
     subTitle,
     hidden = false,
+    errorValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -103,6 +105,8 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra=""
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div
         className={classnames({
@@ -121,6 +125,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           >
             <InputItem
               {...firstProps}
+              fieldProps={fieldProps}
               extra=""
               coverStyle={{
                 textAlign: 'center',

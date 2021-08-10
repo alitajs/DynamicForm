@@ -1,9 +1,7 @@
 import React, { FC, useState } from 'react';
-import classnames from 'classnames';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
-import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
 
 const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
@@ -20,6 +18,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
     hidden = false,
     extra = '',
     onChange,
+    errorValue,
     ...otherProps
   } = props;
 
@@ -40,6 +39,8 @@ const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <Field
         name={fieldProps}

@@ -6,12 +6,11 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
+  DformPicker,
 } from '@alitajs/dform';
-
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -55,35 +54,12 @@ const Page: FC = () => {
     },
   ];
 
-  const formsData = [
-    {
-      type: 'picker',
-      fieldProps: 'myCity',
-      required: true,
-      data: aliasCityList,
-      title: '我喜欢的城市',
-      labelNumber: 7,
-      placeholder: '请选择我喜欢的城市',
-      alias: {
-        label: 'cityId',
-        value: 'cityName',
-      },
-    },
-    {
-      type: 'picker',
-      fieldProps: 'youCity',
-      data: cityList,
-      title: '选择你喜欢的城市',
-      positionType: 'vertical',
-    },
-  ] as IFormItemProps[];
   const formsValues = {
     youCity: 'fuzhou',
   };
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
     autoLineFeed: false,
@@ -91,7 +67,27 @@ const Page: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <DformPicker
+          fieldProps="myCity"
+          required
+          data={aliasCityList}
+          title="我喜欢的城市"
+          labelNumber={7}
+          placeholder="请选择我喜欢的城市"
+          alias={{
+            label: 'cityId',
+            value: 'cityName',
+          }}
+        />
+        <DformPicker
+          fieldProps="youCity"
+          data={cityList}
+          title="选择你喜欢的城市"
+          placeholder="请选择你喜欢的城市"
+          positionType="vertical"
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

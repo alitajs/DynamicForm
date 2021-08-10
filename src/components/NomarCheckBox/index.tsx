@@ -23,6 +23,7 @@ interface INomarCheckBoxProps {
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
+  errorValue?: { [key: string]: string };
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
@@ -46,6 +47,7 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    errorValue,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -74,6 +76,8 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra=""
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div className={`${allPrefixCls}-check-box`}>
         <Field

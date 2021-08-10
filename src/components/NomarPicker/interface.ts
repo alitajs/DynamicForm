@@ -7,7 +7,7 @@ export interface IDataItem {
 }
 
 export interface INomarPickerProps {
-  data: PickerData[];
+  data: IDataItem[];
   fieldProps: string;
   title: string;
   positionType?: 'horizontal' | 'vertical';
@@ -26,4 +26,5 @@ export interface INomarPickerProps {
   alias?: IAliasProps;
   extra?: string | React.ReactNode;
   className?: string;
+  errorValue?: { [key: string]: string };
 }

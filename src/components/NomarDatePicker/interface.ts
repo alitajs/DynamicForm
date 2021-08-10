@@ -15,6 +15,7 @@ export interface INomarDatePickerProps extends PropsType {
   hidden?: boolean;
   labelNumber?: number;
   coverStyle?: CSSProperties;
+  errorValue?: { [key: string]: string };
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {
