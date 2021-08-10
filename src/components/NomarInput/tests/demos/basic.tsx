@@ -1,7 +1,6 @@
 import React, { useState, FC } from 'react';
-import DynamicForm, { DformInput, useForm } from '../../../';
-import PwdIcon from '../../../assets/look.png';
-
+import DynamicForm, { DformInput, useForm } from '../../../..';
+import PwdIcon from '../../../../assets/look.png';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;

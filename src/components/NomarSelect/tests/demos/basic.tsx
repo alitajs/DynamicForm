@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm } from '../../../index';
+import DynamicForm, { IFormItemProps } from '../../../../DynamicForm';
+import { useForm } from 'rc-field-form';
+import DformSelect from '../../';
 
 interface BasicProps {
   onFinish: any;
@@ -81,14 +83,30 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     onFinish,
     onFinishFailed,
     formsValues,
-    data: formsData,
     autoLineFeed: false,
     isDev: true,
   };
 
   return (
     <>
-      <DynamicForm {...formProps}></DynamicForm>
+      <DynamicForm {...formProps}>
+        <DformSelect
+          type='select'
+          fieldProps='userPicker1'
+          title='季节'
+          placeholder='请选择'
+          data={seasons}
+        />
+        <DformSelect
+          type='select'
+          fieldProps='userPicker3'
+          required={true}
+          title='城市(不可编辑)'
+          placeholder='请选择'
+          data={citys}
+          disabled={true}
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

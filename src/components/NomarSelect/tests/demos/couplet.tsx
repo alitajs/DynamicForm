@@ -1,12 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
 import { act } from 'react-dom/test-utils';
 import { Button } from 'antd-mobile';
-import DynamicForm, {
-  IFormItemProps,
-  useForm,
-  Store,
-  ValidateErrorEntity,
-} from '../../../index';
+import DynamicForm, { IFormItemProps, } from '../../../../DynamicForm';
+import { useForm } from 'rc-field-form';
+import { Store, ValidateErrorEntity } from '../../../..'
+
 
 const pickerData = [
   {
@@ -110,16 +108,6 @@ const Couplet: FC = () => {
         }}
       >
         delayValue值改为北京
-      </Button>
-      <Button
-        onClick={() => {
-          setFormsValues({
-            ...formsValues,
-            delayData: 'zhangzhou',
-          });
-        }}
-      >
-        设不存在的值
       </Button>
     </div>
   );

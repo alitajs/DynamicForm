@@ -12,6 +12,7 @@ import DynamicForm, {
   ValidateErrorEntity,
 } from '@alitajs/dform';
 
+
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
