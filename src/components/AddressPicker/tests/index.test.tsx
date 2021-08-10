@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor } from '@alita/test';
 import Form from 'rc-field-form';
-import DynamicForm, { IFormItemProps } from '../../';
+import DynamicForm, { IFormItemProps } from '../../..';
 import CountryList from '@bang88/china-city-data';
 import { Button } from 'antd-mobile';
-import AddressPicker from './';
+import AddressPicker from '..';
 
 const props = {
   type: 'addressPicker',
@@ -14,7 +14,7 @@ const props = {
   level: 3,
   data: [],
   placeholderList: ['请选择省', '请选择市', '请选择区'],
-  onChangeLevel: (values: (string | number)[]) => {},
+  onChangeLevel: (values: (string | number)[]) => { },
 };
 
 interface IAddrDataProps {

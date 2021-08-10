@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Form from 'rc-field-form';
-import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
-import { DformInput } from '../../';
-import BasicText from './testDemo/basic';
+import { render, testA11y, fireEvent, waitFor } from '@alita/test';
+import { DformInput } from '../../..';
+import BasicText from './demos/basic';
 
 it('passes input a11y test', async () => {
   const { getByText, container } = render(
