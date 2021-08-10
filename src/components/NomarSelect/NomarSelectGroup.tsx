@@ -40,20 +40,6 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-  // useEffect(() => {
-  //   if (data.length === 0) {
-  //     setPickerLabel('');
-  //     return;
-  //   } else {
-  //     console.log(data);
-  //     for (let myI = 0; myI < data.length; myI++) {
-  //       const filterList = data.filter((item:any) => item?.value === initValue);
-
-  //     }
-  //     setPickerLabel(initValue)
-  //   }
-
-  // }, [initValue]);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -63,11 +49,13 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
       setPickerLabel(initValue)
     }
     let allDate: any = [];
-    // let allDate: string = "";
-    for (let myI = 0; myI < data.length; myI++) {
-      let [mydata] = data[myI].filter((item: any) => item?.value === initValue[myI])
-      allDate.push(mydata.label)
-    }
+    data.forEach((val: any, index: any) => {
+      let [mydata] = val.filter((item: any) => item?.value === initValue[index])
+      if (mydata === undefined) {
+      } else {
+        allDate.push(mydata.label)
+      }
+    });
     if (allDate && allDate.length) {
       setPickerLabel(allDate.join(","));
     } else {
@@ -82,10 +70,15 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     }
     if (data && data.length) {
       let allDate: any = [];
-      for (let myI = 0; myI < data.length; myI++) {
-        let [mydata] = data[myI].filter((item: any) => item?.value === initValue[myI])
-        allDate.push(mydata?.label)
-      }
+      data.forEach((val: any, index: any) => {
+        let [mydata] = val.filter((item: any) => item?.value === initValue[index])
+        if (mydata === undefined) {
+          // console.log("mydata is undefined");
+        } else {
+          allDate.push(mydata.label)
+        }
+      });
+
       if (allDate && allDate.length) {
         setPickerLabel(allDate.join(""));
       } else {

@@ -4,7 +4,13 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+  DformSelect,
+} from '@alitajs/dform';
 
 const seasons = [
   [
@@ -102,14 +108,50 @@ const Page: FC<PageProps> = () => {
     onFinish,
     onFinishFailed,
     formsValues,
-    data: formsData,
     autoLineFeed: false,
     isDev: true,
   };
 
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps} >
+
+        <DformSelect
+          type='select'
+          fieldProps='userPicker1'
+          title='季节'
+          placeholder='请选择'
+          data={seasons}
+        />
+        <DformSelect
+          type='select'
+          fieldProps='userPicker2'
+          required={true}
+          title='城市'
+          placeholder='请选择'
+          data={citys}
+          onChange={(event) => {
+            console.log(event);
+          }}
+        />
+        <DformSelect
+          type='select'
+          fieldProps='userPicker3'
+          required={true}
+          title='城市(不可编辑)'
+          placeholder='请选择'
+          data={citys}
+          disabled={true}
+        />
+        <DformSelect
+          type='select'
+          fieldProps='verticalPicker'
+          title='季节'
+          placeholder='请选择'
+          data={seasons}
+          positionType='vertical'
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit
