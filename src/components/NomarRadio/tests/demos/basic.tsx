@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, {
-  IFormItemProps,
-  useForm,
-  Store,
-  ValidateErrorEntity,
-  DformRadio
-} from '@alitajs/dform';
+import DynamicForm, { IFormItemProps, } from '../../../../DynamicForm';
+import { useForm } from 'rc-field-form';
+import DformRadio from '../../'
 
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+}
 const radioList = [
   {
     label: '是',
@@ -18,7 +18,6 @@ const radioList = [
     value: 'no',
   },
 ];
-
 const dayList = [
   {
     label: '晴',
@@ -33,7 +32,6 @@ const dayList = [
     value: '雨',
   },
 ];
-
 const foodList = [
   {
     foodName: '宫保鸡丁',
@@ -57,16 +55,11 @@ const foodList = [
   },
 ];
 
-const DfromRadioTextPage: FC = () => {
+const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   const [form] = useForm();
-
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
+  const formsValues = {
+    userRadio3: '雨',
+    userRadio4: '红烧肉',
   };
   const formsData = [
     {
@@ -114,23 +107,18 @@ const DfromRadioTextPage: FC = () => {
       },
     },
   ] as IFormItemProps[];
-
-  const formsValues = {
-    userRadio3: '雨',
-    userRadio4: '红烧肉',
-  };
-
   const formProps = {
-    // data: formsData,
     formsValues,
     form,
     onFinishFailed,
     onFinish,
     isDev: false,
+
   };
+
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps} failScroll={false} >
         <DformRadio
           // type='radio'
           fieldProps='userRadio1'
@@ -180,7 +168,6 @@ const DfromRadioTextPage: FC = () => {
         Submit
       </Button>
     </>
-  );
-};
-
-export default DfromRadioTextPage;
+  )
+}
+export default DfromRadioTestPage;
