@@ -8,6 +8,7 @@ import { StringAndUdfEvent } from '../../PropsType';
 import { InputItem } from '..';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 export interface IExtraInputProps {
@@ -24,7 +25,7 @@ export interface IExtraInputProps {
   secondProps?: any;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
-  errorValue: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {

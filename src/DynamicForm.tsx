@@ -10,6 +10,7 @@ import {
   Rule,
 } from 'rc-field-form/es/interface';
 import { getByteLen } from './utils';
+import { ErrorValueProps } from './PropsType';
 import './index.less';
 
 import {
@@ -142,7 +143,11 @@ export interface IDynamicFormProps {
   failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
 }
 
-export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
+export const getFormItem = (
+  formItem: IFormItemProps,
+  allDisabled: boolean,
+  errorValue: ErrorValueProps,
+) => {
   const {
     type,
     disabled = allDisabled,
@@ -153,7 +158,11 @@ export const getFormItem = (formItem: IFormItemProps, allDisabled: boolean) => {
   return (
     <div key={formItem.fieldProps}>
       {renderHeader}
-      <FormItemComponent {...otherProps} disabled={disabled} />
+      <FormItemComponent
+        {...otherProps}
+        disabled={disabled}
+        errorValue={errorValue}
+      />
     </div>
   );
 };
@@ -230,17 +239,52 @@ const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
     return item;
   });
 
-const renderListMain = (
-  formData: DFormData,
-  allDisabled: boolean,
-  autoLineFeed: boolean,
-) => (
+const renderListMain = ({
+  formData = [],
+  allDisabled = false,
+  autoLineFeed = true,
+  errorValue = {},
+}: {
+  formData: DFormData;
+  allDisabled: boolean;
+  autoLineFeed: boolean;
+  errorValue: ErrorValueProps;
+}) => (
   <>
     {changeData(formData as IFormItemProps[], autoLineFeed).map((item) =>
-      getFormItem(item, allDisabled),
+      getFormItem(item, allDisabled, errorValue),
     )}
   </>
 );
+
+/**
+ * 通过 onFinishFailed 的方法
+ */
+const getAllError = (errorInfo: ValidateErrorEntity) => {
+  const { errorFields = [] } = errorInfo;
+  const errorObj = {} as any;
+  errorFields.forEach((item: any) => {
+    errorObj[item[`name`][0]] = item[`errors`][0];
+  });
+  return errorObj;
+};
+
+/**
+ * 重置错误信息提示
+ */
+const resetErrorField = (
+  errorValue: ErrorValueProps,
+  values: { [key: string]: any },
+) => {
+  const errorObj = { ...errorValue };
+  const key = Object.keys(values)[0];
+  if (errorObj[key]) {
+    errorObj[key] = undefined;
+    return { success: true, errorObj };
+  } else {
+    return { success: false };
+  }
+};
 
 const DynamicForm: FC<IDynamicFormProps> = ({
   children,
@@ -278,9 +322,6 @@ const DynamicForm: FC<IDynamicFormProps> = ({
     form.setFieldsValue(formsValues as Store);
   }, [formsValues]);
 
-  // const dFormType = getDFormType(data);
-
-  const rederChildren = renderListMain(data, allDisabled, autoLineFeed);
   const childs = React.Children.toArray(children);
 
   return (
@@ -290,25 +331,25 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         initialValues={formsValues}
         onFinish={onFinish}
         onFinishFailed={(errorInfo: ValidateErrorEntity) => {
-          const { errorFields = [] } = errorInfo;
-          const errorObj = {} as any;
-          errorFields.forEach((item: any) => {
-            errorObj[item[`name`][0]] = item[`errors`][0];
-          });
-          setErrorValue(errorObj);
+          setErrorValue(getAllError(errorInfo));
           defaultFailed(errorInfo, onFinishFailed, failScroll);
         }}
         onValuesChange={(values: any) => {
-          const errorObj = { ...errorValue };
-          const key = Object.keys(values)[0];
-          if (errorObj[key]) {
-            errorObj[key] = undefined;
-            setErrorValue(errorObj);
-          }
+          const { success = false, errorObj } = resetErrorField(
+            errorValue,
+            values,
+          );
+          if (success) setErrorValue(errorObj);
           if (onValuesChange) onValuesChange(values);
         }}
       >
-        {!!data.length && rederChildren}
+        {!!data.length &&
+          renderListMain({
+            formData: data,
+            allDisabled,
+            autoLineFeed,
+            errorValue,
+          })}
         {childs &&
           typeof children === 'function' &&
           children({ error: errorValue })}

@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import classnames from 'classnames';
 import Field from '../Field';
 import { TextItem } from '../..';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarTextProps {
   positionType?: 'vertical' | 'horizontal';
@@ -23,7 +23,7 @@ export interface INomarTextProps {
   disabled?: boolean;
   maxLine?: number;
   className?: string;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarText: FC<INomarTextProps> = (props) => {

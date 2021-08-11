@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import classnames from 'classnames';
 import Field from '../Field';
 import NomarRadioGroup from './radioGroup';
 import { allPrefixCls } from '../../const/index';
 import { IAliasProps } from '../../DynamicForm';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-radio';
@@ -34,7 +34,7 @@ export interface INomarRadioProps {
   allowUnChecked?: boolean;
   labelNumber?: number;
   extra?: string | React.ReactNode;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarRadio: FC<INomarRadioProps> = (props) => {

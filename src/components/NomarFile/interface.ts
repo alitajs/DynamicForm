@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarFileItemProps {
   id: string | number;
@@ -22,5 +23,5 @@ export interface INomarFileProps {
     id: string | number;
     title: string;
   };
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }

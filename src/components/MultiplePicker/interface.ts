@@ -1,6 +1,7 @@
 import { Rule } from 'rc-field-form/es/interface';
 import React from 'react';
 import { IAliasProps } from '../../DynamicForm';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface IDataItem {
   label: string;
@@ -31,5 +32,5 @@ export interface IMultiplePickerProps {
   alias?: IAliasProps;
   className?: string;
   extra?: string | React.ReactNode;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }

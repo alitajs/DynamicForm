@@ -6,6 +6,7 @@ import { InputItem } from '..';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
@@ -20,7 +21,7 @@ export interface INomarInputProps extends InputItemPropsType {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   className?: string;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarInput: FC<INomarInputProps> = (props) => {

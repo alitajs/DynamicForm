@@ -5,6 +5,7 @@ import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../DynamicForm';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 interface INomarCheckBoxProps {
@@ -23,7 +24,7 @@ interface INomarCheckBoxProps {
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {

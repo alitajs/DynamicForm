@@ -7,6 +7,7 @@ import { changeDateFormat } from '../../utils';
 import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
@@ -20,7 +21,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   firstProps?: PropsType;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {

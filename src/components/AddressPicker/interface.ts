@@ -1,5 +1,6 @@
 import { Rule } from 'rc-field-form/es/interface';
 import { IAliasProps } from '../../DynamicForm';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface IModalData {
   label: string;
@@ -35,7 +36,7 @@ export interface IAddressPickerProps {
   loading?: boolean;
   className?: string;
   alias?: IAliasProps;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 export interface valueProps {

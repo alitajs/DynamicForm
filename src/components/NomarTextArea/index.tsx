@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -22,7 +23,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   hidden?: boolean;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   className?: string;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = (props) => {

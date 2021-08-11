@@ -6,6 +6,7 @@ import Field from '../Field';
 import { IAliasProps } from '../../DynamicForm';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-cover-radio';
@@ -31,7 +32,7 @@ interface ICoverRadioProps {
   hidden?: boolean;
   alias?: IAliasProps;
   labelNumber?: number;
-  errorValue: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarTab: FC<ICoverRadioProps> = (props) => {

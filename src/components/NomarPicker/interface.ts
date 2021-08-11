@@ -1,6 +1,6 @@
 import { Rule } from 'rc-field-form/es/interface';
-import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 import { IAliasProps } from '../../DynamicForm';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface IDataItem {
   [key: string]: string | number;
@@ -26,5 +26,5 @@ export interface INomarPickerProps {
   alias?: IAliasProps;
   extra?: string | React.ReactNode;
   className?: string;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }

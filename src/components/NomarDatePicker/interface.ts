@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import { PropsType } from 'antd-mobile/es/date-picker/index';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarDatePickerProps extends PropsType {
   modeType?: PropsType['mode'];
@@ -15,7 +16,7 @@ export interface INomarDatePickerProps extends PropsType {
   hidden?: boolean;
   labelNumber?: number;
   coverStyle?: CSSProperties;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {

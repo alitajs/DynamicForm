@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
+import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 interface INomarCustomPorps {
@@ -18,7 +19,7 @@ interface INomarCustomPorps {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   extra?: string | React.ReactNode;
-  errorValue?: { [key: string]: string };
+  errorValue?: ErrorValueProps;
 }
 
 const NomarCustom: FC<INomarCustomPorps> = (props) => {
