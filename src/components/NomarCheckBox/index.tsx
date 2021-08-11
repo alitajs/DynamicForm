@@ -81,6 +81,8 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
           rules={rules || [{ required, message: `请选择${title}` }]}
           shouldUpdate={(prevValue: any, nextValue: any) => {
             if (nextValue && nextValue[fieldProps]) {
+              // console.log(nextValue);
+              // console.log(nextValue[fieldProps]);
               setInitValue(JSON.stringify(nextValue[fieldProps]));
             } else {
               setInitValue(undefined);
