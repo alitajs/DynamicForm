@@ -1,12 +1,13 @@
-/**
- * title: 基础 多选框
- * desc: 表单使用 demo
- */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
-import DformCheckBox from '../'
+import DynamicForm, { IFormItemProps } from '../../../../DynamicForm';
+import { useForm } from 'rc-field-form';
+import DformCheckBox from '../../'
 
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+}
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
   { foodId: 'banana', foodName: '香蕉' },
@@ -17,17 +18,8 @@ const fruitsList = [
   { foodId: 'pear', foodName: '香梨' },
 ];
 
-const Page: FC = () => {
+const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
   const formsData = [
     {
       type: 'checkbox',
@@ -44,14 +36,13 @@ const Page: FC = () => {
   ] as IFormItemProps[];
 
   const formsValues = {
-    fruit: ['watermelon', 'orange'],
+    fruit: ['orange'],
   };
 
   const formProps = {
     form,
     onFinish,
     onFinishFailed,
-    // data: formsData,
     formsValues,
     isDev: true,
   };
@@ -59,6 +50,7 @@ const Page: FC = () => {
     <>
       <DynamicForm {...formProps} >
         <DformCheckBox
+          // type= 'checkbox'
           title='喜欢的水果'
           required={true}
           data={fruitsList}
