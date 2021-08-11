@@ -48,17 +48,11 @@ test('renders Basic', async () => {
   expect(getByText('喜欢的水果').parentNode).toHaveClass(
     "alitajs-dform-vertical-title"
   )
-  // await act(async () => {
-  //   await fireEvent.click(getByText('橙子'))
-  // })
   fireEvent.click(getByText('橙子'))
   fireEvent.click(getByText('Submit'))
-  // await waitFor(() => {
-  //   expect(onFinishFailed).toBeCalled();
-  // })
-  // await act(async () => {
-  //   await fireEvent.click(getByText('苹果'))
-  // })
+  await waitFor(() => {
+    expect(onFinishFailed).toBeCalled();
+  })
   fireEvent.click(getByText('苹果'))
   await waitFor(() => {
     expect(getByText('苹果').parentNode?.firstChild).toHaveClass(
@@ -66,9 +60,9 @@ test('renders Basic', async () => {
     )
   })
   fireEvent.click(getByText('Submit'))
-  // await waitFor(() => {
-  //   expect(onFinish).toBeCalled();
-  // })
+  await waitFor(() => {
+    expect(onFinish).toBeCalled();
+  })
 });
 
 test("render couple", async () => {
