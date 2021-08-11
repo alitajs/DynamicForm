@@ -87,11 +87,12 @@ const Page: FC = () => {
           inputType={pwdInputType ? 'password' : 'text'}
         />
         <DformInput
-          fieldProps="userPrice"
-          title="价格"
-          placeholder="0.00"
-          extra="¥"
-          inputType="number"
+          fieldProps="titleTooLong"
+          title="标题名称过长"
+          placeholder="请输入"
+          labelNumber={7}
+          inputType="text"
+          clear
         />
         <DformInput
           fieldProps="defaultValue"
@@ -115,14 +116,6 @@ const Page: FC = () => {
           onClick={() => console.log(form.getFieldsValue())}
         />
         <DformInput
-          fieldProps="titleTooLong"
-          title="标题名称过长"
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-        />
-        <DformInput
           fieldProps="cardNumber"
           title="身份证号码(增加规则)"
           required
@@ -130,15 +123,24 @@ const Page: FC = () => {
           labelNumber={7}
           inputType="text"
           clear
-          subTitle={subTitle()}
           positionType="vertical"
           rules={[
-            { required: true, message: `请输入` },
+            { required: true, message: `请输入身份证号码` },
             {
               pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
               message: '名称只允许包含数字、字母和下划线',
             },
           ]}
+        />
+        <DformInput
+          fieldProps="subTitle"
+          title="副标题"
+          placeholder="请输入"
+          labelNumber={7}
+          inputType="text"
+          clear
+          subTitle={subTitle()}
+          positionType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

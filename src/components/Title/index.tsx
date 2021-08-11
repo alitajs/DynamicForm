@@ -54,6 +54,11 @@ const Title: FC<TitleProps> = ({
           </div>
         )}
         {children}
+        {error && !!error[fieldProps] && (
+          <div className={`${allPrefixCls}-error-text`}>
+            {error[fieldProps]}
+          </div>
+        )}
       </div>
     </Hidden>
   );
