@@ -60,7 +60,6 @@ const Page: FC = () => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    // data: formsData,
     formsValues,
     form,
     autoLineFeed: false,
