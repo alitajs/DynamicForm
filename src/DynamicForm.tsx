@@ -182,7 +182,7 @@ export const defaultFailed = (
   }
   const scrollToField = (fieldKey: any) => {
     const labelNode = document.getElementById(`alita-dform-${fieldKey}`);
-    if (labelNode) {
+    if (labelNode && labelNode.scrollIntoView) {
       // labelNode.scrollIntoView(true);
       labelNode.scrollIntoView({
         behavior: 'smooth',

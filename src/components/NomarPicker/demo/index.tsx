@@ -10,7 +10,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
 } from '@alitajs/dform';
-import DformPicker from '../'
+import DformPicker from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -68,24 +68,36 @@ const Page: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformPicker
-          fieldProps='myCity'
+          fieldProps="myCity"
           required={true}
           data={aliasCityList}
-          title='我喜欢的城市'
+          title="我喜欢的城市"
           labelNumber={7}
-          placeholder='请选择我喜欢的城市'
+          placeholder="请选择我喜欢的城市"
           alias={{
             label: 'cityId',
             value: 'cityName',
           }}
+          // relatives={[
+          //   {
+          //     fieldProps: 'aaa',
+          //     type: 'empty',
+          //     // value: ['woman'],
+          //   },
+          //   {
+          //     fieldProps: 'bbb',
+          //     type: 'hide',
+          //     value: ['woman'],
+          //   },
+          // ]}
         />
         <DformPicker
-          fieldProps='youCity'
+          fieldProps="youCity"
           data={cityList}
-          title='选择你喜欢的城市'
-          positionType='vertical'
+          title="选择你喜欢的城市"
+          positionType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

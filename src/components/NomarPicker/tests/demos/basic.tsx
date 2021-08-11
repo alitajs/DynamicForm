@@ -49,7 +49,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
       data: aliasCityList,
       title: '我喜欢的城市',
       labelNumber: 7,
-      placeholder: '请选择我喜欢的城市',
+      placeholder: '请选择我喜欢的城市placeholder',
       alias: {
         label: 'cityId',
         value: 'cityName',
