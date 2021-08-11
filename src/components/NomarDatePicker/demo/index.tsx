@@ -11,6 +11,7 @@ import DynamicForm, {
   ValidateErrorEntity,
   dateChange,
 } from '@alitajs/dform';
+import DformDate from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -24,40 +25,6 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const formsData = [
-    {
-      type: 'date',
-      fieldProps: 'Date',
-      modeType: 'date',
-      title: 'Date',
-      disabled: true,
-      maxDate: new Date(),
-      minDate: new Date(),
-    },
-    {
-      type: 'date',
-      fieldProps: 'Month',
-      modeType: 'month',
-      title: 'Month',
-      required: true,
-    },
-    {
-      type: 'date',
-      fieldProps: 'DateTime',
-      modeType: 'datetime',
-      title: 'DateTime',
-      required: true,
-    },
-    {
-      type: 'date',
-      fieldProps: 'DateTimeVertical',
-      modeType: 'datetime',
-      title: 'DateTimeVertical',
-      required: true,
-      positionType: 'vertical',
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
     Date: new Date(),
     Month: new Date(),
@@ -68,14 +35,36 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     isDev: false,
   };
 
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <DformDate
+          fieldProps="Date"
+          modeType="date"
+          title="Date"
+          disabled={true}
+          maxDate={new Date()}
+          minDate={new Date()}
+        />
+        <DformDate
+          fieldProps="Month"
+          modeType="month"
+          title="Month"
+          required={true}
+        />
+
+        <DformDate
+          fieldProps="DateTime"
+          modeType="datetime"
+          title="DateTimeVertical"
+          required={true}
+          positionType="vertical"
+        />
+      </DynamicForm>
       <WhiteSpace size="lg" />
       <Button
         type="primary"
