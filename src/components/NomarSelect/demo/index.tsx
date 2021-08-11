@@ -47,7 +47,7 @@ const citys = [
   ],
 ];
 
-interface PageProps { }
+interface PageProps {}
 
 const Page: FC<PageProps> = () => {
   const [form] = useForm();
@@ -75,41 +75,41 @@ const Page: FC<PageProps> = () => {
 
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformSelect
-          type='select'
-          fieldProps='userPicker1'
-          title='季节'
-          placeholder='请选择'
+          type="select"
+          fieldProps="userPicker1"
+          title="季节"
+          placeholder="请选择"
           data={seasons}
         />
         <DformSelect
-          type='select'
-          fieldProps='userPicker2'
+          type="select"
+          fieldProps="userPicker2"
           required={true}
-          title='城市'
-          placeholder='请选择'
+          title="城市"
+          placeholder="请选择"
           data={citys}
           onChange={(event) => {
             console.log(event);
           }}
         />
         <DformSelect
-          type='select'
-          fieldProps='userPicker3'
+          type="select"
+          fieldProps="userPicker3"
           required={true}
-          title='城市(不可编辑)'
-          placeholder='请选择'
+          title="城市(不可编辑)"
+          placeholder="请选择"
           data={citys}
           disabled={true}
         />
         <DformSelect
-          type='select'
-          fieldProps='verticalPicker'
-          title='季节'
-          placeholder='请选择'
+          type="select"
+          fieldProps="verticalPicker"
+          title="季节"
+          placeholder="请选择"
           data={seasons}
-          positionType='vertical'
+          positionType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

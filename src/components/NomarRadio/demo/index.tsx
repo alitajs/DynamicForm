@@ -4,7 +4,7 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
-  DformRadio
+  DformRadio,
 } from '@alitajs/dform';
 
 const radioList = [
@@ -80,41 +80,41 @@ const DfromRadioTextPage: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformRadio
-          fieldProps='userRadio1'
+          fieldProps="userRadio1"
           required={true}
           data={radioList}
-          title='发票'
+          title="发票"
           onChange={(e) => {
-            console.log(e)
+            console.log(e);
           }}
         />
         <DformRadio
-          fieldProps='userRadio2'
+          fieldProps="userRadio2"
           required={true}
           data={radioList}
-          title='内容靠左'
+          title="内容靠左"
           labelNumber={5}
           coverStyle={{
             justifyContent: 'flex-start',
           }}
         />
         <DformRadio
-          fieldProps='userRadio3'
+          fieldProps="userRadio3"
           required={true}
           disabled={true}
           data={dayList}
-          positionType='vertical'
-          title='天气情况'
+          positionType="vertical"
+          title="天气情况"
         />
         <DformRadio
-          fieldProps='userRadio4'
+          fieldProps="userRadio4"
           required={true}
           allowUnChecked={false}
           data={foodList}
-          title='喜欢的食物'
-          radioType='vertical'
+          title="喜欢的食物"
+          radioType="vertical"
           alias={{
             label: 'foodId',
             value: 'foodName',

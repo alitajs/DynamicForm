@@ -1,7 +1,6 @@
 {
-  "private": false,
   "name": "@alitajs/dform",
-  "version": "0.0.2",
+  "version": "3.0.0-alpha.1",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -17,6 +16,13 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "es",
+    "lib"
+  ],
+  "repository": "https://github.com/alitajs/DynamicForm",
+  "license": "MIT",
   "gitHooks": {
     "pre-commit": "lint-staged",
     "commit-msg": "node scripts/verifyCommit.js"

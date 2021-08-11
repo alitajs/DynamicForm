@@ -2,20 +2,28 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   title: '@alitajs/dform',
-  favicon:
-    'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
-  logo: 'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
+  favicon: 'https://avatars.githubusercontent.com/u/49136103?s=200&v=4',
+  logo: 'https://avatars.githubusercontent.com/u/49136103?s=200&v=4',
   outputPath: 'docs-dist',
   mode: 'site',
-  // mfsu: {},
-  // more config: https://d.umijs.org/config
+  scripts: [
+    `setTimeout(function () {
+    var menu = document.getElementsByClassName('__dumi-default-menu')[0];
+    var navbar = document.getElementsByClassName('__dumi-default-navbar')[0];
+    console.log(navbar.offsetHeight)
+    const isMobile = navbar.offsetHeight == 50;
+    if (!isMobile) {
+      var github = document.createElement('p');
+      github.className = 'github';
+      github.style.position = 'absolute';
+      github.style.top = '0';
+      github.style.left = '70px';
+      github.innerHTML = '<object type="image/svg+xml" data="https://img.shields.io/github/stars/alitajs/DynamicForm?style=social"></object>';
+      menu.appendChild(github);
+    }
+  }, 300)`,
+  ],
   theme: {
     '@hd': '0.02rem',
-    // '@alita-dform-title-font-size': '0.3rem',
-    // '@alita-dform-value-color': 'blue',
-    // '@alita-dform-placeholder': '#1DA57A',
-    // '@color-text-disabled': '#FF4D6A',
-    // '@alita-dform-height': '1rem',
-    // '@alita-dform-value-font-size': '0.2rem',
   },
 });

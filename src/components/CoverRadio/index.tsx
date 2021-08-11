@@ -3,7 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
-import { IAliasProps } from '../../DynamicForm';
+import { IAliasProps } from '../DynamicForm';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
 import { ErrorValueProps } from '../../PropsType';
