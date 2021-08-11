@@ -22,4 +22,5 @@ export interface INomarFileProps {
     id: string | number;
     title: string;
   };
+  errorValue?: { [key: string]: string };
 }

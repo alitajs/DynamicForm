@@ -11,6 +11,8 @@ export interface TitleProps {
   title?: string;
   subTitle?: string | React.ReactNode;
   extra?: string | React.ReactNode;
+  error: any;
+  fieldProps: string;
 }
 
 const Title: FC<TitleProps> = ({
@@ -22,11 +24,18 @@ const Title: FC<TitleProps> = ({
   title = '',
   subTitle,
   extra,
+  error,
+  fieldProps,
 }) => {
   const isVertical = positionType === 'vertical';
   return (
     <Hidden hidden={hidden}>
-      <div className={`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`}>
+      <div
+        className={classnames({
+          [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
+          [`${allPrefixCls}-error`]: error && !!error[fieldProps],
+        })}
+      >
         {isVertical && (
           <div
             className={classnames({

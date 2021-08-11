@@ -20,6 +20,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   firstProps?: PropsType;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  errorValue?: { [key: string]: string };
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
@@ -44,6 +45,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     hidden = false,
     labelNumber = 5,
     coverStyle = {},
+    errorValue,
     ...otherProps
   } = props;
 
@@ -58,6 +60,8 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra=""
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div
         className={classnames({

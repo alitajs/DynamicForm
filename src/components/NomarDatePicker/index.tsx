@@ -22,6 +22,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
     disabled = false,
     extra,
     onChange,
+    errorValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -39,6 +40,8 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div
         className={classnames({

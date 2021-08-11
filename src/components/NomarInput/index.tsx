@@ -20,6 +20,7 @@ export interface INomarInputProps extends InputItemPropsType {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   className?: string;
+  errorValue?: { [key: string]: string };
 }
 
 const NomarInput: FC<INomarInputProps> = (props) => {
@@ -40,6 +41,7 @@ const NomarInput: FC<INomarInputProps> = (props) => {
     className = '',
     disabled = false,
     defaultValue,
+    errorValue,
     ...otherProps
   } = props;
 
@@ -59,6 +61,8 @@ const NomarInput: FC<INomarInputProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <Field
         name={fieldProps}

@@ -4,9 +4,8 @@ import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 import Title from '../Title';
 import './index.less';
-import { INomarSelectProps } from './interface'
+import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
-
 
 const NomarPicker: FC<INomarSelectProps> = (props) => {
   const {
@@ -25,25 +24,24 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    errorValue,
   } = props;
 
-  const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
   const [initValue, setInitValue] = React.useState<any>();
   const [aliasData, setAliasData] = React.useState<any[]>([]);
 
   React.useEffect(() => {
-    let newAllArray: PickerData[] = []
+    let newAllArray: PickerData[] = [];
     for (let i = 0; i < data.length; i++) {
       const newData = data[i].map((item: any) => ({
         label: item[label],
         value: item[value],
       }));
-      newAllArray.push(newData)
+      newAllArray.push(newData);
     }
     setAliasData(newAllArray);
   }, [data]);
-
 
   const fieldChange = (values: any, flag: string) => {
     if (flag === 'init') return;
@@ -59,12 +57,14 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <Field
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
-          setInitValue(nextValue && nextValue[fieldProps as any])
+          setInitValue(nextValue && nextValue[fieldProps as any]);
           return prevValue !== nextValue;
         }}
       >

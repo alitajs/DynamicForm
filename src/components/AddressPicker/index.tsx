@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react';
-import classnames from 'classnames';
 import Field from '../Field';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps, valueProps } from './interface';
@@ -20,6 +19,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     subTitle,
     hidden = false,
     extra,
+    errorValue,
     onChange,
   } = props;
 
@@ -41,6 +41,8 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <Field
         name={fieldProps}

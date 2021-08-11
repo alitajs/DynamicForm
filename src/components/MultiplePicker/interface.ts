@@ -31,4 +31,5 @@ export interface IMultiplePickerProps {
   alias?: IAliasProps;
   className?: string;
   extra?: string | React.ReactNode;
+  errorValue?: { [key: string]: string };
 }

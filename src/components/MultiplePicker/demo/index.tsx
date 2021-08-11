@@ -54,7 +54,6 @@ const Page: FC = () => {
       data: foodList,
       title: '我喜欢的食物',
       labelNumber: 7,
-      hidden: true,
       placeholder: '请选择我喜欢的食物',
       onChange: (e: (string | number)[]) => {
         // eslint-disable-next-line no-console

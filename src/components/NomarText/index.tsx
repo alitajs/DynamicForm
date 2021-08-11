@@ -23,6 +23,7 @@ export interface INomarTextProps {
   disabled?: boolean;
   maxLine?: number;
   className?: string;
+  errorValue?: { [key: string]: string };
 }
 
 const NomarText: FC<INomarTextProps> = (props) => {
@@ -43,6 +44,7 @@ const NomarText: FC<INomarTextProps> = (props) => {
     maxLine,
     onClick,
     className = '',
+    errorValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -56,6 +58,8 @@ const NomarText: FC<INomarTextProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <Field
         name={fieldProps}

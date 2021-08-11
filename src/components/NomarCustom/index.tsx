@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
-import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
 import './index.less';
 
@@ -19,6 +18,7 @@ interface INomarCustomPorps {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   extra?: string | React.ReactNode;
+  errorValue?: { [key: string]: string };
 }
 
 const NomarCustom: FC<INomarCustomPorps> = (props) => {
@@ -34,6 +34,7 @@ const NomarCustom: FC<INomarCustomPorps> = (props) => {
     subTitle,
     extra,
     hidden = false,
+    errorValue,
   } = props;
 
   const dom = () => (
@@ -58,6 +59,8 @@ const NomarCustom: FC<INomarCustomPorps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div
         className={classnames({

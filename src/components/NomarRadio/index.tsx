@@ -34,6 +34,7 @@ export interface INomarRadioProps {
   allowUnChecked?: boolean;
   labelNumber?: number;
   extra?: string | React.ReactNode;
+  errorValue?: { [key: string]: string };
 }
 
 const NomarRadio: FC<INomarRadioProps> = (props) => {
@@ -62,6 +63,7 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
     className = '',
     labelNumber = 5,
     extra,
+    errorValue,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -93,6 +95,8 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div className={`${prefixCls}-field`}>
         <Field

@@ -35,7 +35,7 @@ export interface IAddressPickerProps {
   loading?: boolean;
   className?: string;
   alias?: IAliasProps;
-  [key: string]: any;
+  errorValue?: { [key: string]: string };
 }
 
 export interface valueProps {

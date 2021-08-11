@@ -22,6 +22,7 @@ const NomarFile: FC<INomarFileProps> = (props) => {
     extra = <img src={FileIcon} alt="" className={`${prefixCls}-img`} />,
     onChange,
     upload,
+    errorValue,
   } = props;
 
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
@@ -61,6 +62,8 @@ const NomarFile: FC<INomarFileProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extraContent()}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <div className={prefixCls}>
         <Field

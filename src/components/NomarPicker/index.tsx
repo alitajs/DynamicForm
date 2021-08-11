@@ -26,6 +26,7 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    errorValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -52,6 +53,8 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      error={errorValue}
+      fieldProps={fieldProps}
     >
       <Field
         name={fieldProps}
