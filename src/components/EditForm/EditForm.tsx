@@ -6,7 +6,7 @@
 // import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 // import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 
-// import { IFormItemProps } from '../../DynamicForm';
+// import { IFormItemProps } from '../DynamicForm';
 
 // import {
 //   NomarInput,

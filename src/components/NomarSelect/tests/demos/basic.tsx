@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps } from '../../../../DynamicForm';
+import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
 import DformSelect from '../../';
 
@@ -45,7 +45,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
         value: '厦门',
       },
     ],
-  ]
+  ];
 
   const myProps = {
     type: 'select',
@@ -53,7 +53,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     title: '季节',
     placeholder: '请选择',
     data: seasons,
-  }
+  };
   const formsValues = {
     userPicker2: ['厦门'],
     // userPicker3: ['福州'],
@@ -76,7 +76,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
       data: citys,
       disabled: true,
     },
-  ] as IFormItemProps[]
+  ] as IFormItemProps[];
 
   const formProps = {
     form,
@@ -91,18 +91,18 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     <>
       <DynamicForm {...formProps}>
         <DformSelect
-          type='select'
-          fieldProps='userPicker1'
-          title='季节'
-          placeholder='请选择'
+          type="select"
+          fieldProps="userPicker1"
+          title="季节"
+          placeholder="请选择"
           data={seasons}
         />
         <DformSelect
-          type='select'
-          fieldProps='userPicker3'
+          type="select"
+          fieldProps="userPicker3"
           required={true}
-          title='城市(不可编辑)'
-          placeholder='请选择'
+          title="城市(不可编辑)"
+          placeholder="请选择"
           data={citys}
           disabled={true}
         />
@@ -112,7 +112,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
         Submit
       </Button>
     </>
-  )
-}
+  );
+};
 
 export default Page;

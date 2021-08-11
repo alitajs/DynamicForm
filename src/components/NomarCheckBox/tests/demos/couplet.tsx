@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { IFormItemProps } from '../../../../DynamicForm';
 import { useForm } from 'rc-field-form';
-import DformCheckBox from '../../'
+import DformCheckBox from '../../';
 import { act } from 'react-dom/test-utils';
 import { Store, ValidateErrorEntity } from '../../../../index';
 
@@ -16,7 +16,7 @@ const drinksList = [
 const selectList = [
   { foodId: 'all', foodName: '全选' },
   { foodId: 'onlyCola', foodName: '只要可乐' },
-]
+];
 const Couplet: FC = () => {
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -30,49 +30,31 @@ const Couplet: FC = () => {
   const [formsValues, setFormsValues] = React.useState<any>({ fruit: [] });
   React.useEffect(() => {
     setFormsValues({
-      fruit: [
-        ...formsValues.fruit,
-        'milk',
-        'fruitJuice',
-      ]
-    })
+      fruit: [...formsValues.fruit, 'milk', 'fruitJuice'],
+    });
   }, []);
 
   function onChange(e: any) {
     //全部都选
-    if (e.indexOf("all") === 0) {
+    if (e.indexOf('all') === 0) {
       setFormsValues({
-        fruit: [
-          'cola',
-          'sprite',
-          'water',
-          'milk',
-          'fruitJuice',
-        ]
-      })
+        fruit: ['cola', 'sprite', 'water', 'milk', 'fruitJuice'],
+      });
     } else {
-      setFormsValues({ fruit: [] })
+      setFormsValues({ fruit: [] });
     }
     // 只要可乐
-    console.log(e.indexOf("all") + "and" + e.indexOf("onlyCola"));
-    if (e.indexOf("all") === -1 && e.indexOf("onlyCola") === 0) {
+    console.log(e.indexOf('all') + 'and' + e.indexOf('onlyCola'));
+    if (e.indexOf('all') === -1 && e.indexOf('onlyCola') === 0) {
       setFormsValues({
-        fruit: [
-          'cola',
-        ]
-      })
+        fruit: ['cola'],
+      });
     }
     //两个都有
     if (e.length === 2) {
       setFormsValues({
-        fruit: [
-          'cola',
-          'sprite',
-          'water',
-          'milk',
-          'fruitJuice',
-        ]
-      })
+        fruit: ['cola', 'sprite', 'water', 'milk', 'fruitJuice'],
+      });
     }
   }
 
@@ -85,12 +67,12 @@ const Couplet: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformCheckBox
-          title='请选择饮料'
+          title="请选择饮料"
           required={true}
           data={drinksList}
-          fieldProps='fruit'
+          fieldProps="fruit"
           chunk={2}
           alias={{
             label: 'foodName',
@@ -98,19 +80,18 @@ const Couplet: FC = () => {
           }}
         />
         <DformCheckBox
-          title='级联选择饮料'
+          title="级联选择饮料"
           required={true}
           data={selectList}
-          fieldProps='drink'
+          fieldProps="drink"
           chunk={2}
           alias={{
             label: 'foodName',
             value: 'foodId',
           }}
-          onChange={
-            (e) => {
-              onChange(e);
-            }}
+          onChange={(e) => {
+            onChange(e);
+          }}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
@@ -123,6 +104,6 @@ const Couplet: FC = () => {
         Submit
       </Button>
     </>
-  )
-}
+  );
+};
 export default Couplet;

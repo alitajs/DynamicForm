@@ -1,17 +1,12 @@
-/* eslint-disable no-param-reassign */
 import React, { FC, useEffect, useState } from 'react';
-import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
-import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
-import Form from 'rc-field-form';
+import Form, { useForm } from 'rc-field-form';
 import {
   Store,
   FormInstance,
   ValidateErrorEntity,
-  Rule,
 } from 'rc-field-form/es/interface';
-import { getByteLen } from './utils';
-import { ErrorValueProps } from './PropsType';
-import './index.less';
+import { getByteLen } from '../../utils';
+import { ErrorValueProps, IFormItemProps } from '../../PropsType';
 
 import {
   DformInput,
@@ -31,14 +26,9 @@ import {
   DformText,
   DformPicker,
   DformFile,
-} from './components';
+} from '../';
 
-import NewFieldPicker from './components/NewFieldPicker/NewFieldPicker';
-
-export interface IAliasProps {
-  label: string;
-  value: string | number;
-}
+import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 
 const FormItemType = {
   input: DformInput,
@@ -60,74 +50,6 @@ const FormItemType = {
   file: DformFile,
 } as any;
 
-export interface IFormItemProps {
-  type:
-  | 'input'
-  | 'select'
-  | 'area'
-  | 'date'
-  | 'switch'
-  | 'extraInput'
-  | 'radio'
-  | 'rangeDatePicker'
-  | 'coverRadio'
-  | 'image'
-  | 'custom'
-  | 'multiplePicker'
-  | 'addressPicker'
-  | 'text'
-  | 'picker'
-  | 'file'
-  | 'checkbox';
-  title: string;
-  fieldProps: string;
-  required?: boolean;
-  placeholder?: string;
-  disabled?: boolean;
-  data?: any[];
-  inputType?: InputItemPropsType['type'];
-  modeType?: DatePickerPropsType['mode'];
-  fieldProps2?: string;
-  placeholder2?: string;
-  rules?: Rule[];
-  extraType?: 'input' | 'select';
-  editable?: boolean;
-  rows?: number;
-  labelNumber?: number;
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  firstProps?: any;
-  secondProps?: any;
-  radioType?: 'vertical' | 'horizontal';
-  selectable?: boolean;
-  limitSize?: number;
-  CustomDom?: any;
-  customDomProps?: any;
-  subTitle?: string | React.ReactNode;
-  maxValueLength?: number;
-  onBlur?: (value?: string) => void;
-  level?: number;
-  onChangeLevel?: (val: any) => void;
-  placeholderList?: string[];
-  chunk?: number;
-  leftContent?: string | React.ReactNode;
-  rightContent?: string | React.ReactNode;
-  onClick?: any;
-  height?: number | string;
-  noData?: string | React.ReactNode;
-  loading?: boolean;
-  alias?: IAliasProps;
-  maxLine?: number;
-  compressRatio?: number;
-  onChange?: (val: (string | number)[] | string | number | boolean) => void;
-  hidden?: boolean;
-  defaultValue?: any;
-  coverStyle?: React.CSSProperties;
-  renderHeader?: string | React.ReactNode;
-  initKey?: string | number;
-  className?: string;
-}
-
 export type DFormData = IFormItemProps[];
 
 export interface IDynamicFormProps {
@@ -146,7 +68,7 @@ export interface IDynamicFormProps {
 export const getFormItem = (
   formItem: IFormItemProps,
   allDisabled: boolean,
-  errorValue: ErrorValueProps,
+  errorValue?: ErrorValueProps,
 ) => {
   const {
     type,
@@ -183,7 +105,6 @@ export const defaultFailed = (
   const scrollToField = (fieldKey: any) => {
     const labelNode = document.getElementById(`alita-dform-${fieldKey}`);
     if (labelNode && labelNode.scrollIntoView) {
-      // labelNode.scrollIntoView(true);
       labelNode.scrollIntoView?.({
         behavior: 'smooth',
         block: 'center',
@@ -194,29 +115,6 @@ export const defaultFailed = (
   if (failScroll) scrollToField(errorInfo.errorFields[0].name[0]);
   if (onFinishFailed) onFinishFailed(errorInfo);
 };
-
-// /**
-//  * 根据传进来的数据判断 DForm 的类型
-//  * @param data
-//  */
-// export const getDFormType = (data: DFormData): DFormType => {
-//   if (data instanceof Array) {
-//     let isTwoDimensional = false;
-//     let isCardListType = false;
-//     data.forEach((item: IFormItemProps[] | IFormItemProps | CardDForm) => {
-//       if (item instanceof Array) {
-//         isTwoDimensional = true;
-//       } else {
-//         isCardListType = !(item as IFormItemProps).fieldProps;
-//       }
-//     });
-//     if (isTwoDimensional) {
-//       return 'NORMALLIST';
-//     }
-//     return isCardListType ? 'CARDLIST' : 'NORMAL';
-//   }
-//   return 'CARD';
-// };
 
 const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
   oldData.map((item) => {
@@ -350,9 +248,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
             autoLineFeed,
             errorValue,
           })}
-        {childs &&
-          typeof children === 'function' &&
-          children({ error: errorValue })}
+        {childs && typeof children === 'function' && children({ errorValue })}
         {childs &&
           childs.map((child) => {
             if (!React.isValidElement(child)) return;
@@ -367,4 +263,6 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   );
 };
 
+// 为自定义 useForm 预留入口
+export { useForm };
 export default DynamicForm;
