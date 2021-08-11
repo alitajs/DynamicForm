@@ -2,10 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
-import { IAliasProps } from '../DynamicForm';
+import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
-import Title from '../Title';
-import { ErrorValueProps } from '../../PropsType';
+import { act } from 'react-dom/test-utils';
 import './index.less';
 
 interface INomarCheckBoxProps {
@@ -24,7 +23,6 @@ interface INomarCheckBoxProps {
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
-  errorValue?: ErrorValueProps;
 }
 
 const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
@@ -38,17 +36,13 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
     rules,
     required = false,
     data = [],
-    hasStar = true,
-    subTitle,
     onChange,
     disabled = false,
-    hidden = false,
     chunk = 1,
     alias = {
       label: 'label',
       value: 'value',
     },
-    errorValue,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -69,44 +63,34 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
   };
 
   return (
-    <Title
-      positionType="vertical"
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra=""
-      error={errorValue}
-      fieldProps={fieldProps}
-    >
-      <div className={`${allPrefixCls}-check-box`}>
-        <Field
-          name={fieldProps}
-          rules={rules || [{ required, message: `请选择${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            if (nextValue && nextValue[fieldProps]) {
+    <div className={`${allPrefixCls}-check-box`}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          if (nextValue && nextValue[fieldProps]) {
+            act(() => {
               setInitValue(JSON.stringify(nextValue[fieldProps]));
-            } else {
-              setInitValue(undefined);
-            }
-            // setInitValue(nextValue && nextValue[fieldProps as any]);
-            return prevValue !== nextValue;
-          }}
-        >
-          <CheckBoxGroup
-            disableItem={props.disableItem}
-            data={aliasData}
-            onChange={boxChange}
-            coverStyle={coverStyle}
-            initValue={initValue}
-            disabled={disabled}
-            chunk={chunk}
-            className={className}
-          />
-        </Field>
-      </div>
-    </Title>
+            });
+          } else {
+            setInitValue(undefined);
+          }
+          // setInitValue(nextValue && nextValue[fieldProps as any]);
+          return prevValue !== nextValue;
+        }}
+      >
+        <CheckBoxGroup
+          disableItem={props.disableItem}
+          data={aliasData}
+          onChange={boxChange}
+          coverStyle={coverStyle}
+          initValue={initValue}
+          disabled={disabled}
+          chunk={chunk}
+          className={className}
+        />
+      </Field>
+    </div>
   );
 };
 

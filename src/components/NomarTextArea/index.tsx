@@ -5,7 +5,6 @@ import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
-import Title from '../Title';
 import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
@@ -23,7 +22,6 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   hidden?: boolean;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   className?: string;
-  errorValue?: ErrorValueProps;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
@@ -42,11 +40,8 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
     onBlur,
     editable = true,
     className = '',
-    errorValue,
     ...otherProps
   } = props;
-
-  // let autoFocusInst: { focus: () => void } | null = null;
 
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
@@ -66,49 +61,37 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      error={errorValue}
-      fieldProps={fieldProps}
+    <div
+      className={classnames({
+        [`${allPrefixCls}-area`]: true,
+        [`${allPrefixCls}-vertical-area`]: isVertical,
+        [`${allPrefixCls}-disabled`]: !editable,
+      })}
     >
-      <div
-        className={classnames({
-          [`${allPrefixCls}-area`]: true,
-          [`${allPrefixCls}-vertical-area`]: isVertical,
-          [`${allPrefixCls}-disabled`]: !editable,
-        })}
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请输入${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          // if (autoFocusInst) autoFocusInst.focus();
+          return prevValue !== nextValue;
+        }}
       >
-        <Field
-          name={fieldProps}
-          rules={rules || [{ required, message: `请输入${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            // if (autoFocusInst) autoFocusInst.focus();
-            return prevValue !== nextValue;
+        <TextareaItem
+          {...otherProps}
+          title={titleDiv()}
+          editable={editable}
+          style={{
+            textAlign: rows === 1 ? 'right' : 'left',
+            ...coverStyle,
           }}
-        >
-          <TextareaItem
-            {...otherProps}
-            title={titleDiv()}
-            editable={editable}
-            style={{
-              textAlign: rows === 1 ? 'right' : 'left',
-              ...coverStyle,
-            }}
-            className={className}
-            rows={rows}
-            onBlur={(val) => {
-              inputOnBlur(val);
-            }}
-          />
-        </Field>
-      </div>
-    </Title>
+          className={className}
+          rows={rows}
+          onBlur={(val) => {
+            inputOnBlur(val);
+          }}
+        />
+      </Field>
+    </div>
   );
 };
 
