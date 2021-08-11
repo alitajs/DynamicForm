@@ -62,20 +62,19 @@ test('renders Basic', async () => {
   fireEvent.click(getByText('苹果'));
   await waitFor(() => {
     expect(getByText('苹果').parentNode?.firstChild).toHaveClass(
-      "alitajs-dform-box-botton-checked"
-    )
-  })
-  fireEvent.click(getByText('Submit'))
+      'alitajs-dform-box-botton-checked',
+    );
+  });
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinish).toBeCalled();
-  })
+  });
 });
 
-<<<<<<< HEAD
 // test('render couple', async () => {
 //   const { getByText } = render(<CoupletText />);
-//   expect(getByText('级联选择饮料'));
 //   await sleep(1000);
+//   expect(getByText('级联选择饮料'));
 //   expect(getByText('可乐')).toHaveClass('alitajs-dform-box-label');
 //   fireEvent.click(getByText('全选'));
 //   await waitFor(() => {
@@ -111,44 +110,3 @@ test('renders Basic', async () => {
 //     );
 //   });
 // });
-=======
-test('render couple', async () => {
-  const { getByText } = render(<CoupletText />);
-  await sleep(1000);
-  expect(getByText('级联选择饮料'));
-  expect(getByText('可乐')).toHaveClass('alitajs-dform-box-label');
-  fireEvent.click(getByText('全选'));
-  await waitFor(() => {
-    expect(getByText('可乐').parentNode?.firstChild).toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-    expect(getByText('牛奶').parentNode?.firstChild).toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-    expect(getByText('果汁').parentNode?.firstChild).toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-  });
-  fireEvent.click(getByText('全选'));
-  await waitFor(() => {
-    expect(getByText('可乐').parentNode?.firstChild).not.toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-    expect(getByText('牛奶').parentNode?.firstChild).not.toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-  });
-  fireEvent.click(getByText('只要可乐'));
-  await waitFor(() => {
-    expect(getByText('可乐').parentNode?.firstChild).toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-  });
-  fireEvent.click(getByText('只要可乐'));
-  await waitFor(() => {
-    expect(getByText('可乐').parentNode?.firstChild).not.toHaveClass(
-      'alitajs-dform-box-botton-checked',
-    );
-  });
-});
->>>>>>> 15730078390c639705b2f18ca5b087208c7434ae
