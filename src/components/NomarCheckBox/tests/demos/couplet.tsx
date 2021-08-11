@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps } from '../../../../DynamicForm';
+import DynamicForm from '../../../../DynamicForm';
 import { useForm } from 'rc-field-form';
 import DformCheckBox from '../../'
-import { act } from 'react-dom/test-utils';
-import { Store, ValidateErrorEntity } from '../../../../index';
 
 const drinksList = [
   { foodId: 'cola', foodName: '可乐' },
@@ -18,14 +16,6 @@ const selectList = [
   { foodId: 'onlyCola', foodName: '只要可乐' },
 ]
 const Couplet: FC = () => {
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
   const [form] = useForm();
   const [formsValues, setFormsValues] = React.useState<any>({ fruit: [] });
   React.useEffect(() => {
@@ -54,7 +44,7 @@ const Couplet: FC = () => {
       setFormsValues({ fruit: [] })
     }
     // 只要可乐
-    console.log(e.indexOf("all") + "and" + e.indexOf("onlyCola"));
+    // console.log(e.indexOf("all") + "and" + e.indexOf("onlyCola"));
     if (e.indexOf("all") === -1 && e.indexOf("onlyCola") === 0) {
       setFormsValues({
         fruit: [
@@ -77,8 +67,6 @@ const Couplet: FC = () => {
   }
 
   const formProps = {
-    onFinish,
-    onFinishFailed,
     formsValues,
     form,
     failScroll: false,
