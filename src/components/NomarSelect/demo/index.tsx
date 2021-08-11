@@ -5,7 +5,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
@@ -48,7 +47,7 @@ const citys = [
   ],
 ];
 
-interface PageProps { }
+interface PageProps {}
 
 const Page: FC<PageProps> = () => {
   const [form] = useForm();
@@ -60,44 +59,6 @@ const Page: FC<PageProps> = () => {
     // eslint-disable-next-line no-console
     console.log(errorInfo);
   };
-  const formsData = [
-    {
-      type: 'select',
-      fieldProps: 'userPicker1',
-      title: '季节',
-      placeholder: '请选择',
-      data: seasons,
-    },
-    {
-      type: 'select',
-      fieldProps: 'userPicker2',
-      required: true,
-      title: '城市',
-      placeholder: '请选择',
-      data: citys,
-      onChange: (event) => {
-        console.log(event);
-      }
-    },
-    {
-      type: 'select',
-      fieldProps: 'userPicker3',
-      required: true,
-      title: '城市(不可编辑)',
-      placeholder: '请选择',
-      data: citys,
-      disabled: true,
-    },
-    {
-      type: 'select',
-      fieldProps: 'verticalPicker',
-      title: '季节',
-      placeholder: '请选择',
-      data: seasons,
-      positionType: 'vertical',
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
     userPicker2: ['xiamen'],
     userPicker3: ['fuzhou'],
@@ -114,41 +75,41 @@ const Page: FC<PageProps> = () => {
 
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformSelect
-          type='select'
-          fieldProps='userPicker1'
-          title='季节'
-          placeholder='请选择'
+          type="select"
+          fieldProps="userPicker1"
+          title="季节"
+          placeholder="请选择"
           data={seasons}
         />
         <DformSelect
-          type='select'
-          fieldProps='userPicker2'
+          type="select"
+          fieldProps="userPicker2"
           required={true}
-          title='城市'
-          placeholder='请选择'
+          title="城市"
+          placeholder="请选择"
           data={citys}
           onChange={(event) => {
             console.log(event);
           }}
         />
         <DformSelect
-          type='select'
-          fieldProps='userPicker3'
+          type="select"
+          fieldProps="userPicker3"
           required={true}
-          title='城市(不可编辑)'
-          placeholder='请选择'
+          title="城市(不可编辑)"
+          placeholder="请选择"
           data={citys}
           disabled={true}
         />
         <DformSelect
-          type='select'
-          fieldProps='verticalPicker'
-          title='季节'
-          placeholder='请选择'
+          type="select"
+          fieldProps="verticalPicker"
+          title="季节"
+          placeholder="请选择"
           data={seasons}
-          positionType='vertical'
+          positionType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

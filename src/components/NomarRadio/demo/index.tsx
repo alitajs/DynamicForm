@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
-  DformRadio
+  DformRadio,
 } from '@alitajs/dform';
 
 const radioList = [
@@ -59,7 +58,6 @@ const foodList = [
 
 const DfromRadioTextPage: FC = () => {
   const [form] = useForm();
-
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -68,60 +66,12 @@ const DfromRadioTextPage: FC = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-  const formsData = [
-    {
-      type: 'radio',
-      fieldProps: 'userRadio1',
-      required: true,
-      data: radioList,
-      title: '发票',
-      onChange: (e: string | number) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      },
-    },
-    {
-      type: 'radio',
-      fieldProps: 'userRadio2',
-      required: true,
-      data: radioList,
-      title: '内容靠左',
-      labelNumber: 5,
-      coverStyle: {
-        justifyContent: 'flex-start',
-      },
-    },
-    {
-      type: 'radio',
-      fieldProps: 'userRadio3',
-      required: true,
-      disabled: true,
-      data: dayList,
-      positionType: 'vertical',
-      title: '天气情况',
-    },
-    {
-      type: 'radio',
-      fieldProps: 'userRadio4',
-      required: true,
-      allowUnChecked: false,
-      data: foodList,
-      title: '喜欢的食物',
-      radioType: 'vertical',
-      alias: {
-        label: 'foodId',
-        value: 'foodName',
-      },
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
     userRadio3: '雨',
     userRadio4: '红烧肉',
   };
 
   const formProps = {
-    // data: formsData,
     formsValues,
     form,
     onFinishFailed,
@@ -130,45 +80,41 @@ const DfromRadioTextPage: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformRadio
-          // type='radio'
-          fieldProps='userRadio1'
+          fieldProps="userRadio1"
           required={true}
           data={radioList}
-          title='发票'
+          title="发票"
           onChange={(e) => {
-            console.log(e)
+            console.log(e);
           }}
         />
         <DformRadio
-          // type='radio'
-          fieldProps='userRadio2'
+          fieldProps="userRadio2"
           required={true}
           data={radioList}
-          title='内容靠左'
+          title="内容靠左"
           labelNumber={5}
           coverStyle={{
             justifyContent: 'flex-start',
           }}
         />
         <DformRadio
-          // type='radio'
-          fieldProps='userRadio3'
+          fieldProps="userRadio3"
           required={true}
           disabled={true}
           data={dayList}
-          positionType='vertical'
-          title='天气情况'
+          positionType="vertical"
+          title="天气情况"
         />
         <DformRadio
-          // type='radio'
-          fieldProps='userRadio4'
+          fieldProps="userRadio4"
           required={true}
           allowUnChecked={false}
           data={foodList}
-          title='喜欢的食物'
-          radioType='vertical'
+          title="喜欢的食物"
+          radioType="vertical"
           alias={{
             label: 'foodId',
             value: 'foodName',

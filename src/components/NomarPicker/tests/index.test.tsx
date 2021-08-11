@@ -48,9 +48,9 @@ test('render Basic', async () => {
     fireEvent.click(getByText('Submit'));
   });
   expect(onFinishFailed).toBeCalled();
-  fireEvent.click(getByText('请选择我喜欢的城市'));
+  fireEvent.click(getByText('请选择我喜欢的城市placeholder'));
   fireEvent.click(getByText('取消'));
-  fireEvent.click(getByText('请选择我喜欢的城市'));
+  fireEvent.click(getByText('请选择我喜欢的城市placeholder'));
   fireEvent.click(getByText('确定'));
   expect(onChange).toBeCalled();
   await waitFor(() => {
