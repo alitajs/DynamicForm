@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, } from '../../../../DynamicForm';
+import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
-import DformRadio from '../../'
+import DformRadio from '../../';
 
 interface BasicProps {
   onFinish: any;
@@ -113,28 +113,27 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     onFinishFailed,
     onFinish,
     isDev: false,
-
   };
 
   return (
     <>
-      <DynamicForm {...formProps} failScroll={false} >
+      <DynamicForm {...formProps} failScroll={false}>
         <DformRadio
           // type='radio'
-          fieldProps='userRadio1'
+          fieldProps="userRadio1"
           required={true}
           data={radioList}
-          title='发票'
+          title="发票"
           onChange={(e) => {
-            console.log(e)
+            console.log(e);
           }}
         />
         <DformRadio
           // type='radio'
-          fieldProps='userRadio2'
+          fieldProps="userRadio2"
           required={true}
           data={radioList}
-          title='内容靠左'
+          title="内容靠左"
           labelNumber={5}
           coverStyle={{
             justifyContent: 'flex-start',
@@ -142,21 +141,21 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
         />
         <DformRadio
           // type='radio'
-          fieldProps='userRadio3'
+          fieldProps="userRadio3"
           required={true}
           disabled={true}
           data={dayList}
-          positionType='vertical'
-          title='天气情况'
+          positionType="vertical"
+          title="天气情况"
         />
         <DformRadio
           // type='radio'
-          fieldProps='userRadio4'
+          fieldProps="userRadio4"
           required={true}
           allowUnChecked={false}
           data={foodList}
-          title='喜欢的食物'
-          radioType='vertical'
+          title="喜欢的食物"
+          radioType="vertical"
           alias={{
             label: 'foodId',
             value: 'foodName',
@@ -168,6 +167,6 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
         Submit
       </Button>
     </>
-  )
-}
+  );
+};
 export default DfromRadioTestPage;

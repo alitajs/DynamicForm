@@ -1,5 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
-import { IAliasProps } from '../../DynamicForm';
+import { IAliasProps } from '../DynamicForm';
 import { ErrorValueProps } from '../../PropsType';
 
 export interface IModalData {

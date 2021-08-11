@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
-import { IAliasProps } from '../../DynamicForm';
+import { IAliasProps } from '../DynamicForm';
 import { allPrefixCls } from '../../const/index';
 import Title from '../Title';
 import { ErrorValueProps } from '../../PropsType';

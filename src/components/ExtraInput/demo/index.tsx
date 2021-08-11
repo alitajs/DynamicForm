@@ -10,7 +10,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
 } from '@alitajs/dform';
-import PositionIcon from '../../../assets/position_ico.png';
+import PositionIcon from '../../assets/position_ico.png';
 
 const Page: FC = () => {
   const [form] = useForm();

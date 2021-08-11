@@ -3,8 +3,8 @@ import { Modal, Button, WingBlank, WhiteSpace, List } from 'antd-mobile';
 import copy from 'copy-to-clipboard';
 import Form from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-import { IFormItemProps, getFormItem, DFormData } from '../../DynamicForm';
-// import EditForm from '../EditForm/EditForm';
+import { getFormItem, DFormData } from '../DynamicForm';
+import { IFormItemProps } from '../../PropsType';
 
 interface NewFieldPickerProps {
   onChange?: (t: any) => void;
