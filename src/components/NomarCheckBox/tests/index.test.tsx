@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, act, sleep } from '@alita/test';
+import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import DformCheckBox from '../index';
 import BasicTest from './demos/basic';
@@ -67,8 +67,8 @@ test('renders Basic', async () => {
 
 test('render couple', async () => {
   const { getByText } = render(<CoupletText />);
-  expect(getByText('级联选择饮料'));
   await sleep(1000);
+  expect(getByText('级联选择饮料'));
   expect(getByText('可乐')).toHaveClass('alitajs-dform-box-label');
   fireEvent.click(getByText('全选'));
   await waitFor(() => {

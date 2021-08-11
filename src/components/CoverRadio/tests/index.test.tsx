@@ -4,6 +4,7 @@ import Form from 'rc-field-form';
 import CoverRadio from '../index';
 import BasicTest from './demos/basic';
 import CoupletText from './demos/couplet';
+import { get } from 'lodash';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },
@@ -84,4 +85,17 @@ test('render couplet', async () => {
       "alitajs-dform-cover-radio-wrapper-checked"
     )
   })
+  fireEvent.click(getByText("要可乐"))
+  await waitFor(() => {
+    expect(getByText("可乐")).toHaveClass(
+      "alitajs-dform-cover-radio-wrapper-checked"
+    )
+  })
+  fireEvent.click(getByText("要牛奶"))
+  await waitFor(() => {
+    expect(getByText("牛奶")).toHaveClass(
+      "alitajs-dform-cover-radio-wrapper-checked"
+    )
+  })
+  fireEvent.click(getByText("Submit"))
 });

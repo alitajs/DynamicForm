@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm from '../../../../DynamicForm';
+import DynamicForm from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
 import DformCheckBox from '../../'
 
@@ -15,7 +15,7 @@ const selectList = [
   { foodId: 'all', foodName: '全选' },
   { foodId: 'onlyCola', foodName: '只要可乐' },
 ];
-const Couplet: FC = () => {
+const CoupletText: FC = () => {
   const [form] = useForm();
   const [formsValues, setFormsValues] = React.useState<any>({ fruit: [] });
   React.useEffect(() => {
@@ -93,4 +93,4 @@ const Couplet: FC = () => {
     </>
   );
 };
-export default Couplet;
+export default CoupletText;
