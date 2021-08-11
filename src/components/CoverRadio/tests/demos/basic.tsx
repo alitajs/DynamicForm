@@ -1,16 +1,8 @@
-/**
- * title: 基础 coverRadio
- * desc: 表单使用 demo
- */
-
 import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, {
-  useForm,
-  Store,
-  ValidateErrorEntity,
-} from '@alitajs/dform';
-import CoverRadio from '..';
+import DynamicForm from '../../../../index';
+import { useForm } from 'rc-field-form';
+import CoverRadio from '../../';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },
@@ -40,18 +32,13 @@ const foodList = [
   },
 ];
 
-const Page = () => {
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+}
+
+const CoverRadioTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
-
   const formsValues = {
     sex2: 'woman',
     sex: 'man',
@@ -64,7 +51,6 @@ const Page = () => {
     form,
     isDev: false,
   };
-
   return (
     <>
       <DynamicForm {...formProps} >
@@ -82,6 +68,7 @@ const Page = () => {
             value: 'sexId',
           }}
         />
+
         <CoverRadio
           fieldProps='sex2'
           data={sexList}
@@ -108,6 +95,5 @@ const Page = () => {
       </Button>
     </>
   );
-};
-
-export default Page;
+}
+export default CoverRadioTestPage;

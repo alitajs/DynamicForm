@@ -11,6 +11,7 @@ import DynamicForm, {
   ValidateErrorEntity,
 } from '@alitajs/dform';
 import PhotoIcon from '../../../assets/photo.png';
+import DformText from '../'
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -29,79 +30,6 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const formsData = [
-    {
-      type: 'text',
-      fieldProps: 'username',
-      required: true,
-      placeholder: '输入项居左',
-      title: '用户名',
-      clear: true,
-      subTitle: subTitle(),
-      coverStyle: {
-        textAlign: 'left',
-        color: 'blue',
-      },
-      onClick: () => {
-        console.log();
-      },
-    },
-    {
-      type: 'text',
-      fieldProps: 'area',
-      required: true,
-      title: '学校概况',
-      placeholder: '值过长会自动换行',
-      rows: 1,
-      autoHeight: true,
-    },
-    {
-      type: 'text',
-      fieldProps: 'username5',
-      required: true,
-      title: '身份证',
-      extra: photoImg(),
-      placeholder: '暂无数据',
-      disabled: true,
-      inputType: 'number',
-      onClick: (vals: string) => {
-        // eslint-disable-next-line no-console
-        console.log(vals);
-      },
-    },
-    {
-      type: 'text',
-      fieldProps: 'userTitle',
-      required: true,
-      placeholder: '点击获取表单全部数据',
-      title: '标题',
-      onClick: () => {
-        // eslint-disable-next-line no-console
-        console.log(form.getFieldsValue());
-      },
-    },
-    {
-      type: 'text',
-      fieldProps: 'titleTooLong',
-      required: true,
-      placeholder: '暂无数据',
-      title: '标题名称过长',
-      labelNumber: 7,
-      inputType: 'text',
-      clear: true,
-    },
-    {
-      type: 'text',
-      fieldProps: 'titleTooLong2',
-      required: true,
-      placeholder: '暂无数据',
-      title: '标题名称过长(超过14个字符自动换行)',
-      inputType: 'text',
-      extra: photoImg(),
-      clear: true,
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
     userAge: '这里只读不可编辑',
     username5:
@@ -112,14 +40,78 @@ const Page: FC = () => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
     isDev: true,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps} >
+        <DformText
+          fieldProps='username'
+          required={true}
+          placeholder='输入项居左'
+          title='用户名'
+          clear
+          subTitle={subTitle()}
+          coverStyle={{
+            textAlign: 'left',
+            color: 'blue',
+          }}
+          onClick={() => {
+            console.log();
+          }}
+        />
+        <DformText
+          fieldProps='area'
+          required={true}
+          title='学校概况'
+          placeholder='值过长会自动换行'
+          rows={1}
+          autoHeight={true}
+        />
+        <DformText
+          fieldProps='username5'
+          required={true}
+          title='身份证'
+          extra={photoImg()}
+          placeholder='暂无数据'
+          disabled={true}
+          inputType='number'
+          onClick={(vals: string) => {
+            // eslint-disable-next-line no-console
+            console.log(vals);
+          }}
+        />
+        <DformText
+          fieldProps='userTitle'
+          required={true}
+          placeholder='点击获取表单全部数据'
+          title='标题'
+          onClick={() => {
+            // eslint-disable-next-line no-console
+            console.log(form.getFieldsValue());
+          }}
+        />
+        <DformText
+          fieldProps='titleTooLong'
+          required={true}
+          placeholder='暂无数据'
+          title='标题名称过长'
+          labelNumber={7}
+          inputType='text'
+          clear
+        />
+        <DformText
+          fieldProps='titleTooLong2'
+          required={true}
+          placeholder='暂无数据'
+          title='标题名称过长(超过14个字符自动换行)'
+          inputType='text'
+          extra={photoImg()}
+          clear
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

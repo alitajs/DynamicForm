@@ -1,11 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, {
-  useForm,
-  Store,
-  DformCheckBox,
-  ValidateErrorEntity,
-} from '../../../../';
+import DynamicForm, { useForm, DformCheckBox } from '../../../../';
 
 const drinksList = [
   { foodId: 'cola', foodName: '可乐' },
@@ -18,15 +13,7 @@ const selectList = [
   { foodId: 'all', foodName: '全选' },
   { foodId: 'onlyCola', foodName: '只要可乐' },
 ];
-const Couplet: FC = () => {
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
+const CoupletText: FC = () => {
   const [form] = useForm();
   const [formsValues, setFormsValues] = React.useState<any>({ fruit: [] });
   React.useEffect(() => {
@@ -45,7 +32,6 @@ const Couplet: FC = () => {
       setFormsValues({ fruit: [] });
     }
     // 只要可乐
-    console.log(e.indexOf('all') + 'and' + e.indexOf('onlyCola'));
     if (e.indexOf('all') === -1 && e.indexOf('onlyCola') === 0) {
       setFormsValues({
         fruit: ['cola'],
@@ -60,8 +46,6 @@ const Couplet: FC = () => {
   }
 
   const formProps = {
-    onFinish,
-    onFinishFailed,
     formsValues,
     form,
     failScroll: false,
@@ -107,4 +91,4 @@ const Couplet: FC = () => {
     </>
   );
 };
-export default Couplet;
+export default CoupletText;
