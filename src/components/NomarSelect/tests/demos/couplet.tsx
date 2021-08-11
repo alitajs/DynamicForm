@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import { act } from 'react-dom/test-utils';
 import { Button } from 'antd-mobile';
-import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
+import DynamicForm from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
-import { Store, ValidateErrorEntity } from '../../../..';
+import { Store, ValidateErrorEntity, IFormItemProps } from '../../../..';
 
 const pickerData = [
   {

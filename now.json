@@ -6,7 +6,7 @@
       "src": "build.sh",
       "use": "@now/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "docs-dist"
       }
     }
   ],
