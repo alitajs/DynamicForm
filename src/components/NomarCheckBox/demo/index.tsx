@@ -4,8 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
-import DformCheckBox from '..'
+import DynamicForm, {
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
+import DformCheckBox from '..';
 
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
@@ -41,12 +45,12 @@ const Page: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformCheckBox
-          title='喜欢的水果'
+          title="喜欢的水果"
           required={true}
           data={fruitsList}
-          fieldProps='fruit'
+          fieldProps="fruit"
           chunk={2}
           alias={{
             label: 'foodName',

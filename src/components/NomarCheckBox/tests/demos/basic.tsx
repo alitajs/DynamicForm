@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps } from '../../../../DynamicForm';
+import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
-import DformCheckBox from '../../'
+import DformCheckBox from '../../';
 
 interface BasicProps {
   onFinish: any;
@@ -48,13 +48,13 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <DformCheckBox
           // type= 'checkbox'
-          title='喜欢的水果'
+          title="喜欢的水果"
           required={true}
           data={fruitsList}
-          fieldProps='fruit'
+          fieldProps="fruit"
           chunk={2}
           alias={{
             label: 'foodName',
