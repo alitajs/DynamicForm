@@ -4,7 +4,6 @@ import Form from 'rc-field-form';
 import CoverRadio from '../index';
 import BasicTest from './demos/basic';
 import CoupletText from './demos/couplet';
-import { get } from 'lodash';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },

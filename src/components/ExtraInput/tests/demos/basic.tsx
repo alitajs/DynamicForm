@@ -1,29 +1,17 @@
-/**
- * title: 基础 复杂输入框
- * desc: 表单使用 demo
- */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, {
-  useForm,
-  Store,
-  ValidateErrorEntity,
-} from '../../../index';
-import PositionIcon from '../../../assets/position_ico.png';
-import ExtraInput from '../'
+import DynamicForm from '../../../../index';
+import { useForm } from 'rc-field-form';
+import PositionIcon from '../../../../assets/position_ico.png';
+import ExtraInput from '../../'
 
-const Page: FC = () => {
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+}
+
+const ExtraInputTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed, }) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
-
   const extraImg = () => (
     <img src={PositionIcon} style={{ width: '0.6rem', height: '0.6rem' }} />
   );
@@ -42,6 +30,20 @@ const Page: FC = () => {
       value: '亿元',
     },
   ];
+  const list = [
+    {
+      label: '百元',
+      value: '百元',
+    },
+    {
+      label: '千元',
+      value: '千元',
+    },
+    {
+      label: '万元',
+      value: '万元',
+    },
+  ]
   const formsValues = {
     minPrise: '11',
     maxPrise: '22',
@@ -105,7 +107,7 @@ const Page: FC = () => {
           }}
           secondProps={{
             placeholder: '选择长度单位',
-            data: unitList,
+            data: list,
             onChange: (val: any) => {
               // eslint-disable-next-line no-console
               console.log(val);
@@ -121,4 +123,4 @@ const Page: FC = () => {
   );
 };
 
-export default Page;
+export default ExtraInputTestPage;
