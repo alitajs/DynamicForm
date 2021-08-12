@@ -293,7 +293,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   useEffect(() => {
     if (defaultValueFlag) {
       if (getDFormType(data) === 'NORMAL') {
-        const filter = data.filter((dataItem: any) => dataItem?.defaultValue !== undefined);
+        const filter = data.filter((dataItem: any) => dataItem?.defaultValue !== undefined && formsValues[dataItem?.fieldProps] === undefined);
         if (filter && filter.length) {
           filter.forEach((filterItem: any) => {
             formsValues[filterItem?.fieldProps] = filterItem.defaultValue;
