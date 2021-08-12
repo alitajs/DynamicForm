@@ -4,8 +4,7 @@ import { IAliasProps } from '../DynamicForm';
 import { ErrorValueProps } from '../../PropsType';
 
 export interface IDataItem {
-  label: string;
-  value: string;
+  [key: string]: string | number;
 }
 
 export interface IMultiplePickerProps {

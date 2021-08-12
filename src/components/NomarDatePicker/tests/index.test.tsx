@@ -38,11 +38,12 @@ test('render Basic', async () => {
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
   });
-  expect(getByText('2021-08-11'));
+  expect(getByText(dayjs(new Date()).format('YYYY-MM-DD')));
   await waitFor(() => {
-    expect(getAllByText('2021-08-11')[0].parentNode?.firstChild).toHaveClass(
-      'alitajs-dform-disabled',
-    );
+    expect(
+      getAllByText(dayjs(new Date()).format('YYYY-MM-DD'))[0].parentNode
+        ?.firstChild,
+    ).toHaveClass('alitajs-dform-disabled');
   });
   // expect(onFinishFailed).toBeCalled();
   fireEvent.click(getByText('请选择月份'));

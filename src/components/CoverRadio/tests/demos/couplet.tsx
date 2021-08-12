@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm from '../../../../index';
 import { useForm } from 'rc-field-form';
-import CoverRadio from '../../'
+import CoverRadio from '../../';
 
 const drinkList = [
   { foodId: 'cola', foodName: '可乐' },
@@ -13,36 +13,36 @@ const selectList = [
   { label: 'onlyCola', value: '要可乐' },
   { label: 'onlyMilk', value: '要牛奶' },
   { label: 'onlyFruitJuice', value: '要果汁' },
-]
+];
 
 const Couplet: FC = () => {
   const [form] = useForm();
-  const [formsValues, setFormsValues] = React.useState<any>({ drink: 'milk', });
+  const [formsValues, setFormsValues] = React.useState<any>({ drink: 'milk' });
   const formProps = {
     formsValues,
     form,
     isDev: false,
   };
   function onChange(e: any) {
-    if (e === "onlyMilk") {
-      setFormsValues({ drink: 'milk' })
-    } else if (e === "onlyCola") {
-      setFormsValues({ drink: 'cola' })
-    } else if (e === "onlyFruitJuice") {
-      setFormsValues({ drink: 'fruitJuice' })
+    if (e === 'onlyMilk') {
+      setFormsValues({ drink: 'milk' });
+    } else if (e === 'onlyCola') {
+      setFormsValues({ drink: 'cola' });
+    } else if (e === 'onlyFruitJuice') {
+      setFormsValues({ drink: 'fruitJuice' });
     }
   }
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <CoverRadio
-          fieldProps='drink'
+          fieldProps="drink"
           data={drinkList}
-          title='饮料'
+          title="饮料"
           required={true}
           onChange={(val: any) => {
             // eslint-disable-next-line no-console
-            setFormsValues({ drink: val })
+            setFormsValues({ drink: val });
           }}
           alias={{
             label: 'foodName',
@@ -50,20 +50,18 @@ const Couplet: FC = () => {
           }}
         />
         <CoverRadio
-          fieldProps='select'
+          fieldProps="select"
           data={selectList}
-          title='级联--饮料'
-          positionType='vertical'
-          radioType='vertical'
+          title="级联--饮料"
+          positionType="vertical"
+          radioType="vertical"
           alias={{
             label: 'value',
             value: 'label',
           }}
-          onChange={
-            (e) => {
-              onChange(e)
-            }
-          }
+          onChange={(e) => {
+            onChange(e);
+          }}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
@@ -71,6 +69,6 @@ const Couplet: FC = () => {
         Submit
       </Button>
     </>
-  )
-}
+  );
+};
 export default Couplet;
