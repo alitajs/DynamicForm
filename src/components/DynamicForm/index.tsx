@@ -263,7 +263,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
           <Title
             key={fieldProps || index}
             error={errorValue}
-            positionType={positionType}
+            positionType={positionType || DFORM_COMP_DETAULT[name].positionType}
             hidden={hidden}
             required={required}
             hasStar={hasStar}
