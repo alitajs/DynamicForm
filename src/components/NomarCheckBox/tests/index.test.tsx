@@ -44,22 +44,16 @@ test('renders Basic', async () => {
   const { getByText } = render(
     <BasicTest onFinish={onFinish} onFinishFailed={onFinishFailed} />,
   );
-
+  await sleep(1000)
   // expect(getByText('喜欢的水果').parentNode).toHaveClass(
-  //   'alitajs-dform-vertical-title',
-  // );
-  // await act(async () => {
-  //   await fireEvent.click(getByText('橙子'))
-  // })
-  fireEvent.click(getByText('橙子'));
-  fireEvent.click(getByText('Submit'));
-  // await waitFor(() => {
-  //   expect(onFinishFailed).toBeCalled();
-  // })
-  // await act(async () => {
-  //   await fireEvent.click(getByText('苹果'))
-  // })
-  fireEvent.click(getByText('苹果'));
+  //   "alitajs-dform-vertical-title"
+  // )
+  fireEvent.click(getByText('橙子'))
+  fireEvent.click(getByText('Submit'))
+  await waitFor(() => {
+    expect(onFinishFailed).toBeCalled();
+  })
+  fireEvent.click(getByText('苹果'))
   await waitFor(() => {
     expect(getByText('苹果').parentNode?.firstChild).toHaveClass(
       "alitajs-dform-box-botton-checked"
@@ -71,51 +65,9 @@ test('renders Basic', async () => {
   })
 });
 
-<<<<<<< HEAD
-// test('render couple', async () => {
-//   const { getByText } = render(<CoupletText />);
-//   expect(getByText('级联选择饮料'));
-//   await sleep(1000);
-//   expect(getByText('可乐')).toHaveClass('alitajs-dform-box-label');
-//   fireEvent.click(getByText('全选'));
-//   await waitFor(() => {
-//     expect(getByText('可乐').parentNode?.firstChild).toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//     expect(getByText('牛奶').parentNode?.firstChild).toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//     expect(getByText('果汁').parentNode?.firstChild).toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//   });
-//   fireEvent.click(getByText('全选'));
-//   await waitFor(() => {
-//     expect(getByText('可乐').parentNode?.firstChild).not.toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//     expect(getByText('牛奶').parentNode?.firstChild).not.toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//   });
-//   fireEvent.click(getByText('只要可乐'));
-//   await waitFor(() => {
-//     expect(getByText('可乐').parentNode?.firstChild).toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//   });
-//   fireEvent.click(getByText('只要可乐'));
-//   await waitFor(() => {
-//     expect(getByText('可乐').parentNode?.firstChild).not.toHaveClass(
-//       'alitajs-dform-box-botton-checked',
-//     );
-//   });
-// });
-=======
 test('render couple', async () => {
   const { getByText } = render(<CoupletText />);
   await sleep(1000);
-  expect(getByText('级联选择饮料'));
   expect(getByText('可乐')).toHaveClass('alitajs-dform-box-label');
   fireEvent.click(getByText('全选'));
   await waitFor(() => {
@@ -151,4 +103,3 @@ test('render couple', async () => {
     );
   });
 });
->>>>>>> 15730078390c639705b2f18ca5b087208c7434ae
