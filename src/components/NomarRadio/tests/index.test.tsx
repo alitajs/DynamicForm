@@ -44,7 +44,7 @@ test('renders Basic', async () => {
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
   })
-  expect(getByText('发票'))
+  expect(getByText('发票')).toBeDefined()
   // 判断是否选择
   fireEvent.click(getAllByText('否')[0]);
   await waitFor(() => {

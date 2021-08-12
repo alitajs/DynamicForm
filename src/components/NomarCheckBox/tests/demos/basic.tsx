@@ -20,20 +20,20 @@ const fruitsList = [
 
 const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   const [form] = useForm();
-  const formsData = [
-    {
-      type: 'checkbox',
-      title: '喜欢的水果',
-      required: true,
-      data: fruitsList,
-      fieldProps: 'fruit',
-      chunk: 2,
-      alias: {
-        label: 'foodName',
-        value: 'foodId',
-      },
-    },
-  ] as IFormItemProps[];
+  // const formsData = [
+  //   {
+  //     type: 'checkbox',
+  //     title: '喜欢的水果',
+  //     required: true,
+  //     data: fruitsList,
+  //     fieldProps: 'fruit',
+  //     chunk: 2,
+  //     alias: {
+  //       label: 'foodName',
+  //       value: 'foodId',
+  //     },
+  //   },
+  // ] as IFormItemProps[];
 
   const formsValues = {
     fruit: ['orange'],
@@ -50,7 +50,6 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     <>
       <DynamicForm {...formProps}>
         <DformCheckBox
-          // type= 'checkbox'
           title="喜欢的水果"
           required={true}
           data={fruitsList}
