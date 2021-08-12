@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
-import Title from '../Title';
 import './index.less';
 import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
@@ -14,17 +13,12 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
     fieldProps,
     rules,
     data = [] as any,
-    positionType = 'horizontal',
     hasStar = true,
-    subTitle,
-    hidden = false,
     onChange,
-    extra,
     alias = {
       label: 'label',
       value: 'value',
     },
-    errorValue,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -49,40 +43,28 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
   };
 
   return (
-    <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      error={errorValue}
-      fieldProps={fieldProps}
+    <Field
+      name={fieldProps}
+      rules={rules || [{ required, message: `请选择${title}` }]}
+      shouldUpdate={(prevValue: any, nextValue: any) => {
+        setInitValue(nextValue && nextValue[fieldProps as any]);
+        return prevValue !== nextValue;
+      }}
     >
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        shouldUpdate={(prevValue: any, nextValue: any) => {
-          setInitValue(nextValue && nextValue[fieldProps as any]);
-          return prevValue !== nextValue;
-        }}
+      <SelectGroup
+        {...props}
+        initValue={initValue}
+        onChange={fieldChange}
+        data={aliasData}
       >
-        <SelectGroup
-          {...props}
-          initValue={initValue}
-          onChange={fieldChange}
-          data={aliasData}
-        >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
-        </SelectGroup>
-      </Field>
-    </Title>
+        <div className={`${allPrefixCls}-title`}>
+          {required && hasStar && (
+            <div className={`${allPrefixCls}-redStar`}>*</div>
+          )}
+          <div>{title}</div>
+        </div>
+      </SelectGroup>
+    </Field>
   );
 };
 

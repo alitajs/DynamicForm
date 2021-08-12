@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm from '../../../DynamicForm';
-import { useForm } from 'rc-field-form';
-import DformCheckBox from '../../';
+import DynamicForm, { useForm, DformCheckBox } from '../../../../';
 
 const drinksList = [
   { foodId: 'cola', foodName: '可乐' },
@@ -57,7 +55,7 @@ const CoupletText: FC = () => {
       <DynamicForm {...formProps}>
         <DformCheckBox
           title="请选择饮料"
-          required={true}
+          required
           data={drinksList}
           fieldProps="fruit"
           chunk={2}
@@ -68,7 +66,7 @@ const CoupletText: FC = () => {
         />
         <DformCheckBox
           title="级联选择饮料"
-          required={true}
+          required
           data={selectList}
           fieldProps="drink"
           chunk={2}

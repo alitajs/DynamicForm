@@ -7,6 +7,7 @@ import {
 } from 'rc-field-form/es/interface';
 import { getByteLen } from '../../utils';
 import { ErrorValueProps, IFormItemProps } from '../../PropsType';
+import { act } from 'react-dom/test-utils';
 
 import {
   DformInput,
@@ -27,6 +28,8 @@ import {
   DformPicker,
   DformFile,
 } from '../';
+
+import Title from '../Title';
 
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 
@@ -222,6 +225,25 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 
   const childs = React.Children.toArray(children);
 
+  const fieldChange = (e: any, relatives: any[]) => {
+    if (relatives && !!relatives.length) {
+      relatives.forEach((item) => {
+        const { type, fieldProps } = item;
+        switch (type) {
+          case 'empty':
+            form.setFieldsValue({
+              [fieldProps]: undefined,
+            });
+            break;
+          case '':
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  };
+
   return (
     <>
       <Form
@@ -252,10 +274,41 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         {childs &&
           childs.map((child) => {
             if (!React.isValidElement(child)) return;
-            return React.cloneElement(child, {
-              ...child.props,
+            const {
+              positionType,
+              hidden,
+              required = false,
+              hasStar = true,
+              title,
+              subTitle,
+              extra,
               errorValue,
-            });
+              fieldProps,
+            } = child.props;
+            return (
+              <Title
+                key={fieldProps}
+                error={errorValue}
+                positionType={positionType}
+                hidden={hidden}
+                required={required}
+                hasStar={hasStar}
+                title={title}
+                subTitle={subTitle}
+                extra={extra}
+                fieldProps={fieldProps}
+              >
+                {React.cloneElement(child, {
+                  ...child.props,
+                  errorValue,
+                  onChange: (e: any) => {
+                    const { onChange, relatives } = child.props;
+                    fieldChange(e, relatives);
+                    if (onChange) onChange(e);
+                  },
+                })}
+              </Title>
+            );
           })}
       </Form>
       {isDev && <NewFieldPicker data={data} />}
