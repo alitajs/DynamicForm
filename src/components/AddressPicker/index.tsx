@@ -5,6 +5,7 @@ import { IAddressPickerProps, valueProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
+// ci 测试 无用代码啊
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const [initValue, setInitValue] = useState<string | undefined>();
 
