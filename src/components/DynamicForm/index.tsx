@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import Form, { useForm } from 'rc-field-form';
-import {
-  Store,
-  FormInstance,
-  ValidateErrorEntity,
-} from 'rc-field-form/es/interface';
+import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { getByteLen } from '../../utils';
-import { ErrorValueProps, IFormItemProps } from '../../PropsType';
-import { act } from 'react-dom/test-utils';
+import {
+  ErrorValueProps,
+  IFormItemProps,
+  IDynamicFormProps,
+} from '../../PropsType';
+import { DFORM_COMP_NAME, DFORM_COMP_DETAULT } from '../../utils/menu';
 
 import {
   DformInput,
@@ -55,19 +55,6 @@ const FormItemType = {
 
 export type DFormData = IFormItemProps[];
 
-export interface IDynamicFormProps {
-  data?: DFormData; // 动态表单数据
-  form: FormInstance; // 表单对象
-  formsValues?: Store;
-  allDisabled?: boolean; // 全部不可交互，展示状态
-  onFinish?: (values: Store) => void;
-  onFinishFailed?: (errorInfo: ValidateErrorEntity) => void;
-  isDev?: boolean; // 手动声明是开发模式
-  onValuesChange?: (values: any) => void; // 字段改变时抛出事件
-  autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
-  failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
-}
-
 export const getFormItem = (
   formItem: IFormItemProps,
   allDisabled: boolean,
@@ -81,14 +68,27 @@ export const getFormItem = (
   } = formItem;
   const FormItemComponent = FormItemType[formItem.type];
   return (
-    <div key={formItem.fieldProps}>
+    <Title
+      key={otherProps?.fieldProps}
+      error={errorValue}
+      positionType={
+        otherProps?.positionType || DFORM_COMP_DETAULT[type].positionType
+      }
+      hidden={otherProps?.hidden}
+      required={otherProps?.required}
+      hasStar={otherProps?.hasStar}
+      title={otherProps?.title}
+      subTitle={otherProps?.subTitle}
+      extra={otherProps?.extra || ''}
+      fieldProps={otherProps?.fieldProps}
+    >
       {renderHeader}
       <FormItemComponent
         {...otherProps}
         disabled={disabled}
         errorValue={errorValue}
       />
-    </div>
+    </Title>
   );
 };
 
@@ -244,6 +244,51 @@ const DynamicForm: FC<IDynamicFormProps> = ({
     }
   };
 
+  const dformItems = (childs: any) => {
+    return childs.map((child: any, index: number) => {
+      if (!React.isValidElement(child)) return;
+      const {
+        positionType,
+        hidden,
+        required = false,
+        hasStar = true,
+        title,
+        subTitle,
+        extra,
+        fieldProps,
+      } = child.props as any;
+      const { name } = child.type as any;
+      if (DFORM_COMP_NAME.indexOf(name) !== -1) {
+        return (
+          <Title
+            key={fieldProps || index}
+            error={errorValue}
+            positionType={positionType}
+            hidden={hidden}
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            subTitle={subTitle}
+            extra={extra}
+            fieldProps={fieldProps}
+          >
+            {React.cloneElement(child, {
+              ...(child.props as any),
+              errorValue,
+              onChange: (e: any) => {
+                const { onChange, relatives } = child.props as any;
+                fieldChange(e, relatives);
+                if (onChange) onChange(e);
+              },
+            })}
+          </Title>
+        );
+      } else {
+        return child;
+      }
+    });
+  };
+
   return (
     <>
       <Form
@@ -271,45 +316,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
             errorValue,
           })}
         {childs && typeof children === 'function' && children({ errorValue })}
-        {childs &&
-          childs.map((child) => {
-            if (!React.isValidElement(child)) return;
-            const {
-              positionType,
-              hidden,
-              required = false,
-              hasStar = true,
-              title,
-              subTitle,
-              extra,
-              errorValue,
-              fieldProps,
-            } = child.props;
-            return (
-              <Title
-                key={fieldProps}
-                error={errorValue}
-                positionType={positionType}
-                hidden={hidden}
-                required={required}
-                hasStar={hasStar}
-                title={title}
-                subTitle={subTitle}
-                extra={extra}
-                fieldProps={fieldProps}
-              >
-                {React.cloneElement(child, {
-                  ...child.props,
-                  errorValue,
-                  onChange: (e: any) => {
-                    const { onChange, relatives } = child.props;
-                    fieldChange(e, relatives);
-                    if (onChange) onChange(e);
-                  },
-                })}
-              </Title>
-            );
-          })}
+        {childs && dformItems(childs)}
       </Form>
       {isDev && <NewFieldPicker data={data} />}
     </>

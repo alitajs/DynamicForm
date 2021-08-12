@@ -24,7 +24,6 @@ const NomarCustom: FC<INomarCustomPorps> = (props) => {
   const {
     fieldProps,
     required = false,
-    hasStar = true,
     rules,
     title,
     CustomDom,

@@ -1,6 +1,11 @@
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
-import { Rule } from 'rc-field-form/es/interface';
+import {
+  Rule,
+  FormInstance,
+  Store,
+  ValidateErrorEntity,
+} from 'rc-field-form/es/interface';
 
 export * from 'rc-field-form/es/interface';
 
@@ -82,6 +87,20 @@ export interface IFormItemProps {
   defaultValue?: any;
   coverStyle?: React.CSSProperties;
   renderHeader?: string | React.ReactNode;
+  extra?: string | React.ReactNode;
   initKey?: string | number;
   className?: string;
+}
+
+export interface IDynamicFormProps {
+  data?: IFormItemProps[]; // 动态表单数据
+  form: FormInstance; // 表单对象
+  formsValues?: Store;
+  allDisabled?: boolean; // 全部不可交互，展示状态
+  onFinish?: (values: Store) => void;
+  onFinishFailed?: (errorInfo: ValidateErrorEntity) => void;
+  isDev?: boolean; // 手动声明是开发模式
+  onValuesChange?: (values: any) => void; // 字段改变时抛出事件
+  autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
+  failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
 }
