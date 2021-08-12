@@ -5,7 +5,7 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { useForm, dateChange } from '../../../../index';
-import DformDate from '../../';
+import DformDate from '../..';
 
 interface BasicProps {
   onFinish: any;
