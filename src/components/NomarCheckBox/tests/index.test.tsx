@@ -45,9 +45,7 @@ test('renders Basic', async () => {
     <BasicTest onFinish={onFinish} onFinishFailed={onFinishFailed} />,
   );
   await sleep(1000)
-  // expect(getByText('喜欢的水果').parentNode).toHaveClass(
-  //   "alitajs-dform-vertical-title"
-  // )
+  expect(getByText('苹果')).toBeDefined()
   fireEvent.click(getByText('橙子'))
   fireEvent.click(getByText('Submit'))
   await waitFor(() => {
@@ -56,13 +54,13 @@ test('renders Basic', async () => {
   fireEvent.click(getByText('苹果'))
   await waitFor(() => {
     expect(getByText('苹果').parentNode?.firstChild).toHaveClass(
-      "alitajs-dform-box-botton-checked"
-    )
-  })
-  fireEvent.click(getByText('Submit'))
+      'alitajs-dform-box-botton-checked',
+    );
+  });
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinish).toBeCalled();
-  })
+  });
 });
 
 test('render couple', async () => {

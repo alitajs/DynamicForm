@@ -8,20 +8,16 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
-} from '@alitajs/dform';
-import DformMultiplePicker from '../';
+} from '../../../../index';
+import DformMultiplePicker from '../..';
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+  onChange: any;
+}
 
-const Page: FC = () => {
+const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
 
   const foodList = [
     {
@@ -65,15 +61,12 @@ const Page: FC = () => {
           data={foodList}
           title="我喜欢的食物"
           labelNumber={7}
-          placeholder="请选择我喜欢的食物"
+          placeholder="请选择我喜欢的食物111"
           alias={{
             label: 'foodName',
             value: 'foodId',
           }}
-          onChange={(e: (string | number)[]) => {
-            // eslint-disable-next-line no-console
-            console.log(e);
-          }}
+          onChange={onChange}
         />
         <DformMultiplePicker
           fieldProps="youFood"

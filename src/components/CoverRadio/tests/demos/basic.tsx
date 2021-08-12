@@ -37,7 +37,10 @@ interface BasicProps {
   onFinishFailed: any;
 }
 
-const CoverRadioTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
+const CoverRadioTestPage: React.FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+}) => {
   const [form] = useForm();
   const formsValues = {
     sex2: 'woman',
@@ -53,11 +56,11 @@ const CoverRadioTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed }) 
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <CoverRadio
-          fieldProps='sex'
+          fieldProps="sex"
           data={sexList}
-          title='性别'
+          title="性别"
           required={true}
           onChange={(val: any) => {
             // eslint-disable-next-line no-console
@@ -70,10 +73,10 @@ const CoverRadioTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed }) 
         />
 
         <CoverRadio
-          fieldProps='sex2'
+          fieldProps="sex2"
           data={sexList}
-          title='选择您的性别'
-          positionType='vertical'
+          title="选择您的性别"
+          positionType="vertical"
           alias={{
             label: 'sexName',
             value: 'sexId',
@@ -81,12 +84,12 @@ const CoverRadioTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed }) 
           disabled={true}
         />
         <CoverRadio
-          fieldProps='food'
+          fieldProps="food"
           data={foodList}
-          title='喜欢的食物'
+          title="喜欢的食物"
           required={true}
-          positionType='vertical'
-          radioType='vertical'
+          positionType="vertical"
+          radioType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
@@ -95,5 +98,5 @@ const CoverRadioTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed }) 
       </Button>
     </>
   );
-}
+};
 export default CoverRadioTestPage;

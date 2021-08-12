@@ -25,7 +25,7 @@ it('passes picker a11y test', async () => {
   const { container, getByText } = render(
     <div>
       <Form>
-        <CoverRadio  {...myProps} />
+        <CoverRadio {...myProps} />
       </Form>
     </div>,
   );
@@ -75,27 +75,27 @@ test('render couplet', async () => {
   expect(getByText('级联--饮料')).toBeDefined();
   fireEvent.click(getByText("可乐"))
   await waitFor(() => {
-    expect(getByText("可乐")).toHaveClass(
-      "alitajs-dform-cover-radio-wrapper-checked"
-    )
-  })
-  fireEvent.click(getByText("要果汁"))
+    expect(getByText('可乐')).toHaveClass(
+      'alitajs-dform-cover-radio-wrapper-checked',
+    );
+  });
+  fireEvent.click(getByText('要果汁'));
   await waitFor(() => {
-    expect(getByText("果汁")).toHaveClass(
-      "alitajs-dform-cover-radio-wrapper-checked"
-    )
-  })
-  fireEvent.click(getByText("要可乐"))
+    expect(getByText('果汁')).toHaveClass(
+      'alitajs-dform-cover-radio-wrapper-checked',
+    );
+  });
+  fireEvent.click(getByText('要可乐'));
   await waitFor(() => {
-    expect(getByText("可乐")).toHaveClass(
-      "alitajs-dform-cover-radio-wrapper-checked"
-    )
-  })
-  fireEvent.click(getByText("要牛奶"))
+    expect(getByText('可乐')).toHaveClass(
+      'alitajs-dform-cover-radio-wrapper-checked',
+    );
+  });
+  fireEvent.click(getByText('要牛奶'));
   await waitFor(() => {
-    expect(getByText("牛奶")).toHaveClass(
-      "alitajs-dform-cover-radio-wrapper-checked"
-    )
-  })
-  fireEvent.click(getByText("Submit"))
+    expect(getByText('牛奶')).toHaveClass(
+      'alitajs-dform-cover-radio-wrapper-checked',
+    );
+  });
+  fireEvent.click(getByText('Submit'));
 });
