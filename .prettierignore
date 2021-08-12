@@ -35,3 +35,4 @@ src/assets/**
 config.xml
 *.jpg
 *.png
+/.github

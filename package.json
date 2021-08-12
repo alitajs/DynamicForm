@@ -22,6 +22,7 @@
     "lint:prettier": "check-prettier lint",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
     "prettier": "prettier -c --write \"**/*\"",
+    "test":"",
     "format-imports": "cross-env import-sort --write '**/*.{js,jsx,ts,tsx}'"
   },
   "repository": "https://github.com/alitajs/DynamicForm",
