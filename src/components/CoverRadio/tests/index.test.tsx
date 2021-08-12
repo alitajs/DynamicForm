@@ -44,13 +44,13 @@ test("renders Basic", async () => {
   )
   fireEvent.click(getAllByText("男")[0])
   fireEvent.click(getByText("Submit"))
-  // await waitFor(() => {
-  //   expect(getByText("请选择性别"))
-  //   expect(getAllByText("男")[0]).not.toHaveClass(
-  //     "alitajs-dform-cover-radio-wrapper-checked"
-  //   )
-  //   expect(onFinishFailed).toBeCalled();
-  // })
+  await waitFor(() => {
+    // expect(getByText("请选择性别"))
+    expect(getAllByText("男")[0]).not.toHaveClass(
+      "alitajs-dform-cover-radio-wrapper-checked"
+    )
+    expect(onFinishFailed).toBeCalled();
+  })
   fireEvent.click(getAllByText("女")[0])
   await waitFor(() => {
     expect(getAllByText("女")[0]).toHaveClass(
@@ -72,7 +72,7 @@ test("renders Basic", async () => {
 
 test('render couplet', async () => {
   const { getByText } = render(<CoupletText />);
-  expect(getByText('级联--饮料'));
+  expect(getByText('级联--饮料')).toBeDefined();
   fireEvent.click(getByText("可乐"))
   await waitFor(() => {
     expect(getByText("可乐")).toHaveClass(

@@ -43,7 +43,7 @@ test('render Basic', async () => {
       onChange={onChange}
     />,
   );
-  expect(getByText('福州'));
+  expect(getByText('福州')).toBeDefined();
   await waitFor(() => {
     fireEvent.click(getByText('Submit'));
   });
@@ -67,14 +67,14 @@ test('render couplet', async () => {
   const { getByText } = render(<CoupletText />);
   expect(getByText('请选择延迟赋值'));
   await sleep(1100);
-  expect(getByText('上海'));
+  expect(getByText('上海')).toBeDefined();
   fireEvent.click(getByText('delayValue值改为北京'));
-  expect(getByText('北京'));
+  expect(getByText('北京')).toBeDefined();
   fireEvent.click(getByText('请选择改值后及联'));
   fireEvent.click(getByText('确定'));
-  expect(getByText('福州'));
+  expect(getByText('福州')).toBeDefined();
   await sleep(2100);
-  expect(getByText('杭州'));
+  expect(getByText('杭州')).toBeDefined();
   fireEvent.click(getByText('设不存在的值'));
   expect(getByText('请选择延迟赋数据源'));
 });
