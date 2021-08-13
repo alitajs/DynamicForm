@@ -9,6 +9,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   MultiplePicker,
+  IFormItemProps,
 } from '@alitajs/dform';
 
 const sexData = [
@@ -26,6 +27,43 @@ const motionData = [
   { label: '羽毛球', value: '羽毛球' },
   { label: '乒乓球', value: '乒乓球' },
 ];
+
+const data = [
+  {
+    type: 'input',
+    fieldProps: 'username',
+    required: true,
+    placeholder: '请输入',
+    title: '用户名',
+    defaultValue: '小红',
+  },
+  {
+    type: 'radio',
+    fieldProps: 'sex',
+    title: '性别',
+    data: sexData,
+  },
+  {
+    type: 'date',
+    fieldProps: 'date',
+    placeholder: '请选择',
+    title: '出生年月',
+  },
+  {
+    type: 'picker',
+    fieldProps: 'weather',
+    placeholder: '请选择',
+    title: '天气',
+    data: weatherData,
+  },
+  {
+    type: 'multiplePicker',
+    fieldProps: 'motion',
+    placeholder: '请选择',
+    title: '特长',
+    data: motionData,
+  },
+] as IFormItemProps[];
 
 // const ageData = Array.from
 
@@ -49,6 +87,7 @@ const UserName: FC = () => {
 
   const formProps = {
     form,
+    data,
     onFinish,
     onFinishFailed,
     formsValues,
@@ -56,33 +95,7 @@ const UserName: FC = () => {
 
   return (
     <div>
-      <DynamicForm {...formProps}>
-        <DformInput
-          fieldProps="username"
-          required
-          placeholder="请输入"
-          title="用户名"
-          defaultValue="小红"
-        />
-        <DformRadio fieldProps="sex" title="性别" data={sexData} />
-        <DformDatePicker
-          fieldProps="date"
-          placeholder="请选择"
-          title="出生年月"
-        />
-        <DformPicker
-          fieldProps="weather"
-          placeholder="请选择"
-          title="天气"
-          data={weatherData}
-        />
-        <MultiplePicker
-          fieldProps="motion"
-          placeholder="请选择"
-          title="特长"
-          data={motionData}
-        />
-      </DynamicForm>
+      <DynamicForm {...formProps} />
       <WhiteSpace />
       <Button onClick={() => form.submit()}>submit</Button>
     </div>

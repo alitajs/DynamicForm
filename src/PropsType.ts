@@ -92,9 +92,26 @@ export interface IFormItemProps {
   className?: string;
 }
 
+export interface TargetProps {
+  targetField: string;
+  targetValue?: any;
+  targetContent?: any;
+}
+
+export interface RelativesItemProps {
+  type: 'changeFormValue' | 'required' | 'hidden' | 'disabled' | 'custom';
+  targetValue: any[];
+  targetSet: TargetProps[];
+}
+
+export interface IFormRelativesProps {
+  [key: string]: RelativesItemProps;
+}
+
 export interface IDynamicFormProps {
   data?: IFormItemProps[]; // 动态表单数据
   form: FormInstance; // 表单对象
+  relatives?: IFormRelativesProps; // 表单集联规则
   formsValues?: Store;
   allDisabled?: boolean; // 全部不可交互，展示状态
   onFinish?: (values: Store) => void;

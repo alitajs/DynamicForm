@@ -199,9 +199,11 @@ const DynamicForm: FC<IDynamicFormProps> = ({
   isDev,
   autoLineFeed = true,
   failScroll = true,
+  relatives = {},
 }) => {
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   const [errorValue, setErrorValue] = useState<any>({});
+  const [changeForm, setChangeForm] = useState<any>({});
 
   useEffect(() => {
     if (defaultValueFlag) {
@@ -225,28 +227,67 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 
   const childs = React.Children.toArray(children);
 
-  const fieldChange = (e: any, relatives: any[]) => {
-    if (relatives && !!relatives.length) {
-      relatives.forEach((item) => {
-        const { type, fieldProps } = item;
+  // 字段变更联动
+  const fieldChange = (fieldProps: string, e: any, relatives: any) => {
+    // 当前表单规则
+    const curFieldRel: any[] = relatives[fieldProps];
+    // 改变表单字段
+    const mChangeForm: any = {};
+
+    if (
+      !!Object.keys(relatives).length &&
+      !!curFieldRel &&
+      !!curFieldRel.length
+    ) {
+      curFieldRel.forEach((rel: any) => {
+        const { type, targetValue, targetSet = [] } = rel;
+        const fieldValues = {} as any;
         switch (type) {
-          case 'empty':
-            form.setFieldsValue({
-              [fieldProps]: undefined,
+          case 'changeFormValue':
+            if (targetValue.includes(e)) {
+              targetSet.forEach((row: any) => {
+                const { targetField, targetValue } = row;
+                fieldValues[targetField] = targetValue;
+              });
+              form.setFieldsValue(fieldValues);
+            }
+            break;
+          case 'required':
+          case 'hidden':
+          case 'disabled':
+            targetSet.forEach((row: any) => {
+              const { targetField } = row;
+              mChangeForm[targetField] = {
+                [type]: targetValue.includes(e),
+              };
             });
             break;
-          case '':
+          case 'custom':
+            targetSet.forEach((row: any) => {
+              const { targetField, targetContent = {} } = row;
+              mChangeForm[targetField] = targetValue.includes(e)
+                ? targetContent
+                : {};
+            });
             break;
           default:
             break;
         }
       });
+      if (!!Object.keys(mChangeForm).length) {
+        setChangeForm({
+          ...changeForm,
+          ...mChangeForm,
+        });
+      }
     }
   };
 
   const dformItems = (childs: any) => {
     return childs.map((child: any, index: number) => {
       if (!React.isValidElement(child)) return;
+      const { props = {} as any } = child;
+      const mProps: any = { ...props, ...(changeForm[props.fieldProps] || {}) };
       const {
         positionType,
         hidden,
@@ -256,7 +297,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         subTitle,
         extra,
         fieldProps,
-      } = child.props as any;
+      } = mProps;
       const { name } = child.type as any;
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
         return (
@@ -273,11 +314,11 @@ const DynamicForm: FC<IDynamicFormProps> = ({
             fieldProps={fieldProps}
           >
             {React.cloneElement(child, {
-              ...(child.props as any),
+              ...mProps,
               errorValue,
               onChange: (e: any) => {
-                const { onChange, relatives } = child.props as any;
-                fieldChange(e, relatives);
+                const { onChange } = mProps as any;
+                fieldChange(fieldProps, e, relatives);
                 if (onChange) onChange(e);
               },
             })}
