@@ -1,46 +1,32 @@
-/* eslint-disable no-console */
-/**
- * title: 基础 文件上传
- * desc: 表单使用 demo
- */
-import React, { FC } from 'react';
+import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, {
-  useForm,
-  Store,
-  ValidateErrorEntity,
-  getRandom,
-} from '@alitajs/dform';
-import NomarFile from '../'
+import DynamicForm, { getRandom } from '../../../../index';
+import { useForm } from 'rc-field-form';
+import NomarFile from '../../';
 
-const contractList = [
-  { title: '合约模板2020.pdf', fileId: '1' },
-  { title: '电子协议模板2020.pdf', fileId: '2' },
-];
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+  onMyClick: any
+}
+let forms: any;
 
-const Page: FC = () => {
+const NomarFileTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onMyClick }) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
-
+  forms = form;
+  const contractList = [
+    { title: '房子买卖协议.pdf', fileId: '1' },
+    { title: '房屋租赁合同说明书.pdf', fileId: '2' },
+  ];
   const formProps = {
     form,
     onFinish,
     onFinishFailed,
-    // data: formsData,
     formsValues: {
       contract: contractList,
     },
     isDev: false,
   };
-
   return (
     <>
       <DynamicForm {...formProps} >
@@ -50,6 +36,7 @@ const Page: FC = () => {
           fieldProps='contract'
           title='合同'
           onClick={(res: any) => {
+            onMyClick()
             console.log(res);
           }}
           onChange={(res: any, delItem: any) => {
@@ -85,7 +72,6 @@ const Page: FC = () => {
         Submit
       </Button>
     </>
-  );
-};
-
-export default Page;
+  )
+}
+export default { NomarFileTestPage, forms };
