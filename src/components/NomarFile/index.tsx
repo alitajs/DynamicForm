@@ -20,6 +20,7 @@ const NomarFile: FC<INomarFileProps> = (props) => {
   } = props;
 
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
+    console.log("fileIns");
     if (e.target.files) {
       const fileList = Object.keys(e.target.files).map(
         (item) => e.target.files[item],
@@ -28,17 +29,17 @@ const NomarFile: FC<INomarFileProps> = (props) => {
     }
   };
 
-  const extraContent = () => (
-    <React.Fragment>
-      <input
-        type="file"
-        multiple
-        className="alitajs-dform-file-input"
-        onChange={fileIns}
-      />
-      <span className="alitajs-dform-file-extra">{extra}</span>
-    </React.Fragment>
-  );
+  // const extraContent = () => (
+  //   <React.Fragment>
+  //     <input
+  //       type="file"
+  //       multiple
+  //       className="alitajs-dform-file-input"
+  //       onChange={fileIns}
+  //     />
+  //     <span className="alitajs-dform-file-extra">{extra}</span>
+  //   </React.Fragment>
+  // );
 
   const fileChange = (
     res: INomarFileItemProps[],
