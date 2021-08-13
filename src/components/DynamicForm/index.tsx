@@ -8,6 +8,7 @@ import {
   IDynamicFormProps,
 } from '../../PropsType';
 import { DFORM_COMP_NAME, DFORM_COMP_DETAULT } from '../../utils/menu';
+import Group from './group';
 
 import {
   DformInput,
@@ -187,19 +188,20 @@ const resetErrorField = (
   }
 };
 
-const DynamicForm: FC<IDynamicFormProps> = ({
-  children,
-  data = [],
-  form,
-  allDisabled = false,
-  formsValues = {},
-  onFinish,
-  onFinishFailed,
-  onValuesChange,
-  isDev,
-  autoLineFeed = true,
-  failScroll = true,
-}) => {
+const DynamicForm: FC<IDynamicFormProps> = (props) => {
+  const {
+    children,
+    data = [],
+    form,
+    allDisabled = false,
+    formsValues = {},
+    onFinish,
+    onFinishFailed,
+    onValuesChange,
+    isDev,
+    autoLineFeed = true,
+    failScroll = true,
+  } = props;
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   const [errorValue, setErrorValue] = useState<any>({});
 
@@ -258,6 +260,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
         fieldProps,
       } = child.props as any;
       const { name } = child.type as any;
+      console.log(name);
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
         return (
           <Title
@@ -283,6 +286,11 @@ const DynamicForm: FC<IDynamicFormProps> = ({
             })}
           </Title>
         );
+        // } else if (name === 'Group') {
+        //   return React.cloneElement(child, {
+        //     ...props,
+        //     children: child,
+        //   });
       } else {
         return child;
       }
@@ -325,4 +333,8 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 
 // 为自定义 useForm 预留入口
 export { useForm };
+
+//@ts-ignore
+DynamicForm.Group = Group;
+
 export default DynamicForm;

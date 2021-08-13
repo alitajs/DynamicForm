@@ -16,6 +16,7 @@ export const DFORM_COMP_NAME = [
   'NomarText',
   'NomarFile',
   'RangeDatePicker',
+  'NomarTab',
 ];
 
 export const DFORM_COMP_DETAULT = {
@@ -38,6 +39,7 @@ export const DFORM_COMP_DETAULT = {
   rangeDatePicker: { positionType: 'vertical' },
   AddressPicker: { positionType: 'horizontal' },
   CoverRadio: { positionType: 'horizontal' },
+  NomarTab: { positionType: 'horizontal' },
   ExtraInput: { positionType: 'vertical' },
   MultiplePicker: { positionType: 'horizontal' },
   NomarInput: { positionType: 'horizontal' },

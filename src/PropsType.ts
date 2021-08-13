@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import {
@@ -6,6 +7,7 @@ import {
   Store,
   ValidateErrorEntity,
 } from 'rc-field-form/es/interface';
+import Group, { GroupProps } from './components/DynamicForm/group';
 
 export * from 'rc-field-form/es/interface';
 
