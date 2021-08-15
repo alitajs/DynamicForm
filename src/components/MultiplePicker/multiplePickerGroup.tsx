@@ -30,6 +30,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     rightContent = '确定',
     height,
     children,
+    fieldProps,
   } = props;
 
   const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
@@ -110,6 +111,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
   return (
     <>
       <TextItem
+        fieldProps={fieldProps}
         isVertical={isVertical}
         value={multipleLabel}
         placeholder={placeholder}

@@ -11,6 +11,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   const [visible, setvisible] = useState<boolean>(false);
   const [pickerLabel, setPickerLabel] = useState<any>('');
   const {
+    fieldProps,
     children,
     data = [],
     title,
@@ -87,6 +88,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
         disabled={disabled}
         extra={extra}
         className={className}
+        fieldProps={fieldProps}
       >
         {children}
       </TextItem>

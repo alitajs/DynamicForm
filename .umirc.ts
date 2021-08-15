@@ -10,16 +10,15 @@ export default defineConfig({
     `setTimeout(function () {
     var menu = document.getElementsByClassName('__dumi-default-menu')[0];
     var navbar = document.getElementsByClassName('__dumi-default-navbar')[0];
-    console.log(navbar.offsetHeight)
     const isMobile = navbar.offsetHeight == 50;
     if (!isMobile) {
       var github = document.createElement('p');
       github.className = 'github';
       github.style.position = 'absolute';
-      github.style.top = '0';
-      github.style.left = '70px';
+      github.style.top = '8px';
+      github.style.left = '280px';
       github.innerHTML = '<object type="image/svg+xml" data="https://img.shields.io/github/stars/alitajs/DynamicForm?style=social"></object>';
-      menu.appendChild(github);
+      navbar.appendChild(github);
     }
   }, 300)`,
   ],

@@ -3,6 +3,7 @@ import Form, { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
 import Title from '../Title';
+import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 import { DFORM_COMP_NAME, DFORM_COMP_DETAULT } from '../../utils/menu';
 import {
   resetErrorField,
@@ -110,6 +111,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     failScroll = true,
     relatives = {},
     sonFlag = false,
+    idDev = false,
   } = fatherProps;
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   const [errorValue, setErrorValue] = useState<any>({});
@@ -283,6 +285,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         </Form>
       )}
       {sonFlag && showChildren({ context: children })}
+      {/* {idDev && <NewFieldPicker />} */}
     </DformContext.Provider>
   );
 };

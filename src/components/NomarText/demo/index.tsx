@@ -5,18 +5,21 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
+  DformTextArea,
 } from '@alitajs/dform';
 import PhotoIcon from '../../../assets/photo.png';
+import PositionIcon from '../../../assets/position_ico.png';
 import DformText from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
 
   const photoImg = () => <img src={PhotoIcon} style={{ width: '1rem' }} />;
+
+  const extraImg = () => <img src={PositionIcon} style={{ width: '0.5rem' }} />;
 
   const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
 
@@ -32,10 +35,9 @@ const Page: FC = () => {
 
   const formsValues = {
     userAge: '这里只读不可编辑',
-    username5:
-      'disabled 为 true, 则 onClick 失效啊不森那是假的喀纳斯接地气呢你千万记恩情为敬勤捏你见你你去问就你去问i饿去呢我i你问i =内外交困的去看望你去委屈',
+    username5: 'disabled 为 true, 则 onClick 失效',
     userTitle: '点击获取表单全部数据',
-    area: '值过长会自动换行',
+    area: '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
   };
   const formProps = {
     onFinish,
@@ -62,18 +64,11 @@ const Page: FC = () => {
           }}
         />
         <DformText
-          fieldProps="area"
-          required={true}
-          title="学校概况"
-          placeholder="值过长会自动换行"
-          rows={1}
-          autoHeight={true}
-        />
-        <DformText
           fieldProps="username5"
           required={true}
-          title="身份证"
-          extra={photoImg()}
+          title="定位"
+          extra={extraImg()}
+          labelNumber={3}
           placeholder="暂无数据"
           disabled={true}
           onClick={(vals: string) => {
@@ -101,9 +96,18 @@ const Page: FC = () => {
         <DformText
           fieldProps="titleTooLong2"
           required={true}
+          placeholder="请输入身份证"
+          title="身份证"
+          positionType="vertical"
+        />
+        <DformText
+          fieldProps="area"
+          required={true}
+          title="控制显示行数"
           placeholder="暂无数据"
-          title="标题名称过长(超过14个字符自动换行)"
-          extra={photoImg()}
+          // positionType="vertical"
+          labelNumber={7}
+          maxLine={2}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

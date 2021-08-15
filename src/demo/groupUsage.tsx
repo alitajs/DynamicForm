@@ -20,7 +20,6 @@ const { Group } = DynamicForm;
 
 const Page: FC = () => {
   const [form] = useForm();
-  const [pwdInputType] = useState<boolean>(true);
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -30,8 +29,6 @@ const Page: FC = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-
-  const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
 
   const formsValues = {};
   const formProps = {
@@ -64,7 +61,21 @@ const Page: FC = () => {
           />
         </Group>
         <WhiteSpace />
-        <Group type="card" title="卡片二">
+        <Group
+          type="card"
+          title="卡片二"
+          leftView={
+            <div
+              style={{
+                background: '#1890ff',
+                margin: '0.1rem 0.1rem 0 0',
+                width: '0.1rem',
+                height: '0.3rem',
+                borderRadius: '0.4rem',
+              }}
+            />
+          }
+        >
           <DformPicker
             fieldProps="weather"
             placeholder="请选择"
