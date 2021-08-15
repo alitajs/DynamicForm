@@ -52,7 +52,6 @@ const Page: FC = () => {
           required={true}
           placeholder="输入项居左"
           title="用户名"
-          clear
           subTitle={subTitle()}
           coverStyle={{
             textAlign: 'left',
@@ -77,7 +76,6 @@ const Page: FC = () => {
           extra={photoImg()}
           placeholder="暂无数据"
           disabled={true}
-          inputType="number"
           onClick={(vals: string) => {
             // eslint-disable-next-line no-console
             console.log(vals);
@@ -99,17 +97,13 @@ const Page: FC = () => {
           placeholder="暂无数据"
           title="标题名称过长"
           labelNumber={7}
-          inputType="text"
-          clear
         />
         <DformText
           fieldProps="titleTooLong2"
           required={true}
           placeholder="暂无数据"
           title="标题名称过长(超过14个字符自动换行)"
-          inputType="text"
           extra={photoImg()}
-          clear
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

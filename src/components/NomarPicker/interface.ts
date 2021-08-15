@@ -25,4 +25,5 @@ export interface INomarPickerProps {
   alias?: IAliasProps;
   extra?: string | React.ReactNode;
   className?: string;
+  defaultValue?: string;
 }
