@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { act } from 'react-dom/test-utils';
 import { Button } from 'antd-mobile';
-import DynamicForm from '../../../DynamicForm';
+import DynamicForm from '../../../../';
 import { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity, IFormItemProps } from '../../../..';
 

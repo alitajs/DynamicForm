@@ -97,7 +97,9 @@ const UserName: FC = () => {
     <div>
       <DynamicForm {...formProps} />
       <WhiteSpace />
-      <Button onClick={() => form.submit()}>submit</Button>
+      <Button type="primary" onClick={() => form.submit()}>
+        submit
+      </Button>
     </div>
   );
 };

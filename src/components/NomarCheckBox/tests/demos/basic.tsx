@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps } from '../../../DynamicForm';
+import DynamicForm from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
 import DformCheckBox from '../../';
 

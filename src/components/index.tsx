@@ -1,6 +1,5 @@
 export { default as AddressPicker } from './AddressPicker';
 export { default as CoverRadio } from './CoverRadio';
-export { default as DynamicForm } from './DynamicForm';
 export { default as ExtraInput } from './ExtraInput';
 export { default as InputItemAA } from './InputItemaaa';
 export { default as MultiplePicker } from './MultiplePicker';

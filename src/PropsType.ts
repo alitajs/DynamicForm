@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React from 'react';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 import {
@@ -7,7 +7,6 @@ import {
   Store,
   ValidateErrorEntity,
 } from 'rc-field-form/es/interface';
-import Group, { GroupProps } from './components/DynamicForm/group';
 
 export * from 'rc-field-form/es/interface';
 
@@ -107,7 +106,7 @@ export interface RelativesItemProps {
 }
 
 export interface IFormRelativesProps {
-  [key: string]: RelativesItemProps;
+  [key: string]: RelativesItemProps[];
 }
 
 export interface IDynamicFormProps {
@@ -122,4 +121,5 @@ export interface IDynamicFormProps {
   onValuesChange?: (values: any) => void; // 字段改变时抛出事件
   autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
   failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
+  sonFlag?: boolean;
 }

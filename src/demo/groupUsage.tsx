@@ -9,6 +9,11 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   DformInput,
+  DformRadio,
+  DformPicker,
+  DformDatePicker,
+  RangeDatePicker,
+  DformCheckBox,
 } from '@alitajs/dform';
 
 const { Group } = DynamicForm;
@@ -28,108 +33,84 @@ const Page: FC = () => {
 
   const subTitle = () => <div style={{ color: 'red' }}>此为必填项(副标题)</div>;
 
-  const formsValues = {
-    userAge: '这里只读不可编辑',
-    username4: '点击图标事件',
-    username6: '存在点击事件',
-    userTitle: '点击获取表单全部数据',
-  };
+  const formsValues = {};
   const formProps = {
     onFinish,
     onFinishFailed,
     formsValues,
     form,
-    isDev: false,
+    isDev: true,
   };
 
   return (
-    <>
+    <div>
       <DynamicForm {...formProps}>
-        <Group>
+        <WhiteSpace />
+        <Group type="card" title="卡片一" require>
           <DformInput
             fieldProps="username"
             required
-            clear
-            placeholder="输入项居左"
+            placeholder="请输入"
             title="用户名"
-            subTitle={subTitle()}
-            coverStyle={{ textAlign: 'left' }}
+            defaultValue="小红"
+          />
+          <DformRadio
+            fieldProps="sex"
+            title="性别"
+            data={[
+              { label: '男', value: 'man' },
+              { label: '女', value: 'woman' },
+            ]}
           />
         </Group>
-        <DformInput
-          fieldProps="userAge"
-          title="年龄"
-          placeholder="请输入"
-          editable={false}
-          inputType="text"
-          clear
+        <WhiteSpace />
+        <Group type="card" title="卡片二">
+          <DformPicker
+            fieldProps="weather"
+            placeholder="请选择"
+            title="天气"
+            data={[
+              { label: '晴', value: '晴' },
+              { label: '阴', value: '阴' },
+              { label: '雨', value: '雨' },
+            ]}
+          />
+          <RangeDatePicker
+            fieldProps="rangeTime1"
+            fieldProps2="rangeTime2"
+            title="时间(month)"
+            modeType="month"
+            firstProps={{
+              onOk: (val: any) => {
+                // eslint-disable-next-line no-console
+                console.log(val);
+              },
+            }}
+          />
+        </Group>
+        <WhiteSpace />
+        <DformDatePicker
+          fieldProps="date"
+          placeholder="请选择"
+          title="出生年月"
         />
-        <DformInput
-          fieldProps="userPwd"
-          title="请设置密码"
-          placeholder="请输入"
-          inputType={pwdInputType ? 'password' : 'text'}
-        />
-        <DformInput
-          fieldProps="titleTooLong"
-          title="标题名称过长"
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-        />
-        <DformInput
-          fieldProps="defaultValue"
-          title="设置默认值"
-          placeholder="请输入"
-          defaultValue="这是默认值"
-        />
-        <DformInput
-          fieldProps="username5"
-          title="身份证"
-          placeholder="请输入身份证"
-          inputType="number"
-        />
-        <DformInput
-          fieldProps="userTitle"
-          title="标题"
-          placeholder="点击获取表单全部数据"
-          editable={false}
-          onClick={() => console.log(form.getFieldsValue())}
-        />
-        <DformInput
-          fieldProps="cardNumber"
-          title="身份证号码(增加规则)"
+        <DformCheckBox
+          title="喜欢的水果"
           required
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-          positionType="vertical"
-          rules={[
-            { required: true, message: `请输入身份证号码` },
-            {
-              pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
-              message: '名称只允许包含数字、字母和下划线',
-            },
+          data={[
+            { label: '哈密瓜', value: '哈密瓜' },
+            { label: '菠萝', value: '菠萝' },
+            { label: '香梨', value: '香梨' },
           ]}
-        />
-        <DformInput
-          fieldProps="subTitle"
-          title="副标题"
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-          subTitle={subTitle()}
-          positionType="vertical"
+          fieldProps="fruit"
+          disableItem={(x: any) => ['香梨'].some((a) => x.value === a)}
         />
       </DynamicForm>
-      <WhiteSpace size="sm" />
+      <WhiteSpace />
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
-    </>
+    </div>
   );
 };
 
