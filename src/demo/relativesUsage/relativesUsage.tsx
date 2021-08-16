@@ -10,6 +10,8 @@ import DynamicForm, {
   ValidateErrorEntity,
   MultiplePicker,
   IFormRelativesProps,
+  IFormItemProps,
+  IDynamicFormProps,
 } from '@alitajs/dform';
 
 const { Group } = DynamicForm;
@@ -106,14 +108,18 @@ const relatives = {
 
 const UserName: FC = () => {
   const [form] = useForm();
-  const [formsValues, setFormsValues] = useState<any>({});
+  const [isJson, setisJson] = useState(false);
+  const [formsValues, setFormsValues] = useState<any>({
+    isJson: isJson ? '1' : '0',
+  });
 
   useEffect(() => {
     setFormsValues({
       sex: 'man',
       motion: ['羽毛球', '乒乓球'],
+      isJson: isJson ? '1' : '0',
     });
-  }, []);
+  }, [isJson]);
 
   const onFinish = (values: Store) => {
     console.log(values);
@@ -122,49 +128,112 @@ const UserName: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
+  const dFormData = [
+    {
+      type: 'input',
+      fieldProps: 'username',
+      required: true,
+      placeholder: '请输入',
+      title: 'J用户名',
+      defaultValue: '小红',
+    },
+    {
+      type: 'radio',
+      fieldProps: 'sex',
+      title: 'J性别',
+      data: sexData,
+    },
+    {
+      type: 'date',
+      fieldProps: 'date',
+      placeholder: '请选择',
+      title: 'J出生年月',
+    },
+    {
+      type: 'picker',
+      fieldProps: 'weather',
+      placeholder: '请选择',
+      title: 'J天气',
+      data: weatherData,
+    },
+    {
+      type: 'multiplePicker',
+      fieldProps: 'motion',
+      placeholder: '请选择',
+      title: 'J特长',
+      data: motionData,
+    },
+    {
+      type: 'multiplePicker',
+      fieldProps: 'food',
+      placeholder: '请选择',
+      title: 'J美食',
+      data: foodData,
+    },
+  ] as IFormItemProps[];
+
   const formProps = {
     form,
     onFinish,
     onFinishFailed,
     formsValues,
     relatives,
-  };
+  } as IDynamicFormProps;
+  if (isJson) {
+    formProps.data = dFormData;
+  }
 
   return (
     <div>
       <DynamicForm {...formProps}>
-        <Group>
-          <DformInput
-            fieldProps="username"
-            required
-            placeholder="请输入"
-            title="用户名"
-            defaultValue="小红"
-          />
-        </Group>
-        <DformRadio fieldProps="sex" title="性别" data={sexData} />
-        <DformDatePicker
-          fieldProps="date"
-          placeholder="请选择"
-          title="出生年月"
-        />
-        <DformPicker
-          fieldProps="weather"
-          placeholder="请选择"
-          title="天气"
-          data={weatherData}
-        />
-        <MultiplePicker
-          fieldProps="motion"
-          placeholder="请选择"
-          title="特长"
-          data={motionData}
-        />
-        <MultiplePicker
-          fieldProps="food"
-          placeholder="请选择"
-          title="美食"
-          data={foodData}
+        {!isJson && (
+          <React.Fragment>
+            <DformInput
+              fieldProps="username"
+              required
+              placeholder="请输入"
+              title="用户名"
+              defaultValue="小红"
+            />
+            <DformRadio fieldProps="sex" title="性别" data={sexData} />
+            <DformDatePicker
+              fieldProps="date"
+              placeholder="请选择"
+              title="出生年月"
+            />
+            <DformPicker
+              fieldProps="weather"
+              placeholder="请选择"
+              title="天气"
+              data={weatherData}
+            />
+            <MultiplePicker
+              fieldProps="motion"
+              placeholder="请选择"
+              title="特长"
+              data={motionData}
+            />
+            <MultiplePicker
+              fieldProps="food"
+              placeholder="请选择"
+              title="美食"
+              data={foodData}
+            />
+          </React.Fragment>
+        )}
+        <DformRadio
+          fieldProps="isJson"
+          required
+          placeholder="请输入"
+          title="是否使用JSON格式渲染页面"
+          data={[
+            { label: '是', value: '1' },
+            { label: '否', value: '0' },
+          ]}
+          positionType="vertical"
+          onChange={(e) => {
+            setisJson(e == 1);
+          }}
         />
       </DynamicForm>
       <WhiteSpace />

@@ -127,8 +127,9 @@ export const getFormItem = ({
           disabled={disabled}
           errorValue={errorValue}
           onChange={(e: any) => {
+            console.log('e', e);
             const { onChange } = otherProps as any;
-            fieldChange(childProps.fieldProps, e, relatives);
+            fieldChange(otherProps.fieldProps, e, relatives);
             if (onChange) onChange(e);
           }}
         />
@@ -189,6 +190,9 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
 
   // 字段变更联动
   const fieldChange = (fieldProps: string, e: any, relatives: any) => {
+    console.log('fieldProps', fieldProps);
+    console.log('e', e);
+    console.log('relatives', relatives);
     // 当前表单规则
     const curFieldRel: any[] = relatives[fieldProps];
     // 改变表单字段
@@ -234,6 +238,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
             break;
         }
       });
+      console.log('mChangeForm', mChangeForm);
       if (!!Object.keys(mChangeForm).length) {
         setChangeForm({
           ...changeForm,
@@ -291,7 +296,9 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     jsonData: IFormItemProps[];
   }) => {
     return jsonData.map((item: any) => {
-      const { type, groupProps, fieldProps, children } = item;
+      const mItem = { ...item, ...(changeForm[item.fieldProps] || {}) };
+      const { type, groupProps, fieldProps, children } = mItem;
+
       if (type === 'group') {
         return (
           <Group {...groupProps} key={fieldProps}>
@@ -300,7 +307,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         );
       }
       return getFormItem({
-        formItem: changeData(item, autoLineFeed),
+        formItem: changeData(mItem, autoLineFeed),
         allDisabled,
         errorValue,
         fieldChange,
