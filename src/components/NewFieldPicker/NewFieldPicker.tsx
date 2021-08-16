@@ -10,7 +10,6 @@ import { IFormItemProps } from '../../PropsType';
 interface NewFieldPickerProps {
   onChange?: (t: any) => void;
   value?: IFormItemProps[];
-  data: DFormData;
 }
 
 const radioList = [
@@ -167,7 +166,7 @@ const InitFormValue = {
   username: '张三',
 };
 
-const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
+const NewFieldPicker: FC<NewFieldPickerProps> = ({ value }) => {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [selectFieldItem, setSelectFieldItem] = useState<IFormItemProps>();
@@ -180,10 +179,6 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
     // onChange && onChange(alitaDformExtraField);
     setModal2(false);
   };
-
-  useEffect(() => {
-    setAlitaDformExtraField([]);
-  }, [data]);
 
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -252,13 +247,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
           inline
           type="primary"
           onClick={() => {
-            //  这里兼容下低代码平台
-            try {
-              const d = Array.from(data as Array<any>);
-              copy(JSON.stringify(d.concat(alitaDformExtraField)));
-            } catch (error) {
-              copy(JSON.stringify(alitaDformExtraField));
-            }
+            copy(JSON.stringify(alitaDformExtraField));
           }}
           style={{
             width: '48%',

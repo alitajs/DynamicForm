@@ -285,7 +285,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         </Form>
       )}
       {sonFlag && showChildren({ context: children })}
-      {isDev && <NewFieldPicker data={data} />}
+      {isDev && <NewFieldPicker />}
     </DformContext.Provider>
   );
 };
