@@ -111,7 +111,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     failScroll = true,
     relatives = {},
     sonFlag = false,
-    idDev = false,
+    isDev = false,
   } = fatherProps;
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   const [errorValue, setErrorValue] = useState<any>({});
@@ -285,7 +285,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         </Form>
       )}
       {sonFlag && showChildren({ context: children })}
-      {/* {idDev && <NewFieldPicker />} */}
+      {isDev && <NewFieldPicker data={data} />}
     </DformContext.Provider>
   );
 };

@@ -3,6 +3,7 @@ import { Modal, Button, WingBlank, WhiteSpace, List } from 'antd-mobile';
 import copy from 'copy-to-clipboard';
 import Form from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
+import EditForm from '../EditForm/EditForm';
 import { getFormItem, DFormData } from '../DynamicForm/Form';
 import { IFormItemProps } from '../../PropsType';
 
@@ -346,7 +347,7 @@ const NewFieldPicker: FC<NewFieldPickerProps> = ({ value, data = [] }) => {
             </div>
           )}
         >
-          {/* <EditForm data={selectFieldItem} onChange={onSelectFieldItem} /> */}
+          <EditForm data={selectFieldItem} onChange={onSelectFieldItem} />
         </List>
       </Modal>
     </>
