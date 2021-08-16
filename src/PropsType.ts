@@ -42,6 +42,7 @@ export interface IFormItemProps {
     | 'text'
     | 'picker'
     | 'file'
+    | 'group'
     | 'checkbox';
   title: string;
   fieldProps: string;
@@ -91,6 +92,7 @@ export interface IFormItemProps {
   extra?: string | React.ReactNode;
   initKey?: string | number;
   className?: string;
+  groupProps?: GroupProps;
 }
 
 export interface TargetProps {
@@ -122,4 +124,21 @@ export interface IDynamicFormProps {
   autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
   failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
   sonFlag?: boolean;
+}
+
+export interface CardProps {
+  leftView?: string | React.ReactNode;
+  require?: boolean;
+  title?: string | React.ReactNode;
+  rightView?: string | React.ReactNode;
+  classname?: React.CSSProperties;
+}
+
+export interface GroupProps {
+  type?: 'empty' | 'card';
+  title?: string | React.ReactNode;
+  required?: boolean;
+  classname?: React.CSSProperties;
+  rightView?: string | React.ReactNode;
+  leftView?: string | React.ReactNode;
 }

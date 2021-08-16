@@ -77,23 +77,22 @@ export const getByteLen = (val: string) => {
   return len;
 };
 
-export const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
-  oldData.map((item) => {
-    if (item?.hidden) {
-      item.required = false;
-    }
-    if (item.positionType === 'vertical' || !autoLineFeed) return item;
-    if (item.title) {
-      const titleSize = getByteLen(item.title);
-      if (titleSize >= 16) {
-        item.positionType = 'vertical';
-      } else if (item.type === 'input' || item.type === 'extraInput') {
-        if (titleSize > 8) {
-          item.labelNumber = titleSize / 2 + 1;
-        } else {
-          item.labelNumber = 5;
-        }
+export const changeData = (item: IFormItemProps, autoLineFeed: boolean) => {
+  if (item?.hidden) {
+    item.required = false;
+  }
+  if (item.positionType === 'vertical' || !autoLineFeed) return item;
+  if (item.title) {
+    const titleSize = getByteLen(item.title);
+    if (titleSize >= 16) {
+      item.positionType = 'vertical';
+    } else if (item.type === 'input' || item.type === 'extraInput') {
+      if (titleSize > 8) {
+        item.labelNumber = titleSize / 2 + 1;
+      } else {
+        item.labelNumber = 5;
       }
     }
-    return item;
-  });
+  }
+  return item;
+};
