@@ -36,21 +36,3 @@ nav:
 ## 备注
 
 勾选框颜色可配置，请前往[可配置](https://dform.alitajs.com/setting)页面查看。
-
-## 组件使用
-
-### Checkbox
-
-<code src="./demo/checkbox.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
-{
-  "type": "checkbox",
-  "title": "喜欢的水果",
-  "required": true,
-  "data": fruitsList,
-  "fieldProps": "fruit"
-}
-```
