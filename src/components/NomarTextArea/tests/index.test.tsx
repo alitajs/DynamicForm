@@ -39,8 +39,9 @@ test('renders Basic', async () => {
     expect(getByText("请输入身份证")).toBeDefined();
   })
 
+  const school: any = getByText("学校概况")?.parentNode?.parentNode?.parentNode?.lastChild?.lastChild
   fireEvent.change(
-    getByText("学校概况").parentNode?.parentNode?.parentNode?.lastChild?.lastChild,
+    school,
     { target: { value: '我的学校很漂亮' } }
   )
 
@@ -50,18 +51,20 @@ test('renders Basic', async () => {
   //判断textarea标签有readonly属性
   expect(getByText("只读，不可编辑").getAttribute("readonly") === "").toBe(true);
 
-  const blu = getAllByText("标题文字内容过长")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild;
-  blu?.focus();
-  blu?.blur();
+  const blus: any = getAllByText("标题文字内容过长")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild;
+  blus.focus();
+  blus.blur();
   expect(onBlur).toBeCalled()
 
+  const titleLong: any = getAllByText("标题文字内容过长")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild
   fireEvent.change(
-    getAllByText("标题文字内容过长")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild,
+    titleLong,
     { target: { value: '标题文字内容过长' } }
   )
 
+  const ID: any = getAllByText("身份证")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild
   fireEvent.change(
-    getAllByText("身份证")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild,
+    ID,
     { target: { value: '身份证' } }
   )
   fireEvent.click(getByText("Submit"))
