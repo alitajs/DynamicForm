@@ -247,7 +247,12 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     return childs.map((child: any, index: number) => {
       if (!React.isValidElement(child)) return;
       const { props = {} as any } = child;
-      const mProps: any = { ...props, ...(changeForm[props.fieldProps] || {}) };
+      const { name } = child.type as any;
+      const mProps: any = {
+        ...props,
+        ...(changeForm[props.fieldProps] || {}),
+        name,
+      };
       const {
         positionType,
         hidden,
@@ -258,7 +263,6 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         extra,
         fieldProps,
       } = mProps;
-      const { name } = child.type as any;
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
         return getFormItem({
           child,
@@ -269,30 +273,6 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           fieldChange,
           relatives,
         });
-        return (
-          <Title
-            key={fieldProps || index}
-            error={errorValue}
-            positionType={positionType || DFORM_COMP_DETAULT[name].positionType}
-            hidden={hidden}
-            required={required}
-            hasStar={hasStar}
-            title={title}
-            subTitle={subTitle}
-            extra={extra}
-            fieldProps={fieldProps}
-          >
-            {React.cloneElement(child, {
-              ...mProps,
-              errorValue,
-              onChange: (e: any) => {
-                const { onChange } = mProps as any;
-                fieldChange(fieldProps, e, relatives);
-                if (onChange) onChange(e);
-              },
-            })}
-          </Title>
-        );
       } else if (name === 'Group') {
         return (
           <Group key={fieldProps || index} {...props}>
