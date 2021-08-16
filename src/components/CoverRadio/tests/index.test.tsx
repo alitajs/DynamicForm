@@ -71,7 +71,7 @@ test("renders Basic", async () => {
 
 test('render couplet', async () => {
   const { getByText } = render(<CoupletText />);
-  expect(getByText('级联--饮料')).toBeDefined();
+  expect(getByText('可乐')).toBeDefined();
   fireEvent.click(getByText("可乐"))
   await waitFor(() => {
     expect(getByText('可乐')).toHaveClass(
