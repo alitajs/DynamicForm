@@ -25,18 +25,29 @@ const motionData = [
 
 const data = [
   {
-    type: 'input',
-    fieldProps: 'username',
-    required: true,
-    placeholder: '请输入',
-    title: '用户名',
-    defaultValue: '小红',
-  },
-  {
-    type: 'radio',
-    fieldProps: 'sex',
-    title: '性别',
-    data: sexData,
+    type: 'group',
+    fieldProps: 'group1',
+    groupProps: {
+      type: 'card',
+      title: '卡片一',
+      require: true,
+    },
+    children: [
+      {
+        type: 'input',
+        fieldProps: 'username',
+        required: true,
+        placeholder: '请输入',
+        title: '用户名',
+        defaultValue: '小红',
+      },
+      {
+        type: 'radio',
+        fieldProps: 'sex',
+        title: '性别',
+        data: sexData,
+      },
+    ],
   },
   {
     type: 'date',

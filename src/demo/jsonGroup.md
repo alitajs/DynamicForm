@@ -1,21 +1,26 @@
 ---
-title: 组件化分组
+title: JSON分组
 group:
-  title: 组件化分组
-  path: /usa
-  order: 1
+  title: JSON分组
+  path: /jso
 nav:
   title: 分组
   path: /groupUsage
 ---
 
-# 组件化分组
+# JSON 分组
 
 ## 代码演示
 
-<code src="./groupUsage.tsx" />
+<code src="./jsonGroup.tsx" />
 
 ## API
+
+| 参数       | 说明       | 类型         | 默认值 | 是否必填 |
+| ---------- | ---------- | ------------ | ------ | -------- |
+| groupProps | 分组的属性 | `GroupProps` | `-`    | 是       |
+
+## GroupProps API
 
 | 参数      | 说明                   | 类型                  | 默认值  | 是否必填 |
 | --------- | ---------------------- | --------------------- | ------- | -------- |

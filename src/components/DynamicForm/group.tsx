@@ -1,21 +1,14 @@
 import React, { FC, Fragment } from 'react';
+import { WingBlank } from 'antd-mobile';
 import Card from './Card';
-
-export interface GroupProps {
-  type?: 'empty' | 'card';
-  title?: string;
-  require?: boolean;
-  classname?: React.CSSProperties;
-  rightView?: string | React.ReactNode;
-  leftView?: string | React.ReactNode;
-}
+import { GroupProps } from '../../PropsType';
 
 const Group: FC<GroupProps> = (props) => {
   const {
     children,
     type = 'empty',
     title,
-    require,
+    required,
     classname,
     rightView,
     leftView,
@@ -25,15 +18,17 @@ const Group: FC<GroupProps> = (props) => {
       return <Fragment>{children}</Fragment>;
     case 'card':
       return (
-        <Card
-          title={title}
-          require={require}
-          classname={classname}
-          leftView={leftView}
-          rightView={rightView}
-        >
-          {children}
-        </Card>
+        <WingBlank>
+          <Card
+            title={title}
+            require={required}
+            classname={classname}
+            leftView={leftView}
+            rightView={rightView}
+          >
+            {children}
+          </Card>
+        </WingBlank>
       );
     default:
       return <></>;

@@ -246,15 +246,33 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     });
   };
 
+  const jsonDataContent = ({
+    jsonData = [],
+  }: {
+    jsonData: IFormItemProps[];
+  }) => {
+    return jsonData.map((item: any) => {
+      const { type, groupProps, fieldProps, children } = item;
+      if (type === 'group') {
+        return (
+          <Group {...groupProps} key={fieldProps}>
+            {jsonDataContent({ jsonData: children })}
+          </Group>
+        );
+      }
+      return getFormItem(
+        changeData(item, autoLineFeed),
+        allDisabled,
+        errorValue,
+      );
+    });
+  };
+
   const showChildren = ({ context }: any) => {
     const childs = React.Children.toArray(context);
     return (
       <React.Fragment>
-        {!!data.length &&
-          changeData(data as IFormItemProps[], autoLineFeed).map(
-            (item: IFormItemProps) =>
-              getFormItem(item, allDisabled, errorValue),
-          )}
+        {!!data.length && jsonDataContent({ jsonData: data })}
         {childs && typeof children === 'function' && children({ errorValue })}
         {childs && dformItems(childs)}
       </React.Fragment>

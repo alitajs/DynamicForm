@@ -3,7 +3,7 @@
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace, WingBlank } from 'antd-mobile';
 import DynamicForm, {
   useForm,
   Store,
@@ -36,13 +36,12 @@ const Page: FC = () => {
     onFinishFailed,
     formsValues,
     form,
-    isDev: true,
   };
 
   return (
     <div>
       <DynamicForm {...formProps}>
-        <WhiteSpace />
+        <WhiteSpace size="lg" />
         <Group type="card" title="卡片一" require>
           <DformInput
             fieldProps="username"
@@ -51,19 +50,23 @@ const Page: FC = () => {
             title="用户名"
             defaultValue="小红"
           />
-          <DformRadio
-            fieldProps="sex"
-            title="性别"
-            data={[
-              { label: '男', value: 'man' },
-              { label: '女', value: 'woman' },
-            ]}
-          />
+          <WhiteSpace size="lg" />
+          <Group type="card" title="卡片二" require>
+            <DformRadio
+              fieldProps="sex"
+              title="性别"
+              required
+              data={[
+                { label: '男', value: 'man' },
+                { label: '女', value: 'woman' },
+              ]}
+            />
+          </Group>
         </Group>
-        <WhiteSpace />
+        <WhiteSpace size="lg" />
         <Group
           type="card"
-          title="卡片二"
+          title="卡片三"
           leftView={
             <div
               style={{
@@ -99,7 +102,7 @@ const Page: FC = () => {
             }}
           />
         </Group>
-        <WhiteSpace />
+        <WhiteSpace size="lg" />
         <DformDatePicker
           fieldProps="date"
           placeholder="请选择"
@@ -117,7 +120,7 @@ const Page: FC = () => {
           disableItem={(x: any) => ['香梨'].some((a) => x.value === a)}
         />
       </DynamicForm>
-      <WhiteSpace />
+      <WhiteSpace size="lg" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>

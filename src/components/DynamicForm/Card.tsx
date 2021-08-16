@@ -1,17 +1,10 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
 import { allPrefixCls } from '../../const/index';
+import { CardProps } from '../../PropsType';
 import './index.less';
 
 const prefixCls = `${allPrefixCls}-card`;
-
-interface CardProps {
-  leftView?: string | React.ReactNode;
-  require?: boolean;
-  title?: string | React.ReactNode;
-  rightView?: string | React.ReactNode;
-  classname?: React.CSSProperties;
-}
 
 const Card: FC<CardProps> = ({
   children,
