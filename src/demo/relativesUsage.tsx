@@ -9,7 +9,10 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   MultiplePicker,
+  IFormRelativesProps,
 } from '@alitajs/dform';
+
+const { Group } = DynamicForm;
 
 const sexData = [
   { label: '男', value: 'man' },
@@ -97,7 +100,7 @@ const relatives = {
       ],
     },
   ],
-};
+} as IFormRelativesProps;
 
 // const ageData = Array.from
 
@@ -130,13 +133,15 @@ const UserName: FC = () => {
   return (
     <div>
       <DynamicForm {...formProps}>
-        <DformInput
-          fieldProps="username"
-          required
-          placeholder="请输入"
-          title="用户名"
-          defaultValue="小红"
-        />
+        <Group>
+          <DformInput
+            fieldProps="username"
+            required
+            placeholder="请输入"
+            title="用户名"
+            defaultValue="小红"
+          />
+        </Group>
         <DformRadio fieldProps="sex" title="性别" data={sexData} />
         <DformDatePicker
           fieldProps="date"
@@ -163,7 +168,9 @@ const UserName: FC = () => {
         />
       </DynamicForm>
       <WhiteSpace />
-      <Button onClick={() => form.submit()}>submit</Button>
+      <Button type="primary" onClick={() => form.submit()}>
+        submit
+      </Button>
     </div>
   );
 };

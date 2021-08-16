@@ -20,7 +20,6 @@ const NomarFile: FC<INomarFileProps> = (props) => {
   } = props;
 
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
-    console.log("fileIns");
     if (e.target.files) {
       const fileList = Object.keys(e.target.files).map(
         (item) => e.target.files[item],

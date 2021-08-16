@@ -29,6 +29,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     onValueChange,
     arrow = true,
     children,
+    fieldProps,
     ...otherProps
   } = props;
 
@@ -88,6 +89,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
         {...(otherProps as any)}
       />
       <TextItem
+        fieldProps={fieldProps}
         isVertical={isVertical}
         placeholder={placeholder}
         labelNumber={labelNumber}

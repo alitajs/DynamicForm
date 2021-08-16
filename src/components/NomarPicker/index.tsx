@@ -21,6 +21,7 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    defaultValue,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -45,6 +46,7 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
         setInitValue(nextValue && nextValue[fieldProps as any]);
         return prevValue !== nextValue;
       }}
+      initialValue={defaultValue}
     >
       <PickerGroup
         {...props}

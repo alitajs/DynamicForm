@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker } from 'antd-mobile';
-import { INomarSelectProps } from './interface'
+import { INomarSelectProps } from './interface';
 import TextItem from '../TextItem';
 
 interface INomarSelectGroupProps extends Omit<INomarSelectProps, 'onChange'> {
@@ -25,7 +25,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     rules,
     placeholder = '请选择',
     positionType = 'horizontal',
-    initValue = "",
+    initValue = '',
     hasStar = true,
     subTitle,
     hidden = false,
@@ -40,49 +40,52 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-
   useEffect(() => {
     if (data.length === 0) {
       setPickerLabel('');
       return;
     } else {
-      setPickerLabel(initValue)
+      setPickerLabel(initValue);
     }
     let allDate: any = [];
     data.forEach((val: any, index: any) => {
-      let [mydata] = val.filter((item: any) => item?.value === initValue[index])
+      let [mydata] = val.filter(
+        (item: any) => item?.value === initValue[index],
+      );
       if (mydata === undefined) {
       } else {
-        allDate.push(mydata.label)
+        allDate.push(mydata.label);
       }
     });
     if (allDate && allDate.length) {
-      setPickerLabel(allDate.join(","));
+      setPickerLabel(allDate.join(','));
     } else {
-      setPickerLabel("")
+      setPickerLabel('');
     }
   }, [initValue]);
 
   useEffect(() => {
     if (data.length == 0) {
       setPickerLabel('');
-      return
+      return;
     }
     if (data && data.length) {
       let allDate: any = [];
       data.forEach((val: any, index: any) => {
-        let [mydata] = val.filter((item: any) => item?.value === initValue[index])
+        let [mydata] = val.filter(
+          (item: any) => item?.value === initValue[index],
+        );
         if (mydata === undefined) {
           // console.log("mydata is undefined");
         } else {
-          allDate.push(mydata.label)
+          allDate.push(mydata.label);
         }
       });
 
       if (allDate && allDate.length) {
-        setPickerLabel(allDate.join(""));
+        setPickerLabel(allDate.join(''));
       } else {
-        setPickerLabel("");
+        setPickerLabel('');
       }
     } else {
       setPickerLabel('');
@@ -112,6 +115,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         disabled={disabled}
         extra={extra}
         className={className}
+        fieldProps={fieldProps}
       >
         {children}
       </TextItem>
@@ -120,7 +124,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         visible={visible && data.length > 0}
         data={data}
         cascade={false}
-        value={initValue ? `${initValue}`.split(",") : undefined}
+        value={initValue ? `${initValue}`.split(',') : undefined}
         onOk={onOK}
         onDismiss={() => {
           setvisible(false);
@@ -130,7 +134,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         }}
       />
     </>
-  )
-}
+  );
+};
 
-export default NomarSelectGroup
+export default NomarSelectGroup;

@@ -1,7 +1,6 @@
 import { Rule } from 'rc-field-form/es/interface';
 import React from 'react';
-import { IAliasProps } from '../DynamicForm';
-import { ErrorValueProps } from '../../PropsType';
+import { IAliasProps } from '../../PropsType';
 
 export interface IDataItem {
   [key: string]: string | number;

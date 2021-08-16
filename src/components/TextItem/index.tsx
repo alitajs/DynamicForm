@@ -85,6 +85,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
           }}
         >
           <div
+            id={`text-${fieldProps}`}
             className={classnames({
               [`${prefixCls}-text`]: true,
               'alitajs-dform-disabled': disabled && value,

@@ -69,6 +69,13 @@ const Page: FC = () => {
     <>
       <DynamicForm {...formProps}>
         <DformPicker
+          fieldProps="city"
+          data={cityList}
+          title="城市(默认值)"
+          labelNumber={6}
+          defaultValue="shanghai"
+        />
+        <DformPicker
           fieldProps="myCity"
           required={true}
           data={aliasCityList}
@@ -79,18 +86,6 @@ const Page: FC = () => {
             label: 'cityId',
             value: 'cityName',
           }}
-          // relatives={[
-          //   {
-          //     fieldProps: 'youCity',
-          //     type: 'empty',
-          //     // value: ['woman'],
-          //   },
-          //   {
-          //     fieldProps: 'bbb',
-          //     type: 'hide',
-          //     value: ['woman'],
-          //   },
-          // ]}
         />
         <DformPicker
           fieldProps="youCity"
