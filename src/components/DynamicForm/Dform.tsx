@@ -4,7 +4,11 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
 import Title from '../Title';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
-import { DFORM_COMP_NAME, DFORM_COMP_DETAULT } from '../../utils/menu';
+import {
+  DFORM_COMP_NAME,
+  DFORM_COMP_DETAULT,
+  NO_SUPPORT_VERTICAL,
+} from '../../utils/menu';
 import {
   resetErrorField,
   getAllError,
@@ -61,25 +65,54 @@ export interface DformContextProps extends IDynamicFormProps {}
 
 export const DformContext = React.createContext<DformContextProps | null>(null);
 
-export const getFormItem = (
-  formItem: IFormItemProps,
-  allDisabled: boolean,
-  errorValue?: ErrorValueProps,
-) => {
+export const getFormItem = ({
+  formItem = {} as IFormItemProps,
+  allDisabled,
+  errorValue,
+  isComponent = false,
+  child = () => <div></div>,
+  childProps = {},
+  fieldChange,
+  relatives = {},
+}: {
+  formItem?: IFormItemProps;
+  allDisabled: boolean;
+  errorValue?: ErrorValueProps;
+  child?: any;
+  isComponent?: boolean;
+  childProps?: any;
+  relatives?: any;
+  fieldChange: (fieldProps: string, e: any, relatives: any) => void;
+}) => {
+  const mFormItem = {
+    ...formItem,
+    ...childProps,
+  };
   const {
     type,
     disabled = allDisabled,
     renderHeader,
     ...otherProps
-  } = formItem;
-  const FormItemComponent = FormItemType[formItem.type];
+  } = mFormItem;
+  const FormItemComponent = FormItemType[type];
+
+  // 表单对齐方向
+  let positionType =
+    otherProps?.positionType ||
+    DFORM_COMP_DETAULT[type]?.positionType ||
+    DFORM_COMP_DETAULT[otherProps.name]?.positionType;
+
+  // 是否是不可变更对齐方式的表单类型
+  if (NO_SUPPORT_VERTICAL.includes(type || otherProps.name)) {
+    positionType =
+      DFORM_COMP_DETAULT[type]?.positionType ||
+      DFORM_COMP_DETAULT[otherProps.name]?.positionType;
+  }
   return (
     <Title
       key={otherProps?.fieldProps}
       error={errorValue}
-      positionType={
-        otherProps?.positionType || DFORM_COMP_DETAULT[type].positionType
-      }
+      positionType={positionType}
       hidden={otherProps?.hidden}
       required={otherProps?.required}
       hasStar={otherProps?.hasStar}
@@ -88,11 +121,28 @@ export const getFormItem = (
       extra={otherProps?.extra || ''}
       fieldProps={otherProps?.fieldProps}
     >
-      <FormItemComponent
-        {...otherProps}
-        disabled={disabled}
-        errorValue={errorValue}
-      />
+      {!isComponent && (
+        <FormItemComponent
+          {...otherProps}
+          disabled={disabled}
+          errorValue={errorValue}
+          onChange={(e: any) => {
+            const { onChange } = otherProps as any;
+            fieldChange(childProps.fieldProps, e, relatives);
+            if (onChange) onChange(e);
+          }}
+        />
+      )}
+      {isComponent &&
+        React.cloneElement(child, {
+          ...childProps,
+          errorValue,
+          onChange: (e: any) => {
+            const { onChange } = childProps as any;
+            fieldChange(childProps.fieldProps, e, relatives);
+            if (onChange) onChange(e);
+          },
+        })}
     </Title>
   );
 };
@@ -197,7 +247,12 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     return childs.map((child: any, index: number) => {
       if (!React.isValidElement(child)) return;
       const { props = {} as any } = child;
-      const mProps: any = { ...props, ...(changeForm[props.fieldProps] || {}) };
+      const { name } = child.type as any;
+      const mProps: any = {
+        ...props,
+        ...(changeForm[props.fieldProps] || {}),
+        name,
+      };
       const {
         positionType,
         hidden,
@@ -208,32 +263,16 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         extra,
         fieldProps,
       } = mProps;
-      const { name } = child.type as any;
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
-        return (
-          <Title
-            key={fieldProps || index}
-            error={errorValue}
-            positionType={positionType || DFORM_COMP_DETAULT[name].positionType}
-            hidden={hidden}
-            required={required}
-            hasStar={hasStar}
-            title={title}
-            subTitle={subTitle}
-            extra={extra}
-            fieldProps={fieldProps}
-          >
-            {React.cloneElement(child, {
-              ...mProps,
-              errorValue,
-              onChange: (e: any) => {
-                const { onChange } = mProps as any;
-                fieldChange(fieldProps, e, relatives);
-                if (onChange) onChange(e);
-              },
-            })}
-          </Title>
-        );
+        return getFormItem({
+          child,
+          allDisabled,
+          errorValue,
+          isComponent: true,
+          childProps: mProps,
+          fieldChange,
+          relatives,
+        });
       } else if (name === 'Group') {
         return (
           <Group key={fieldProps || index} {...props}>
@@ -260,11 +299,13 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           </Group>
         );
       }
-      return getFormItem(
-        changeData(item, autoLineFeed),
+      return getFormItem({
+        formItem: changeData(item, autoLineFeed),
         allDisabled,
         errorValue,
-      );
+        fieldChange,
+        relatives,
+      });
     });
   };
 

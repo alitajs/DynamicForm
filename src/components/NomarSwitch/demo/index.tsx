@@ -4,7 +4,13 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
+import DFormSwitch from '../';
 
 interface PageProps {}
 
@@ -58,13 +64,32 @@ const Page: FC<PageProps> = () => {
   };
 
   return (
-    <>
-      <DynamicForm {...formsProps} />
+    <React.Fragment>
+      <DynamicForm {...formsProps}>
+        <DFormSwitch
+          fieldProps="off"
+          placeholder="选择"
+          title="Off"
+          required={true}
+        />
+        <DFormSwitch
+          fieldProps="on"
+          placeholder="选择"
+          title="On"
+        />
+        <DFormSwitch
+          fieldProps="disabledOn"
+          placeholder="选择"
+          title="Disabled On"
+          required
+          disabled
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
-    </>
+    </React.Fragment>
   );
 };
 

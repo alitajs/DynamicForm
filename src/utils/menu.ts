@@ -19,6 +19,8 @@ export const DFORM_COMP_NAME = [
   'NomarTab',
 ];
 
+export const NO_SUPPORT_VERTICAL = ['switch', 'NomarSwitch'];
+
 export const DFORM_COMP_DETAULT = {
   addressPicker: { positionType: 'horizontal' },
   coverRadio: { positionType: 'horizontal' },

@@ -32,7 +32,7 @@ const NomarSwitch: FC<INomarSwitchProps> = (props) => {
     ...otherProps
   } = props;
   return (
-    <div className={`${allPrefixCls}-item`}>
+    <React.Fragment>
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
           <div className={`${allPrefixCls}-title`}>
@@ -50,7 +50,7 @@ const NomarSwitch: FC<INomarSwitchProps> = (props) => {
           </Field>
         </div>
       )}
-    </div>
+    </React.Fragment>
   );
 };
 
