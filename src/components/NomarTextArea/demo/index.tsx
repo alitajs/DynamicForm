@@ -10,7 +10,7 @@ import DynamicForm, {
   ValidateErrorEntity,
 } from '@alitajs/dform';
 import PhotoIcon from '../../../assets/photo.png';
-import NomarTextArea from '../'
+import NomarTextArea from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -42,54 +42,54 @@ const Page: FC = () => {
 
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <NomarTextArea
-          title='学校概况'
-          fieldProps='textArea0'
-          placeholder='支持输入值过长自动换行'
+          title="学校概况"
+          fieldProps="textArea0"
+          placeholder="支持输入值过长自动换行"
           rows={1}
           autoHeight={true}
         />
         <NomarTextArea
-          fieldProps='textArea1'
-          required={true}
-          placeholder='请输入...'
-          title='公司简介'
+          fieldProps="textArea1"
+          placeholder="请输入..."
+          title="公司简介"
         />
         <NomarTextArea
-          fieldProps='textArea2'
-          title='有标题'
-          placeholder='只读，不可编辑'
-          positionType='vertical'
+          fieldProps="textArea2"
+          title="有标题"
+          placeholder="只读，不可编辑"
+          positionType="vertical"
           rows={3}
           editable={false}
+          required
         />
         <NomarTextArea
-          fieldProps='titleTooLong'
-          title='标题文字内容过长'
-          placeholder='请输入'
-          positionType='vertical'
+          fieldProps="titleTooLong"
+          title="标题文字内容过长"
+          placeholder="请输入"
+          positionType="vertical"
           labelNumber={8}
-          required={true}
           coverStyle={{
             border: '1px solid #108ee9',
             background: 'rgb(247, 246, 249)',
-            boxSizing: "border-box",
+            boxSizing: 'border-box',
           }}
         />
         <NomarTextArea
-          fieldProps='Remarks'
-          title='备注'
-          placeholder='请输入'
-          required={true}
+          fieldProps="Remarks"
+          title="备注(默认值)"
+          placeholder="请输入"
+          required
+          defaultValue="这里可以设置默认值"
+          labelNumber={7}
         />
         <NomarTextArea
-          fieldProps='idenPhone'
-          title='身份证'
+          fieldProps="idenPhone"
+          title="身份证"
           extra={photoImg()}
-          positionType='vertical'
-          placeholder='存在 extra 自动换行'
-          required={true}
+          positionType="vertical"
+          placeholder="存在 extra 自动换行"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

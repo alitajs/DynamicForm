@@ -76,6 +76,7 @@ const Page: FC = () => {
           secondProps={{
             placeholder: '选择最大位置',
             extra: extraImg(),
+            defaultValue: '111',
           }}
           positionType="horizontal"
         />

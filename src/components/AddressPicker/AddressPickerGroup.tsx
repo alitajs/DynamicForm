@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import { Modal, List } from 'antd-mobile';
 import classnames from 'classnames';
-import { IAddressPickerProps, valueProps } from './interface';
+import { IAddressPickerProps, valueProps, IModalData } from './interface';
 import TextItem from '../TextItem';
 import './index.less';
 
@@ -10,6 +10,7 @@ const { Item } = List;
 interface AddressPickerGroupProps
   extends Omit<IAddressPickerProps, 'onChange'> {
   onChange: (val: valueProps | undefined, flag: 'init' | 'change') => void;
+  value?: valueProps | undefined;
 }
 
 const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
@@ -24,7 +25,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     onChange,
     level,
     placeholderList = [],
-    initValue = undefined,
+    value = undefined,
     children,
     labelNumber = 5,
     coverStyle,
@@ -41,7 +42,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     },
   } = props;
 
-  const { label = 'label', value = 'value' } = alias;
+  const { label = 'label' } = alias;
 
   const [inputLabel, setInputLabel] = useState<string>(''); // input 框的值
   const [modalFlag, setModalFlag] = useState<boolean>(false); // 弹框标识
@@ -85,8 +86,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   }, [data]);
 
   useEffect(() => {
-    if (!initValue) return;
-    const newValue = JSON.parse(JSON.stringify(initValue));
+    if (!value) return;
+    const newValue = JSON.parse(JSON.stringify(value));
     setInputLabel(newValue?.label.join(','));
     setLabelList(newValue?.label);
     setValueList(newValue?.value);
@@ -95,7 +96,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     if (valueList.length === 0 && level) {
       onChangeLevel(newValue?.value);
     }
-  }, [initValue]);
+  }, [value]);
 
   /**
    * 打开弹窗
@@ -118,12 +119,16 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       if (nowLevel === level) {
         // 如果当前为最后一级，则替换掉原有值
         newLabelList.splice(newLabelList.length - 1, 1, val[label]);
-        newValueList.splice(newValueList.length - 1, 1, val[value]);
+        newValueList.splice(
+          newValueList.length - 1,
+          1,
+          val[alias?.value || 'value'],
+        );
       } else if (nowLevel + 1 === level) {
         // 如果当前选择后为最后一级
         newLabelList.splice(newLabelList.length - 1, 1, val[label]);
         setNowLevel(nowLevel + 1);
-        newValueList.push(val[value]);
+        newValueList.push(val[alias?.value || 'value']);
       } else {
         newLabelList.pop();
         newLabelList.push(val[label]);
@@ -133,7 +138,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
             : '请选择',
         );
         setNowLevel(nowLevel + 1);
-        newValueList.push(val[value]);
+        newValueList.push(val[alias?.value || 'value']);
       }
       setLabelList(newLabelList);
     } else {
@@ -307,9 +312,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
             style={{ display: data.length ? '' : 'none' }}
           >
             <List>
-              {[...data].map((item) => (
+              {[...data].map((item: IModalData) => (
                 <Item
-                  key={item[value]}
+                  key={item[alias?.value || 'value']}
                   onClick={() => {
                     listClick(item);
                   }}
@@ -318,14 +323,14 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
                     <div
                       className={classnames({
                         'alitajs-dform-address-list-item-tick':
-                          valueList.indexOf(item[value]) !== -1,
+                          valueList.indexOf(item[alias?.value || 'value']) !==
+                          -1,
                       })}
                     >
                       {item[label]}
                     </div>
-                    {valueList.indexOf(item[value]) !== -1 && (
-                      <div className="alitajs-dform-tick" />
-                    )}
+                    {valueList.indexOf(item[alias?.value || 'value']) !==
+                      -1 && <div className="alitajs-dform-tick" />}
                   </div>
                 </Item>
               ))}

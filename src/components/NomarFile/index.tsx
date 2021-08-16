@@ -7,8 +7,6 @@ import FileIcon from '../../assets/file.png';
 const prefixCls = 'alitajs-dform-file';
 
 const NomarFile: FC<INomarFileProps> = (props) => {
-  const [initValue, setInitValue] = useState([]);
-
   const {
     fieldProps,
     required = false,
@@ -16,6 +14,7 @@ const NomarFile: FC<INomarFileProps> = (props) => {
     rules,
     extra = <img src={FileIcon} alt="" className={`${prefixCls}-img`} />,
     onChange,
+    defaultValue,
     upload,
   } = props;
 
@@ -52,12 +51,9 @@ const NomarFile: FC<INomarFileProps> = (props) => {
       <Field
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}
-        shouldUpdate={(prevValue: any, nextValue: any) => {
-          setInitValue(nextValue && nextValue[fieldProps as any]);
-          return prevValue !== nextValue;
-        }}
+        initialValue={defaultValue}
       >
-        <FileGroup {...props} initValue={initValue} onChange={fileChange} />
+        <FileGroup {...props} onChange={fileChange} />
       </Field>
     </div>
   );

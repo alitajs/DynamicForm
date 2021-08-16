@@ -6,21 +6,21 @@ import './index.less';
 const prefixCls = 'alitajs-dform-file';
 
 interface IFileGroupProps extends INomarFileProps {
-  initValue: INomarFileItemProps[];
+  value?: INomarFileItemProps[];
 }
 
 const FileGroup: FC<IFileGroupProps> = (props) => {
   const {
-    initValue = [],
+    value = [],
     onChange,
     onClick,
     alias = { id: 'id', title: 'title' },
   } = props;
 
   const del = (index: number) => {
-    const newData = JSON.parse(JSON.stringify(initValue));
+    const newData = { ...value };
     newData.splice(index, 1);
-    if (onChange) onChange(newData, initValue[index]);
+    if (onChange) onChange(newData, value[index]);
   };
 
   const itemClick = (item: INomarFileItemProps) => {
@@ -29,7 +29,7 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
 
   return (
     <div className={`${prefixCls}-content`}>
-      {initValue.map((item: INomarFileItemProps, index: number) => (
+      {value.map((item: INomarFileItemProps, index: number) => (
         <div key={item[alias.id || 'id']} className={`${prefixCls}-item`}>
           <span
             className={`${prefixCls}-title`}

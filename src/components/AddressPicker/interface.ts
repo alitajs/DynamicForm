@@ -1,11 +1,8 @@
 import { Rule } from 'rc-field-form/es/interface';
 import { IAliasProps } from '../../PropsType';
-import { ErrorValueProps } from '../../PropsType';
 
 export interface IModalData {
-  label: string;
-  value: string | number;
-  flag?: boolean;
+  [key: string]: string | number;
 }
 
 export interface IAddressPickerProps {
@@ -36,6 +33,7 @@ export interface IAddressPickerProps {
   loading?: boolean;
   className?: string;
   alias?: IAliasProps;
+  defaultValue?: valueProps;
 }
 
 export interface valueProps {

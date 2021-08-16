@@ -26,7 +26,6 @@ export interface IExtraInputProps {
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
-  const [pickerInitValue, setPickerInitValue] = useState(undefined);
   const {
     fieldProps,
     fieldProps2,
@@ -44,13 +43,11 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   const inputOnBlur = (val: string | undefined) => {
-    // window.scrollTo(0, 0);
     if (firstProps && firstProps.onBlur) firstProps.onBlur(val);
   };
 
-  const fieldChange = (values: any, flag: string) => {
-    if (flag === 'init') return;
-    if (secondProps && secondProps?.onChange && values !== pickerInitValue) {
+  const fieldChange = (values: any) => {
+    if (secondProps && secondProps?.onChange) {
       secondProps.onChange(values);
     }
   };
@@ -61,14 +58,10 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         <Field
           name={fieldProps2}
           rules={rules || [{ required, message: `请选择${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            setPickerInitValue(nextValue && nextValue[fieldProps2 as any]);
-            return prevValue !== nextValue;
-          }}
+          initialValue={secondProps?.defaultValue}
         >
           <PickerGroup
             {...secondProps}
-            initValue={pickerInitValue}
             onChange={fieldChange}
             labelNumber={0}
             title={title}
@@ -81,6 +74,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
       <Field
         name={fieldProps2}
         rules={rules || [{ required, message: `请输入${title}` }]}
+        initialValue={secondProps?.defaultValue}
       >
         <InputItem
           labelNumber={0}
@@ -106,6 +100,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         <Field
           name={fieldProps}
           rules={rules || [{ required, message: `请输入${title}` }]}
+          initialValue={firstProps?.defaultValue}
         >
           <InputItem
             {...firstProps}

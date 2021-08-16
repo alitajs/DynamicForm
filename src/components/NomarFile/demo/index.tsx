@@ -11,7 +11,7 @@ import DynamicForm, {
   ValidateErrorEntity,
   getRandom,
 } from '@alitajs/dform';
-import NomarFile from '../'
+import NomarFile from '../';
 
 const contractList = [
   { title: '合约模板2020.pdf', fileId: '1' },
@@ -34,7 +34,6 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    // data: formsData,
     formsValues: {
       contract: contractList,
     },
@@ -43,12 +42,11 @@ const Page: FC = () => {
 
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <NomarFile
-          // type='file'
-          required={true}
-          fieldProps='contract'
-          title='合同'
+          required
+          fieldProps="contract"
+          title="合同"
           onClick={(res: any) => {
             console.log(res);
           }}
@@ -57,7 +55,7 @@ const Page: FC = () => {
           }}
           alias={{
             id: 'fileId',
-            title: '',
+            title: 'title',
           }}
           upload={(res: any) => {
             const list = form.getFieldsValue().contract || [];

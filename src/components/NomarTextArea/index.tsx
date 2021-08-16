@@ -5,7 +5,6 @@ import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
 import { allPrefixCls } from '../../const/index';
-import { ErrorValueProps } from '../../PropsType';
 import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -22,6 +21,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   hidden?: boolean;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   className?: string;
+  defaultValue?: string;
 }
 
 const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
@@ -40,6 +40,7 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
     onBlur,
     editable = true,
     className = '',
+    defaultValue,
     ...otherProps
   } = props;
 
@@ -72,9 +73,9 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
         name={fieldProps}
         rules={rules || [{ required, message: `请输入${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
-          // if (autoFocusInst) autoFocusInst.focus();
           return prevValue !== nextValue;
         }}
+        initialValue={defaultValue}
       >
         <TextareaItem
           {...otherProps}

@@ -6,8 +6,6 @@ import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
-  const [initValue, setInitValue] = useState<string | undefined>();
-
   const {
     fieldProps,
     rules,
@@ -17,15 +15,13 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     positionType = 'horizontal',
     extra,
     onChange,
+    defaultValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
-  const fieldChange = (
-    val: valueProps | undefined,
-    flag: 'change' | 'init',
-  ) => {
-    if (flag === 'change' && onChange) onChange(val);
+  const fieldChange = (val: valueProps | undefined) => {
+    if (onChange) onChange(val);
   };
 
   return (
@@ -33,14 +29,13 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
       shouldUpdate={(prevValue: any, nextValue: any) => {
-        setInitValue(nextValue && nextValue[fieldProps as any]);
         return prevValue !== nextValue;
       }}
+      initialValue={defaultValue}
     >
       <AddressPickerGroup
         {...props}
         extra={isVertical ? '' : extra}
-        initValue={initValue}
         onChange={fieldChange}
       >
         <div className={`${allPrefixCls}-title`}>

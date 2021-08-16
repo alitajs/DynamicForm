@@ -15,7 +15,7 @@ interface IDemoPage {
   name: string;
   age: number;
   onChange?: (currentActiveLink: string) => void;
-  initValue?: string;
+  value?: string;
 }
 
 const showDemoPage = () => (
@@ -23,13 +23,9 @@ const showDemoPage = () => (
 );
 
 const demoPage: FC<IDemoPage> = (props) => {
-  const { name, onChange, initValue } = props;
+  const { name, onChange, value } = props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [value, setValue] = useState('');
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    setValue(initValue || '');
-  }, [initValue]);
   return (
     <div style={{ textAlign: 'left' }}>
       <p>name: {name}</p>
@@ -39,7 +35,6 @@ const demoPage: FC<IDemoPage> = (props) => {
           value={value}
           type="text"
           onChange={(e) => {
-            setValue(e.target.value);
             if (onChange) onChange(e.target.value);
           }}
         />
