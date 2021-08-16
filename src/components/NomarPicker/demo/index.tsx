@@ -92,6 +92,7 @@ const Page: FC = () => {
           data={cityList}
           title="选择你喜欢的城市"
           positionType="vertical"
+          onChange={(e) => console.log(e)}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

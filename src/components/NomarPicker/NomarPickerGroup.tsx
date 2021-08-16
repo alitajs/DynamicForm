@@ -3,8 +3,8 @@ import { Picker } from 'antd-mobile';
 import { INomarPickerProps } from './interface';
 import TextItem from '../TextItem';
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
-  onChange: (values: number | string | undefined, flag: string) => void;
-  initValue?: string | number;
+  onChange: (values: number | string | undefined) => void;
+  value?: string | number;
 }
 
 const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
@@ -19,12 +19,12 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     onChange,
     disabled = false,
     positionType = 'horizontal',
-    initValue,
     coverStyle,
     labelNumber = 5,
     extra = '',
     className,
     onClick,
+    value,
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -36,17 +36,17 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
       setPickerLabel('');
       return;
     }
-    const filterList = data.filter((item) => item?.value === initValue);
+    const filterList = data.filter((item) => item?.value === value);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
     } else {
       setPickerLabel('');
     }
-  }, [initValue]);
+  }, [value]);
 
   useEffect(() => {
     if (data && data.length) {
-      const nowValue = initValue;
+      const nowValue = value;
       // if (!initValue && preValue) {
       //   nowValue = preValue;
       //   setPreValue(undefined);
@@ -66,14 +66,14 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   }, [data]);
 
   const fieldClick = () => {
-    if (onClick) onClick(initValue);
+    if (onClick) onClick(value);
     if (disabled) return;
     setvisible(true);
   };
 
   const onOK = (val: (string | number)[]) => {
     setvisible(false);
-    onChange(val[0], 'change');
+    onChange(val[0]);
   };
 
   return (
@@ -97,7 +97,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
         visible={visible && data.length > 0}
         data={data}
         cols={1}
-        value={initValue ? [initValue] : undefined}
+        value={value ? [value] : undefined}
         onOk={onOK}
         onDismiss={() => {
           setvisible(false);

@@ -57,6 +57,17 @@ const Page: FC = () => {
             value: 'foodId',
           }}
         />
+        <DformCheckBox
+          title="喜欢的水果(默认值)"
+          data={fruitsList}
+          fieldProps="defaultValue"
+          chunk={3}
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+          defaultValue={['orange']}
+        />
       </DynamicForm>
       <WhiteSpace size="sm" />
       <Button
