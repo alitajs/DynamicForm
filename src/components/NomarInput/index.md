@@ -17,7 +17,6 @@ nav:
 
 | 参数         | 说明                                                                                                                                  | 类型                       | 默认值       | 是否必填 |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------ | -------- |
-| type         | 表单类型                                                                                                                              | string                     | ''           | 是       |
 | title        | 标题                                                                                                                                  | string                     | ''           | 是       |
 | fieldProps   | 文本属性                                                                                                                              | string                     | false        | 是       |
 | placeholder  | placeholder                                                                                                                           | string                     | ''           | 否       |
@@ -25,7 +24,7 @@ nav:
 | inputType    | html input 框类型                                                                                                                     | string                     | text         | 否       |
 | clear        | 是否带清除功能                                                                                                                        | boolean                    | false        | 否       |
 | editable     | 是否可编辑                                                                                                                            | boolean                    | true         | 否       |
-| disabled     | 不建议采用该属性！具体请看如下备注！                                                                                                  | boolean                    | true         | 否       |
+| disabled     | 不建议采用该属性！具体请看如下备注！                                                                                                  | boolean                    | false        | 否       |
 | extra        | 右边注释                                                                                                                              | string or node             | ''           | 否       |
 | onClick      | 文字点击事件                                                                                                                          | function                   | null         | 否       |
 | labelNumber  | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | 5            | 否       |
@@ -37,6 +36,7 @@ nav:
 | hidden       | 字段展示与否的判断                                                                                                                    | boolean                    | false        | 否       |
 | renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -            | 否       |
 | className    | 类名                                                                                                                                  | string                     | -            | 否       |
+| defaultValue | 设置初始取值                                                                                                                          | string                     | -            | 否       |
 
 ## 备注
 

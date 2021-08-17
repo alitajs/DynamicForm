@@ -64,7 +64,6 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    // data: formsData,
     formsValues,
     isDev: true,
   };

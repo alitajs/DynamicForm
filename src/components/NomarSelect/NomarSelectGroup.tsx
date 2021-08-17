@@ -126,6 +126,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         cascade={false}
         value={value ? `${value}`.split(',') : undefined}
         onOk={onOK}
+        cols={cols}
         onDismiss={() => {
           setvisible(false);
         }}
