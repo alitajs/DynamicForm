@@ -83,7 +83,7 @@ const DfromRadioTextPage: FC = () => {
       <DynamicForm {...formProps}>
         <DformRadio
           fieldProps="userRadio1"
-          required={true}
+          required
           data={radioList}
           title="发票"
           onChange={(e) => {
@@ -92,7 +92,7 @@ const DfromRadioTextPage: FC = () => {
         />
         <DformRadio
           fieldProps="userRadio2"
-          required={true}
+          required
           data={radioList}
           title="内容靠左"
           labelNumber={5}
@@ -102,23 +102,26 @@ const DfromRadioTextPage: FC = () => {
         />
         <DformRadio
           fieldProps="userRadio3"
-          required={true}
-          disabled={true}
+          required
+          disabled
           data={dayList}
           positionType="vertical"
-          title="天气情况"
+          title="天气情况(默认值)"
+          defaultValue="雨"
         />
         <DformRadio
           fieldProps="userRadio4"
-          required={true}
+          required
           allowUnChecked={false}
           data={foodList}
-          title="喜欢的食物"
+          title="喜欢的食物(默认值)"
           radioType="vertical"
           alias={{
             label: 'foodId',
             value: 'foodName',
           }}
+          positionType="vertical"
+          defaultValue="红烧肉"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

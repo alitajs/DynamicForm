@@ -83,9 +83,9 @@ const Page: FC = () => {
         <ExtraInput
           fieldProps="minLength"
           fieldProps2="maxLength"
-          title="长度区间"
-          firstProps={{ placeholder: '输入长度' }}
-          secondProps={{ placeholder: '输入长度' }}
+          title="长度区间(默认值)"
+          firstProps={{ placeholder: '输入长度', defaultValue: '11' }}
+          secondProps={{ placeholder: '输入长度', defaultValue: '22' }}
         />
         <ExtraInput
           fieldProps="price"

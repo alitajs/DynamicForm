@@ -6,7 +6,6 @@ import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
-  const [initValue, setInitValue] = useState<string | undefined>();
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -21,6 +20,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    defaultValue,
   } = props;
   const { label = 'label', value = 'value' } = alias;
 
@@ -44,21 +44,9 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        if (nextValue && nextValue[fieldProps]) {
-          setInitValue(JSON.stringify(nextValue[fieldProps]));
-        } else {
-          setInitValue(undefined);
-        }
-        return prevValue !== nextValue;
-      }}
+      initialValue={defaultValue}
     >
-      <MultiplePickerGroup
-        {...props}
-        data={aliasData}
-        initValue={initValue}
-        onChange={fieldChange}
-      >
+      <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
         <div className={`${allPrefixCls}-title`}>
           {required && hasStar && (
             <div className={`${allPrefixCls}-redStar`}>*</div>

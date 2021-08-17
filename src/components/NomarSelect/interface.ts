@@ -8,7 +8,6 @@ export interface INomarSelectProps {
   cols?: number | string;
   type?: string;
   data: PickerData[] | any;
-  value?: PickerPropsType['value'];
   positionType?: 'vertical' | 'horizontal';
   title: string;
   fieldProps: string;

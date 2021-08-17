@@ -47,7 +47,7 @@ const citys = [
   ],
 ];
 
-interface PageProps {}
+interface PageProps { }
 
 const Page: FC<PageProps> = () => {
   const [form] = useForm();
@@ -60,6 +60,7 @@ const Page: FC<PageProps> = () => {
     console.log(errorInfo);
   };
   const formsValues = {
+    userPicker1: ["2013", "春"],
     userPicker2: ['xiamen'],
     userPicker3: ['fuzhou'],
   };
@@ -86,22 +87,24 @@ const Page: FC<PageProps> = () => {
         <DformSelect
           type="select"
           fieldProps="userPicker2"
-          required={true}
-          title="城市"
+          required
+          title="城市(默认值)"
           placeholder="请选择"
           data={citys}
           onChange={(event) => {
             console.log(event);
           }}
+          defaultValue={['xiamen']}
         />
         <DformSelect
           type="select"
           fieldProps="userPicker3"
-          required={true}
+          required
           title="城市(不可编辑)"
           placeholder="请选择"
           data={citys}
-          disabled={true}
+          disabled
+          defaultValue={['fuzhou']}
         />
         <DformSelect
           type="select"

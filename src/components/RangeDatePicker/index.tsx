@@ -8,6 +8,10 @@ import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
+export interface DateProps extends PropsType {
+  defaultValue?: Date;
+}
+
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
   fieldProps2: string;
   placeholder2?: string;
@@ -15,8 +19,8 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   maxDate?: Date;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
-  secondProps?: PropsType;
-  firstProps?: PropsType;
+  secondProps?: DateProps;
+  firstProps?: DateProps;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
 }
@@ -71,6 +75,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             setBeginDate(nextValue && nextValue[fieldProps as any]);
             return prevValue !== nextValue;
           }}
+          initialValue={firstProps?.defaultValue}
         >
           <DatePickerGroup
             {...otherProps}
@@ -115,6 +120,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             setEndDate(nextValue && nextValue[fieldProps2 as any]);
             return prevValue !== nextValue;
           }}
+          initialValue={secondProps?.defaultValue}
         >
           <DatePickerGroup
             {...otherProps}

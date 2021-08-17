@@ -30,12 +30,11 @@ interface ICoverRadioProps {
   hidden?: boolean;
   alias?: IAliasProps;
   labelNumber?: number;
+  defaultValue?: string;
 }
 
 const NomarTab: FC<ICoverRadioProps> = (props) => {
-  const [initValue, setInitValue] = useState('');
   const [aliasData, setAliasData] = useState<any[]>([]);
-
   const {
     coverStyle,
     className,
@@ -54,6 +53,7 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
       value: 'value',
     },
     labelNumber = 5,
+    defaultValue,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -71,8 +71,8 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
     isVertical = true;
   }
 
-  const radioChange = (e: string | number | undefined, flag?: string) => {
-    if (onChange && e !== initValue && flag === 'change') onChange(e);
+  const radioChange = (e: string | number | undefined) => {
+    if (onChange) onChange(e);
   };
 
   return (
@@ -86,16 +86,12 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
         <Field
           name={fieldProps}
           rules={rules || [{ required, message: `请选择${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            setInitValue(nextValue && nextValue[fieldProps as any]);
-            return prevValue !== nextValue;
-          }}
+          initialValue={defaultValue}
         >
           <CoverRadioGroup
             data={aliasData}
             positionType={positionType}
             radioType={radioType}
-            initValue={initValue}
             onChange={radioChange}
             disabled={disabled}
             coverStyle={coverStyle}
