@@ -27,4 +27,9 @@ export default defineConfig({
   theme: {
     '@hd': '0.02rem',
   },
+  navs: [
+    null,
+    ,
+    { title: 'GitHub', path: 'https://github.com/alitajs/DynamicForm' },
+  ],
 });

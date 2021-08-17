@@ -44,55 +44,6 @@ or
 yarn add @alitajs/dform
 ```
 
-**页面中使用**
-
-```js
-import React from 'react';
-import DynamicForm, { useForm } from '@alitajs/dform';
-import { Button } from 'antd-mobile';
-
-const Page = () => {
-  const [form] = useForm(); // 定义 form
-
-  const onFinish = (values) => console.log('Success:', values);
-
-  const onFinishFailed = (errorInfo) => console.log('Failed:', errorInfo);
-
-  const data = [
-    {
-      type: 'input',
-      fieldProps: 'username',
-      placeholder: '请输入',
-      title: '用户名',
-      required: true,
-    },
-  ];
-
-  const formProps = {
-    form, // 表单定义
-    data, // 表单全部字段
-    formsValues: {}, // 表单赋值回填数据
-    onFinish, // 表单提交成功事件
-    onFinishFailed, // 表单提交失败事件
-  };
-
-  return (
-    <>
-      <DynamicForm {...formProps} />
-      <Button
-        onClick={() => {
-          form.submit();
-        }}
-      >
-        Submit
-      </Button>
-    </>
-  );
-};
-
-export default Page;
-```
-
 ## 提效点
 
 ### 1、`picker` 组件：
