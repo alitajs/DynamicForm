@@ -21,16 +21,16 @@ const dataList = [
 const InsertImage: FC = () => {
   const [form] = useForm();
 
-  useEffect(() => {
-    form.setFieldsValue({
-      showImg: dataList,
-    });
-  }, []);
-
   return (
     <Form form={form}>
       <List>
-        <NomarImagePicker fieldProps="showImg" required title="展示图片" disableDelete />
+        <NomarImagePicker
+          fieldProps="showImg"
+          required
+          title="展示图片"
+          disableDelete
+          defaultValue={dataList}
+        />
       </List>
     </Form>
   );

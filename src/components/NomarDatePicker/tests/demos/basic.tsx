@@ -16,7 +16,6 @@ interface BasicProps {
 const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
   const formsValues = {
-    Date: new Date(),
     DateTime: dateChange('2020-02-02 22:22'),
   };
 
@@ -38,6 +37,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           disabled={true}
           maxDate={new Date()}
           minDate={new Date()}
+          defaultValue={new Date()}
         />
         <DformDate
           fieldProps="Month"

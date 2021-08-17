@@ -165,6 +165,7 @@ const UserName: FC = () => {
       placeholder: '请选择',
       title: 'J天气',
       data: weatherData,
+      required: true,
     },
     {
       type: 'multiplePicker',
@@ -219,6 +220,7 @@ const UserName: FC = () => {
             placeholder="请选择"
             title="天气"
             data={weatherData}
+            required
           />
         )}
         {!isJson && (

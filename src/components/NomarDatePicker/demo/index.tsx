@@ -26,7 +26,6 @@ const Page: FC = () => {
   };
 
   const formsValues = {
-    Date: new Date(),
     DateTime: dateChange('2020-02-02 22:22'),
   };
 
@@ -45,9 +44,10 @@ const Page: FC = () => {
           fieldProps="Date"
           modeType="date"
           title="Date"
-          disabled={true}
+          disabled
           maxDate={new Date()}
           minDate={new Date()}
+          defaultValue={new Date()}
         />
         <DformDate
           fieldProps="Month"

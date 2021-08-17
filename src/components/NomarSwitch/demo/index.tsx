@@ -49,17 +49,13 @@ const Page: FC<PageProps> = () => {
       disabled: true,
     },
   ] as IFormItemProps[];
-  const formsValues = {
-    off: false,
-    on: true,
-    disabledOn: true,
-  };
+  const formsValues = {};
   const formsProps = {
     form,
     onFinish,
     onFinishFailed,
     formsValues,
-    data: formsData,
+    // data: formsData,
     isDev: true,
   };
 
@@ -70,12 +66,13 @@ const Page: FC<PageProps> = () => {
           fieldProps="off"
           placeholder="选择"
           title="Off"
-          required={true}
+          required
         />
         <DFormSwitch
           fieldProps="on"
           placeholder="选择"
           title="On"
+          defaultValue
         />
         <DFormSwitch
           fieldProps="disabledOn"
@@ -83,6 +80,7 @@ const Page: FC<PageProps> = () => {
           title="Disabled On"
           required
           disabled
+          defaultValue
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
