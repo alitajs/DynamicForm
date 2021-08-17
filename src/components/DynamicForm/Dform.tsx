@@ -128,7 +128,7 @@ export const getFormItem = ({
           errorValue={errorValue}
           onChange={(e: any) => {
             const { onChange } = otherProps as any;
-            fieldChange(childProps.fieldProps, e, relatives);
+            fieldChange(otherProps.fieldProps, e, relatives);
             if (onChange) onChange(e);
           }}
         />
@@ -253,16 +253,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         ...(changeForm[props.fieldProps] || {}),
         name,
       };
-      const {
-        positionType,
-        hidden,
-        required = false,
-        hasStar = true,
-        title,
-        subTitle,
-        extra,
-        fieldProps,
-      } = mProps;
+      const { fieldProps } = mProps;
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
         return getFormItem({
           child,
@@ -291,7 +282,9 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     jsonData: IFormItemProps[];
   }) => {
     return jsonData.map((item: any) => {
-      const { type, groupProps, fieldProps, children } = item;
+      const mItem = { ...item, ...(changeForm[item.fieldProps] || {}) };
+      const { type, groupProps, fieldProps, children } = mItem;
+
       if (type === 'group') {
         return (
           <Group {...groupProps} key={fieldProps}>
@@ -300,7 +293,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         );
       }
       return getFormItem({
-        formItem: changeData(item, autoLineFeed),
+        formItem: changeData(mItem, autoLineFeed),
         allDisabled,
         errorValue,
         fieldChange,

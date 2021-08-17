@@ -12,7 +12,7 @@ import DynamicForm, {
   IFormRelativesProps,
   IFormItemProps,
   IDynamicFormProps,
-} from '@alitajs/dform';
+} from '../..';
 
 const { Group } = DynamicForm;
 
@@ -114,12 +114,17 @@ const relatives = {
   ],
 } as IFormRelativesProps;
 
-// const ageData = Array.from
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+  onChange: any;
+}
 
-const UserName: FC = () => {
+const UserName: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
   const [isJson, setisJson] = useState(false);
   const [formsValues, setFormsValues] = useState<any>({
+    username: '小红',
     sex: 'man',
     motion: ['羽毛球', '乒乓球'],
     isJson: isJson ? '1' : '0',
@@ -130,13 +135,6 @@ const UserName: FC = () => {
       isJson: isJson ? '1' : '0',
     });
   }, [isJson]);
-
-  const onFinish = (values: Store) => {
-    console.log(values);
-  };
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    console.log('Failed:', errorInfo);
-  };
 
   const dFormData = [
     {
@@ -209,8 +207,9 @@ const UserName: FC = () => {
         {!isJson && (
           <DformDatePicker
             fieldProps="date"
-            placeholder="请选择"
+            placeholder="请选择出生年月"
             title="出生年月"
+            onChange={onChange}
           />
         )}
         {!isJson && (
@@ -227,6 +226,7 @@ const UserName: FC = () => {
             placeholder="请选择"
             title="特长"
             data={motionData}
+            required
           />
         )}
         {!isJson && (
