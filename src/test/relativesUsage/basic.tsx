@@ -12,7 +12,7 @@ import DynamicForm, {
   IFormRelativesProps,
   IFormItemProps,
   IDynamicFormProps,
-} from '@alitajs/dform';
+} from '../..';
 
 const { Group } = DynamicForm;
 
@@ -83,6 +83,16 @@ const relatives = {
       targetValue: ['woman'],
       targetSet: [
         {
+          targetField: 'motion',
+          targetValue: '篮球',
+        },
+      ],
+    },
+    {
+      type: 'changeFormValue',
+      targetValue: ['woman'],
+      targetSet: [
+        {
           targetField: 'food',
           targetValue: '草莓',
         },
@@ -104,29 +114,27 @@ const relatives = {
   ],
 } as IFormRelativesProps;
 
-// const ageData = Array.from
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+  onChange: any;
+}
 
-const UserName: FC = () => {
+const UserName: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
   const [isJson, setisJson] = useState(false);
   const [formsValues, setFormsValues] = useState<any>({
+    username: '小红',
+    sex: 'man',
+    motion: ['羽毛球', '乒乓球'],
     isJson: isJson ? '1' : '0',
   });
 
   useEffect(() => {
     setFormsValues({
-      sex: 'man',
-      motion: ['羽毛球', '乒乓球'],
       isJson: isJson ? '1' : '0',
     });
   }, [isJson]);
-
-  const onFinish = (values: Store) => {
-    console.log(values);
-  };
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    console.log('Failed:', errorInfo);
-  };
 
   const dFormData = [
     {
@@ -187,39 +195,47 @@ const UserName: FC = () => {
     <div>
       <DynamicForm {...formProps}>
         {!isJson && (
-          <React.Fragment>
-            <DformInput
-              fieldProps="username"
-              required
-              placeholder="请输入"
-              title="用户名"
-              defaultValue="小红"
-            />
-            <DformRadio fieldProps="sex" title="性别" data={sexData} />
-            <DformDatePicker
-              fieldProps="date"
-              placeholder="请选择"
-              title="出生年月"
-            />
-            <DformPicker
-              fieldProps="weather"
-              placeholder="请选择"
-              title="天气"
-              data={weatherData}
-            />
-            <MultiplePicker
-              fieldProps="motion"
-              placeholder="请选择"
-              title="特长"
-              data={motionData}
-            />
-            <MultiplePicker
-              fieldProps="food"
-              placeholder="请选择"
-              title="美食"
-              data={foodData}
-            />
-          </React.Fragment>
+          <DformInput
+            fieldProps="username"
+            required
+            placeholder="请输入"
+            title="用户名"
+            defaultValue="小红"
+          />
+        )}
+        {!isJson && <DformRadio fieldProps="sex" title="性别" data={sexData} />}
+        {!isJson && (
+          <DformDatePicker
+            fieldProps="date"
+            placeholder="请选择出生年月"
+            title="出生年月"
+            onChange={onChange}
+          />
+        )}
+        {!isJson && (
+          <DformPicker
+            fieldProps="weather"
+            placeholder="请选择"
+            title="天气"
+            data={weatherData}
+          />
+        )}
+        {!isJson && (
+          <MultiplePicker
+            fieldProps="motion"
+            placeholder="请选择"
+            title="特长"
+            data={motionData}
+            required
+          />
+        )}
+        {!isJson && (
+          <MultiplePicker
+            fieldProps="food"
+            placeholder="请选择"
+            title="美食"
+            data={foodData}
+          />
         )}
         <DformRadio
           fieldProps="isJson"

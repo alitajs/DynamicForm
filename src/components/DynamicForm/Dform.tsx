@@ -127,7 +127,6 @@ export const getFormItem = ({
           disabled={disabled}
           errorValue={errorValue}
           onChange={(e: any) => {
-            console.log('e', e);
             const { onChange } = otherProps as any;
             fieldChange(otherProps.fieldProps, e, relatives);
             if (onChange) onChange(e);
@@ -190,9 +189,6 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
 
   // 字段变更联动
   const fieldChange = (fieldProps: string, e: any, relatives: any) => {
-    console.log('fieldProps', fieldProps);
-    console.log('e', e);
-    console.log('relatives', relatives);
     // 当前表单规则
     const curFieldRel: any[] = relatives[fieldProps];
     // 改变表单字段
@@ -238,7 +234,6 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
             break;
         }
       });
-      console.log('mChangeForm', mChangeForm);
       if (!!Object.keys(mChangeForm).length) {
         setChangeForm({
           ...changeForm,
@@ -258,16 +253,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         ...(changeForm[props.fieldProps] || {}),
         name,
       };
-      const {
-        positionType,
-        hidden,
-        required = false,
-        hasStar = true,
-        title,
-        subTitle,
-        extra,
-        fieldProps,
-      } = mProps;
+      const { fieldProps } = mProps;
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
         return getFormItem({
           child,
