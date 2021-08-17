@@ -31,10 +31,10 @@ export interface INomarRadioProps {
   allowUnChecked?: boolean;
   labelNumber?: number;
   extra?: string | React.ReactNode;
+  defaultValue?: string
 }
 
 const NomarRadio: FC<INomarRadioProps> = (props) => {
-  const [initValue, setInitValue] = useState('');
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -59,6 +59,7 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
     className = '',
     labelNumber = 5,
     extra,
+    defaultValue,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -77,8 +78,8 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
     isVertical = true;
   }
 
-  const radioChange = (e: string | number | undefined, flag: string) => {
-    if (onChange && e !== initValue && flag === 'change') onChange(e);
+  const radioChange = (e: string | number | undefined) => {
+    if (onChange) onChange(e);
   };
 
   return (
@@ -86,17 +87,13 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
       <Field
         name={fieldProps}
         rules={rules || [{ required, message: `请选择${title}` }]}
-        shouldUpdate={(prevValue: any, nextValue: any) => {
-          setInitValue(nextValue && nextValue[fieldProps as any]);
-          return prevValue !== nextValue;
-        }}
+        initialValue={defaultValue}
       >
         <NomarRadioGroup
           allowUnChecked={allowUnChecked}
           data={aliasData}
           positionType={positionType}
           radioType={radioType}
-          initValue={initValue}
           onChange={radioChange}
           coverStyle={coverStyle}
           disabled={disabled}

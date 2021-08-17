@@ -51,7 +51,7 @@ const Page: FC = () => {
       <DynamicForm {...formProps}>
         <DformText
           fieldProps="username"
-          required={true}
+          required
           placeholder="输入项居左"
           title="用户名"
           subTitle={subTitle()}
@@ -65,49 +65,52 @@ const Page: FC = () => {
         />
         <DformText
           fieldProps="username5"
-          required={true}
+          required
           title="定位"
           extra={extraImg()}
           labelNumber={3}
           placeholder="暂无数据"
-          disabled={true}
+          disabled
           onClick={(vals: string) => {
             // eslint-disable-next-line no-console
             console.log(vals);
           }}
+          defaultValue='disabled 为 true, 则 onClick 失效'
         />
         <DformText
           fieldProps="userTitle"
-          required={true}
+          required
           placeholder="点击获取表单全部数据"
           title="标题"
           onClick={() => {
             // eslint-disable-next-line no-console
             console.log(form.getFieldsValue());
           }}
+          defaultValue='点击获取表单全部数据'
         />
         <DformText
           fieldProps="titleTooLong"
-          required={true}
+          required
           placeholder="暂无数据"
           title="标题名称过长"
           labelNumber={7}
         />
         <DformText
           fieldProps="titleTooLong2"
-          required={true}
+          required
           placeholder="请输入身份证"
           title="身份证"
           positionType="vertical"
         />
         <DformText
           fieldProps="area"
-          required={true}
+          required
           title="控制显示行数"
           placeholder="暂无数据"
           // positionType="vertical"
           labelNumber={7}
           maxLine={2}
+          defaultValue="欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
