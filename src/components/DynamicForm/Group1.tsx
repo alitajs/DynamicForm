@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { WingBlank } from 'antd-mobile';
+import { WingBlank, WhiteSpace } from 'antd-mobile';
 import Card from './Card';
 import { GroupProps } from '../../PropsType';
 
@@ -19,6 +19,7 @@ const Group: FC<GroupProps> = (props) => {
     case 'card':
       return (
         <WingBlank>
+          <WhiteSpace size="lg" />
           <Card
             title={title}
             require={required}
