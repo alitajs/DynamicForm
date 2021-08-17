@@ -71,8 +71,8 @@ const Page = () => {
         <CoverRadio
           fieldProps="sex"
           data={sexList}
-          title="性别"
-          required={true}
+          title="性别(默认值)"
+          required
           onChange={(val: any) => {
             // eslint-disable-next-line no-console
             console.log(val);
@@ -81,17 +81,19 @@ const Page = () => {
             label: 'sexName',
             value: 'sexId',
           }}
+          defaultValue="man"
         />
         <CoverRadio
           fieldProps="sex2"
           data={sexList}
-          title="选择您的性别"
+          title="选择您的性别(默认值)"
           positionType="vertical"
           alias={{
             label: 'sexName',
             value: 'sexId',
           }}
-          disabled={true}
+          disabled
+          defaultValue="woman"
         />
         <CoverRadio
           fieldProps="food"

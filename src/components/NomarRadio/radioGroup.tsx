@@ -13,11 +13,10 @@ export interface INomarRadioGroupProps {
   data: IDataItem[];
   positionType?: 'horizontal' | 'vertical';
   radioType?: 'horizontal' | 'vertical';
-  initValue?: string | number;
+  value?: string | number;
   disabled?: boolean;
   onChange: (
-    currentActiveLink: string | number | undefined,
-    flag: string,
+    currentActiveLink: string | number | undefined
   ) => void;
   coverStyle?: React.CSSProperties;
   className?: string;
@@ -31,7 +30,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     onChange,
     positionType = 'horizontal',
     radioType = 'horizontal',
-    initValue,
+    value,
     disabled = false,
     coverStyle,
     className = '',
@@ -64,7 +63,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
       setActiveValue(undefined);
       return;
     }
-    const newValue = initValue;
+    const newValue = value;
     // 判断是否使用初始值，满足延迟赋数据源的情况
     // if (preValue && !initValue) {
     //   newValue = preValue;
@@ -90,13 +89,13 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
       setActiveValue(undefined);
       return;
     }
-    const filter = data.filter((item) => item.value === initValue);
+    const filter = data.filter((item) => item.value === value);
     if (filter && filter.length) {
-      setActiveValue(initValue);
+      setActiveValue(value);
     } else {
       setActiveValue(undefined);
     }
-  }, [initValue]);
+  }, [value]);
 
   const radioClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -106,17 +105,17 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     if (disabled) return;
     const filter = data.filter((item) => item.value === dataItem?.value);
     if (filter && filter.length) {
-      if (dataItem?.value === initValue) {
+      if (dataItem?.value === value) {
         if (allowUnChecked) {
-          onChange(undefined, 'change');
+          onChange(undefined);
           setActiveValue(undefined);
         }
       } else {
-        onChange(dataItem?.value, 'change');
+        onChange(dataItem?.value);
         setActiveValue(dataItem?.value);
       }
     } else {
-      onChange(undefined, 'change');
+      onChange(undefined);
     }
   };
 
