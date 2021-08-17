@@ -17,10 +17,12 @@ interface INomarCustomPorps {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   extra?: string | React.ReactNode;
+  defaultValue?: string;
 }
 
 const NomarCustom: FC<INomarCustomPorps> = (props) => {
   const {
+    defaultValue,
     fieldProps,
     required = false,
     rules,
@@ -33,9 +35,7 @@ const NomarCustom: FC<INomarCustomPorps> = (props) => {
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        return prevValue !== nextValue;
-      }}
+      initialValue={defaultValue}
     >
       <CustomDom {...customDomProps} />
     </Field>

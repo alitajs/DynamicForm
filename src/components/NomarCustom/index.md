@@ -15,20 +15,22 @@ nav:
 
 ## API
 
-| 参数           | 说明                                                       | 类型                       | 默认值 | 是否必填   |
-| -------------- | ---------------------------------------------------------- | -------------------------- | ------ | ---------- |
-| type           | 表单类型                                                   | string                     | ''     | 是         |
-| title          | 标题                                                       | string                     | ''     | 是         |
-| fieldProps     | 文本属性                                                   | boolean                    | false  | 是         |
-| required       | 必填判断                                                   | boolean                    | false  | 否         |
-| positionType   | 样式类型                                                   | `vertical` or `horizontal` | false  | `vertical` |
-| hasStar        | 必填项红\*展示与否的判断                                   | boolean                    | true   | 否         |
-| rules          | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                      | []     | 否         |
-| CustomDom      | 自定义样式                                                 | React.Node                 |        | 是         |
-| customDomProps | 自定义样式传入的值                                         | Object                     | {}     | 否         |
-| subTitle       | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node             | ''     | 否         |
-| hidden         | 字段展示与否的判断                                         | boolean                    | false  | 否         |
-| renderHeader   | 组件头部                                                   | `number` or `string`       | -      | 否         |
+| 参数           | 说明                                                       | 类型                          | 默认值      | 是否必填   |
+| -------------- | ---------------------------------------------------------- | ----------------------------- | ----------- | ---------- |
+| title          | 标题                                                       | string                        | ''          | 是         |
+| fieldProps     | 文本属性                                                   | boolean                       | false       | 是         |
+| required       | 必填判断                                                   | boolean                       | false       | 否         |
+| positionType   | 样式类型                                                   | `vertical` or `horizontal`    | false       | `vertical` |
+| hasStar        | 必填项红\*展示与否的判断                                   | boolean                       | true        | 否         |
+| rules          | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                         | []          | 否         |
+| CustomDom      | 自定义样式                                                 | React.Node                    |             | 是         |
+| customDomProps | 自定义样式传入的值                                         | Object                        | {}          | 否         |
+| subTitle       | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node                | ''          | 否         |
+| hidden         | 字段展示与否的判断                                         | boolean                       | false       | 否         |
+| renderHeader   | 组件头部                                                   | `number` or `string`          | -           | 否         |
+| defaultValue   | 设置初始取值                                               | string                        | -           | 否         |
+| onChange       | 值改变事件                                                 | object                        | (e) => void | 否         |
+| extra          |                                                            | `string` or `React.ReactNode` | ''          | 否         |
 
 ## 自定义组件开发教程
 
@@ -40,4 +42,4 @@ nav:
 
 如果项目中用到的自定义组件需要受控，需在自定义组件中增加 `props.onChange()` 函数，改变表单受控值。
 
-组件会通过 `props.initValue` 传入在 `formsValues` 设置的初始值。你可以进行页面初始化的数据回填操作。
+组件会通过 `props.defaultValue` 传入在 `initialValue` 设置的初始值。你可以进行页面初始化的数据回填操作。

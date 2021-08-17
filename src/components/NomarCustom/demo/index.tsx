@@ -10,6 +10,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
 } from '@alitajs/dform';
+import NomarCustom from '../'
 
 interface IDemoPage {
   name: string;
@@ -54,24 +55,6 @@ const Page: FC = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-  const formsData = [
-    {
-      type: 'custom',
-      title: '自定义组件(非受控)',
-      fieldProps: 'custom',
-      CustomDom: showDemoPage,
-    },
-    {
-      type: 'custom',
-      title: '自定义组件(受控)',
-      required: true,
-      fieldProps: 'age',
-      CustomDom: demoPage,
-      customDomProps: {
-        name: 'owen',
-      },
-    },
-  ] as IFormItemProps[];
 
   const formsValues = {
     age: '17',
@@ -81,13 +64,29 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    data: formsData,
+    // data: formsData,
     formsValues,
     isDev: true,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps} >
+        <NomarCustom
+          title='自定义组件(非受控)'
+          fieldProps='custom'
+          CustomDom={showDemoPage}
+        />
+        <NomarCustom
+          title='自定义组件(受控)'
+          required={true}
+          fieldProps='age'
+          CustomDom={demoPage}
+          customDomProps={{
+            name: 'owen',
+          }}
+          defaultValue="17"
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button
         type="primary"
