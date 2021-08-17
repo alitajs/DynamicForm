@@ -16,7 +16,6 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     modeType = 'date',
     minDate,
     maxDate,
-    initValue,
     use12Hours = false,
     minuteStep = 1,
     placeholder = '请选择',
@@ -30,16 +29,17 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     arrow = true,
     children,
     fieldProps,
+    value,
     ...otherProps
   } = props;
 
   useEffect(() => {
-    if (initValue) {
-      setTextValue(changeDateFormat(initValue, modeType, format));
+    if (value) {
+      setTextValue(changeDateFormat(value, modeType, format));
     } else {
       setTextValue('');
     }
-  }, [initValue]);
+  }, [value]);
 
   const isVertical = positionType === 'vertical';
 
@@ -52,7 +52,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
       mode={modeType}
       pickerPrefixCls="am-picker-col"
       prefixCls="am-picker"
-      defaultDate={initValue || new Date()}
+      defaultDate={value || new Date()}
       use12Hours={use12Hours}
       onValueChange={onValueChange}
       onScrollChange={() => {}}
@@ -77,7 +77,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
         maskTransitionName="am-fade"
         prefixCls="am-picker-popup"
         title="选择日期"
-        date={initValue || new Date()}
+        date={value || new Date()}
         okText="确认"
         dismissText="取消"
         onDismiss={() => setVisible(false)}

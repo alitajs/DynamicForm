@@ -6,9 +6,9 @@ import { transformFile } from '../../utils';
 const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
   const {
     onChange,
-    initValue = [],
     limitSize,
     compressRatio,
+    value = [],
     ...otherProps
   } = props;
 
@@ -25,7 +25,7 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     operationType: string,
     index: number | undefined,
   ) => {
-    if (files && files.length > initValue.length) {
+    if (files && files.length > value.length) {
       const lastFile = files[files.length - 1];
       const { file = {} } = lastFile;
       if (compressRatio && lastFile.url.indexOf('base64,') !== -1) {
@@ -46,7 +46,7 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     onChange(files, operationType, index);
   };
   return (
-    <ImagePicker {...otherProps} onChange={imageChange} files={initValue} />
+    <ImagePicker {...otherProps} onChange={imageChange} files={value} />
   );
 };
 

@@ -207,7 +207,7 @@ const UserName: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
         {!isJson && (
           <DformDatePicker
             fieldProps="date"
-            placeholder="请选择出生年月"
+            placeholder="请选择出生年月日"
             title="出生年月"
             onChange={onChange}
           />

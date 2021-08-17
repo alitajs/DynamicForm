@@ -88,6 +88,7 @@ export const getFormItem = ({
     ...formItem,
     ...childProps,
   };
+  console.log('mFormItem', mFormItem);
   const {
     type,
     disabled = allDisabled,
@@ -260,7 +261,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           allDisabled,
           errorValue,
           isComponent: true,
-          childProps: mProps,
+          childProps: changeData(mProps, autoLineFeed),
           fieldChange,
           relatives,
         });

@@ -20,10 +20,11 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   extra?: string | React.ReactNode;
   compressRatio?: number;
   className?: string;
+  defaultValue?: any[] | undefined;
 }
 
 export interface ImagePickerGroupProps {
-  initValue: any[];
+  value?: any[] | undefined;
   onChange: (
     files: ImageFile[],
     operationType: string,

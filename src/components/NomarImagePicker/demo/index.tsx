@@ -5,7 +5,12 @@
 
 import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 const fileList = [
   {
@@ -52,6 +57,7 @@ const Page = () => {
         console.log(index, files);
       },
       limitSize: 3 * 1024 * 1024,
+      defaultValue: fileList,
     },
     {
       type: 'image',
@@ -59,14 +65,11 @@ const Page = () => {
       title: '不可添加图片',
       required: true,
       selectable: false,
+      defaultValue: fileList,
     },
   ] as IFormItemProps[];
 
-  const formsValues = {
-    // insertImg: fileList,
-    showImg: fileList,
-    noInsertImg: fileList,
-  };
+  const formsValues = {};
 
   const formProps = {
     onFinish,

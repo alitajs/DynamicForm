@@ -18,6 +18,7 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
     hasStar = true,
     disabled = false,
     onChange,
+    defaultValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -40,8 +41,9 @@ const NomarDatePicker: FC<INomarDatePickerProps> = (props) => {
           setInitValue(nextValue && nextValue[fieldProps as any]);
           return prevValue !== nextValue;
         }}
+        initialValue={defaultValue}
       >
-        <DatePickerGroup {...props} onChange={fileChange} initValue={initValue}>
+        <DatePickerGroup {...props} onChange={fileChange}>
           <div className={`${allPrefixCls}-title`}>
             {required && hasStar && (
               <div className={`${allPrefixCls}-redStar`}>*</div>
