@@ -9,8 +9,8 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  DformSwitch
 } from '@alitajs/dform';
-import DFormSwitch from '../';
 
 interface PageProps {}
 
@@ -62,19 +62,19 @@ const Page: FC<PageProps> = () => {
   return (
     <React.Fragment>
       <DynamicForm {...formsProps}>
-        <DFormSwitch
+        <DformSwitch
           fieldProps="off"
           placeholder="选择"
           title="Off"
           required
         />
-        <DFormSwitch
+        <DformSwitch
           fieldProps="on"
           placeholder="选择"
           title="On"
           defaultValue
         />
-        <DFormSwitch
+        <DformSwitch
           fieldProps="disabledOn"
           placeholder="选择"
           title="Disabled On"

@@ -8,8 +8,8 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  MultiplePicker,
 } from '@alitajs/dform';
-import DformMultiplePicker from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -59,7 +59,7 @@ const Page: FC = () => {
   return (
     <>
       <DynamicForm {...formProps}>
-        <DformMultiplePicker
+        <MultiplePicker
           fieldProps="food"
           required
           data={foodList}
@@ -72,7 +72,7 @@ const Page: FC = () => {
           }}
           defaultValue={['爆炒虾仁', '宫保鸡丁']}
         />
-        <DformMultiplePicker
+        <MultiplePicker
           fieldProps="myFood"
           required={true}
           data={foodList}
@@ -88,7 +88,7 @@ const Page: FC = () => {
             console.log(e);
           }}
         />
-        <DformMultiplePicker
+        <MultiplePicker
           fieldProps="youFood"
           data={foodList}
           title="选择你喜欢的食物(不可编辑)"
