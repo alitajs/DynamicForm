@@ -5,7 +5,7 @@ import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarSelectProps {
-  cols?: number | string;
+  cols?: number;
   type?: string;
   data: PickerData[] | any;
   positionType?: 'vertical' | 'horizontal';

@@ -18,8 +18,9 @@ nav:
 | 参数         | 说明                                             | 类型                 | 默认值 | 是否必填 |
 | ------------ | ------------------------------------------------ | -------------------- | ------ | -------- |
 | type         | 表单类型                                         | string               | ''     | 是       |
+| coverStyle   | 自定义选择框样式                                 | object               | {}     | 否       |
 | title        | 标题                                             | string               | ''     | 是       |
-| fieldProps   | 文本属性                                         | string               | false  | 是       |
+| fieldProps   | 文本属性                                         | string               | -      | 是       |
 | placeholder  | placeholder                                      | string               | ''     | 否       |
 | required     | 必填判断                                         | boolean              | false  | 否       |
 | disabled     | 是否可编辑                                       | boolean              | false  | 否       |
@@ -29,6 +30,7 @@ nav:
 | hidden       | 字段展示与否的判断                               | boolean              | false  | 否       |
 | renderHeader | 组件头部                                         | `number` or `string` | -      | 否       |
 | className    | 类名                                             | string               | -      | 否       |
+| defaultValue | 设置初始取值                                     | boolean              | false  | 否       |
 
 ## 组件使用
 

@@ -17,7 +17,7 @@ nav:
 
 | 参数         | 说明                                                                                 | 类型                 | 默认值                             | 是否必填 |
 | ------------ | ------------------------------------------------------------------------------------ | -------------------- | ---------------------------------- | -------- |
-| type         | 表单类型                                                                             | string               | ''                                 | 是       |
+| defaultValue | 设置初始取值                                                                         | string               | -                                  | 否       |
 | title        | 标题                                                                                 | string               | ''                                 | 是       |
 | fieldProps   | 文本属性                                                                             | string               | ''                                 | 是       |
 | data         | 数据源                                                                               | list                 | []                                 | 是       |
@@ -32,6 +32,8 @@ nav:
 | renderHeader | 组件头部                                                                             | `number` or `string` | -                                  | 否       |
 | className    | 类名                                                                                 | string               | -                                  | 否       |
 | disableItem  | 禁用子项，这是一个函数，最终返回`boolean`，参数为当前循环的 item，返回 `true` 则禁用 | (item) => `boolean`  | -                                  | 否       |
+| coverStyle   | 自定义每个选项的样式，例如高度，内外边距等                                           | object               | {}                                 | 否       |
+| onChange     | 值改变事件                                                                           | object               | ((`string` or `number`)[]) => void | 否       |
 
 ## 备注
 

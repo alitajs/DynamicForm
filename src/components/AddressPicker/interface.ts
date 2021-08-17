@@ -22,7 +22,6 @@ export interface IAddressPickerProps {
   data?: IModalData[];
   onChangeLevel: (value: (string | number)[]) => void;
   placeholderList: string[];
-  initValue?: string | undefined;
   labelNumber?: number;
   coverStyle?: React.CSSProperties;
   onClick?: () => void;

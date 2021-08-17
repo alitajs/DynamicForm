@@ -15,7 +15,6 @@ nav:
 
 | 参数         | 说明                                                                                                                                  | 类型                       | 默认值                             | 是否必填 |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------- | -------- |
-| type         | 表单类型                                                                                                                              | string                     | ''                                 | 是       |
 | title        | 标题                                                                                                                                  | string                     | ''                                 | 是       |
 | data         | 数据源                                                                                                                                | list                       | []                                 | 是       |
 | fieldProps   | 文本属性                                                                                                                              | string                     | false                              | 是       |
@@ -31,7 +30,15 @@ nav:
 | onChange     | 选中项改变事件                                                                                                                        | (val) => void              | ''                                 | 否       |
 | labelNumber  | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | 5                                  | 否       |
 | coverStyle   | 自定义选择框样式                                                                                                                      | object                     | {}                                 | 否       |
-| alias        | data 数据源的别名                                                                                                                     | object                     | { label: 'label', value: 'value' } | 否       |
+| alias        | data 数据源的别名                                                                                                                     | IAliasProps                | { label: 'label', value: 'value' } | 否       |
 | extra        | 右边注释                                                                                                                              | `string` or `node`         | ''                                 | 否       |
 | renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -                                  | 否       |
 | className    | 类名                                                                                                                                  | string                     | -                                  | 否       |
+| defaultValue | 设置初始取值                                                                                                                          | string                     | -                                  | 否       |
+
+## IAliasProps
+
+| 参数  | 说明         | 类型                 | 默认值 | 是否必填 |
+| ----- | ------------ | -------------------- | ------ | -------- |
+| label | 设置当前取值 | `string`             | -      | 是       |
+| value | 设置标签名   | `string` or `number` | -      | 是       |
