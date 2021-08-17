@@ -23,8 +23,8 @@ nav:
 | required     | 必填判断                                                                           | boolean                    | false      | 否       |
 | positionType | 表单方向样式                                                                       | `horizontal` or `vertical` | `vertical` | 否       |
 | hasStar      | 必填项红\*展示与否的判断                                                           | boolean                    | true       | 否       |
-| firstProps   | 设置第一个参数的`placeholder`、`defaultValue`(设置初始默认值)、`data`和`onChang()` | {}                         | -          | 否       |
-| secondProps  | 设置第二个参数的`placeholder`、`defaultValue`(设置初始默认值)、`data`和`onChang()` | {}                         | -          | 否       |
+| firstProps   | `DformInput` api | {}                         | -          | 否       |
+| secondProps  | `DformInput` api  or `DformPicker` api | {}                         | -          | 否       |
 | rules        | 规则校验(如需用到该字段，请重写 `required` 校验)                                   | array                      | []         | 否       |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效                         | string or node             | ''         | 否       |
 | hidden       | 字段展示与否的判断                                                                 | boolean                    | false      | 否       |

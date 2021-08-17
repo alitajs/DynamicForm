@@ -7,6 +7,7 @@ group:
 nav:
   title: 分组
   path: /groupUsage
+  order: 3
 ---
 
 # 组件化分组

@@ -37,11 +37,6 @@ nav:
 | errorValue   |                                                                                                                                      | ErrorValueProps            | -            | 否       |
 | labelNumber  | 定宽枚举值：`num \* @input-label-width: 34px，`可用 2-7 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | -            | 否       |
 
-## ErrorValueProps
-
-| 参数 | 说明 | 类型     | 默认值 | 是否必填 |
-| ---- | ---- | -------- | ------ | -------- |
-| key  |      | string[] | []     | 是       |
 
 ## 备注
 

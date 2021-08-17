@@ -5,6 +5,7 @@ group:
 nav:
   title: 集联规则使用
   path: /relativesUsage
+  order: 4
 ---
 
 # 集联规则使用

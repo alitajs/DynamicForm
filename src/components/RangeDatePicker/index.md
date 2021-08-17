@@ -28,8 +28,8 @@ nav:
 | maxDate      | 最大可选日期                                               | Date                       | ''         | 否       |
 | positionType | 表单方向样式                                               | `horizontal` or `vertical` | `vertical` | 否       |
 | hasStar      | 必填项红\*展示与否的判断                                   | boolean                    | true       | 否       |
-| firstProps   | 增加前表单的属性 ,比如增加 defaultValue(默认值)            | {}                         | {}         | 否       |
-| secondProps  | 增加后表单的属性,比如增加 defaultValue(默认值)             | {}                         | {}         | 否       |
+| firstProps   | `DformDatePicker` api           | {}                         | {}         | 否       |
+| secondProps  | `DformDatePicker` api             | {}                         | {}         | 否       |
 | rules        | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                      | []         | 否       |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node             | ''         | 否       |
 | hidden       | 字段展示与否的判断                                         | boolean                    | false      | 否       |
@@ -41,4 +41,4 @@ nav:
 
 **在设值时，如果是日期字符串请先用 `dateChange(val)` 进行转化下，`dateChange` 可以在 `@alitajs/dform` 中导出。**
 
-例子请参考 `NomarDatePicker` 组件。
+例子请参考 `DformDatePicker` 组件。

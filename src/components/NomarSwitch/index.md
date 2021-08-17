@@ -32,37 +32,3 @@ nav:
 | className    | 类名                                             | string               | -      | 否       |
 | defaultValue | 设置初始取值                                     | boolean              | false  | 否       |
 
-## 组件使用
-
-### Off
-
-<code src="./demo/off.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
- {
-  type: "switch",
-  fieldProps: "off",
-  placeholder: "选择",
-  title: "Off",
-  required: true,
-},
-```
-
-### DisabledOff
-
-<code src="./demo/disabledOff.tsx" />
-
-如需在 `DynamicForm` 中使用，请使用以下 `json`：
-
-```json
- {
-  type: "switch",
-  fieldProps: "disabledOff"
-  placeholder: "选择"
-  title: "Disabled Off"
-  required: true
-  disabled: true
-},
-```

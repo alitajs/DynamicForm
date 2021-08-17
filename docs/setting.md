@@ -5,6 +5,7 @@ group:
 nav:
   title: 配置项
   path: /setting
+  order: 2
 ---
 
 # 可配置项
