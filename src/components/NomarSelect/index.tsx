@@ -19,6 +19,7 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    defaultValue,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -46,14 +47,11 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        setInitValue(nextValue && nextValue[fieldProps as any]);
-        return prevValue !== nextValue;
-      }}
+      initialValue={defaultValue}
     >
       <SelectGroup
         {...props}
-        initValue={initValue}
+        value={initValue || defaultValue}
         onChange={fieldChange}
         data={aliasData}
       >

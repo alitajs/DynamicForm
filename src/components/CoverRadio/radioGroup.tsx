@@ -17,7 +17,7 @@ interface IRadioGroup {
   ) => void;
   positionType?: 'horizontal' | 'vertical';
   radioType?: 'horizontal' | 'vertical';
-  initValue?: string | number;
+  value?: string | number;
   disabled?: boolean;
   coverStyle?: React.CSSProperties;
   className?: string;
@@ -30,7 +30,7 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     onChange,
     positionType = 'horizontal',
     radioType = 'horizontal',
-    initValue = '',
+    value = '',
     disabled = false,
     coverStyle,
     className = '',
@@ -64,9 +64,9 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
       setActiveValue(undefined);
       return;
     }
-    let newValue = initValue;
+    let newValue = value;
     // 判断是否使用初始值，满足延迟赋数据源的情况
-    if (preValue && !initValue) {
+    if (preValue && !value) {
       newValue = preValue;
       setPreValue(undefined);
     }
@@ -85,19 +85,19 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
 
   useEffect(() => {
     // 存在延迟数据源的情况，将值保存
-    if (data.length === 0 && initValue) setPreValue(initValue);
+    if (data.length === 0 && value) setPreValue(value);
     if (data.length === 0) {
       onChange(undefined, 'init');
       setActiveValue(undefined);
       return;
     }
-    const filter = data.filter((item) => item.value === initValue);
+    const filter = data.filter((item) => item.value === value);
     if (filter && filter.length) {
-      setActiveValue(initValue);
+      setActiveValue(value);
     } else {
       setActiveValue(undefined);
     }
-  }, [initValue]);
+  }, [value]);
 
   const radioClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -107,7 +107,7 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     if (disabled) return;
     const filter = data.filter((item) => item.value === dataItem?.value);
     if (filter && filter.length) {
-      if (dataItem?.value === initValue) {
+      if (dataItem?.value === value) {
         onChange(undefined, 'change');
         setActiveValue(undefined);
       } else {

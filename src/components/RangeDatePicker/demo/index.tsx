@@ -8,8 +8,9 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  dateChange,
 } from '@alitajs/dform';
-import RangeDatePicker from '../'
+import RangeDatePicker from '../';
 
 const page: FC = () => {
   const [form] = useForm();
@@ -24,7 +25,8 @@ const page: FC = () => {
   };
 
   const formsValues = {
-    rangeTime1: new Date(),
+    rangeTime1: dateChange(new Date('2021-07-08')),
+    rangeTime2: dateChange(new Date('2021-08-08')),
   };
 
   const formProps = {
@@ -39,10 +41,11 @@ const page: FC = () => {
     <>
       <DynamicForm {...formProps}>
         <RangeDatePicker
-          fieldProps='rangeTime1'
-          fieldProps2='rangeTime2'
-          title='时间(datetime)'
-          modeType='datetime'
+          required
+          fieldProps="rangeTime1"
+          fieldProps2="rangeTime2"
+          title="时间(datetime)"
+          modeType="datetime"
           firstProps={{
             onOk: (val: any) => {
               // eslint-disable-next-line no-console
@@ -51,20 +54,25 @@ const page: FC = () => {
           }}
         />
         <RangeDatePicker
-          required={true}
-          fieldProps='rangeTime3'
-          fieldProps2='rangeTime4'
-          title='时间(month)'
-          modeType='month'
-          positionType='horizontal'
+          fieldProps="rangeTime3"
+          fieldProps2="rangeTime4"
+          title="时间(month)"
+          modeType="month"
+          positionType="horizontal"
           labelNumber={7}
         />
         <RangeDatePicker
-          required={true}
-          fieldProps='rangeTime5'
-          fieldProps2='rangeTime6'
-          title='时间(date)'
-          positionType='vertical'
+          required
+          fieldProps="rangeTime5"
+          fieldProps2="rangeTime6"
+          title="时间(date)"
+          positionType="vertical"
+          firstProps={{
+            defaultValue: dateChange(new Date('2021-07-08')),
+          }}
+          secondProps={{
+            defaultValue: dateChange(new Date('2021-08-08')),
+          }}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

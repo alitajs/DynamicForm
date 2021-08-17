@@ -6,7 +6,7 @@ import TextItem from '../TextItem';
 interface INomarSelectGroupProps extends Omit<INomarSelectProps, 'onChange'> {
   onChange: (values: (number | string)[] | undefined, flag: string) => void;
   //返回的数据
-  initValue?: string;
+  value?: string | undefined;
 }
 const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
   //是否显示
@@ -25,7 +25,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     rules,
     placeholder = '请选择',
     positionType = 'horizontal',
-    initValue = '',
+    value = '',
     hasStar = true,
     subTitle,
     hidden = false,
@@ -45,12 +45,12 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
       setPickerLabel('');
       return;
     } else {
-      setPickerLabel(initValue);
+      setPickerLabel(value);
     }
     let allDate: any = [];
     data.forEach((val: any, index: any) => {
       let [mydata] = val.filter(
-        (item: any) => item?.value === initValue[index],
+        (item: any) => item?.value === value[index],
       );
       if (mydata === undefined) {
       } else {
@@ -62,7 +62,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     } else {
       setPickerLabel('');
     }
-  }, [initValue]);
+  }, [value]);
 
   useEffect(() => {
     if (data.length == 0) {
@@ -73,7 +73,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
       let allDate: any = [];
       data.forEach((val: any, index: any) => {
         let [mydata] = val.filter(
-          (item: any) => item?.value === initValue[index],
+          (item: any) => item?.value === value[index],
         );
         if (mydata === undefined) {
           // console.log("mydata is undefined");
@@ -83,7 +83,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
       });
 
       if (allDate && allDate.length) {
-        setPickerLabel(allDate.join(''));
+        setPickerLabel(allDate.join(','));
       } else {
         setPickerLabel('');
       }
@@ -93,7 +93,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
   }, [data]);
   //打开
   const fieldClick = () => {
-    if (onClick) onClick(initValue);
+    if (onClick) onClick(value);
     if (disabled) return;
     setvisible(true);
   };
@@ -124,7 +124,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         visible={visible && data.length > 0}
         data={data}
         cascade={false}
-        value={initValue ? `${initValue}`.split(',') : undefined}
+        value={value ? `${value}`.split(',') : undefined}
         onOk={onOK}
         onDismiss={() => {
           setvisible(false);

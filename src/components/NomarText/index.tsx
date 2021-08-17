@@ -21,6 +21,7 @@ export interface INomarTextProps {
   disabled?: boolean;
   maxLine?: number;
   className?: string;
+  defaultValue?: string;
 }
 
 const NomarText: FC<INomarTextProps> = (props) => {
@@ -39,6 +40,7 @@ const NomarText: FC<INomarTextProps> = (props) => {
     maxLine,
     onClick,
     className = '',
+    defaultValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -47,6 +49,7 @@ const NomarText: FC<INomarTextProps> = (props) => {
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请输入${title}` }]}
+      initialValue={defaultValue}
     >
       <TextItem
         placeholder={placeholder}

@@ -8,7 +8,6 @@ export interface INomarSelectProps {
   cols?: number | string;
   type?: string;
   data: PickerData[] | any;
-  value?: PickerPropsType['value'];
   positionType?: 'vertical' | 'horizontal';
   title: string;
   fieldProps: string;
@@ -24,7 +23,6 @@ export interface INomarSelectProps {
   className?: string;
   extra?: string | React.ReactNode;
   coverStyle?: React.CSSProperties;
-  // initValue?: string | number;
   onChange?: (event: (string | number)[]) => void;
   labelNumber?: number;
   alias?: IAliasProps;
