@@ -7,11 +7,15 @@ import NomarFile from '../../';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
-  onMyClick: any
+  onMyClick: any;
 }
 let forms: any;
 
-const NomarFileTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onMyClick }) => {
+const NomarFileTestPage: React.FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  onMyClick,
+}) => {
   const [form] = useForm();
   forms = form;
   const contractList = [
@@ -29,14 +33,14 @@ const NomarFileTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onM
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <NomarFile
           // type='file'
           required={true}
-          fieldProps='contract'
-          title='合同'
+          fieldProps="contract"
+          title="合同"
           onClick={(res: any) => {
-            onMyClick()
+            onMyClick();
             console.log(res);
           }}
           onChange={(res: any, delItem: any) => {
@@ -44,7 +48,7 @@ const NomarFileTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onM
           }}
           alias={{
             id: 'fileId',
-            title: '',
+            title: 'title',
           }}
           upload={(res: any) => {
             const list = form.getFieldsValue().contract || [];
@@ -72,6 +76,6 @@ const NomarFileTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onM
         Submit
       </Button>
     </>
-  )
-}
+  );
+};
 export default { NomarFileTestPage, forms };

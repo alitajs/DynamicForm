@@ -18,7 +18,7 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
   } = props;
 
   const del = (index: number) => {
-    const newData = { ...value };
+    const newData = Array.from(value);
     newData.splice(index, 1);
     if (onChange) onChange(newData, value[index]);
   };

@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, sleep, getAllByTestId } from '@alita/test';
+import {
+  render,
+  testA11y,
+  fireEvent,
+  waitFor,
+  sleep,
+  getAllByTestId,
+} from '@alita/test';
 import { useForm } from '../../../';
 import Form from 'rc-field-form';
 import { getRandom } from '../../../index';
@@ -16,10 +23,10 @@ const contractList = [
 const myProps = {
   required: true,
   title: '合同',
-  fieldProps: "",
-  // formsValues: {
-  //   contract: contractList,
-  // },
+  fieldProps: 'contract',
+  formsValues: {
+    contract: contractList,
+  },
   onClick: (res: any) => {
     console.log(res);
   },
@@ -28,7 +35,7 @@ const myProps = {
   },
   alias: {
     id: 'fileId',
-    title: '',
+    title: 'title',
   },
   upload: (res: any) => {
     const list = form.getFieldsValue().contract || [];
@@ -43,14 +50,13 @@ const myProps = {
     form.setFieldsValue({
       contract: list,
     });
-  }
-}
+  },
+};
 
 it('passes picker a11y test', async () => {
-
   const { container, getByText } = render(
     <div>
-      <Form >
+      <Form>
         <NomarFile {...myProps} />
       </Form>
     </div>,
@@ -59,27 +65,31 @@ it('passes picker a11y test', async () => {
   await testA11y(container);
 });
 
-test("passes picker a11y test", async () => {
+test('passes picker a11y test', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
   const onMyClick = jest.fn();
   const { getByText } = render(
-    <NomarFileTestPage onFinish={onFinish} onFinishFailed={onFinishFailed} onMyClick={onMyClick} />
+    <NomarFileTestPage
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onMyClick={onMyClick}
+    />,
   );
-  expect(getByText("合同")).toBeDefined();
-  expect(getByText("房子买卖协议.pdf")).toBeDefined();
-  fireEvent.click(getByText("房子买卖协议.pdf"))
-  fireEvent.click(getByText("Submit"))
+  expect(getByText('合同')).toBeDefined();
+  expect(getByText('房子买卖协议.pdf')).toBeDefined();
+  fireEvent.click(getByText('房子买卖协议.pdf'));
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onMyClick).toBeCalled();
     expect(onFinish).toBeCalled();
-  })
-  fireEvent.click(getByText('房子买卖协议.pdf').parentNode?.lastChild)
-  await sleep(500)
-  fireEvent.click(getByText('房屋租赁合同说明书.pdf').parentNode?.lastChild)
-  await sleep(500)
-  fireEvent.click(getByText("Submit"))
+  });
+  fireEvent.click(getByText('房子买卖协议.pdf').parentNode?.lastChild);
+  await sleep(500);
+  fireEvent.click(getByText('房屋租赁合同说明书.pdf').parentNode?.lastChild);
+  await sleep(500);
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
-  })
-})
+  });
+});
