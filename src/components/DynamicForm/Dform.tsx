@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import Form, { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
-import Group from './Group1';
+import Group from './Group';
 import Title from '../Title';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 import {

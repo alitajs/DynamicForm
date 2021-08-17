@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Group from './Group1';
+import Group from './Group';
 import DForm, { useForm } from './Dform';
 import { IDynamicFormProps } from '../../PropsType';
 

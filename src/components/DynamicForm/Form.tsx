@@ -8,7 +8,7 @@ import {
   IDynamicFormProps,
 } from '../../PropsType';
 import { DFORM_COMP_NAME, DFORM_COMP_DETAULT } from '../../utils/menu';
-import Group from './Group1';
+import Group from './Group';
 
 import {
   DformInput,
