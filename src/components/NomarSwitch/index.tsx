@@ -16,6 +16,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   hasStar?: boolean;
   hidden?: boolean;
   className?: string;
+  defaultValue?: boolean;
 }
 
 const NomarSwitch: FC<INomarSwitchProps> = (props) => {
@@ -29,6 +30,7 @@ const NomarSwitch: FC<INomarSwitchProps> = (props) => {
     hasStar = true,
     hidden = false,
     className = '',
+    defaultValue = false,
     ...otherProps
   } = props;
   return (
@@ -45,6 +47,7 @@ const NomarSwitch: FC<INomarSwitchProps> = (props) => {
             name={fieldProps}
             valuePropName="checked"
             rules={rules || [{ required, message: `请选择${title}` }]}
+            initialValue={defaultValue}
           >
             <Switch {...otherProps} />
           </Field>

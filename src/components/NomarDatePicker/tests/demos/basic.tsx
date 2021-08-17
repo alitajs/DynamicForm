@@ -4,8 +4,11 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { useForm, dateChange } from '../../../../index';
-import DformDate from '../..';
+import DynamicForm, {
+  useForm,
+  dateChange,
+  DformDatePicker,
+} from '../../../../index';
 
 interface BasicProps {
   onFinish: any;
@@ -16,7 +19,6 @@ interface BasicProps {
 const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
   const formsValues = {
-    Date: new Date(),
     DateTime: dateChange('2020-02-02 22:22'),
   };
 
@@ -31,15 +33,16 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   return (
     <>
       <DynamicForm {...formProps}>
-        <DformDate
+        <DformDatePicker
           fieldProps="Date"
           modeType="date"
           title="Date"
           disabled={true}
           maxDate={new Date()}
           minDate={new Date()}
+          defaultValue={new Date()}
         />
-        <DformDate
+        <DformDatePicker
           fieldProps="Month"
           modeType="month"
           title="Month"
@@ -48,7 +51,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           placeholder="请选择月份"
         />
 
-        <DformDate
+        <DformDatePicker
           fieldProps="DateTime"
           modeType="datetime"
           title="DateTimeVertical"

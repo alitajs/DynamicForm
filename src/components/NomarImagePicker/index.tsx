@@ -4,7 +4,6 @@ import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
 
 const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
-  const [initValue, setInitValue] = useState([]);
   const {
     coverStyle,
     title,
@@ -17,6 +16,7 @@ const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
     hidden = false,
     extra = '',
     onChange,
+    defaultValue = [],
     ...otherProps
   } = props;
 
@@ -33,14 +33,14 @@ const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
       shouldUpdate={(prevValue: any, nextValue: any) => {
-        setInitValue(nextValue && nextValue[fieldProps as any]);
+        // setInitValue(nextValue && nextValue[fieldProps as any]);
         return prevValue !== nextValue;
       }}
+      initialValue={defaultValue}
     >
       <ImagePickerGroup
         {...otherProps}
         onChange={imageChange}
-        initValue={initValue}
         limitSize={limitSize}
       />
     </Field>

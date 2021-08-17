@@ -8,8 +8,8 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  MultiplePicker,
 } from '../../../../index';
-import DformMultiplePicker from '../..';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
@@ -55,7 +55,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   return (
     <>
       <DynamicForm {...formProps}>
-        <DformMultiplePicker
+        <MultiplePicker
           fieldProps="myFood"
           required={true}
           data={foodList}
@@ -68,7 +68,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           }}
           onChange={onChange}
         />
-        <DformMultiplePicker
+        <MultiplePicker
           fieldProps="youFood"
           // required={true}
           data={foodList}

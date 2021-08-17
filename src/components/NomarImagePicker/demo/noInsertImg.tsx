@@ -21,12 +21,6 @@ const dataList = [
 const InsertImage: FC = () => {
   const [form] = useForm();
 
-  useEffect(() => {
-    form.setFieldsValue({
-      noInsertImg: dataList,
-    });
-  }, []);
-
   return (
     <Form form={form}>
       <List>
@@ -35,6 +29,7 @@ const InsertImage: FC = () => {
           required
           title="不可添加图片"
           selectable={false}
+          defaultValue={dataList}
         />
       </List>
     </Form>

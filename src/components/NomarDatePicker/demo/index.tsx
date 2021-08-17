@@ -10,8 +10,8 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   dateChange,
+  DformDatePicker,
 } from '@alitajs/dform';
-import DformDate from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -26,7 +26,6 @@ const Page: FC = () => {
   };
 
   const formsValues = {
-    Date: new Date(),
     DateTime: dateChange('2020-02-02 22:22'),
   };
 
@@ -41,22 +40,23 @@ const Page: FC = () => {
   return (
     <>
       <DynamicForm {...formProps}>
-        <DformDate
+        <DformDatePicker
           fieldProps="Date"
           modeType="date"
           title="Date"
-          disabled={true}
+          disabled
           maxDate={new Date()}
           minDate={new Date()}
+          defaultValue={new Date()}
         />
-        <DformDate
+        <DformDatePicker
           fieldProps="Month"
           modeType="month"
           title="Month"
           required={true}
         />
 
-        <DformDate
+        <DformDatePicker
           fieldProps="DateTime"
           modeType="datetime"
           title="DateTimeVertical"
