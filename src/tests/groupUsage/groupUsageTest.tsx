@@ -15,7 +15,7 @@ import DynamicForm, {
   RangeDatePicker,
   DformCheckBox,
   MultiplePicker,
-} from '@alitajs/dform';
+} from '../..';
 
 const { Group } = DynamicForm;
 

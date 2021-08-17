@@ -5,7 +5,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   IFormItemProps,
-} from '@alitajs/dform';
+} from '../..';
 
 const sexData = [
   { label: '男', value: 'man' },
@@ -138,7 +138,6 @@ const UserName: FC = () => {
 
   useEffect(() => {
     setFormsValues({
-      sex: 'man',
       motion: ['羽毛球', '乒乓球'],
     });
   }, []);
@@ -163,7 +162,7 @@ const UserName: FC = () => {
       <DynamicForm {...formProps} />
       <WhiteSpace />
       <Button type="primary" onClick={() => form.submit()}>
-        submit
+        Submit
       </Button>
     </div>
   );
