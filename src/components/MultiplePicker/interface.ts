@@ -19,7 +19,6 @@ export interface IMultiplePickerProps {
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
   placeholder?: string;
-  initValue?: string | undefined;
   disabled?: boolean;
   maxValueLength?: number;
   labelNumber?: number;
@@ -30,4 +29,5 @@ export interface IMultiplePickerProps {
   alias?: IAliasProps;
   className?: string;
   extra?: string | React.ReactNode;
+  defaultValue?: (string | number)[] | undefined;
 }

@@ -60,6 +60,19 @@ const Page: FC = () => {
     <>
       <DynamicForm {...formProps}>
         <DformMultiplePicker
+          fieldProps="food"
+          required
+          data={foodList}
+          title="食物(默认值)"
+          labelNumber={7}
+          placeholder="请选择食物"
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+          defaultValue={['爆炒虾仁', '宫保鸡丁']}
+        />
+        <DformMultiplePicker
           fieldProps="myFood"
           required={true}
           data={foodList}
@@ -77,7 +90,6 @@ const Page: FC = () => {
         />
         <DformMultiplePicker
           fieldProps="youFood"
-          // required={true}
           data={foodList}
           title="选择你喜欢的食物(不可编辑)"
           labelNumber={7}
