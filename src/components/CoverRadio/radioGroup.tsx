@@ -11,10 +11,7 @@ export interface IDataItem {
 
 interface IRadioGroup {
   data: IDataItem[];
-  onChange: (
-    currentActiveLink: string | number | undefined,
-    flag: string,
-  ) => void;
+  onChange: (currentActiveLink: string | number | undefined) => void;
   positionType?: 'horizontal' | 'vertical';
   radioType?: 'horizontal' | 'vertical';
   value?: string | number;
@@ -37,9 +34,6 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     labelNumber = 5,
     children,
   } = props;
-  const [preValue, setPreValue] = useState<string | number | undefined>(
-    undefined,
-  );
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
     undefined,
   );
@@ -60,34 +54,21 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
 
   useEffect(() => {
     if (data.length === 0) {
-      onChange(undefined, 'init');
       setActiveValue(undefined);
       return;
     }
     let newValue = value;
-    // 判断是否使用初始值，满足延迟赋数据源的情况
-    if (preValue && !value) {
-      newValue = preValue;
-      setPreValue(undefined);
-    }
     const filter = data.filter((item) => item.value === newValue);
     if (filter && filter.length) {
       setActiveValue(newValue);
-      if (preValue) {
-        // 如果存在原始值的话 需要修改下表单值
-        onChange(newValue, 'init');
-      }
     } else {
       setActiveValue(undefined);
-      onChange(undefined, 'init');
     }
   }, [data]);
 
   useEffect(() => {
     // 存在延迟数据源的情况，将值保存
-    if (data.length === 0 && value) setPreValue(value);
     if (data.length === 0) {
-      onChange(undefined, 'init');
       setActiveValue(undefined);
       return;
     }
@@ -108,14 +89,14 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     const filter = data.filter((item) => item.value === dataItem?.value);
     if (filter && filter.length) {
       if (dataItem?.value === value) {
-        onChange(undefined, 'change');
+        onChange(undefined);
         setActiveValue(undefined);
       } else {
-        onChange(dataItem?.value, 'change');
+        onChange(dataItem?.value);
         setActiveValue(dataItem?.value);
       }
     } else {
-      onChange(undefined, 'change');
+      onChange(undefined);
     }
   };
 

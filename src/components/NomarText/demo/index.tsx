@@ -8,16 +8,12 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
-  DformTextArea,
+  DformText,
 } from '@alitajs/dform';
-import PhotoIcon from '../../../assets/photo.png';
 import PositionIcon from '../../../assets/position_ico.png';
-import DformText from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
-
-  const photoImg = () => <img src={PhotoIcon} style={{ width: '1rem' }} />;
 
   const extraImg = () => <img src={PositionIcon} style={{ width: '0.5rem' }} />;
 
@@ -34,7 +30,6 @@ const Page: FC = () => {
   };
 
   const formsValues = {
-    userAge: '这里只读不可编辑',
     username5: 'disabled 为 true, 则 onClick 失效',
     userTitle: '点击获取表单全部数据',
     area: '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
@@ -75,7 +70,6 @@ const Page: FC = () => {
             // eslint-disable-next-line no-console
             console.log(vals);
           }}
-          defaultValue='disabled 为 true, 则 onClick 失效'
         />
         <DformText
           fieldProps="userTitle"
@@ -86,7 +80,6 @@ const Page: FC = () => {
             // eslint-disable-next-line no-console
             console.log(form.getFieldsValue());
           }}
-          defaultValue='点击获取表单全部数据'
         />
         <DformText
           fieldProps="titleTooLong"
@@ -98,19 +91,19 @@ const Page: FC = () => {
         <DformText
           fieldProps="titleTooLong2"
           required
-          placeholder="请输入身份证"
+          placeholder="请输入身份证(默认值)"
           title="身份证"
           positionType="vertical"
+          defaultValue="通过 defaultValue 设置默认值"
         />
         <DformText
           fieldProps="area"
           required
           title="控制显示行数"
           placeholder="暂无数据"
-          // positionType="vertical"
+          positionType="vertical"
           labelNumber={7}
           maxLine={2}
-          defaultValue="欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
