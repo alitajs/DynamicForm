@@ -31,7 +31,7 @@ export interface INomarRadioProps {
   allowUnChecked?: boolean;
   labelNumber?: number;
   extra?: string | React.ReactNode;
-  defaultValue?: string
+  defaultValue?: string;
 }
 
 const NomarRadio: FC<INomarRadioProps> = (props) => {
@@ -48,9 +48,7 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
     positionType = 'horizontal',
     hasStar = true,
     radioType = 'horizontal',
-    subTitle,
     onChange,
-    hidden = false,
     disabled = false,
     alias = {
       label: 'label',
@@ -58,7 +56,6 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
     },
     className = '',
     labelNumber = 5,
-    extra,
     defaultValue,
   } = props;
 
