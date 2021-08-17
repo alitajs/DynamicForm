@@ -19,10 +19,10 @@ nav:
 
 | 参数            | 说明                                                                                                                                  | 类型                       | 默认值                             | 是否必填     |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------- | ------------ |
-| type            | 表单类型                                                                                                                              | string                     | ''                                 | 是           |
+| defaultValue    | 初始赋值                                                                                                                              | object                     | valueProps                         | 否           |
 | title           | 标题                                                                                                                                  | string                     | ''                                 | 是           |
 | fieldProps      | 文本属性                                                                                                                              | boolean                    | false                              | 是           |
-| onChangeLevel   | 层级改变事件                                                                                                                          | function                   | (e) => void                        | 是           |
+| onChangeLevel   | 层级改变事件                                                                                                                          | function                   | (e) => void                        | 否           |
 | placeholderList | 用户选择提示列表                                                                                                                      | object                     | []                                 | 是           |
 | level           | 总层级数。 若不设值，则默认是灵活不固定的层级。当 `data` 数据源为空时，默认为最后一个层级，弹框自动关闭                               | number                     | 无                                 | 否           |
 | data            | 当前列表选项的值                                                                                                                      | object                     | []                                 | 是           |
@@ -42,9 +42,16 @@ nav:
 | height          | 固定弹框高度                                                                                                                          | `number` or `string`       | null                               | 否           |
 | noData          | 无数据时展示的效果                                                                                                                    | string or node             | '暂无数据'                         | 否           |
 | loading         | loading 为 `true` 时，noData 数据不会展示                                                                                             | boolean                    | false                              | 否           |
-| renderHeader    | 组件头部                                                                                                                              | `number` or `string`       | -                                  | 否           |
 | className       | 类名                                                                                                                                  | string                     | -                                  | 否           |
 | alias           | data 数据源的别名                                                                                                                     | object                     | { label: 'label', value: 'value' } | 否           |
+| extra           |                                                                                                                                       | string or React.ReactNode  | ''                                 | 否           |
+
+## valueProps
+
+| 参数  | 说明         | 类型                 | 默认值 | 是否必填 |
+| ----- | ------------ | -------------------- | ------ | -------- |
+| label | 设置当前取值 | (string or number)[] | []     | 是       |
+| value | 设置标签名   | (string or number)[] | []     | 是       |
 
 ## 备注
 
