@@ -14,7 +14,6 @@ export { default as DformImagePicker } from './NomarImagePicker';
 export { default as DformCustom } from './NomarCustom';
 export { default as DformText } from './NomarText';
 export { default as DformFile } from './NomarFile';
-export { default as OnlyReadInput } from './OnlyReadInput';
 export { default as RangeDatePicker } from './RangeDatePicker';
 export { default as TextItem } from './TextItem';
 export { default as InputItem } from './InputItem';

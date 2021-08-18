@@ -88,7 +88,6 @@ export const getFormItem = ({
     ...formItem,
     ...childProps,
   };
-  console.log('mFormItem', mFormItem);
   const {
     type,
     disabled = allDisabled,

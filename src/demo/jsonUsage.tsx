@@ -60,7 +60,7 @@ const data = [
   },
 ] as IFormItemProps[];
 
-const UserName: FC = () => {
+const Page: FC = () => {
   const [form] = useForm();
   const [formsValues, setFormsValues] = useState<any>({});
 
@@ -97,4 +97,4 @@ const UserName: FC = () => {
   );
 };
 
-export default UserName;
+export default Page;
