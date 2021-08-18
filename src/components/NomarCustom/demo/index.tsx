@@ -77,7 +77,7 @@ const Page: FC = () => {
         />
         <NomarCustom
           title='自定义组件(受控)'
-          required
+          required={true}
           fieldProps='age'
           CustomDom={demoPage}
           customDomProps={{
