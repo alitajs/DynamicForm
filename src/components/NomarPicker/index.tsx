@@ -4,7 +4,7 @@ import { INomarPickerProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 
-const NomarPicker: FC<INomarPickerProps> = (props) => {
+const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -57,4 +57,5 @@ const NomarPicker: FC<INomarPickerProps> = (props) => {
   );
 };
 
-export default NomarPicker;
+DformPicker.displayName = 'dformPicker';
+export default DformPicker;

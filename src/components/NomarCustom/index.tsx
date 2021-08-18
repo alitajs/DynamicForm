@@ -20,7 +20,7 @@ interface INomarCustomPorps {
   defaultValue?: string;
 }
 
-const NomarCustom: FC<INomarCustomPorps> = (props) => {
+const DformCustom: FC<INomarCustomPorps> = (props) => {
   const {
     defaultValue,
     fieldProps,
@@ -53,4 +53,5 @@ const NomarCustom: FC<INomarCustomPorps> = (props) => {
   );
 };
 
-export default NomarCustom;
+DformCustom.displayName = 'dformCustom';
+export default DformCustom;

@@ -58,4 +58,5 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   );
 };
 
+MultiplePicker.displayName = 'multiplePicker';
 export default MultiplePicker;

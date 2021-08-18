@@ -3,7 +3,7 @@ import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
 
-const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
+const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   const {
     coverStyle,
     title,
@@ -47,4 +47,5 @@ const NomarImagePicker: FC<INomarImagePickerProps> = (props) => {
   );
 };
 
-export default NomarImagePicker;
+DformImagePicker.displayName = 'dformImagePicker';
+export default DformImagePicker;

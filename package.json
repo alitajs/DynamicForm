@@ -54,7 +54,7 @@
     "dumi": "^1.0.16",
     "dumi-theme-mobile": "^1.1.6",
     "father-build": "^1.17.2",
-    "gh-pages": "^3.0.0",
+    "gh-pages": "^3.2.3",
     "lint-staged": "^10.0.7",
     "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^2.2.1",

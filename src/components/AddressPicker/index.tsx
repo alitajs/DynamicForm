@@ -49,4 +49,5 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   );
 };
 
+AddressPicker.displayName = 'addressPicker';
 export default AddressPicker;

@@ -25,7 +25,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   errorValue?: any;
 }
 
-const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
+const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   const {
     coverStyle,
     required = false,
@@ -98,4 +98,5 @@ const NomarTextArea: FC<INomarTextAreaProps> = (props) => {
   );
 };
 
-export default NomarTextArea;
+DformTextArea.displayName = 'dformTextArea';
+export default DformTextArea;

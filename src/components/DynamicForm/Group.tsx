@@ -36,4 +36,5 @@ const Group: FC<GroupProps> = (props) => {
   }
 };
 
+Group.displayName = 'group';
 export default Group;

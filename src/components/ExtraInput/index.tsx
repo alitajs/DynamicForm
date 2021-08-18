@@ -136,4 +136,5 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   );
 };
 
+ExtraInput.displayName = 'extraInput';
 export default ExtraInput;

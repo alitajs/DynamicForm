@@ -19,7 +19,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   defaultValue?: boolean;
 }
 
-const NomarSwitch: FC<INomarSwitchProps> = (props) => {
+const DformSwitch: FC<INomarSwitchProps> = (props) => {
   const {
     coverStyle,
     title,
@@ -57,4 +57,5 @@ const NomarSwitch: FC<INomarSwitchProps> = (props) => {
   );
 };
 
-export default NomarSwitch;
+DformSwitch.displayName = 'dformSwitch';
+export default DformSwitch;

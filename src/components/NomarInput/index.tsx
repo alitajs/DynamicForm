@@ -21,7 +21,7 @@ export interface INomarInputProps extends InputItemPropsType {
   className?: string;
 }
 
-const NomarInput: FC<INomarInputProps> = (props) => {
+const DformInput: FC<INomarInputProps> = (props) => {
   const {
     inputType = 'text',
     coverStyle,
@@ -83,4 +83,5 @@ const NomarInput: FC<INomarInputProps> = (props) => {
   );
 };
 
-export default NomarInput;
+DformInput.displayName = 'dformInput';
+export default DformInput;

@@ -6,7 +6,7 @@ import FileIcon from '../../assets/file.png';
 
 const prefixCls = 'alitajs-dform-file';
 
-const NomarFile: FC<INomarFileProps> = (props) => {
+const DformFile: FC<INomarFileProps> = (props) => {
   const {
     fieldProps,
     required = false,
@@ -59,4 +59,5 @@ const NomarFile: FC<INomarFileProps> = (props) => {
   );
 };
 
-export default NomarFile;
+DformFile.displayName = 'dformFile';
+export default DformFile;

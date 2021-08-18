@@ -33,7 +33,7 @@ interface ICoverRadioProps {
   defaultValue?: string;
 }
 
-const NomarTab: FC<ICoverRadioProps> = (props) => {
+const CoverRadio: FC<ICoverRadioProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
   const {
     coverStyle,
@@ -111,4 +111,6 @@ const NomarTab: FC<ICoverRadioProps> = (props) => {
   );
 };
 
-export default NomarTab;
+CoverRadio.displayName = 'coverRadio';
+
+export default CoverRadio;

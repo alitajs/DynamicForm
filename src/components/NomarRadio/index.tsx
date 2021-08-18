@@ -34,7 +34,7 @@ export interface INomarRadioProps {
   defaultValue?: string;
 }
 
-const NomarRadio: FC<INomarRadioProps> = (props) => {
+const DformRadio: FC<INomarRadioProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -109,4 +109,5 @@ const NomarRadio: FC<INomarRadioProps> = (props) => {
   );
 };
 
-export default NomarRadio;
+DformRadio.displayName = 'dformRadio';
+export default DformRadio;

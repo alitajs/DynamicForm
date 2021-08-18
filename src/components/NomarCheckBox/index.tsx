@@ -4,7 +4,6 @@ import Field from '../Field';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
-import { act } from 'react-dom/test-utils';
 import './index.less';
 
 interface INomarCheckBoxProps {
@@ -26,7 +25,7 @@ interface INomarCheckBoxProps {
   defaultValue?: (string | number)[];
 }
 
-const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
+const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
   const {
     coverStyle,
@@ -84,4 +83,5 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = (props) => {
   );
 };
 
-export default NomarCheckBox;
+DformCheckBox.displayName = 'dformCheckBox';
+export default DformCheckBox;

@@ -6,7 +6,7 @@ import './index.less';
 import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
 
-const NomarPicker: FC<INomarSelectProps> = (props) => {
+const DformSelect: FC<INomarSelectProps> = (props) => {
   const {
     title,
     required = false,
@@ -66,4 +66,5 @@ const NomarPicker: FC<INomarSelectProps> = (props) => {
   );
 };
 
-export default NomarPicker;
+DformSelect.displayName = 'dformSelect';
+export default DformSelect;

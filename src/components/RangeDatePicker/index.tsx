@@ -64,8 +64,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
       }}
     >
       <div
-        className={`${allPrefixCls}-begin${isVertical ? '-vertical' : ''
-          }-picker`}
+        className={`${allPrefixCls}-begin${
+          isVertical ? '-vertical' : ''
+        }-picker`}
       >
         <Field
           name={fieldProps}
@@ -85,7 +86,6 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             }}
             fieldProps={fieldProps}
             title={title}
-            initValue={beginDate}
             labelNumber={isVertical ? 0 : labelNumber}
             coverStyle={{
               textAlign: 'center',
@@ -145,5 +145,5 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     </div>
   );
 };
-
+RangeDatePicker.displayName = 'rangeDatePicker';
 export default RangeDatePicker;

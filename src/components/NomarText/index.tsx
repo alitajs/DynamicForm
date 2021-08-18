@@ -24,7 +24,7 @@ export interface INomarTextProps {
   defaultValue?: string;
 }
 
-const NomarText: FC<INomarTextProps> = (props) => {
+const DformText: FC<INomarTextProps> = (props) => {
   const {
     positionType = 'horizontal',
     coverStyle,
@@ -76,4 +76,5 @@ const NomarText: FC<INomarTextProps> = (props) => {
   );
 };
 
-export default NomarText;
+DformText.displayName = 'dformText';
+export default DformText;

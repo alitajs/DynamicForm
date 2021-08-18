@@ -101,13 +101,13 @@ export const getFormItem = ({
   let positionType =
     otherProps?.positionType ||
     DFORM_COMP_DETAULT[type]?.positionType ||
-    DFORM_COMP_DETAULT[otherProps.name]?.positionType;
+    DFORM_COMP_DETAULT[otherProps.displayName]?.positionType;
 
   // 是否是不可变更对齐方式的表单类型
-  if (NO_SUPPORT_VERTICAL.includes(type || otherProps.name)) {
+  if (NO_SUPPORT_VERTICAL.includes(type || otherProps.displayName)) {
     positionType =
       DFORM_COMP_DETAULT[type]?.positionType ||
-      DFORM_COMP_DETAULT[otherProps.name]?.positionType;
+      DFORM_COMP_DETAULT[otherProps.displayName]?.positionType;
   }
   return (
     <Title
@@ -248,14 +248,14 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     return childs.map((child: any, index: number) => {
       if (!React.isValidElement(child)) return;
       const { props = {} as any } = child;
-      const { name } = child.type as any;
+      const { displayName } = child.type as any;
       const mProps: any = {
         ...props,
         ...(changeForm[props.fieldProps] || {}),
-        name,
+        displayName,
       };
       const { fieldProps } = mProps;
-      if (DFORM_COMP_NAME.indexOf(name) !== -1) {
+      if (DFORM_COMP_NAME.indexOf(displayName) !== -1) {
         return getFormItem({
           child,
           allDisabled,
@@ -265,7 +265,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           fieldChange,
           relatives,
         });
-      } else if (name === 'Group') {
+      } else if (displayName === 'group') {
         return (
           <Group key={fieldProps || index} {...props}>
             {showChildren({ context: props.children })}
