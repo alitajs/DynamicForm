@@ -25,6 +25,10 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     operationType: string,
     index: number | undefined,
   ) => {
+    console.log(files);
+    console.log(operationType);
+    console.log(index);
+
     if (onChange) onChange(files, operationType, index);
   };
 
@@ -32,10 +36,6 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     <Field
       name={fieldProps}
       rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        // setInitValue(nextValue && nextValue[fieldProps as any]);
-        return prevValue !== nextValue;
-      }}
       initialValue={defaultValue}
     >
       <ImagePickerGroup
