@@ -30,6 +30,7 @@ export default defineConfig({
   navs: [
     null,
     ,
+    { title: 'v2', path: 'https://d.alitajs.com/' },
     { title: 'GitHub', path: 'https://github.com/alitajs/DynamicForm' },
   ],
 });
