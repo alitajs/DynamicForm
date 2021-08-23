@@ -63,9 +63,8 @@ const Page: FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ background: '#F7F7F7' }}>
       <DynamicForm {...formProps}>
-        <WhiteSpace size="lg" />
         <Group type="card" title="卡片一" required>
           <DformInput
             fieldProps="username"
@@ -112,25 +111,26 @@ const Page: FC = () => {
             }}
           />
         </Group>
-        <WhiteSpace size="lg" />
-        <DformDatePicker
-          fieldProps="date"
-          placeholder="请选择"
-          title="出生年月"
-        />
-        <DformCheckBox
-          title="喜欢的水果"
-          required
-          data={fruitData}
-          fieldProps="fruit"
-          disableItem={(x: any) => ['香梨'].some((a) => x.value === a)}
-        />
-        <MultiplePicker
-          fieldProps="motion"
-          placeholder="请选择"
-          title="特长"
-          data={motionData}
-        />
+        <Group type="card" title="卡片四">
+          <DformDatePicker
+            fieldProps="date"
+            placeholder="请选择"
+            title="出生年月"
+          />
+          <DformCheckBox
+            title="喜欢的水果"
+            required
+            data={fruitData}
+            fieldProps="fruit"
+            disableItem={(x: any) => ['香梨'].some((a) => x.value === a)}
+          />
+          <MultiplePicker
+            fieldProps="motion"
+            placeholder="请选择"
+            title="特长"
+            data={motionData}
+          />
+        </Group>
       </DynamicForm>
       <WhiteSpace size="lg" />
       <Button type="primary" onClick={() => form.submit()}>

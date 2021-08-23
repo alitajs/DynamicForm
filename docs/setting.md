@@ -30,13 +30,13 @@ theme: {
 
 | 参数                            | 说明                                                             | 默认值    |
 | ------------------------------- | ---------------------------------------------------------------- | --------- |
-| `@alita-dform-title-font-size`  | 标题大小                                                         | `0.34rem` |
+| `@alita-dform-title-font-size`  | 标题大小                                                         | `0.3rem`  |
 | `@alita-dform-title-color`      | 标题颜色                                                         | `#000`    |
-| `@alita-dform-value-font-size`  | 选中项和输入框的值大小                                           | `0.34rem` |
+| `@alita-dform-value-font-size`  | 选中项和输入框的值大小                                           | `0.3rem`  |
 | `@alita-dform-value-color`      | 选中项和输入框的值颜色                                           | `#000`    |
 | `@alita-dform-placeholder`      | `placeholder` 的颜色                                             | `#888`    |
 | `@color-text-disabled`          | 不可编辑的文字颜色                                               | `#000`    |
-| `@alita-dform-radio-color`      | CoverRadio, Radio, CheckBox, MultiplePicker 选中时的颜色         | `#108ee9` |
+| `@alita-dform-radio-color`      | CoverRadio, Radio, CheckBox, MultiplePicker 选中时的颜色         | `#1677ff` |
 | `@alita-dform-radio-font-color` | CoverRadio, Radio, CheckBox, MultiplePicker 选中时的文字颜色颜色 | `#fff`    |
 | `@alita-dform-height`           | 表单项高度                                                       | `0.88rem` |
 
