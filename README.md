@@ -1,5 +1,7 @@
 # @alitajs/dform
 
+零成本上手的移动端动态表单库。
+
 ## 介绍
 
 [官网文档](https://dform.alitajs.com/)
