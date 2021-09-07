@@ -72,7 +72,7 @@ const EditFormItemLabel: any = {
   extraType: '扩展类型',
   type: '类型',
   positionType: '位置',
-};
+} as { [key: string]: string };
 // inputType:'text' | 'bankCard' | 'phone' | 'password' | 'number' | 'digit' | 'money';
 // modeType:mode?: 'datetime' | 'date' | 'year' | 'month' | 'time';
 const EditFormItemType: any = {
@@ -141,7 +141,7 @@ const EditFormItemType: any = {
       {...props}
     />
   ),
-};
+} as any;
 
 const getFormItem = (fieldItemKey: string) => {
   const EditFormItemComponent = EditFormItemType[fieldItemKey];
