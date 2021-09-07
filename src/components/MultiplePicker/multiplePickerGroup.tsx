@@ -9,7 +9,7 @@ const { Item } = List;
 
 interface IMultiplePickerGroupProps
   extends Omit<IMultiplePickerProps, 'onChange'> {
-  onChange: (values: (string | number)[] | undefined) => void;
+  onChange?: (values: (string | number)[] | undefined, flag?: string) => void;
   value?: (string | number)[] | undefined;
 }
 
@@ -95,7 +95,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     const { labels, values } = setValues(data, selValueList || []);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
-    onChange(values);
+    onChange?.(values);
   };
 
   return (

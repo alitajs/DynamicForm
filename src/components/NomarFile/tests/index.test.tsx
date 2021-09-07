@@ -84,9 +84,9 @@ test('passes picker a11y test', async () => {
     expect(onMyClick).toBeCalled();
     expect(onFinish).toBeCalled();
   });
-  fireEvent.click(getByText('房子买卖协议.pdf').parentNode?.lastChild);
+  fireEvent.click(getByText('房子买卖协议.pdf').parentNode?.lastChild!);
   await sleep(500);
-  fireEvent.click(getByText('房屋租赁合同说明书.pdf').parentNode?.lastChild);
+  fireEvent.click(getByText('房屋租赁合同说明书.pdf').parentNode?.lastChild!);
   await sleep(500);
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {

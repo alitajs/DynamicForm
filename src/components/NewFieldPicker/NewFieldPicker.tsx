@@ -8,6 +8,7 @@ import { getFormItem, DFormData } from '../DynamicForm/Form';
 import { IFormItemProps } from '../../PropsType';
 
 interface NewFieldPickerProps {
+  data?: any;
   onChange?: (t: any) => void;
   value?: IFormItemProps[];
 }

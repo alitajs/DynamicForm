@@ -4,7 +4,7 @@ import DForm, { useForm } from './Dform';
 import { IDynamicFormProps } from '../../PropsType';
 
 interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<
+  extends React.FC<
     IDynamicFormProps & React.RefAttributes<HTMLInputElement>
   > {
   Group: typeof Group;

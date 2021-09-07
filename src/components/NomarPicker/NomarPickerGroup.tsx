@@ -95,7 +95,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
       <Picker
         title={title}
         visible={visible && data.length > 0}
-        data={data}
+        data={data as any}
         cols={1}
         value={value ? [value] : undefined}
         onOk={onOK}

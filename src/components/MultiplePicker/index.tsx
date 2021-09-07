@@ -34,7 +34,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   const fieldChange = (
     values: (string | number)[] | undefined,
-    flag: string,
+    flag?: string,
   ) => {
     if (flag === 'init') return;
     if (onChange) onChange(values || []);

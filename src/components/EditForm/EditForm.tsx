@@ -58,7 +58,7 @@ export interface IEditFormProps {
   onChange?: (data: any) => void;
 }
 
-const EditFormItemLabel = {
+const EditFormItemLabel: any = {
   title: '标题',
   fieldProps: '绑定关键字',
   required: '是否必填',
@@ -75,7 +75,7 @@ const EditFormItemLabel = {
 };
 // inputType:'text' | 'bankCard' | 'phone' | 'password' | 'number' | 'digit' | 'money';
 // modeType:mode?: 'datetime' | 'date' | 'year' | 'month' | 'time';
-const EditFormItemType = {
+const EditFormItemType: any = {
   title: DformInput,
   fieldProps: DformInput,
   required: DformSwitch,
@@ -212,15 +212,13 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
   // 选择类型的初始值要手动转化一下 1/3
   if (data.fieldProps) {
     // 加了随机数
-    data.fieldProps = `${Math.random().toString(36).slice(2, 6)}${
-      data.fieldProps
-    }`;
+    data.fieldProps = `${Math.random().toString(36).slice(2, 6)}${data.fieldProps
+      }`;
   }
   if (data.fieldProps2) {
     // 加了随机数
-    data.fieldProps2 = `${Math.random().toString(36).slice(2, 6)}${
-      data.fieldProps2
-    }`;
+    data.fieldProps2 = `${Math.random().toString(36).slice(2, 6)}${data.fieldProps2
+      }`;
   }
   if (data.inputType) {
     data.inputType = [data.inputType];

@@ -23,6 +23,7 @@ export interface IExtraInputProps {
   secondProps?: any;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
+  disabled?: boolean;
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {

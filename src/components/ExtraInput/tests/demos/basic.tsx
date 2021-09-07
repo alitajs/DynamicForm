@@ -86,7 +86,6 @@ const ExtraInputTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed, }) => {
           fieldProps='price'
           fieldProps2='unit'
           title='单价'
-          placeholder2=''
           extraType='select'
           positionType='horizontal'
           secondProps={{ data: unitList, placeholder: '选择区间' }}

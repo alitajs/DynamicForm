@@ -9,8 +9,8 @@
     "deploy": "npm run docs:build && npm run docs:deploy",
     "release": "npm run build && npm publish",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "publish": "npm publish --access public",
     "publish:test": "npm run publish --tag next"
   },
@@ -50,7 +50,8 @@
   "devDependencies": {
     "@alita/test": "^0.0.4",
     "@types/lodash": "^4.14.171",
-    "@umijs/test": "^3.0.5",
+    "alita-test": "^4.0.0-alpha.2",
+    "jest": "^27.1.0",
     "dumi": "^1.0.16",
     "dumi-theme-mobile": "^1.1.6",
     "father-build": "^1.17.2",
