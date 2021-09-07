@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
+import Title from '../Title';
 
 const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   const {
@@ -17,6 +18,7 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     extra = '',
     onChange,
     defaultValue = [],
+    titleProps,
     ...otherProps
   } = props;
 
@@ -33,17 +35,19 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   };
 
   return (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      initialValue={defaultValue}
-    >
-      <ImagePickerGroup
-        {...otherProps}
-        onChange={imageChange}
-        limitSize={limitSize}
-      />
-    </Field>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        initialValue={defaultValue}
+      >
+        <ImagePickerGroup
+          {...otherProps}
+          onChange={imageChange}
+          limitSize={limitSize}
+        />
+      </Field>
+    </Title>
   );
 };
 

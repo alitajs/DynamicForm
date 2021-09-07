@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
+import Title from '../Title';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
@@ -31,6 +32,7 @@ interface ICoverRadioProps {
   alias?: IAliasProps;
   labelNumber?: number;
   defaultValue?: string;
+  titleProps?: any;
 }
 
 const CoverRadio: FC<ICoverRadioProps> = (props) => {
@@ -54,6 +56,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     },
     labelNumber = 5,
     defaultValue,
+    titleProps,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -76,38 +79,40 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
   };
 
   return (
-    <div
-      className={classnames({
-        [prefixCls]: true,
-        [`${allPrefixCls}-vertical-radio`]: isVertical,
-      })}
-    >
-      <div className={`${prefixCls}-field`}>
-        <Field
-          name={fieldProps}
-          rules={rules || [{ required, message: `请选择${title}` }]}
-          initialValue={defaultValue}
-        >
-          <CoverRadioGroup
-            data={aliasData}
-            positionType={positionType}
-            radioType={radioType}
-            onChange={radioChange}
-            disabled={disabled}
-            coverStyle={coverStyle}
-            className={className}
-            labelNumber={labelNumber}
+    <Title {...titleProps}>
+      <div
+        className={classnames({
+          [prefixCls]: true,
+          [`${allPrefixCls}-vertical-radio`]: isVertical,
+        })}
+      >
+        <div className={`${prefixCls}-field`}>
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            initialValue={defaultValue}
           >
-            <div className={`${allPrefixCls}-title`}>
-              {required && hasStar && (
-                <div className={`${allPrefixCls}-redStar`}>*</div>
-              )}
-              <div>{title}</div>
-            </div>
-          </CoverRadioGroup>
-        </Field>
+            <CoverRadioGroup
+              data={aliasData}
+              positionType={positionType}
+              radioType={radioType}
+              onChange={radioChange}
+              disabled={disabled}
+              coverStyle={coverStyle}
+              className={className}
+              labelNumber={labelNumber}
+            >
+              <div className={`${allPrefixCls}-title`}>
+                {required && hasStar && (
+                  <div className={`${allPrefixCls}-redStar`}>*</div>
+                )}
+                <div>{title}</div>
+              </div>
+            </CoverRadioGroup>
+          </Field>
+        </div>
       </div>
-    </div>
+    </Title>
   );
 };
 

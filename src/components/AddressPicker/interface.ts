@@ -33,6 +33,7 @@ export interface IAddressPickerProps {
   className?: string;
   alias?: IAliasProps;
   defaultValue?: valueProps;
+  titleProps?: any;
 }
 
 export interface valueProps {
