@@ -1,0 +1,40 @@
+@import '../../styles/index.less';
+
+.alitajs-dform-multiple-picker {
+  .am-modal-header {
+    padding: 0 * @hd !important;
+  }
+
+  .alitajs-dform-multiple-picker-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .alitajs-dform-multiple-picker-label {
+      font-size: @alita-dform-value-font-size;
+      color: #000;
+    }
+
+    .alitajs-dform-multiple-picker-checked {
+      color: @alita-dform-radio-color;
+    }
+
+    .alitajs-dform-multiple-picker-right {
+      width: 40 * @hd;
+      height: 40 * @hd;
+      // border: 1 * @hd solid red;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.alitajs-dform-modal-content {
+  overflow-y: auto;
+  max-height: 800 * @hd;
+  min-height: 300 * @hd;
+}

@@ -5,7 +5,12 @@
 
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
+import DformPicker from '../';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -49,44 +54,47 @@ const Page: FC = () => {
     },
   ];
 
-  const formsData = [
-    {
-      type: 'picker',
-      fieldProps: 'myCity',
-      required: true,
-      data: aliasCityList,
-      title: '我喜欢的城市',
-      labelNumber: 7,
-      placeholder: '请选择我喜欢的城市',
-      alias: {
-        label: 'cityId',
-        value: 'cityName',
-      },
-    },
-    {
-      type: 'picker',
-      fieldProps: 'youCity',
-      data: cityList,
-      title: '选择你喜欢的城市(不可编辑)',
-      disabled: true,
-      positionType: 'vertical',
-    },
-  ] as IFormItemProps[];
   const formsValues = {
     youCity: 'fuzhou',
   };
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <DformPicker
+          fieldProps="city"
+          data={cityList}
+          title="城市(默认值)"
+          labelNumber={6}
+          defaultValue="shanghai"
+        />
+        <DformPicker
+          fieldProps="myCity"
+          required={true}
+          data={aliasCityList}
+          title="我喜欢的城市"
+          labelNumber={7}
+          placeholder="请选择我喜欢的城市"
+          alias={{
+            label: 'cityId',
+            value: 'cityName',
+          }}
+        />
+        <DformPicker
+          fieldProps="youCity"
+          data={cityList}
+          title="选择你喜欢的城市"
+          positionType="vertical"
+          onChange={(e) => console.log(e)}
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

@@ -1,5 +1,7 @@
 # @alitajs/dform
 
+零成本上手的移动端动态表单库。
+
 ## 介绍
 
 [官网文档](https://dform.alitajs.com/)
@@ -17,18 +19,18 @@
 
 ## 组件
 
-`dform` 共提供 `15` 种组件。涵盖：
+`dform` 共提供 `17` 种组件。涵盖：
 
 - 文本展示类型: `text`
 - 输入类型: `input` 和 `area`
 - 选择类型: `picker` 和 `select`
-- 多选类型: `multiplePicker`
+- 多选类型: `multiplePicker` 和 `checkbox`
 - 开关类型: `switch`
 - 时间选择类型: `date`
 - 图片选择类型: `image`
 - 选择地址类型: `addressPicker`
-- Radio按钮类型: `radio` 和 `coverRadio`
-- Check多选类型: `check`
+- Radio 按钮类型: `radio` 和 `coverRadio`
+- Check 多选类型: `check`
 - 时间区间选择类型: `rangeDatePicker`
 - 高阶输入类型: `extraInput`
 
@@ -39,52 +41,9 @@
 ```bash
 npm install @alitajs/dform
 
-or 
+or
 
 yarn add @alitajs/dform
-```
-
-**页面中使用**
-
-```js
-import React from 'react';
-import DynamicForm, { useForm } from '@alitajs/dform';
-import { Button } from 'antd-mobile';
-
-const Page = () => {
-  const [form] = useForm(); // 定义 form
-
-  const onFinish = values => console.log('Success:', values);
-
-  const onFinishFailed = errorInfo => console.log('Failed:', errorInfo); 
-
-  const data = [
-    {
-      type: 'input',
-      fieldProps: 'username',
-      placeholder: '请输入',
-      title: '用户名',
-      required: true,
-    },
-  ];
-
-  const formProps = {
-    form, // 表单定义
-    data, // 表单全部字段
-    formsValues: {}, // 表单赋值回填数据
-    onFinish, // 表单提交成功事件
-    onFinishFailed, // 表单提交失败事件
-  };
-
-  return (
-    <>
-      <DynamicForm {...formProps} />
-      <Button onClick={() => { form.submit();}}>Submit</Button>
-    </>
-  );
-};
-
-export default Page;
 ```
 
 ## 提效点
@@ -104,7 +63,7 @@ export default Page;
 
 ### 2、一行代码配置样式
 
-不同的项目，不同的 ui设计师，针对表单的开发样式肯定不一样，比如：
+不同的项目，不同的 ui 设计师，针对表单的开发样式肯定不一样，比如：
 
 - 标题的颜色和大小
 - 值的颜色和大小
@@ -117,7 +76,7 @@ export default Page;
 
 一行代码帮你解决整个项目 `dform` 样式问题。**不香吗？**
 
-### 3、不敲一行代码帮你配置 `data` 的JSON数据
+### 3、不敲一行代码帮你配置 `data` 的 JSON 数据
 
 如果你连 `JSON` 格式的 `data` 也懒得写，那么 `isDev` 字段开启开发者模式，让你鼠标点一点就能编辑好一串 `JSON`，视频会告诉你用起来多舒服。
 

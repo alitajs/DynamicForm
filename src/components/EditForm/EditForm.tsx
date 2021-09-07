@@ -6,41 +6,41 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
 
-import { IFormItemProps } from '../../DynamicForm';
+import { IFormItemProps } from '../../PropsType';
 
 import {
-  NomarInput,
-  NomarSelect,
-  NomarSwitch,
-  NomarTextArea,
-  NomarDatePicker,
+  DformInput,
+  DformSelect,
+  DformSwitch,
+  DformTextArea,
+  DformDatePicker,
   ExtraInput,
   RangeDatePicker,
-  NomarRadio,
+  DformRadio,
   CoverRadio,
   MultiplePicker,
-  NomarImagePicker,
-  NomarCheckBox,
-  NomarText,
-  NomarPicker,
+  DformImagePicker,
+  DformCheckBox,
+  DformText,
+  DformPicker,
 } from '..';
 
 const FormItemType = {
-  input: NomarInput,
-  select: NomarSelect,
-  area: NomarTextArea,
-  date: NomarDatePicker,
-  switch: NomarSwitch,
-  radio: NomarRadio,
+  input: DformInput,
+  select: DformSelect,
+  area: DformTextArea,
+  date: DformDatePicker,
+  switch: DformSwitch,
+  radio: DformRadio,
   extraInput: ExtraInput,
   rangeDatePicker: RangeDatePicker,
   coverRadio: CoverRadio,
   multiplePicker: MultiplePicker,
-  image: NomarImagePicker,
-  checkbox: NomarCheckBox,
-  text: NomarText,
-  picker: NomarPicker,
-};
+  image: DformImagePicker,
+  checkbox: DformCheckBox,
+  text: DformText,
+  picker: DformPicker,
+} as any;
 
 const radioList = [
   {
@@ -76,15 +76,15 @@ const EditFormItemLabel = {
 // inputType:'text' | 'bankCard' | 'phone' | 'password' | 'number' | 'digit' | 'money';
 // modeType:mode?: 'datetime' | 'date' | 'year' | 'month' | 'time';
 const EditFormItemType = {
-  title: NomarInput,
-  fieldProps: NomarInput,
-  required: NomarSwitch,
-  placeholder: NomarInput,
-  disabled: NomarRadio,
-  data: NomarInput,
-  type: NomarInput,
+  title: DformInput,
+  fieldProps: DformInput,
+  required: DformSwitch,
+  placeholder: DformInput,
+  disabled: DformRadio,
+  data: DformInput,
+  type: DformInput,
   positionType: (props: any) => (
-    <NomarSelect
+    <DformSelect
       data={[
         ['horizontal', 'vertical'].map((item: string) => ({
           value: item,
@@ -96,21 +96,27 @@ const EditFormItemType = {
     />
   ),
   inputType: (props: any) => (
-    <NomarSelect
+    <DformSelect
       data={[
-        ['text', 'bankCard', 'phone', 'password', 'number', 'digit', 'money'].map(
-          (item: string) => ({
-            value: item,
-            label: item,
-          }),
-        ),
+        [
+          'text',
+          'bankCard',
+          'phone',
+          'password',
+          'number',
+          'digit',
+          'money',
+        ].map((item: string) => ({
+          value: item,
+          label: item,
+        })),
       ]}
       cols={1}
       {...props}
     />
   ),
   modeType: (props: any) => (
-    <NomarSelect
+    <DformSelect
       data={[
         ['datetime', 'date', 'year', 'month', 'time'].map((item: string) => ({
           value: item,
@@ -121,10 +127,10 @@ const EditFormItemType = {
       {...props}
     />
   ),
-  fieldProps2: NomarInput,
-  placeholder2: NomarInput,
+  fieldProps2: DformInput,
+  placeholder2: DformInput,
   extraType: (props: any) => (
-    <NomarSelect
+    <DformSelect
       data={[
         ['input', 'select'].map((item: string) => ({
           value: item,
@@ -180,7 +186,11 @@ export const defaultFailed = (
   errorInfo: ValidateErrorEntity,
   onFinishFailed?: (errorInfo: ValidateErrorEntity) => void,
 ) => {
-  if (!errorInfo || !errorInfo.errorFields || errorInfo.errorFields.length === 0) {
+  if (
+    !errorInfo ||
+    !errorInfo.errorFields ||
+    errorInfo.errorFields.length === 0
+  ) {
     if (onFinishFailed) {
       onFinishFailed(errorInfo);
     }
@@ -202,15 +212,15 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
   // 选择类型的初始值要手动转化一下 1/3
   if (data.fieldProps) {
     // 加了随机数
-    data.fieldProps = `${Math.random()
-      .toString(36)
-      .slice(2, 6)}${data.fieldProps}`;
+    data.fieldProps = `${Math.random().toString(36).slice(2, 6)}${
+      data.fieldProps
+    }`;
   }
   if (data.fieldProps2) {
     // 加了随机数
-    data.fieldProps2 = `${Math.random()
-      .toString(36)
-      .slice(2, 6)}${data.fieldProps2}`;
+    data.fieldProps2 = `${Math.random().toString(36).slice(2, 6)}${
+      data.fieldProps2
+    }`;
   }
   if (data.inputType) {
     data.inputType = [data.inputType];
@@ -242,7 +252,9 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
       newFormItem.extraType = extraType[0] as 'input' | 'select';
     }
     if (positionType && typeof positionType !== 'string') {
-      newFormItem.positionType = positionType[0] as 'inhorizontalput' | 'vertical';
+      newFormItem.positionType = positionType[0] as
+        | 'inhorizontalput'
+        | 'vertical';
     }
     if (
       type === 'radio' ||
@@ -276,16 +288,16 @@ const EditForm: FC<IEditFormProps> = ({ data = [] as any, onChange }) => {
         onFinishFailed={(errorInfo: ValidateErrorEntity) =>
           defaultFailed(errorInfo, onFinishFailed)
         }
-        onValuesChange={changFeil => {
+        onValuesChange={(changFeil) => {
           const newData = { ...editData, ...changFeil } as IFormItemProps;
           setEditData(newData);
         }}
       >
         <List renderHeader={() => '编辑数据'}>
           {Object.keys(data || {})
-            .filter(i => i !== 'data')
+            .filter((i) => i !== 'data')
             // .filter(i => i !== 'type' && i !== 'data')
-            .map(fieldItemKey => getFormItem(fieldItemKey))}
+            .map((fieldItemKey) => getFormItem(fieldItemKey))}
         </List>
         <WhiteSpace size="lg"></WhiteSpace>
 

@@ -10,9 +10,9 @@ export const getInitKeyValue = ({
   key: string | number;
   data: any[];
 }) => {
-  const filter = data.filter(item => item?.initKey === key);
+  const filter = data.filter((item) => item?.initKey === key);
   const obj = {} as any;
-  filter.forEach(item => {
+  filter.forEach((item) => {
     obj[item.fieldProps] = form.getFieldValue(item.fieldProps);
   });
   return obj;
@@ -22,7 +22,11 @@ export const getInitKeyValue = ({
  * 时间展示类型改变事件
  * @param val
  */
-export const changeDateFormat = (val: Date, modeType: string) => {
+export const changeDateFormat = (
+  val: Date,
+  modeType: string,
+  format?: string | undefined | ((value: Date) => string),
+) => {
   let dateFormat = '';
   switch (modeType) {
     case 'datetime':
@@ -41,13 +45,19 @@ export const changeDateFormat = (val: Date, modeType: string) => {
       dateFormat = dayjs(val).format('YYYY-MM-DD');
       break;
   }
+  if (format && typeof format === 'string') {
+    dateFormat = dayjs(val).format(format);
+  }
+  if (format && typeof format === 'function') {
+    dateFormat = format(val);
+  }
   return dateFormat;
 };
 
 export const dateChange = (date: Date | string) => {
   const stringDate = dayjs(date).format('YYYY-MM-DD-HH-mm-ss');
   const dateList = stringDate.split('-');
-  const numberDateList = dateList.map(item => parseInt(item, 10));
+  const numberDateList = dateList.map((item) => parseInt(item, 10));
 
   return new Date(
     numberDateList[0],
@@ -61,7 +71,7 @@ export const dateChange = (date: Date | string) => {
 
 export const getByteLen = (val: string) => {
   let len = 0;
-  `${val}`.split('').forEach(item => {
+  `${val}`.split('').forEach((item) => {
     // eslint-disable-next-line no-control-regex
     if (item.match(/[^\x00-\xff]/gi) != null) {
       len += 2;
@@ -72,13 +82,20 @@ export const getByteLen = (val: string) => {
   return len;
 };
 
-export const resetLabel = (list: string[] = [], placeholderList: string[] = []) => {
+export const resetLabel = (
+  list: string[] = [],
+  placeholderList: string[] = [],
+) => {
   if (list.length === placeholderList.length) return list;
   list.push(placeholderList[list.length]);
   return list;
 };
 
-export const filterObjList = (label: string = '', data: any = [], value: string | number = '') => {
+export const filterObjList = (
+  label: string = '',
+  data: any = [],
+  value: string | number = '',
+) => {
   if (data && data.length) {
     let filList = [];
     filList = data.filter((it: { [x: string]: string | number }) => {
@@ -93,9 +110,7 @@ export const filterObjList = (label: string = '', data: any = [], value: string 
  * 设置随机值
  */
 export const getRandom = () => {
-  const val = `${Math.random()
-    .toString(36)
-    .slice(2, 6)}`;
+  const val = `${Math.random().toString(36).slice(2, 6)}`;
   return val;
 };
 
@@ -112,7 +127,7 @@ export const transformFile = (file: any, pictureQuality = 0.5) => {
     return file;
   } else {
     try {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         //声明FileReader文件读取对象
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -120,10 +135,10 @@ export const transformFile = (file: any, pictureQuality = 0.5) => {
           // 生成canvas画布
           const canvas = document.createElement('canvas');
           // 生成img
-          const img = document.createElement('img');
+          const img = document.createElement('img') as any;
           img.src = reader.result;
           img.onload = () => {
-            const ctx = canvas.getContext('2d');
+            const ctx = canvas.getContext('2d') as any;
             //原始图片宽度、高度
             let originImageWidth = img.width,
               originImageHeight = img.height;
@@ -140,11 +155,15 @@ export const transformFile = (file: any, pictureQuality = 0.5) => {
               if (originImageWidth / originImageHeight > ratio) {
                 //宽度取最大宽度值maxWidth,缩放高度
                 targetWidth = maxWidth;
-                targetHeight = Math.round(maxWidth * (originImageHeight / originImageWidth));
+                targetHeight = Math.round(
+                  maxWidth * (originImageHeight / originImageWidth),
+                );
               } else {
                 //高度取最大高度值maxHeight,缩放宽度
                 targetHeight = maxHeight;
-                targetWidth = Math.round(maxHeight * (originImageWidth / originImageHeight));
+                targetWidth = Math.round(
+                  maxHeight * (originImageWidth / originImageHeight),
+                );
               }
             }
             // canvas对图片进行缩放
@@ -155,7 +174,10 @@ export const transformFile = (file: any, pictureQuality = 0.5) => {
             // 绘制图片
             ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
             // quality值越小,图像越模糊,默认图片质量为0.92
-            const imageDataURL = canvas.toDataURL(file.type || 'image/jpeg', pictureQuality);
+            const imageDataURL = canvas.toDataURL(
+              file.type || 'image/jpeg',
+              pictureQuality,
+            ) as any;
             // 去掉URL的头,并转换为byte
             const imageBytes = window.atob(imageDataURL.split(',')[1]);
             // 处理异常,将ascii码小于0的转换为大于0
@@ -165,14 +187,16 @@ export const transformFile = (file: any, pictureQuality = 0.5) => {
               uint8Array[i] = imageBytes.charCodeAt(i);
             }
             let mimeType = imageDataURL.split(',')[0].match(/:(.*?);/)[1];
-            let newFile = new File([uint8Array], file.name, { type: mimeType || 'image/jpeg' });
+            let newFile = new File([uint8Array], file.name, {
+              type: mimeType || 'image/jpeg',
+            });
             // console.log('after compress, the file size is : ', (newFile.size / 1024 / 1024) + "M");
             resolve(newFile);
           };
         };
         reader.onerror = () => file;
       })
-        .then(res => res)
+        .then((res) => res)
         .catch(() => file);
     } catch (e) {
       //压缩出错,直接返回原file对象

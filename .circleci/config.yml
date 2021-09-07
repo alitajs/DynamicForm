@@ -3,12 +3,12 @@ jobs:
   build:
     docker:
       - image: circleci/node:12
-    working_directory: ~/alita
+    working_directory: ~/alita-dform
 
     steps:
       - checkout
       - attach_workspace:
-          at: ~/alita
+          at: ~/alita-dform
       - restore_cache:
           key: node-modules-{{ checksum "yarn.lock" }}
       - run:
@@ -19,9 +19,6 @@ jobs:
           paths:
             - ./node_modules
             - ~/.cache/yarn
-      - run:
-          name: Run Build
-          command: yarn build
       - run:
           name: Run Tests
           command: yarn test:coverage --forceExit --detectOpenHandles --runInBand

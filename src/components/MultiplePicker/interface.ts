@@ -1,9 +1,9 @@
 import { Rule } from 'rc-field-form/es/interface';
-import { IAliasProps } from '../../DynamicForm';
+import React from 'react';
+import { IAliasProps } from '../../PropsType';
 
 export interface IDataItem {
-  label: string;
-  value: string;
+  [key: string]: string | number;
 }
 
 export interface IMultiplePickerProps {
@@ -19,7 +19,6 @@ export interface IMultiplePickerProps {
   coverStyle?: React.CSSProperties;
   hidden?: boolean;
   placeholder?: string;
-  initValue?: string | undefined;
   disabled?: boolean;
   maxValueLength?: number;
   labelNumber?: number;
@@ -29,4 +28,6 @@ export interface IMultiplePickerProps {
   height?: number | string;
   alias?: IAliasProps;
   className?: string;
+  extra?: string | React.ReactNode;
+  defaultValue?: (string | number)[] | undefined;
 }

@@ -6,9 +6,11 @@
 /yarn-error.log
 /yarn.lock
 /package-lock.json
+/coverage
 
 # production
 /dist
+/docs-dist
 /es
 /lib
 
@@ -18,4 +20,9 @@
 # umi
 .umi
 .umi-production
-/src/menus.json
+.umi-test
+.env.local
+
+# ide
+/.vscode
+/.idea

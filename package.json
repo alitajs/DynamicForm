@@ -1,33 +1,32 @@
 {
   "name": "@alitajs/dform",
-  "version": "2.2.9",
-  "description": "",
+  "version": "3.0.1",
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "release": "npm run build && npm publish",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "publish": "npm publish --access public",
+    "publish:test": "npm run publish --tag next"
+  },
   "main": "lib/index.js",
   "module": "es/index.js",
-  "unpkg": "dist/index.min.js",
-  "typings": "dist/src/index.d.ts",
-  "scripts": {
-    "start": "father-doc dev",
-    "dev": "cross-env CUSTOM_DEV=true umi dev",
-    "build:demo": "cross-env CUSTOM_DEV=true umi build",
-    "build:doc": "father-doc build",
-    "build": "father-build",
-    "publish": "npm publish --access public",
-    "prepublishOnly": "father-build",
-    "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
-    "lint-staged": "lint-staged",
-    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
-    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-    "lint:prettier": "check-prettier lint",
-    "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
-    "prettier": "prettier -c --write \"**/*\"",
-    "test":"",
-    "format-imports": "cross-env import-sort --write '**/*.{js,jsx,ts,tsx}'"
-  },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "es",
+    "lib"
+  ],
   "repository": "https://github.com/alitajs/DynamicForm",
+  "license": "MIT",
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
@@ -37,44 +36,29 @@
       "prettier --parser=typescript --write"
     ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@bang88/china-city-data": "^1.0.0",
-    "antd-mobile": "^2.3.1",
-    "classnames": "^2.2.6",
-    "copy-to-clipboard": "^3.2.0",
-    "dayjs": "^1.8.28",
-    "lodash": "^4.17.15",
-    "rc-field-form": "1.14.0"
-  },
-  "peerDependencies": {
-    "antd-mobile": "^2.3.1",
-    "react": "^16.8.5"
+    "antd-mobile": "^2.3.4",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
+    "dayjs": "^1.10.6",
+    "lodash": "^4.17.21",
+    "rc-field-form": "1.14.0",
+    "rmc-date-picker": "^6.0.10",
+    "rmc-feedback": "^2.0.0"
   },
   "devDependencies": {
-    "@umijs/fabric": "2.0.0-beta.4",
-    "check-prettier": "^1.0.3",
-    "cross-env": "^6.0.3",
-    "eslint": "5.10.0",
-    "eslint-plugin-eslint-comments": "^3.1.2",
-    "eslint-plugin-jest": "^23.7.0",
-    "eslint-plugin-unicorn": "^16.1.1",
+    "@alita/test": "^0.0.4",
+    "@types/lodash": "^4.14.171",
+    "@umijs/test": "^3.0.5",
+    "dumi": "^1.0.16",
+    "dumi-theme-mobile": "^1.1.6",
     "father-build": "^1.17.2",
-    "father-doc": "^1.0.0-alpha.15",
-    "husky": "^3.1.0",
-    "import-sort-cli": "^6.0.0",
-    "import-sort-parser-babylon": "^6.0.0",
-    "import-sort-parser-typescript": "^6.0.0",
-    "import-sort-style-module": "^6.0.0",
-    "lint-staged": "^9.5.0",
-    "stylelint": "^12.0.1",
+    "gh-pages": "^3.2.3",
+    "lint-staged": "^10.0.7",
+    "postcss-plugin-px2rem": "^0.8.1",
+    "prettier": "^2.2.1",
+    "react": "^16.12.0",
     "yorkie": "^2.0.0"
-  },
-  "files": [
-    "dist",
-    "es",
-    "lib"
-  ]
+  }
 }

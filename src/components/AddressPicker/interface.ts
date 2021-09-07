@@ -1,10 +1,8 @@
 import { Rule } from 'rc-field-form/es/interface';
-import { IAliasProps } from '../../DynamicForm';
+import { IAliasProps } from '../../PropsType';
 
 export interface IModalData {
-  label: string;
-  value: string | number;
-  flag?: boolean;
+  [key: string]: string | number;
 }
 
 export interface IAddressPickerProps {
@@ -24,7 +22,6 @@ export interface IAddressPickerProps {
   data?: IModalData[];
   onChangeLevel: (value: (string | number)[]) => void;
   placeholderList: string[];
-  initValue?: string | undefined;
   labelNumber?: number;
   coverStyle?: React.CSSProperties;
   onClick?: () => void;
@@ -35,4 +32,10 @@ export interface IAddressPickerProps {
   loading?: boolean;
   className?: string;
   alias?: IAliasProps;
+  defaultValue?: valueProps;
+}
+
+export interface valueProps {
+  label: (string | number)[];
+  value: (string | number)[];
 }

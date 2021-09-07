@@ -4,25 +4,29 @@
  */
 import React, { FC, useState, useEffect } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
+import NomarCustom from '../'
 
 interface IDemoPage {
   name: string;
   age: number;
   onChange?: (currentActiveLink: string) => void;
-  initValue?: string;
+  value?: string;
 }
 
-const showDemoPage = () => <div style={{ textAlign: 'left' }}>This is a display page</div>;
+const showDemoPage = () => (
+  <div style={{ textAlign: 'left' }}>This is a display page</div>
+);
 
-const demoPage: FC<IDemoPage> = props => {
-  const { name, onChange, initValue } = props;
+const demoPage: FC<IDemoPage> = (props) => {
+  const { name, onChange, value } = props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [value, setValue] = useState('');
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    setValue(initValue || '');
-  }, [initValue]);
   return (
     <div style={{ textAlign: 'left' }}>
       <p>name: {name}</p>
@@ -31,8 +35,7 @@ const demoPage: FC<IDemoPage> = props => {
         <input
           value={value}
           type="text"
-          onChange={e => {
-            setValue(e.target.value);
+          onChange={(e) => {
             if (onChange) onChange(e.target.value);
           }}
         />
@@ -52,24 +55,6 @@ const Page: FC = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-  const formsData = [
-    {
-      type: 'custom',
-      title: '自定义组件(非受控)',
-      fieldProps: 'custom',
-      CustomDom: showDemoPage,
-    },
-    {
-      type: 'custom',
-      title: '自定义组件(受控)',
-      required: true,
-      fieldProps: 'age',
-      CustomDom: demoPage,
-      customDomProps: {
-        name: 'owen',
-      },
-    },
-  ] as IFormItemProps[];
 
   const formsValues = {
     age: '17',
@@ -79,13 +64,28 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     isDev: true,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps} >
+        <NomarCustom
+          title='自定义组件(非受控)'
+          fieldProps='custom'
+          CustomDom={showDemoPage}
+        />
+        <NomarCustom
+          title='自定义组件(受控)'
+          required={true}
+          fieldProps='age'
+          CustomDom={demoPage}
+          customDomProps={{
+            name: 'owen',
+          }}
+          defaultValue="17"
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button
         type="primary"

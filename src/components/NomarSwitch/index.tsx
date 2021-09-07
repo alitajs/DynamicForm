@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { Switch, List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
+import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
-
-import '../../styles/index.less';
+import './index.less';
 
 export interface INomarSwitchProps extends SwitchPropsType {
   coverStyle?: React.CSSProperties;
@@ -16,9 +16,10 @@ export interface INomarSwitchProps extends SwitchPropsType {
   hasStar?: boolean;
   hidden?: boolean;
   className?: string;
+  defaultValue?: boolean;
 }
 
-const NomarSwitch: FC<INomarSwitchProps> = props => {
+const DformSwitch: FC<INomarSwitchProps> = (props) => {
   const {
     coverStyle,
     title,
@@ -29,35 +30,32 @@ const NomarSwitch: FC<INomarSwitchProps> = props => {
     hasStar = true,
     hidden = false,
     className = '',
+    defaultValue = false,
     ...otherProps
   } = props;
   return (
     <React.Fragment>
       {!hidden && (
-        <List.Item
-          key={fieldProps}
-          style={coverStyle}
-          className={className}
-          extra={
-            <Field
-              name={fieldProps}
-              valuePropName="checked"
-              rules={rules || [{ required, message: `请选择${title}` }]}
-            >
-              <Switch {...otherProps} />
-            </Field>
-          }
-        >
-          <div className="alitajs-dform-title-content">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span className="alitajs-dform-title">
-              {title}
-            </span>
+        <div className={`${allPrefixCls}-switch`}>
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
           </div>
-        </List.Item>
+          <Field
+            name={fieldProps}
+            valuePropName="checked"
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            initialValue={defaultValue}
+          >
+            <Switch {...otherProps} />
+          </Field>
+        </div>
       )}
     </React.Fragment>
   );
 };
 
-export default NomarSwitch;
+DformSwitch.displayName = 'dformSwitch';
+export default DformSwitch;

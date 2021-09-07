@@ -10,4 +10,6 @@ export interface ITextItemProps {
   maxLine?: number;
   fieldProps?: string;
   className?: string;
+  arrow?: boolean;
+  ellipsis?: boolean;
 }

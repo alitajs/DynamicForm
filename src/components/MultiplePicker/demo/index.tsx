@@ -4,7 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  useForm,
+  Store,
+  ValidateErrorEntity,
+  MultiplePicker,
+} from '@alitajs/dform';
 
 const Page: FC = () => {
   const [form] = useForm();
@@ -40,55 +45,64 @@ const Page: FC = () => {
       foodId: '红烧肉',
     },
   ];
-
-  const formsData = [
-    {
-      type: 'multiplePicker',
-      fieldProps: 'myFood',
-      required: true,
-      data: foodList,
-      title: '我喜欢的食物',
-      labelNumber: 7,
-      placeholder: '请选择我喜欢的食物',
-      onChange: (e: (string | number)[]) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
-      },
-      alias: {
-        label: 'foodName',
-        value: 'foodId',
-      },
-    },
-    {
-      type: 'multiplePicker',
-      fieldProps: 'youFood',
-      data: foodList,
-      title: '选择你喜欢的食物(不可编辑)',
-      disabled: true,
-      placeholder: '请选择',
-      positionType: 'vertical',
-      maxValueLength: 1,
-      alias: {
-        label: 'foodName',
-        value: 'foodId',
-      },
-    },
-  ] as IFormItemProps[];
   const formsValues = {
     youFood: ['红烧肉', '清蒸小黄鱼'],
   };
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <MultiplePicker
+          fieldProps="food"
+          required
+          data={foodList}
+          title="食物(默认值)"
+          labelNumber={7}
+          placeholder="请选择食物"
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+          defaultValue={['爆炒虾仁', '宫保鸡丁']}
+        />
+        <MultiplePicker
+          fieldProps="myFood"
+          required={true}
+          data={foodList}
+          title="我喜欢的食物"
+          labelNumber={7}
+          placeholder="请选择我喜欢的食物"
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+          onChange={(e: (string | number)[]) => {
+            // eslint-disable-next-line no-console
+            console.log(e);
+          }}
+        />
+        <MultiplePicker
+          fieldProps="youFood"
+          data={foodList}
+          title="选择你喜欢的食物(不可编辑)"
+          labelNumber={7}
+          placeholder="请选择我喜欢的食物"
+          positionType="vertical"
+          maxValueLength={1}
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+          disabled
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

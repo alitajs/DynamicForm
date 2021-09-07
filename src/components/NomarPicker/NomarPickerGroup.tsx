@@ -1,33 +1,30 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker } from 'antd-mobile';
 import { INomarPickerProps } from './interface';
-import { InputItem } from '..';
-import '../../styles/index.less';
-
+import TextItem from '../TextItem';
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
-  onChange: (values: number | string | undefined, flag: string) => void;
-  initValue?: string | number;
+  onChange: (values: number | string | undefined) => void;
+  value?: string | number;
 }
 
-const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
+const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   const [visible, setvisible] = useState<boolean>(false);
-  const [pickerLabel, setPickerLabel] = useState<string | number>('');
-  // const [preValue, setPreValue] = useState<string | number | undefined>(undefined);
+  const [pickerLabel, setPickerLabel] = useState<any>('');
   const {
+    fieldProps,
+    children,
     data = [],
     title,
     placeholder = '请选择',
     onChange,
     disabled = false,
     positionType = 'horizontal',
-    initValue,
     coverStyle,
-    required = false,
-    hasStar = true,
     labelNumber = 5,
     extra = '',
     className,
     onClick,
+    value,
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -39,22 +36,22 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
       setPickerLabel('');
       return;
     }
-    const filterList = data.filter(item => item?.value === initValue);
+    const filterList = data.filter((item) => item?.value === value);
     if (filterList && filterList.length) {
       setPickerLabel(filterList[0].label);
     } else {
       setPickerLabel('');
     }
-  }, [initValue]);
+  }, [value]);
 
   useEffect(() => {
     if (data && data.length) {
-      const nowValue = initValue;
+      const nowValue = value;
       // if (!initValue && preValue) {
       //   nowValue = preValue;
       //   setPreValue(undefined);
       // }
-      const filterList = data.filter(item => item?.value === nowValue);
+      const filterList = data.filter((item) => item?.value === nowValue);
       if (filterList && filterList.length) {
         setPickerLabel(filterList[0].label);
         // if (preValue) onChange(nowValue, 'init');
@@ -69,41 +66,38 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
   }, [data]);
 
   const fieldClick = () => {
-    if (onClick) onClick(initValue);
+    if (onClick) onClick(value);
     if (disabled) return;
     setvisible(true);
   };
 
   const onOK = (val: (string | number)[]) => {
     setvisible(false);
-    onChange(val[0], 'change');
+    onChange(val[0]);
   };
 
   return (
-    <>
-      <InputItem
+    <React.Fragment>
+      <TextItem
         isVertical={isVertical}
         value={`${pickerLabel}`}
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}
-        readOnly
         onClick={fieldClick}
         disabled={disabled}
         extra={extra}
         className={className}
+        fieldProps={fieldProps}
       >
-        {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-        <span className="alitajs-dform-title">
-          {title}
-        </span>
-      </InputItem>
+        {children}
+      </TextItem>
       <Picker
         title={title}
         visible={visible && data.length > 0}
         data={data}
         cols={1}
-        value={initValue ? [initValue] : undefined}
+        value={value ? [value] : undefined}
         onOk={onOK}
         onDismiss={() => {
           setvisible(false);
@@ -112,7 +106,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = props => {
           setvisible(false);
         }}
       />
-    </>
+    </React.Fragment>
   );
 };
 

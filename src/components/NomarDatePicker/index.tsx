@@ -1,83 +1,55 @@
-import React, { FC } from 'react';
-import { PropsType } from 'antd-mobile/es/date-picker/index';
-import { DatePicker, List } from 'antd-mobile';
+import React, { FC, useState } from 'react';
 import classnames from 'classnames';
-import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
-import { changeDateFormat } from '../../utils';
+import { allPrefixCls } from '../../const/index';
+import DatePickerGroup from './DatePickerGroup';
+import { INomarDatePickerProps } from './interface';
 
-import '../../styles/index.less';
+import './index.less';
 
-export interface INomarDatePickerProps extends PropsType {
-  modeType?: PropsType['mode'];
-  fieldProps: string;
-  required?: boolean;
-  title: string;
-  rules?: Rule[];
-  placeholder?: string;
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-}
-
-const NomarDatePicker: FC<INomarDatePickerProps> = props => {
+const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   const {
     fieldProps,
     required = false,
     title,
     rules,
-    modeType = 'date',
     positionType = 'horizontal',
     hasStar = true,
-    subTitle,
-    hidden = false,
     disabled = false,
-    ...otherProps
+    onChange,
+    defaultValue,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
+  const fileChange = (e: any) => {
+    if (onChange) onChange(e);
+  };
+
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-              {subTitle}
-            </div>
-          )}
-          <div
-            className={classnames({
-              [`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`]: true,
-              'alitajs-dform-disabled': disabled,
-            })}
-          >
-            <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-              <DatePicker
-                {...otherProps}
-                mode={modeType}
-                title={title}
-                disabled={disabled}
-                format={value => changeDateFormat(value, modeType)}
-              >
-                <List.Item arrow="horizontal">
-                  {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                  <span className="alitajs-dform-title">
-                    {title}
-                  </span>
-                </List.Item>
-              </DatePicker>
-            </Field>
+    <div
+      className={classnames({
+        [`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`]: true,
+        'alitajs-dform-disabled': disabled,
+      })}
+    >
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        initialValue={defaultValue}
+      >
+        <DatePickerGroup {...props} onChange={fileChange}>
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
           </div>
-        </React.Fragment>
-      )}
-    </>
+        </DatePickerGroup>
+      </Field>
+    </div>
   );
 };
 
-export default NomarDatePicker;
+DformDatePicker.displayName = 'dformDatePicker';
+export default DformDatePicker;

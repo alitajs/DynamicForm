@@ -1,8 +1,8 @@
 import { Rule } from 'rc-field-form/es/interface';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarFileItemProps {
-  id: string | number;
-  title: string;
+  [key: string]: any;
 }
 
 export interface INomarFileProps {
@@ -21,4 +21,5 @@ export interface INomarFileProps {
     id: string | number;
     title: string;
   };
+  defaultValue?: INomarFileItemProps;
 }

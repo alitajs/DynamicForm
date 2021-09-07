@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 yarn
-yarn build:doc
+yarn docs:build
