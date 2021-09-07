@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import TouchFeedback from 'rmc-feedback';
-import { ClickEvent, StringEvent } from '@/PropsType';
+import { ClickEvent, StringEvent } from '../../PropsType';
 import { IInputItemProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 import './index.less';

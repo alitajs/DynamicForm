@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
-import { StringAndUdfEvent, ClickEvent } from '@/PropsType';
+import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import { InputItem } from '..';
 import Field from '../Field';
 import Title from '../Title';
@@ -89,4 +89,5 @@ const DformInput: FC<INomarInputProps> = (props) => {
 };
 
 DformInput.displayName = 'dformInput';
+
 export default DformInput;

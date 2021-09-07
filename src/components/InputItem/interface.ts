@@ -1,4 +1,8 @@
-import { InputEventHandler, StringAndUdfEvent, StringEvent } from '@/PropsType';
+import {
+  InputEventHandler,
+  StringAndUdfEvent,
+  StringEvent,
+} from '../../PropsType';
 
 export interface IInputItemProps {
   fieldProps: string;
