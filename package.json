@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",

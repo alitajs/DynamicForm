@@ -5,8 +5,8 @@ import { Rule } from 'rc-field-form/es/interface';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
 import Title from '../Title';
+import InputItem from '../InputItem';
 import { StringAndUdfEvent } from '../../PropsType';
-import { InputItem } from '..';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
