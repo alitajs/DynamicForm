@@ -39,8 +39,6 @@ const Page: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onChange, onImag
           required
           compressRatio={0.5}
           onChange={(files: any, type: string, index: number | undefined) => {
-            // eslint-disable-next-line no-console
-            console.log(files, type, index);
             onChange()
           }}
         />
@@ -49,8 +47,6 @@ const Page: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onChange, onImag
           title='展示图片(限制上传的图片大小)'
           // disableDelete: true,
           onImageClick={(index: number | undefined, files: any) => {
-            // eslint-disable-next-line no-console
-            console.log(index, files);
             onImageClick()
           }}
           limitSize={3 * 1024 * 1024}

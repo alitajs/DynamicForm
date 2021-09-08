@@ -101,7 +101,7 @@ const ExtraInputTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed, }) => {
             placeholder: '输入长度',
             onChange: (val: any) => {
               // eslint-disable-next-line no-console
-              console.log(val);
+              // console.log(val);
             },
           }}
           secondProps={{
@@ -109,7 +109,7 @@ const ExtraInputTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed, }) => {
             data: list,
             onChange: (val: any) => {
               // eslint-disable-next-line no-console
-              console.log(val);
+              // console.log(val);
             },
           }}
         />

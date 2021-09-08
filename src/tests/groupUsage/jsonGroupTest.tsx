@@ -102,8 +102,6 @@ const data = [
         modeType: 'month',
         firstProps: {
           onOk: (val: any) => {
-            // eslint-disable-next-line no-console
-            console.log(val);
           },
         },
       },
@@ -143,10 +141,8 @@ const UserName: FC = () => {
   }, []);
 
   const onFinish = (values: Store) => {
-    console.log(values);
   };
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    console.log('Failed:', errorInfo);
   };
 
   const formProps = {

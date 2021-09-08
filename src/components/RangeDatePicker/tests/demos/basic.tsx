@@ -33,8 +33,6 @@ const page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
           modeType='datetime'
           firstProps={{
             onOk: (val: any) => {
-              // eslint-disable-next-line no-console
-              console.log(val);
             },
           }}
         />

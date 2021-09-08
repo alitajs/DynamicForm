@@ -28,10 +28,10 @@ const myProps = {
     contract: contractList,
   },
   onClick: (res: any) => {
-    console.log(res);
+    // console.log(res);
   },
   onChange: (res: any, delItem: any) => {
-    console.log(res, delItem);
+    // console.log(res, delItem);
   },
   alias: {
     id: 'fileId',

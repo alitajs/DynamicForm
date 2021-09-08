@@ -41,10 +41,8 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
           title="合同"
           onClick={(res: any) => {
             onMyClick();
-            console.log(res);
           }}
           onChange={(res: any, delItem: any) => {
-            console.log(res, delItem);
           }}
           alias={{
             id: 'fileId',
