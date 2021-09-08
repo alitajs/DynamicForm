@@ -1,0 +1,2134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1629421762233" clover="3.2.0">
+  <project timestamp="1629421762233" name="All files">
+    <metrics statements="1663" coveredstatements="1010" conditionals="1209" coveredconditionals="709" methods="491" coveredmethods="276" elements="3363" coveredelements="1995" complexity="0" loc="1663" ncloc="1663" packages="62" files="93" classes="93"/>
+    <package name="src">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="PropsType.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\PropsType.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="index.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\index.tsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.AddressPicker">
+      <metrics statements="115" coveredstatements="91" conditionals="122" coveredconditionals="76" methods="18" coveredmethods="16"/>
+      <file name="AddressPickerGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\AddressPicker\AddressPickerGroup.tsx">
+        <metrics statements="107" coveredstatements="83" conditionals="110" coveredconditionals="66" methods="15" coveredmethods="13"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="16" count="17" type="stmt"/>
+        <line num="43" count="24" type="stmt"/>
+        <line num="45" count="24" type="cond" truecount="0" falsecount="1"/>
+        <line num="47" count="24" type="stmt"/>
+        <line num="48" count="24" type="stmt"/>
+        <line num="51" count="24" type="stmt"/>
+        <line num="57" count="24" type="stmt"/>
+        <line num="58" count="24" type="stmt"/>
+        <line num="59" count="24" type="stmt"/>
+        <line num="60" count="24" type="stmt"/>
+        <line num="62" count="24" type="stmt"/>
+        <line num="64" count="24" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="67" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="72" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="78" count="2" type="stmt"/>
+        <line num="81" count="24" type="stmt"/>
+        <line num="83" count="7" type="cond" truecount="2" falsecount="2"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="88" count="24" type="stmt"/>
+        <line num="89" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="90" count="3" type="stmt"/>
+        <line num="91" count="3" type="stmt"/>
+        <line num="92" count="3" type="stmt"/>
+        <line num="93" count="3" type="stmt"/>
+        <line num="94" count="3" type="stmt"/>
+        <line num="96" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="97" count="1" type="stmt"/>
+        <line num="104" count="24" type="stmt"/>
+        <line num="105" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="106" count="3" type="stmt"/>
+        <line num="112" count="24" type="stmt"/>
+        <line num="113" count="3" type="stmt"/>
+        <line num="116" count="3" type="stmt"/>
+        <line num="118" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="119" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="127" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="130" count="1" type="stmt"/>
+        <line num="131" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="133" count="2" type="stmt"/>
+        <line num="134" count="2" type="stmt"/>
+        <line num="135" count="2" type="stmt"/>
+        <line num="140" count="2" type="stmt"/>
+        <line num="141" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="143" count="3" type="stmt"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="147" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
+        <line num="159" count="0" type="stmt"/>
+        <line num="160" count="0" type="stmt"/>
+        <line num="161" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="169" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="171" count="3" type="stmt"/>
+        <line num="177" count="24" type="stmt"/>
+        <line num="178" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="179" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="180" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="181" count="2" type="stmt"/>
+        <line num="182" count="2" type="stmt"/>
+        <line num="183" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="184" count="2" type="stmt"/>
+        <line num="186" count="2" type="stmt"/>
+        <line num="187" count="2" type="stmt"/>
+        <line num="188" count="2" type="stmt"/>
+        <line num="189" count="2" type="stmt"/>
+        <line num="194" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="195" count="2" type="stmt"/>
+        <line num="202" count="24" type="stmt"/>
+        <line num="203" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="205" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="206" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="207" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="209" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="210" count="0" type="stmt"/>
+        <line num="211" count="0" type="stmt"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="213" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="214" count="0" type="stmt"/>
+        <line num="217" count="2" type="stmt"/>
+        <line num="218" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="223" count="0" type="stmt"/>
+        <line num="224" count="0" type="stmt"/>
+        <line num="227" count="3" type="stmt"/>
+        <line num="230" count="24" type="stmt"/>
+        <line num="232" count="24" type="stmt"/>
+        <line num="233" count="47" type="stmt"/>
+        <line num="236" count="24" type="stmt"/>
+        <line num="257" count="0" type="stmt"/>
+        <line num="264" count="0" type="stmt"/>
+        <line num="274" count="2" type="stmt"/>
+        <line num="285" count="49" type="stmt"/>
+        <line num="288" count="2" type="stmt"/>
+        <line num="316" count="413" type="stmt"/>
+        <line num="319" count="3" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\AddressPicker\index.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="12" coveredconditionals="10" methods="3" coveredmethods="3"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="24" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="52" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\AddressPicker\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.AddressPicker.demo">
+      <metrics statements="52" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\AddressPicker\demo\index.tsx">
+        <metrics statements="52" coveredstatements="0" conditionals="20" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.CoverRadio">
+      <metrics statements="54" coveredstatements="53" conditionals="54" coveredconditionals="44" methods="13" coveredmethods="13"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\CoverRadio\index.tsx">
+        <metrics statements="15" coveredstatements="15" conditionals="20" coveredconditionals="16" methods="4" coveredmethods="4"/>
+        <line num="10" count="17" type="stmt"/>
+        <line num="36" count="17" type="stmt"/>
+        <line num="37" count="29" type="stmt"/>
+        <line num="57" count="29" type="stmt"/>
+        <line num="59" count="29" type="stmt"/>
+        <line num="60" count="29" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="29" type="stmt"/>
+        <line num="63" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="6" type="stmt"/>
+        <line num="70" count="29" type="cond" truecount="2" falsecount="0"/>
+        <line num="71" count="11" type="stmt"/>
+        <line num="74" count="29" type="stmt"/>
+        <line num="75" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="78" count="29" type="stmt"/>
+        <line num="114" count="17" type="stmt"/>
+      </file>
+      <file name="radioGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\CoverRadio\radioGroup.tsx">
+        <metrics statements="39" coveredstatements="38" conditionals="34" coveredconditionals="28" methods="9" coveredmethods="9"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="24" count="17" type="stmt"/>
+        <line num="36" count="85" type="stmt"/>
+        <line num="37" count="85" type="stmt"/>
+        <line num="40" count="85" type="stmt"/>
+        <line num="41" count="85" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="33" type="stmt"/>
+        <line num="45" count="85" type="stmt"/>
+        <line num="55" count="85" type="stmt"/>
+        <line num="56" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="6" type="stmt"/>
+        <line num="58" count="6" type="stmt"/>
+        <line num="60" count="6" type="stmt"/>
+        <line num="61" count="17" type="stmt"/>
+        <line num="62" count="6" type="cond" truecount="4" falsecount="0"/>
+        <line num="63" count="3" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+        <line num="69" count="85" type="stmt"/>
+        <line num="71" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="6" type="stmt"/>
+        <line num="73" count="6" type="stmt"/>
+        <line num="75" count="30" type="stmt"/>
+        <line num="76" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="77" count="9" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="83" count="85" type="stmt"/>
+        <line num="87" count="8" type="stmt"/>
+        <line num="88" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="89" count="21" type="stmt"/>
+        <line num="90" count="7" type="cond" truecount="3" falsecount="1"/>
+        <line num="91" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="95" count="6" type="stmt"/>
+        <line num="96" count="6" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="103" count="85" type="stmt"/>
+        <line num="128" count="233" type="stmt"/>
+        <line num="141" count="8" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.CoverRadio.demo">
+      <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\CoverRadio\demo\index.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.CoverRadio.tests.demos">
+      <metrics statements="25" coveredstatements="25" conditionals="6" coveredconditionals="5" methods="8" coveredmethods="8"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\CoverRadio\tests\demos\basic.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="96" count="2" type="stmt"/>
+      </file>
+      <file name="couplet.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\CoverRadio\tests\demos\couplet.tsx">
+        <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="5" methods="5" coveredmethods="5"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="27" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="63" count="3" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.DynamicForm">
+      <metrics statements="202" coveredstatements="104" conditionals="217" coveredconditionals="92" methods="46" coveredmethods="22"/>
+      <file name="Card.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\DynamicForm\Card.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="17" count="27" type="stmt"/>
+      </file>
+      <file name="Dform.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\DynamicForm\Dform.tsx">
+        <metrics statements="85" coveredstatements="82" conditionals="98" coveredconditionals="81" methods="20" coveredmethods="19"/>
+        <line num="45" count="17" type="stmt"/>
+        <line num="67" count="17" type="stmt"/>
+        <line num="69" count="17" type="stmt"/>
+        <line num="74" count="0" type="cond" truecount="1" falsecount="0"/>
+        <line num="88" count="315" type="stmt"/>
+        <line num="97" count="315" type="stmt"/>
+        <line num="98" count="315" type="stmt"/>
+        <line num="102" count="315" type="cond" truecount="3" falsecount="0"/>
+        <line num="107" count="315" type="cond" truecount="3" falsecount="1"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="112" count="315" type="stmt"/>
+        <line num="131" count="7" type="stmt"/>
+        <line num="132" count="7" type="stmt"/>
+        <line num="133" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="142" count="35" type="stmt"/>
+        <line num="143" count="35" type="stmt"/>
+        <line num="144" count="35" type="cond" truecount="2" falsecount="0"/>
+        <line num="151" count="17" type="stmt"/>
+        <line num="166" count="87" type="stmt"/>
+        <line num="167" count="87" type="stmt"/>
+        <line num="168" count="87" type="stmt"/>
+        <line num="169" count="87" type="stmt"/>
+        <line num="171" count="87" type="stmt"/>
+        <line num="172" count="44" type="cond" truecount="2" falsecount="0"/>
+        <line num="173" count="43" type="cond" truecount="4" falsecount="0"/>
+        <line num="174" count="14" type="stmt"/>
+        <line num="176" count="48" type="cond" truecount="2" falsecount="0"/>
+        <line num="180" count="14" type="cond" truecount="4" falsecount="0"/>
+        <line num="181" count="1" type="stmt"/>
+        <line num="182" count="1" type="stmt"/>
+        <line num="184" count="1" type="stmt"/>
+        <line num="188" count="44" type="stmt"/>
+        <line num="192" count="87" type="stmt"/>
+        <line num="194" count="42" type="stmt"/>
+        <line num="196" count="42" type="stmt"/>
+        <line num="198" count="42" type="cond" truecount="2" falsecount="0"/>
+        <line num="203" count="1" type="stmt"/>
+        <line num="204" count="7" type="cond" truecount="0" falsecount="1"/>
+        <line num="205" count="7" type="stmt"/>
+        <line num="206" count="7" type="cond" truecount="5" falsecount="1"/>
+        <line num="208" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="209" count="3" type="stmt"/>
+        <line num="210" count="3" type="stmt"/>
+        <line num="211" count="3" type="stmt"/>
+        <line num="213" count="3" type="stmt"/>
+        <line num="215" count="3" type="stmt"/>
+        <line num="219" count="3" type="stmt"/>
+        <line num="220" count="3" type="stmt"/>
+        <line num="221" count="3" type="stmt"/>
+        <line num="225" count="3" type="stmt"/>
+        <line num="227" count="1" type="stmt"/>
+        <line num="228" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="229" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="233" count="1" type="stmt"/>
+        <line num="235" count="0" type="stmt"/>
+        <line num="238" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="239" count="1" type="stmt"/>
+        <line num="247" count="87" type="stmt"/>
+        <line num="248" count="99" type="stmt"/>
+        <line num="249" count="230" type="cond" truecount="1" falsecount="1"/>
+        <line num="250" count="230" type="cond" truecount="0" falsecount="1"/>
+        <line num="251" count="230" type="stmt"/>
+        <line num="252" count="230" type="stmt"/>
+        <line num="257" count="230" type="stmt"/>
+        <line num="258" count="230" type="cond" truecount="2" falsecount="0"/>
+        <line num="259" count="210" type="stmt"/>
+        <line num="268" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="269" count="12" type="stmt"/>
+        <line num="275" count="8" type="stmt"/>
+        <line num="280" count="87" type="stmt"/>
+        <line num="285" count="44" type="stmt"/>
+        <line num="286" count="120" type="cond" truecount="2" falsecount="0"/>
+        <line num="287" count="120" type="stmt"/>
+        <line num="289" count="120" type="cond" truecount="2" falsecount="0"/>
+        <line num="290" count="15" type="stmt"/>
+        <line num="296" count="105" type="stmt"/>
+        <line num="306" count="87" type="stmt"/>
+        <line num="307" count="99" type="stmt"/>
+        <line num="308" count="99" type="stmt"/>
+        <line num="317" count="87" type="stmt"/>
+        <line num="325" count="16" type="stmt"/>
+        <line num="326" count="16" type="stmt"/>
+        <line num="329" count="52" type="cond" truecount="0" falsecount="1"/>
+        <line num="333" count="52" type="cond" truecount="2" falsecount="0"/>
+        <line num="334" count="52" type="cond" truecount="1" falsecount="1"/>
+      </file>
+      <file name="Form.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\DynamicForm\Form.tsx">
+        <metrics statements="105" coveredstatements="12" conditionals="109" coveredconditionals="5" methods="24" coveredmethods="1"/>
+        <line num="37" count="17" type="stmt"/>
+        <line num="59" count="17" type="stmt"/>
+        <line num="69" count="91" type="stmt"/>
+        <line num="70" count="91" type="stmt"/>
+        <line num="71" count="91" type="stmt"/>
+        <line num="96" count="17" type="stmt"/>
+        <line num="101" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="106" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="111" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="119" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="120" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="123" count="17" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="125" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="128" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="129" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="131" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="134" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="144" count="17" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="165" count="17" type="stmt"/>
+        <line num="166" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="168" count="0" type="stmt"/>
+        <line num="169" count="0" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+        <line num="177" count="17" type="stmt"/>
+        <line num="181" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="183" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="184" count="0" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="191" count="17" type="stmt"/>
+        <line num="205" count="0" type="stmt"/>
+        <line num="206" count="0" type="stmt"/>
+        <line num="207" count="0" type="stmt"/>
+        <line num="209" count="0" type="stmt"/>
+        <line num="210" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="211" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="212" count="0" type="stmt"/>
+        <line num="214" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="218" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="219" count="0" type="stmt"/>
+        <line num="220" count="0" type="stmt"/>
+        <line num="222" count="0" type="stmt"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="229" count="0" type="stmt"/>
+        <line num="232" count="0" type="stmt"/>
+        <line num="234" count="0" type="stmt"/>
+        <line num="236" count="0" type="stmt"/>
+        <line num="238" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="243" count="0" type="stmt"/>
+        <line num="244" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="245" count="0" type="stmt"/>
+        <line num="246" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="248" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="249" count="0" type="stmt"/>
+        <line num="250" count="0" type="stmt"/>
+        <line num="251" count="0" type="stmt"/>
+        <line num="253" count="0" type="stmt"/>
+        <line num="255" count="0" type="stmt"/>
+        <line num="259" count="0" type="stmt"/>
+        <line num="260" count="0" type="stmt"/>
+        <line num="261" count="0" type="stmt"/>
+        <line num="265" count="0" type="stmt"/>
+        <line num="267" count="0" type="stmt"/>
+        <line num="268" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="269" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="273" count="0" type="stmt"/>
+        <line num="275" count="0" type="stmt"/>
+        <line num="278" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="279" count="0" type="stmt"/>
+        <line num="287" count="0" type="stmt"/>
+        <line num="288" count="0" type="stmt"/>
+        <line num="289" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="290" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="291" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="301" count="0" type="stmt"/>
+        <line num="302" count="0" type="stmt"/>
+        <line num="303" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="304" count="0" type="stmt"/>
+        <line num="321" count="0" type="stmt"/>
+        <line num="322" count="0" type="stmt"/>
+        <line num="323" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="334" count="0" type="stmt"/>
+        <line num="339" count="0" type="stmt"/>
+        <line num="346" count="0" type="stmt"/>
+        <line num="347" count="0" type="stmt"/>
+        <line num="350" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="354" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="355" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="377" count="17" type="stmt"/>
+      </file>
+      <file name="Group.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\DynamicForm\Group.tsx">
+        <metrics statements="7" coveredstatements="5" conditionals="4" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="15" count="27" type="stmt"/>
+        <line num="16" count="27" type="cond" truecount="1" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="27" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="17" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\DynamicForm\index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="16" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.EditForm">
+      <metrics statements="88" coveredstatements="8" conditionals="65" coveredconditionals="0" methods="22" coveredmethods="0"/>
+      <file name="EditForm.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\EditForm\EditForm.tsx">
+        <metrics statements="88" coveredstatements="8" conditionals="65" coveredconditionals="0" methods="22" coveredmethods="0"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="45" count="17" type="stmt"/>
+        <line num="61" count="17" type="stmt"/>
+        <line num="78" count="17" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="146" count="17" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="159" count="17" type="stmt"/>
+        <line num="160" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="164" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="168" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="169" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="172" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="176" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="178" count="0" type="stmt"/>
+        <line num="179" count="0" type="stmt"/>
+        <line num="181" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="185" count="17" type="stmt"/>
+        <line num="189" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="194" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="198" count="0" type="stmt"/>
+        <line num="200" count="0" type="stmt"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="202" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="206" count="0" type="stmt"/>
+        <line num="207" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="210" count="17" type="cond" truecount="0" falsecount="1"/>
+        <line num="211" count="0" type="stmt"/>
+        <line num="213" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="215" count="0" type="stmt"/>
+        <line num="219" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="221" count="0" type="stmt"/>
+        <line num="225" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="228" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="229" count="0" type="stmt"/>
+        <line num="231" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="232" count="0" type="stmt"/>
+        <line num="234" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="235" count="0" type="stmt"/>
+        <line num="237" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="243" count="0" type="stmt"/>
+        <line num="244" count="0" type="stmt"/>
+        <line num="245" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="246" count="0" type="stmt"/>
+        <line num="248" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="249" count="0" type="stmt"/>
+        <line num="251" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="252" count="0" type="stmt"/>
+        <line num="254" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="255" count="0" type="stmt"/>
+        <line num="259" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="266" count="0" type="stmt"/>
+        <line num="268" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="269" count="0" type="stmt"/>
+        <line num="272" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="275" count="0" type="stmt"/>
+        <line num="277" count="0" type="stmt"/>
+        <line num="279" count="0" type="stmt"/>
+        <line num="282" count="0" type="stmt"/>
+        <line num="289" count="0" type="stmt"/>
+        <line num="292" count="0" type="stmt"/>
+        <line num="293" count="0" type="stmt"/>
+        <line num="296" count="0" type="stmt"/>
+        <line num="298" count="0" type="stmt"/>
+        <line num="300" count="0" type="stmt"/>
+        <line num="305" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.ExtraInput">
+      <metrics statements="15" coveredstatements="15" conditionals="30" coveredconditionals="27" methods="5" coveredmethods="5"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\ExtraInput\index.tsx">
+        <metrics statements="15" coveredstatements="15" conditionals="30" coveredconditionals="27" methods="5" coveredmethods="5"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="43" count="6" type="stmt"/>
+        <line num="45" count="6" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="49" count="6" type="stmt"/>
+        <line num="50" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="56" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="88" count="6" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
+        <line num="139" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.ExtraInput.demo">
+      <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\ExtraInput\demo\index.tsx">
+        <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.ExtraInput.tests.demos">
+      <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\ExtraInput\tests\demos\basic.tsx">
+        <metrics statements="12" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="113" count="2" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Field">
+      <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\Field\index.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="7" count="397" type="stmt"/>
+        <line num="8" count="802" type="cond" truecount="4" falsecount="0"/>
+        <line num="9" count="235" type="stmt"/>
+        <line num="11" count="802" type="stmt"/>
+        <line num="14" count="397" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Hidden">
+      <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\Hidden\index.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="7" count="17" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="315" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="11" count="312" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.InputItem">
+      <metrics statements="48" coveredstatements="32" conditionals="68" coveredconditionals="41" methods="9" coveredmethods="8"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\InputItem\index.tsx">
+        <metrics statements="48" coveredstatements="32" conditionals="68" coveredconditionals="41" methods="9" coveredmethods="8"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="11" count="17" type="stmt"/>
+        <line num="30" count="215" type="stmt"/>
+        <line num="32" count="215" type="stmt"/>
+        <line num="34" count="215" type="stmt"/>
+        <line num="44" count="215" type="stmt"/>
+        <line num="45" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="47" count="215" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="49" count="6" type="stmt"/>
+        <line num="50" count="6" type="cond" truecount="3" falsecount="3"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="72" count="6" type="stmt"/>
+        <line num="74" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="77" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="80" count="215" type="stmt"/>
+        <line num="81" count="215" type="cond" truecount="3" falsecount="1"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="215" type="cond" truecount="2" falsecount="0"/>
+        <line num="84" count="4" type="stmt"/>
+        <line num="85" count="211" type="cond" truecount="1" falsecount="1"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="87" count="211" type="cond" truecount="2" falsecount="2"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="94" count="215" type="stmt"/>
+        <line num="95" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="98" count="215" type="stmt"/>
+        <line num="107" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="121" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="122" count="2" type="stmt"/>
+        <line num="123" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="126" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="127" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="128" count="2" type="stmt"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="133" count="6" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\InputItem\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.MultiplePicker">
+      <metrics statements="64" coveredstatements="61" conditionals="45" coveredconditionals="31" methods="21" coveredmethods="20"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\MultiplePicker\index.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="17" coveredconditionals="11" methods="4" coveredmethods="4"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="9" count="40" type="stmt"/>
+        <line num="24" count="40" type="stmt"/>
+        <line num="25" count="40" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="40" type="stmt"/>
+        <line num="28" count="40" type="stmt"/>
+        <line num="32" count="11" type="stmt"/>
+        <line num="35" count="40" type="stmt"/>
+        <line num="39" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="40" count="1" type="cond" truecount="2" falsecount="2"/>
+        <line num="43" count="40" type="stmt"/>
+        <line num="61" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\MultiplePicker\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="multiplePickerGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\MultiplePicker\multiplePickerGroup.tsx">
+        <metrics statements="52" coveredstatements="49" conditionals="28" coveredconditionals="20" methods="17" coveredmethods="16"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="16" count="17" type="stmt"/>
+        <line num="35" count="90" type="stmt"/>
+        <line num="37" count="90" type="stmt"/>
+        <line num="38" count="90" type="stmt"/>
+        <line num="39" count="90" type="stmt"/>
+        <line num="41" count="90" type="stmt"/>
+        <line num="48" count="90" type="stmt"/>
+        <line num="49" count="73" type="stmt"/>
+        <line num="50" count="41" type="stmt"/>
+        <line num="51" count="41" type="stmt"/>
+        <line num="52" count="41" type="stmt"/>
+        <line num="53" count="41" type="stmt"/>
+        <line num="54" count="41" type="stmt"/>
+        <line num="57" count="90" type="stmt"/>
+        <line num="58" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="15" type="stmt"/>
+        <line num="60" count="15" type="stmt"/>
+        <line num="62" count="90" type="stmt"/>
+        <line num="63" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="22" type="stmt"/>
+        <line num="65" count="22" type="stmt"/>
+        <line num="68" count="90" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="75" count="1" type="cond" truecount="2" falsecount="2"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="81" count="90" type="stmt"/>
+        <line num="82" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="83" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="84" count="3" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+        <line num="86" count="3" type="stmt"/>
+        <line num="89" count="90" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="93" count="90" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="95" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="96" count="1" type="stmt"/>
+        <line num="97" count="1" type="stmt"/>
+        <line num="98" count="1" type="stmt"/>
+        <line num="101" count="90" type="stmt"/>
+        <line num="112" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="113" count="3" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="134" count="1" type="stmt"/>
+        <line num="145" count="1" type="stmt"/>
+        <line num="155" count="307" type="stmt"/>
+        <line num="159" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.MultiplePicker.demo">
+      <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\MultiplePicker\demo\index.tsx">
+        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.MultiplePicker.tests.demos">
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\MultiplePicker\tests\demos\basic.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NewFieldPicker">
+      <metrics statements="43" coveredstatements="17" conditionals="12" coveredconditionals="3" methods="18" coveredmethods="3"/>
+      <file name="NewFieldPicker.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NewFieldPicker\NewFieldPicker.tsx">
+        <metrics statements="43" coveredstatements="17" conditionals="12" coveredconditionals="3" methods="18" coveredmethods="3"/>
+        <line num="15" count="17" type="stmt"/>
+        <line num="26" count="17" type="stmt"/>
+        <line num="37" count="17" type="stmt"/>
+        <line num="50" count="17" type="stmt"/>
+        <line num="165" count="17" type="stmt"/>
+        <line num="169" count="17" type="stmt"/>
+        <line num="170" count="7" type="stmt"/>
+        <line num="171" count="7" type="stmt"/>
+        <line num="172" count="7" type="stmt"/>
+        <line num="173" count="7" type="stmt"/>
+        <line num="176" count="7" type="stmt"/>
+        <line num="177" count="0" type="stmt"/>
+        <line num="178" count="0" type="stmt"/>
+        <line num="180" count="0" type="stmt"/>
+        <line num="183" count="7" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="188" count="7" type="stmt"/>
+        <line num="190" count="0" type="stmt"/>
+        <line num="193" count="7" type="stmt"/>
+        <line num="194" count="0" type="stmt"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="196" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="197" count="0" type="stmt"/>
+        <line num="200" count="0" type="stmt"/>
+        <line num="202" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="208" count="0" type="stmt"/>
+        <line num="209" count="0" type="stmt"/>
+        <line num="216" count="7" type="stmt"/>
+        <line num="221" count="7" type="stmt"/>
+        <line num="231" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="250" count="0" type="stmt"/>
+        <line num="264" count="0" type="stmt"/>
+        <line num="274" count="0" type="stmt"/>
+        <line num="279" count="0" type="stmt"/>
+        <line num="292" count="91" type="stmt"/>
+        <line num="305" count="0" type="stmt"/>
+        <line num="306" count="0" type="stmt"/>
+        <line num="307" count="0" type="stmt"/>
+        <line num="308" count="0" type="stmt"/>
+        <line num="313" count="0" type="stmt"/>
+        <line num="322" count="0" type="stmt"/>
+        <line num="330" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarCheckBox">
+      <metrics statements="30" coveredstatements="30" conditionals="36" coveredconditionals="28" methods="11" coveredmethods="11"/>
+      <file name="checkBoxgroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCheckBox\checkBoxgroup.tsx">
+        <metrics statements="18" coveredstatements="18" conditionals="22" coveredconditionals="18" methods="6" coveredmethods="6"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="24" count="17" type="stmt"/>
+        <line num="33" count="70" type="stmt"/>
+        <line num="35" count="70" type="stmt"/>
+        <line num="36" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="40" count="6" type="stmt"/>
+        <line num="42" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="45" count="70" type="stmt"/>
+        <line num="46" count="70" type="stmt"/>
+        <line num="47" count="173" type="stmt"/>
+        <line num="49" count="262" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="262" type="stmt"/>
+        <line num="58" count="11" type="stmt"/>
+        <line num="59" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="9" type="stmt"/>
+        <line num="90" count="70" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCheckBox\index.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="14" coveredconditionals="10" methods="5" coveredmethods="5"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="29" count="28" type="stmt"/>
+        <line num="46" count="28" type="stmt"/>
+        <line num="48" count="28" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="28" type="stmt"/>
+        <line num="51" count="27" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="58" count="28" type="stmt"/>
+        <line num="59" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="62" count="28" type="stmt"/>
+        <line num="68" count="43" type="stmt"/>
+        <line num="86" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarCheckBox.demo">
+      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCheckBox\demo\index.tsx">
+        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarCheckBox.tests.demos">
+      <metrics statements="25" coveredstatements="23" conditionals="8" coveredconditionals="7" methods="7" coveredmethods="6"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCheckBox\tests\demos\basic.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+      </file>
+      <file name="couplet.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCheckBox\tests\demos\couplet.tsx">
+        <metrics statements="18" coveredstatements="16" conditionals="8" coveredconditionals="7" methods="5" coveredmethods="4"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="29" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="37" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="43" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="50" count="6" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="80" count="4" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarCustom">
+      <metrics statements="6" coveredstatements="2" conditionals="3" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCustom\index.tsx">
+        <metrics statements="6" coveredstatements="2" conditionals="3" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="23" count="17" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="56" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarCustom.demo">
+      <metrics statements="16" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarCustom\demo\index.tsx">
+        <metrics statements="16" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarDatePicker">
+      <metrics statements="25" coveredstatements="25" conditionals="28" coveredconditionals="27" methods="9" coveredmethods="8"/>
+      <file name="DatePickerGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarDatePicker\DatePickerGroup.tsx">
+        <metrics statements="18" coveredstatements="18" conditionals="15" coveredconditionals="15" methods="7" coveredmethods="6"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="10" count="174" type="stmt"/>
+        <line num="11" count="174" type="stmt"/>
+        <line num="34" count="174" type="stmt"/>
+        <line num="36" count="174" type="stmt"/>
+        <line num="37" count="24" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="8" type="stmt"/>
+        <line num="40" count="16" type="stmt"/>
+        <line num="44" count="174" type="stmt"/>
+        <line num="47" count="174" type="stmt"/>
+        <line num="65" count="174" type="stmt"/>
+        <line num="66" count="5" type="stmt"/>
+        <line num="67" count="5" type="stmt"/>
+        <line num="68" count="5" type="stmt"/>
+        <line num="71" count="174" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="87" count="7" type="stmt"/>
+        <line num="102" count="8" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarDatePicker\index.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="13" coveredconditionals="12" methods="2" coveredmethods="2"/>
+        <line num="10" count="17" type="stmt"/>
+        <line num="21" count="29" type="stmt"/>
+        <line num="23" count="29" type="stmt"/>
+        <line num="25" count="29" type="stmt"/>
+        <line num="26" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="29" type="stmt"/>
+        <line num="54" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarDatePicker\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.NomarDatePicker.demo">
+      <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarDatePicker\demo\index.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarDatePicker.tests.demos">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarDatePicker\tests\demos\basic.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarFile">
+      <metrics statements="25" coveredstatements="21" conditionals="18" coveredconditionals="9" methods="10" coveredmethods="8"/>
+      <file name="fileGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarFile\fileGroup.tsx">
+        <metrics statements="13" coveredstatements="13" conditionals="10" coveredconditionals="5" methods="6" coveredmethods="6"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="12" count="17" type="stmt"/>
+        <line num="18" count="16" type="stmt"/>
+        <line num="20" count="16" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="16" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="16" type="stmt"/>
+        <line num="33" count="13" type="cond" truecount="1" falsecount="1"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarFile\index.tsx">
+        <metrics statements="12" coveredstatements="8" conditionals="8" coveredconditionals="4" methods="4" coveredmethods="2"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="46" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="62" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarFile\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.NomarFile.demo">
+      <metrics statements="17" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarFile\demo\index.tsx">
+        <metrics statements="17" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarFile.tests.demos">
+      <metrics statements="15" coveredstatements="10" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="4"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarFile\tests\demos\basic.tsx">
+        <metrics statements="15" coveredstatements="10" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="55" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarImagePicker">
+      <metrics statements="30" coveredstatements="16" conditionals="32" coveredconditionals="12" methods="7" coveredmethods="4"/>
+      <file name="imagePickerGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarImagePicker\imagePickerGroup.tsx">
+        <metrics statements="21" coveredstatements="7" conditionals="22" coveredconditionals="3" methods="5" coveredmethods="2"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="13" count="27" type="stmt"/>
+        <line num="15" count="27" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="27" type="stmt"/>
+        <line num="28" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="48" count="27" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarImagePicker\index.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="23" count="7" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="7" type="stmt"/>
+        <line num="50" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarImagePicker\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.NomarImagePicker.demo">
+      <metrics statements="16" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarImagePicker\demo\index.tsx">
+        <metrics statements="16" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarImagePicker.tests.demos">
+      <metrics statements="11" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarImagePicker\tests\demos\basic.tsx">
+        <metrics statements="11" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarInput">
+      <metrics statements="8" coveredstatements="8" conditionals="20" coveredconditionals="16" methods="3" coveredmethods="3"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarInput\index.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="20" coveredconditionals="16" methods="3" coveredmethods="3"/>
+        <line num="24" count="17" type="stmt"/>
+        <line num="43" count="40" type="stmt"/>
+        <line num="45" count="40" type="stmt"/>
+        <line num="47" count="40" type="stmt"/>
+        <line num="49" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="52" count="40" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="86" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarInput.demo">
+      <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarInput\demo\index.tsx">
+        <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarInput.tests.demos">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarInput\tests\demos\basic.tsx">
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarPicker">
+      <metrics statements="43" coveredstatements="43" conditionals="40" coveredconditionals="34" methods="14" coveredmethods="14"/>
+      <file name="NomarPickerGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarPicker\NomarPickerGroup.tsx">
+        <metrics statements="31" coveredstatements="31" conditionals="28" coveredconditionals="25" methods="9" coveredmethods="9"/>
+        <line num="10" count="17" type="stmt"/>
+        <line num="11" count="203" type="stmt"/>
+        <line num="12" count="203" type="stmt"/>
+        <line num="28" count="203" type="stmt"/>
+        <line num="29" count="203" type="stmt"/>
+        <line num="31" count="203" type="stmt"/>
+        <line num="34" count="33" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="19" type="stmt"/>
+        <line num="37" count="19" type="stmt"/>
+        <line num="39" count="51" type="stmt"/>
+        <line num="40" count="14" type="cond" truecount="4" falsecount="0"/>
+        <line num="41" count="11" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="47" count="203" type="stmt"/>
+        <line num="48" count="38" type="cond" truecount="4" falsecount="0"/>
+        <line num="49" count="18" type="stmt"/>
+        <line num="54" count="60" type="stmt"/>
+        <line num="55" count="18" type="cond" truecount="4" falsecount="0"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="60" count="15" type="stmt"/>
+        <line num="64" count="20" type="stmt"/>
+        <line num="68" count="203" type="stmt"/>
+        <line num="69" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="70" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="71" count="10" type="stmt"/>
+        <line num="74" count="203" type="stmt"/>
+        <line num="75" count="7" type="stmt"/>
+        <line num="76" count="7" type="stmt"/>
+        <line num="79" count="203" type="stmt"/>
+        <line num="103" count="2" type="stmt"/>
+        <line num="106" count="9" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarPicker\index.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="12" coveredconditionals="9" methods="5" coveredmethods="5"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="8" count="80" type="stmt"/>
+        <line num="23" count="80" type="stmt"/>
+        <line num="25" count="80" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="80" type="stmt"/>
+        <line num="28" count="54" type="stmt"/>
+        <line num="32" count="19" type="stmt"/>
+        <line num="35" count="80" type="stmt"/>
+        <line num="36" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="39" count="80" type="stmt"/>
+        <line num="44" count="91" type="stmt"/>
+        <line num="60" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarPicker\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.NomarPicker.demo">
+      <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarPicker\demo\index.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarPicker.tests.demos">
+      <metrics statements="33" coveredstatements="30" conditionals="0" coveredconditionals="0" methods="15" coveredmethods="12"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarPicker\tests\demos\basic.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="97" count="2" type="stmt"/>
+      </file>
+      <file name="couplet.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarPicker\tests\demos\couplet.tsx">
+        <metrics statements="23" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="9"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="51" count="6" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="61" count="6" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="93" count="6" type="stmt"/>
+        <line num="101" count="6" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="117" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarRadio">
+      <metrics statements="56" coveredstatements="51" conditionals="57" coveredconditionals="42" methods="13" coveredmethods="13"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarRadio\index.tsx">
+        <metrics statements="16" coveredstatements="16" conditionals="23" coveredconditionals="19" methods="4" coveredmethods="4"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="37" count="17" type="stmt"/>
+        <line num="38" count="54" type="stmt"/>
+        <line num="60" count="54" type="stmt"/>
+        <line num="62" count="54" type="stmt"/>
+        <line num="63" count="54" type="cond" truecount="0" falsecount="2"/>
+        <line num="65" count="54" type="stmt"/>
+        <line num="66" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="36" type="stmt"/>
+        <line num="71" count="16" type="stmt"/>
+        <line num="74" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="75" count="5" type="stmt"/>
+        <line num="78" count="54" type="stmt"/>
+        <line num="79" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="82" count="54" type="stmt"/>
+        <line num="112" count="17" type="stmt"/>
+      </file>
+      <file name="radioGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarRadio\radioGroup.tsx">
+        <metrics statements="40" coveredstatements="35" conditionals="34" coveredconditionals="23" methods="9" coveredmethods="9"/>
+        <line num="6" count="17" type="stmt"/>
+        <line num="25" count="17" type="stmt"/>
+        <line num="38" count="132" type="stmt"/>
+        <line num="39" count="132" type="stmt"/>
+        <line num="42" count="132" type="stmt"/>
+        <line num="43" count="132" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="15" type="stmt"/>
+        <line num="47" count="132" type="stmt"/>
+        <line num="57" count="132" type="stmt"/>
+        <line num="58" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="11" type="stmt"/>
+        <line num="60" count="11" type="stmt"/>
+        <line num="62" count="16" type="stmt"/>
+        <line num="63" count="36" type="stmt"/>
+        <line num="64" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="65" count="11" type="stmt"/>
+        <line num="67" count="5" type="stmt"/>
+        <line num="71" count="132" type="stmt"/>
+        <line num="72" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="73" count="11" type="stmt"/>
+        <line num="74" count="11" type="stmt"/>
+        <line num="76" count="21" type="stmt"/>
+        <line num="77" count="9" type="cond" truecount="3" falsecount="1"/>
+        <line num="78" count="9" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="84" count="132" type="stmt"/>
+        <line num="88" count="10" type="stmt"/>
+        <line num="89" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="90" count="21" type="stmt"/>
+        <line num="91" count="9" type="cond" truecount="3" falsecount="1"/>
+        <line num="92" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="93" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="98" count="9" type="stmt"/>
+        <line num="99" count="9" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="106" count="132" type="stmt"/>
+        <line num="133" count="296" type="stmt"/>
+        <line num="140" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarRadio.demo">
+      <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarRadio\demo\index.tsx">
+        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarRadio.tests.demos">
+      <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarRadio\tests\demos\basic.tsx">
+        <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="163" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarSelect">
+      <metrics statements="60" coveredstatements="56" conditionals="57" coveredconditionals="43" methods="15" coveredmethods="15"/>
+      <file name="NomarSelectGroup.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSelect\NomarSelectGroup.tsx">
+        <metrics statements="44" coveredstatements="40" conditionals="38" coveredconditionals="29" methods="11" coveredmethods="11"/>
+        <line num="11" count="17" type="stmt"/>
+        <line num="13" count="21" type="stmt"/>
+        <line num="15" count="21" type="stmt"/>
+        <line num="39" count="21" type="stmt"/>
+        <line num="41" count="21" type="stmt"/>
+        <line num="43" count="21" type="stmt"/>
+        <line num="44" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="55" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="60" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="67" count="21" type="stmt"/>
+        <line num="68" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="69" count="3" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="72" count="3" type="cond" truecount="3" falsecount="1"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="74" count="3" type="stmt"/>
+        <line num="75" count="5" type="stmt"/>
+        <line num="76" count="10" type="stmt"/>
+        <line num="78" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="85" count="3" type="cond" truecount="3" falsecount="1"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="88" count="3" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="95" count="21" type="stmt"/>
+        <line num="96" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="97" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="98" count="3" type="stmt"/>
+        <line num="101" count="21" type="stmt"/>
+        <line num="102" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="106" count="21" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="134" count="2" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSelect\index.tsx">
+        <metrics statements="16" coveredstatements="16" conditionals="19" coveredconditionals="14" methods="4" coveredmethods="4"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="25" count="6" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="10" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="42" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="43" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="69" count="17" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSelect\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.NomarSelect.demo">
+      <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSelect\demo\index.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarSelect.tests.demos">
+      <metrics statements="32" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="10"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSelect\tests\demos\basic.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="90" count="1" type="stmt"/>
+        <line num="111" count="1" type="stmt"/>
+      </file>
+      <file name="couplet.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSelect\tests\demos\couplet.tsx">
+        <metrics statements="22" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="8"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="5" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="5" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="89" count="5" type="stmt"/>
+        <line num="97" count="5" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarSwitch">
+      <metrics statements="4" coveredstatements="4" conditionals="12" coveredconditionals="12" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSwitch\index.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="12" coveredconditionals="12" methods="1" coveredmethods="1"/>
+        <line num="22" count="17" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="60" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarSwitch.demo">
+      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSwitch\demo\index.tsx">
+        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarSwitch.tests.demos">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarSwitch\tests\demos\basic.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarText">
+      <metrics statements="5" coveredstatements="2" conditionals="13" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarText\index.tsx">
+        <metrics statements="5" coveredstatements="2" conditionals="13" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="27" count="17" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="79" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarText.demo">
+      <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarText\demo\index.tsx">
+        <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarTextArea">
+      <metrics statements="12" coveredstatements="12" conditionals="19" coveredconditionals="18" methods="5" coveredmethods="5"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarTextArea\index.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="19" coveredconditionals="18" methods="5" coveredmethods="5"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="47" count="17" type="stmt"/>
+        <line num="49" count="17" type="stmt"/>
+        <line num="50" count="17" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="17" type="stmt"/>
+        <line num="53" count="17" type="stmt"/>
+        <line num="61" count="17" type="stmt"/>
+        <line num="63" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="66" count="17" type="stmt"/>
+        <line num="78" count="34" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="101" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarTextArea.demo">
+      <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarTextArea\demo\index.tsx">
+        <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.NomarTextArea.tests.demos">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\NomarTextArea\tests\demos\basic.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.RangeDatePicker">
+      <metrics statements="17" coveredstatements="17" conditionals="41" coveredconditionals="29" methods="7" coveredmethods="7"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\RangeDatePicker\index.tsx">
+        <metrics statements="17" coveredstatements="17" conditionals="41" coveredconditionals="29" methods="7" coveredmethods="7"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="29" count="23" type="stmt"/>
+        <line num="30" count="23" type="stmt"/>
+        <line num="51" count="23" type="stmt"/>
+        <line num="53" count="23" type="stmt"/>
+        <line num="55" count="23" type="stmt"/>
+        <line num="75" count="33" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="33" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="85" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="98" count="3" type="stmt"/>
+        <line num="119" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="120" count="31" type="stmt"/>
+        <line num="128" count="2" type="stmt"/>
+        <line num="129" count="2" type="cond" truecount="1" falsecount="2"/>
+        <line num="139" count="4" type="stmt"/>
+        <line num="148" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.RangeDatePicker.demo">
+      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\RangeDatePicker\demo\index.tsx">
+        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.RangeDatePicker.tests.demos">
+      <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\RangeDatePicker\tests\demos\basic.tsx">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.TextItem">
+      <metrics statements="26" coveredstatements="20" conditionals="48" coveredconditionals="31" methods="6" coveredmethods="5"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\TextItem\index.tsx">
+        <metrics statements="26" coveredstatements="20" conditionals="48" coveredconditionals="31" methods="6" coveredmethods="5"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="10" count="17" type="stmt"/>
+        <line num="11" count="536" type="stmt"/>
+        <line num="12" count="536" type="stmt"/>
+        <line num="13" count="536" type="stmt"/>
+        <line num="29" count="536" type="stmt"/>
+        <line num="31" count="536" type="stmt"/>
+        <line num="32" count="89" type="stmt"/>
+        <line num="33" count="89" type="cond" truecount="2" falsecount="2"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="45" count="536" type="stmt"/>
+        <line num="46" count="453" type="cond" truecount="4" falsecount="0"/>
+        <line num="47" count="40" type="stmt"/>
+        <line num="48" count="40" type="cond" truecount="3" falsecount="1"/>
+        <line num="49" count="40" type="stmt"/>
+        <line num="53" count="536" type="stmt"/>
+        <line num="63" count="536" type="stmt"/>
+        <line num="64" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="27" type="cond" truecount="1" falsecount="1"/>
+        <line num="68" count="536" type="stmt"/>
+        <line num="84" count="28" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+      </file>
+      <file name="interface.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\TextItem\interface.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Title">
+      <metrics statements="3" coveredstatements="3" conditionals="20" coveredconditionals="18" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\components\Title\index.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="20" coveredconditionals="18" methods="1" coveredmethods="1"/>
+        <line num="18" count="17" type="stmt"/>
+        <line num="30" count="315" type="stmt"/>
+        <line num="31" count="315" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.const">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\const\index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.tests.groupUsage">
+      <metrics statements="36" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="15" coveredmethods="11"/>
+      <file name="groupUsageTest.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\tests\groupUsage\groupUsageTest.tsx">
+        <metrics statements="17" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="126" count="27" type="stmt"/>
+        <line num="136" count="1" type="stmt"/>
+      </file>
+      <file name="jsonGroupTest.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\tests\groupUsage\jsonGroupTest.tsx">
+        <metrics statements="19" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="6"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="124" count="30" type="stmt"/>
+        <line num="135" count="1" type="stmt"/>
+        <line num="136" count="2" type="stmt"/>
+        <line num="137" count="2" type="stmt"/>
+        <line num="139" count="2" type="stmt"/>
+        <line num="140" count="1" type="stmt"/>
+        <line num="145" count="2" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="148" count="2" type="stmt"/>
+        <line num="149" count="1" type="stmt"/>
+        <line num="152" count="2" type="stmt"/>
+        <line num="160" count="2" type="stmt"/>
+        <line num="164" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.tests.relativesUsage">
+      <metrics statements="19" coveredstatements="19" conditionals="18" coveredconditionals="18" methods="4" coveredmethods="4"/>
+      <file name="basic.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\tests\relativesUsage\basic.tsx">
+        <metrics statements="19" coveredstatements="19" conditionals="18" coveredconditionals="18" methods="4" coveredmethods="4"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="123" count="1" type="stmt"/>
+        <line num="124" count="6" type="stmt"/>
+        <line num="125" count="6" type="stmt"/>
+        <line num="126" count="6" type="stmt"/>
+        <line num="133" count="6" type="stmt"/>
+        <line num="134" count="3" type="stmt"/>
+        <line num="139" count="6" type="stmt"/>
+        <line num="183" count="6" type="stmt"/>
+        <line num="190" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="191" count="2" type="stmt"/>
+        <line num="194" count="6" type="stmt"/>
+        <line num="251" count="2" type="stmt"/>
+        <line num="256" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="139" coveredstatements="66" conditionals="75" coveredconditionals="38" methods="27" coveredmethods="11"/>
+      <file name="index.tsx" path="G:\浩鲸学习\alita框架\DynamicForm\src\utils\index.tsx">
+        <metrics statements="93" coveredstatements="24" conditionals="39" coveredconditionals="10" methods="19" coveredmethods="3"/>
+        <line num="4" count="17" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="25" count="17" type="stmt"/>
+        <line num="30" count="20" type="stmt"/>
+        <line num="31" count="20" type="cond" truecount="3" falsecount="2"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="14" type="stmt"/>
+        <line num="46" count="14" type="stmt"/>
+        <line num="48" count="20" type="cond" truecount="3" falsecount="1"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="20" type="cond" truecount="4" falsecount="0"/>
+        <line num="52" count="7" type="stmt"/>
+        <line num="54" count="20" type="stmt"/>
+        <line num="57" count="17" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="6" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="72" count="17" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="85" count="17" type="stmt"/>
+        <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="94" count="17" type="stmt"/>
+        <line num="99" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="112" count="17" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="120" count="17" type="cond" truecount="0" falsecount="1"/>
+        <line num="126" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="153" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="155" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="175" count="0" type="stmt"/>
+        <line num="177" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="184" count="0" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="190" count="0" type="stmt"/>
+        <line num="194" count="0" type="stmt"/>
+        <line num="197" count="0" type="stmt"/>
+        <line num="199" count="0" type="stmt"/>
+        <line num="200" count="0" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+      </file>
+      <file name="menu.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\utils\menu.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="17" type="stmt"/>
+        <line num="21" count="17" type="stmt"/>
+        <line num="23" count="17" type="stmt"/>
+      </file>
+      <file name="tool.ts" path="G:\浩鲸学习\alita框架\DynamicForm\src\utils\tool.ts">
+        <metrics statements="43" coveredstatements="39" conditionals="36" coveredconditionals="28" methods="8" coveredmethods="8"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="11" count="52" type="stmt"/>
+        <line num="12" count="52" type="stmt"/>
+        <line num="13" count="52" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="18" type="stmt"/>
+        <line num="15" count="18" type="stmt"/>
+        <line num="17" count="34" type="stmt"/>
+        <line num="24" count="17" type="stmt"/>
+        <line num="25" count="16" type="cond" truecount="0" falsecount="1"/>
+        <line num="26" count="16" type="stmt"/>
+        <line num="27" count="16" type="stmt"/>
+        <line num="28" count="22" type="stmt"/>
+        <line num="30" count="16" type="stmt"/>
+        <line num="40" count="17" type="stmt"/>
+        <line num="45" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="53" count="16" type="stmt"/>
+        <line num="54" count="12" type="stmt"/>
+        <line num="55" count="12" type="cond" truecount="3" falsecount="1"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="63" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="17" type="stmt"/>
+        <line num="68" count="250" type="stmt"/>
+        <line num="69" count="250" type="stmt"/>
+        <line num="71" count="1045" type="cond" truecount="2" falsecount="0"/>
+        <line num="72" count="847" type="stmt"/>
+        <line num="74" count="198" type="stmt"/>
+        <line num="77" count="250" type="stmt"/>
+        <line num="80" count="17" type="stmt"/>
+        <line num="81" count="315" type="cond" truecount="2" falsecount="0"/>
+        <line num="82" count="3" type="stmt"/>
+        <line num="84" count="315" type="cond" truecount="4" falsecount="0"/>
+        <line num="85" count="250" type="cond" truecount="1" falsecount="1"/>
+        <line num="86" count="250" type="stmt"/>
+        <line num="87" count="250" type="cond" truecount="2" falsecount="0"/>
+        <line num="88" count="5" type="stmt"/>
+        <line num="89" count="245" type="cond" truecount="4" falsecount="0"/>
+        <line num="90" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="93" count="8" type="stmt"/>
+        <line num="97" count="250" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
