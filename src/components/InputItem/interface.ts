@@ -1,13 +1,32 @@
+import {
+  InputEventHandler,
+  StringAndUdfEvent,
+  StringEvent,
+} from '../../PropsType';
+
 export interface IInputItemProps {
+  fieldProps: string;
   isVertical?: boolean;
   value?: string;
   placeholder?: string;
-  readOnly?: boolean;
-  onClick?: () => void;
+  editable?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   labelNumber?: number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: StringEvent) => void;
   coverStyle?: React.CSSProperties;
   disabled?: boolean;
   extra?: string | React.ReactNode;
   className?: string;
+  onBlur?: InputEventHandler;
+  onFocus?: InputEventHandler;
+  clear?: boolean;
+  maxLength?: number;
+  type?:
+    | 'text'
+    | 'bankCard'
+    | 'phone'
+    | 'password'
+    | 'number'
+    | 'digit'
+    | 'money';
 }

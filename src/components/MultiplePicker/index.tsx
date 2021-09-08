@@ -2,11 +2,11 @@ import React, { FC, useState, useEffect } from 'react';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
-import Hidden from '../Hidden';
-import '../../styles/index.less';
+import Title from '../Title';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
-const MultiplePicker: FC<IMultiplePickerProps> = props => {
-  const [initValue, setInitValue] = useState<string | undefined>();
+const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -15,73 +15,52 @@ const MultiplePicker: FC<IMultiplePickerProps> = props => {
     required = false,
     title,
     hasStar = true,
-    positionType = 'horizontal',
-    subTitle,
-    hidden = false,
     onChange,
     data = [],
     alias = {
       label: 'label',
       value: 'value',
     },
+    defaultValue,
+    titleProps,
   } = props;
-  const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = data.map(item => ({
+    const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
     }));
     setAliasData(newData);
   }, [data]);
 
-  const fieldChange = (values: (string | number)[] | undefined, flag: string) => {
+  const fieldChange = (
+    values: (string | number)[] | undefined,
+    flag?: string,
+  ) => {
     if (flag === 'init') return;
     if (onChange) onChange(values || []);
   };
 
   return (
-    <Hidden hidden={hidden}>
-      <React.Fragment>
-        <div className="alitajs-dform-input-title">
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-              {subTitle}
-            </div>
-          )}
-        </div>
-        <Field
-          name={fieldProps}
-          rules={rules || [{ required, message: `请选择${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            if (nextValue && nextValue[fieldProps]) {
-              setInitValue(JSON.stringify(nextValue[fieldProps]));
-            } else {
-              setInitValue(undefined);
-            }
-            return prevValue !== nextValue;
-          }}
-        >
-          <MultiplePickerGroup
-            {...props}
-            data={aliasData}
-            initValue={initValue}
-            onChange={fieldChange}
-          >
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span className="alitajs-dform-title">
-              {title}
-            </span>
-          </MultiplePickerGroup>
-        </Field>
-      </React.Fragment>
-    </Hidden>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        initialValue={defaultValue}
+      >
+        <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </MultiplePickerGroup>
+      </Field>
+    </Title>
   );
 };
 
+MultiplePicker.displayName = 'multiplePicker';
 export default MultiplePicker;

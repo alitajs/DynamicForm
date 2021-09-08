@@ -4,7 +4,12 @@
  */
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
+import DformCheckBox from '..';
 
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
@@ -27,21 +32,6 @@ const Page: FC = () => {
     // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
-  const formsData = [
-    {
-      type: 'checkbox',
-      title: '喜欢的水果',
-      required: true,
-      data: fruitsList,
-      fieldProps: 'fruit',
-      chunk: 2,
-      alias: {
-        label: 'foodName',
-        value: 'foodId',
-      },
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
     fruit: ['watermelon', 'orange'],
   };
@@ -50,13 +40,35 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     isDev: true,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <DformCheckBox
+          title="喜欢的水果"
+          required={true}
+          data={fruitsList}
+          fieldProps="fruit"
+          chunk={2}
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+        />
+        <DformCheckBox
+          title="喜欢的水果(默认值)"
+          data={fruitsList}
+          fieldProps="defaultValue"
+          chunk={3}
+          alias={{
+            label: 'foodName',
+            value: 'foodId',
+          }}
+          defaultValue={['orange']}
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button
         type="primary"

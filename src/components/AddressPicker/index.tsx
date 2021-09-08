@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import Field from '../Field';
+import Title from '../Title';
 import AddressPickerGroup from './AddressPickerGroup';
-import { IAddressPickerProps } from './interface';
-import '../../styles/index.less';
+import { IAddressPickerProps, valueProps } from './interface';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
-const AddressPicker: FC<IAddressPickerProps> = props => {
-  const [initValue, setInitValue] = useState<string | undefined>();
-
+const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const {
     fieldProps,
     rules,
@@ -14,51 +14,44 @@ const AddressPicker: FC<IAddressPickerProps> = props => {
     title,
     hasStar = true,
     positionType = 'horizontal',
-    subTitle,
-    hidden = false,
+    extra,
     onChange,
+    defaultValue,
+    titleProps,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
-  const fieldChange = (val: (number | string)[] | undefined, flag: 'change' | 'init') => {
-    if (flag === 'change' && onChange) onChange(val);
+  const fieldChange = (val: valueProps | undefined) => {
+    if (onChange) onChange(val);
   };
 
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          <div className="alitajs-dform-input-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
-                {subTitle}
-              </div>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          return prevValue !== nextValue;
+        }}
+        initialValue={defaultValue}
+      >
+        <AddressPickerGroup
+          {...props}
+          extra={isVertical ? '' : extra}
+          onChange={fieldChange}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
+            <div>{title}</div>
           </div>
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            shouldUpdate={(prevValue: any, nextValue: any) => {
-              // if (nextValue && nextValue[fieldProps] && prevValue !== nextValue) {
-              //   setInitValue(JSON.stringify(nextValue[fieldProps]));
-              // } else {
-              //   setInitValue(undefined);
-              // }
-              setInitValue(nextValue && nextValue[fieldProps as any]);
-              return prevValue !== nextValue;
-            }}
-          >
-            <AddressPickerGroup {...props} initValue={initValue} onChange={fieldChange} />
-          </Field>
-        </React.Fragment>
-      )}
-    </>
+        </AddressPickerGroup>
+      </Field>
+    </Title>
   );
 };
 
+AddressPicker.displayName = 'addressPicker';
 export default AddressPicker;

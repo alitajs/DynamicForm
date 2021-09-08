@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
+import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
-import '../../styles/index.less';
+import Title from '../Title';
 
-const NomarPicker: FC<INomarPickerProps> = props => {
-  const [initValue, setInitValue] = useState(undefined);
+const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -14,66 +14,52 @@ const NomarPicker: FC<INomarPickerProps> = props => {
     required = false,
     title,
     hasStar = true,
-    positionType = 'horizontal',
-    subTitle,
-    hidden = false,
     onChange,
     data,
     alias = {
       label: 'label',
       value: 'value',
     },
+    defaultValue,
+    titleProps,
   } = props;
 
-  const isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = data.map(item => ({
+    const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
     }));
     setAliasData(newData);
   }, [data]);
 
-  const fieldChange = (values: any, flag: string) => {
-    if (flag === 'init') return;
-    if (onChange && values !== initValue) onChange(values);
+  const fieldChange = (values: any) => {
+    if (onChange) onChange(values);
   };
+
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          <div className="alitajs-dform-input-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
-                {subTitle}
-              </div>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          return prevValue !== nextValue;
+        }}
+        initialValue={defaultValue}
+      >
+        <PickerGroup {...props} onChange={fieldChange} data={aliasData}>
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
+            <div>{title}</div>
           </div>
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            shouldUpdate={(prevValue: any, nextValue: any) => {
-              setInitValue(nextValue && nextValue[fieldProps as any]);
-              return prevValue !== nextValue;
-            }}
-          >
-            <PickerGroup {...props} initValue={initValue} onChange={fieldChange} data={aliasData}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-            </PickerGroup>
-          </Field>
-        </React.Fragment>
-      )}
-    </>
+        </PickerGroup>
+      </Field>
+    </Title>
   );
 };
 
-export default NomarPicker;
+DformPicker.displayName = 'dformPicker';
+export default DformPicker;

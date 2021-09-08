@@ -1,12 +1,13 @@
 import React, { FC, useState, useEffect } from 'react';
-import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
-import classnames from 'classnames';
 import Field from '../Field';
+import Title from '../Title';
 import NomarRadioGroup from './radioGroup';
-import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import { allPrefixCls } from '../../const/index';
+import { IAliasProps } from '../../PropsType';
+import './index.less';
 
+const prefixCls = 'alitajs-dform-radio';
 interface radioItem {
   [key: string]: string | number;
 }
@@ -29,10 +30,13 @@ export interface INomarRadioProps {
   alias?: IAliasProps;
   className?: string;
   allowUnChecked?: boolean;
+  labelNumber?: number;
+  extra?: string | React.ReactNode;
+  defaultValue?: string;
+  titleProps?: any;
 }
 
-const NomarRadio: FC<INomarRadioProps> = props => {
-  const [initValue, setInitValue] = useState('');
+const DformRadio: FC<INomarRadioProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
@@ -46,15 +50,16 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     positionType = 'horizontal',
     hasStar = true,
     radioType = 'horizontal',
-    subTitle,
     onChange,
-    hidden = false,
     disabled = false,
     alias = {
       label: 'label',
       value: 'value',
     },
     className = '',
+    labelNumber = 5,
+    defaultValue,
+    titleProps,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -62,7 +67,7 @@ const NomarRadio: FC<INomarRadioProps> = props => {
 
   useEffect(() => {
     if (data.length === 0) return;
-    const newData = data.map(item => ({
+    const newData = data.map((item) => ({
       label: item[label],
       value: item[value],
     }));
@@ -73,59 +78,41 @@ const NomarRadio: FC<INomarRadioProps> = props => {
     isVertical = true;
   }
 
-  const radioChange = (e: string | number | undefined, flag: string) => {
-    if (onChange && e !== initValue && flag === 'change') onChange(e);
+  const radioChange = (e: string | number | undefined) => {
+    if (onChange) onChange(e);
   };
 
-  const RadioGroup = () => (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        setInitValue(nextValue && nextValue[fieldProps as any]);
-        return prevValue !== nextValue;
-      }}
-    >
-      <NomarRadioGroup
-        allowUnChecked={allowUnChecked}
-        data={aliasData}
-        positionType={positionType}
-        radioType={radioType}
-        initValue={initValue}
-        onChange={radioChange}
-        coverStyle={coverStyle}
-        disabled={disabled}
-        className={className}
-      />
-    </Field>
-  );
-
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">{title}</span>
-              {subTitle}
-            </div>
-          )}
-          <div
-            className={classnames({
-              'alitajs-dform-vertical-radio': isVertical,
-              'alitajs-dform-radio': true,
-            })}
+    <Title {...titleProps}>
+      <div className={`${prefixCls}-field`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          initialValue={defaultValue}
+        >
+          <NomarRadioGroup
+            allowUnChecked={allowUnChecked}
+            data={aliasData}
+            positionType={positionType}
+            radioType={radioType}
+            onChange={radioChange}
+            coverStyle={coverStyle}
+            disabled={disabled}
+            className={className}
+            labelNumber={labelNumber}
           >
-            <List.Item key={fieldProps} extra={RadioGroup()}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">{title}</span>
-            </List.Item>
-          </div>
-        </React.Fragment>
-      )}
-    </>
+            <div className={`${allPrefixCls}-title`}>
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+            </div>
+          </NomarRadioGroup>
+        </Field>
+      </div>
+    </Title>
   );
 };
 
-export default NomarRadio;
+DformRadio.displayName = 'dformRadio';
+export default DformRadio;

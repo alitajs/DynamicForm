@@ -4,7 +4,9 @@ import { Rule } from 'rc-field-form/es/interface';
 import { TextAreaItemPropsType } from 'antd-mobile/es/textarea-item/PropsType';
 import classnames from 'classnames';
 import Field from '../Field';
-import '../../styles/index.less';
+import Title from '../Title';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
   coverStyle?: React.CSSProperties;
@@ -20,9 +22,12 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   hidden?: boolean;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   className?: string;
+  defaultValue?: string;
+  errorValue?: any;
+  titleProps?: any;
 }
 
-const NomarTextArea: FC<INomarTextAreaProps> = props => {
+const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   const {
     coverStyle,
     required = false,
@@ -38,21 +43,22 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
     onBlur,
     editable = true,
     className = '',
+    defaultValue,
+    errorValue,
+    titleProps,
     ...otherProps
   } = props;
-
-  // let autoFocusInst: { focus: () => void } | null = null;
 
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
 
   const titleDiv = () => (
-    <>
-      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-      <span className="alitajs-dform-title">
-        {title}
-      </span>
-    </>
+    <div className={`${allPrefixCls}-title`}>
+      {required && hasStar && (
+        <div className={`${allPrefixCls}-redStar`}>*</div>
+      )}
+      <div>{title}</div>
+    </div>
   );
 
   const inputOnBlur = (val: string | undefined) => {
@@ -61,58 +67,41 @@ const NomarTextArea: FC<INomarTextAreaProps> = props => {
   };
 
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          <div className="alitajs-dform-area-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span id={`alita-dform-${fieldProps}`} className="alitajs-dform-title">
-                  {title}
-                </span>
-                {subTitle}
-              </div>
-            )}
-            {extra !== '' && <div className="alitajs-dform-extra">{extra}</div>}
-          </div>
-          <div
-            className={classnames({
-              'alitajs-dform-vertical-area': isVertical,
-              'alitajs-dform-area': true,
-              'alitajs-dform-disabled': !editable,
-            })}
-          >
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请输入${title}` }]}
-              shouldUpdate={(prevValue: any, nextValue: any) => {
-                // if (autoFocusInst) autoFocusInst.focus();
-                return prevValue !== nextValue;
-              }}
-            >
-              <TextareaItem
-                {...otherProps}
-                // eslint-disable-next-line no-return-assign
-                // ref={(el: any) => (autoFocusInst = el)}
-                title={titleDiv()}
-                editable={editable}
-                style={{
-                  textAlign: rows === 1 ? 'right' : 'left',
-                  ...coverStyle,
-                }}
-                className={className}
-                rows={rows}
-                onBlur={val => {
-                  inputOnBlur(val);
-                }}
-              />
-            </Field>
-          </div>
-        </React.Fragment>
-      )}
-    </>
+    <Title {...titleProps}>
+      <div
+        className={classnames({
+          [`${allPrefixCls}-area`]: true,
+          [`${allPrefixCls}-vertical-area`]: isVertical,
+          [`${allPrefixCls}-disabled`]: !editable,
+        })}
+      >
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请输入${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            return prevValue !== nextValue;
+          }}
+          initialValue={defaultValue}
+        >
+          <TextareaItem
+            {...otherProps}
+            title={titleDiv()}
+            editable={editable}
+            style={{
+              textAlign: rows === 1 ? 'right' : 'left',
+              ...coverStyle,
+            }}
+            className={className}
+            rows={rows}
+            onBlur={(val) => {
+              inputOnBlur(val);
+            }}
+          />
+        </Field>
+      </div>
+    </Title>
   );
 };
 
-export default NomarTextArea;
+DformTextArea.displayName = 'dformTextArea';
+export default DformTextArea;

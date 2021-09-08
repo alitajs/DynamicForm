@@ -1,0 +1,63 @@
+@import '../../styles/index.less';
+
+.@{prefixCls}-cover-radio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: @alita-dform-height;
+
+  &-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10 * @hd 0;
+  }
+
+  &-field {
+    flex: 1;
+    overflow: auto;
+  }
+
+  .alitajs-dform-cover-radio-wrapper {
+    font-size: @alita-dform-value-font-size;
+    padding: 3 * @hd 15 * @hd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20 * @hd;
+    color: @alita-dform-value-color;
+    // margin-bottom: 7 * @hd;
+    // margin-top: 7 * @hd;
+  }
+
+  &-wrapper-checked {
+    .alitajs-dform-cover-radio-wrapper();
+    background-color: @alita-dform-radio-color;
+    color: @alita-dform-radio-font-color !important;
+    animation-name: colorful;
+    animation-duration: 1s;
+  }
+
+  &-wrapper-margin {
+    margin-left: 0 * @hd;
+    margin-right: 20 * @hd;
+  }
+
+  &-wrapper-cover {
+    // border: 1 * @hd solid @alita-dform-radio-color;
+    color: @alita-dform-radio-color;
+  }
+
+  &-item-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &-position {
+    justify-content: flex-end !important;
+  }
+}
+
+.alitajs-dform-vertical-cover-radio {
+  .alitajs-dform-cover-radio();
+}

@@ -1,9 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
+import Title from '../Title';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
-import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import { IAliasProps } from '../../PropsType';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
 interface INomarCheckBoxProps {
   title: string;
@@ -21,10 +23,11 @@ interface INomarCheckBoxProps {
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
+  defaultValue?: (string | number)[];
+  titleProps?: any;
 }
 
-const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
-  const [initValue, setInitValue] = useState<string | undefined>();
+const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
   const {
     coverStyle,
@@ -34,16 +37,15 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     rules,
     required = false,
     data = [],
-    hasStar = true,
-    subTitle,
     onChange,
     disabled = false,
-    hidden = false,
     chunk = 1,
     alias = {
       label: 'label',
       value: 'value',
     },
+    defaultValue,
+    titleProps,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -56,47 +58,35 @@ const NomarCheckBox: FC<INomarCheckBoxProps> = props => {
     setAliasData(newData);
   }, [data]);
 
-  const boxChange = (e: (string | number)[] | undefined, flag: 'init' | 'change') => {
-    if (onChange && flag === 'change' && e !== initValue) onChange(e || []);
+  const boxChange = (e: (string | number)[] | undefined) => {
+    if (onChange) onChange(e || []);
   };
 
   return (
-    <>
-      {!hidden && (
-        <div className="alitajs-dform-check-box">
-          <div className="alitajs-dform-vertical-title">
-            {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-            <span className="alitajs-dform-title">{title}</span>
-            {subTitle}
-          </div>
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            shouldUpdate={(prevValue: any, nextValue: any) => {
-              if (nextValue && nextValue[fieldProps]) {
-                setInitValue(JSON.stringify(nextValue[fieldProps]));
-              } else {
-                setInitValue(undefined);
-              }
-              // setInitValue(nextValue && nextValue[fieldProps as any]);
-              return prevValue !== nextValue;
-            }}
-          >
-            <CheckBoxGroup
-              disableItem={props.disableItem}
-              data={aliasData}
-              onChange={boxChange}
-              coverStyle={coverStyle}
-              initValue={initValue}
-              disabled={disabled}
-              chunk={chunk}
-              className={className}
-            />
-          </Field>
-        </div>
-      )}
-    </>
+    <Title {...titleProps}>
+      <div className={`${allPrefixCls}-check-box`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            return prevValue !== nextValue;
+          }}
+          initialValue={defaultValue}
+        >
+          <CheckBoxGroup
+            disableItem={props.disableItem}
+            data={aliasData}
+            onChange={boxChange}
+            coverStyle={coverStyle}
+            disabled={disabled}
+            chunk={chunk}
+            className={className}
+          />
+        </Field>
+      </div>
+    </Title>
   );
 };
 
-export default NomarCheckBox;
+DformCheckBox.displayName = 'dformCheckBox';
+export default DformCheckBox;

@@ -6,12 +6,12 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
   getRandom,
 } from '@alitajs/dform';
+import NomarFile from '../';
 
 const contractList = [
   { title: '合约模板2020.pdf', fileId: '1' },
@@ -30,53 +30,50 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const formsData = [
-    {
-      type: 'file',
-      required: true,
-      fieldProps: 'contract',
-      title: '合同',
-      onClick: (res: any) => {
-        console.log(res);
-      },
-      onChange: (res: any, delItem: any) => {
-        console.log(res, delItem);
-      },
-      alias: {
-        id: 'fileId',
-      },
-      upload: (res: any) => {
-        const list = form.getFieldsValue().contract || [];
-        if (res && res.length) {
-          res.map((item: any) => {
-            list.push({
-              title: item.name,
-              fileId: getRandom(),
-            });
-          });
-        }
-        form.setFieldsValue({
-          contract: list,
-        });
-      },
-    },
-  ] as IFormItemProps[];
-
   const formProps = {
     form,
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues: {
       contract: contractList,
     },
-    isDev: true,
+    isDev: false,
   };
 
   return (
     <>
-      <DynamicForm {...formProps} />
-      <WhiteSpace size="sm" />
+      <DynamicForm {...formProps}>
+        <NomarFile
+          required
+          fieldProps="contract"
+          title="合同"
+          onClick={(res: any) => {
+            console.log(res);
+          }}
+          onChange={(res: any, delItem: any) => {
+            console.log(res, delItem);
+          }}
+          alias={{
+            id: 'fileId',
+            title: 'title',
+          }}
+          upload={(res: any) => {
+            const list = form.getFieldsValue().contract || [];
+            if (res && res.length) {
+              res.map((item: any) => {
+                list.push({
+                  title: item.name,
+                  fileId: getRandom(),
+                });
+              });
+            }
+            form.setFieldsValue({
+              contract: list,
+            });
+          }}
+        />
+      </DynamicForm>
+      <WhiteSpace size="lg" />
       <Button
         type="primary"
         onClick={() => {

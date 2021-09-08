@@ -1,5 +1,6 @@
 import { ImagePickerPropTypes } from 'antd-mobile/es/image-picker/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
+import { ErrorValueProps } from '../../PropsType';
 
 export interface ImageFile {
   url: string;
@@ -19,11 +20,17 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   extra?: string | React.ReactNode;
   compressRatio?: number;
   className?: string;
+  defaultValue?: any[] | undefined;
+  titleProps?: any;
 }
 
 export interface ImagePickerGroupProps {
-  initValue: any[];
-  onChange: (files: ImageFile[], operationType: string, index: number | undefined) => void;
+  value?: any[] | undefined;
+  onChange: (
+    files: ImageFile[],
+    operationType: string,
+    index: number | undefined,
+  ) => void;
   limitSize?: number | undefined;
   compressRatio?: number;
 }

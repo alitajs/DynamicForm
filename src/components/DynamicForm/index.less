@@ -1,0 +1,26 @@
+@import '../../styles/index.less';
+
+.@{prefixCls}-card {
+  // margin: 0 12 * @hd;
+  padding: 14 * @hd 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 6 * @hd;
+  border: 1 * @hd solid rgb(237, 240, 245);
+
+  &-title-box {
+    display: flex;
+    flex-direction: row;
+    padding: 0 12 * @hd;
+  }
+  &-require {
+    color: #ff4848;
+    font-size: 17 * @hd;
+  }
+  &-title {
+    flex: 1;
+    color: #333;
+    font-weight: bold;
+    font-size: 18 * @hd;
+  }
+}

@@ -1,11 +1,14 @@
 import React, { FC, useState, useEffect } from 'react';
-import { List } from 'antd-mobile';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
-import { IAliasProps } from '../../DynamicForm';
-import '../../styles/index.less';
+import Title from '../Title';
+import { IAliasProps } from '../../PropsType';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
+
+const prefixCls = 'alitajs-dform-cover-radio';
 
 interface IDataItem {
   [key: string]: string | number;
@@ -27,12 +30,13 @@ interface ICoverRadioProps {
   className?: string;
   hidden?: boolean;
   alias?: IAliasProps;
+  labelNumber?: number;
+  defaultValue?: string;
+  titleProps?: any;
 }
 
-const NomarTab: FC<ICoverRadioProps> = props => {
-  const [initValue, setInitValue] = useState('');
+const CoverRadio: FC<ICoverRadioProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
-
   const {
     coverStyle,
     className,
@@ -46,19 +50,20 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     onChange,
     positionType = 'horizontal',
     radioType = 'horizontal',
-    hidden = false,
-    subTitle,
     alias = {
       label: 'label',
       value: 'value',
     },
+    labelNumber = 5,
+    defaultValue,
+    titleProps,
   } = props;
 
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = (data || []).map(item => ({
+    const newData = (data || []).map((item) => ({
       label: item[label],
       value: item[value],
     }));
@@ -69,62 +74,48 @@ const NomarTab: FC<ICoverRadioProps> = props => {
     isVertical = true;
   }
 
-  const radioChange = (e: string | number | undefined, flag?: string) => {
-    if (onChange && e !== initValue && flag === 'change') onChange(e);
+  const radioChange = (e: string | number | undefined) => {
+    if (onChange) onChange(e);
   };
 
-  const RadioGroup = () => (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        setInitValue(nextValue && nextValue[fieldProps as any]);
-        return prevValue !== nextValue;
-      }}
-    >
-      <CoverRadioGroup
-        data={aliasData}
-        positionType={positionType}
-        radioType={radioType}
-        initValue={initValue}
-        onChange={radioChange}
-        disabled={disabled}
-        coverStyle={coverStyle}
-        className={className}
-      />
-    </Field>
-  );
-
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-              {subTitle}
-            </div>
-          )}
-          <div
-            className={classnames({
-              'alitajs-dform-cover-radio': true,
-              'alitajs-dform-vertical-cover-radio': isVertical,
-            })}
+    <Title {...titleProps}>
+      <div
+        className={classnames({
+          [prefixCls]: true,
+          [`${allPrefixCls}-vertical-radio`]: isVertical,
+        })}
+      >
+        <div className={`${prefixCls}-field`}>
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            initialValue={defaultValue}
           >
-            <List.Item key={fieldProps} extra={RadioGroup()}>
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-            </List.Item>
-          </div>
-        </React.Fragment>
-      )}
-    </>
+            <CoverRadioGroup
+              data={aliasData}
+              positionType={positionType}
+              radioType={radioType}
+              onChange={radioChange}
+              disabled={disabled}
+              coverStyle={coverStyle}
+              className={className}
+              labelNumber={labelNumber}
+            >
+              <div className={`${allPrefixCls}-title`}>
+                {required && hasStar && (
+                  <div className={`${allPrefixCls}-redStar`}>*</div>
+                )}
+                <div>{title}</div>
+              </div>
+            </CoverRadioGroup>
+          </Field>
+        </div>
+      </div>
+    </Title>
   );
 };
 
-export default NomarTab;
+CoverRadio.displayName = 'coverRadio';
+
+export default CoverRadio;

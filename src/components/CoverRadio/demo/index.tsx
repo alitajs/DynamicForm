@@ -5,7 +5,12 @@
 
 import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
+import CoverRadio from '..';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },
@@ -47,45 +52,6 @@ const Page = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const formsData = [
-    {
-      type: 'coverRadio',
-      fieldProps: 'sex',
-      data: sexList,
-      title: '性别',
-      required: true,
-      onChange: (val: any) => {
-        // eslint-disable-next-line no-console
-        console.log(val);
-      },
-      alias: {
-        label: 'sexName',
-        value: 'sexId',
-      },
-    },
-    {
-      type: 'coverRadio',
-      fieldProps: 'sex2',
-      data: sexList,
-      title: '选择您的性别',
-      positionType: 'vertical',
-      alias: {
-        label: 'sexName',
-        value: 'sexId',
-      },
-      disabled: true,
-    },
-    {
-      type: 'coverRadio',
-      fieldProps: 'food',
-      data: foodList,
-      title: '喜欢的食物',
-      required: true,
-      positionType: 'vertical',
-      radioType: 'vertical',
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
     sex2: 'woman',
     sex: 'man',
@@ -94,15 +60,50 @@ const Page = () => {
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
-    isDev: true,
+    isDev: false,
   };
 
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <CoverRadio
+          fieldProps="sex"
+          data={sexList}
+          title="性别(默认值)"
+          required
+          onChange={(val: any) => {
+            // eslint-disable-next-line no-console
+            console.log(val);
+          }}
+          alias={{
+            label: 'sexName',
+            value: 'sexId',
+          }}
+          defaultValue="man"
+        />
+        <CoverRadio
+          fieldProps="sex2"
+          data={sexList}
+          title="选择您的性别(默认值)"
+          positionType="vertical"
+          alias={{
+            label: 'sexName',
+            value: 'sexId',
+          }}
+          disabled
+          defaultValue="woman"
+        />
+        <CoverRadio
+          fieldProps="food"
+          data={foodList}
+          title="喜欢的食物"
+          required={true}
+          positionType="vertical"
+          radioType="vertical"
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

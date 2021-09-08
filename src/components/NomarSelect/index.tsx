@@ -1,94 +1,74 @@
 import React, { FC } from 'react';
-import { Picker, List } from 'antd-mobile';
-import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
-import { Rule } from 'rc-field-form/es/interface';
+import { PickerData } from 'antd-mobile/lib/picker/PropsType';
+import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
-import '../../styles/index.less';
+import Title from '../Title';
+import './index.less';
+import { INomarSelectProps } from './interface';
+import SelectGroup from './NomarSelectGroup';
 
-export interface INomarSelectProps extends Omit<PickerPropsType, 'data'> {
-  coverStyle?: React.CSSProperties;
-  title: string;
-  required?: boolean;
-  fieldProps: string;
-  rules?: Rule[];
-  placeholder?: PickerPropsType['extra'];
-  data?: PickerPropsType['data'];
-  value?: PickerPropsType['value'];
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-  onClick?: () => void;
-  className?: string;
-}
-
-const NomarPicker: FC<INomarSelectProps> = props => {
+const DformSelect: FC<INomarSelectProps> = (props) => {
   const {
-    coverStyle,
     title,
     required = false,
     fieldProps,
     rules,
-    placeholder,
     data = [] as any,
-    positionType = 'horizontal',
     hasStar = true,
-    subTitle,
-    hidden = false,
-    onClick,
-    className,
-    ...otherProps
+    onChange,
+    alias = {
+      label: 'label',
+      value: 'value',
+    },
+    defaultValue,
+    titleProps,
   } = props;
 
-  const isVertical = positionType === 'vertical';
+  const { label = 'label', value = 'value' } = alias;
+  const [initValue, setInitValue] = React.useState<any>();
+  const [aliasData, setAliasData] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    let newAllArray: PickerData[] = [];
+    for (let i = 0; i < data.length; i++) {
+      const newData = data[i].map((item: any) => ({
+        label: item[label],
+        value: item[value],
+      }));
+      newAllArray.push(newData);
+    }
+    setAliasData(newAllArray);
+  }, [data]);
+
+  const fieldChange = (values: any, flag: string) => {
+    if (flag === 'init') return;
+    if (onChange && values !== initValue) onChange(values);
+  };
 
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          {isVertical && (
-            <div className="alitajs-dform-vertical-title">
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-              {subTitle}
-            </div>
-          )}
-          <div
-            className={`alitajs-dform${isVertical ? '-vertical' : ''}-picker`}
-            onClick={e => {
-              e.stopPropagation();
-              if (onClick) onClick();
-            }}
-          >
-            <Field name={fieldProps} rules={rules || [{ required, message: `请选择${title}` }]}>
-              <Picker
-                cascade={false}
-                {...otherProps}
-                style={coverStyle}
-                className={className}
-                extra={placeholder}
-                data={data}
-                title={title}
-              >
-                <List.Item arrow="horizontal">
-                  {!isVertical && (
-                    <div className="alitajs-dform-title-content">
-                      {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                      <span className="alitajs-dform-title">
-                        {title}
-                      </span>
-                    </div>
-                  )}
-                </List.Item>
-              </Picker>
-            </Field>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        initialValue={defaultValue}
+      >
+        <SelectGroup
+          {...props}
+          value={initValue || defaultValue}
+          onChange={fieldChange}
+          data={aliasData}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
           </div>
-        </React.Fragment>
-      )}
-    </>
+        </SelectGroup>
+      </Field>
+    </Title>
   );
 };
 
-export default NomarPicker;
+DformSelect.displayName = 'dformSelect';
+export default DformSelect;

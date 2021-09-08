@@ -4,7 +4,12 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace, Toast } from 'antd-mobile';
-import DynamicForm, { IFormItemProps, useForm, Store, ValidateErrorEntity } from '@alitajs/dform';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  Store,
+  ValidateErrorEntity,
+} from '@alitajs/dform';
 
 import CountryList from '@bang88/china-city-data';
 
@@ -100,6 +105,7 @@ const Page: FC = () => {
       title: '居住地址',
       placeholder: '选择当前居住城市',
       level: 3,
+      required: true,
       data: homeAddrData,
       placeholderList: ['请选择省', '请选择市', '请选择区'],
       onChangeLevel: (values: (string | number)[]) => {
@@ -133,7 +139,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
   return (
     <>

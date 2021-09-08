@@ -1,0 +1,28 @@
+@import '../../styles/index.less';
+
+.@{prefixCls}-file {
+  &-content {
+    padding-left: 15 * @hd;
+    padding-top: 6 * @hd;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 6 * @hd;
+    padding-right: 15 * @hd;
+  }
+
+  &-title {
+    font-size: @alita-dform-value-font-size;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    padding-right: 8 * @hd;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    max-width: calc(100% - 18 * @hd);
+  }
+}

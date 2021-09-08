@@ -1,0 +1,80 @@
+@import '../../styles/index.less';
+
+.@{prefixCls}-radio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: @alita-dform-height;
+
+  &-field {
+    flex: 1;
+    overflow: auto;
+  }
+
+  &-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10 * @hd 0;
+    flex: 1;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-button {
+    width: 15 * @hd;
+    height: 15 * @hd;
+    border: 1 * @hd solid #d9d9d9;
+    border-radius: 50%;
+    padding: 4 * @hd;
+    flex-shrink: 0;
+  }
+
+  &-inner-button {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: @alita-dform-radio-color;
+  }
+
+  &-checked {
+    border: 1 * @hd solid @alita-dform-radio-color;
+    box-shadow: 0 0 1 * @hd;
+  }
+
+  &-label {
+    font-size: @alita-dform-value-font-size;
+    color: @alita-dform-value-color;
+    padding-left: 4 * @hd;
+    padding-right: 4 * @hd;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  &-wrapper-item-vertical {
+    padding-bottom: 7 * @hd;
+    padding-top: 7 * @hd;
+  }
+
+  &-position {
+    justify-content: flex-end;
+  }
+
+  &-item-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.alitajs-dform-vertical-radio {
+  .alitajs-dform-radio();
+  flex-direction: column;
+  align-items: flex-start;
+}

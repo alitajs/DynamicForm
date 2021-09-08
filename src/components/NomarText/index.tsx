@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
+import Title from '../Title';
 import { TextItem } from '../..';
+import { allPrefixCls } from '../../const/index';
 
 export interface INomarTextProps {
   positionType?: 'vertical' | 'horizontal';
@@ -20,16 +22,16 @@ export interface INomarTextProps {
   disabled?: boolean;
   maxLine?: number;
   className?: string;
+  defaultValue?: string;
+  titleProps?: any;
 }
 
-const NomarText: FC<INomarTextProps> = props => {
+const DformText: FC<INomarTextProps> = (props) => {
   const {
     positionType = 'horizontal',
     coverStyle,
     title = '',
     required = false,
-    subTitle,
-    hidden = false,
     fieldProps,
     hasStar = true,
     rules,
@@ -40,50 +42,44 @@ const NomarText: FC<INomarTextProps> = props => {
     maxLine,
     onClick,
     className = '',
+    defaultValue,
+    titleProps,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <>
-      {!hidden && (
-        <React.Fragment>
-          <div className="alitajs-dform-input-title">
-            {isVertical && (
-              <div className="alitajs-dform-vertical-title">
-                {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-                <span className="alitajs-dform-title">
-                  {title}
-                </span>
-                {subTitle}
-              </div>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请输入${title}` }]}
+        initialValue={defaultValue}
+      >
+        <TextItem
+          placeholder={placeholder}
+          value="123"
+          extra={extra}
+          coverStyle={coverStyle}
+          isVertical={isVertical}
+          labelNumber={labelNumber}
+          onClick={onClick}
+          disabled={disabled}
+          maxLine={maxLine}
+          fieldProps={fieldProps}
+          className={className}
+          arrow={false}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
-            {extra !== '' && isVertical && <div className="alitajs-dform-extra">{extra}</div>}
+            <div>{title}</div>
           </div>
-          <Field name={fieldProps} rules={rules || [{ required, message: `请输入${title}` }]}>
-            <TextItem
-              placeholder={placeholder}
-              value="123"
-              extra={extra}
-              coverStyle={coverStyle}
-              isVertical={isVertical}
-              labelNumber={labelNumber}
-              onClick={onClick}
-              disabled={disabled}
-              maxLine={maxLine}
-              fieldProps={fieldProps}
-              className={className}
-            >
-              {required && hasStar && <span className="alitajs-dform-redStar">*</span>}
-              <span className="alitajs-dform-title">
-                {title}
-              </span>
-            </TextItem>
-          </Field>
-        </React.Fragment>
-      )}
-    </>
+        </TextItem>
+      </Field>
+    </Title>
   );
 };
 
-export default NomarText;
+DformText.displayName = 'dformText';
+export default DformText;

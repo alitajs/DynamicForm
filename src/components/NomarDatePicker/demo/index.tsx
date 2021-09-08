@@ -10,6 +10,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   dateChange,
+  DformDatePicker,
 } from '@alitajs/dform';
 
 const Page: FC = () => {
@@ -24,43 +25,7 @@ const Page: FC = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const formsData = [
-    {
-      type: 'date',
-      fieldProps: 'Date',
-      modeType: 'date',
-      title: 'Date',
-      disabled: true,
-      maxDate: new Date(),
-      minDate: new Date(),
-    },
-    {
-      type: 'date',
-      fieldProps: 'Month',
-      modeType: 'month',
-      title: 'Month',
-      required: true,
-    },
-    {
-      type: 'date',
-      fieldProps: 'DateTime',
-      modeType: 'datetime',
-      title: 'DateTime',
-      required: true,
-    },
-    {
-      type: 'date',
-      fieldProps: 'DateTimeVertical',
-      modeType: 'datetime',
-      title: 'DateTimeVertical',
-      required: true,
-      positionType: 'vertical',
-    },
-  ] as IFormItemProps[];
-
   const formsValues = {
-    Date: new Date(),
-    Month: new Date(),
     DateTime: dateChange('2020-02-02 22:22'),
   };
 
@@ -68,15 +33,38 @@ const Page: FC = () => {
     form,
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
-    isDev: true,
+    isDev: false,
   };
 
   return (
     <>
-      <DynamicForm {...formProps} />
-      <WhiteSpace size="sm" />
+      <DynamicForm {...formProps}>
+        <DformDatePicker
+          fieldProps="Date"
+          modeType="date"
+          title="Date"
+          disabled
+          maxDate={new Date()}
+          minDate={new Date()}
+          defaultValue={new Date()}
+        />
+        <DformDatePicker
+          fieldProps="Month"
+          modeType="month"
+          title="Month"
+          required={true}
+        />
+
+        <DformDatePicker
+          fieldProps="DateTime"
+          modeType="datetime"
+          title="DateTimeVertical"
+          required={true}
+          positionType="vertical"
+        />
+      </DynamicForm>
+      <WhiteSpace size="lg" />
       <Button
         type="primary"
         onClick={() => {
