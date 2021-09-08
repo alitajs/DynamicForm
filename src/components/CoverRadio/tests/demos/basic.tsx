@@ -64,7 +64,7 @@ const CoverRadioTestPage: React.FC<BasicProps> = ({
           required={true}
           onChange={(val: any) => {
             // eslint-disable-next-line no-console
-            console.log(val);
+            // console.log(val);
           }}
           alias={{
             label: 'sexName',

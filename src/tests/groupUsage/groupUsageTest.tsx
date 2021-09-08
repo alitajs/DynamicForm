@@ -45,13 +45,9 @@ const fruitData = [
 const Page: FC = () => {
   const [form] = useForm();
   const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
   };
 
   const formsValues = {};
@@ -106,8 +102,6 @@ const Page: FC = () => {
             modeType="month"
             firstProps={{
               onOk: (val: any) => {
-                // eslint-disable-next-line no-console
-                console.log(val);
               },
             }}
           />

@@ -69,8 +69,6 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
       data: radioList,
       title: '发票',
       onChange: (e: string | number) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
       },
     },
     {

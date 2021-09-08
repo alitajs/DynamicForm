@@ -45,13 +45,9 @@ const Couplet: FC = () => {
     }, 3000);
   }, []);
   const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
   };
 
   const formsData = [
