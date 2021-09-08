@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
+import Title from '../Title';
 import { TextItem } from '../..';
 import { allPrefixCls } from '../../const/index';
 
@@ -22,6 +23,7 @@ export interface INomarTextProps {
   maxLine?: number;
   className?: string;
   defaultValue?: string;
+  titleProps?: any;
 }
 
 const DformText: FC<INomarTextProps> = (props) => {
@@ -41,38 +43,41 @@ const DformText: FC<INomarTextProps> = (props) => {
     onClick,
     className = '',
     defaultValue,
+    titleProps,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请输入${title}` }]}
-      initialValue={defaultValue}
-    >
-      <TextItem
-        placeholder={placeholder}
-        value="123"
-        extra={extra}
-        coverStyle={coverStyle}
-        isVertical={isVertical}
-        labelNumber={labelNumber}
-        onClick={onClick}
-        disabled={disabled}
-        maxLine={maxLine}
-        fieldProps={fieldProps}
-        className={className}
-        arrow={false}
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请输入${title}` }]}
+        initialValue={defaultValue}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
-      </TextItem>
-    </Field>
+        <TextItem
+          placeholder={placeholder}
+          value="123"
+          extra={extra}
+          coverStyle={coverStyle}
+          isVertical={isVertical}
+          labelNumber={labelNumber}
+          onClick={onClick}
+          disabled={disabled}
+          maxLine={maxLine}
+          fieldProps={fieldProps}
+          className={className}
+          arrow={false}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </TextItem>
+      </Field>
+    </Title>
   );
 };
 

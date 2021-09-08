@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
+import Title from '../Title';
 import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
@@ -23,6 +24,7 @@ interface INomarCheckBoxProps {
   chunk?: number;
   alias?: IAliasProps;
   defaultValue?: (string | number)[];
+  titleProps?: any;
 }
 
 const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
@@ -43,6 +45,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
       value: 'value',
     },
     defaultValue,
+    titleProps,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -60,26 +63,28 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   };
 
   return (
-    <div className={`${allPrefixCls}-check-box`}>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        shouldUpdate={(prevValue: any, nextValue: any) => {
-          return prevValue !== nextValue;
-        }}
-        initialValue={defaultValue}
-      >
-        <CheckBoxGroup
-          disableItem={props.disableItem}
-          data={aliasData}
-          onChange={boxChange}
-          coverStyle={coverStyle}
-          disabled={disabled}
-          chunk={chunk}
-          className={className}
-        />
-      </Field>
-    </div>
+    <Title {...titleProps}>
+      <div className={`${allPrefixCls}-check-box`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          shouldUpdate={(prevValue: any, nextValue: any) => {
+            return prevValue !== nextValue;
+          }}
+          initialValue={defaultValue}
+        >
+          <CheckBoxGroup
+            disableItem={props.disableItem}
+            data={aliasData}
+            onChange={boxChange}
+            coverStyle={coverStyle}
+            disabled={disabled}
+            chunk={chunk}
+            className={className}
+          />
+        </Field>
+      </div>
+    </Title>
   );
 };
 

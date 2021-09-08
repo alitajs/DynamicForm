@@ -21,6 +21,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   compressRatio?: number;
   className?: string;
   defaultValue?: any[] | undefined;
+  titleProps?: any;
 }
 
 export interface ImagePickerGroupProps {

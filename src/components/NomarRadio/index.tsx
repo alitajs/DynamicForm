@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
+import Title from '../Title';
 import NomarRadioGroup from './radioGroup';
 import { allPrefixCls } from '../../const/index';
 import { IAliasProps } from '../../PropsType';
@@ -32,6 +33,7 @@ export interface INomarRadioProps {
   labelNumber?: number;
   extra?: string | React.ReactNode;
   defaultValue?: string;
+  titleProps?: any;
 }
 
 const DformRadio: FC<INomarRadioProps> = (props) => {
@@ -57,6 +59,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     className = '',
     labelNumber = 5,
     defaultValue,
+    titleProps,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -80,32 +83,34 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
   };
 
   return (
-    <div className={`${prefixCls}-field`}>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        initialValue={defaultValue}
-      >
-        <NomarRadioGroup
-          allowUnChecked={allowUnChecked}
-          data={aliasData}
-          positionType={positionType}
-          radioType={radioType}
-          onChange={radioChange}
-          coverStyle={coverStyle}
-          disabled={disabled}
-          className={className}
-          labelNumber={labelNumber}
+    <Title {...titleProps}>
+      <div className={`${prefixCls}-field`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          initialValue={defaultValue}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
-        </NomarRadioGroup>
-      </Field>
-    </div>
+          <NomarRadioGroup
+            allowUnChecked={allowUnChecked}
+            data={aliasData}
+            positionType={positionType}
+            radioType={radioType}
+            onChange={radioChange}
+            coverStyle={coverStyle}
+            disabled={disabled}
+            className={className}
+            labelNumber={labelNumber}
+          >
+            <div className={`${allPrefixCls}-title`}>
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+            </div>
+          </NomarRadioGroup>
+        </Field>
+      </div>
+    </Title>
   );
 };
 

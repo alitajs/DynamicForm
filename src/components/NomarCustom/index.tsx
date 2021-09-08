@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
+import Title from '../Title';
 import './index.less';
 
 interface INomarCustomPorps {
@@ -18,6 +19,7 @@ interface INomarCustomPorps {
   hidden?: boolean;
   extra?: string | React.ReactNode;
   defaultValue?: string;
+  titleProps?: any;
 }
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {
@@ -29,6 +31,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     title,
     CustomDom,
     customDomProps,
+    titleProps,
   } = props;
 
   const dom = () => (
@@ -42,14 +45,16 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
   );
 
   return (
-    <div
-      className={classnames({
-        // 'alitajs-dform-dom': true,
-        'alitajs-dform-vertical-dom': true,
-      })}
-    >
-      {dom()}
-    </div>
+    <Title {...titleProps}>
+      <div
+        className={classnames({
+          // 'alitajs-dform-dom': true,
+          'alitajs-dform-vertical-dom': true,
+        })}
+      >
+        {dom()}
+      </div>
+    </Title>
   );
 };
 

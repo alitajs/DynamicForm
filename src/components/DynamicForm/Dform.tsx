@@ -109,42 +109,44 @@ export const getFormItem = ({
       DFORM_COMP_DETAULT[type]?.positionType ||
       DFORM_COMP_DETAULT[otherProps.displayName]?.positionType;
   }
+
+  const titleProps = {
+    key: otherProps?.fieldProps,
+    error: errorValue,
+    positionType,
+    hidden: otherProps?.hidden,
+    required: otherProps?.required,
+    hasStar: otherProps?.hasStar,
+    title: otherProps?.title,
+    subTitle: otherProps?.subTitle,
+    extra: otherProps?.extra || '',
+    fieldProps: otherProps?.fieldProps,
+  };
   return (
-    <Title
-      key={otherProps?.fieldProps}
-      error={errorValue}
-      positionType={positionType}
-      hidden={otherProps?.hidden}
-      required={otherProps?.required}
-      hasStar={otherProps?.hasStar}
-      title={otherProps?.title}
-      subTitle={otherProps?.subTitle}
-      extra={otherProps?.extra || ''}
-      fieldProps={otherProps?.fieldProps}
-    >
+    <React.Fragment key={otherProps?.fieldProps}>
       {!isComponent && (
         <FormItemComponent
           {...otherProps}
           disabled={disabled}
-          errorValue={errorValue}
           onChange={(e: any) => {
             const { onChange } = otherProps as any;
             fieldChange(otherProps.fieldProps, e, relatives);
             if (onChange) onChange(e);
           }}
+          titleProps={titleProps}
         />
       )}
       {isComponent &&
         React.cloneElement(child, {
           ...childProps,
-          errorValue,
           onChange: (e: any) => {
             const { onChange } = childProps as any;
             fieldChange(childProps.fieldProps, e, relatives);
             if (onChange) onChange(e);
           },
+          titleProps,
         })}
-    </Title>
+    </React.Fragment>
   );
 };
 
@@ -246,8 +248,8 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
 
   const dformItems = (childs: any) => {
     return childs.map((child: any, index: number) => {
-      if (!React.isValidElement(child)) return;
       const { props = {} as any } = child;
+      if (!React.isValidElement(child)) return;
       const { displayName } = child.type as any;
       const mProps: any = {
         ...props,
@@ -272,6 +274,10 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           </Group>
         );
       } else {
+        if (props.children) {
+          const childs = React.Children.toArray(props.children);
+          return dformItems(childs);
+        }
         return child;
       }
     });

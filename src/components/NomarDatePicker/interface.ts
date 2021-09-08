@@ -18,6 +18,7 @@ export interface INomarDatePickerProps extends PropsType {
   coverStyle?: CSSProperties;
   errorValue?: ErrorValueProps;
   defaultValue?: Date | undefined;
+  titleProps?: any;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {

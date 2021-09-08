@@ -27,4 +27,5 @@ export interface INomarSelectProps {
   labelNumber?: number;
   alias?: IAliasProps;
   defaultValue?: any;
+  titleProps?: any;
 }

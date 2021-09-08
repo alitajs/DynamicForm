@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
+import Title from '../Title';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -21,6 +22,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
+    titleProps,
   } = props;
   const { label = 'label', value = 'value' } = alias;
 
@@ -41,20 +43,22 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   };
 
   return (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      initialValue={defaultValue}
-    >
-      <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
-      </MultiplePickerGroup>
-    </Field>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        initialValue={defaultValue}
+      >
+        <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </MultiplePickerGroup>
+      </Field>
+    </Title>
   );
 };
 
