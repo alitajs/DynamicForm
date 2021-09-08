@@ -3,6 +3,7 @@ import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
+import Title from '../Title';
 
 const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
@@ -20,6 +21,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
+    titleProps,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -37,23 +39,25 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   };
 
   return (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        return prevValue !== nextValue;
-      }}
-      initialValue={defaultValue}
-    >
-      <PickerGroup {...props} onChange={fieldChange} data={aliasData}>
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
-      </PickerGroup>
-    </Field>
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          return prevValue !== nextValue;
+        }}
+        initialValue={defaultValue}
+      >
+        <PickerGroup {...props} onChange={fieldChange} data={aliasData}>
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </PickerGroup>
+      </Field>
+    </Title>
   );
 };
 

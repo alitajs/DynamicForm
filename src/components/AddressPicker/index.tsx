@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import Field from '../Field';
+import Title from '../Title';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps, valueProps } from './interface';
 import { allPrefixCls } from '../../const/index';
@@ -16,6 +17,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     extra,
     onChange,
     defaultValue,
+    titleProps,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -25,27 +27,29 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   };
 
   return (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      shouldUpdate={(prevValue: any, nextValue: any) => {
-        return prevValue !== nextValue;
-      }}
-      initialValue={defaultValue}
-    >
-      <AddressPickerGroup
-        {...props}
-        extra={isVertical ? '' : extra}
-        onChange={fieldChange}
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          return prevValue !== nextValue;
+        }}
+        initialValue={defaultValue}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
-      </AddressPickerGroup>
-    </Field>
+        <AddressPickerGroup
+          {...props}
+          extra={isVertical ? '' : extra}
+          onChange={fieldChange}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </AddressPickerGroup>
+      </Field>
+    </Title>
   );
 };
 

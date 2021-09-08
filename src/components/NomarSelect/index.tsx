@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { PickerData } from 'antd-mobile/lib/picker/PropsType';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
+import Title from '../Title';
 import './index.less';
 import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
@@ -20,6 +21,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
       value: 'value',
     },
     defaultValue,
+    titleProps,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -44,25 +46,27 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   };
 
   return (
-    <Field
-      name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
-      initialValue={defaultValue}
-    >
-      <SelectGroup
-        {...props}
-        value={initValue || defaultValue}
-        onChange={fieldChange}
-        data={aliasData}
+    <Title {...titleProps}>
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        initialValue={defaultValue}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
-      </SelectGroup>
-    </Field>
+        <SelectGroup
+          {...props}
+          value={initValue || defaultValue}
+          onChange={fieldChange}
+          data={aliasData}
+        >
+          <div className={`${allPrefixCls}-title`}>
+            {required && hasStar && (
+              <div className={`${allPrefixCls}-redStar`}>*</div>
+            )}
+            <div>{title}</div>
+          </div>
+        </SelectGroup>
+      </Field>
+    </Title>
   );
 };
 

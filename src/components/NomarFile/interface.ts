@@ -22,4 +22,5 @@ export interface INomarFileProps {
     title: string;
   };
   defaultValue?: INomarFileItemProps;
+  titleProps?: any;
 }

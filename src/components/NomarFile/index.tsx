@@ -1,5 +1,6 @@
 import React, { FC, useState, ChangeEvent } from 'react';
 import Field from '../Field';
+import Title from '../Title';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
 import FileIcon from '../../assets/file.png';
@@ -16,6 +17,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     onChange,
     defaultValue,
     upload,
+    titleProps,
   } = props;
 
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
@@ -47,15 +49,17 @@ const DformFile: FC<INomarFileProps> = (props) => {
   };
 
   return (
-    <div className={prefixCls}>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        initialValue={defaultValue}
-      >
-        <FileGroup {...props} onChange={fileChange} />
-      </Field>
-    </div>
+    <Title {...titleProps}>
+      <div className={prefixCls}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          initialValue={defaultValue}
+        >
+          <FileGroup {...props} onChange={fileChange} />
+        </Field>
+      </div>
+    </Title>
   );
 };
 

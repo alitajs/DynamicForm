@@ -26,4 +26,5 @@ export interface INomarPickerProps {
   extra?: string | React.ReactNode;
   className?: string;
   defaultValue?: string;
+  titleProps?: any;
 }

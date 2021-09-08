@@ -4,8 +4,9 @@ import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
+import Title from '../Title';
+import InputItem from '../InputItem';
 import { StringAndUdfEvent } from '../../PropsType';
-import { InputItem } from '..';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -24,6 +25,7 @@ export interface IExtraInputProps {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   disabled?: boolean;
+  titleProps?: any;
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
@@ -39,6 +41,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     hasStar = true,
     firstProps,
     secondProps,
+    titleProps,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -87,53 +90,59 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <div
-      className={classnames({
-        [`${allPrefixCls}-extra-input`]: true,
-        [`${allPrefixCls}-extra-horizontal`]: !isVertical,
-      })}
-    >
+    <Title {...titleProps}>
       <div
-        className={`${allPrefixCls}-begin${
-          isVertical ? '-vertical' : ''
-        }-input`}
+        className={classnames({
+          [`${allPrefixCls}-extra-input`]: true,
+          [`${allPrefixCls}-extra-horizontal`]: !isVertical,
+        })}
       >
-        <Field
-          name={fieldProps}
-          rules={rules || [{ required, message: `请输入${title}` }]}
-          initialValue={firstProps?.defaultValue}
+        <div
+          className={`${allPrefixCls}-begin${
+            isVertical ? '-vertical' : ''
+          }-input`}
         >
-          <InputItem
-            {...firstProps}
-            fieldProps={fieldProps}
-            extra=""
-            coverStyle={{
-              textAlign: 'center',
-              ...coverStyle,
-            }}
-            onBlur={(val: StringAndUdfEvent) => {
-              inputOnBlur(val);
-            }}
-            isVertical={isVertical}
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请输入${title}` }]}
+            initialValue={firstProps?.defaultValue}
           >
-            {!isVertical && (
-              <div className={`${allPrefixCls}-title`}>
-                {required && hasStar && (
-                  <div className={`${allPrefixCls}-redStar`}>*</div>
-                )}
-                <div>{title}</div>
-              </div>
-            )}
-          </InputItem>
-        </Field>
+            <InputItem
+              {...firstProps}
+              fieldProps={fieldProps}
+              extra=""
+              coverStyle={{
+                textAlign: 'center',
+                ...coverStyle,
+              }}
+              onBlur={(val: StringAndUdfEvent) => {
+                inputOnBlur(val);
+              }}
+              isVertical={isVertical}
+            >
+              {!isVertical && (
+                <div className={`${allPrefixCls}-title`}>
+                  {required && hasStar && (
+                    <div className={`${allPrefixCls}-redStar`}>*</div>
+                  )}
+                  <div>{title}</div>
+                </div>
+              )}
+            </InputItem>
+          </Field>
+        </div>
+        {extraType === 'input' && (
+          <div className={`${allPrefixCls}-line`}>~</div>
+        )}
+        <div
+          className={`${allPrefixCls}-end${
+            isVertical ? '-vertical' : ''
+          }-input`}
+        >
+          {extraDiv()}
+        </div>
       </div>
-      {extraType === 'input' && <div className={`${allPrefixCls}-line`}>~</div>}
-      <div
-        className={`${allPrefixCls}-end${isVertical ? '-vertical' : ''}-input`}
-      >
-        {extraDiv()}
-      </div>
-    </div>
+    </Title>
   );
 };
 

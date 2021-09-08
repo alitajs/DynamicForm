@@ -4,6 +4,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
+import Title from '../Title';
 import './index.less';
 
 export interface INomarSwitchProps extends SwitchPropsType {
@@ -17,6 +18,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   hidden?: boolean;
   className?: string;
   defaultValue?: boolean;
+  titleProps?: any;
 }
 
 const DformSwitch: FC<INomarSwitchProps> = (props) => {
@@ -31,10 +33,11 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     hidden = false,
     className = '',
     defaultValue = false,
+    titleProps,
     ...otherProps
   } = props;
   return (
-    <React.Fragment>
+    <Title {...titleProps}>
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
           <div className={`${allPrefixCls}-title`}>
@@ -53,7 +56,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
           </Field>
         </div>
       )}
-    </React.Fragment>
+    </Title>
   );
 };
 

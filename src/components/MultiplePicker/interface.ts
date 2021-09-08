@@ -30,4 +30,5 @@ export interface IMultiplePickerProps {
   className?: string;
   extra?: string | React.ReactNode;
   defaultValue?: (string | number)[] | undefined;
+  titleProps?: any;
 }
