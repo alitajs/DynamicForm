@@ -28,4 +28,5 @@ export interface INomarSelectProps {
   alias?: IAliasProps;
   defaultValue?: any;
   titleProps?: any;
+  maxLine?:number | undefined,
 }

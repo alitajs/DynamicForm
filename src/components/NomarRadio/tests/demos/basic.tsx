@@ -122,6 +122,7 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
           required={true}
           data={radioList}
           title="发票"
+          allowUnChecked
         />
         <DformRadio
           // type='radio'

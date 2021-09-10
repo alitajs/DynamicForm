@@ -61,6 +61,8 @@ test('renders Basic', async () => {
   })
   fireEvent.click(getAllByText('是')[1]);
   fireEvent.click(getByText('宫保鸡丁'));
+  fireEvent.click(getByText('宫保鸡丁'));
+  fireEvent.click(getByText('宫保鸡丁'));
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinish).toBeCalled();

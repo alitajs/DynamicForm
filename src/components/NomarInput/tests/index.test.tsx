@@ -55,4 +55,12 @@ test('render Basic', async () => {
   blu.focus();
   blu.blur();
   expect(clickBlur).toBeCalled();
+  expect(getByText("身份证")).toBeDefined()
+  let username5 = getByLabelText("username5")
+  fireEvent.change(getByLabelText('username5'), { target: { value: 111 } });
+  fireEvent.change(getByLabelText('bankCard'), { target: { value: "bankCard" } });
+  fireEvent.change(getByLabelText('phone'), { target: { value: "1" } });
+  fireEvent.change(getByLabelText('phone'), { target: { value: "6666" } });
+  fireEvent.change(getByLabelText('phone'), { target: { value: "1468282282" } });
+  fireEvent.change(getByLabelText('digit'), { target: { value: "digit" } });
 });
