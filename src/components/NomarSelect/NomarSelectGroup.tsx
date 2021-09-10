@@ -7,6 +7,7 @@ interface INomarSelectGroupProps extends Omit<INomarSelectProps, 'onChange'> {
   onChange: (values: (number | string)[] | undefined, flag: string) => void;
   //返回的数据
   value?: string | undefined;
+  maxLine?: number | undefined;
 }
 const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
   //是否显示
@@ -35,6 +36,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     extra = '',
     children,
     onChange,
+    maxLine,
     ...otherProps
   } = props;
 
@@ -59,9 +61,11 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     });
     if (allDate && allDate.length) {
       setPickerLabel(allDate.join(','));
-    } else {
-      setPickerLabel('');
     }
+    // 多余代码被注销，allDate.length最小为0
+    // else {
+    //   setPickerLabel('');
+    // }
   }, [value]);
 
   useEffect(() => {
@@ -116,6 +120,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         extra={extra}
         className={className}
         fieldProps={fieldProps}
+        maxLine={maxLine}
       >
         {children}
       </TextItem>

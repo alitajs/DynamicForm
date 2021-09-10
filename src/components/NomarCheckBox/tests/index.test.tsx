@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
+import { render, testA11y, fireEvent, waitFor, sleep, screen } from '@alita/test';
 import Form from 'rc-field-form';
 import DformCheckBox from '../index';
 import BasicTest from './demos/basic';
 import CoupletText from './demos/couplet';
+import Formtest from './demos/formtest';
 
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
@@ -100,4 +101,18 @@ test('render couple', async () => {
       'alitajs-dform-box-botton-checked',
     );
   });
+});
+
+it('This is test form', async () => {
+  const { getByText, container } = render(
+    <Formtest />,
+  );
+  fireEvent.click(getByText("拷贝配置"))
+  fireEvent.click(getByText("新增表单"))
+  expect(getByText("开关")).toBeDefined()
+  fireEvent.click(getByText("取 消"))
+  fireEvent.click(getByText("新增表单"))
+  await sleep(500)
+  fireEvent.click(document.querySelectorAll(".alitajs-dform-input-item")[0])
+  fireEvent.click(getByText("输入框"))
 });

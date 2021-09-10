@@ -22,6 +22,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     },
     defaultValue,
     titleProps,
+    maxLine,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -57,6 +58,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
           value={initValue || defaultValue}
           onChange={fieldChange}
           data={aliasData}
+          maxLine={maxLine}
         >
           <div className={`${allPrefixCls}-title`}>
             {required && hasStar && (

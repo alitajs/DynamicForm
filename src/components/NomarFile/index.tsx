@@ -20,14 +20,15 @@ const DformFile: FC<INomarFileProps> = (props) => {
     titleProps,
   } = props;
 
-  const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
-    if (e.target.files) {
-      const fileList = Object.keys(e.target.files).map(
-        (item) => e.target.files[item],
-      );
-      upload(fileList);
-    }
-  };
+  // 该函数没被使用，因此注释
+  // const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
+  //   if (e.target.files) {
+  //     const fileList = Object.keys(e.target.files).map(
+  //       (item) => e.target.files[item],
+  //     );
+  //     upload(fileList);
+  //   }
+  // };
 
   // const extraContent = () => (
   //   <React.Fragment>
