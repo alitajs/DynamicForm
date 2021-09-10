@@ -46,6 +46,8 @@ it('passes picker a11y test', async () => {
     </div>,
   );
   fireEvent.click(getByText('请选择'));
+  await sleep(500)
+  fireEvent.click(getByText('取消'));
   await testA11y(container);
 });
 
@@ -68,6 +70,8 @@ test('renders Basic', async () => {
   })
   //选择城市
   fireEvent.click(getByText("Submit"));
+
+
 })
 
 test('render couplet', async () => {

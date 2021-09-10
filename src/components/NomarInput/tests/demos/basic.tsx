@@ -72,6 +72,40 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
           placeholder="请输入"
           onBlur={clickBlur}
         />
+        <DformInput
+          fieldProps="username5"
+          title="身份证"
+          placeholder="请输入身份证"
+          inputType="number"
+          maxLength={10}
+        />
+        <DformInput
+          fieldProps="bankCard"
+          title="bankCard测试"
+          placeholder="请输入身份证"
+          inputType="bankCard"
+          onChange={() => {
+            console.log("bankCard测试");
+          }}
+        />
+        <DformInput
+          fieldProps="phone"
+          title="phone"
+          placeholder="请输入身份证"
+          inputType="phone"
+        />
+        <DformInput
+          fieldProps="digit"
+          title="digit"
+          placeholder="digit测试"
+          inputType="digit"
+        />
+        <DformInput
+          fieldProps="knowNull"
+          title="knowNull"
+          placeholder="knowNull测试"
+          inputType="knowNull"
+        />
       </DynamicForm>
       <button onClick={() => form.submit()}>submit</button>
     </div>

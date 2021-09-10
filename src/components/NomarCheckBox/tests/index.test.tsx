@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
+import { render, testA11y, fireEvent, waitFor, sleep, screen } from '@alita/test';
 import Form from 'rc-field-form';
 import DformCheckBox from '../index';
 import BasicTest from './demos/basic';
 import CoupletText from './demos/couplet';
+import Formtest from './demos/formtest';
 
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
@@ -100,4 +101,56 @@ test('render couple', async () => {
       'alitajs-dform-box-botton-checked',
     );
   });
+});
+
+it('This is test form', async () => {
+  const { getByText, getAllByText, container } = render(
+    <Formtest />,
+  );
+  fireEvent.click(getByText("拷贝配置"))
+  fireEvent.click(getByText("新增表单"))
+  expect(getByText("开关")).toBeDefined()
+  fireEvent.click(getByText("取 消"))
+  fireEvent.click(getByText("新增表单"))
+  // expect(getByText('选择表单类型')).toBeDefined()
+  await sleep(500)
+  let clicKDom = getByText("选择表单类型").parentNode?.parentNode?.lastChild?.firstChild?.firstChild
+  // console.log(clicKDom?.firstChild?.firstChild?.firstChild.getAttribute('class'))
+  // fireEvent.click(clicKDom?.firstChild?.firstChild?.firstChild)
+  // fireEvent.click(clicKDom?.firstChild?.firstChild)
+  // fireEvent.click(clicKDom?.firstChild)  
+  // fireEvent.click(clicKDom)
+  // console.log(document.querySelectorAll(".alitajs-dform-input-item")[0].innerHTML)
+
+  fireEvent.click(document.querySelectorAll(".alitajs-dform-input-item")[0])
+  // await sleep(1000)
+
+  fireEvent.click(getByText("输入框"))
+  // await sleep(3000)
+  await waitFor(() => {
+    console.log(getByText("选择表单类型"));
+
+  })
+
+  // expect(getByText("编辑表单数据")).toBeDefined();
+  // expect(screen.getByText("编辑表单数据")).toBeDefined();
+  // await waitFor(() => {
+  //   expect(getByText("编辑表单数据")).toBeDefined();
+  //   expect(screen.getByText("编辑表单数据")).toBeDefined();
+  // })
+
+
+
+
+  // let completeDom = getByText("编辑表单数据").parentNode?.parentNode?.lastChild?.lastChild
+  // fireEvent.click(getAllByText("完 成")[0])
+  // fireEvent.click(getByText("text"))
+  // await sleep(500)
+  // findAllByText("确定");
+  // fireEvent.click(getAllByText("确定")[0])
+  // await sleep(500)
+  // fireEvent.click(completeDom)
+  // await sleep(500)
+  // expect(findAllByAltText("输入框")).toBeDisabled()
+
 });

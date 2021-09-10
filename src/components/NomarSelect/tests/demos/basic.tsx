@@ -66,6 +66,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
       title: '季节',
       placeholder: '请选择',
       data: seasons,
+      maxLine: 1,
     },
     {
       type: 'select',
@@ -75,6 +76,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
       placeholder: '请选择',
       data: citys,
       disabled: true,
+      maxLine: 1,
     },
   ] as IFormItemProps[];
 
@@ -96,6 +98,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
           title="季节"
           placeholder="请选择"
           data={seasons}
+          maxLine={1}
         />
         <DformSelect
           type="select"
