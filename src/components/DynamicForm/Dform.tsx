@@ -188,6 +188,15 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       }
     }
     form.setFieldsValue(formsValues as Store);
+    let newErrorValue = { ...errorValue };
+    if (!!Object.keys(errorValue).length) {
+      Object.keys(errorValue).forEach((item: string) => {
+        if (!!formsValues[item]) {
+          delete newErrorValue[item];
+        }
+      });
+      setErrorValue(newErrorValue);
+    }
   }, [formsValues]);
 
   // 字段变更联动
