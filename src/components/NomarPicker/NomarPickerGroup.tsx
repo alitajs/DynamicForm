@@ -89,6 +89,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
         extra={extra}
         className={className}
         fieldProps={fieldProps}
+        arrow={!disabled}
       >
         {children}
       </TextItem>

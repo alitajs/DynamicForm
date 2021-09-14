@@ -60,6 +60,7 @@ const Page: FC = () => {
     onFinishFailed,
     formsValues,
     form,
+    errorFlag: true,
   };
 
   return (

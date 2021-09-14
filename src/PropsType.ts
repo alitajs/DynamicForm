@@ -124,6 +124,7 @@ export interface IDynamicFormProps {
   autoLineFeed?: boolean; // 当 title 过长自动增加 positionType 为 vertical
   failScroll?: boolean; // 当字段 rule 验证不通过后，是否滚动到 错误位置，默认开启
   sonFlag?: boolean;
+  errorFlag?: boolean; // onFinishFailed 是否显示红色字体的错误提示
 }
 
 export interface CardProps {

@@ -1,8 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
 import Title from '../Title';
+import { allPrefixCls } from '../../const/index';
+import './index.less';
 
 const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   const {
@@ -36,17 +38,19 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
 
   return (
     <Title {...titleProps}>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
-        initialValue={defaultValue}
-      >
-        <ImagePickerGroup
-          {...otherProps}
-          onChange={imageChange}
-          limitSize={limitSize}
-        />
-      </Field>
+      <div className={`${allPrefixCls}-image`}>
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          initialValue={defaultValue}
+        >
+          <ImagePickerGroup
+            {...otherProps}
+            onChange={imageChange}
+            limitSize={limitSize}
+          />
+        </Field>
+      </div>
     </Title>
   );
 };

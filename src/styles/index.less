@@ -17,7 +17,7 @@
   .alitajs-dform-item-content {
     padding-right: 12 * @hd;
     margin-left: 12 * @hd;
-    border-bottom: 0.5 * @hd solid #ddd;
+    border-bottom: 0.5 * @hd solid #e5e5e5;
   }
 
   .alitajs-dform-title-content {
@@ -28,13 +28,15 @@
   }
 
   &-item {
-    min-height: @alita-dform-height;
+    // min-height: @alita-dform-height;
+    padding: @alita-dform-padding;
     .alitajs-dform-item-content();
   }
 
   &-vertical-item {
-    .alitajs-dform-item-content();
     height: auto;
+    padding: @alita-dform-padding;
+    .alitajs-dform-item-content();
   }
 
   &-close {
@@ -48,7 +50,7 @@
     .alitajs-dform-title-content();
   }
   &-vertical-title {
-    padding-top: 10 * @hd;
+    padding-bottom: 10 * @hd;
   }
 
   &-redStar {
@@ -65,7 +67,7 @@
     &-text {
       color: rgba(255, 72, 72, 1);
       font-size: 14 * @hd;
-      padding-bottom: 4 * @hd;
+      padding-top: 4 * @hd;
     }
   }
 
@@ -94,20 +96,19 @@
   }
 
   &-placeholder {
-    // height: @alita-dform-height;
     width: 100%;
   }
 
   &-value-content {
-    // height: @alita-dform-height;
     width: 100%;
   }
 
   &-arrow-horizontal {
     display: block;
-    width: @icon-size-xxs;
-    height: @icon-size-xxs;
+    width: 12 * @hd;
+    height: 12 * @hd;
     margin-left: @h-spacing-md;
+    color: rgba(0, 0, 0);
     .encoded-svg-background('right');
 
     background-size: contain;

@@ -165,6 +165,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     relatives = {},
     sonFlag = false,
     isDev = false,
+    errorFlag = true,
   } = fatherProps;
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   const [errorValue, setErrorValue] = useState<any>({});
@@ -195,7 +196,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           delete newErrorValue[item];
         }
       });
-      setErrorValue(newErrorValue);
+      if (errorFlag) setErrorValue(newErrorValue);
     }
   }, [formsValues]);
 
@@ -337,7 +338,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           initialValues={formsValues}
           onFinish={onFinish}
           onFinishFailed={(errorInfo: ValidateErrorEntity) => {
-            setErrorValue(getAllError(errorInfo));
+            if (errorFlag) setErrorValue(getAllError(errorInfo));
             defaultFailed(errorInfo, onFinishFailed, failScroll);
           }}
           onValuesChange={(values: any) => {
@@ -345,7 +346,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
               errorValue,
               values,
             );
-            if (success) setErrorValue(errorObj);
+            if (success && errorFlag) setErrorValue(errorObj);
             if (onValuesChange) onValuesChange(values);
           }}
         >

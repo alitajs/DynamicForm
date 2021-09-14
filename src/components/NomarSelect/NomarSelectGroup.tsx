@@ -37,7 +37,6 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     children,
     onChange,
     maxLine,
-    ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -51,9 +50,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     }
     let allDate: any = [];
     data.forEach((val: any, index: any) => {
-      let [mydata] = val.filter(
-        (item: any) => item?.value === value[index],
-      );
+      let [mydata] = val.filter((item: any) => item?.value === value[index]);
       if (mydata === undefined) {
       } else {
         allDate.push(mydata.label);
@@ -76,11 +73,8 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     if (data && data.length) {
       let allDate: any = [];
       data.forEach((val: any, index: any) => {
-        let [mydata] = val.filter(
-          (item: any) => item?.value === value[index],
-        );
+        let [mydata] = val.filter((item: any) => item?.value === value[index]);
         if (mydata === undefined) {
-          // console.log("mydata is undefined");
         } else {
           allDate.push(mydata.label);
         }
@@ -121,6 +115,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         className={className}
         fieldProps={fieldProps}
         maxLine={maxLine}
+        arrow={!disabled}
       >
         {children}
       </TextItem>

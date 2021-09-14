@@ -47,7 +47,7 @@ const citys = [
   ],
 ];
 
-interface PageProps { }
+interface PageProps {}
 
 const Page: FC<PageProps> = () => {
   const [form] = useForm();
@@ -60,7 +60,7 @@ const Page: FC<PageProps> = () => {
     console.log(errorInfo);
   };
   const formsValues = {
-    userPicker1: ["2013", "春"],
+    userPicker1: ['2013', '春'],
     userPicker2: ['xiamen'],
     userPicker3: ['fuzhou'],
   };
@@ -71,7 +71,7 @@ const Page: FC<PageProps> = () => {
     onFinishFailed,
     formsValues,
     autoLineFeed: false,
-    isDev: true,
+    isDev: false,
   };
 
   return (

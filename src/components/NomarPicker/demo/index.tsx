@@ -93,6 +93,7 @@ const Page: FC = () => {
           title="选择你喜欢的城市"
           positionType="vertical"
           onChange={(e) => console.log(e)}
+          disabled
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

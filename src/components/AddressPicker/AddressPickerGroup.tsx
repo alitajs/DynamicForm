@@ -245,6 +245,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         labelNumber={labelNumber}
         onClick={inputClick}
         fieldProps={fieldProps}
+        arrow={!disabled}
       >
         {children}
       </TextItem>

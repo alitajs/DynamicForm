@@ -112,6 +112,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
           if (onClick) onClick();
           openMoal();
         }}
+        arrow={!disabled}
       >
         {children}
       </TextItem>
