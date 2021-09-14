@@ -104,6 +104,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
         fieldProps={fieldProps}
         isVertical={isVertical}
         value={multipleLabel}
+        disabled={disabled}
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}

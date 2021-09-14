@@ -59,7 +59,10 @@ const DformText: FC<INomarTextProps> = (props) => {
           placeholder={placeholder}
           value="123"
           extra={extra}
-          coverStyle={coverStyle}
+          coverStyle={{
+            color: '#999',
+            ...coverStyle,
+          }}
           isVertical={isVertical}
           labelNumber={labelNumber}
           onClick={onClick}

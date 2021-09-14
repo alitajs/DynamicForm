@@ -104,6 +104,7 @@ const Page: FC<PageProps> = () => {
           placeholder="请选择"
           data={citys}
           disabled
+          labelNumber={7}
           defaultValue={['fuzhou']}
         />
         <DformSelect

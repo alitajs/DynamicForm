@@ -32,7 +32,11 @@ const Page: FC = () => {
   const formsValues = {
     username5: 'disabled 为 true, 则 onClick 失效',
     userTitle: '点击获取表单全部数据',
-    area: '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
+    allTooLong:
+      '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
+    valueTooLong:
+      '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
+    titleTooLong: '11',
   };
   const formProps = {
     onFinish,
@@ -82,28 +86,35 @@ const Page: FC = () => {
           }}
         />
         <DformText
-          fieldProps="titleTooLong"
-          required
-          placeholder="暂无数据"
-          title="标题名称过长"
-          labelNumber={7}
-        />
-        <DformText
           fieldProps="titleTooLong2"
           required
           placeholder="请输入身份证(默认值)"
           title="身份证"
-          positionType="vertical"
+          // positionType="vertical"
           defaultValue="通过 defaultValue 设置默认值"
         />
         <DformText
-          fieldProps="area"
+          fieldProps="allTooLong"
           required
-          title="控制显示行数"
+          title="标题很长内容也很长"
           placeholder="暂无数据"
-          positionType="vertical"
           labelNumber={7}
           maxLine={2}
+        />
+        <DformText
+          fieldProps="valueTooLong"
+          required
+          title="内容过长隐藏"
+          placeholder="暂无数据"
+          labelNumber={7}
+          maxLine={2}
+        />
+        <DformText
+          fieldProps="titleTooLong"
+          required
+          title="标题很长，内容很短(labelNumber 设置为8)"
+          placeholder="暂无数据"
+          labelNumber={8}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

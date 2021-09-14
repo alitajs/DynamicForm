@@ -19,7 +19,7 @@ nav:
 | formsValues    | 表单值                                               | `Store`                                               | {}     | 否       |
 | onFinish       | 表单提交事件                                         | `(values: Store) => void`                             | 无     | 否       |
 | onFinishFailed | 表单提交失败事件                                     | `(errorInfo: ValidateErrorEntity) => void;`           | 无     | 否       |
-| autoLineFeed   | 当 `title` 过长自动增加 `positionType` 为 `vertical` | `boolean`                                             | true   | 否       |
+| autoLineFeed   | 当 `title` 过长自动增加 `positionType` 为 `vertical` | `boolean`                                             | false  | 否       |
 | allDisabled    | 全部不可交互，展示状态                               | `boolean`                                             | false  | 否       |
 | onValuesChange | 字段改变时抛出事件                                   | `(values: any) => void;`                              | 无     | 否       |
 | isDev          | 手动声明开发模式                                     | `boolean`                                             | false  | 否       |

@@ -160,7 +160,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     onFinish,
     onFinishFailed,
     onValuesChange,
-    autoLineFeed = true,
+    autoLineFeed = false,
     failScroll = true,
     relatives = {},
     sonFlag = false,

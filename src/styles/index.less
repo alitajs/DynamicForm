@@ -23,7 +23,7 @@
   .alitajs-dform-title-content {
     font-size: @alita-dform-title-font-size !important;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
   }
 
@@ -46,7 +46,7 @@
 
   &-title {
     color: @alita-dform-title-color;
-    white-space: nowrap;
+    // white-space: nowrap;
     .alitajs-dform-title-content();
   }
   &-vertical-title {
@@ -57,6 +57,7 @@
     // margin-right: 3 * @hd;
     color: rgba(255, 72, 72, 1);
     font-size: @alita-dform-title-font-size !important;
+    padding-top: 2 * @hd;
   }
 
   &-error {
@@ -92,6 +93,12 @@
     }
     &-7 {
       width: 7 * @input-label-width;
+    }
+    &-auto {
+      width: auto;
+    }
+    &-min-width {
+      max-width: 30%;
     }
   }
 

@@ -21,7 +21,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     coverStyle = {},
     extra,
     maxLine,
-    disabled,
+    disabled = false,
     fieldProps,
     className = '',
     arrow = true,
@@ -30,14 +30,16 @@ const TextItem: FC<ITextItemProps> = (props) => {
 
   useEffect(() => {
     const textIds = document.getElementById(`text-${fieldProps}`);
-    if (maxLine && textIds) {
-      // eslint-disable-next-line prefer-destructuring
+    if (textIds) {
       const lineHeight = window.getComputedStyle(textIds, null).lineHeight;
       const delValue = (textIds?.clientHeight + 2) / parseInt(lineHeight, 10);
-      if (delValue > maxLine) {
-        setLineHeightFlag(true);
-      } else {
-        setLineHeightFlag(false);
+      if (maxLine) {
+        // eslint-disable-next-line prefer-destructuring
+        if (delValue > maxLine) {
+          setLineHeightFlag(true);
+        } else {
+          setLineHeightFlag(false);
+        }
       }
     }
   }, [value]);
@@ -58,6 +60,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
     [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
     [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
+    [`${allPrefixCls}-input-label-auto`]: labelNumber > 7,
   });
 
   const inputItemClick = () => {
@@ -67,16 +70,27 @@ const TextItem: FC<ITextItemProps> = (props) => {
 
   return (
     <div className={prefixCls}>
-      {!isVertical && <div className={labelCls}>{props.children}</div>}
+      {!isVertical && (
+        <div
+          className={classnames({
+            [labelCls]: true,
+            [`${allPrefixCls}-input-label-min-width`]: value.length > 8,
+          })}
+        >
+          {props.children}
+        </div>
+      )}
       <div
         className={classnames({
           [`${prefixCls}-value`]: true,
           [`${allPrefixCls}-ellipsis`]: ellipsis,
+          [`${prefixCls}-min-width`]: labelNumber > 7,
         })}
       >
         <div
           className={classnames({
             [`${prefixCls}-content`]: !!value,
+            [`${prefixCls}-content-padding`]: !isVertical,
             [`${allPrefixCls}-placeholder`]: !value,
             [`${allPrefixCls}-ellipsis`]: ellipsis,
           })}

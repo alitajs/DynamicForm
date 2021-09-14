@@ -7,7 +7,6 @@ interface INomarSelectGroupProps extends Omit<INomarSelectProps, 'onChange'> {
   onChange: (values: (number | string)[] | undefined, flag: string) => void;
   //返回的数据
   value?: string | undefined;
-  maxLine?: number | undefined;
 }
 const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
   //是否显示
@@ -21,22 +20,16 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     data = [],
     coverStyle,
     title,
-    required = false,
     fieldProps,
-    rules,
     placeholder = '请选择',
     positionType = 'horizontal',
     value = '',
-    hasStar = true,
-    subTitle,
-    hidden = false,
     onClick,
     className,
     labelNumber = 6,
     extra = '',
     children,
     onChange,
-    maxLine,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -114,7 +107,6 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         extra={extra}
         className={className}
         fieldProps={fieldProps}
-        maxLine={maxLine}
         arrow={!disabled}
       >
         {children}

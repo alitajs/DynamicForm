@@ -9,6 +9,10 @@ nav:
 
 # NomarText
 
+## 备注
+
+**可以自定义设置 `labelNumber` 来调整 `title` 的长度, 如果需要让 `title` 宽度自定义，可以设置 `labelNumber` 大于 7**
+
 ## 代码演示
 
 <code src="./demo/index.tsx" />
