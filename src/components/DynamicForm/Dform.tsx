@@ -198,7 +198,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       });
       if (errorFlag) setErrorValue(newErrorValue);
     }
-  }, [formsValues]);
+  }, [JSON.stringify(formsValues)]);
 
   // 字段变更联动
   const fieldChange = (fieldProps: string, e: any, relatives: any) => {
