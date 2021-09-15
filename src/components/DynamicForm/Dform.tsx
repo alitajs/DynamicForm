@@ -284,7 +284,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           </Group>
         );
       } else {
-        if (props.children && props.children.type) {
+        if (props.children && props.children.type && !!props.children.length) {
           const childs = React.Children.toArray(props.children);
           return dformItems(childs);
         }
