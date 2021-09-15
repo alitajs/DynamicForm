@@ -9,8 +9,8 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  CoverRadio,
 } from '@alitajs/dform';
-import CoverRadio from '..';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },

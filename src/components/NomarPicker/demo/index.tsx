@@ -9,8 +9,8 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  DformPicker,
 } from '@alitajs/dform';
-import DformPicker from '../';
 
 const Page: FC = () => {
   const [form] = useForm();

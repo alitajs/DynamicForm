@@ -5,7 +5,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,

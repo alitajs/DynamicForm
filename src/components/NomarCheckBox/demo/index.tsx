@@ -8,8 +8,8 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
+  DformCheckBox,
 } from '@alitajs/dform';
-import DformCheckBox from '..';
 
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },

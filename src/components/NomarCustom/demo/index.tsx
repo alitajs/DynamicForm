@@ -2,15 +2,14 @@
  * title: 基础 多选框
  * desc: 表单使用 demo
  */
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
+  DformCustom,
 } from '@alitajs/dform';
-import NomarCustom from '../'
 
 interface IDemoPage {
   name: string;
@@ -69,16 +68,16 @@ const Page: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps} >
-        <NomarCustom
-          title='自定义组件(非受控)'
-          fieldProps='custom'
+      <DynamicForm {...formProps}>
+        <DformCustom
+          title="自定义组件(非受控)"
+          fieldProps="custom"
           CustomDom={showDemoPage}
         />
-        <NomarCustom
-          title='自定义组件(受控)'
+        <DformCustom
+          title="自定义组件(受控)"
           required={true}
-          fieldProps='age'
+          fieldProps="age"
           CustomDom={demoPage}
           customDomProps={{
             name: 'owen',

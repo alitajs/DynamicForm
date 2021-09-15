@@ -9,8 +9,8 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   dateChange,
+  RangeDatePicker,
 } from '@alitajs/dform';
-import RangeDatePicker from '../';
 
 const page: FC = () => {
   const [form] = useForm();
