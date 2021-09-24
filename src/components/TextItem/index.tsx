@@ -45,7 +45,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
   }, [value]);
 
   useEffect(() => {
-    if (coverStyle && Object.keys(coverStyle).length) {
+    if (coverStyle && Object.keys(coverStyle)?.length) {
       const newStyle = JSON.parse(JSON.stringify(coverStyle));
       if (!value && coverStyle.color) delete newStyle.color;
       setCurrentCoverStyle({ ...newStyle });
@@ -74,7 +74,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
         <div
           className={classnames({
             [labelCls]: true,
-            [`${allPrefixCls}-input-label-min-width`]: value.length > 8,
+            [`${allPrefixCls}-input-label-min-width`]: value?.length > 8,
           })}
         >
           {props.children}
