@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
 import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
@@ -21,6 +21,7 @@ export interface INomarInputProps extends InputItemPropsType {
   hidden?: boolean;
   className?: string;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const DformInput: FC<INomarInputProps> = (props) => {
@@ -42,48 +43,73 @@ const DformInput: FC<INomarInputProps> = (props) => {
     disabled = false,
     defaultValue,
     titleProps,
+    onChange,
+    formFlag = false,
     ...otherProps
   } = props;
 
+  const [value, setValue] = useState<string>('');
+
   const isVertical = positionType === 'vertical';
+
+  useEffect(() => {
+    if (defaultValue) setValue(defaultValue);
+  }, [defaultValue]);
 
   const inputOnBlur = (val: string | undefined) => {
     // window.scrollTo(0, 0);
     if (onBlur) onBlur(val);
   };
 
+  const fieldChange = (e: string) => {
+    setValue(e);
+    if (onChange) onChange(e);
+  };
+
+  const showFiled = () => {
+    return (
+      <InputItem
+        value={value}
+        {...otherProps}
+        fieldProps={fieldProps}
+        extra={isVertical ? '' : extra}
+        type={inputType}
+        editable={editable}
+        disabled={disabled}
+        className={className}
+        coverStyle={{
+          textAlign: isVertical ? 'left' : 'right',
+          ...coverStyle,
+        }}
+        onBlur={(val: StringAndUdfEvent) => {
+          inputOnBlur(val);
+        }}
+        isVertical={isVertical}
+        onChange={fieldChange}
+      >
+        <div className={`${allPrefixCls}-title`}>
+          {required && hasStar && (
+            <div className={`${allPrefixCls}-redStar`}>*</div>
+          )}
+          <div>{title}</div>
+        </div>
+      </InputItem>
+    );
+  };
+
   return (
     <Title {...titleProps}>
-      <Field
-        name={fieldProps}
-        rules={rules || [{ required, message: `请输入${title}` }]}
-        initialValue={defaultValue}
-      >
-        <InputItem
-          {...otherProps}
-          fieldProps={fieldProps}
-          extra={isVertical ? '' : extra}
-          type={inputType}
-          editable={editable}
-          disabled={disabled}
-          className={className}
-          coverStyle={{
-            textAlign: isVertical ? 'left' : 'right',
-            ...coverStyle,
-          }}
-          onBlur={(val: StringAndUdfEvent) => {
-            inputOnBlur(val);
-          }}
-          isVertical={isVertical}
+      {formFlag ? (
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请输入${title}` }]}
+          initialValue={defaultValue}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
-        </InputItem>
-      </Field>
+          {showFiled()}
+        </Field>
+      ) : (
+        showFiled()
+      )}
     </Title>
   );
 };

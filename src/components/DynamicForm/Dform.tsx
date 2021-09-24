@@ -134,6 +134,7 @@ export const getFormItem = ({
             if (onChange) onChange(e);
           }}
           titleProps={titleProps}
+          formFlag={true}
         />
       )}
       {isComponent &&
@@ -145,6 +146,7 @@ export const getFormItem = ({
             if (onChange) onChange(e);
           },
           titleProps,
+          formFlag: true,
         })}
     </React.Fragment>
   );
