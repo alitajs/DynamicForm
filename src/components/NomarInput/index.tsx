@@ -98,7 +98,16 @@ const DformInput: FC<INomarInputProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+      {...titleProps}
+    >
       {formFlag ? (
         <Field
           name={fieldProps}
