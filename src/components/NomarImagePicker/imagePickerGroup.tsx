@@ -45,9 +45,7 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     }
     onChange(files, operationType, index);
   };
-  return (
-    <ImagePicker {...otherProps} onChange={imageChange} files={value} />
-  );
+  return <ImagePicker {...otherProps} onChange={imageChange} files={value} />;
 };
 
 export default ImagePickerGroup;
