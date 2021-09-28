@@ -128,10 +128,10 @@ export const getFormItem = ({
         <FormItemComponent
           {...otherProps}
           disabled={disabled}
-          onChange={(e: any) => {
+          onChange={(e: any, b?: any, c?: any) => {
             const { onChange } = otherProps as any;
             fieldChange(otherProps.fieldProps, e, relatives);
-            if (onChange) onChange(e);
+            if (onChange) onChange(e, b, c);
           }}
           titleProps={titleProps}
           formFlag={true}
@@ -140,10 +140,10 @@ export const getFormItem = ({
       {isComponent &&
         React.cloneElement(child, {
           ...childProps,
-          onChange: (e: any) => {
+          onChange: (e: any, b?: any, c?: any) => {
             const { onChange } = childProps as any;
             fieldChange(childProps.fieldProps, e, relatives);
-            if (onChange) onChange(e);
+            if (onChange) onChange(e, b, c);
           },
           titleProps,
           formFlag: true,

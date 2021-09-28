@@ -29,10 +29,6 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     operationType: string,
     index: number | undefined,
   ) => {
-    console.log(files);
-    console.log(operationType);
-    console.log(index);
-
     if (onChange) onChange(files, operationType, index);
   };
 
