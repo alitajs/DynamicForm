@@ -66,8 +66,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    if (data.length === 0) return;
-    const newData = data.map((item) => ({
+    const newData = (data || []).map((item) => ({
       label: item[label],
       value: item[value],
     }));

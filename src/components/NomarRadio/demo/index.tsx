@@ -67,7 +67,6 @@ const DfromRadioTextPage: FC = () => {
     console.log('Failed:', errorInfo);
   };
   const formsValues = {
-    userRadio3: '雨',
     userRadio4: '红烧肉',
   };
 
@@ -121,7 +120,6 @@ const DfromRadioTextPage: FC = () => {
             value: 'foodName',
           }}
           positionType="vertical"
-          defaultValue="红烧肉"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
