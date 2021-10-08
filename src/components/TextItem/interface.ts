@@ -12,4 +12,6 @@ export interface ITextItemProps {
   className?: string;
   arrow?: boolean;
   ellipsis?: boolean;
+  clear?: boolean;
+  clearClick?: () => void;
 }

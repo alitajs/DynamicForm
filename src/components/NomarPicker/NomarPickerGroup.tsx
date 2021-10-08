@@ -25,6 +25,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     className,
     onClick,
     value,
+    clear = false,
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -76,6 +77,13 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     onChange(val[0]);
   };
 
+  /**
+   * 清理按钮点击事件
+   */
+  const clearClick = () => {
+    onChange(undefined);
+  };
+
   return (
     <React.Fragment>
       <TextItem
@@ -90,6 +98,8 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
         className={className}
         fieldProps={fieldProps}
         arrow={!disabled}
+        clear={clear}
+        clearClick={clearClick}
       >
         {children}
       </TextItem>

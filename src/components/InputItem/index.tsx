@@ -115,6 +115,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
           readOnly={!editable || disabled}
           style={{
             textAlign: isVertical ? 'left' : 'right',
+            height: '0.42rem',
             ...coverStyle,
           }}
           onFocus={(e: any) => {
@@ -139,11 +140,9 @@ const InputItem: FC<IInputItemProps> = (props) => {
           })}
           placeholder={placeholder}
         />
-        {clear && editable && !disabled && value && `${value}`.length > 0 ? (
-          <TouchFeedback activeClassName={`${allPrefixCls}-clear-active`}>
-            <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
-          </TouchFeedback>
-        ) : null}
+        <TouchFeedback activeClassName={`${allPrefixCls}-clear-active`}>
+          <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
+        </TouchFeedback>
         {extra}
       </div>
     </div>

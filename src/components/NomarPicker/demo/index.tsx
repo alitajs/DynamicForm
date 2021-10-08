@@ -74,6 +74,7 @@ const Page: FC = () => {
           title="城市(默认值)"
           labelNumber={6}
           defaultValue="shanghai"
+          clear
         />
         <DformPicker
           fieldProps="myCity"
@@ -86,6 +87,7 @@ const Page: FC = () => {
             label: 'cityId',
             value: 'cityName',
           }}
+          clear
         />
         <DformPicker
           fieldProps="youCity"

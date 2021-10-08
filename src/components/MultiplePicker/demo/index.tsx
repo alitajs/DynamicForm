@@ -71,6 +71,7 @@ const Page: FC = () => {
             value: 'foodId',
           }}
           defaultValue={['爆炒虾仁', '宫保鸡丁']}
+          clear
         />
         <MultiplePicker
           fieldProps="myFood"

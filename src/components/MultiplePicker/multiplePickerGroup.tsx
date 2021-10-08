@@ -32,6 +32,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     height,
     children,
     fieldProps,
+    clear = false,
   } = props;
 
   const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
@@ -98,6 +99,13 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     onChange?.(values);
   };
 
+  /**
+   * 清理按钮点击事件
+   */
+  const clearClick = () => {
+    onChange?.(undefined);
+  };
+
   return (
     <>
       <TextItem
@@ -114,6 +122,8 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
           openMoal();
         }}
         arrow={!disabled}
+        clear={clear}
+        clearClick={clearClick}
       >
         {children}
       </TextItem>

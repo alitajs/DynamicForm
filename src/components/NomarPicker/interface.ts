@@ -27,4 +27,5 @@ export interface INomarPickerProps {
   className?: string;
   defaultValue?: string;
   titleProps?: any;
+  clear?: boolean;
 }
