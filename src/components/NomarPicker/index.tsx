@@ -9,6 +9,10 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
+    positionType = 'horizontal',
+    hidden = false,
+    subTitle = '',
+    extra,
     fieldProps,
     rules,
     required = false,
@@ -57,7 +61,16 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     );
   };
   return (
-    <Title {...titleProps}>
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+      {...titleProps}
+    >
       {formFlag ? (
         <Field
           name={fieldProps}
