@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
+import ClosePng from '../../assets/close.png';
 import { ITextItemProps } from './interface';
 import { allPrefixCls } from '../../const/index';
 
@@ -26,6 +27,8 @@ const TextItem: FC<ITextItemProps> = (props) => {
     className = '',
     arrow = true,
     ellipsis = false,
+    clear = false,
+    clearClick = () => {},
   } = props;
 
   useEffect(() => {
@@ -126,6 +129,14 @@ const TextItem: FC<ITextItemProps> = (props) => {
             </div>
           )}
         </div>
+        {clear && value && !disabled && (
+          <img
+            className={`${allPrefixCls}-close`}
+            src={ClosePng}
+            alt=""
+            onClick={clearClick}
+          />
+        )}
         {arrow && <div className={`${allPrefixCls}-arrow-horizontal`} />}
         {!isVertical && <div className="am-input-extra">{extra}</div>}
       </div>

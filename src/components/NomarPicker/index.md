@@ -35,6 +35,7 @@ nav:
 | renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -                                  | 否       |
 | className    | 类名                                                                                                                                  | string                     | -                                  | 否       |
 | defaultValue | 设置初始取值                                                                                                                          | string                     | -                                  | 否       |
+| clear        | 清空数据                                                                                                                              | boolean                    | `false`                            | 否       |
 
 ## IAliasProps
 

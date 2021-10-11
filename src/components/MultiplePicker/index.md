@@ -15,7 +15,7 @@ nav:
 
 | 参数           | 说明                                                                                                                                  | 类型                          | 默认值                             | 是否必填 |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------- | -------- |
-| defaultValue   | 设置初始默认值                                                                                                                        | `(string \| number)[]`     | []                                 | 否       |
+| defaultValue   | 设置初始默认值                                                                                                                        | `(string \| number)[]`        | []                                 | 否       |
 | title          | 标题                                                                                                                                  | string                        | ''                                 | 是       |
 | fieldProps     | 文本属性                                                                                                                              | string                        | ''                                 | 是       |
 | data           | 数据源                                                                                                                                | list                          | []                                 | 是       |
@@ -38,7 +38,8 @@ nav:
 | alias          | data 数据源的别名                                                                                                                     | object                        | { label: 'label', value: 'value' } | 否       |
 | renderHeader   | 组件头部                                                                                                                              | `number` or `string`          | -                                  | 否       |
 | className      | 类名                                                                                                                                  | string                        | -                                  | 否       |
-| extra          |                                                                                                                                       | `string` or `React.ReactNode` | -                                  | 否       |
+| extra          | 额外内容                                                                                                                              | `string` or `React.ReactNode` | -                                  | 否       |
+| clear          | 清空数据                                                                                                                              | boolean                       | `false`                            | 否       |
 
 ## 备注
 
