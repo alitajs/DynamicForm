@@ -28,4 +28,5 @@ export interface INomarPickerProps {
   defaultValue?: string;
   titleProps?: any;
   clear?: boolean;
+  formFlag?: boolean;
 }
