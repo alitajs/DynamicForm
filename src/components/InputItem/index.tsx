@@ -140,9 +140,12 @@ const InputItem: FC<IInputItemProps> = (props) => {
           })}
           placeholder={placeholder}
         />
-        <TouchFeedback activeClassName={`${allPrefixCls}-clear-active`}>
-          <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
-        </TouchFeedback>
+        {clear && editable && !disabled && value && `${value}`.length > 0 ? (
+          <TouchFeedback activeClassName={`${allPrefixCls}-clear-active`}>
+            <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
+          </TouchFeedback>
+        ) : null}
+
         {extra}
       </div>
     </div>
