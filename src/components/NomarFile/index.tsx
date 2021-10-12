@@ -21,26 +21,26 @@ const DformFile: FC<INomarFileProps> = (props) => {
   } = props;
 
   // 该函数没被使用，因此注释
-  // const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
-  //   if (e.target.files) {
-  //     const fileList = Object.keys(e.target.files).map(
-  //       (item) => e.target.files[item],
-  //     );
-  //     upload(fileList);
-  //   }
-  // };
+  const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
+    if (e.target.files) {
+      const fileList = Object.keys(e.target.files).map(
+        (item) => e.target.files[item],
+      );
+      upload(fileList);
+    }
+  };
 
-  // const extraContent = () => (
-  //   <React.Fragment>
-  //     <input
-  //       type="file"
-  //       multiple
-  //       className="alitajs-dform-file-input"
-  //       onChange={fileIns}
-  //     />
-  //     <span className="alitajs-dform-file-extra">{extra}</span>
-  //   </React.Fragment>
-  // );
+  const extraContent = () => (
+    <React.Fragment>
+      <input
+        type="file"
+        multiple
+        className="alitajs-dform-file-input"
+        onChange={fileIns}
+      />
+      <span className="alitajs-dform-file-extra">{extra}</span>
+    </React.Fragment>
+  );
 
   const fileChange = (
     res: INomarFileItemProps[],
@@ -50,7 +50,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title {...titleProps} extra={extraContent()}>
       <div className={prefixCls}>
         <Field
           name={fieldProps}
