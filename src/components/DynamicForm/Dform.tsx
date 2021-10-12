@@ -198,7 +198,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       });
       if (errorFlag) setErrorValue(newErrorValue);
     }
-  }, [JSON.stringify(formsValues)]);
+  }, [formsValues]);
 
   // 字段变更联动
   const fieldChange = (fieldProps: string, e: any, relatives: any) => {
@@ -284,7 +284,14 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           </Group>
         );
       } else {
-        if (props.children && props.children.type && !!props.children.length) {
+        const isArray = Array.isArray(props.children);
+        if (
+          props.children &&
+          ((isArray && !!props.children.length) ||
+            (!isArray &&
+              props.children.type &&
+              !!Object.keys(props.children).length))
+        ) {
           const childs = React.Children.toArray(props.children);
           return dformItems(childs);
         }
