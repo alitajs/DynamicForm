@@ -292,8 +292,13 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
               props.children.type &&
               !!Object.keys(props.children).length))
         ) {
-          const childs = React.Children.toArray(props.children);
-          return dformItems(childs);
+          // if (props.children && props.children.type && !!props.children.length) {
+          const childs = React.Children.toArray(props?.children);
+          // newChild.props.children = dformItems(childs);
+          return React.cloneElement(child, {
+            ...child.props,
+            children: dformItems(childs),
+          });
         }
         return child;
       }
