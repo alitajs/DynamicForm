@@ -115,7 +115,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
           readOnly={!editable || disabled}
           style={{
             textAlign: isVertical ? 'left' : 'right',
-            height: '0.42rem',
+            minHeight: '0.42rem',
             ...coverStyle,
           }}
           onFocus={(e: any) => {
