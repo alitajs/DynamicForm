@@ -11,7 +11,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   const {
     fieldProps,
-    rules,
+    rules = [],
     required = false,
     title,
     hasStar = true,
@@ -46,7 +46,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     <Title {...titleProps}>
       <Field
         name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
+        rules={[{ required, message: `请选择${title}` }, ...rules]}
         initialValue={defaultValue}
       >
         <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>

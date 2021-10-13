@@ -45,7 +45,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     fieldProps,
     required = false,
     allowUnChecked = true,
-    rules,
+    rules = [],
     title,
     data = [],
     positionType = 'horizontal',

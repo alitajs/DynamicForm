@@ -77,7 +77,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
         <div
           className={classnames({
             [labelCls]: true,
-            [`${allPrefixCls}-input-label-min-width`]: value?.length > 8,
+            [`${allPrefixCls}-input-label-min-width`]: value?.length > 10,
           })}
         >
           {props.children}

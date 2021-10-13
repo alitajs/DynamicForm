@@ -31,7 +31,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     title = '',
     required = false,
     fieldProps,
-    rules,
+    rules = [],
     positionType = 'horizontal',
     hasStar = true,
     extra,
