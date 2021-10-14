@@ -14,7 +14,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     subTitle = '',
     extra,
     fieldProps,
-    rules,
+    rules = [],
     required = false,
     title,
     hasStar = true,

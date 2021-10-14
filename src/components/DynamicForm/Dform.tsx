@@ -194,13 +194,15 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     let newErrorValue = { ...errorValue };
     if (!!Object.keys(errorValue).length) {
       Object.keys(errorValue).forEach((item: string) => {
-        if (!!formsValues[item]) {
+        if (!!formsValues[item] && !!formsValues[item]?.length) {
           delete newErrorValue[item];
         }
       });
-      if (errorFlag) setErrorValue(newErrorValue);
+      if (errorFlag) {
+        setErrorValue(newErrorValue);
+      }
     }
-  }, [formsValues]);
+  }, [JSON.stringify(formsValues)]);
 
   // 字段变更联动
   const fieldChange = (fieldProps: string, e: any, relatives: any) => {

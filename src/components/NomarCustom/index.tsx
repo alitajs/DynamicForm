@@ -27,7 +27,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     defaultValue,
     fieldProps,
     required = false,
-    rules,
+    rules = [],
     title,
     CustomDom,
     customDomProps,
@@ -37,7 +37,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
   const dom = () => (
     <Field
       name={fieldProps}
-      rules={rules || [{ required, message: `请选择${title}` }]}
+      rules={[{ required, message: `请选择${title}` }, ...rules]}
       initialValue={defaultValue}
     >
       <CustomDom {...customDomProps} />

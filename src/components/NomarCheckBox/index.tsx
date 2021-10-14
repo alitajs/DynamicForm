@@ -34,7 +34,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     fieldProps,
     className = '',
     title,
-    rules,
+    rules = [],
     required = false,
     data = [],
     onChange,
@@ -67,10 +67,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
       <div className={`${allPrefixCls}-check-box`}>
         <Field
           name={fieldProps}
-          rules={rules || [{ required, message: `请选择${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            return prevValue !== nextValue;
-          }}
+          rules={[{ required, message: `请选择${title}` }, ...rules]}
           initialValue={defaultValue}
         >
           <CheckBoxGroup

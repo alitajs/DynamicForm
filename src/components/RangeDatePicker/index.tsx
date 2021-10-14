@@ -36,7 +36,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     placeholder = '开始时间',
     placeholder2 = '结束时间',
     required = false,
-    rules,
+    rules = [],
     title,
     minDate,
     maxDate,
@@ -74,7 +74,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
         >
           <Field
             name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
+            rules={[{ required, message: `请选择${title}` }, ...rules]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
               setBeginDate(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
@@ -120,7 +120,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
         >
           <Field
             name={fieldProps2}
-            rules={rules || [{ required, message: `请选择${title}` }]}
+            rules={[{ required, message: `请选择${title}` }, ...rules]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
               setEndDate(nextValue && nextValue[fieldProps2 as any]);
               return prevValue !== nextValue;
