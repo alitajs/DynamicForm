@@ -44,7 +44,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     required = false,
     hasStar = true,
     disabled = false,
-    rules,
+    rules = [],
     title,
     data,
     onChange,
@@ -89,7 +89,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         <div className={`${prefixCls}-field`}>
           <Field
             name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
+            rules={[{ required, message: `请选择${title}` }, ...rules]}
             initialValue={defaultValue}
           >
             <CoverRadioGroup

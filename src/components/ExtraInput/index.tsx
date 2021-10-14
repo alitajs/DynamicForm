@@ -34,7 +34,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     fieldProps2,
     title,
     required,
-    rules,
+    rules = [],
     coverStyle,
     extraType = 'input',
     positionType = 'vertical',
@@ -61,7 +61,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
       return (
         <Field
           name={fieldProps2}
-          rules={rules || [{ required, message: `请选择${title}` }]}
+          rules={[{ required, message: `请选择${title}` }, ...rules]}
           initialValue={secondProps?.defaultValue}
         >
           <PickerGroup
@@ -77,7 +77,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     return (
       <Field
         name={fieldProps2}
-        rules={rules || [{ required, message: `请输入${title}` }]}
+        rules={[{ required, message: `请输入${title}` }, ...rules]}
         initialValue={secondProps?.defaultValue}
       >
         <InputItem
@@ -104,7 +104,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         >
           <Field
             name={fieldProps}
-            rules={rules || [{ required, message: `请输入${title}` }]}
+            rules={[{ required, message: `请输入${title}` }, ...rules]}
             initialValue={firstProps?.defaultValue}
           >
             <InputItem

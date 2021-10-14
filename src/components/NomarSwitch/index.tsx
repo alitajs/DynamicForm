@@ -27,7 +27,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     title,
     required = false,
     fieldProps,
-    rules,
+    rules = [],
     placeholder,
     hasStar = true,
     hidden = false,
@@ -49,7 +49,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
           <Field
             name={fieldProps}
             valuePropName="checked"
-            rules={rules || [{ required, message: `请选择${title}` }]}
+            rules={[{ required, message: `请选择${title}` }, ...rules]}
             initialValue={defaultValue}
           >
             <Switch {...otherProps} />

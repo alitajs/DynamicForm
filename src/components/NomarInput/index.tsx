@@ -30,7 +30,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     title = '',
     required = false,
     fieldProps,
-    rules,
+    rules = [],
     positionType = 'horizontal',
     hasStar = true,
     extra,
@@ -56,7 +56,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     <Title {...titleProps}>
       <Field
         name={fieldProps}
-        rules={rules || [{ required, message: `请输入${title}` }]}
+        rules={[{ required, message: `请输入${title}` }, ...rules]}
         initialValue={defaultValue}
       >
         <InputItem

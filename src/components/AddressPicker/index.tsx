@@ -9,7 +9,7 @@ import './index.less';
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const {
     fieldProps,
-    rules,
+    rules = [],
     required = false,
     title,
     hasStar = true,
@@ -30,7 +30,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     <Title {...titleProps}>
       <Field
         name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
+        rules={[{ required, message: `请选择${title}` }, ...rules]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}

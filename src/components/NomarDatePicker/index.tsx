@@ -13,7 +13,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     fieldProps,
     required = false,
     title,
-    rules,
+    rules = [],
     positionType = 'horizontal',
     hasStar = true,
     disabled = false,
@@ -38,7 +38,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
       >
         <Field
           name={fieldProps}
-          rules={rules || [{ required, message: `请选择${title}` }]}
+          rules={[{ required, message: `请选择${title}` }, ...rules]}
           initialValue={defaultValue}
         >
           <DatePickerGroup {...props} onChange={fileChange}>
