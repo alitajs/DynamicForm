@@ -12,7 +12,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     title,
     required = false,
     fieldProps,
-    rules = [],
+    rules,
     data = [] as any,
     hasStar = true,
     onChange,
@@ -50,7 +50,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     <Title {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...rules]}
+        rules={rules || [{ required, message: `请选择${title}` }]}
         initialValue={defaultValue}
       >
         <SelectGroup

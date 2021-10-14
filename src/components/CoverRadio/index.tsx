@@ -46,7 +46,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     required = false,
     hasStar = true,
     disabled = false,
-    rules = [],
+    rules,
     title,
     data,
     onChange,
