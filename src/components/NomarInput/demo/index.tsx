@@ -70,6 +70,7 @@ const Page: FC = () => {
           title="用户名"
           subTitle={subTitle()}
           coverStyle={{ textAlign: 'left' }}
+          onChange={(e) => console.log(e)}
         />
         <DformInput
           fieldProps="userAge"
@@ -125,6 +126,7 @@ const Page: FC = () => {
           clear
           positionType="vertical"
           rules={[
+            { required: true, message: `请输入身份证号码` },
             {
               pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
               message: '名称只允许包含数字、字母和下划线',

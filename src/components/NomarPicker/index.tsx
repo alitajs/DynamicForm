@@ -10,7 +10,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
 
   const {
     fieldProps,
-    rules = [],
+    rules,
     required = false,
     title,
     hasStar = true,
@@ -42,7 +42,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     <Title {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...rules]}
+        rules={rules || [{ required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}

@@ -44,7 +44,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     fieldProps,
     required = false,
     allowUnChecked = true,
-    rules = [],
+    rules,
     title,
     data = [],
     positionType = 'horizontal',
@@ -86,7 +86,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
       <div className={`${prefixCls}-field`}>
         <Field
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...rules]}
+          rules={rules || [{ required, message: `请选择${title}` }]}
           initialValue={defaultValue}
         >
           <NomarRadioGroup

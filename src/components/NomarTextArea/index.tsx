@@ -32,7 +32,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     coverStyle,
     required = false,
     fieldProps,
-    rules = [],
+    rules,
     rows = 3,
     title,
     positionType = 'horizontal',
@@ -77,7 +77,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
       >
         <Field
           name={fieldProps}
-          rules={[{ required, message: `请输入${title}` }, ...rules]}
+          rules={rules || [{ required, message: `请输入${title}` }]}
           shouldUpdate={(prevValue: any, nextValue: any) => {
             return prevValue !== nextValue;
           }}
