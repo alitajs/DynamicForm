@@ -43,33 +43,33 @@ const DformInput: FC<INomarInputProps> = (props) => {
     disabled = false,
     defaultValue,
     titleProps,
-    onChange,
+    // onChange,
     formFlag = false,
     ...otherProps
   } = props;
 
-  const [value, setValue] = useState<string>('');
+  // const [value, setValue] = useState<string>('');
 
   const isVertical = positionType === 'vertical';
 
-  useEffect(() => {
-    if (defaultValue) setValue(defaultValue);
-  }, [defaultValue]);
+  // useEffect(() => {
+  //   if (defaultValue) setValue(defaultValue);
+  // }, [defaultValue]);
 
   const inputOnBlur = (val: string | undefined) => {
     // window.scrollTo(0, 0);
     if (onBlur) onBlur(val);
   };
 
-  const fieldChange = (e: string) => {
-    setValue(e);
-    if (onChange) onChange(e);
-  };
+  // const fieldChange = (e: string) => {
+  //   setValue(e);
+  //   if (onChange) onChange(e);
+  // };
 
   const showFiled = () => {
     return (
       <InputItem
-        value={value}
+        // value={value}
         {...otherProps}
         fieldProps={fieldProps}
         extra={isVertical ? '' : extra}
@@ -85,7 +85,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
           inputOnBlur(val);
         }}
         isVertical={isVertical}
-        onChange={fieldChange}
+        // onChange={fieldChange}
       >
         <div className={`${allPrefixCls}-title`}>
           {required && hasStar && (
