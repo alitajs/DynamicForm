@@ -32,13 +32,19 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
     chunk = 1,
   } = props;
 
+  const [val, setVal] = useState<(string | number)[] | undefined>([]);
+  useEffect(() => {
+    setVal(value);
+  }, [value])
+
   const boxClick = (dataItem: IDataItem) => {
-    const newInitValue = value || [];
+    const newInitValue = [ ...val || [] ];
     if (newInitValue.indexOf(dataItem.value) !== -1) {
       newInitValue.splice(newInitValue.indexOf(dataItem.value), 1);
     } else {
       newInitValue.push(dataItem.value);
     }
+    setVal(newInitValue);
     onChange(newInitValue && newInitValue.length ? newInitValue : undefined);
   };
 
@@ -63,11 +69,11 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
                 <div
                   className={classnames({
                     'alitajs-dform-box-botton': true,
-                    'alitajs-dform-box-botton-checked':
-                      (value || []).indexOf(item.value) !== -1,
+                    'alitajs-dform-box-botton-checked': val?.includes(item.value)
+                      // (value || []).indexOf(item.value) !== -1,
                   })}
                 >
-                  {(value || []).indexOf(item.value) !== -1 && (
+                  {val?.includes(item.value) && (
                     <div className="alitajs-dform-box-tick"></div>
                   )}
                 </div>
