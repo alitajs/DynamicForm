@@ -126,17 +126,14 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         })}
       >
         <div className={`${prefixCls}-field`}>
-          {formFlag ? (
-            <Field
-              name={fieldProps}
-              rules={rules || [{ required, message: `请选择${title}` }]}
-              initialValue={defaultValue}
+          <Field
+            name={fieldProps}
+            rules={rules || [{ required, message: `请选择${title}` }]}
+            initialValue={defaultValue}
+            formFlag={formFlag}
             >
-              {showFiled()}
-            </Field>
-          ) : (
-            showFiled()
-          )}
+            {showFiled()}
+          </Field>
         </div>
       </div>
     </Title>

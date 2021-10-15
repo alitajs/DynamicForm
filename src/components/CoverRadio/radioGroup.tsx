@@ -46,6 +46,9 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
 
   const formValue = formFlag ? activeValue : value;
 
+  console.log(data, formValue, formFlag, activeValue, value);
+
+
   const labelCls = classnames({
     [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
     [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
