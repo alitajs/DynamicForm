@@ -71,20 +71,17 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       extra={extra}
       {...titleProps}
     >
-      {formFlag ? (
-        <Field
-          name={fieldProps}
-          rules={rules || [{ required, message: `请选择${title}` }]}
-          shouldUpdate={(prevValue: any, nextValue: any) => {
-            return prevValue !== nextValue;
-          }}
-          initialValue={defaultValue}
-        >
-          {showFiled()}
-        </Field>
-      ) : (
-        showFiled()
-      )}
+      <Field
+        name={fieldProps}
+        rules={rules || [{ required, message: `请选择${title}` }]}
+        shouldUpdate={(prevValue: any, nextValue: any) => {
+          return prevValue !== nextValue;
+        }}
+        initialValue={defaultValue}
+        formFlag={formFlag}
+      >
+        {showFiled()}
+      </Field>
     </Title>
   );
 };
