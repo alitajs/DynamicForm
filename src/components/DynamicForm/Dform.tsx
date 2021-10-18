@@ -261,7 +261,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   const dformItems = (childs: any) => {
     return childs.map((child: any, index: number) => {
       const { props = {} as any } = child;
-      if (!React.isValidElement(child)) return;
+      if (!React.isValidElement(child)) return child;
       const { displayName } = child.type as any;
       const mProps: any = {
         ...props,
@@ -294,13 +294,8 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
               props.children.type &&
               !!Object.keys(props.children).length))
         ) {
-          // if (props.children && props.children.type && !!props.children.length) {
           const childs = React.Children.toArray(props?.children);
-          // newChild.props.children = dformItems(childs);
-          return React.cloneElement(child, {
-            ...child.props,
-            children: dformItems(childs),
-          });
+          return React.cloneElement(child, props, dformItems(childs));
         }
         return child;
       }
