@@ -2,7 +2,7 @@
  * title: 基础 开关控件
  * desc: 表单使用 demo
  */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, {
   IFormItemProps,
@@ -16,6 +16,7 @@ interface PageProps {}
 
 const Page: FC<PageProps> = () => {
   const [form] = useForm();
+  const [val, setVal] = useState(true);
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -87,6 +88,13 @@ const Page: FC<PageProps> = () => {
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
+      <DformSwitch
+        fieldProps="on"
+        placeholder="选择"
+        title="On"
+        defaultValue={val}
+        onChange={v => setVal(v)}
+        />
     </React.Fragment>
   );
 };

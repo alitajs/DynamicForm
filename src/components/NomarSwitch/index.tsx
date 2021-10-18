@@ -19,6 +19,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   className?: string;
   defaultValue?: boolean;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const DformSwitch: FC<INomarSwitchProps> = (props) => {
@@ -34,10 +35,15 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     className = '',
     defaultValue = false,
     titleProps,
+    formFlag = false,
     ...otherProps
   } = props;
   return (
-    <Title {...titleProps}>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
           <div className={`${allPrefixCls}-title`}>
@@ -51,8 +57,9 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
             valuePropName="checked"
             rules={[{ required, message: `请选择${title}` }, ...rules]}
             initialValue={defaultValue}
+            formFlag={formFlag}
           >
-            <Switch {...otherProps} />
+            <Switch checked={defaultValue} {...otherProps} />
           </Field>
         </div>
       )}

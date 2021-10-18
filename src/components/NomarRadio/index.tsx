@@ -123,17 +123,14 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
       {...titleProps}
     >
       <div className={`${prefixCls}-field`}>
-        {formFlag ? (
-          <Field
-            name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
-            initialValue={defaultValue}
-          >
-            {showFiled()}
-          </Field>
-        ) : (
-          showFiled()
-        )}
+        <Field
+          name={fieldProps}
+          rules={rules || [{ required, message: `请选择${title}` }]}
+          initialValue={defaultValue}
+          formFlag={formFlag}
+        >
+          {showFiled()}
+        </Field>
       </div>
     </Title>
   );

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import classnames from 'classnames';
 import Hidden from '../Hidden';
 import { allPrefixCls } from '../../const/index';
@@ -13,20 +13,29 @@ export interface TitleProps {
   extra?: string | React.ReactNode;
   error: any;
   fieldProps: string;
+  independentProps?: TitleProps;
+  formFlag?: boolean;
 }
 
-const Title: FC<TitleProps> = ({
-  children,
-  positionType = 'horizontal',
-  hidden = false,
-  required = false,
-  hasStar = true,
-  title = '',
-  subTitle,
-  extra,
-  error,
-  fieldProps,
-}) => {
+const Title: FC<TitleProps> = (props) => {
+  const {
+    children,
+    positionType = 'horizontal',
+    hidden = false,
+    required = false,
+    hasStar = true,
+    title = '',
+    subTitle,
+    extra,
+    error,
+    fieldProps,
+   } = useMemo(() => {
+    if (props.formFlag) {
+      return props;
+    }
+     return { ...props, ...props.independentProps } as any;
+   }, [props]);
+
   const isVertical = positionType === 'vertical';
   return (
     <Hidden hidden={hidden}>
