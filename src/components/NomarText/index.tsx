@@ -24,6 +24,7 @@ export interface INomarTextProps {
   className?: string;
   defaultValue?: string;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const DformText: FC<INomarTextProps> = (props) => {
@@ -44,16 +45,22 @@ const DformText: FC<INomarTextProps> = (props) => {
     className = '',
     defaultValue,
     titleProps,
+    formFlag = false
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title {...titleProps}>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <Field
         name={fieldProps}
         rules={[{ required, message: `${title}无数据` }, ...rules]}
         initialValue={defaultValue}
+        formFlag={formFlag}
       >
         <TextItem
           placeholder={placeholder}

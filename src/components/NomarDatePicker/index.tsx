@@ -33,6 +33,8 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     <Title
       title={title}
       positionType={positionType}
+      independentProps={props}
+      formFlag={formFlag}
       {...titleProps}
     >
       <div

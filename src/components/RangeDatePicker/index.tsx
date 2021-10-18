@@ -25,6 +25,7 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
@@ -50,13 +51,18 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     labelNumber = 5,
     coverStyle = {},
     titleProps,
+    formFlag = false,
     ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title {...titleProps}>
+    <Title
+      independentProps={{ positionType, ...props}}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-range-horizontal`]: !isVertical,
@@ -80,10 +86,12 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               return prevValue !== nextValue;
             }}
             initialValue={firstProps?.defaultValue}
+            formFlag={formFlag}
           >
             <DatePickerGroup
               {...otherProps}
               {...firstProps}
+              value={firstProps?.defaultValue}
               onChange={(e) => {
                 setBeginDate(e);
                 firstProps?.onChange && firstProps?.onChange(e);
@@ -126,10 +134,12 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               return prevValue !== nextValue;
             }}
             initialValue={secondProps?.defaultValue}
+            formFlag={formFlag}
           >
             <DatePickerGroup
               {...otherProps}
               {...secondProps}
+              value={secondProps?.defaultValue}
               onChange={(e) => {
                 setEndDate(e);
                 secondProps &&
