@@ -86,7 +86,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
       <div className={`${prefixCls}-field`}>
         <Field
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...rules]}
+          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
         >
           <NomarRadioGroup

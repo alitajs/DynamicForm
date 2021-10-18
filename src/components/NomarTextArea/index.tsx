@@ -77,7 +77,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
       >
         <Field
           name={fieldProps}
-          rules={[{ required, message: `请输入${title}` }, ...rules]}
+          rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
           shouldUpdate={(prevValue: any, nextValue: any) => {
             return prevValue !== nextValue;
           }}

@@ -52,7 +52,7 @@ const DformText: FC<INomarTextProps> = (props) => {
     <Title {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `${title}无数据` }, ...rules]}
+        rules={[{ required, message: `${title}无数据` }, ...(rules || [])]}
         initialValue={defaultValue}
       >
         <TextItem

@@ -54,7 +54,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
       <div className={prefixCls}>
         <Field
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...rules]}
+          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
         >
           <FileGroup {...props} onChange={fileChange} />
