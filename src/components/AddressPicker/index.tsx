@@ -28,7 +28,11 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <Field
         name={fieldProps}
         rules={[{ required, message: `请选择${title}` }, ...rules]}

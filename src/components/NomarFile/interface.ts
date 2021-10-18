@@ -23,4 +23,5 @@ export interface INomarFileProps {
   };
   defaultValue?: INomarFileItemProps;
   titleProps?: any;
+  formFlag?: boolean;
 }

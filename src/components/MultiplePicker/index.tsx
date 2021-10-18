@@ -48,6 +48,8 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     <Title
       title={title}
       positionType={positionType}
+      independentProps={props}
+      formFlag={formFlag}
       {...titleProps}
     >
       <Field

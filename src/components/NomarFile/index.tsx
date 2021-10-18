@@ -18,6 +18,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     defaultValue,
     upload,
     titleProps,
+    formFlag = false,
   } = props;
 
   // 该函数没被使用，因此注释
@@ -50,9 +51,15 @@ const DformFile: FC<INomarFileProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps} extra={extraContent()}>
+    <Title
+      independentProps={{ positionType: 'vertical', ...props}}
+      formFlag={formFlag}
+      {...titleProps}
+      extra={extraContent()}
+    >
       <div className={prefixCls}>
         <Field
+          formFlag={formFlag}
           name={fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...rules]}
           initialValue={defaultValue}

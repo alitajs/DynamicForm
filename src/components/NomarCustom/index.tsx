@@ -20,6 +20,7 @@ interface INomarCustomPorps {
   extra?: string | React.ReactNode;
   defaultValue?: string;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {
@@ -32,6 +33,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     CustomDom,
     customDomProps,
     titleProps,
+    formFlag = false
   } = props;
 
   const dom = () => (
@@ -39,13 +41,18 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       name={fieldProps}
       rules={[{ required, message: `请选择${title}` }, ...rules]}
       initialValue={defaultValue}
+      formFlag={formFlag}
     >
       <CustomDom {...customDomProps} />
     </Field>
   );
 
   return (
-    <Title {...titleProps}>
+    <Title
+      independentProps={{ positionType: 'vertical', ...props }}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <div
         className={classnames({
           // 'alitajs-dform-dom': true,

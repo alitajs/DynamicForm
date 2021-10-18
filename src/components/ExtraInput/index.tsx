@@ -93,7 +93,11 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-extra-input`]: true,
