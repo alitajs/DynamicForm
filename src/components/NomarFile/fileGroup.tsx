@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect, forwardRef, useImperativeHandle, ChangeEvent } from 'react';
 import { INomarFileProps, INomarFileItemProps } from './interface';
+import _ from 'lodash';
 import ClosePng from '../../assets/close.png';
 import './index.less';
+import { getRandom } from '../../utils';
 
 const prefixCls = 'alitajs-dform-file';
 
@@ -9,18 +11,57 @@ interface IFileGroupProps extends INomarFileProps {
   value?: INomarFileItemProps[];
 }
 
-const FileGroup: FC<IFileGroupProps> = (props) => {
+type IFileGroupPropsRef = (props: IFileGroupProps & { ref: any }, ref: any) => React.ReactElement<any, any> | null;
+
+const FileGroup: IFileGroupPropsRef = forwardRef((props, ref) => {
   const {
     value = [],
     onChange,
     onClick,
     alias = { id: 'id', title: 'title' },
+    upload,
   } = props;
 
+  const [val, setVal] = useState(value);
+
+  useEffect(() => {
+    setVal(value);
+  }, [value]);
+
+  const addFileChange = (e: ChangeEvent<HTMLInputElement> | any) => {
+    if (e.target.files) {
+      const fileList = Object.keys(e.target.files).map(
+        (item) => e.target.files[item],
+      );
+
+      const values = fileList.map(item => ({
+        title: item.name,
+        fileId: getRandom(),
+      }));
+      const allFiles = [...val, ...values];
+      setVal(allFiles);
+      if (upload) {
+        upload(fileList);
+      }
+      if (onChange) {
+        onChange(allFiles, values, 'add');
+      }
+    }
+  };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      addFileChange
+    }),
+
+  )
+
   const del = (index: number) => {
-    const newData = Array.from(value);
+    const newData = Array.from(val);
     newData.splice(index, 1);
-    if (onChange) onChange(newData, value[index]);
+    setVal(newData);
+    if (onChange) onChange(newData, val[index], 'delete');
   };
 
   const itemClick = (item: INomarFileItemProps) => {
@@ -29,7 +70,7 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
 
   return (
     <div className={`${prefixCls}-content`}>
-      {value.map((item: INomarFileItemProps, index: number) => (
+      {val.map((item: INomarFileItemProps, index: number) => (
         <div key={item[alias.id || 'id']} className={`${prefixCls}-item`}>
           <span
             className={`${prefixCls}-title`}
@@ -51,6 +92,6 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
       ))}
     </div>
   );
-};
+});
 
 export default FileGroup;

@@ -15,7 +15,7 @@ export interface INomarFileProps {
   extra?: string | React.ReactNode;
   hidden?: boolean;
   onClick?: (val: INomarFileItemProps) => void;
-  onChange?: (val: INomarFileItemProps[], item: INomarFileItemProps) => void;
+  onChange?: (val: INomarFileItemProps[], item: INomarFileItemProps, type: 'add' | 'delete') => void;
   upload: (res: any) => void;
   alias?: {
     id: string | number;
