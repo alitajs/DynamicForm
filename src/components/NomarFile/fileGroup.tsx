@@ -24,10 +24,6 @@ const FileGroup: IFileGroupPropsRef = forwardRef((props, ref) => {
 
   const [val, setVal] = useState(value);
 
-  useEffect(() => {
-    setVal(value);
-  }, [value]);
-
   const addFileChange = (e: ChangeEvent<HTMLInputElement> | any) => {
     if (e.target.files) {
       const fileList = Object.keys(e.target.files).map(
@@ -38,8 +34,7 @@ const FileGroup: IFileGroupPropsRef = forwardRef((props, ref) => {
         title: item.name,
         fileId: getRandom(),
       }));
-      const allFiles = [...val, ...values];
-      setVal(allFiles);
+      const allFiles = [...value, ...values];
       if (upload) {
         upload(fileList);
       }
@@ -70,7 +65,7 @@ const FileGroup: IFileGroupPropsRef = forwardRef((props, ref) => {
 
   return (
     <div className={`${prefixCls}-content`}>
-      {val.map((item: INomarFileItemProps, index: number) => (
+      {value.map((item: INomarFileItemProps, index: number) => (
         <div key={item[alias.id || 'id']} className={`${prefixCls}-item`}>
           <span
             className={`${prefixCls}-title`}
