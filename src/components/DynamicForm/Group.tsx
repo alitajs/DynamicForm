@@ -2,7 +2,7 @@ import React, { FC, Fragment } from 'react';
 import { WingBlank, WhiteSpace } from 'antd-mobile';
 import Card from './Card';
 import { GroupProps } from '../../PropsType';
-import { allPrefixCls } from '@/const';
+import { allPrefixCls } from '../../const';
 
 const Group: FC<GroupProps> = (props) => {
   const {
