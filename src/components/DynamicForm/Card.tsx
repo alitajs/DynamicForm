@@ -13,12 +13,14 @@ const Card: FC<CardProps> = ({
   title,
   rightView,
   classname,
+  border = true
 }) => {
   return (
     <div
       className={classnames({
         [prefixCls]: true,
         classname,
+        [`${prefixCls}-border`]: border
       })}
     >
       <div className={`${prefixCls}-title-box`}>

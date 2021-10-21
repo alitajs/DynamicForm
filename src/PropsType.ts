@@ -133,6 +133,7 @@ export interface CardProps {
   title?: string | React.ReactNode;
   rightView?: string | React.ReactNode;
   classname?: React.CSSProperties;
+  border?: boolean;  // 是否带border边框   默认true
 }
 
 export interface GroupProps {
@@ -142,4 +143,5 @@ export interface GroupProps {
   classname?: React.CSSProperties;
   rightView?: string | React.ReactNode;
   leftView?: string | React.ReactNode;
+  border?: boolean;  // 是否带border边框   默认true
 }

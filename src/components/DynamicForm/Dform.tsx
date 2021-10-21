@@ -263,6 +263,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   const dformItems = (childs: any): React.ReactNode => {
     return childs.map((child: any, index: number) => {
       const { props = {} as any } = child;
+      // 字符串、null等类型
       if (!React.isValidElement(child)) return child;
       const { displayName } = child.type as any;
       const mProps: any = {
@@ -271,6 +272,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         displayName,
       };
       const { fieldProps } = mProps;
+      // 内部表单类型
       if (DFORM_COMP_NAME.indexOf(displayName) !== -1) {
         return getFormItem({
           child,
@@ -282,12 +284,10 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           relatives,
         });
       } else if (displayName === 'group') {
-        return (
-          <Group key={fieldProps || index} {...props}>
-            {showChildren({ context: props.children })}
-          </Group>
-        );
+      // 内部Group组件
+        return React.cloneElement(child, { ...props, key: fieldProps || index }, showChildren({ context: props.children }));
       } else {
+      // 其他类型组件
         const isArray = Array.isArray(props.children);
         if (
           props.children &&

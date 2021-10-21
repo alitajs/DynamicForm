@@ -37,10 +37,11 @@ const Title: FC<TitleProps> = (props) => {
    }, [props]);
 
   const isVertical = positionType === 'vertical';
+  // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
   return (
     <Hidden hidden={hidden}>
       <div
-        className={classnames({
+        className={classnames(`${allPrefixCls}-cell`, {
           [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
           [`${allPrefixCls}-error`]: error && !!error[fieldProps],
         })}
