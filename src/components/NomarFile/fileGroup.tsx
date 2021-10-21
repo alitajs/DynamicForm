@@ -22,7 +22,7 @@ const FileGroup: IFileGroupPropsRef = forwardRef((props, ref) => {
     upload,
   } = props;
 
-  const [val, setVal] = useState(value);
+  // const [val, setVal] = useState(value);
 
   const addFileChange = (e: ChangeEvent<HTMLInputElement> | any) => {
     if (e.target.files) {
@@ -53,10 +53,10 @@ const FileGroup: IFileGroupPropsRef = forwardRef((props, ref) => {
   )
 
   const del = (index: number) => {
-    const newData = Array.from(val);
+    const newData = Array.from(value);
     newData.splice(index, 1);
-    setVal(newData);
-    if (onChange) onChange(newData, val[index], 'delete');
+    // setVal(newData);
+    if (onChange) onChange(newData, value[index], 'delete');
   };
 
   const itemClick = (item: INomarFileItemProps) => {
