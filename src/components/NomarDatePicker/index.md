@@ -37,9 +37,10 @@ nav:
 | errorValue   |                                                                                                                                      | ErrorValueProps            | -            | 否       |
 | labelNumber  | 定宽枚举值：`num \* @input-label-width: 34px，`可用 2-7 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | -            | 否       |
 
-
 ## 备注
 
 **日期字符串在不同浏览器有不同的实现，例如 new Date('2017-1-1') 在 Safari 上是 Invalid Date，而在 Chrome 上是能正常解析的。**
 
 **在设值时，如果是日期字符串请先用 `dateChange(val)` 进行转化下，`dateChange` 可以在 `@alitajs/dform` 中导出。**
+
+**日期赋值可以使用 `string` 类型的数据，具体请看 demo**

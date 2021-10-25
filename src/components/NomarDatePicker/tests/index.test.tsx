@@ -56,6 +56,12 @@ test('render Basic', async () => {
       'alitajs-dform-text-item-text',
     );
   });
+
+  expect(getByText('2020-02-03'));
+  fireEvent.click(getByText('2020-02-03'));
+  fireEvent.click(getByText('取消'));
+  expect(getByText('2020-02-03'));
+
   await waitFor(() => {
     fireEvent.click(getByText('Submit'));
   });

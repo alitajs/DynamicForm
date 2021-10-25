@@ -20,6 +20,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
   const formsValues = {
     DateTime: dateChange('2020-02-02 22:22'),
+    stringValue: '2020-02-03',
   };
 
   const formProps = {
@@ -59,6 +60,11 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           positionType="vertical"
           onChange={onChange}
           placeholder="请选择时间"
+        />
+        <DformDatePicker
+          fieldProps="stringValue"
+          title="stringValue"
+          required={true}
         />
       </DynamicForm>
       <WhiteSpace size="lg" />

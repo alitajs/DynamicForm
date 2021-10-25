@@ -9,6 +9,7 @@ import TextItem from '../TextItem';
 const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [textValue, setTextValue] = useState<string>('');
+  const [dateValue, setDateValue] = useState<Date | undefined>(undefined);
 
   const {
     positionType = '',
@@ -36,8 +37,10 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
   useEffect(() => {
     if (value) {
       setTextValue(changeDateFormat(value, modeType, format));
+      setDateValue(new Date(value));
     } else {
       setTextValue('');
+      setDateValue(undefined);
     }
   }, [value]);
 
@@ -77,7 +80,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
         maskTransitionName="am-fade"
         prefixCls="am-picker-popup"
         title="选择日期"
-        date={value || new Date()}
+        date={dateValue || new Date()}
         okText="确认"
         dismissText="取消"
         onDismiss={() => setVisible(false)}

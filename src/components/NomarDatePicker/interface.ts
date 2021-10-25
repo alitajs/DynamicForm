@@ -17,7 +17,7 @@ export interface INomarDatePickerProps extends PropsType {
   labelNumber?: number;
   coverStyle?: CSSProperties;
   errorValue?: ErrorValueProps;
-  defaultValue?: Date | undefined;
+  defaultValue?: Date | undefined | string;
   titleProps?: any;
 }
 
