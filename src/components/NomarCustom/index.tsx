@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
@@ -14,13 +14,14 @@ interface INomarCustomPorps {
   rules?: Rule[];
   onChange?: (currentActiveLink: any) => void;
   customDomProps?: any;
-  CustomDom: any;
+  CustomDom?: any;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   extra?: string | React.ReactNode;
   defaultValue?: string;
   titleProps?: any;
   formFlag?: boolean;
+  children: React.ReactNode;
 }
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {
@@ -33,8 +34,15 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     CustomDom,
     customDomProps,
     titleProps,
-    formFlag = false
+    formFlag = false,
+    children
   } = props;
+
+  useEffect(() => {
+    if (CustomDom || customDomProps) {
+      console.warn("CustomDom、customDomProps已废弃，请切换children使用");
+    }
+  }, [CustomDom, customDomProps]);
 
   const dom = () => (
     <Field
@@ -43,7 +51,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       initialValue={defaultValue}
       formFlag={formFlag}
     >
-      <CustomDom {...customDomProps} />
+      { children ? () => children : <CustomDom {...customDomProps} />  }
     </Field>
   );
 
