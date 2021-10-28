@@ -3,6 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
+import HorizontalTitle from '../HorizontalTitle';
 import './index.less';
 
 interface INomarCustomPorps {
@@ -21,7 +22,7 @@ interface INomarCustomPorps {
   defaultValue?: string;
   titleProps?: any;
   formFlag?: boolean;
-  children: React.ReactNode;
+  children: React.ReactElement;
 }
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {
@@ -35,12 +36,14 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     customDomProps,
     titleProps,
     formFlag = false,
-    children
+    children,
   } = props;
 
   useEffect(() => {
     if (CustomDom || customDomProps) {
-      console.warn("CustomDom、customDomProps已废弃，请切换children使用");
+      console.warn(
+        'DformCustom组件已放弃CustomDom、customDomProps属性，已切换为children',
+      );
     }
   }, [CustomDom, customDomProps]);
 
@@ -51,19 +54,20 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       initialValue={defaultValue}
       formFlag={formFlag}
     >
-      { children ? () => children : <CustomDom {...customDomProps} />  }
+      {children ? children : <CustomDom {...customDomProps} />}
     </Field>
   );
 
-  return (
+  const isVertical = titleProps.positionType === 'vertical';
+
+  const Vertical = (
     <Title
       independentProps={{ positionType: 'vertical', ...props }}
       formFlag={formFlag}
       {...titleProps}
     >
       <div
-        className={classnames({
-          // 'alitajs-dform-dom': true,
+        className={classnames('alitajs-dform-dom', {
           'alitajs-dform-vertical-dom': true,
         })}
       >
@@ -71,6 +75,24 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       </div>
     </Title>
   );
+
+  const Horizontal = (
+    <HorizontalTitle
+      independentProps={{ positionType: 'vertical', ...props }}
+      formFlag={formFlag}
+      {...titleProps}
+    >
+      <div
+        className={classnames('alitajs-dform-dom', {
+          'alitajs-dform-vertical-dom': true,
+        })}
+      >
+        {dom()}
+      </div>
+    </HorizontalTitle>
+  );
+
+  return isVertical ? Vertical : Horizontal;
 };
 
 DformCustom.displayName = 'dformCustom';
