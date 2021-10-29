@@ -4,7 +4,7 @@ import Hidden from '../Hidden';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
-export interface TitleProps {
+export interface VerticalTitleProps {
   positionType?: 'vertical' | 'horizontal';
   hidden?: boolean;
   required?: boolean;
@@ -14,11 +14,11 @@ export interface TitleProps {
   extra?: string | React.ReactNode;
   error: any;
   fieldProps: string;
-  independentProps?: TitleProps;
+  independentProps?: VerticalTitleProps;
   formFlag?: boolean;
 }
 
-const Title: FC<TitleProps> = (props) => {
+const HorizontalTitle: FC<VerticalTitleProps> = (props) => {
   const {
     children,
     positionType = 'horizontal',
@@ -62,9 +62,9 @@ const Title: FC<TitleProps> = (props) => {
             <div>{title}</div>
           </div>
           <div className={classnames(`${allPrefixCls}-content`)}>
-            <div>{children}</div>
-            {extra !== '' && (
-              <div className={`${allPrefixCls}-extra`}>{extra}</div>
+            <div className={classnames(`${allPrefixCls}-content-child`)}>{children}</div>
+            {extra && (
+              <div className={classnames(`${allPrefixCls}-extra-horizontal`)}>{extra}</div>
             )}
           </div>
         </div>
@@ -78,4 +78,4 @@ const Title: FC<TitleProps> = (props) => {
   );
 };
 
-export default Title;
+export default HorizontalTitle;

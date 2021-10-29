@@ -37,12 +37,13 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     titleProps,
     formFlag = false,
     children,
+    positionType
   } = props;
 
   useEffect(() => {
     if (CustomDom || customDomProps) {
       console.warn(
-        'DformCustom组件已放弃CustomDom、customDomProps属性，已切换为children',
+        'DformCustom组件已放弃CustomDom、customDomProps属性，请切换为children',
       );
     }
   }, [CustomDom, customDomProps]);
@@ -58,7 +59,8 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     </Field>
   );
 
-  const isVertical = titleProps.positionType === 'vertical';
+
+  const isVertical = (formFlag ? titleProps?.positionType : positionType) === 'vertical';
 
   const Vertical = (
     <Title
