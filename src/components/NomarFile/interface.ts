@@ -13,6 +13,7 @@ export interface INomarFileProps {
   hasStar?: boolean;
   subTitle?: string | React.ReactNode;
   extra?: string | React.ReactNode;
+  uploadExtra?: string | React.ReactNode;
   hidden?: boolean;
   onClick?: (val: INomarFileItemProps) => void;
   onChange?: (val: INomarFileItemProps[], item: INomarFileItemProps) => void;

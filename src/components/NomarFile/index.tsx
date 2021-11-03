@@ -14,6 +14,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     title,
     rules = [],
     extra = <img src={FileIcon} alt="" className={`${prefixCls}-img`} />,
+    uploadExtra,
     onChange,
     defaultValue,
     upload,
@@ -32,12 +33,16 @@ const DformFile: FC<INomarFileProps> = (props) => {
 
   const extraContent = () => (
     <React.Fragment>
-      <input
-        type="file"
-        multiple
-        className="alitajs-dform-file-input"
-        onChange={fileIns}
-      />
+      {uploadExtra ? (
+        <div className="alitajs-dform-file-input">{uploadExtra}</div>
+      ) : (
+        <input
+          type="file"
+          multiple
+          className="alitajs-dform-file-input"
+          onChange={fileIns}
+        />
+      )}
       <span className="alitajs-dform-file-extra">{extra}</span>
     </React.Fragment>
   );
