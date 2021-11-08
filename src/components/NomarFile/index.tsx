@@ -19,6 +19,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     defaultValue,
     upload,
     titleProps,
+    fileProps,
   } = props;
 
   // 该函数没被使用，因此注释
@@ -41,6 +42,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
           multiple
           className="alitajs-dform-file-input"
           onChange={fileIns}
+          {...fileProps}
         />
       )}
       <span className="alitajs-dform-file-extra">{extra}</span>

@@ -93,6 +93,7 @@ export interface IFormItemProps {
   initKey?: string | number;
   className?: string;
   groupProps?: GroupProps;
+  fileProps?: any;
 }
 
 export interface TargetProps {
