@@ -95,9 +95,6 @@ const Page: FC = () => {
           title="我居住过的城市(没数据)"
           positionType="vertical"
           labelNumber={6}
-          onClick={() => {
-            Toast.info('暂无数据')
-          }}
         />
         <DformPicker
           fieldProps="youCity"
