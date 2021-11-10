@@ -63,7 +63,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
       return (
         <Field
           name={fieldProps2}
-          rules={[{ required, message: `请选择${title}` }, ...rules]}
+          rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
           initialValue={secondProps?.defaultValue}
           formFlag={formFlag}
         >

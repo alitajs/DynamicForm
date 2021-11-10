@@ -43,7 +43,6 @@ const Page: FC = () => {
   return (
     <>
       <DynamicForm {...formProps}>
-        www
         <NomarFile
           required
           fieldProps="contract"
@@ -59,18 +58,7 @@ const Page: FC = () => {
             title: 'title',
           }}
           upload={(res: any) => {
-            const list = form.getFieldsValue().contract || [];
-            if (res && res.length) {
-              res.map((item: any) => {
-                list.push({
-                  title: item.name,
-                  fileId: getRandom(),
-                });
-              });
-            }
-            form.setFieldsValue({
-              contract: list,
-            });
+            console.log(res);
           }}
         />
       </DynamicForm>

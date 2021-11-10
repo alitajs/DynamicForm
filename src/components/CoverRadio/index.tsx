@@ -128,7 +128,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         <div className={`${prefixCls}-field`}>
           <Field
             name={fieldProps}
-            rules={rules || [{ required, message: `请选择${title}` }]}
+            rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
             initialValue={defaultValue}
             formFlag={formFlag}
             >

@@ -59,7 +59,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
         <Field
           formFlag={formFlag}
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...rules]}
+          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
         >
           <FileGroup ref={fileRef} {...props} onChange={fileChange} />

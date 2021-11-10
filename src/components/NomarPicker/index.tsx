@@ -73,7 +73,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     >
       <Field
         name={fieldProps}
-        rules={rules || [{ required, message: `请选择${title}` }]}
+        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
