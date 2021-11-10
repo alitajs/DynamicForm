@@ -39,11 +39,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     ...otherProps
   } = props;
   return (
-    <Title
-      independentProps={props}
-      formFlag={formFlag}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
           <div className={`${allPrefixCls}-title`}>
@@ -55,7 +51,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
           <Field
             name={fieldProps}
             valuePropName="checked"
-            rules={[{ required, message: `请选择${title}` }, ...rules]}
+            rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
             initialValue={defaultValue}
             formFlag={formFlag}
           >

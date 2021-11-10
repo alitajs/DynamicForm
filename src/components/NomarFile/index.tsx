@@ -30,12 +30,16 @@ const DformFile: FC<INomarFileProps> = (props) => {
 
   const extraContent = () => (
     <React.Fragment>
-      <input
-        type="file"
-        multiple
-        className="alitajs-dform-file-input"
-        onChange={fileIns}
-      />
+      <label>
+        <input
+          type="file"
+          multiple
+          className="alitajs-dform-file-input"
+          onChange={fileIns}
+          aria-labelledby={fieldProps}
+          aria-label={fieldProps}
+        />
+      </label>
       <span className="alitajs-dform-file-extra">{extra}</span>
     </React.Fragment>
   );
@@ -43,14 +47,14 @@ const DformFile: FC<INomarFileProps> = (props) => {
   const fileChange = (
     res: INomarFileItemProps[],
     item: INomarFileItemProps,
-    type: 'add' | 'delete'
+    type: 'add' | 'delete',
   ) => {
     if (onChange) onChange(res, item, type);
   };
 
   return (
     <Title
-      independentProps={{ positionType: 'vertical', ...props}}
+      independentProps={{ positionType: 'vertical', ...props }}
       formFlag={formFlag}
       {...titleProps}
       extra={extraContent()}

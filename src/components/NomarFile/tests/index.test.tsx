@@ -53,7 +53,7 @@ const myProps = {
   },
 };
 
-it('passes picker a11y test', async () => {
+it('passes file a11y test', async () => {
   const { container, getByText } = render(
     <div>
       <Form>
@@ -65,7 +65,7 @@ it('passes picker a11y test', async () => {
   await testA11y(container);
 });
 
-test('passes picker a11y test', async () => {
+test('passes file basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
   const onMyClick = jest.fn();

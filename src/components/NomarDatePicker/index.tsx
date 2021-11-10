@@ -45,7 +45,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
       >
         <Field
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...rules]}
+          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
           formFlag={formFlag}
         >

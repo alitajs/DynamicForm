@@ -45,20 +45,16 @@ const DformText: FC<INomarTextProps> = (props) => {
     className = '',
     defaultValue,
     titleProps,
-    formFlag = false
+    formFlag = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title
-      independentProps={props}
-      formFlag={formFlag}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `${title}无数据` }, ...rules]}
+        rules={[{ required, message: `${title}无数据` }, ...(rules || [])]}
         initialValue={defaultValue}
         formFlag={formFlag}
       >

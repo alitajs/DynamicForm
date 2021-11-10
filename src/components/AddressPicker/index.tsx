@@ -18,7 +18,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     onChange,
     defaultValue,
     titleProps,
-    formFlag = false
+    formFlag = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -28,14 +28,10 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   };
 
   return (
-    <Title
-      independentProps={props}
-      formFlag={formFlag}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...rules]}
+        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
