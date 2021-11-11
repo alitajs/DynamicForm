@@ -60,7 +60,10 @@ const Page: FC = () => {
           fieldProps="minPrise"
           fieldProps2="maxPrise"
           title="价格区间(数字输入)"
-          firstProps={{ placeholder: '输入最小价格', disabled: true }}
+          firstProps={{
+            placeholder: '输入最小价格',
+            disabled: true,
+          }}
           secondProps={{
             extra: '¥',
             placeholder: '输入最大价格',
