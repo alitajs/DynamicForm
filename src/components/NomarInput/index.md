@@ -9,6 +9,10 @@ nav:
 
 # Input
 
+## 备注
+
+**可以自定义设置 `labelNumber` 来调整 `title` 的长度, 如果需要让 `title` 宽度自定义，可以设置 `labelNumber` 大于 `7`**
+
 ## 代码演示
 
 <code src="./demo/index.tsx" />
@@ -37,6 +41,7 @@ nav:
 | renderHeader | 组件头部                                                                                                                              | `number` or `string`       | -            | 否       |
 | className    | 类名                                                                                                                                  | string                     | -            | 否       |
 | defaultValue | 设置初始取值                                                                                                                          | string                     | -            | 否       |
+| maxLine      | 文字行数过长时，自动隐藏，可通过点击 `更多` 和 `收起` 进行内容的缩放                                                                  | number                     |              | 否       |
 
 ## 备注
 
@@ -45,4 +50,3 @@ nav:
 若设置成 `disabled = true`，则组件在 `ios` 或者 `safari 浏览器` 上值会变浅。
 
 如果有需求为：组件不可编辑的状态下 `onClick` 事件失效，则请采用 `NomarText` 组件。
-

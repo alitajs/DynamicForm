@@ -1,10 +1,11 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
 import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import InputItem from '../InputItem';
 import Field from '../Field';
 import Title from '../Title';
+import { TextItem } from '../..';
 import { allPrefixCls } from '../../const/index';
 
 export interface INomarInputProps extends InputItemPropsType {
@@ -22,6 +23,7 @@ export interface INomarInputProps extends InputItemPropsType {
   className?: string;
   titleProps?: any;
   formFlag?: boolean;
+  maxLine?: number;
 }
 
 const DformInput: FC<INomarInputProps> = (props) => {
@@ -43,34 +45,55 @@ const DformInput: FC<INomarInputProps> = (props) => {
     disabled = false,
     defaultValue,
     titleProps,
-    // onChange,
     formFlag = false,
+    placeholder = '',
+    maxLine,
+    onClick,
+    labelNumber = 5,
     ...otherProps
   } = props;
 
-  // const [value, setValue] = useState<string>('');
-
   const isVertical = positionType === 'vertical';
 
-  // useEffect(() => {
-  //   if (defaultValue) setValue(defaultValue);
-  // }, [defaultValue]);
-
   const inputOnBlur = (val: string | undefined) => {
-    // window.scrollTo(0, 0);
     if (onBlur) onBlur(val);
   };
 
-  // const fieldChange = (e: string) => {
-  //   setValue(e);
-  //   if (onChange) onChange(e);
-  // };
+  const showTextFiled = () => {
+    return (
+      <TextItem
+        placeholder={placeholder}
+        extra={extra}
+        coverStyle={{
+          color: '#999',
+          ...coverStyle,
+        }}
+        isVertical={isVertical}
+        labelNumber={labelNumber}
+        onClick={onClick}
+        disabled={disabled}
+        maxLine={maxLine}
+        fieldProps={fieldProps}
+        className={className}
+        arrow={false}
+      >
+        <div className={`${allPrefixCls}-title`}>
+          {required && hasStar && (
+            <div className={`${allPrefixCls}-redStar`}>*</div>
+          )}
+          <div>{title}</div>
+        </div>
+      </TextItem>
+    );
+  };
 
   const showFiled = () => {
     return (
       <InputItem
-        // value={value}
         {...otherProps}
+        labelNumber={labelNumber > 7 ? 7 : labelNumber}
+        onClick={onClick}
+        placeholder={placeholder}
         fieldProps={fieldProps}
         extra={isVertical ? '' : extra}
         type={inputType}
@@ -85,7 +108,6 @@ const DformInput: FC<INomarInputProps> = (props) => {
           inputOnBlur(val);
         }}
         isVertical={isVertical}
-        // onChange={fieldChange}
       >
         <div className={`${allPrefixCls}-title`}>
           {required && hasStar && (
@@ -98,23 +120,14 @@ const DformInput: FC<INomarInputProps> = (props) => {
   };
 
   return (
-    <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <Field
         name={fieldProps}
         rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
         initialValue={defaultValue}
         formFlag={formFlag}
       >
-        {showFiled()}
+        {editable && !disabled ? showFiled() : showTextFiled()}
       </Field>
     </Title>
   );

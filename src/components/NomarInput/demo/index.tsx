@@ -14,9 +14,12 @@ import PositionIcon from '../../../assets/position_ico.png';
 import PhotoIcon from '../../../assets/photo.png';
 import PwdIcon from '../../../assets/look.png';
 
+const { Group } = DynamicForm;
+
 const Page: FC = () => {
   const [form] = useForm();
   const [pwdInputType, setPwdInputType] = useState<boolean>(true);
+  const [editFlag, setEditFlag] = useState<boolean>(false);
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -46,11 +49,15 @@ const Page: FC = () => {
   );
 
   const formsValues = {
-    userAge: '这里只读不可编辑',
-    username4: '点击图标事件',
-    username6: '存在点击事件',
+    username: 'this is dform',
     userTitle: '点击获取表单全部数据',
+    allTooLong:
+      '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
+    valueTooLong:
+      '欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单欢迎使用 dform 动态表单',
+    titleTooLong: '11',
   };
+
   const formProps = {
     onFinish,
     onFinishFailed,
@@ -62,86 +69,94 @@ const Page: FC = () => {
   return (
     <>
       <DynamicForm {...formProps}>
-        <DformInput
-          fieldProps="username"
-          required
-          clear
-          placeholder="输入项居左"
-          title="用户名"
-          subTitle={subTitle()}
-          coverStyle={{ textAlign: 'left' }}
-          onChange={(e) => console.log(e)}
-        />
-        <DformInput
-          fieldProps="userAge"
-          title="年龄"
-          placeholder="请输入"
-          editable={false}
-          inputType="text"
-          clear
-        />
-        <DformInput
-          fieldProps="userPwd"
-          title="请设置密码"
-          placeholder="请输入"
-          extra={pwdImg()}
-          inputType={pwdInputType ? 'password' : 'text'}
-        />
-        <DformInput
-          fieldProps="titleTooLong"
-          title="标题名称过长"
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-        />
-        <DformInput
-          fieldProps="defaultValue"
-          title="设置默认值"
-          placeholder="请输入"
-          extra={extraImg()}
-          defaultValue="这是默认值"
-        />
-        <DformInput
-          fieldProps="username5"
-          title="身份证"
-          placeholder="请输入身份证"
-          extra={photoImg()}
-          inputType="number"
-        />
-        <DformInput
-          fieldProps="userTitle"
-          title="标题"
-          placeholder="点击获取表单全部数据"
-          editable={false}
-          onClick={() => console.log(form.getFieldsValue())}
-        />
-        <DformInput
-          fieldProps="cardNumber"
-          title="身份证号码(增加规则)"
-          required
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-          positionType="vertical"
-          rules={[
-            {
-              pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
-              message: '名称只允许包含数字、字母和下划线',
-            },
-          ]}
-        />
-        <DformInput
-          fieldProps="subTitle"
-          title="副标题"
-          placeholder="请输入"
-          labelNumber={7}
-          inputType="text"
-          clear
-          subTitle={subTitle()}
-          positionType="vertical"
-        />
+        <Group type="card" title="输入类型">
+          <DformInput
+            fieldProps="username"
+            required
+            clear
+            placeholder="输入项居左"
+            title="用户名"
+            subTitle={subTitle()}
+            coverStyle={{ textAlign: 'left' }}
+            onChange={(e) => console.log(e)}
+          />
+          <DformInput
+            fieldProps="userPwd"
+            title="请设置密码"
+            placeholder="请输入"
+            extra={pwdImg()}
+            inputType={pwdInputType ? 'password' : 'text'}
+          />
+          <DformInput
+            fieldProps="username5"
+            title="身份证"
+            placeholder="请输入身份证"
+            extra={photoImg()}
+            inputType="number"
+          />
+          <DformInput
+            fieldProps="cardNumber"
+            title="身份证号码(增加规则)"
+            required
+            placeholder="请输入"
+            labelNumber={7}
+            inputType="text"
+            clear
+            positionType="vertical"
+            rules={[
+              {
+                pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
+                message: '名称只允许包含数字、字母和下划线',
+              },
+            ]}
+          />
+        </Group>
+        <Group
+          type="card"
+          title="显示类型"
+          rightView={
+            <div
+              style={{ fontSize: '0.3rem' }}
+              onClick={() => setEditFlag(!editFlag)}
+            >
+              点击切换是否可编辑
+            </div>
+          }
+        >
+          <DformInput
+            fieldProps="userTitle"
+            title="标题"
+            placeholder="点击获取表单全部数据"
+            editable={editFlag}
+            onClick={() => console.log(form.getFieldsValue())}
+          />
+          <DformInput
+            fieldProps="allTooLong"
+            required
+            title="标题很长内容也很长"
+            placeholder="暂无数据"
+            labelNumber={7}
+            maxLine={2}
+            editable={editFlag}
+          />
+          <DformInput
+            fieldProps="valueTooLong"
+            required
+            title="内容过长隐藏"
+            placeholder="暂无数据"
+            labelNumber={7}
+            maxLine={2}
+            editable={editFlag}
+          />
+          <DformInput
+            fieldProps="titleTooLong"
+            required
+            title="标题很长，内容很短(labelNumber 设置为8)"
+            placeholder="暂无数据"
+            labelNumber={8}
+            editable={editFlag}
+          />
+        </Group>
       </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
