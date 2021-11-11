@@ -34,6 +34,7 @@ export interface IAddressPickerProps {
   alias?: IAliasProps;
   defaultValue?: valueProps;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 export interface valueProps {

@@ -284,14 +284,10 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           relatives,
         });
       } else if (displayName === 'group') {
-        // 内部Group组件
-        return React.cloneElement(
-          child,
-          { ...props, key: fieldProps || index },
-          showChildren({ context: props.children }),
-        );
+      // 内部Group组件
+        return React.cloneElement(child, { ...props, key: fieldProps || index }, showChildren({ context: props.children }));
       } else {
-        // 其他类型组件
+      // 其他类型组件
         const isArray = Array.isArray(props.children);
         if (
           props.children &&

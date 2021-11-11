@@ -25,6 +25,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   defaultValue?: string;
   errorValue?: any;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const DformTextArea: FC<INomarTextAreaProps> = (props) => {
@@ -46,6 +47,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     defaultValue,
     errorValue,
     titleProps,
+    formFlag = false,
     ...otherProps
   } = props;
 
@@ -67,7 +69,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <div
         className={classnames({
           [`${allPrefixCls}-area`]: true,
@@ -82,6 +84,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
             return prevValue !== nextValue;
           }}
           initialValue={defaultValue}
+          formFlag={formFlag}
         >
           <TextareaItem
             {...otherProps}

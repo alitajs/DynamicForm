@@ -53,7 +53,6 @@ const Page = () => {
   };
 
   const formsValues = {
-    sex2: 'woman',
     sex: 'man',
   };
 
@@ -71,7 +70,7 @@ const Page = () => {
         <CoverRadio
           fieldProps="sex"
           data={sexList}
-          title="性别(默认值)"
+          title="性别"
           required
           onChange={(val: any) => {
             // eslint-disable-next-line no-console
@@ -81,7 +80,6 @@ const Page = () => {
             label: 'sexName',
             value: 'sexId',
           }}
-          defaultValue="man"
         />
         <CoverRadio
           fieldProps="sex2"

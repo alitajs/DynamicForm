@@ -17,12 +17,14 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     hasStar = true,
     onChange,
     data = [],
+    positionType,
     alias = {
       label: 'label',
       value: 'value',
     },
     defaultValue,
     titleProps,
+    formFlag = false,
   } = props;
   const { label = 'label', value = 'value' } = alias;
 
@@ -43,11 +45,18 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title
+      title={title}
+      positionType={positionType}
+      independentProps={props}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <Field
         name={fieldProps}
         rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         initialValue={defaultValue}
+        formFlag={formFlag}
       >
         <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
           <div className={`${allPrefixCls}-title`}>

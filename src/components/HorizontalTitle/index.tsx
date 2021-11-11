@@ -2,8 +2,9 @@ import React, { FC, useMemo } from 'react';
 import classnames from 'classnames';
 import Hidden from '../Hidden';
 import { allPrefixCls } from '../../const/index';
+import './index.less';
 
-export interface TitleProps {
+export interface VerticalTitleProps {
   positionType?: 'vertical' | 'horizontal';
   hidden?: boolean;
   required?: boolean;
@@ -13,11 +14,11 @@ export interface TitleProps {
   extra?: string | React.ReactNode;
   error: any;
   fieldProps: string;
-  independentProps?: TitleProps;
+  independentProps?: VerticalTitleProps;
   formFlag?: boolean;
 }
 
-const Title: FC<TitleProps> = (props) => {
+const HorizontalTitle: FC<VerticalTitleProps> = (props) => {
   const {
     children,
     positionType = 'horizontal',
@@ -29,41 +30,44 @@ const Title: FC<TitleProps> = (props) => {
     extra,
     error,
     fieldProps,
-   } = useMemo(() => {
+  } = useMemo(() => {
     if (props.formFlag) {
       return props;
     }
-     return { ...props, ...props.independentProps } as any;
-   }, [props]);
+    return { ...props, ...props.independentProps } as any;
+  }, [props]);
 
-  const isVertical = positionType === 'vertical';
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
   return (
     <Hidden hidden={hidden}>
       <div
-        className={classnames(`${allPrefixCls}-cell`, {
-          [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
+        className={classnames(`${allPrefixCls}-cell ${allPrefixCls}-item`, {
+          [`${allPrefixCls}-horizontal`]: true,
           [`${allPrefixCls}-error`]: error && !!error[fieldProps],
         })}
       >
-        {isVertical && (
+        <div
+          className={classnames({
+            [`${allPrefixCls}-title`]: true,
+          })}
+        >
           <div
             className={classnames({
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: true,
+              [`${allPrefixCls}-horizontal-title`]: true,
             })}
           >
             {required && hasStar && (
               <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
             <div>{title}</div>
-            {subTitle}
-            {extra !== '' && isVertical && (
-              <div className={`${allPrefixCls}-extra`}>{extra}</div>
+          </div>
+          <div className={classnames(`${allPrefixCls}-content`)}>
+            <div className={classnames(`${allPrefixCls}-content-child`)}>{children}</div>
+            {extra && (
+              <div className={classnames(`${allPrefixCls}-extra-horizontal`)}>{extra}</div>
             )}
           </div>
-        )}
-        {children}
+        </div>
         {error && !!error[fieldProps] && (
           <div className={`${allPrefixCls}-error-text`}>
             {error[fieldProps]}
@@ -74,4 +78,4 @@ const Title: FC<TitleProps> = (props) => {
   );
 };
 
-export default Title;
+export default HorizontalTitle;

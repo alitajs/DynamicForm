@@ -25,6 +25,7 @@ interface INomarCheckBoxProps {
   alias?: IAliasProps;
   defaultValue?: (string | number)[];
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
@@ -46,6 +47,10 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     },
     defaultValue,
     titleProps,
+    hidden,
+    hasStar,
+    subTitle,
+    formFlag = false,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -63,12 +68,21 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title
+      positionType="vertical"
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      {...titleProps}
+    >
       <div className={`${allPrefixCls}-check-box`}>
         <Field
           name={fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
+          formFlag={formFlag}
         >
           <CheckBoxGroup
             disableItem={props.disableItem}

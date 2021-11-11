@@ -20,6 +20,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     onChange,
     defaultValue,
     titleProps,
+    formFlag = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -29,7 +30,13 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title
+      title={title}
+      positionType={positionType}
+      independentProps={props}
+      formFlag={formFlag}
+      {...titleProps}
+    >
       <div
         className={classnames({
           [`alitajs-dform${isVertical ? '-vertical' : ''}-date-picker`]: true,
@@ -40,6 +47,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           name={fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
+          formFlag={formFlag}
         >
           <DatePickerGroup {...props} onChange={fileChange}>
             <div className={`${allPrefixCls}-title`}>

@@ -19,6 +19,7 @@ interface IRadioGroup {
   coverStyle?: React.CSSProperties;
   className?: string;
   labelNumber: number;
+  formFlag?: boolean;
 }
 
 const RadioGroup: FC<IRadioGroup> = (props) => {
@@ -32,6 +33,7 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     coverStyle,
     className = '',
     labelNumber = 5,
+    formFlag = false,
     children,
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
@@ -41,6 +43,9 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
   if (radioType === 'vertical') {
     isVertical = true;
   }
+
+  const formValue = formFlag ? activeValue : value;
+
 
   const labelCls = classnames({
     [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
@@ -130,10 +135,10 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
             className={classnames({
               [`${prefixCls}-wrapper`]: true,
               [`${prefixCls}-wrapper-checked`]:
-                item.value && item.value === activeValue,
+                item.value && item.value === formValue,
               [`${prefixCls}-wrapper-margin`]: isVertical,
               [`${prefixCls}-wrapper-cover`]:
-                item.moveFlag && item.value !== activeValue,
+                item.moveFlag && item.value !== formValue,
               [className]: className,
             })}
             style={coverStyle}

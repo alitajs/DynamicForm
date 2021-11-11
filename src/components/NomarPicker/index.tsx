@@ -9,6 +9,10 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
 
   const {
+    positionType = 'horizontal',
+    hidden = false,
+    subTitle = '',
+    extra,
     fieldProps,
     rules = [],
     required = false,
@@ -21,6 +25,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
+    formFlag = false,
     titleProps,
   } = props;
 
@@ -38,8 +43,34 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     if (onChange) onChange(values);
   };
 
+  const showFiled = () => {
+    return (
+      <PickerGroup
+        value={defaultValue}
+        {...props}
+        onChange={fieldChange}
+        data={aliasData}
+      >
+        <div className={`${allPrefixCls}-title`}>
+          {required && hasStar && (
+            <div className={`${allPrefixCls}-redStar`}>*</div>
+          )}
+          <div>{title}</div>
+        </div>
+      </PickerGroup>
+    );
+  };
   return (
-    <Title {...titleProps}>
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+      {...titleProps}
+    >
       <Field
         name={fieldProps}
         rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
@@ -47,15 +78,9 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
           return prevValue !== nextValue;
         }}
         initialValue={defaultValue}
+        formFlag={formFlag}
       >
-        <PickerGroup {...props} onChange={fieldChange} data={aliasData}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
-        </PickerGroup>
+        {showFiled()}
       </Field>
     </Title>
   );

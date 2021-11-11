@@ -20,6 +20,7 @@ export interface INomarRadioGroupProps {
   className?: string;
   allowUnChecked?: boolean;
   labelNumber: number;
+  formFlag?: boolean;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
@@ -35,6 +36,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     allowUnChecked,
     labelNumber = 5,
     children,
+    formFlag = false,
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
     undefined,
@@ -103,6 +105,8 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     }
   };
 
+  const formValue = formFlag ? activeValue : value;
+
   return (
     <div
       className={classnames({
@@ -143,10 +147,10 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
             <div
               className={classnames({
                 [`${prefixCls}-button`]: true,
-                [`${prefixCls}-checked`]: item.value === activeValue,
+                [`${prefixCls}-checked`]: item.value === formValue,
               })}
             >
-              {item.value === activeValue && (
+              {item.value === formValue && (
                 <div className={`${prefixCls}-inner-button`}></div>
               )}
             </div>

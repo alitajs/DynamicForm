@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import TouchFeedback from 'rmc-feedback';
 import { ClickEvent, StringEvent } from '../../PropsType';
@@ -28,8 +28,11 @@ const InputItem: FC<IInputItemProps> = (props) => {
     maxLength,
     fieldProps,
   } = props;
-
+  const [val, setVal] = useState(value);
   const [clearShow, setClearShow] = useState<boolean>(false);
+  useEffect(() => {
+    setVal(value);
+  }, [value]);
 
   const labelCls = classnames({
     [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
@@ -74,6 +77,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
     if (maxLength) {
       ctrlValue = ctrlValue.substr(0, maxLength);
     }
+    setVal(ctrlValue);
     if (onChange) onChange(ctrlValue);
   };
 
@@ -92,6 +96,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
    * 清除按钮点击事件
    */
   const clearInput = () => {
+    setVal('');
     if (onChange) onChange('');
   };
 
@@ -110,12 +115,12 @@ const InputItem: FC<IInputItemProps> = (props) => {
       >
         <input
           type={inputType}
-          value={value}
+          value={val}
           aria-label={fieldProps}
           readOnly={!editable || disabled}
           style={{
             textAlign: isVertical ? 'left' : 'right',
-            height: '0.42rem',
+            minHeight: '0.42rem',
             ...coverStyle,
           }}
           onFocus={(e: any) => {
@@ -140,7 +145,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
           })}
           placeholder={placeholder}
         />
-        {clear && editable && !disabled && value && `${value}`.length > 0 ? (
+        {clear && editable && !disabled && val && `${val}`.length > 0 ? (
           <TouchFeedback activeClassName={`${allPrefixCls}-clear-active`}>
             <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
           </TouchFeedback>

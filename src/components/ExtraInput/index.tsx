@@ -26,6 +26,7 @@ export interface IExtraInputProps {
   hidden?: boolean;
   disabled?: boolean;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
@@ -42,6 +43,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     firstProps,
     secondProps,
     titleProps,
+    formFlag = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -63,6 +65,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           name={fieldProps2}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={secondProps?.defaultValue}
+          formFlag={formFlag}
         >
           <PickerGroup
             {...secondProps}
@@ -90,7 +93,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <div
         className={classnames({
           [`${allPrefixCls}-extra-input`]: true,
@@ -106,6 +109,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
             name={fieldProps}
             rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
             initialValue={firstProps?.defaultValue}
+            formFlag={formFlag}
           >
             <InputItem
               {...firstProps}

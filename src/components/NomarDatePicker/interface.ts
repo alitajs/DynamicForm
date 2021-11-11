@@ -19,6 +19,7 @@ export interface INomarDatePickerProps extends PropsType {
   errorValue?: ErrorValueProps;
   defaultValue?: Date | undefined | string;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {

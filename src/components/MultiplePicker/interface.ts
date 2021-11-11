@@ -32,4 +32,5 @@ export interface IMultiplePickerProps {
   defaultValue?: (string | number)[] | undefined;
   titleProps?: any;
   clear?: boolean;
+  formFlag?: boolean;
 }

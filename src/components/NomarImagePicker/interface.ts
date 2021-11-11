@@ -22,6 +22,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   className?: string;
   defaultValue?: any[] | undefined;
   titleProps?: any;
+  formFlag?: boolean;
 }
 
 export interface ImagePickerGroupProps {

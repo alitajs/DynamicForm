@@ -33,6 +33,8 @@ interface ICoverRadioProps {
   labelNumber?: number;
   defaultValue?: string;
   titleProps?: any;
+  formFlag?: boolean;
+  extra?: string | React.ReactNode;
 }
 
 const CoverRadio: FC<ICoverRadioProps> = (props) => {
@@ -57,6 +59,10 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     labelNumber = 5,
     defaultValue,
     titleProps,
+    formFlag = false,
+    hidden = false,
+    subTitle,
+    extra,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -78,8 +84,41 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     if (onChange) onChange(e);
   };
 
+  const showFiled = () => {
+    return (
+      <CoverRadioGroup
+        value={defaultValue}
+        data={aliasData}
+        positionType={positionType}
+        radioType={radioType}
+        onChange={radioChange}
+        disabled={disabled}
+        coverStyle={coverStyle}
+        className={className}
+        labelNumber={labelNumber}
+        formFlag={formFlag}
+      >
+        <div className={`${allPrefixCls}-title`}>
+          {required && hasStar && (
+            <div className={`${allPrefixCls}-redStar`}>*</div>
+          )}
+          <div>{title}</div>
+        </div>
+      </CoverRadioGroup>
+    );
+  };
+
   return (
-    <Title {...titleProps}>
+    <Title
+      positionType={positionType}
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+      {...titleProps}
+    >
       <div
         className={classnames({
           [prefixCls]: true,
@@ -91,24 +130,9 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
             name={fieldProps}
             rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
             initialValue={defaultValue}
-          >
-            <CoverRadioGroup
-              data={aliasData}
-              positionType={positionType}
-              radioType={radioType}
-              onChange={radioChange}
-              disabled={disabled}
-              coverStyle={coverStyle}
-              className={className}
-              labelNumber={labelNumber}
+            formFlag={formFlag}
             >
-              <div className={`${allPrefixCls}-title`}>
-                {required && hasStar && (
-                  <div className={`${allPrefixCls}-redStar`}>*</div>
-                )}
-                <div>{title}</div>
-              </div>
-            </CoverRadioGroup>
+            {showFiled()}
           </Field>
         </div>
       </div>

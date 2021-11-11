@@ -21,6 +21,7 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     onChange,
     defaultValue = [],
     titleProps,
+    formFlag = false,
     ...otherProps
   } = props;
 
@@ -33,15 +34,17 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   };
 
   return (
-    <Title {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <div className={`${allPrefixCls}-image`}>
         <Field
           name={fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
+          formFlag={formFlag}
         >
           <ImagePickerGroup
             {...otherProps}
+            value={defaultValue}
             onChange={imageChange}
             limitSize={limitSize}
           />

@@ -1,12 +1,23 @@
 @import '../../styles/index.less';
 
+@paddingWrapper: 14 * @hd;
+
+.@{prefixCls}-group {
+  // 子元素下如果还有嵌套group的话，应该在子元素增加padding-bottom;
+  .@{prefixCls}-group:last-child {
+    padding-bottom: @paddingWrapper;
+  }
+}
 .@{prefixCls}-card {
   // margin: 0 12 * @hd;
-  padding: 14 * @hd 0;
+  padding-top: @paddingWrapper;
   overflow: hidden;
   background: #fff;
   border-radius: 6 * @hd;
-  border: 1 * @hd solid rgb(237, 240, 245);
+
+  &-border {
+    border: 1 * @hd solid rgb(237, 240, 245);
+  }
 
   &-title-box {
     display: flex;
@@ -22,5 +33,8 @@
     color: #333;
     font-weight: bold;
     font-size: 18 * @hd;
+  }
+  .@{prefixCls}-cell:last-child {
+    border: none;
   }
 }

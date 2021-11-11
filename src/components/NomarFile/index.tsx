@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useRef } from 'react';
 import Field from '../Field';
 import Title from '../Title';
 import FileGroup from './fileGroup';
@@ -20,51 +20,62 @@ const DformFile: FC<INomarFileProps> = (props) => {
     upload,
     titleProps,
     fileProps,
+    formFlag = false,
   } = props;
+
+  const fileRef = useRef<any>(null);
 
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
-    if (e.target.files) {
-      const fileList = Object.keys(e.target.files).map(
-        (item) => e.target.files[item],
-      );
-      upload(fileList);
-    }
+    fileRef?.current?.addFileChange(e);
   };
 
-  const extraContent = () => (
-    <React.Fragment>
-      {uploadExtra ? (
+  const extraContent = () => {
+    {
+      uploadExtra ? (
         <div className="alitajs-dform-file-input">{uploadExtra}</div>
       ) : (
-        <input
-          type="file"
-          multiple
-          className="alitajs-dform-file-input"
-          onChange={fileIns}
-          {...fileProps}
-        />
-      )}
-      <span className="alitajs-dform-file-extra">{extra}</span>
-    </React.Fragment>
-  );
+        <React.Fragment>
+          <label>
+            <input
+              type="file"
+              multiple
+              className="alitajs-dform-file-input"
+              onChange={fileIns}
+              {...fileProps}
+              aria-labelledby={fieldProps}
+              aria-label={fieldProps}
+            />
+          </label>
+          <span className="alitajs-dform-file-extra">{extra}</span>
+        </React.Fragment>
+      );
+    }
+  };
 
   const fileChange = (
     res: INomarFileItemProps[],
     item: INomarFileItemProps,
+    type: 'add' | 'delete',
   ) => {
-    if (onChange) onChange(res, item);
+    if (onChange) onChange(res, item, type);
   };
 
   return (
-    <Title {...titleProps} extra={extraContent()}>
+    <Title
+      independentProps={{ positionType: 'vertical', ...props }}
+      formFlag={formFlag}
+      {...titleProps}
+      extra={extraContent()}
+    >
       <div className={prefixCls}>
         <Field
+          formFlag={formFlag}
           name={fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
         >
-          <FileGroup {...props} onChange={fileChange} />
+          <FileGroup ref={fileRef} {...props} onChange={fileChange} />
         </Field>
       </div>
     </Title>

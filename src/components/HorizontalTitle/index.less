@@ -1,0 +1,33 @@
+@import '../../styles/index.less';
+
+.@{prefixCls}-horizontal {
+  align-items: center;
+  .@{prefixCls}-title {
+    align-items: center;
+    .@{prefixCls}-horizontal-title {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  .@{prefixCls}-extra-horizontal {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .@{prefixCls}-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    &-child {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}

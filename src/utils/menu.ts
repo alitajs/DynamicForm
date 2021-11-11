@@ -34,7 +34,7 @@ export const DFORM_COMP_DETAULT = {
   radio: { positionType: 'horizontal' },
   checkbox: { positionType: 'vertical' },
   image: { positionType: 'vertical' },
-  custom: { positionType: 'vertical' },
+  custom: { positionType: 'horizontal' },
   text: { positionType: 'horizontal' },
   file: { positionType: 'vertical' },
   rangeDatePicker: { positionType: 'vertical' },
