@@ -11,7 +11,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
   const [form] = useForm();
   const [pwdInputType, setPwdInputType] = useState<boolean>(false);
   const [formsValues, setFormsValues] = useState<any>({
-    userAge: '这里只读不可编辑',
+    userAge: '不可编辑',
   });
 
   const pwdImg = () => (
@@ -85,7 +85,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
           placeholder="请输入身份证"
           inputType="bankCard"
           onChange={() => {
-            console.log("bankCard测试");
+            console.log('bankCard测试');
           }}
         />
         <DformInput

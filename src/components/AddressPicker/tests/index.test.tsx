@@ -14,7 +14,7 @@ const props = {
   level: 3,
   data: [],
   placeholderList: ['请选择省', '请选择市', '请选择区'],
-  onChangeLevel: (values: (string | number)[]) => { },
+  onChangeLevel: (values: (string | number)[]) => {},
 };
 
 interface IAddrDataProps {
@@ -117,14 +117,14 @@ test('renders Basic', async () => {
   const { getByText, getByRole } = render(
     <Basic onFinish={onFinish} onFinishFailed={onFinishFailed} />,
   );
-  fireEvent.click(getByText('福建省,福州市,鼓楼区'));
+  fireEvent.click(getByText('福建省 福州市 鼓楼区'));
   expect(getByText('确定')).toHaveClass('am-picker-popup-header-right');
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('福州市'));
   fireEvent.click(getByText('台江区'));
   fireEvent.click(getByText('确定'));
-  expect(getByText('福建省,福州市,台江区')).toHaveClass(
+  expect(getByText('福建省 福州市 台江区')).toHaveClass(
     'alitajs-dform-text-item-text',
   );
   fireEvent.click(getByText('Submit'));
@@ -132,7 +132,7 @@ test('renders Basic', async () => {
     expect(onFinish).toBeCalled();
   });
 
-  fireEvent.click(getByText('福建省,福州市,台江区'));
+  fireEvent.click(getByText('福建省 福州市 台江区'));
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('确定'));
   expect(getByText('选择当前居住城市')).toHaveClass(
@@ -228,14 +228,14 @@ test('renders Basic', async () => {
   const { getByText, getByRole } = render(
     <Basic onFinish={onFinish} onFinishFailed={onFinishFailed} />,
   );
-  fireEvent.click(getByText('福建省,福州市,鼓楼区'));
+  fireEvent.click(getByText('福建省 福州市 鼓楼区'));
   expect(getByText('确定')).toHaveClass('am-picker-popup-header-right');
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('福州市'));
   fireEvent.click(getByText('台江区'));
   fireEvent.click(getByText('确定'));
-  expect(getByText('福建省,福州市,台江区')).toHaveClass(
+  expect(getByText('福建省 福州市 台江区')).toHaveClass(
     'alitajs-dform-text-item-text',
   );
   fireEvent.click(getByText('Submit'));
@@ -243,7 +243,7 @@ test('renders Basic', async () => {
     expect(onFinish).toBeCalled();
   });
 
-  fireEvent.click(getByText('福建省,福州市,台江区'));
+  fireEvent.click(getByText('福建省 福州市 台江区'));
   fireEvent.click(getByText('福建省'));
   fireEvent.click(getByText('确定'));
   expect(getByText('选择当前居住城市')).toHaveClass(

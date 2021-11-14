@@ -26,7 +26,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     fieldProps,
     className = '',
     arrow = true,
-    ellipsis = false,
+    ellipsis = true,
     clear = false,
     clearClick = () => {},
   } = props;
@@ -137,6 +137,8 @@ const TextItem: FC<ITextItemProps> = (props) => {
             onClick={clearClick}
           />
         )}
+      </div>
+      <div className={`${allPrefixCls}-right-content`}>
         {arrow && <div className={`${allPrefixCls}-arrow-horizontal`} />}
         {!isVertical && <div className="am-input-extra">{extra}</div>}
       </div>

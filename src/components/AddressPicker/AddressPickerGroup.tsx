@@ -74,7 +74,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     }
     // 设值
     onChange(val, 'change');
-    setInputLabel(newLabelList.join(','));
+    setInputLabel(newLabelList.join(' '));
     setModalFlag(false); // 关闭弹框
   };
 
@@ -88,7 +88,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   useEffect(() => {
     if (!value) return;
     const newValue = JSON.parse(JSON.stringify(value));
-    setInputLabel(newValue?.label.join(','));
+    setInputLabel(newValue?.label.join(' '));
     setLabelList(newValue?.label);
     setValueList(newValue?.value);
     setNowLevel(newValue?.value.length);

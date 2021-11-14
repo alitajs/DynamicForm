@@ -73,6 +73,7 @@ const DformText: FC<INomarTextProps> = (props) => {
           maxLine={maxLine}
           fieldProps={fieldProps}
           className={className}
+          ellipsis={false}
           arrow={false}
         >
           <div className={`${allPrefixCls}-title`}>

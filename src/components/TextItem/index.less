@@ -6,7 +6,7 @@
   // min-height: @alita-dform-height;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
 
   // .alitajs-dform-text-tltle {
@@ -56,6 +56,9 @@
     align-items: center;
     justify-content: center;
     flex: 1;
+    // overflow: hidden;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
   }
 
   &-overflow {
@@ -65,5 +68,6 @@
 
   .am-input-extra {
     max-height: 33 * @hd;
+    display: flex;
   }
 }
