@@ -133,11 +133,12 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
         })}
         style={coverStyle}
       >
-        {data.map((item: IDataItem) => (
+        {data.map((item: IDataItem, index: number) => (
           <div
             key={item.value}
             className={classnames({
               [`${prefixCls}-wrapper`]: true,
+              [`${prefixCls}-wrapper-last`]: index + 1 === (data || []).length,
               [`${prefixCls}-wrapper-item-vertical`]: radioType === 'vertical',
             })}
             onClick={(e) => {
