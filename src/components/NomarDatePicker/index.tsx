@@ -134,7 +134,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     maxDate: maxDate,
     onChange: (e: any) => {
       setEndDate(e);
-      onChange && onChange(e);
+      secondProps && secondProps?.onChange && secondProps?.onChange(e);
     },
     coverStyle: {
       ...coverStyle,
