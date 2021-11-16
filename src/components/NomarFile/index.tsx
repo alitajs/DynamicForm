@@ -31,26 +31,24 @@ const DformFile: FC<INomarFileProps> = (props) => {
   };
 
   const extraContent = () => {
-    {
-      uploadExtra ? (
-        <div className="alitajs-dform-file-input">{uploadExtra}</div>
-      ) : (
-        <React.Fragment>
-          <label>
-            <input
-              type="file"
-              multiple
-              className="alitajs-dform-file-input"
-              onChange={fileIns}
-              {...fileProps}
-              aria-labelledby={fieldProps}
-              aria-label={fieldProps}
-            />
-          </label>
-          <span className="alitajs-dform-file-extra">{extra}</span>
-        </React.Fragment>
-      );
-    }
+    return uploadExtra ? (
+      <div className="alitajs-dform-file-input">{uploadExtra}</div>
+    ) : (
+      <React.Fragment>
+        <label>
+          <input
+            type="file"
+            multiple
+            className="alitajs-dform-file-input"
+            onChange={fileIns}
+            {...fileProps}
+            aria-labelledby={fieldProps}
+            aria-label={fieldProps}
+          />
+        </label>
+        <span className="alitajs-dform-file-extra">{extra}</span>
+      </React.Fragment>
+    );
   };
 
   const fileChange = (
