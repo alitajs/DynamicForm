@@ -55,7 +55,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           fieldProps="DateTime"
           modeType="datetime"
           title="DateTimeVertical"
-          required={true}
+          required
           positionType="vertical"
           onChange={onChange}
           placeholder="请选择时间"

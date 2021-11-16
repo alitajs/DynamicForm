@@ -20,6 +20,8 @@ nav:
 | type         | 表单类型                                                                                                                             | string                     | ''           | 是       |
 | title        | 标题                                                                                                                                 | string                     | ''           | 是       |
 | fieldProps   | 文本属性                                                                                                                             | string                     | ''           | 是       |
+| fieldProps2  | 文本属性，用于区间时间处理                                                                                                                             | string                     | ''           | 否       |
+| secondProps  | `DformDatePicker` api                                                                                                                | {}                         | {}           | 否       |
 | placeholder  | placeholder                                                                                                                          | string                     | ''           | 否       |
 | required     | 必填判断                                                                                                                             | boolean                    | false        | 否       |
 | modeType     | 时间类型                                                                                                                             | string                     | `date`       | 否       |
@@ -36,7 +38,6 @@ nav:
 | disabled     | 是否可选                                                                                                                             | boolean                    | false        | 否       |
 | errorValue   |                                                                                                                                      | ErrorValueProps            | -            | 否       |
 | labelNumber  | 定宽枚举值：`num \* @input-label-width: 34px，`可用 2-7 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                     | -            | 否       |
-
 
 ## 备注
 

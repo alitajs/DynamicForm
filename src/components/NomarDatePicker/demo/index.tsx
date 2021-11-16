@@ -26,6 +26,8 @@ const Page: FC = () => {
 
   const formsValues = {
     DateTime: dateChange('2020-02-02 22:22'),
+    rangeTime1: dateChange(new Date('2021-07-08')),
+    rangeTime2: dateChange(new Date('2021-08-08')),
   };
 
   const formProps = {
@@ -61,6 +63,37 @@ const Page: FC = () => {
           title="DateTimeVertical"
           required={true}
           positionType="vertical"
+        />
+
+        <DformDatePicker
+          required
+          fieldProps="rangeTime1"
+          fieldProps2="rangeTime2"
+          title="时间(datetime)"
+          modeType="datetime"
+          onOk={(val: any) => {
+            // eslint-disable-next-line no-console
+            console.log(val);
+          }}
+        />
+        <DformDatePicker
+          fieldProps="rangeTime3"
+          fieldProps2="rangeTime4"
+          title="时间(month)"
+          modeType="month"
+          positionType="horizontal"
+          labelNumber={7}
+        />
+        <DformDatePicker
+          required
+          fieldProps="rangeTime5"
+          fieldProps2="rangeTime6"
+          title="时间(date)"
+          positionType="vertical"
+          defaultValue={dateChange(new Date('2021-07-08'))}
+          secondProps={{
+            defaultValue: dateChange(new Date('2021-08-08')),
+          }}
         />
       </DynamicForm>
       <WhiteSpace size="lg" />

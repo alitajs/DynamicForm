@@ -29,12 +29,12 @@ const Title: FC<TitleProps> = (props) => {
     extra,
     error,
     fieldProps,
-   } = useMemo(() => {
+  } = useMemo(() => {
     if (props.formFlag) {
       return props;
     }
-     return { ...props, ...props.independentProps } as any;
-   }, [props]);
+    return { ...props, ...props.independentProps } as any;
+  }, [props]);
 
   const isVertical = positionType === 'vertical';
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
