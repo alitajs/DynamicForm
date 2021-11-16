@@ -1,7 +1,7 @@
 ---
-title: Text
+title: Text(丢弃)
 group:
-  title: Text
+  title: Text(丢弃)
 nav:
   title: 组件
   path: /components

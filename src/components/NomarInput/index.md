@@ -9,6 +9,8 @@ nav:
 
 # Input
 
+**请将 dform 升级至 `3.2.x` 的版本使用**
+
 ## 备注
 
 **可以自定义设置 `labelNumber` 来调整 `title` 的长度, 如果需要让 `title` 宽度自定义，可以设置 `labelNumber` 大于 `7`**

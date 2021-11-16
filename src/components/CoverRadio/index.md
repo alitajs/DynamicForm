@@ -1,13 +1,15 @@
 ---
-title: CoverRadio
+title: CoverRadio(丢弃)
 group:
-  title: CoverRadio
+  title: CoverRadio(丢弃)
 nav:
   title: 组件
   path: /components
 ---
 
 # CoverRadio
+
+**该组件放弃维护，请使用 Radio 组件替代**
 
 ## 代码演示
 

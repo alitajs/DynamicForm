@@ -9,6 +9,8 @@ nav:
 
 # Date
 
+**请将 dform 升级至 `3.2.x` 的版本使用**
+
 ## 代码演示
 
 <code src="./demo/index.tsx" />
@@ -20,7 +22,7 @@ nav:
 | type         | 表单类型                                                                                                                             | string                     | ''           | 是       |
 | title        | 标题                                                                                                                                 | string                     | ''           | 是       |
 | fieldProps   | 文本属性                                                                                                                             | string                     | ''           | 是       |
-| fieldProps2  | 文本属性，用于区间时间处理                                                                                                                             | string                     | ''           | 否       |
+| fieldProps2  | 文本属性，用于区间时间处理                                                                                                           | string                     | ''           | 否       |
 | secondProps  | `DformDatePicker` api                                                                                                                | {}                         | {}           | 否       |
 | placeholder  | placeholder                                                                                                                          | string                     | ''           | 否       |
 | required     | 必填判断                                                                                                                             | boolean                    | false        | 否       |

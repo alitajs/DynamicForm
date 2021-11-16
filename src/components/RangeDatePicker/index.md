@@ -1,13 +1,15 @@
 ---
-title: RangeDatePicker
+title: RangeDatePicker(丢弃)
 group:
-  title: RangeDatePicker
+  title: RangeDatePicker(丢弃)
 nav:
   title: 组件
   path: /components
 ---
 
 # RangeDatePicker
+
+**该组件已`弃用`，请使用 `DatePicker` 组件替代**
 
 ## 代码演示
 
@@ -28,8 +30,8 @@ nav:
 | maxDate      | 最大可选日期                                               | Date                       | ''         | 否       |
 | positionType | 表单方向样式                                               | `horizontal` or `vertical` | `vertical` | 否       |
 | hasStar      | 必填项红\*展示与否的判断                                   | boolean                    | true       | 否       |
-| firstProps   | `DformDatePicker` api           | {}                         | {}         | 否       |
-| secondProps  | `DformDatePicker` api             | {}                         | {}         | 否       |
+| firstProps   | `DformDatePicker` api                                      | {}                         | {}         | 否       |
+| secondProps  | `DformDatePicker` api                                      | {}                         | {}         | 否       |
 | rules        | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                      | []         | 否       |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node             | ''         | 否       |
 | hidden       | 字段展示与否的判断                                         | boolean                    | false      | 否       |
