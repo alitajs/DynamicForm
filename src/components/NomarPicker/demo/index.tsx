@@ -4,7 +4,7 @@
  */
 
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace, Toast } from 'antd-mobile';
 import DynamicForm, {
   useForm,
   Store,
@@ -88,6 +88,13 @@ const Page: FC = () => {
             value: 'cityName',
           }}
           clear
+        />
+        <DformPicker
+          fieldProps="myCity"
+          data={[]}
+          title="我居住过的城市(没数据)"
+          positionType="vertical"
+          labelNumber={6}
         />
         <DformPicker
           fieldProps="youCity"

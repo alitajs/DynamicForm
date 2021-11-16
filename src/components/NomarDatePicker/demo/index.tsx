@@ -28,6 +28,8 @@ const Page: FC = () => {
     DateTime: dateChange('2020-02-02 22:22'),
     rangeTime1: dateChange(new Date('2021-07-08')),
     rangeTime2: dateChange(new Date('2021-08-08')),
+    Date: '2020-02-02',
+    Month: dateChange('2020-02'),
   };
 
   const formProps = {
@@ -45,9 +47,7 @@ const Page: FC = () => {
           fieldProps="Date"
           modeType="date"
           title="Date"
-          disabled
           maxDate={new Date()}
-          minDate={new Date()}
           defaultValue={new Date()}
         />
         <DformDatePicker

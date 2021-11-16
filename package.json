@@ -12,7 +12,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "publish": "npm publish --access public",
-    "publish:test": "npm run publish --tag next"
+    "publish:test": "npm run publish --tag next",
+    "publish:test-date": "npm run publish --tag date"
   },
   "main": "lib/index.js",
   "module": "es/index.js",

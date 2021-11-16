@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent, useRef } from 'react';
+import React, { FC, ChangeEvent, useRef } from 'react';
 import Field from '../Field';
 import Title from '../Title';
 import FileGroup from './fileGroup';
@@ -14,10 +14,12 @@ const DformFile: FC<INomarFileProps> = (props) => {
     title,
     rules = [],
     extra = <img src={FileIcon} alt="" className={`${prefixCls}-img`} />,
+    uploadExtra,
     onChange,
     defaultValue,
     upload,
     titleProps,
+    fileProps,
     formFlag = false,
   } = props;
 
@@ -28,21 +30,28 @@ const DformFile: FC<INomarFileProps> = (props) => {
     fileRef?.current?.addFileChange(e);
   };
 
-  const extraContent = () => (
-    <React.Fragment>
-      <label>
-        <input
-          type="file"
-          multiple
-          className="alitajs-dform-file-input"
-          onChange={fileIns}
-          aria-labelledby={fieldProps}
-          aria-label={fieldProps}
-        />
-      </label>
-      <span className="alitajs-dform-file-extra">{extra}</span>
-    </React.Fragment>
-  );
+  const extraContent = () => {
+    {
+      uploadExtra ? (
+        <div className="alitajs-dform-file-input">{uploadExtra}</div>
+      ) : (
+        <React.Fragment>
+          <label>
+            <input
+              type="file"
+              multiple
+              className="alitajs-dform-file-input"
+              onChange={fileIns}
+              {...fileProps}
+              aria-labelledby={fieldProps}
+              aria-label={fieldProps}
+            />
+          </label>
+          <span className="alitajs-dform-file-extra">{extra}</span>
+        </React.Fragment>
+      );
+    }
+  };
 
   const fileChange = (
     res: INomarFileItemProps[],
