@@ -34,6 +34,11 @@ test('render Basic', async () => {
       onChange={onChange}
     />,
   );
+  const newTime = new Date();
+  let year: string = newTime.getFullYear() + '';
+  let month: string = newTime.getMonth() + 1 + '';
+  const dataTime = dayjs(newTime).format('YYYY-MM-DD HH:mm');
+  expect(getByText(dataTime)).toBeDefined();
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
@@ -55,6 +60,33 @@ test('render Basic', async () => {
     expect(getByText(dayjs(new Date()).format('YYYY-MM'))).toHaveClass(
       'alitajs-dform-text-item-text',
     );
+  });
+  await waitFor(() => {
+    expect(onFinishFailed).toBeCalled();
+  });
+  fireEvent.click(getAllByText('请选择')[0]);
+  await waitFor(() => {
+    expect(getByText('取消')).toBeDefined;
+  });
+  fireEvent.click(getAllByText('请选择')[0]);
+  await waitFor(() => {
+    expect(getByText('时间(date)')).toBeDefined;
+    fireEvent.click(getByText('确认'));
+  });
+  await waitFor(() => {
+    expect(getAllByText(dataTime)[1]).toHaveClass(
+      'alitajs-dform-text-item-text',
+    );
+  });
+  fireEvent.click(getAllByText('请选择')[0]);
+  await waitFor(() => {
+    expect(getByText(parseInt(month) + 1 + '月')).toBeDefined();
+    fireEvent.click(getByText('确认'));
+  });
+  fireEvent.click(getAllByText('请选择')[0]);
+  await waitFor(() => {
+    expect(getByText(parseInt(year) + 1 + '年')).toBeDefined();
+    fireEvent.click(getByText('确认'));
   });
   await waitFor(() => {
     fireEvent.click(getByText('Submit'));

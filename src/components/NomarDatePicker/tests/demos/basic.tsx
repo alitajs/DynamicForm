@@ -20,6 +20,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const [form] = useForm();
   const formsValues = {
     DateTime: dateChange('2020-02-02 22:22'),
+    rangeTime1: new Date(),
   };
 
   const formProps = {
@@ -37,7 +38,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           fieldProps="Date"
           modeType="date"
           title="Date"
-          disabled={true}
+          disabled
           maxDate={new Date()}
           minDate={new Date()}
           defaultValue={new Date()}
@@ -46,11 +47,10 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           fieldProps="Month"
           modeType="month"
           title="Month"
-          required={true}
+          required
           onChange={onChange}
           placeholder="请选择月份"
         />
-
         <DformDatePicker
           fieldProps="DateTime"
           modeType="datetime"
@@ -59,6 +59,20 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           positionType="vertical"
           onChange={onChange}
           placeholder="请选择时间"
+        />
+        <DformDatePicker
+          fieldProps="rangeTime1"
+          fieldProps2="rangeTime2"
+          title="时间(datetime)"
+          modeType="datetime"
+          onOk={(val: any) => {}}
+        />
+        <DformDatePicker
+          required
+          fieldProps="rangeTime3"
+          fieldProps2="rangeTime4"
+          title="时间(date)"
+          positionType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="lg" />
