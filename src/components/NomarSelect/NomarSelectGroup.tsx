@@ -1,7 +1,8 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useMemo } from 'react';
 import { Picker } from 'antd-mobile';
 import { INomarSelectProps } from './interface';
 import TextItem from '../TextItem';
+import { is2Dimensionals } from './utils';
 
 interface INomarSelectGroupProps extends Omit<INomarSelectProps, 'onChange'> {
   onChange: (values: (number | string)[] | undefined, flag: string) => void;
@@ -30,6 +31,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     extra = '',
     children,
     onChange,
+    ...restProps
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -93,12 +95,17 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     onChange(val, 'change');
     setvisible(false);
   };
+  const cascade = useMemo(() => {
+    const cas = !is2Dimensionals(data);
+    return props.cascade ?? cas;
+  }, [props.cascade, data]);
+
 
   return (
     <>
       <TextItem
         isVertical={isVertical}
-        value={`${pickerLabel}`}
+        value={pickerLabel}
         placeholder={placeholder}
         labelNumber={labelNumber}
         coverStyle={coverStyle}
@@ -112,10 +119,11 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         {children}
       </TextItem>
       <Picker
+        {...restProps}
         title={title}
         visible={visible && data.length > 0}
         data={data}
-        cascade={false}
+        cascade={cascade}
         value={value ? `${value}`.split(',') : undefined}
         onOk={onOK}
         cols={cols}
