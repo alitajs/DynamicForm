@@ -36,54 +36,135 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-  useEffect(() => {
-    if (data.length === 0) {
-      setPickerLabel('');
-      return;
-    } else {
-      setPickerLabel(value);
-    }
-    let allDate: any = [];
-    data.forEach((val: any, index: any) => {
-      let [mydata] = val.filter((item: any) => item?.value === value[index]);
-      if (mydata === undefined) {
-      } else {
-        allDate.push(mydata.label);
+  /**
+   * 通过value值查找对应的label  只适用二维数组
+   * @param value 待查找的value值
+   * @returns
+   */
+  const findLabelByValue = (val: string) => {
+    for (let index = 0; index < data.length; index++) {
+      const items = data[index] || [];
+      const item = items.find((ele: { value: string }) => ele.value === val);
+      if (item) {
+        return item.label;
       }
+    }
+    return '';
+  };
+
+  /**
+   * 处理联动状态数据结构
+   * @param val
+   * @returns
+   */
+  const getPickerLabelWithCascade = (val: Array<any>) => {
+    const labels: string[] = [];
+
+    const findChildLabel = (originData: Array<any>, index = 0) => {
+      if (
+        !Array.isArray(originData) ||
+        originData.length === 0 ||
+        val.length < index
+      ) {
+        return labels;
+      }
+      const origin = val[index];
+      const target = originData.find((o) => o.value === origin);
+      if (target) {
+        const { label, children } = target || {};
+        labels.push(label);
+        findChildLabel(children, index + 1);
+      }
+    };
+    findChildLabel(data);
+    return labels;
+  };
+
+  /**
+   * 获取所有二维数组下的值
+   * @param val 目标值
+   * @returns
+   */
+  const getPickerLabelWith2Dimensional = (val: Array<any>) => {
+    const label: string[] = [];
+    val.forEach((v) => {
+      label.push(findLabelByValue(v));
     });
-    if (allDate && allDate.length) {
-      setPickerLabel(allDate.join(','));
-    }
-    // 多余代码被注销，allDate.length最小为0
-    // else {
-    //   setPickerLabel('');
-    // }
-  }, [value]);
+    return label;
+  };
 
   useEffect(() => {
-    if (data.length == 0) {
-      setPickerLabel('');
-      return;
+    let label: any[] = [];
+    const isArrayData = Array.isArray(data);
+    const isArrayValue = Array.isArray(value);
+    if (isArrayData && isArrayValue && data.length > 0 && value.length > 0) {
+      label = is2Dimensionals(data)
+        ? getPickerLabelWith2Dimensional(value)
+        : getPickerLabelWithCascade(value);
     }
-    if (data && data.length) {
-      let allDate: any = [];
-      data.forEach((val: any, index: any) => {
-        let [mydata] = val.filter((item: any) => item?.value === value[index]);
-        if (mydata === undefined) {
-        } else {
-          allDate.push(mydata.label);
-        }
-      });
+    setPickerLabel(label.join(','));
+  }, [value, data]);
 
-      if (allDate && allDate.length) {
-        setPickerLabel(allDate.join(','));
-      } else {
-        setPickerLabel('');
-      }
-    } else {
-      setPickerLabel('');
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   let label: any[] = [];
+  //   const isArrayData = Array.isArray(data);
+  //   const isArrayValue = Array.isArray(value);
+  //   if (isArrayData && isArrayValue && data.length > 0 && value.length > 0) {
+  //     label = is2Dimensionals(data)
+  //       ? getPickerLabelWith2Dimensional(value)
+  //       : getPickerLabelWithCascade(value);
+  //   }
+  //   setPickerLabel(label.join(','));
+  // }, [value]);
+
+  // useEffect(() => {
+  //   if (data.length === 0) {
+  //     setPickerLabel('');
+  //     return;
+  //   } else {
+  //     setPickerLabel(value);
+  //   }
+  //   let allDate: any = [];
+  //   data.forEach((val: any, index: any) => {
+  //     let [mydata] = val.filter((item: any) => item?.value === value[index]);
+  //     if (mydata === undefined) {
+  //     } else {
+  //       allDate.push(mydata.label);
+  //     }
+  //   });
+  //   if (allDate && allDate.length) {
+  //     setPickerLabel(allDate.join(','));
+  //   }
+  //   // 多余代码被注销，allDate.length最小为0
+  //   // else {
+  //   //   setPickerLabel('');
+  //   // }
+  // }, [data, value]);
+
+  // useEffect(() => {
+  //   if (data.length == 0) {
+  //     setPickerLabel('');
+  //     return;
+  //   }
+  //   if (data && data.length) {
+  //     let allDate: any = [];
+  //     data.forEach((val: any, index: any) => {
+  //       let [mydata] = val.filter((item: any) => item?.value === value[index]);
+  //       if (mydata === undefined) {
+  //       } else {
+  //         allDate.push(mydata.label);
+  //       }
+  //     });
+
+  //     if (allDate && allDate.length) {
+  //       setPickerLabel(allDate.join(','));
+  //     } else {
+  //       setPickerLabel('');
+  //     }
+  //   } else {
+  //     setPickerLabel('');
+  //   }
+  // }, [data, value]);
   //打开
   const fieldClick = () => {
     if (onClick) onClick(value);
@@ -99,7 +180,6 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     const cas = !is2Dimensionals(data);
     return props.cascade ?? cas;
   }, [props.cascade, data]);
-
 
   return (
     <>

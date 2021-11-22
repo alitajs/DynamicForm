@@ -5,7 +5,7 @@
   */
  export const is2Dimensionals = (v: Array<any>) => {
   if (Array.isArray(v) && v.length > 0 && Array.isArray(v[0])) {
-    return false;
+    return true;
   }
-  return true;
+  return false;
  };
