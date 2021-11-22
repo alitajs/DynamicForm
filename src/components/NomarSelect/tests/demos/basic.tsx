@@ -99,6 +99,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
           placeholder="请选择"
           data={seasons}
           maxLine={1}
+          cascade={false}
         />
         <DformSelect
           type="select"
@@ -108,6 +109,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
           placeholder="请选择"
           data={citys}
           disabled={true}
+          cascade={false}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
