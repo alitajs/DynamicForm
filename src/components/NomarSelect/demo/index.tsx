@@ -10,6 +10,7 @@ import DynamicForm, {
   ValidateErrorEntity,
   DformSelect,
 } from '@alitajs/dform';
+import TestData from './test';
 
 const seasons = [
   [
@@ -63,6 +64,7 @@ const Page: FC<PageProps> = () => {
     userPicker1: ['2013', '春'],
     userPicker2: ['xiamen'],
     userPicker3: ['fuzhou'],
+    verticalPickerw: ['130000', '130500', '130502'],
   };
 
   const formProps = {
@@ -113,6 +115,22 @@ const Page: FC<PageProps> = () => {
           title="季节"
           placeholder="请选择"
           data={seasons}
+          positionType="vertical"
+        />
+        <DformSelect
+          type="select"
+          fieldProps="verticalPickerw"
+          title="联动(默认值)"
+          placeholder="请选择"
+          data={TestData}
+          positionType="vertical"
+        />
+        <DformSelect
+          type="select"
+          fieldProps="privice"
+          title="联动"
+          placeholder="请选择"
+          data={TestData}
           positionType="vertical"
         />
       </DynamicForm>

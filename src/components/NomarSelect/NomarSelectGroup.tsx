@@ -13,7 +13,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
   //是否显示
   const [visible, setvisible] = useState<boolean>(false);
   // 显示出来的选择数据
-  const [pickerLabel, setPickerLabel] = useState<any>('');
+  // const [pickerLabel, setPickerLabel] = useState<any>('');
 
   const {
     disabled = false,
@@ -93,7 +93,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     return label;
   };
 
-  useEffect(() => {
+  const pickerLabel = useMemo(() => {
     let label: any[] = [];
     const isArrayData = Array.isArray(data);
     const isArrayValue = Array.isArray(value);
@@ -102,69 +102,9 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         ? getPickerLabelWith2Dimensional(value)
         : getPickerLabelWithCascade(value);
     }
-    setPickerLabel(label.join(','));
+    return label.join(',');
   }, [value, data]);
 
-  // useEffect(() => {
-  //   let label: any[] = [];
-  //   const isArrayData = Array.isArray(data);
-  //   const isArrayValue = Array.isArray(value);
-  //   if (isArrayData && isArrayValue && data.length > 0 && value.length > 0) {
-  //     label = is2Dimensionals(data)
-  //       ? getPickerLabelWith2Dimensional(value)
-  //       : getPickerLabelWithCascade(value);
-  //   }
-  //   setPickerLabel(label.join(','));
-  // }, [value]);
-
-  // useEffect(() => {
-  //   if (data.length === 0) {
-  //     setPickerLabel('');
-  //     return;
-  //   } else {
-  //     setPickerLabel(value);
-  //   }
-  //   let allDate: any = [];
-  //   data.forEach((val: any, index: any) => {
-  //     let [mydata] = val.filter((item: any) => item?.value === value[index]);
-  //     if (mydata === undefined) {
-  //     } else {
-  //       allDate.push(mydata.label);
-  //     }
-  //   });
-  //   if (allDate && allDate.length) {
-  //     setPickerLabel(allDate.join(','));
-  //   }
-  //   // 多余代码被注销，allDate.length最小为0
-  //   // else {
-  //   //   setPickerLabel('');
-  //   // }
-  // }, [data, value]);
-
-  // useEffect(() => {
-  //   if (data.length == 0) {
-  //     setPickerLabel('');
-  //     return;
-  //   }
-  //   if (data && data.length) {
-  //     let allDate: any = [];
-  //     data.forEach((val: any, index: any) => {
-  //       let [mydata] = val.filter((item: any) => item?.value === value[index]);
-  //       if (mydata === undefined) {
-  //       } else {
-  //         allDate.push(mydata.label);
-  //       }
-  //     });
-
-  //     if (allDate && allDate.length) {
-  //       setPickerLabel(allDate.join(','));
-  //     } else {
-  //       setPickerLabel('');
-  //     }
-  //   } else {
-  //     setPickerLabel('');
-  //   }
-  // }, [data, value]);
   //打开
   const fieldClick = () => {
     if (onClick) onClick(value);

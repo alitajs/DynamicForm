@@ -4,7 +4,7 @@ import { IAliasProps } from '../../PropsType';
 import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 import { ErrorValueProps } from '../../PropsType';
 
-export interface INomarSelectProps {
+export interface INomarSelectProps extends Omit<PickerPropsType, 'extra' | 'onChange' | 'value'> {
   cols?: number;
   type?: string;
   data: PickerData[] | any;
