@@ -96,7 +96,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     if (valueList.length === 0 && level) {
       onChangeLevel(newValue?.value);
     }
-  }, [value]);
+  }, [value, modalFlag]);
 
   /**
    * 打开弹窗
@@ -129,6 +129,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         newLabelList.splice(newLabelList.length - 1, 1, val[label]);
         setNowLevel(nowLevel + 1);
         newValueList.push(val[alias?.value || 'value']);
+        if (addressPickerRef && addressPickerRef.current) {
+          addressPickerRef.current.scrollTop = 0;
+        }
       } else {
         newLabelList.pop();
         newLabelList.push(val[label]);
@@ -139,6 +142,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         );
         setNowLevel(nowLevel + 1);
         newValueList.push(val[alias?.value || 'value']);
+        if (addressPickerRef && addressPickerRef.current) {
+          addressPickerRef.current.scrollTop = 0;
+        }
       }
       setLabelList(newLabelList);
     } else {
