@@ -18,9 +18,10 @@ export interface IAddressPickerProps {
   placeholder?: string;
   extra?: string | React.ReactNode;
   disabled?: boolean;
-  level: number;
+  // level: number;
   data?: IModalData[];
   onChangeLevel: (value: (string | number)[]) => void;
+  lastLevel?: boolean;
   placeholderList: string[];
   labelNumber?: number;
   coverStyle?: React.CSSProperties;

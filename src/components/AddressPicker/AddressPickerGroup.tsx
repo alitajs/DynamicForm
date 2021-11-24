@@ -23,7 +23,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     disabled = false,
     onChangeLevel,
     onChange,
-    level,
+    // level,
     placeholderList = [],
     value = undefined,
     children,
@@ -40,6 +40,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    lastLevel,
   } = props;
 
   const { label = 'label' } = alias;
@@ -48,24 +49,39 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const [modalFlag, setModalFlag] = useState<boolean>(false); // 弹框标识
 
   // 弹框选中的头部文字列表
-  const [labelList, setLabelList] = useState<string[]>(
-    placeholderList && placeholderList.length
-      ? [placeholderList[0]]
-      : ['请选择'],
-  );
+  const [labelList, setLabelList] = useState<string[]>([]);
 
   const [valueList, setValueList] = useState<(string | number)[]>([]); // value 值列表
-  const [nowLevel, setNowLevel] = useState<number>(0); // 当前所在层级数字
-  const [delFlag, setDelFlag] = useState<boolean>(false); // listClick 赋值前是否需要删除最后一个值
   const isVertical = positionType === 'vertical';
 
   const addressPickerRef = useRef<any>();
 
+  useEffect(() => {
+    if (!!data.length && !lastLevel && modalFlag) {
+      const newLabelList = [...labelList];
+      const labelListLength = labelList.length;
+      if (valueList.length === newLabelList.length)
+        newLabelList.push(placeholderList[labelListLength] || '请选择');
+      setLabelList(newLabelList);
+      if (addressPickerRef && addressPickerRef.current) {
+        addressPickerRef.current.scrollTop = 0;
+      }
+    } else {
+    }
+  }, [data, modalFlag]);
+
+  useEffect(() => {
+    if (!value) return;
+    const newValue = JSON.parse(JSON.stringify(value));
+    setInputLabel(newValue?.label.join(' '));
+    setLabelList(newValue?.label);
+    setValueList(newValue?.value);
+  }, [value]);
+
   const onConfirm = () => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
-    // 如果当前的层级不相等的话，说明labelList 存在 placeholder 的值，要删掉
-    if (nowLevel !== level && !delFlag) {
-      newLabelList.splice(newLabelList.length - 1, 1);
+    if (!lastLevel) {
+      newLabelList.pop();
     }
     // 赋值
     let val;
@@ -78,32 +94,25 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     setModalFlag(false); // 关闭弹框
   };
 
-  useEffect(() => {
-    // 如果列表已经无数据，且非固定层级的情况下就自动执行确认的操作
-    if (!level && data.length === 0) {
-      onConfirm();
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (!value) return;
-    const newValue = JSON.parse(JSON.stringify(value));
-    setInputLabel(newValue?.label.join(' '));
-    setLabelList(newValue?.label);
-    setValueList(newValue?.value);
-    setNowLevel(newValue?.value.length);
-    // 如果有层级、有初始化值，无数据列表的情况下执行 onChangeLevel，保证 data 有值
-    if (valueList.length === 0 && level) {
-      onChangeLevel(newValue?.value);
-    }
-  }, [value, modalFlag]);
-
   /**
    * 打开弹窗
    */
   const openMoal = () => {
     if (disabled) return;
     setModalFlag(true);
+  };
+
+  // 关闭弹窗
+  const closeModal = () => {
+    setModalFlag(false);
+    if (!!value) {
+      const newValue = JSON.parse(JSON.stringify(value));
+      setTimeout(() => {
+        setInputLabel(newValue?.label.join(' '));
+        setLabelList(newValue?.label);
+        setValueList(newValue?.value);
+      }, 100);
+    }
   };
 
   /**
@@ -114,67 +123,24 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
 
     // 设置弹框顶部选中label 的值
     const newLabelList = [...labelList];
-    // 如果有层级约束
-    if (level) {
-      if (nowLevel === level) {
-        // 如果当前为最后一级，则替换掉原有值
-        newLabelList.splice(newLabelList.length - 1, 1, val[label]);
-        newValueList.splice(
-          newValueList.length - 1,
-          1,
-          val[alias?.value || 'value'],
-        );
-      } else if (nowLevel + 1 === level) {
-        // 如果当前选择后为最后一级
-        newLabelList.splice(newLabelList.length - 1, 1, val[label]);
-        setNowLevel(nowLevel + 1);
-        newValueList.push(val[alias?.value || 'value']);
-        if (addressPickerRef && addressPickerRef.current) {
-          addressPickerRef.current.scrollTop = 0;
-        }
-      } else {
-        newLabelList.pop();
-        newLabelList.push(val[label]);
-        newLabelList.push(
-          placeholderList.length >= newLabelList.length
-            ? placeholderList[newLabelList.length]
-            : '请选择',
-        );
-        setNowLevel(nowLevel + 1);
-        newValueList.push(val[alias?.value || 'value']);
-        if (addressPickerRef && addressPickerRef.current) {
-          addressPickerRef.current.scrollTop = 0;
-        }
-      }
-      setLabelList(newLabelList);
-    } else {
-      newLabelList.pop();
-      // 如果无固定层级，且为最后一个层级的话，选值时要先删除最后一个值
-      if (delFlag) {
-        newValueList.pop();
-        setDelFlag(false);
-      } else {
-        setNowLevel(nowLevel + 1);
-      }
-      newLabelList.push(val?.label);
-      newLabelList.push(
-        placeholderList.length > newLabelList.length
-          ? placeholderList[newLabelList.length]
-          : '请选择',
+
+    if (lastLevel) {
+      newValueList.splice(
+        newValueList.length - 1,
+        1,
+        val[alias?.value || 'value'],
       );
-      newValueList.push(val?.value);
-      setLabelList(newLabelList);
-      if (addressPickerRef && addressPickerRef.current) {
-        addressPickerRef.current.scrollTop = 0;
-      }
-      // if (document.getElementById('alitajs-dform-address-list-id')) {
-      //   document.getElementById('alitajs-dform-address-list-id').scrollTop = 0;
-      // }
+    } else {
+      newValueList.push(val[alias?.value || 'value']);
     }
+
+    newLabelList.splice(newLabelList.length - 1, 1, val[label]);
+
     // 调用 onChangeLevel 让用户修改数据源
     if (onChangeLevel) onChangeLevel(newValueList);
     // 保存value 值
     setValueList(newValueList);
+    setLabelList(newLabelList);
   };
 
   /**
@@ -182,24 +148,12 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
    */
   const labelClick = (index: number) => {
     if (index + 1 === labelList.length) return;
-    if (delFlag) setDelFlag(false);
     if (index === valueList.length) return;
     const newValueList = valueList.splice(0, index);
     const newLabelList = labelList.splice(0, index);
-    if (level !== index + 1) {
-      newLabelList.push(placeholderList[index]);
-    }
     setValueList(newValueList);
     setLabelList(newLabelList);
-    onChangeLevel(newValueList);
-    setNowLevel(index);
-
-    // if (document.getElementById('alitajs-dform-address-list-id')) {
-    //   document.getElementById('alitajs-dform-address-list-id').scrollTop = 0;
-    // }
-    if (addressPickerRef && addressPickerRef.current) {
-      addressPickerRef.current.scrollTop = 0;
-    }
+    if (onChangeLevel) onChangeLevel(newValueList);
   };
 
   /**
@@ -207,30 +161,10 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
    */
   const inputClick = () => {
     if (onClick) onClick();
-    // 如果无列表数据代表用户首次打开
-    if (data.length === 0) {
-      if (level) {
-        if (onChangeLevel) onChangeLevel([]);
-      } else {
-        if (valueList && valueList.length) setDelFlag(true);
-        const newLabelList = [...labelList];
-        const newValueList = [...valueList];
-        newValueList.splice(newValueList.length - 1, 1);
-        if (onChangeLevel) onChangeLevel(newValueList);
-        setLabelList(newLabelList);
-      }
-    } else {
-      const newLabelList = [...labelList];
-      if (
-        nowLevel !== level &&
-        valueList.length === labelList.length &&
-        !delFlag
-      ) {
-        newLabelList.push(placeholderList[newLabelList.length]);
-        setLabelList(newLabelList);
-      }
+    if (onChangeLevel) onChangeLevel(valueList);
+    if (!modalFlag) {
+      openMoal();
     }
-    openMoal();
   };
 
   const listReverse = [];
@@ -261,14 +195,14 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         style={{
           height,
         }}
-        onClose={() => setModalFlag(false)}
+        onClose={() => closeModal()}
         className="alitajs-dform-address"
         animationType="slide-up"
         title={
           <div className="am-picker-popup-header">
             <div
               className="am-picker-popup-item am-picker-popup-header-left"
-              onClick={() => setModalFlag(false)}
+              onClick={() => closeModal()}
             >
               {leftContent}
             </div>
@@ -329,6 +263,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
                   <div className="alitajs-dform-address-list-item">
                     <div
                       className={classnames({
+                        'alitajs-dform-address-list-item-common': true,
                         'alitajs-dform-address-list-item-tick':
                           valueList.indexOf(item[alias?.value || 'value']) !==
                           -1,

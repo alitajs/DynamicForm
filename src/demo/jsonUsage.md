@@ -1,15 +1,19 @@
 ---
-title: JSON使用
+title: AddressPicker
 group:
-  title: JSON使用
+  title: 3.3.x
 nav:
-  title: JSON使用
+  title: 3.3.x
   path: /jsonUsage
   order: 5
 ---
 
-# 组件化使用
+# 升级3.3.x注意事项
+
+# AddressPicker用法修改
+
+去除`level`属性，新增`lastLevel`属性
 
 ## 代码演示
 
-<code src="./jsonUsage.tsx" />
+<code src="../components/AddressPicker/demo/index.tsx" />
