@@ -119,7 +119,7 @@ test('renders Basic', async () => {
       </>
     );
   }
-  const { getByText, getByRole } = render(
+  const { getByText } = render(
     <Basic onFinish={onFinish} onFinishFailed={onFinishFailed} />,
   );
   fireEvent.click(getByText('福建省 福州市 鼓楼区'));
