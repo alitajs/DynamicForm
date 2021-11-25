@@ -11,7 +11,6 @@ const props = {
   fieldProps: 'homeAddr',
   title: '居住地址',
   placeholder: '选择当前居住城市',
-  level: 3,
   data: [],
   placeholderList: ['请选择省', '请选择市', '请选择区'],
   onChangeLevel: (values: (string | number)[]) => {},
@@ -47,6 +46,7 @@ test('renders Basic', async () => {
     const [homeAddrData, setHomeAddrData] = React.useState<
       IAddrDataProps[] | []
     >([]);
+    const [homeAddrLastLevel, sethomeAddrLastLevel] = React.useState(false);
     const queryList = (list: any, val: string | number) => {
       let newList: any[] = [];
       list.map((item: { value: string; children: any[] }) => {
@@ -72,10 +72,15 @@ test('renders Basic', async () => {
           data = queryList(CountryList, values[values.length - 1]);
           break;
         case 3:
-          data = queryList(CountryList, values[values.length - 2]);
           break;
         default:
           break;
+      }
+      if (!!data.length) {
+        if (homeAddrLastLevel) sethomeAddrLastLevel(false);
+      } else {
+        data = queryList(CountryList, values[values.length - 2]);
+        sethomeAddrLastLevel(true);
       }
       setHomeAddrData(data);
     };
@@ -85,7 +90,6 @@ test('renders Basic', async () => {
         fieldProps: 'homeAddr',
         title: '居住地址',
         placeholder: '选择当前居住城市',
-        level: 3,
         required: true,
         data: homeAddrData,
         placeholderList: ['请选择省', '请选择市', '请选择区'],
@@ -93,6 +97,7 @@ test('renders Basic', async () => {
           // eslint-disable-next-line no-console
           resetHomeAddrList(values);
         },
+        lastLevel: homeAddrLastLevel,
       },
     ] as IFormItemProps[];
     const formProps = {
@@ -145,6 +150,7 @@ test('renders Basic', async () => {
 });
 // 无level参数的测试
 test('renders Basic', async () => {
+  const onChange = jest.fn();
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
 
@@ -159,6 +165,7 @@ test('renders Basic', async () => {
     const [homeAddrData, setHomeAddrData] = React.useState<
       IAddrDataProps[] | []
     >([]);
+    const [homeAddrLastLevel, sethomeAddrLastLevel] = React.useState(false);
     const queryList = (list: any, val: string | number) => {
       let newList: any[] = [];
       list.map((item: { value: string; children: any[] }) => {
@@ -184,10 +191,15 @@ test('renders Basic', async () => {
           data = queryList(CountryList, values[values.length - 1]);
           break;
         case 3:
-          data = queryList(CountryList, values[values.length - 2]);
           break;
         default:
           break;
+      }
+      if (!!data.length) {
+        if (homeAddrLastLevel) sethomeAddrLastLevel(false);
+      } else {
+        data = queryList(CountryList, values[values.length - 2]);
+        sethomeAddrLastLevel(true);
       }
       setHomeAddrData(data);
     };
@@ -204,6 +216,8 @@ test('renders Basic', async () => {
           // eslint-disable-next-line no-console
           resetHomeAddrList(values);
         },
+        onChange,
+        lastLevel: homeAddrLastLevel,
       },
     ] as IFormItemProps[];
     const formProps = {
@@ -235,6 +249,9 @@ test('renders Basic', async () => {
   fireEvent.click(getByText('福州市'));
   fireEvent.click(getByText('台江区'));
   fireEvent.click(getByText('确定'));
+  await waitFor(() => {
+    expect(onChange).toBeCalled();
+  });
   expect(getByText('福建省 福州市 台江区')).toHaveClass(
     'alitajs-dform-text-item-text',
   );
