@@ -15,6 +15,8 @@ export interface TitleProps {
   fieldProps: string;
   independentProps?: TitleProps;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 const Title: FC<TitleProps> = (props) => {
@@ -29,6 +31,8 @@ const Title: FC<TitleProps> = (props) => {
     extra,
     error,
     fieldProps,
+    renderFooter,
+    renderHeader,
   } = useMemo(() => {
     if (props.formFlag) {
       return props;
@@ -40,6 +44,7 @@ const Title: FC<TitleProps> = (props) => {
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
   return (
     <Hidden hidden={hidden}>
+      {renderHeader}
       <div
         className={classnames(`${allPrefixCls}-cell`, {
           [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
@@ -69,6 +74,7 @@ const Title: FC<TitleProps> = (props) => {
             {error[fieldProps]}
           </div>
         )}
+        {renderFooter}
       </div>
     </Hidden>
   );

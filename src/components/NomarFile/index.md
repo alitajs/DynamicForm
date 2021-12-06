@@ -31,3 +31,5 @@ nav:
 | alias        | 附件列表字段别名                                                    | { id: string or number; title: string } | `{ id: 'id' title: 'title' }`                                      | 否       |
 | renderHeader | 组件头部                                                            | `number` or `string`                    | -                                                                  | 否       |
 | defaultValue | 设置初始取值                                                        | []                                      | -                                                                  | 否       |
+| renderHeader | 组件头部                                                            | `string` or `React.ReactNode`           | ''                                                                 | 否       |
+| renderFooter | 组件尾部                                                            | `string` or `React.ReactNode`           | ''                                                                 | 否       |

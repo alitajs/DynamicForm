@@ -20,6 +20,8 @@ export interface INomarSwitchProps extends SwitchPropsType {
   defaultValue?: boolean;
   titleProps?: any;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 const DformSwitch: FC<INomarSwitchProps> = (props) => {

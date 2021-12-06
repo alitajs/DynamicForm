@@ -30,4 +30,6 @@ export interface INomarFileProps {
   titleProps?: any;
   fileProps?: any;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }

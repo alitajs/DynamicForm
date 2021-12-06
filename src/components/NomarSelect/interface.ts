@@ -4,7 +4,8 @@ import { IAliasProps } from '../../PropsType';
 import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
 import { ErrorValueProps } from '../../PropsType';
 
-export interface INomarSelectProps extends Omit<PickerPropsType, 'extra' | 'onChange' | 'value'> {
+export interface INomarSelectProps
+  extends Omit<PickerPropsType, 'extra' | 'onChange' | 'value'> {
   cols?: number;
   type?: string;
   data: PickerData[] | any;
@@ -28,6 +29,8 @@ export interface INomarSelectProps extends Omit<PickerPropsType, 'extra' | 'onCh
   alias?: IAliasProps;
   defaultValue?: any;
   titleProps?: any;
-  maxLine?: number | undefined,
+  maxLine?: number | undefined;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }

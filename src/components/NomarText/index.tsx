@@ -25,6 +25,8 @@ export interface INomarTextProps {
   defaultValue?: string;
   titleProps?: any;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 const DformText: FC<INomarTextProps> = (props) => {

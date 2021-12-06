@@ -40,6 +40,8 @@ nav:
 | className      | 类名                                                                                                                                  | string                        | -                                  | 否       |
 | extra          | 额外内容                                                                                                                              | `string` or `React.ReactNode` | -                                  | 否       |
 | clear          | 清空数据                                                                                                                              | boolean                       | `false`                            | 否       |
+| renderHeader   | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
+| renderFooter   | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
 
 ## 备注
 

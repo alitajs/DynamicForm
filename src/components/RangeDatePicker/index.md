@@ -17,25 +17,27 @@ nav:
 
 ## API
 
-| 参数         | 说明                                                       | 类型                       | 默认值     | 是否必填 |
-| ------------ | ---------------------------------------------------------- | -------------------------- | ---------- | -------- |
-| title        | 标题                                                       | string                     | ''         | 是       |
-| fieldProps   | 文本属性                                                   | string                     | ''         | 是       |
-| fieldProps2  | 文本属性                                                   | string                     | ''         | 是       |
-| placeholder  | placeholder                                                | string                     | '开始时间' | 否       |
-| placeholder2 | placeholder                                                | string                     | '结束时间' | 否       |
-| required     | 必填判断                                                   | boolean                    | false      | 否       |
-| modeType     | 时间类型                                                   | string                     | `date`     | 否       |
-| minDate      | 最小可选日期                                               | Date                       | ''         | 否       |
-| maxDate      | 最大可选日期                                               | Date                       | ''         | 否       |
-| positionType | 表单方向样式                                               | `horizontal` or `vertical` | `vertical` | 否       |
-| hasStar      | 必填项红\*展示与否的判断                                   | boolean                    | true       | 否       |
-| firstProps   | `DformDatePicker` api                                      | {}                         | {}         | 否       |
-| secondProps  | `DformDatePicker` api                                      | {}                         | {}         | 否       |
-| rules        | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                      | []         | 否       |
-| subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node             | ''         | 否       |
-| hidden       | 字段展示与否的判断                                         | boolean                    | false      | 否       |
-| renderHeader | 组件头部                                                   | `number` or `string`       | -          | 否       |
+| 参数         | 说明                                                       | 类型                          | 默认值     | 是否必填 |
+| ------------ | ---------------------------------------------------------- | ----------------------------- | ---------- | -------- |
+| title        | 标题                                                       | string                        | ''         | 是       |
+| fieldProps   | 文本属性                                                   | string                        | ''         | 是       |
+| fieldProps2  | 文本属性                                                   | string                        | ''         | 是       |
+| placeholder  | placeholder                                                | string                        | '开始时间' | 否       |
+| placeholder2 | placeholder                                                | string                        | '结束时间' | 否       |
+| required     | 必填判断                                                   | boolean                       | false      | 否       |
+| modeType     | 时间类型                                                   | string                        | `date`     | 否       |
+| minDate      | 最小可选日期                                               | Date                          | ''         | 否       |
+| maxDate      | 最大可选日期                                               | Date                          | ''         | 否       |
+| positionType | 表单方向样式                                               | `horizontal` or `vertical`    | `vertical` | 否       |
+| hasStar      | 必填项红\*展示与否的判断                                   | boolean                       | true       | 否       |
+| firstProps   | `DformDatePicker` api                                      | {}                            | {}         | 否       |
+| secondProps  | `DformDatePicker` api                                      | {}                            | {}         | 否       |
+| rules        | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                         | []         | 否       |
+| subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node                | ''         | 否       |
+| hidden       | 字段展示与否的判断                                         | boolean                       | false      | 否       |
+| renderHeader | 组件头部                                                   | `number` or `string`          | -          | 否       |
+| renderHeader | 组件头部                                                   | `string` or `React.ReactNode` | ''         | 否       |
+| renderFooter | 组件尾部                                                   | `string` or `React.ReactNode` | ''         | 否       |
 
 ## 备注
 

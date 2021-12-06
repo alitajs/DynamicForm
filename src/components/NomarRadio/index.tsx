@@ -35,6 +35,8 @@ export interface INomarRadioProps {
   defaultValue?: string;
   titleProps?: any;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 const DformRadio: FC<INomarRadioProps> = (props) => {

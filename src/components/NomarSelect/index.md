@@ -38,6 +38,8 @@ nav:
 | labelNumber  | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                                | 5                                  | 否       |
 | alias        | data 数据源的别名                                                                                                                     | IAliasProps                           | { label: 'label', value: 'value' } | 否       |
 | defaultValue | 设置初始取值                                                                                                                          | {[]}                                  | -                                  | 否       |
+| renderHeader | 组件头部                                                                                                                              | `string` or `React.ReactNode`         | ''                                 | 否       |
+| renderFooter | 组件尾部                                                                                                                              | `string` or `React.ReactNode`         | ''                                 | 否       |
 
 ## IAliasProps
 

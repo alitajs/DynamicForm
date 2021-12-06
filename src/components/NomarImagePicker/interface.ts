@@ -23,6 +23,8 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   defaultValue?: any[] | undefined;
   titleProps?: any;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 export interface ImagePickerGroupProps {

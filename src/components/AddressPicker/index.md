@@ -47,6 +47,8 @@ nav:
 | className       | 类名                                                                                                                                  | string                        | -                                  | 否           |
 | alias           | data 数据源的别名                                                                                                                     | object                        | { label: 'label', value: 'value' } | 否           |
 | extra           |                                                                                                                                       | `string` or `React.ReactNode` | ''                                 | 否           |
+| renderHeader    | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否           |
+| renderFooter    | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否           |
 
 ## valueProps
 

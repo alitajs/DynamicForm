@@ -35,4 +35,5 @@ nav:
 | className     | 类名                                                                                                                   | string                                                        | -      | 否       |
 | defaultValue  | 设置初始取值                                                                                                           | []                                                            | -      | 否       |
 | coverStyle    | 自定义每个选项的样式，例如高度，内外边距等                                                                             | object                                                        | -      | 否       |
-
+| renderHeader  | 组件头部                                                                                                               | `string` or `React.ReactNode`                                 | ''     | 否       |
+| renderFooter  | 组件尾部                                                                                                               | `string` or `React.ReactNode`                                 | ''     | 否       |

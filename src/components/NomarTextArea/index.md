@@ -35,3 +35,5 @@ nav:
 | onClick      | 文字点击事件                                                                                                                          | (val: React.MouseEvent<`HTMLElement`>) => void | null         | 否       |
 | className    | 类名                                                                                                                                  | string                                         | -            | 否       |
 | defaultValue | 设置初始取值                                                                                                                          | string                                         | -            | 否       |
+| renderHeader | 组件头部                                                                                                                              | `string` or `React.ReactNode`                  | ''           | 否       |
+| renderFooter | 组件尾部                                                                                                                              | `string` or `React.ReactNode`                  | ''           | 否       |

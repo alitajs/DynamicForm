@@ -31,6 +31,8 @@ nav:
 | defaultValue   | 设置初始取值                                               | string                        | -           | 否         |
 | onChange       | 值改变事件                                                 | object                        | (e) => void | 否         |
 | extra          |                                                            | `string` or `React.ReactNode` | ''          | 否         |
+| renderHeader   | 组件头部                                                   | `string` or `React.ReactNode` | ''          | 否         |
+| renderFooter   | 组件尾部                                                   | `string` or `React.ReactNode` | ''          | 否         |
 
 ## 自定义组件开发教程
 

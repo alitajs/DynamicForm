@@ -29,4 +29,6 @@ export interface INomarPickerProps {
   titleProps?: any;
   clear?: boolean;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }

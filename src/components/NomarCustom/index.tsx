@@ -23,6 +23,8 @@ interface INomarCustomPorps {
   titleProps?: any;
   formFlag?: boolean;
   children: React.ReactElement;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {

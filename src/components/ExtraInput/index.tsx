@@ -27,6 +27,8 @@ export interface IExtraInputProps {
   disabled?: boolean;
   titleProps?: any;
   formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
 }
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
