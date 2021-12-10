@@ -187,6 +187,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
             </Item>
           ))}
         </List>
+        <div style={{ height: '1.2rem' }} />
       </Modal>
     </>
   );

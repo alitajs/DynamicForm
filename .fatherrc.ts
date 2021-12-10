@@ -9,4 +9,14 @@ export default {
   },
   disableTypeCheck: true,
   cssModules: false,
+  extraBabelPlugins: [
+    [
+      'babel-plugin-import',
+      {
+        libraryName: 'antd-mobile',
+        libraryDirectory: 'es',
+        style: true,
+      },
+    ],
+  ],
 };

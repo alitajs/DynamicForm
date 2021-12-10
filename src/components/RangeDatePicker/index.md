@@ -9,7 +9,7 @@ nav:
 
 # RangeDatePicker
 
-**该组件已`弃用`，请使用 `DatePicker` 组件替代**
+**该组件已`弃用`，请使用 `Date` 组件替代**
 
 ## 代码演示
 
