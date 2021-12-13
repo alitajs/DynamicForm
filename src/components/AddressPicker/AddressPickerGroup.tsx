@@ -68,7 +68,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       }
     } else {
     }
-  }, [data, modalFlag]);
+  }, [data, modalFlag, lastLevel]);
 
   useEffect(() => {
     if (!value) return;

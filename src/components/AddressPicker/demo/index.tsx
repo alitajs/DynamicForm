@@ -101,11 +101,13 @@ const Page: FC = () => {
     if (!!data.length) {
       if (homeAddrLastLevel) sethomeAddrLastLevel(false);
     } else {
-      mValues.splice(mValues.length - 1, 1);
-      data = getResetHomeAddrList(mValues);
+      if (!!resetHomeAddrList.length) {
+        mValues.splice(mValues.length - 1, 1);
+        data = getResetHomeAddrList(mValues);
+      }
       sethomeAddrLastLevel(true);
     }
-    setHomeAddrData(data);
+    if (!!data.length) setHomeAddrData(data);
     Toast.hide();
   };
 
@@ -117,11 +119,15 @@ const Page: FC = () => {
     if (!!data.length) {
       if (workAddrLastLevel) setworkAddrLastLevel(false);
     } else {
-      mValues.splice(mValues.length - 1, 1);
-      data = getResetWorkAddrList(mValues);
+      if (!!resetWorkAddrList.length) {
+        mValues.splice(mValues.length - 1, 1);
+        data = getResetWorkAddrList(mValues);
+      }
       setworkAddrLastLevel(true);
     }
-    setWorkAddrData(data);
+    if (!!data.length) {
+      setWorkAddrData(data);
+    }
     Toast.hide();
   };
 
