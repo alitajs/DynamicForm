@@ -58,7 +58,18 @@ const Page: FC = () => {
             title: 'title',
           }}
           upload={(res: any) => {
-            console.log(res);
+            const list = form.getFieldsValue().contract || [];
+            if (res && res.length) {
+              res.map((item: any) => {
+                list.push({
+                  title: item.name,
+                  fileId: getRandom(),
+                });
+              });
+            }
+            form.setFieldsValue({
+              contract: list,
+            });
           }}
         />
       </DynamicForm>

@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useRef } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import Field from '../Field';
 import Title from '../Title';
 import FileGroup from './fileGroup';
@@ -23,11 +23,14 @@ const DformFile: FC<INomarFileProps> = (props) => {
     formFlag = false,
   } = props;
 
-  const fileRef = useRef<any>(null);
-
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
-    fileRef?.current?.addFileChange(e);
+    if (e.target.files) {
+      const fileList = Object.keys(e.target.files).map(
+        (item) => e.target.files[item],
+      );
+      upload(fileList);
+    }
   };
 
   const extraContent = () => {
@@ -73,7 +76,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
         >
-          <FileGroup ref={fileRef} {...props} onChange={fileChange} />
+          <FileGroup {...props} onChange={fileChange} />
         </Field>
       </div>
     </Title>
