@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
-import DformCheckBox from '../../'
+import DformCheckBox from '../../';
 
 const CoupletText: FC = () => {
   const [form] = useForm();
@@ -21,8 +21,7 @@ const CoupletText: FC = () => {
   };
   return (
     <>
-      <DynamicForm {...formProps}>
-      </DynamicForm>
+      <DynamicForm {...formProps}></DynamicForm>
       <WhiteSpace size="sm" />
       <Button
         type="primary"

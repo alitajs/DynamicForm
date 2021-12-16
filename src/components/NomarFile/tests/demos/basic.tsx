@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, { getRandom } from '../../../../index';
 import { useForm } from 'rc-field-form';
 import NomarFile from '../../';
@@ -42,8 +42,7 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
           onClick={(res: any) => {
             onMyClick();
           }}
-          onChange={(res: any, delItem: any) => {
-          }}
+          onChange={(res: any, delItem: any) => {}}
           alias={{
             id: 'fileId',
             title: 'title',

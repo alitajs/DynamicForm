@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, { IFormItemProps } from '../../../../';
 import { useForm } from 'rc-field-form';
 import DformRadio from '../../';
@@ -68,8 +68,7 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
       required: true,
       data: radioList,
       title: '发票',
-      onChange: (e: string | number) => {
-      },
+      onChange: (e: string | number) => {},
     },
     {
       type: 'radio',

@@ -3,7 +3,7 @@ import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import DynamicForm, { IFormItemProps } from '../../..';
 import CountryList from '@bang88/china-city-data';
-import { Button } from 'antd-mobile';
+import { Button } from 'antd-mobile-v2';
 import AddressPicker from '..';
 
 const props = {

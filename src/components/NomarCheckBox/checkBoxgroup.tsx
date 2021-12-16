@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { Flex } from 'antd-mobile';
+import { Flex } from 'antd-mobile-v2';
 import chunkLodash from 'lodash/chunk';
 
 const { Item } = Flex;
@@ -35,10 +35,10 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   const [val, setVal] = useState<(string | number)[] | undefined>([]);
   useEffect(() => {
     setVal(value);
-  }, [value])
+  }, [value]);
 
   const boxClick = (dataItem: IDataItem) => {
-    const newInitValue = [ ...val || [] ];
+    const newInitValue = [...(val || [])];
     if (newInitValue.indexOf(dataItem.value) !== -1) {
       newInitValue.splice(newInitValue.indexOf(dataItem.value), 1);
     } else {
@@ -69,8 +69,10 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
                 <div
                   className={classnames({
                     'alitajs-dform-box-botton': true,
-                    'alitajs-dform-box-botton-checked': val?.includes(item.value)
-                      // (value || []).indexOf(item.value) !== -1,
+                    'alitajs-dform-box-botton-checked': val?.includes(
+                      item.value,
+                    ),
+                    // (value || []).indexOf(item.value) !== -1,
                   })}
                 >
                   {val?.includes(item.value) && (

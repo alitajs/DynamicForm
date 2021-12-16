@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { Switch } from 'antd-mobile';
+import { Switch } from 'antd-mobile-v2';
 import { Rule } from 'rc-field-form/es/interface';
-import { SwitchPropsType } from 'antd-mobile/es/switch/PropsType';
+import { SwitchPropsType } from 'antd-mobile-v2/es/switch/PropsType';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 import Title from '../Title';

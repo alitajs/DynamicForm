@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm from '../../../../index';
 import { useForm } from 'rc-field-form';
 import NomarImagePicker from '../..';
@@ -11,8 +11,12 @@ interface BasicProps {
   onImageClick: any;
 }
 
-const Page: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onChange, onImageClick }) => {
-
+const Page: React.FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  onChange,
+  onImageClick,
+}) => {
   const fileList = [
     {
       url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
@@ -32,32 +36,32 @@ const Page: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onChange, onImag
   };
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <NomarImagePicker
-          fieldProps='insertImg'
-          title='请添加图片(自动压缩)'
+          fieldProps="insertImg"
+          title="请添加图片(自动压缩)"
           required
           compressRatio={0.5}
           onChange={(files: any, type: string, index: number | undefined) => {
-            onChange()
+            onChange();
           }}
         />
         <NomarImagePicker
-          fieldProps='showImg'
-          title='展示图片(限制上传的图片大小)'
+          fieldProps="showImg"
+          title="展示图片(限制上传的图片大小)"
           // disableDelete: true,
           onImageClick={(index: number | undefined, files: any) => {
-            onImageClick()
+            onImageClick();
           }}
           limitSize={3 * 1024 * 1024}
           defaultValue={fileList}
           onChange={(files: any, type: string, index: number | undefined) => {
-            onChange()
+            onChange();
           }}
         />
         <NomarImagePicker
-          fieldProps='noInsertImg'
-          title='不可添加图片'
+          fieldProps="noInsertImg"
+          title="不可添加图片"
           required
           selectable={false}
           defaultValue={fileList}
@@ -69,5 +73,5 @@ const Page: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onChange, onImag
       </Button>
     </>
   );
-}
+};
 export default Page;

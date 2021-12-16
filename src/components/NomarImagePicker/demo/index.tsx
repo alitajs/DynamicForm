@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   IFormItemProps,
   useForm,

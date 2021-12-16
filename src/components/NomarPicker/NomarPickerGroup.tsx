@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Picker, Toast } from 'antd-mobile';
+import { Picker, Toast } from 'antd-mobile-v2';
 import { INomarPickerProps } from './interface';
 import TextItem from '../TextItem';
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
@@ -60,7 +60,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     if (disabled) return;
     if (!!!data.length && !!onClick) {
       onClick(value);
-      return
+      return;
     } else if (!!!data.length) {
       Toast.fail('数据未配置');
       return;

@@ -4,7 +4,7 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,

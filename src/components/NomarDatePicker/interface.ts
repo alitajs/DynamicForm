@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import { PropsType } from 'antd-mobile/es/date-picker/index';
+import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
 import { ErrorValueProps } from '../../PropsType';
 
 export interface DateProps extends PropsType {

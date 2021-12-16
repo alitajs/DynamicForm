@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
-import { PropsType } from 'antd-mobile/es/date-picker/index';
+import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
 import Field from '../Field';
 import Title from '../Title';
 import { INomarDatePickerProps } from '../NomarDatePicker/interface';

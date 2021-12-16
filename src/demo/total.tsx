@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   IFormItemProps,
   Store,

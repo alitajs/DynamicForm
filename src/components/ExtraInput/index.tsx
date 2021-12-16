@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
+import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import classnames from 'classnames';
 import { Rule } from 'rc-field-form/es/interface';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';

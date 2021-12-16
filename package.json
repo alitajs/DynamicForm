@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "3.3.3",
+  "version": "3.3.4",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@bang88/china-city-data": "^1.0.0",
-    "antd-mobile": "npm:antd-mobile-v2",
+    "antd-mobile-v2": "2.3.4",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.10.6",
@@ -50,6 +50,8 @@
   },
   "devDependencies": {
     "@alita/test": "^0.0.4",
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
     "@types/lodash": "^4.14.171",
     "alita-test": "4.0.0-alpha.6",
     "babel-plugin-import": "^1.13.3",

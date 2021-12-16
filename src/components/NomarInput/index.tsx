@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
+import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
 import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import InputItem from '../InputItem';

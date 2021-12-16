@@ -3,13 +3,13 @@
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
-  DformSwitch
+  DformSwitch,
 } from '@alitajs/dform';
 
 interface PageProps {}
@@ -63,12 +63,7 @@ const Page: FC<PageProps> = () => {
   return (
     <React.Fragment>
       <DynamicForm {...formsProps}>
-        <DformSwitch
-          fieldProps="off"
-          placeholder="选择"
-          title="Off"
-          required
-        />
+        <DformSwitch fieldProps="off" placeholder="选择" title="Off" required />
         <DformSwitch
           fieldProps="on"
           placeholder="选择"
@@ -93,8 +88,8 @@ const Page: FC<PageProps> = () => {
         placeholder="选择"
         title="On"
         defaultValue={val}
-        onChange={v => setVal(v)}
-        />
+        onChange={(v) => setVal(v)}
+      />
     </React.Fragment>
   );
 };

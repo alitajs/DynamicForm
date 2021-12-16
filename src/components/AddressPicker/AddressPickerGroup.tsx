@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
-import { Modal, List } from 'antd-mobile';
+import { Modal, List } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import { IAddressPickerProps, valueProps, IModalData } from './interface';
 import TextItem from '../TextItem';

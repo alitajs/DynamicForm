@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ImagePicker, Toast } from 'antd-mobile';
+import { ImagePicker, Toast } from 'antd-mobile-v2';
 import { ImageFile, ImagePickerGroupProps } from './interface';
 import { transformFile } from '../../utils';
 

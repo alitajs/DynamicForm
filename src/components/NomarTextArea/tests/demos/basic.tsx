@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, { getRandom } from '../../../../index';
 import { useForm } from 'rc-field-form';
 import NomarTextArea from '../../';
@@ -11,8 +11,11 @@ interface BasicProps {
   onBlur: any;
 }
 
-const NomarTextAreaTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed, onBlur }) => {
-
+const NomarTextAreaTestPage: React.FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  onBlur,
+}) => {
   const [form] = useForm();
   const formsValues = {
     textArea2: '只读，不可编辑',
@@ -30,42 +33,42 @@ const NomarTextAreaTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed,
 
   return (
     <>
-      <DynamicForm {...formProps} >
+      <DynamicForm {...formProps}>
         <NomarTextArea
-          title='学校概况'
-          fieldProps='textArea0'
-          placeholder='支持输入值过长自动换行'
+          title="学校概况"
+          fieldProps="textArea0"
+          placeholder="支持输入值过长自动换行"
           rows={1}
           autoHeight={true}
         />
         <NomarTextArea
-          fieldProps='textArea2'
-          title='有标题'
-          placeholder='只读，不可编辑'
-          positionType='vertical'
+          fieldProps="textArea2"
+          title="有标题"
+          placeholder="只读，不可编辑"
+          positionType="vertical"
           rows={3}
           editable={false}
         />
         <NomarTextArea
-          fieldProps='titleTooLong'
-          title='标题文字内容过长'
-          placeholder='请输入'
-          positionType='vertical'
+          fieldProps="titleTooLong"
+          title="标题文字内容过长"
+          placeholder="请输入"
+          positionType="vertical"
           labelNumber={8}
           required={true}
           onBlur={onBlur}
           coverStyle={{
             border: '1px solid #108ee9',
             background: 'rgb(247, 246, 249)',
-            boxSizing: "border-box",
+            boxSizing: 'border-box',
           }}
         />
         <NomarTextArea
-          fieldProps='idenPhone'
-          title='身份证'
+          fieldProps="idenPhone"
+          title="身份证"
           extra={photoImg()}
-          positionType='vertical'
-          placeholder='存在 extra 自动换行'
+          positionType="vertical"
+          placeholder="存在 extra 自动换行"
           required={true}
         />
       </DynamicForm>
@@ -79,7 +82,7 @@ const NomarTextAreaTestPage: React.FC<BasicProps> = ({ onFinish, onFinishFailed,
         Submit
       </Button>
     </>
-  )
-}
+  );
+};
 
 export default NomarTextAreaTestPage;

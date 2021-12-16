@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm from '../../../DynamicForm';
 import { useForm } from 'rc-field-form';
-import DformCheckBox from '../../'
+import DformCheckBox from '../../';
 
 const drinksList = [
   { foodId: 'cola', foodName: '可乐' },
@@ -34,7 +34,7 @@ const CoupletText: FC = () => {
       setFormsValues({ fruit: [] });
     }
     // 只要可乐
-    if (e.indexOf("all") === -1 && e.indexOf("onlyCola") === 0) {
+    if (e.indexOf('all') === -1 && e.indexOf('onlyCola') === 0) {
       setFormsValues({
         fruit: ['cola'],
       });

@@ -1,6 +1,6 @@
 import React from 'react';
-import { InputItemPropsType } from 'antd-mobile/es/input-item/PropsType';
-import { DatePickerPropsType } from 'antd-mobile/es/date-picker/PropsType';
+import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
+import { DatePickerPropsType } from 'antd-mobile-v2/es/date-picker/PropsType';
 import {
   Rule,
   FormInstance,

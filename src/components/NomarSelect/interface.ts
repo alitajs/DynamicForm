@@ -1,7 +1,7 @@
 import { Rule } from 'rc-field-form/es/interface';
-import { PickerData } from 'antd-mobile/lib/picker/PropsType';
+import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import { IAliasProps } from '../../PropsType';
-import { PickerPropsType } from 'antd-mobile/es/picker/PropsType';
+import { PickerPropsType } from 'antd-mobile-v2/es/picker/PropsType';
 import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarSelectProps

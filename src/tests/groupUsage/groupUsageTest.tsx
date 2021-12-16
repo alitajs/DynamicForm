@@ -3,7 +3,7 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
@@ -44,11 +44,9 @@ const fruitData = [
 
 const Page: FC = () => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-  };
+  const onFinish = (values: Store) => {};
 
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-  };
+  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {};
 
   const formsValues = {};
   const formProps = {
@@ -101,8 +99,7 @@ const Page: FC = () => {
             title="时间(month)"
             modeType="month"
             firstProps={{
-              onOk: (val: any) => {
-              },
+              onOk: (val: any) => {},
             }}
           />
         </Group>

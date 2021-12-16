@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from 'react';
-import { PickerData } from 'antd-mobile/lib/picker/PropsType';
+import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import { allPrefixCls } from '../../const/index';
 import Field from '../Field';
 import Title from '../Title';

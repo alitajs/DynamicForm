@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { WhiteSpace, Button } from 'antd-mobile';
+import { WhiteSpace, Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
@@ -101,8 +101,7 @@ const data = [
         title: '时间(month)',
         modeType: 'month',
         firstProps: {
-          onOk: (val: any) => {
-          },
+          onOk: (val: any) => {},
         },
       },
     ],
@@ -140,10 +139,8 @@ const UserName: FC = () => {
     });
   }, []);
 
-  const onFinish = (values: Store) => {
-  };
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-  };
+  const onFinish = (values: Store) => {};
+  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {};
 
   const formProps = {
     form,

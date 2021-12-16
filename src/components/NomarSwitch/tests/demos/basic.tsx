@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm from '../../../../';
 import { useForm } from 'rc-field-form';
 import DformSwitch from '../../';
@@ -23,12 +23,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   return (
     <React.Fragment>
       <DynamicForm {...formsProps}>
-        <DformSwitch
-          fieldProps="off"
-          placeholder="选择"
-          title="Off"
-          required
-        />
+        <DformSwitch fieldProps="off" placeholder="选择" title="Off" required />
         <DformSwitch
           fieldProps="on"
           placeholder="选择"

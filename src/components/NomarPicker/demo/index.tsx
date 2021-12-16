@@ -4,7 +4,7 @@
  */
 
 import React, { FC } from 'react';
-import { Button, WhiteSpace, Toast } from 'antd-mobile';
+import { Button, WhiteSpace, Toast } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,

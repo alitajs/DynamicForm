@@ -1,4 +1,4 @@
-import { ImagePickerPropTypes } from 'antd-mobile/es/image-picker/PropsType';
+import { ImagePickerPropTypes } from 'antd-mobile-v2/es/image-picker/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
 import { ErrorValueProps } from '../../PropsType';
 

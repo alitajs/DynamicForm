@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { WingBlank, WhiteSpace } from 'antd-mobile';
+import { WingBlank, WhiteSpace } from 'antd-mobile-v2';
 import Card from './Card';
 import { GroupProps } from '../../PropsType';
 import { allPrefixCls } from '../../const';
@@ -13,7 +13,7 @@ const Group: FC<GroupProps> = (props) => {
     classname,
     rightView,
     leftView,
-    border = true
+    border = true,
   } = props;
   switch (type) {
     case 'empty':

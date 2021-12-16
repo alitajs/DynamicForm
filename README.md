@@ -50,14 +50,14 @@ yarn add @alitajs/dform
 
 ### 1、`picker` 组件：
 
-`antd-mobile` 提供的 `Select` 组件涵盖了及联的类型，所以 `value` 出参以 `[]` 的形式。
+`antd-mobile-v2` 提供的 `Select` 组件涵盖了及联的类型，所以 `value` 出参以 `[]` 的形式。
 
 但是在表单对象走接口时，每个字段的值很大情况下都是 `stirng` 或者 `number` 的形式进行传递，在 `[]` 情况下，还要对数据结构进行处理。
 
 `dform` 提供了四种选址组件:
 
 - `picker`: 单选类型，出参为 `string` 或者 `number`，不再需要对数据结构进行多一层的转化。
-- `select`: `antd-mobile` 上的 `Select` 组件，出参入参设值保持一致。
+- `select`: `antd-mobile-v2` 上的 `Select` 组件，出参入参设值保持一致。
 - `multiplePicker`: 多选，出参以 list 的形式提供。
 - `addressPicker`: 选址，更是帮你大大的提效(**舒服的写业务吧，剩下的事情交给我们**)。
 

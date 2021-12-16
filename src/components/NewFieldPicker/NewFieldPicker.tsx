@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Modal, Button, WingBlank, WhiteSpace, List } from 'antd-mobile';
+import { Modal, Button, WingBlank, WhiteSpace, List } from 'antd-mobile-v2';
 import copy from 'copy-to-clipboard';
 import Form from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
