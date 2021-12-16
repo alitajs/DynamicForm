@@ -68,7 +68,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           onOk={(val: any) => {}}
         />
         <DformDatePicker
-          required
+          // required
           fieldProps="rangeTime3"
           fieldProps2="rangeTime4"
           title="时间(date)"

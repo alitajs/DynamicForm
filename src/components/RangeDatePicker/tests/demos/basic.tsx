@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile';
 import DynamicForm, { useForm } from '../../../../index';
-import RangeDatePicker from '../../'
+import RangeDatePicker from '../../';
 
 interface BasicProps {
   onFinish: any;
@@ -27,21 +27,20 @@ const page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     <>
       <DynamicForm {...formProps}>
         <RangeDatePicker
-          fieldProps='rangeTime1'
-          fieldProps2='rangeTime2'
-          title='时间(datetime)'
-          modeType='datetime'
+          fieldProps="rangeTime1"
+          fieldProps2="rangeTime2"
+          title="时间(datetime)"
+          modeType="datetime"
+          required
           firstProps={{
-            onOk: (val: any) => {
-            },
+            onOk: (val: any) => {},
           }}
         />
         <RangeDatePicker
-          required={true}
-          fieldProps='rangeTime3'
-          fieldProps2='rangeTime4'
-          title='时间(date)'
-          positionType='vertical'
+          fieldProps="rangeTime3"
+          fieldProps2="rangeTime4"
+          title="时间(date)"
+          positionType="vertical"
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

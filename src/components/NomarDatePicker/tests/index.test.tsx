@@ -78,11 +78,11 @@ test('render Basic', async () => {
       'alitajs-dform-text-item-text',
     );
   });
-  fireEvent.click(getAllByText('请选择')[0]);
-  await waitFor(() => {
-    expect(getByText(parseInt(month) + 1 + '月')).toBeDefined();
-    fireEvent.click(getByText('确认'));
-  });
+  // fireEvent.click(getAllByText('请选择')[0]);
+  // await waitFor(() => {
+  //   expect(getByText(parseInt(month) + 1 + '月')).toBeDefined();
+  //   fireEvent.click(getByText('确认'));
+  // });
   fireEvent.click(getAllByText('请选择')[0]);
   await waitFor(() => {
     expect(getByText(parseInt(year) + 1 + '年')).toBeDefined();
