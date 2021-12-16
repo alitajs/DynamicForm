@@ -13,7 +13,7 @@ export default {
     [
       'babel-plugin-import',
       {
-        libraryName: 'antd-mobile',
+        libraryName: 'antd-mobile-v2',
         libraryDirectory: 'es',
         style: true,
       },
