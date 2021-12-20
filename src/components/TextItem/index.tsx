@@ -89,6 +89,9 @@ const TextItem: FC<ITextItemProps> = (props) => {
           [`${allPrefixCls}-ellipsis`]: ellipsis,
           [`${prefixCls}-min-width`]: labelNumber > 7,
         })}
+        onClick={() => {
+          inputItemClick();
+        }}
       >
         <div
           className={classnames({
@@ -97,9 +100,6 @@ const TextItem: FC<ITextItemProps> = (props) => {
             [`${allPrefixCls}-placeholder`]: !value,
             [`${allPrefixCls}-ellipsis`]: ellipsis,
           })}
-          onClick={() => {
-            inputItemClick();
-          }}
         >
           <div
             id={`text-${fieldProps}`}
