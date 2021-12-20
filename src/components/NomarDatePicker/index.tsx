@@ -127,11 +127,10 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   // 区间第二个时间props
   const secondDateProps: any = {
-    ...otherProps,
-    value: secondProps?.defaultValue,
+    ...secondProps,
     labelNumber: 0,
     minDate: beginDate || minDate,
-    maxDate: maxDate,
+    maxDate,
     onChange: (e: any) => {
       setEndDate(e);
       secondProps && secondProps?.onChange && secondProps?.onChange(e);
