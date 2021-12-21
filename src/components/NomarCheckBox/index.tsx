@@ -94,6 +94,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
             disabled={disabled}
             chunk={chunk}
             className={className}
+            value={defaultValue}
           />
         </Field>
       </div>
