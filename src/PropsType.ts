@@ -94,7 +94,6 @@ export interface IFormItemProps {
   className?: string;
   groupProps?: GroupProps;
   fileProps?: any;
-  lastLevel?: boolean;
 }
 
 export interface TargetProps {

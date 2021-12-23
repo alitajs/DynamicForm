@@ -23,7 +23,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     disabled = false,
     onChangeLevel,
     onChange,
-    // level,
     placeholderList = [],
     value = undefined,
     children,
@@ -40,7 +39,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       label: 'label',
       value: 'value',
     },
-    lastLevel,
   } = props;
 
   const { label = 'label' } = alias;
@@ -55,9 +53,13 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   const addressPickerRef = useRef<any>();
+  const [list, setList] = useState<any[]>([]);
+  const [lastLevel, setLastLevel] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!!data.length && !lastLevel && modalFlag) {
+    if (!!data.length && modalFlag) {
+      setList(data);
+      setLastLevel(false);
       const newLabelList = [...labelList];
       const labelListLength = labelList.length;
       if (valueList.length === newLabelList.length)
@@ -67,12 +69,22 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         addressPickerRef.current.scrollTop = 0;
       }
     } else {
+      setLastLevel(true);
     }
-  }, [data, modalFlag, lastLevel]);
+  }, [data, modalFlag]);
 
   useEffect(() => {
     if (!value) return;
     const newValue = JSON.parse(JSON.stringify(value));
+    if (
+      !list.length &&
+      !modalFlag &&
+      newValue?.value &&
+      !!newValue?.value.length
+    ) {
+      const initValue = newValue?.value.splice(newValue?.value.length - 1, 1);
+      if (onChangeLevel) onChangeLevel(initValue);
+    }
     setInputLabel(newValue?.label.join(' '));
     setLabelList(newValue?.label);
     setValueList(newValue?.value);
@@ -245,15 +257,15 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
               </div>
             ))}
           </div>
-          {data && data.length === 0 && !loading && noData}
+          {list && list.length === 0 && !loading && noData}
           <div
             ref={addressPickerRef}
             id="alitajs-dform-address-list-id"
             className="alitajs-dform-address-list"
-            style={{ display: data.length ? '' : 'none' }}
+            style={{ display: list.length ? '' : 'none' }}
           >
             <List>
-              {[...data].map((item: IModalData) => (
+              {[...list].map((item: IModalData) => (
                 <Item
                   key={item[alias?.value || 'value']}
                   onClick={() => {

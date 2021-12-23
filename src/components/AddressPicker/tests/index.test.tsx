@@ -46,7 +46,6 @@ test('renders Basic', async () => {
     const [homeAddrData, setHomeAddrData] = React.useState<
       IAddrDataProps[] | []
     >([]);
-    const [homeAddrLastLevel, sethomeAddrLastLevel] = React.useState(false);
     const queryList = (list: any, val: string | number) => {
       let newList: any[] = [];
       list.map((item: { value: string; children: any[] }) => {
@@ -76,12 +75,6 @@ test('renders Basic', async () => {
         default:
           break;
       }
-      if (!!data.length) {
-        if (homeAddrLastLevel) sethomeAddrLastLevel(false);
-      } else {
-        data = queryList(CountryList, values[values.length - 2]);
-        sethomeAddrLastLevel(true);
-      }
       setHomeAddrData(data);
     };
     const formsData = [
@@ -97,7 +90,6 @@ test('renders Basic', async () => {
           // eslint-disable-next-line no-console
           resetHomeAddrList(values);
         },
-        lastLevel: homeAddrLastLevel,
       },
     ] as IFormItemProps[];
     const formProps = {
@@ -165,7 +157,6 @@ test('renders Basic', async () => {
     const [homeAddrData, setHomeAddrData] = React.useState<
       IAddrDataProps[] | []
     >([]);
-    const [homeAddrLastLevel, sethomeAddrLastLevel] = React.useState(false);
     const queryList = (list: any, val: string | number) => {
       let newList: any[] = [];
       list.map((item: { value: string; children: any[] }) => {
@@ -195,12 +186,6 @@ test('renders Basic', async () => {
         default:
           break;
       }
-      if (!!data.length) {
-        if (homeAddrLastLevel) sethomeAddrLastLevel(false);
-      } else {
-        data = queryList(CountryList, values[values.length - 2]);
-        sethomeAddrLastLevel(true);
-      }
       setHomeAddrData(data);
     };
     const formsData = [
@@ -217,7 +202,6 @@ test('renders Basic', async () => {
           resetHomeAddrList(values);
         },
         onChange,
-        lastLevel: homeAddrLastLevel,
       },
     ] as IFormItemProps[];
     const formProps = {

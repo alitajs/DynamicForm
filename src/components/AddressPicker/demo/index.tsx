@@ -32,9 +32,7 @@ const Page: FC = () => {
   };
 
   const [homeAddrData, setHomeAddrData] = useState<any>([]);
-  const [homeAddrLastLevel, sethomeAddrLastLevel] = useState(false);
   const [workAddrData, setWorkAddrData] = useState<any>([]);
-  const [workAddrLastLevel, setworkAddrLastLevel] = useState(false);
 
   const queryList = (list: any, val: string | number) => {
     let newList: any[] = [];
@@ -98,16 +96,7 @@ const Page: FC = () => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetHomeAddrList(mValues);
-    if (!!data.length) {
-      if (homeAddrLastLevel) sethomeAddrLastLevel(false);
-    } else {
-      if (!!resetHomeAddrList.length) {
-        mValues.splice(mValues.length - 1, 1);
-        data = getResetHomeAddrList(mValues);
-      }
-      sethomeAddrLastLevel(true);
-    }
-    if (!!data.length) setHomeAddrData(data);
+    setHomeAddrData(data);
     Toast.hide();
   };
 
@@ -115,19 +104,7 @@ const Page: FC = () => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetWorkAddrList(mValues);
-
-    if (!!data.length) {
-      if (workAddrLastLevel) setworkAddrLastLevel(false);
-    } else {
-      if (!!resetWorkAddrList.length) {
-        mValues.splice(mValues.length - 1, 1);
-        data = getResetWorkAddrList(mValues);
-      }
-      setworkAddrLastLevel(true);
-    }
-    if (!!data.length) {
-      setWorkAddrData(data);
-    }
+    setWorkAddrData(data);
     Toast.hide();
   };
 
@@ -148,7 +125,6 @@ const Page: FC = () => {
           placeholder="选择当前居住城市"
           required
           data={homeAddrData}
-          lastLevel={homeAddrLastLevel}
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
             // eslint-disable-next-line no-console
@@ -164,7 +140,6 @@ const Page: FC = () => {
           placeholder="请选择"
           positionType="vertical"
           data={workAddrData}
-          lastLevel={workAddrLastLevel}
           placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
           onChangeLevel={(values: (string | number)[]) => {
             Toast.show('加载中');
