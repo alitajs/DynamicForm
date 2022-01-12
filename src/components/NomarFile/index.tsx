@@ -21,6 +21,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     titleProps,
     fileProps,
     formFlag = false,
+    disabled = false,
   } = props;
 
   // 该函数没被使用，因此注释
@@ -38,18 +39,22 @@ const DformFile: FC<INomarFileProps> = (props) => {
       <div className="alitajs-dform-file-input">{uploadExtra}</div>
     ) : (
       <React.Fragment>
-        <label>
-          <input
-            type="file"
-            multiple
-            className="alitajs-dform-file-input"
-            onChange={fileIns}
-            {...fileProps}
-            aria-labelledby={fieldProps}
-            aria-label={fieldProps}
-          />
-        </label>
-        <span className="alitajs-dform-file-extra">{extra}</span>
+        {!disabled && (
+          <>
+            <label>
+              <input
+                type="file"
+                multiple
+                className="alitajs-dform-file-input"
+                onChange={fileIns}
+                {...fileProps}
+                aria-labelledby={fieldProps}
+                aria-label={fieldProps}
+              />
+            </label>
+            <span className="alitajs-dform-file-extra">{extra}</span>
+          </>
+        )}
       </React.Fragment>
     );
   };

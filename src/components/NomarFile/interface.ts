@@ -32,4 +32,5 @@ export interface INomarFileProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  disabled?: boolean;
 }

@@ -15,6 +15,7 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
     onChange,
     onClick,
     alias = { id: 'id', title: 'title' },
+    disabled = false,
   } = props;
 
   const del = (index: number) => {
@@ -39,14 +40,16 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
           >
             {item[alias.title || 'title']}
           </span>
-          <img
-            onClick={() => {
-              del(index);
-            }}
-            src={ClosePng}
-            alt=""
-            className="alitajs-dform-close"
-          />
+          {!disabled && (
+            <img
+              onClick={() => {
+                del(index);
+              }}
+              src={ClosePng}
+              alt=""
+              className="alitajs-dform-close"
+            />
+          )}
         </div>
       ))}
     </div>
