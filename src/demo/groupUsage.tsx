@@ -66,7 +66,7 @@ const Page: FC = () => {
   return (
     <div style={{ background: '#F7F7F7' }}>
       <DynamicForm {...formProps}>
-        <Group type="card" title="卡片一" required>
+        <Group type="card" title="卡片一" required extandPostion="bottom">
           <DformInput
             fieldProps="username"
             required
@@ -81,6 +81,7 @@ const Page: FC = () => {
         <Group
           type="card"
           title="卡片三"
+          extandPostion="top"
           leftView={
             <div
               style={{

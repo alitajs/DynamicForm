@@ -2,6 +2,28 @@
 
 @paddingWrapper: 14 * @hd;
 
+@prefixClsExtends: alitajs-dform-card-extends;
+
+.@{prefixCls} {
+  background-color: @fill-base;
+  border-radius: 6 * @hd;
+  &-header {
+    display: flex;
+    flex-direction: row;
+    padding: 16 * @hd 16 * @hd 0;
+    &-title {
+      flex: 1;
+      margin-right: 10 * @hd;
+      color: @color-text-base;
+      font-weight: 600;
+      font-size: 17 * @hd;
+    }
+    &-icon {
+      padding-left: 10 * @hd;
+    }
+  }
+}
+
 .@{prefixCls}-group {
   // 子元素下如果还有嵌套group的话，应该在子元素增加padding-bottom;
   .@{prefixCls}-group:last-child {
@@ -34,7 +56,66 @@
     font-weight: bold;
     font-size: 18 * @hd;
   }
+
   .@{prefixCls}-cell:last-child {
     border: none;
+  }
+
+  &-extends-icon {
+    font-size: 10 * @hd;
+    display: flex;
+    align-items: center;
+    padding-left: 5 * @hd;
+  }
+}
+
+.@{prefixClsExtends} {
+  &-animation {
+    display: none;
+  }
+  &-entered {
+    display: block;
+  }
+  &-body {
+    margin-top: 12 * @hd;
+    &-enter {
+      .@{prefixClsExtends}-animation {
+        display: block;
+        max-height: 0;
+      }
+      &-active {
+        .@{prefixClsExtends}-animation {
+          display: block;
+          max-height: 100vh;
+          transition: max-height 200ms linear;
+        }
+      }
+      &-done {
+        .@{prefixClsExtends}-animation {
+          display: block;
+          max-height: 100vh;
+        }
+      }
+    }
+
+    &-exit {
+      .@{prefixClsExtends}-animation {
+        display: block;
+        max-height: 100vh;
+      }
+      &-active {
+        .@{prefixClsExtends}-animation {
+          display: block;
+          max-height: 1px;
+          transition: max-height 200ms linear;
+        }
+      }
+      &-done {
+        .@{prefixClsExtends}-animation {
+          display: none;
+          max-height: 0;
+        }
+      }
+    }
   }
 }

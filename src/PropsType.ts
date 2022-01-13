@@ -135,14 +135,12 @@ export interface CardProps {
   rightView?: string | React.ReactNode;
   classname?: React.CSSProperties;
   border?: boolean; // 是否带border边框   默认true
+  extandPostion?: 'top' | 'bottom' | '';
+  defaultExtand?: boolean;
+  extandChange?: (res: boolean) => void;
 }
 
-export interface GroupProps {
+export interface GroupProps extends CardProps {
   type?: 'empty' | 'card';
-  title?: string | React.ReactNode;
   required?: boolean;
-  classname?: React.CSSProperties;
-  rightView?: string | React.ReactNode;
-  leftView?: string | React.ReactNode;
-  border?: boolean; // 是否带border边框   默认true
 }

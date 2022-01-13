@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "3.3.9",
+  "version": "3.3.10",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -46,6 +46,7 @@
     "lodash": "^4.17.21",
     "rc-field-form": "1.14.0",
     "rmc-date-picker": "^6.0.10",
+    "react-transition-group": "4.4.1",
     "rmc-feedback": "^2.0.0"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
     "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^2.2.1",
     "react": "^16.12.0",
+    "@types/react-transition-group": "4.4.1",
     "yorkie": "^2.0.0"
   }
 }

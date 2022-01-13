@@ -5,16 +5,7 @@ import { GroupProps } from '../../PropsType';
 import { allPrefixCls } from '../../const';
 
 const Group: FC<GroupProps> = (props) => {
-  const {
-    children,
-    type = 'empty',
-    title,
-    required,
-    classname,
-    rightView,
-    leftView,
-    border = true,
-  } = props;
+  const { children, type = 'empty', ...otherProps } = props;
   switch (type) {
     case 'empty':
       return <Fragment>{children}</Fragment>;
@@ -24,16 +15,7 @@ const Group: FC<GroupProps> = (props) => {
         <div className={`${allPrefixCls}-group`}>
           <WingBlank>
             <WhiteSpace size="lg" />
-            <Card
-              title={title}
-              require={required}
-              classname={classname}
-              leftView={leftView}
-              rightView={rightView}
-              border={border}
-            >
-              {children}
-            </Card>
+            <Card {...otherProps}>{children}</Card>
           </WingBlank>
         </div>
       );
