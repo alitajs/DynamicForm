@@ -20,6 +20,7 @@ nav:
 | title         | 标题                                                                                                                   | string                                                        | ''     | 是       |
 | fieldProps    | 文本属性                                                                                                               | string                                                        | false  | 是       |
 | required      | 必填判断                                                                                                               | boolean                                                       | false  | 否       |
+| maxLength     | 设置上传最大数量                                                                                                       | number                                                        | -      | 否       |
 | hasStar       | 必填项红\*展示与否的判断                                                                                               | boolean                                                       | true   | 否       |
 | rules         | 规则校验(如需用到该字段，请重写 `required` 校验)                                                                       | array                                                         | []     | 否       |
 | disableDelete | 是否隐藏删除按钮                                                                                                       | boolean                                                       | false  | 否       |

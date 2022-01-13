@@ -25,9 +25,10 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  maxLength?: number;
 }
 
-export interface ImagePickerGroupProps {
+export interface ImagePickerGroupProps extends INomarImagePickerProps {
   value?: any[] | undefined;
   onChange: (
     files: ImageFile[],

@@ -50,6 +50,7 @@ const Page: FC = () => {
           onClick={(res: any) => {
             console.log(res);
           }}
+          maxLength={3}
           onChange={(res: any, delItem: any) => {
             console.log(res, delItem);
           }}

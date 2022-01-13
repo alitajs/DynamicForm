@@ -33,4 +33,5 @@ export interface INomarFileProps {
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   disabled?: boolean;
+  maxLength?: number;
 }

@@ -47,6 +47,7 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
             id: 'fileId',
             title: 'title',
           }}
+          maxLength={2}
           upload={(res: any) => {
             const list = form.getFieldsValue().contract || [];
             if (res && res.length) {

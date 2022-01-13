@@ -28,11 +28,15 @@ const Page: React.FC<BasicProps> = ({
     },
   ];
   const [form] = useForm();
+  const formsValues = {
+    maxLengthImg: fileList,
+  };
   const formProps = {
     onFinish,
     onFinishFailed,
     form,
     isDev: true,
+    formsValues,
   };
   return (
     <>
@@ -64,6 +68,12 @@ const Page: React.FC<BasicProps> = ({
           title="不可添加图片"
           required
           selectable={false}
+          defaultValue={fileList}
+        />
+        <NomarImagePicker
+          fieldProps="maxLengthImg"
+          title="限制上传数量(2张)"
+          maxLength={2}
           defaultValue={fileList}
         />
       </DynamicForm>

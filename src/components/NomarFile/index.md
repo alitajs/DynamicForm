@@ -20,6 +20,7 @@ nav:
 | title        | 标题                                                       | string                                  | ''                                                                 | 是       |
 | fieldProps   | 文本属性                                                   | string                                  | false                                                              | 是       |
 | required     | 必填判断                                                   | boolean                                 | false                                                              | 否       |
+| maxLength    | 设置文件上传最大数量                                       | number                                  | -                                                                  | 否       |
 | hasStar      | 必填项红\*展示与否的判断                                   | boolean                                 | true                                                               | 否       |
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node                          | ''                                                                 | 否       |
 | hidden       | 字段展示与否的判断                                         | boolean                                 | false                                                              | 否       |

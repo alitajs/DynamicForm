@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useState } from 'react';
 import Field from '../Field';
 import Title from '../Title';
 import FileGroup from './fileGroup';
@@ -22,7 +22,10 @@ const DformFile: FC<INomarFileProps> = (props) => {
     fileProps,
     formFlag = false,
     disabled = false,
+    maxLength,
   } = props;
+
+  const [selectable, setSelectable] = useState<boolean>(true);
 
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
@@ -39,7 +42,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
       <div className="alitajs-dform-file-input">{uploadExtra}</div>
     ) : (
       <React.Fragment>
-        {!disabled && (
+        {!disabled && selectable && (
           <>
             <label>
               <input
@@ -67,6 +70,14 @@ const DformFile: FC<INomarFileProps> = (props) => {
     if (onChange) onChange(res, item, type);
   };
 
+  const valueChange = (e: any[]) => {
+    if (!!maxLength && maxLength <= e.length) {
+      setSelectable(false);
+    } else {
+      setSelectable(true);
+    }
+  };
+
   return (
     <Title
       independentProps={{ positionType: 'vertical', ...props }}
@@ -81,7 +92,11 @@ const DformFile: FC<INomarFileProps> = (props) => {
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
         >
-          <FileGroup {...props} onChange={fileChange} />
+          <FileGroup
+            {...props}
+            onChange={fileChange}
+            valueChange={valueChange}
+          />
         </Field>
       </div>
     </Title>

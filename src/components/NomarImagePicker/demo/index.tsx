@@ -36,7 +36,9 @@ const Page = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const formsValues = {};
+  const formsValues = {
+    maxLengthImg: fileList,
+  };
 
   const formProps = {
     onFinish,
@@ -58,6 +60,7 @@ const Page = () => {
             // eslint-disable-next-line no-console
             console.log(files, type, index);
           }}
+          maxLength={2}
         />
         <DformImagePicker
           fieldProps="showImg"
@@ -75,6 +78,12 @@ const Page = () => {
           title="不可添加图片"
           required
           selectable={false}
+          defaultValue={fileList}
+        />
+        <DformImagePicker
+          fieldProps="maxLengthImg"
+          title="限制上传数量(2张)"
+          maxLength={2}
           defaultValue={fileList}
         />
       </DynamicForm>

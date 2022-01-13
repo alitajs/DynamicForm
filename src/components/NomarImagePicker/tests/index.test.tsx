@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  render,
-  testA11y,
-  fireEvent,
-  waitFor,
-  sleep,
-} from '@alita/test';
+import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarImagePicker from '../index';
 import BasicText from './demos/basic';
@@ -29,7 +23,7 @@ const myProps = {
   onChange: (files: any, type: string, index: number | undefined) => {
     console.log(files, type, index);
   },
-  defaultValue: fileList
+  defaultValue: fileList,
 };
 
 it('passes picker a11y test', async () => {
@@ -38,12 +32,14 @@ it('passes picker a11y test', async () => {
       <Form>
         <NomarImagePicker {...myProps} />
       </Form>
-    </div>
+    </div>,
   );
   //判断图片数量
-  expect(document.querySelectorAll(".am-image-picker-item-content").length).toBe(2)
+  expect(
+    document.querySelectorAll('.am-image-picker-item-content').length,
+  ).toBe(2);
   //判断是否有上传按钮
-  expect(document.querySelector('.am-image-picker-upload-btn')).toBeDefined()
+  expect(document.querySelector('.am-image-picker-upload-btn')).toBeDefined();
 });
 
 test('renders Basic', async () => {
@@ -59,30 +55,45 @@ test('renders Basic', async () => {
       onFinishFailed={onFinishFailed}
       onImageClick={onImageClick}
       onChange={onChange}
-    />
+    />,
   );
-  expect(getAllByText('请添加图片(自动压缩)'))
-  expect(getByText('不可添加图片')).toBeDefined()
-  fireEvent.click(getByText("Submit"))
+  expect(getAllByText('请添加图片(自动压缩)'));
+  expect(getByText('不可添加图片')).toBeDefined();
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
-    expect(onFinishFailed).toBeCalled()
-  })
-  expect(document.querySelectorAll(".am-image-picker-item-remove").length).toBe(4)
+    expect(onFinishFailed).toBeCalled();
+  });
+  expect(document.querySelectorAll('.am-image-picker-item-remove').length).toBe(
+    6,
+  );
   //进行删除操作
-  fireEvent.click(document.querySelectorAll(".am-image-picker-item-remove")[0])
+  fireEvent.click(document.querySelectorAll('.am-image-picker-item-remove')[0]);
   await waitFor(() => {
-    expect(document.querySelectorAll(".am-image-picker-item-remove").length).toBe(3)
-    expect(onChange).toBeCalled()
-  })
+    expect(
+      document.querySelectorAll('.am-image-picker-item-remove').length,
+    ).toBe(5);
+    expect(onChange).toBeCalled();
+  });
   //进行点击图片的操作
-  fireEvent.click(document.querySelectorAll(".am-image-picker-item-content")[0])
+  fireEvent.click(
+    document.querySelectorAll('.am-image-picker-item-content')[0],
+  );
   await waitFor(() => {
-    expect(onImageClick).toBeCalled()
-  })
+    expect(onImageClick).toBeCalled();
+  });
+
+  // 判断图片上传数量限制
+  expect(document.querySelectorAll('.am-image-picker-upload-btn').length).toBe(
+    2,
+  );
+  fireEvent.click(document.querySelectorAll('.am-image-picker-item-remove')[4]);
+  expect(document.querySelectorAll('.am-image-picker-upload-btn').length).toBe(
+    3,
+  );
 
   // 点击Submit
-  fireEvent.click(document.querySelectorAll(".am-image-picker-upload-btn")[0])
+  fireEvent.click(document.querySelectorAll('.am-image-picker-upload-btn')[0]);
   await waitFor(() => {
-    expect(onChange).toBeCalled()
-  })
-})
+    expect(onChange).toBeCalled();
+  });
+});

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { ImagePicker, Toast } from 'antd-mobile-v2';
 import { ImageFile, ImagePickerGroupProps } from './interface';
 import { transformFile } from '../../utils';
@@ -9,8 +9,19 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     limitSize,
     compressRatio,
     value = [],
+    maxLength,
     ...otherProps
   } = props;
+
+  const [selectable, setSelectable] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (maxLength && value && value.length && value.length >= maxLength) {
+      setSelectable(false);
+    } else {
+      setSelectable(true);
+    }
+  }, [JSON.stringify(value || [])]);
 
   const checkFileLimit = (file: ImageFile) => {
     if (limitSize && file && file.size && file.size > limitSize) {
@@ -45,7 +56,14 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     }
     onChange(files, operationType, index);
   };
-  return <ImagePicker {...otherProps} onChange={imageChange} files={value} />;
+  return (
+    <ImagePicker
+      selectable={selectable}
+      {...otherProps}
+      onChange={imageChange}
+      files={value}
+    />
+  );
 };
 
 export default ImagePickerGroup;

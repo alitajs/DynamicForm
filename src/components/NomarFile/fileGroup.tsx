@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { INomarFileProps, INomarFileItemProps } from './interface';
 import ClosePng from '../../assets/close.png';
 import './index.less';
@@ -7,6 +7,7 @@ const prefixCls = 'alitajs-dform-file';
 
 interface IFileGroupProps extends INomarFileProps {
   value?: INomarFileItemProps[];
+  valueChange: (res: any[]) => void;
 }
 
 const FileGroup: FC<IFileGroupProps> = (props) => {
@@ -16,7 +17,12 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
     onClick,
     alias = { id: 'id', title: 'title' },
     disabled = false,
+    valueChange,
   } = props;
+
+  useEffect(() => {
+    valueChange(value);
+  }, [JSON.stringify(value || [])]);
 
   const del = (index: number) => {
     const newData = Array.from(value);

@@ -84,10 +84,13 @@ test('passes file basic', async () => {
     expect(onMyClick).toBeCalled();
     expect(onFinish).toBeCalled();
   });
+  expect(document.querySelectorAll('.alitajs-dform-file-input').length).toBe(0); // 判断文件上传数量大小限制
   fireEvent.click(getByText('房子买卖协议.pdf').parentNode?.lastChild!);
   await sleep(500);
+  expect(document.querySelectorAll('.alitajs-dform-file-input').length).toBe(1);
   fireEvent.click(getByText('房屋租赁合同说明书.pdf').parentNode?.lastChild!);
   await sleep(500);
+
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
