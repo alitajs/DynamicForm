@@ -15,7 +15,7 @@ const prefixClsExtends = `${prefixCls}-extends`;
 const Card: FC<CardProps> = ({
   children,
   leftView,
-  require,
+  required,
   title,
   rightView,
   classname,
@@ -36,7 +36,7 @@ const Card: FC<CardProps> = ({
     >
       <div className={`${prefixCls}-title-box`}>
         {leftView}
-        {require && <div className={`${prefixCls}-require`}>*</div>}
+        {required && <div className={`${prefixCls}-require`}>*</div>}
         {title && <div className={`${prefixCls}-title`}>{title}</div>}
         {rightView && rightView}
         {extandPostion === 'top' && (

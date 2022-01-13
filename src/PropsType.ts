@@ -130,7 +130,7 @@ export interface IDynamicFormProps {
 
 export interface CardProps {
   leftView?: string | React.ReactNode;
-  require?: boolean;
+  required?: boolean;
   title?: string | React.ReactNode;
   rightView?: string | React.ReactNode;
   classname?: React.CSSProperties;
@@ -142,5 +142,4 @@ export interface CardProps {
 
 export interface GroupProps extends CardProps {
   type?: 'empty' | 'card';
-  required?: boolean;
 }
