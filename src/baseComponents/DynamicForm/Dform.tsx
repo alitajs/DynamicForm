@@ -40,7 +40,7 @@ import {
   DformText,
   DformPicker,
   DformFile,
-} from '../';
+} from '../../';
 
 export const FormItemType = {
   input: DformInput,

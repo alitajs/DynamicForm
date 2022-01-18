@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, useState } from 'react';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
 import FileIcon from '../../assets/file.png';

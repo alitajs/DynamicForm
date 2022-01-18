@@ -1,5 +1,7 @@
+import dayjs from 'dayjs';
 import { ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { ErrorValueProps, IFormItemProps } from '../PropsType';
+import { getByteLen } from '.';
 
 /**
  * 重置错误信息提示
@@ -64,19 +66,6 @@ export const defaultFailed = (
   if (onFinishFailed) onFinishFailed(errorInfo);
 };
 
-export const getByteLen = (val: string) => {
-  let len = 0;
-  `${val}`.split('').forEach((item) => {
-    // eslint-disable-next-line no-control-regex
-    if (item.match(/[^\x00-\xff]/gi) != null) {
-      len += 2;
-    } else {
-      len += 1;
-    }
-  });
-  return len;
-};
-
 export const changeData = (item: IFormItemProps, autoLineFeed: boolean) => {
   if (item?.hidden) {
     item.required = false;
@@ -95,4 +84,64 @@ export const changeData = (item: IFormItemProps, autoLineFeed: boolean) => {
     }
   }
   return item;
+};
+
+export const filterObjList = (
+  label: string = '',
+  data: any = [],
+  value: string | number = '',
+) => {
+  if (data && data.length) {
+    let filList = [];
+    filList = data.filter((it: { [x: string]: string | number }) => {
+      return it[label] === value;
+    });
+    return filList;
+  }
+  return [];
+};
+
+export const resetLabel = (
+  list: string[] = [],
+  placeholderList: string[] = [],
+) => {
+  if (list.length === placeholderList.length) return list;
+  list.push(placeholderList[list.length]);
+  return list;
+};
+
+/**
+ * 时间展示类型改变事件
+ * @param val
+ */
+export const changeDateFormat = (
+  val: Date,
+  modeType: string,
+  format?: string | undefined | ((value: Date) => string),
+) => {
+  let dateFormat = '';
+  switch (modeType) {
+    case 'datetime':
+      dateFormat = dayjs(val).format('YYYY-MM-DD HH:mm');
+      break;
+    case 'month':
+      dateFormat = dayjs(val).format('YYYY-MM');
+      break;
+    case 'time':
+      dateFormat = dayjs(val).format('HH:mm');
+      break;
+    case 'year':
+      dateFormat = dayjs(val).format('YYYY');
+      break;
+    default:
+      dateFormat = dayjs(val).format('YYYY-MM-DD');
+      break;
+  }
+  if (format && typeof format === 'string') {
+    dateFormat = dayjs(val).format(format);
+  }
+  if (format && typeof format === 'function') {
+    dateFormat = format(val);
+  }
+  return dateFormat;
 };

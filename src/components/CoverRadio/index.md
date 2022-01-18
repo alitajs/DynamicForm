@@ -1,11 +1,11 @@
----
+<!-- ---
 title: CoverRadio(丢弃)
 group:
   title: CoverRadio(丢弃)
 nav:
   title: 组件
   path: /components
----
+--- -->
 
 # CoverRadio
 

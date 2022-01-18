@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker, Toast } from 'antd-mobile-v2';
 import { INomarPickerProps } from './interface';
-import TextItem from '../TextItem';
+import TextItem from '../../baseComponents/TextItem';
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
   onChange: (values: number | string | undefined) => void;
   value?: string | number;

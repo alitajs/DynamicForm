@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 

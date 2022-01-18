@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 

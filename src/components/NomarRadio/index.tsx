@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import NomarRadioGroup from './radioGroup';
 import { allPrefixCls } from '../../const/index';
 import { IAliasProps } from '../../PropsType';

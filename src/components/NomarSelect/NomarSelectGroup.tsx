@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useMemo } from 'react';
 import { Picker } from 'antd-mobile-v2';
 import { INomarSelectProps } from './interface';
-import TextItem from '../TextItem';
+import TextItem from '../../baseComponents/TextItem';
 import { is2Dimensionals } from './utils';
 
 interface INomarSelectGroupProps extends Omit<INomarSelectProps, 'onChange'> {

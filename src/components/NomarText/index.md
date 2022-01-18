@@ -1,11 +1,11 @@
----
+<!-- ---
 title: Text(丢弃)
 group:
   title: Text(丢弃)
 nav:
   title: 组件
   path: /components
----
+--- -->
 
 # NomarText
 

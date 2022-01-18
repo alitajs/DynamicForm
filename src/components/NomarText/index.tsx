@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import Field from '../Field';
-import Title from '../Title';
-import { TextItem } from '../..';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
+import TextItem from '../../baseComponents/TextItem';
 import { allPrefixCls } from '../../const/index';
 
 export interface INomarTextProps {

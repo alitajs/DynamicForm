@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import AddressPickerGroup from './AddressPickerGroup';
 import { IAddressPickerProps, valueProps } from './interface';
 import { allPrefixCls } from '../../const/index';

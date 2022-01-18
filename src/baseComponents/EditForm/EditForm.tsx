@@ -23,7 +23,7 @@ import {
   DformCheckBox,
   DformText,
   DformPicker,
-} from '..';
+} from '../../';
 
 const FormItemType = {
   input: DformInput,

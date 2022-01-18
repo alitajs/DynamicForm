@@ -3,8 +3,8 @@ import { Switch } from 'antd-mobile-v2';
 import { Rule } from 'rc-field-form/es/interface';
 import { SwitchPropsType } from 'antd-mobile-v2/es/switch/PropsType';
 import { allPrefixCls } from '../../const/index';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import './index.less';
 
 export interface INomarSwitchProps extends SwitchPropsType {

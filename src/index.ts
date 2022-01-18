@@ -1,4 +1,4 @@
-import DynamicForm, { useForm } from './components/DynamicForm';
+import DynamicForm, { useForm } from './baseComponents/DynamicForm';
 import './index.less';
 
 export * from './components';

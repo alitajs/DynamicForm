@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
-import Field from '../Field';
-import Title from '../Title';
-import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
+import CheckBoxGroup, { IDataItem } from './CheckBoxGroup';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import './index.less';

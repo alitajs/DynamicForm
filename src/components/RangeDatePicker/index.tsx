@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import { INomarDatePickerProps } from '../NomarDatePicker/interface';
-import { changeDateFormat } from '../../utils';
+import { changeDateFormat } from '../../utils/tool';
 import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
 import { allPrefixCls } from '../../const/index';
 import './index.less';

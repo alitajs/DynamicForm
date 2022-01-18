@@ -2,8 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
 import { allPrefixCls } from '../../const/index';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 
 const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);

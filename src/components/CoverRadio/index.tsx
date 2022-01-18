@@ -2,8 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
@@ -131,7 +131,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
             rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
             initialValue={defaultValue}
             formFlag={formFlag}
-            >
+          >
             {showFiled()}
           </Field>
         </div>

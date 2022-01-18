@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
-import Field from '../Field';
-import Title from '../Title';
-import HorizontalTitle from '../HorizontalTitle';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import './index.less';
 
 interface INomarCustomPorps {

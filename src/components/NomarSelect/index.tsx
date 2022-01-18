@@ -1,8 +1,8 @@
 import React, { FC, useMemo } from 'react';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import { allPrefixCls } from '../../const/index';
-import Field from '../Field';
-import Title from '../Title';
+import Field from '../../baseComponents/Field';
+import Title from '../../baseComponents/Title';
 import './index.less';
 import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
