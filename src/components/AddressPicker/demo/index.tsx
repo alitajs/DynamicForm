@@ -3,12 +3,13 @@
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
-import { Button, WhiteSpace, Toast } from 'antd-mobile-v2';
+import { Button, Toast } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   AddressPicker,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 import CountryList from '@bang88/china-city-data';

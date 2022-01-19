@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { WingBlank, WhiteSpace } from 'antd-mobile-v2';
+import { WingBlank, WhiteSpace } from '..';
 import Card from './Card';
 import { GroupProps } from '../../PropsType';
 import { allPrefixCls } from '../../const';

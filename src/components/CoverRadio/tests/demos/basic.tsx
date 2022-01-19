@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm from '../../../../index';
-import { useForm } from 'rc-field-form';
-import CoverRadio from '../../';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { WhiteSpace, CoverRadio, useForm } from '@alitajs/dform';
 
 const sexList = [
   { sexName: '男', sexId: 'man' },

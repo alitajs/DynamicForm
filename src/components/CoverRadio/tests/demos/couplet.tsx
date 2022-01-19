@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm from '../../../../index';
-import { useForm } from 'rc-field-form';
-import CoverRadio from '../../';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { WhiteSpace, useForm, CoverRadio } from '../../../..';
 
 const drinkList = [
   { foodId: 'cola', foodName: '可乐' },

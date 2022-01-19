@@ -4,12 +4,13 @@
  */
 
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   CoverRadio,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 const sexList = [
