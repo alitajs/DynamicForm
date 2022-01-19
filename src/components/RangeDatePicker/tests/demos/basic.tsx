@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { useForm } from '../../../../index';
-import RangeDatePicker from '../../';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { useForm, WhiteSpace, RangeDatePicker } from '../../../..';
 
 interface BasicProps {
   onFinish: any;

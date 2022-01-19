@@ -4,14 +4,15 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   getRandom,
+  DformFile,
+  WhiteSpace,
 } from '@alitajs/dform';
-import NomarFile from '../';
 
 const contractList = [
   { title: '合约模板2020.pdf', fileId: '1' },
@@ -43,7 +44,7 @@ const Page: FC = () => {
   return (
     <>
       <DynamicForm {...formProps}>
-        <NomarFile
+        <DformFile
           required
           fieldProps="contract"
           title="合同"

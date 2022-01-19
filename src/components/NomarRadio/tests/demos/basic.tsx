@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { IFormItemProps } from '../../../../';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, {
+  IFormItemProps,
+  WhiteSpace,
+  DformRadio,
+} from '../../../../';
 import { useForm } from 'rc-field-form';
-import DformRadio from '../../';
 
 interface BasicProps {
   onFinish: any;

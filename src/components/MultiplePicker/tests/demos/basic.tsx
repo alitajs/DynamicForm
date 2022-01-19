@@ -3,13 +3,8 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, {
-  useForm,
-  Store,
-  ValidateErrorEntity,
-  MultiplePicker,
-} from '../../../../index';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { useForm, MultiplePicker, WhiteSpace } from '../../../..';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;

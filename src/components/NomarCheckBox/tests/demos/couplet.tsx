@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { useForm, DformCheckBox } from '../../../..';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { useForm, DformCheckBox, WhiteSpace } from '../../../..';
 
 const drinksList = [
   { foodId: 'cola', foodName: '可乐' },

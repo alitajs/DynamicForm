@@ -3,13 +3,14 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   dateChange,
   DformDatePicker,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 const Page: FC = () => {

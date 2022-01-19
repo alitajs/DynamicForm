@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { useForm } from '../../../..';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { useForm, WhiteSpace } from '../../../..';
 
 const CoupletText: FC = () => {
   const [form] = useForm();

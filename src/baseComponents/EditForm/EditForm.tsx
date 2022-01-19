@@ -1,10 +1,11 @@
 /* eslint-disable no-param-reassign */
 import React, { FC, useState } from 'react';
-import { List, Button, WhiteSpace } from 'antd-mobile-v2';
+import { List, Button } from 'antd-mobile-v2';
 import Form, { Field, useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile-v2/es/date-picker/PropsType';
+import { WhiteSpace } from '..';
 
 import { IFormItemProps } from '../../PropsType';
 
@@ -17,13 +18,12 @@ import {
   ExtraInput,
   RangeDatePicker,
   DformRadio,
-  CoverRadio,
   MultiplePicker,
   DformImagePicker,
   DformCheckBox,
   DformText,
   DformPicker,
-} from '../../';
+} from '../../components';
 
 const FormItemType = {
   input: DformInput,
@@ -34,7 +34,6 @@ const FormItemType = {
   radio: DformRadio,
   extraInput: ExtraInput,
   rangeDatePicker: RangeDatePicker,
-  coverRadio: CoverRadio,
   multiplePicker: MultiplePicker,
   image: DformImagePicker,
   checkbox: DformCheckBox,

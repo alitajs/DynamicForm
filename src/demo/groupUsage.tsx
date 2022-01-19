@@ -3,7 +3,7 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
@@ -15,6 +15,7 @@ import DynamicForm, {
   RangeDatePicker,
   DformCheckBox,
   MultiplePicker,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 const { Group } = DynamicForm;

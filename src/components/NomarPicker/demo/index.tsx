@@ -4,12 +4,13 @@
  */
 
 import React, { FC } from 'react';
-import { Button, WhiteSpace, Toast } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   DformPicker,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 const Page: FC = () => {

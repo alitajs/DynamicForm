@@ -3,13 +3,14 @@
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
   DformSwitch,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 interface PageProps {}

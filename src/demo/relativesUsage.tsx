@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { WhiteSpace, Button } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   DformInput,
   DformPicker,
@@ -12,6 +12,7 @@ import DynamicForm, {
   IFormRelativesProps,
   IFormItemProps,
   IDynamicFormProps,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 const { Group } = DynamicForm;

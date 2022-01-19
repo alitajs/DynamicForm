@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { getRandom } from '../../../../index';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { getRandom, DformFile, WhiteSpace } from '../../../..';
 import { useForm } from 'rc-field-form';
-import NomarFile from '../../';
 
 interface BasicProps {
   onFinish: any;
@@ -34,7 +33,7 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
   return (
     <>
       <DynamicForm {...formProps}>
-        <NomarFile
+        <DformFile
           // type='file'
           required={true}
           fieldProps="contract"

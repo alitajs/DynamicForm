@@ -3,14 +3,15 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
-} from '../../../index';
+  ExtraInput,
+  WhiteSpace,
+} from '@alitajs/dform';
 import PositionIcon from '../../../assets/position_ico.png';
-import ExtraInput from '../';
 
 const Page: FC = () => {
   const [form] = useForm();

@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm from '../../../../';
-import { useForm } from 'rc-field-form';
-import DformSwitch from '../../';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { DformSwitch, useForm, WhiteSpace } from '../../../../';
 
 interface BasicProps {
   onFinish: any;

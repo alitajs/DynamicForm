@@ -3,12 +3,13 @@
  * desc: 表单使用 demo
  */
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   DformCustom,
+  WhiteSpace,
 } from '@alitajs/dform';
 
 interface IDemoPage {

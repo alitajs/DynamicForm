@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm from '../../../../index';
-import { useForm } from 'rc-field-form';
+import { Button } from 'antd-mobile-v2';
+import DynamicForm, { WhiteSpace, ExtraInput, useForm } from '../../../..';
 import PositionIcon from '../../../../assets/position_ico.png';
-import ExtraInput from '../../';
 
 interface BasicProps {
   onFinish: any;

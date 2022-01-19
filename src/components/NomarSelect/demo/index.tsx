@@ -4,12 +4,13 @@
  */
 //
 import React, { FC } from 'react';
-import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   DformSelect,
+  WhiteSpace,
 } from '@alitajs/dform';
 import TestData from './test';
 

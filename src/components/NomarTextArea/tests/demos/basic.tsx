@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { getRandom } from '../../../../index';
-import { useForm } from 'rc-field-form';
-import NomarTextArea from '../../';
+import DynamicForm, { getRandom, useForm, DformTextArea } from '../../../..';
 import PhotoIcon from '../../../../assets/photo.png';
 
 interface BasicProps {
@@ -34,14 +32,14 @@ const NomarTextAreaTestPage: React.FC<BasicProps> = ({
   return (
     <>
       <DynamicForm {...formProps}>
-        <NomarTextArea
+        <DformTextArea
           title="学校概况"
           fieldProps="textArea0"
           placeholder="支持输入值过长自动换行"
           rows={1}
           autoHeight={true}
         />
-        <NomarTextArea
+        <DformTextArea
           fieldProps="textArea2"
           title="有标题"
           placeholder="只读，不可编辑"
@@ -49,7 +47,7 @@ const NomarTextAreaTestPage: React.FC<BasicProps> = ({
           rows={3}
           editable={false}
         />
-        <NomarTextArea
+        <DformTextArea
           fieldProps="titleTooLong"
           title="标题文字内容过长"
           placeholder="请输入"
@@ -63,7 +61,7 @@ const NomarTextAreaTestPage: React.FC<BasicProps> = ({
             boxSizing: 'border-box',
           }}
         />
-        <NomarTextArea
+        <DformTextArea
           fieldProps="idenPhone"
           title="身份证"
           extra={photoImg()}
