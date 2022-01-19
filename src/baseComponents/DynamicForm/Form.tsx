@@ -28,7 +28,7 @@ import {
   DformText,
   DformPicker,
   DformFile,
-} from '../../';
+} from '../../components';
 
 import Title from '../Title';
 

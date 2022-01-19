@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile-v2';
-import DynamicForm, { IFormItemProps, useForm } from '../../../../index';
+import DynamicForm, { IFormItemProps, useForm } from '../../../..';
 
 interface BasicProps {
   onFinish: any;

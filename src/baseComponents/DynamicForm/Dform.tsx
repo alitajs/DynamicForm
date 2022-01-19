@@ -40,7 +40,7 @@ import {
   DformText,
   DformPicker,
   DformFile,
-} from '../../';
+} from '../../components';
 
 export const FormItemType = {
   input: DformInput,
@@ -319,7 +319,6 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     return jsonData.map((item: any) => {
       const mItem = { ...item, ...(changeForm[item.fieldProps] || {}) };
       const { type, groupProps, fieldProps, children } = mItem;
-
       if (type === 'group') {
         return (
           <Group {...groupProps} key={fieldProps}>

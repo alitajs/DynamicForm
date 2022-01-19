@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
-import NomarPicker from '..';
+import { DformPicker } from '../../';
 import BasicText from './demos/basic';
 import CoupletText from './demos/couplet';
 
@@ -24,7 +24,7 @@ it('passes picker a11y test', async () => {
   const { container, getByText } = render(
     <div>
       <Form>
-        <NomarPicker {...props} />
+        <DformPicker {...props} />
       </Form>
     </div>,
   );

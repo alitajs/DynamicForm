@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
+import { render, testA11y, fireEvent, waitFor } from '@alita/test';
 import Form from 'rc-field-form';
-import DynamicForm, { IFormItemProps } from '../../..';
+import DynamicForm, { IFormItemProps, AddressPicker, useForm } from '../../..';
 import CountryList from '@bang88/china-city-data';
 import { Button } from 'antd-mobile-v2';
-import AddressPicker from '..';
 
 const props = {
   type: 'addressPicker',
@@ -36,7 +35,7 @@ test('renders Basic', async () => {
   const onFinishFailed = jest.fn();
 
   function Basic({ onFinish, onFinishFailed }: any) {
-    const [form] = Form.useForm();
+    const [form] = useForm();
     const [formsValues] = React.useState({
       homeAddr: {
         label: ['福建省', '福州市', '鼓楼区'],
@@ -147,7 +146,7 @@ test('renders Basic', async () => {
   const onFinishFailed = jest.fn();
 
   function Basic({ onFinish, onFinishFailed }: any) {
-    const [form] = Form.useForm();
+    const [form] = useForm();
     const [formsValues] = React.useState({
       homeAddr: {
         label: ['福建省', '福州市', '鼓楼区'],

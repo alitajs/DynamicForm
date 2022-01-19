@@ -63,7 +63,7 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: false,
+    isDev: true,
   };
   return (
     <>

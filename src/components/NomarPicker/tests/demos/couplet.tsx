@@ -7,7 +7,7 @@ import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
-} from '../../../../index';
+} from '../../../..';
 
 const pickerData = [
   {

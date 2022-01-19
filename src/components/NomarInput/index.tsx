@@ -5,7 +5,7 @@ import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import InputItem from '../../baseComponents/InputItem';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
-import { TextItem } from '../..';
+import TextItem from '../../baseComponents/TextItem';
 import { allPrefixCls } from '../../const/index';
 
 export interface INomarInputProps extends InputItemPropsType {
