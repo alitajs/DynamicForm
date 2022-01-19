@@ -1,3 +1,8 @@
+/**
+ * 这里为用户可使用的公共方法
+ * 如需写些内部的工具类
+ * 请编辑在 `tool.ts` 文件下
+ */
 import dayjs from 'dayjs';
 import { FormInstance } from 'rc-field-form/es/interface';
 
