@@ -145,3 +145,20 @@ export const changeDateFormat = (
   }
   return dateFormat;
 };
+
+export const toCSSLength = (val: number | string) => {
+  return typeof val === 'number' ? `${val}` : val;
+};
+
+export function attachPropertiesToComponent<C, P extends Record<string, any>>(
+  component: C,
+  properties: P,
+): C & P {
+  const ret = component as any;
+  for (const key in properties) {
+    if (properties.hasOwnProperty(key)) {
+      ret[key] = properties[key];
+    }
+  }
+  return ret;
+}

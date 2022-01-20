@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import { DatePickerPropsType } from 'antd-mobile-v2/es/date-picker/PropsType';
 import {
@@ -142,4 +142,10 @@ export interface CardProps {
 
 export interface GroupProps extends CardProps {
   type?: 'empty' | 'card';
+}
+
+export interface NativeProps<S extends string = never> {
+  className?: string;
+  style?: CSSProperties & Partial<Record<S, string>>;
+  tabIndex?: number;
 }

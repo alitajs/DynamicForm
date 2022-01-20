@@ -1,9 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { Flex } from 'antd-mobile-v2';
-import chunkLodash from 'lodash/chunk';
+import { Grid } from '../../baseComponents';
 
-const { Item } = Flex;
+const { Item } = Grid;
 
 export interface IDataItem {
   label: string | number;
@@ -48,10 +47,10 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
     onChange(newInitValue && newInitValue.length ? newInitValue : undefined);
   };
 
-  const BoxContent = () =>
-    chunkLodash([...data], chunk).map((list: IDataItem[], index: number) => (
-      <Flex key={index}>
-        {[...list].map((item: IDataItem) => {
+  return (
+    <div className="alitajs-dform-box-content">
+      <Grid columns={chunk}>
+        {data.map((item: IDataItem) => {
           const _disabled = disabled || props?.disableItem?.(item);
           return (
             <Item key={item.value}>
@@ -92,10 +91,9 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
             </Item>
           );
         })}
-      </Flex>
-    ));
-
-  return <div className="alitajs-dform-box-content">{BoxContent()}</div>;
+      </Grid>
+    </div>
+  );
 };
 
 export default CheckBoxGroup;
