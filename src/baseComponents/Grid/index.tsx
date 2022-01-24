@@ -7,7 +7,7 @@ import './index.less';
 
 type GridProps = {
   columns: number;
-  gap?: number | [number, number];
+  gap?: number | string | [number | string, number | string];
 } & NativeProps<'--gap' | '--gap-vertical' | '--gap-horizontal'>;
 
 const prefixCls = `${allPrefixCls}-grid`;

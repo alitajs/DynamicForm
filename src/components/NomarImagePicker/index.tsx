@@ -3,7 +3,7 @@ import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
 import './index.less';
 
 const DformImagePicker: FC<INomarImagePickerProps> = (props) => {

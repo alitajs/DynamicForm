@@ -1,7 +1,15 @@
 import React, { FC, useState, useEffect } from 'react';
-import { ImagePicker, Toast } from 'antd-mobile-v2';
+import { Toast } from 'antd-mobile-v2';
+import { ImageViewer } from 'antd-mobile/2x';
+import { AddOutline, CloseOutline } from 'antd-mobile-icons';
+import { Image, Grid } from '../../baseComponents';
+import { allPrefixCls } from '../../const';
 import { ImageFile, ImagePickerGroupProps } from './interface';
-import { transformFile } from '../../utils';
+import { transformFile, getRandom } from '../../utils';
+
+const { Item } = Grid;
+
+const prefixCls = `${allPrefixCls}-image`;
 
 const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
   const {
@@ -10,18 +18,46 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     compressRatio,
     value = [],
     maxLength,
-    ...otherProps
+    multiple = false,
+    accept = 'image/*',
+    capture = false,
+    deletable = true,
+    selectable,
+    onImageClick,
+    showView = true,
   } = props;
 
-  const [selectable, setSelectable] = useState<boolean>(true);
+  const [height, setHeight] = useState<number>(0);
+  const [addable, setAddable] = useState<boolean>(true);
+  const [imgViewList, setImgViewList] = useState<string[]>([]);
 
   useEffect(() => {
+    // 将图片渲染到图片加载器上
+    if (value && Array.isArray(value)) {
+      const list = value.map((item) => {
+        return item?.url;
+      });
+      setImgViewList(list);
+    }
+
+    if (selectable !== undefined) {
+      setAddable(selectable);
+      return;
+    }
     if (maxLength && value && value.length && value.length >= maxLength) {
-      setSelectable(false);
+      setAddable(false);
     } else {
-      setSelectable(true);
+      setAddable(true);
     }
   }, [JSON.stringify(value || [])]);
+
+  useEffect(() => {
+    if (addable) {
+      const width =
+        document.getElementById(`${prefixCls}-upload`)?.clientWidth || 0;
+      setHeight(width);
+    }
+  }, [addable]);
 
   const checkFileLimit = (file: ImageFile) => {
     if (limitSize && file && file.size && file.size > limitSize) {
@@ -31,38 +67,83 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     return true;
   };
 
-  const imageChange = (
-    files: ImageFile[] | any,
-    operationType: string,
-    index: number | undefined,
-  ) => {
-    if (files && files.length > value.length) {
-      const lastFile = files[files.length - 1];
-      const { file = {} } = lastFile;
-      if (compressRatio && lastFile.url.indexOf('base64,') !== -1) {
-        transformFile(lastFile.file, compressRatio).then((newFile: any) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(newFile);
-          reader.onload = function ({ target }) {
-            if (!checkFileLimit(newFile)) return;
-            files[files.length - 1] = {
-              ...files[files.length - 1],
-              file: newFile,
-              url: target?.result || '',
-            };
-          };
+  const addImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e?.target?.files[0];
+    transformFile(file, compressRatio).then((newFile: any) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(newFile);
+      reader.onload = function ({ target }) {
+        if (!checkFileLimit(newFile)) return;
+        const newValue = [...value];
+        newValue.push({
+          file,
+          url: target?.result || '',
+          id: getRandom(),
         });
-      } else if (!checkFileLimit(file)) return;
-    }
-    onChange(files, operationType, index);
+        onChange(newValue, 'add', undefined);
+      };
+    });
+  };
+
+  const onDelete = (item: any, index: number) => {
+    const newFiles = [...value];
+    newFiles.splice(index, 1);
+    onChange(newFiles, 'delete', index);
+  };
+
+  const imageClick = (item: any, index: number) => {
+    if (showView)
+      ImageViewer.Multi.show({ images: imgViewList, defaultIndex: index });
+    if (onImageClick) onImageClick(index, item);
   };
   return (
-    <ImagePicker
-      selectable={selectable}
-      {...otherProps}
-      onChange={imageChange}
-      files={value}
-    />
+    <>
+      <Grid columns={4} gap={`0.22rem`}>
+        {value.map((item, index: number) => {
+          const { url, id } = item;
+          return (
+            <Item key={id}>
+              <div className={`${prefixCls}-content`}>
+                <Image
+                  id={id}
+                  src={url}
+                  onClick={() => imageClick(item, index)}
+                />
+                {deletable && (
+                  <span
+                    className={`${prefixCls}-cell-delete`}
+                    onClick={() => onDelete(item, index)}
+                  >
+                    <CloseOutline className={`${prefixCls}-cell-delete-icon`} />
+                  </span>
+                )}
+              </div>
+            </Item>
+          );
+        })}
+        {addable && (
+          <Item>
+            <div
+              className={`${prefixCls}-upload`}
+              id={`${prefixCls}-upload`}
+              style={{ height }}
+            >
+              <span className={`${prefixCls}-upload-button-icon`}>
+                <AddOutline />
+              </span>
+              <input
+                capture={capture}
+                accept={accept}
+                multiple={multiple}
+                type="file"
+                className={`${prefixCls}-upload-input`}
+                onChange={addImageChange}
+              />
+            </div>
+          </Item>
+        )}
+      </Grid>
+    </>
   );
 };
 

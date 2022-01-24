@@ -46,21 +46,20 @@ const Page: React.FC<BasicProps> = ({
           required
           compressRatio={0.5}
           onChange={(files: any, type: string, index: number | undefined) => {
-            onChange();
+            // eslint-disable-next-line no-console
+            console.log(files, type, index);
           }}
+          maxLength={2}
         />
         <DformImagePicker
           fieldProps="showImg"
           title="展示图片(限制上传的图片大小)"
           // disableDelete: true,
-          onImageClick={(index: number | undefined, files: any) => {
-            onImageClick();
-          }}
+          onImageClick={onImageClick}
           limitSize={3 * 1024 * 1024}
           defaultValue={fileList}
-          onChange={(files: any, type: string, index: number | undefined) => {
-            onChange();
-          }}
+          onChange={() => onChange()}
+          showView={false}
         />
         <DformImagePicker
           fieldProps="noInsertImg"

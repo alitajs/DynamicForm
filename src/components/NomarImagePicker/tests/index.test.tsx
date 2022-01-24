@@ -35,11 +35,11 @@ it('passes picker a11y test', async () => {
     </div>,
   );
   //判断图片数量
-  expect(
-    document.querySelectorAll('.am-image-picker-item-content').length,
-  ).toBe(2);
+  expect(document.querySelectorAll('.alitajs-dform-image-content').length).toBe(
+    2,
+  );
   //判断是否有上传按钮
-  expect(document.querySelector('.am-image-picker-upload-btn')).toBeDefined();
+  expect(document.querySelector('#alitajs-dform-image-upload')).toBeDefined();
 });
 
 test('renders Basic', async () => {
@@ -57,43 +57,39 @@ test('renders Basic', async () => {
       onChange={onChange}
     />,
   );
-  expect(getAllByText('请添加图片(自动压缩)'));
+  expect(getAllByText('请添加图片(自动压缩)')).toBeDefined();
   expect(getByText('不可添加图片')).toBeDefined();
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
   });
-  expect(document.querySelectorAll('.am-image-picker-item-remove').length).toBe(
-    6,
-  );
+  // //进行点击图片的操作
+  // fireEvent.click(document.querySelectorAll('.alitajs-dform-image-content')[0]);
+  // await waitFor(() => {
+  //   expect(onImageClick).toBeCalled();
+  // });
+  expect(
+    document.querySelectorAll('.alitajs-dform-image-cell-delete').length,
+  ).toBe(6);
   //进行删除操作
-  fireEvent.click(document.querySelectorAll('.am-image-picker-item-remove')[0]);
+  fireEvent.click(
+    document.querySelectorAll('.alitajs-dform-image-cell-delete')[0],
+  );
   await waitFor(() => {
     expect(
-      document.querySelectorAll('.am-image-picker-item-remove').length,
+      document.querySelectorAll('.alitajs-dform-image-cell-delete').length,
     ).toBe(5);
     expect(onChange).toBeCalled();
   });
-  //进行点击图片的操作
-  fireEvent.click(
-    document.querySelectorAll('.am-image-picker-item-content')[0],
-  );
-  await waitFor(() => {
-    expect(onImageClick).toBeCalled();
-  });
 
   // 判断图片上传数量限制
-  expect(document.querySelectorAll('.am-image-picker-upload-btn').length).toBe(
+  expect(document.querySelectorAll('.alitajs-dform-image-upload').length).toBe(
     2,
   );
-  fireEvent.click(document.querySelectorAll('.am-image-picker-item-remove')[4]);
-  expect(document.querySelectorAll('.am-image-picker-upload-btn').length).toBe(
+  fireEvent.click(
+    document.querySelectorAll('.alitajs-dform-image-cell-delete')[4],
+  );
+  expect(document.querySelectorAll('.alitajs-dform-image-upload').length).toBe(
     3,
   );
-
-  // 点击Submit
-  fireEvent.click(document.querySelectorAll('.am-image-picker-upload-btn')[0]);
-  await waitFor(() => {
-    expect(onChange).toBeCalled();
-  });
 });
