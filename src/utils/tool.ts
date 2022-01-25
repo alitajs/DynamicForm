@@ -147,7 +147,7 @@ export const changeDateFormat = (
 };
 
 export const toCSSLength = (val: number | string) => {
-  return typeof val === 'number' ? `${val}` : val;
+  return typeof val === 'number' ? `${val}px` : val;
 };
 
 export function attachPropertiesToComponent<C, P extends Record<string, any>>(

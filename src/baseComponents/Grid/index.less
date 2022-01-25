@@ -3,11 +3,12 @@
 @gridPrefixCls: alitajs-dform-grid;
 
 .@{gridPrefixCls} {
+  width: 100%;
   --gap: 0;
   --gap-horizontal: var(--gap);
   --gap-vertical: var(--gap);
   display: grid;
-  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  grid-template-columns: repeat(var(--columns), 1fr);
   align-items: stretch;
   column-gap: var(--gap-horizontal);
   row-gap: var(--gap-vertical);

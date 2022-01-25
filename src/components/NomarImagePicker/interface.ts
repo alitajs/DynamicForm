@@ -1,13 +1,11 @@
-import { ImagePickerPropTypes } from 'antd-mobile-v2/es/image-picker/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
-import { ErrorValueProps } from '../../PropsType';
 
 export interface ImageFile {
   url: string;
   [key: string]: any;
 }
 
-export interface INomarImagePickerProps extends ImagePickerPropTypes {
+export interface INomarImagePickerProps {
   coverStyle?: React.CSSProperties;
   title?: string;
   required?: boolean;
@@ -26,6 +24,18 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   maxLength?: number;
+  deletable?: boolean;
+  selectable?: boolean;
+  accept?: string;
+  multiple?: boolean;
+  capture?: any;
+  showView?: boolean;
+  onChange?: (
+    files: Array<ImageFile>,
+    operationType: string,
+    index?: number,
+  ) => void;
+  onImageClick?: (index?: number, files?: Array<ImageFile>) => void;
 }
 
 export interface ImagePickerGroupProps extends INomarImagePickerProps {
