@@ -48,7 +48,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     defaultValue,
     titleProps,
     formFlag = false,
-    placeholder = '',
+    placeholder,
     maxLine,
     onClick,
     labelNumber = 5,
