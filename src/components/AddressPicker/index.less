@@ -1,12 +1,16 @@
 @import '../../styles/index.less';
 
 .alitajs-dform-address {
+  .am-modal-body {
+    display: flex !important;
+    flex-direction: column !important;
+  }
   .am-modal-header {
     padding: 0 * @hd !important;
   }
 
   .alitajs-dform-address-content {
-    height: 100%;
+    flex: 1;
     max-height: 800 * @hd;
     min-height: 300 * @hd;
     display: flex;
@@ -50,6 +54,11 @@
       overflow: auto;
       padding-bottom: 100px;
 
+      .alitajs-dform-address-list-style {
+        --padding-left: 0;
+        --font-size: 14 * @hd;
+      }
+
       .alitajs-dform-address-list-item {
         display: flex;
         flex-direction: row;
@@ -60,11 +69,25 @@
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          color: #333;
         }
         .alitajs-dform-address-list-item-tick {
           color: @alita-dform-radio-color;
         }
       }
+    }
+  }
+  &-tabs {
+    .alitajs-dform-address-value-item-label {
+      color: @alita-dform-title-color;
+      font-size: @alita-dform-value-font-size;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .alitajs-dform-address-value-select {
+      color: @alita-dform-radio-color;
     }
   }
 }

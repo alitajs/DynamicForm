@@ -18,8 +18,10 @@ const Page: FC = () => {
   const [form] = useForm();
   const [formsValues] = useState({
     homeAddr: {
-      label: ['福建省', '福州市', '鼓楼区'],
-      value: ['35', '3501', '350102'],
+      // label: ['福建省', '福州市', '鼓楼区'],
+      // value: ['35', '3501', '350102'],
+      label: ['福建省', '福州市'],
+      value: ['35', '3501'],
     },
   });
   const onFinish = (values: Store) => {
@@ -66,6 +68,7 @@ const Page: FC = () => {
       default:
         break;
     }
+    console.log('getResetHomeAddrList', data);
     return data;
   };
 
@@ -90,6 +93,7 @@ const Page: FC = () => {
       default:
         break;
     }
+    console.log('getResetWorkAddrList', data);
     return data;
   };
 
@@ -97,6 +101,7 @@ const Page: FC = () => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetHomeAddrList(mValues);
+    console.log('resetHomeAddrList', data);
     setHomeAddrData(data);
     Toast.hide();
   };
@@ -128,14 +133,19 @@ const Page: FC = () => {
           data={homeAddrData}
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
+            console.log('values', values);
             // eslint-disable-next-line no-console
-            resetHomeAddrList(values);
+            // Toast.show('加载中');
+            setTimeout(() => {
+              resetHomeAddrList(values);
+              // Toast.hide();
+            }, 300);
           }}
           onChange={(value: any) => {
             console.log('onChangevalue', value);
           }}
         />
-        <AddressPicker
+        {/* <AddressPicker
           fieldProps="workAddr"
           title="居住地址"
           placeholder="请选择"
@@ -143,17 +153,18 @@ const Page: FC = () => {
           data={workAddrData}
           placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
           onChangeLevel={(values: (string | number)[]) => {
-            Toast.show('加载中');
+            console.log('values', values);
+            // Toast.show('加载中');
             setTimeout(() => {
               resetWorkAddrList(values);
-              Toast.hide();
+              // Toast.hide();
             }, 100);
           }}
           onChange={(value: any) => {
             console.log('onChangevalue', value);
           }}
           noData={<div>暂无街道数据</div>}
-        />
+        /> */}
       </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
