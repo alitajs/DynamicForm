@@ -6,6 +6,9 @@ import classnames from 'classnames';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
 import { allPrefixCls } from '../../const/index';
+
+import NewTextareaItem from './TextareaItem';
+
 import './index.less';
 
 export interface INomarTextAreaProps extends TextAreaItemPropsType {
@@ -50,6 +53,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     errorValue,
     titleProps,
     formFlag = false,
+    onChange,
     ...otherProps
   } = props;
 
@@ -70,6 +74,10 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     if (onBlur) onBlur(val);
   };
 
+  const areaChange = (e: string) => {
+    if (onChange) onChange(e);
+  };
+
   return (
     <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <div
@@ -88,25 +96,11 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
           initialValue={defaultValue}
           formFlag={formFlag}
         >
-          <TextareaItem
-            {...otherProps}
-            title={titleDiv()}
-            editable={editable}
-            style={{
-              textAlign: rows === 1 ? 'right' : 'left',
-              ...coverStyle,
-            }}
-            className={className}
-            rows={rows}
-            onBlur={(val) => {
-              inputOnBlur(val);
-            }}
-          />
+          <NewTextareaItem onChange={areaChange} />
         </Field>
       </div>
     </Title>
   );
 };
 
-DformTextArea.displayName = 'dformTextArea';
 export default DformTextArea;

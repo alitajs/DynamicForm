@@ -51,7 +51,7 @@ const Page: FC = () => {
           rows={1}
           autoHeight={true}
         />
-        <DformTextArea
+        {/* <DformTextArea
           fieldProps="textArea1"
           placeholder="请输入..."
           title="公司简介"
@@ -91,7 +91,7 @@ const Page: FC = () => {
           extra={photoImg()}
           positionType="vertical"
           placeholder="存在 extra 自动换行"
-        />
+        /> */}
       </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>

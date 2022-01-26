@@ -16,7 +16,7 @@ export default defineConfig({
         var github = document.createElement('p');
         github.className = 'github';
         github.style.position = 'absolute';
-        github.style.top = '8px';
+        github.style.top = '-8px';
         github.style.left = '280px';
         github.innerHTML = '<object type="image/svg+xml" data="https://img.shields.io/github/stars/alitajs/DynamicForm?style=social"></object>';
         navbar.appendChild(github);

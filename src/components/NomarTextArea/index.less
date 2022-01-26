@@ -1,5 +1,20 @@
 @import '../../styles/index.less';
 
+.@{prefixCls}-textarea {
+  color: @alita-dform-value-color;
+  font-size: @alita-dform-value-font-size;
+  border: none;
+
+  &::placeholder {
+    color: @alita-dform-placeholder;
+  }
+
+  &:focus {
+    outline: none;
+    outline-color: transparent;
+  }
+}
+
 .@{prefixCls}-area {
   .am-textarea-control textarea {
     color: @alita-dform-value-color;
