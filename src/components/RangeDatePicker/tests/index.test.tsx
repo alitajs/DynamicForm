@@ -54,7 +54,7 @@ test('render Basic', async () => {
     fireEvent.click(getByText('确认'));
   });
   await waitFor(() => {
-    expect(getAllByText(dataTime)[1]).toHaveClass(
+    expect(getAllByText(dataTime)[0]).toHaveClass(
       'alitajs-dform-text-item-text',
     );
   });
