@@ -57,6 +57,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const [lastLevel, setLastLevel] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!!data.length) setList(data);
     if (!!data.length && modalFlag) {
       setList(data);
       setLastLevel(false);
@@ -82,7 +83,10 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       newValue?.value &&
       !!newValue?.value.length
     ) {
-      const initValue = newValue?.value.splice(newValue?.value.length - 1, 1);
+      const initValue: string[] = JSON.parse(
+        JSON.stringify(value?.value || []),
+      );
+      if (!!initValue.length) initValue.pop();
       if (onChangeLevel) onChangeLevel(initValue);
     }
     setInputLabel(newValue?.label.join(' '));
