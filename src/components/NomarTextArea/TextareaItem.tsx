@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from 'react';
+import React, { FC, CSSProperties, useState } from 'react';
 import classNames from 'classnames';
 import { allPrefixCls } from '../../const';
 
@@ -23,8 +23,8 @@ const TextareaItem: FC<TextareaItemProps> = (props) => {
     onChange,
   } = props;
 
-  const areaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (onChange) onChange(e.target.value);
+  const areaChange = (e: string) => {
+    if (onChange) onChange(e);
   };
   return (
     <div>
@@ -38,7 +38,9 @@ const TextareaItem: FC<TextareaItemProps> = (props) => {
         )}
         style={style}
         value={value}
-        onChange={areaChange}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+          areaChange(e.target.value);
+        }}
       />
     </div>
   );

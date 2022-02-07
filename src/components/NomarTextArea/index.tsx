@@ -8,6 +8,7 @@ import Title from '../../baseComponents/Title';
 import { allPrefixCls } from '../../const/index';
 
 import NewTextareaItem from './TextareaItem';
+import InputItem from '../../baseComponents/InputItem';
 
 import './index.less';
 
@@ -96,7 +97,20 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
           initialValue={defaultValue}
           formFlag={formFlag}
         >
-          <NewTextareaItem onChange={areaChange} />
+          <TextareaItem
+            {...otherProps}
+            title={titleDiv()}
+            editable={editable}
+            style={{
+              textAlign: rows === 1 ? 'right' : 'left',
+              ...coverStyle,
+            }}
+            className={className}
+            rows={rows}
+            onBlur={(val) => {
+              inputOnBlur(val);
+            }}
+          />
         </Field>
       </div>
     </Title>
