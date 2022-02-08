@@ -3,7 +3,6 @@ import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
-import { allPrefixCls } from '../../const';
 import './index.less';
 
 const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
@@ -35,21 +34,19 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
 
   return (
     <Title independentProps={props} formFlag={formFlag} {...titleProps}>
-      <div className={`${allPrefixCls}-image`}>
-        <Field
-          name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
-          initialValue={defaultValue}
-          formFlag={formFlag}
-        >
-          <ImagePickerGroup
-            {...otherProps}
-            value={defaultValue}
-            onChange={imageChange}
-            limitSize={limitSize}
-          />
-        </Field>
-      </div>
+      <Field
+        name={fieldProps}
+        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
+        initialValue={defaultValue}
+        formFlag={formFlag}
+      >
+        <ImagePickerGroup
+          {...otherProps}
+          value={defaultValue}
+          onChange={imageChange}
+          limitSize={limitSize}
+        />
+      </Field>
     </Title>
   );
 };

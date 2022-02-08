@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
+import { render, testA11y, fireEvent, waitFor } from '@alita/test';
 import Form from 'rc-field-form';
-import NomarFile from '../index';
-import BasicText from './demos/basic'
+import DformTextArea from '..';
+import BasicText from './demos/basic';
 
 const mtProps = {
   type: 'area',
@@ -11,13 +11,13 @@ const mtProps = {
   placeholder: '支持输入值过长自动换行',
   rows: 1,
   autoHeight: true,
-}
+};
 
 it('passes picker a11y test', async () => {
   const { container, getByText } = render(
     <div>
       <Form>
-        <NomarFile  {...mtProps} />
+        <DformTextArea {...mtProps} />
       </Form>
     </div>,
   );
@@ -28,47 +28,57 @@ it('passes picker a11y test', async () => {
 test('renders Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
+  const onChange = jest.fn();
   const onBlur = jest.fn();
-  const { getByText, getAllByText } = render(
-    <BasicText onFinish={onFinish} onFinishFailed={onFinishFailed} onBlur={onBlur} />
+  const { getByText } = render(
+    <BasicText
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onChange={onChange}
+      onBlur={onBlur}
+    />,
   );
-  expect(getByText("学校概况")).toBeDefined();
-  fireEvent.click(getByText("Submit"))
+  expect(getByText('学校概况')).toBeDefined();
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
-    expect(getByText("请输入身份证")).toBeDefined();
-  })
+    expect(getByText('请输入备注')).toBeDefined();
+  });
 
-  const school: any = getByText("学校概况")?.parentNode?.parentNode?.parentNode?.lastChild?.lastChild
-  fireEvent.change(
-    school,
-    { target: { value: '我的学校很漂亮' } }
-  )
+  const school: any =
+    getByText('备注')?.parentNode?.parentNode?.childNodes[1]?.lastChild
+      ?.lastChild;
+  fireEvent.change(school, { target: { value: '我的学校很漂亮' } });
 
+  expect(onChange).toBeCalled();
   await waitFor(() => {
-    expect(getByText("我的学校很漂亮")).toBeDefined();
-  })
-  //判断textarea标签有readonly属性
-  expect(getByText("只读，不可编辑").getAttribute("readonly") === "").toBe(true);
+    expect(getByText('我的学校很漂亮')).toBeDefined();
+  });
 
-  const blus: any = getAllByText("标题文字内容过长")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild;
+  //判断textarea标签有readonly属性
+  expect(
+    getByText('只读，不可编辑，不存在点击事件').getAttribute('readonly') === '',
+  ).toBe(true);
+  expect(
+    getByText('只读，不可编辑，存在点击事件').getAttribute('readonly') === '',
+  ).toBe(true);
+
+  const blus: any =
+    getByText('公司简介（字数统计）').parentNode?.parentNode?.lastChild
+      ?.lastChild?.childNodes[0];
   blus.focus();
   blus.blur();
-  expect(onBlur).toBeCalled()
+  expect(onBlur).toBeCalled();
+  const limit: any =
+    getByText('公司简介（字数限制）').parentNode?.parentNode?.lastChild
+      ?.childNodes[0];
+  fireEvent.change(limit, { target: { value: '123' } });
+  await waitFor(() => {
+    expect(getByText('3/10')).toBeDefined();
+  });
 
-  const titleLong: any = getAllByText("标题文字内容过长")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild
-  fireEvent.change(
-    titleLong,
-    { target: { value: '标题文字内容过长' } }
-  )
-
-  const ID: any = getAllByText("身份证")[1].parentNode?.parentNode?.parentNode?.lastChild?.lastChild
-  fireEvent.change(
-    ID,
-    { target: { value: '身份证' } }
-  )
-  fireEvent.click(getByText("Submit"))
+  fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinish).toBeCalled();
-  })
-})
+  });
+});

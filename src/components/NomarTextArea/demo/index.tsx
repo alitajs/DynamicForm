@@ -30,7 +30,7 @@ const Page: FC = () => {
   );
 
   const formsValues = {
-    textArea2: '只读，不可编辑',
+    setDisabled: '只读，不可编辑，不存在点击事件',
   };
 
   const formProps = {
@@ -46,51 +46,61 @@ const Page: FC = () => {
       <DynamicForm {...formProps}>
         <DformTextArea
           title="学校概况"
-          fieldProps="textArea0"
-          placeholder="支持输入值过长自动换行"
-          rows={1}
-          autoHeight={true}
-        />
-        <DformTextArea
-          fieldProps="textArea1"
-          placeholder="请输入..."
-          title="公司简介"
-        />
-        <DformTextArea
-          fieldProps="textArea2"
-          title="有标题"
-          placeholder="只读，不可编辑"
-          positionType="vertical"
-          rows={3}
-          editable={false}
-          required
-        />
-        <DformTextArea
-          fieldProps="titleTooLong"
-          title="标题文字内容过长"
-          placeholder="请输入"
-          positionType="vertical"
-          labelNumber={8}
-          coverStyle={{
-            border: '1px solid #108ee9',
-            background: 'rgb(247, 246, 249)',
-            boxSizing: 'border-box',
+          fieldProps="autoSize"
+          placeholder="允许设置行数区间"
+          rows={2}
+          autoSize={{
+            minRows: 2,
+            maxRows: 5,
           }}
-        />
-        <DformTextArea
-          fieldProps="Remarks"
-          title="备注(默认值)"
-          placeholder="请输入"
-          required
-          defaultValue="这里可以设置默认值"
           labelNumber={7}
         />
         <DformTextArea
-          fieldProps="idenPhone"
-          title="身份证"
-          extra={photoImg()}
+          fieldProps="setEditable"
+          title="不可编辑状态"
+          defaultValue="只读，不可编辑，存在点击事件"
+          editable={false}
+          labelNumber={7}
+          required
+          onClick={(e) => console.log(e)}
+        />
+        <DformTextArea
+          fieldProps="setDisabled"
+          title="禁用状态"
+          disabled
+          onClick={(e) => console.log(e)}
+          labelNumber={7}
+        />
+        <DformTextArea
+          fieldProps="numLimit"
+          placeholder="请输入..."
+          title="公司简介（字数限制）"
+          labelNumber={8}
+          showCount
+          maxLength={10}
+        />
+        <DformTextArea
+          fieldProps="numTotal"
+          placeholder="请输入..."
+          title="公司简介（字数统计）"
           positionType="vertical"
-          placeholder="存在 extra 自动换行"
+          labelNumber={8}
+          showCount
+        />
+        <DformTextArea
+          fieldProps="remarks"
+          title="备注"
+          placeholder="请输入"
+          required
+          positionType="vertical"
+          extra={photoImg()}
+          rows={4}
+          coverStyle={{
+            background: 'rgb(247, 246, 249)',
+            boxSizing: 'border-box',
+            padding: '0.1rem',
+          }}
+          onChange={(e) => console.log(e)}
         />
       </DynamicForm>
       <WhiteSpace size="sm" />

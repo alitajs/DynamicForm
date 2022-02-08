@@ -1,37 +1,45 @@
 @import '../../styles/index.less';
 
-.@{prefixCls}-area {
-  .am-textarea-control textarea {
-    color: @alita-dform-value-color;
-    font-size: @alita-dform-value-font-size;
-  }
-  .am-list-item {
-    padding-left: 0px;
+.@{prefixCls}-textarea {
+  color: @alita-dform-value-color;
+  font-size: @alita-dform-value-font-size;
+  border: none;
+  width: 100%;
+  resize: none;
+  line-height: 1.5;
+  max-height: 100%;
+  min-height: 1.5em;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  &::placeholder {
+    color: @alita-dform-placeholder;
+    font-family: inherit;
   }
 
-  .am-textarea-focus textarea {
+  &:focus {
     outline: none;
     outline-color: transparent;
   }
-  .am-textarea-control {
-    padding: 0px;
+
+  &-count {
+    font-size: @alita-dform-value-font-size;
+    color: @color-text-disabled;
+    text-align: right;
+    padding-top: 4 * @hd;
+  }
+  &-disabled {
+    color: @color-text-disabled;
   }
 
-  .am-list-item {
-    min-height: 0 !important;
+  &-wrapper {
+    display: flex;
   }
-  .am-textarea-label {
-    min-height: 0 !important;
-    line-height: 24 * @hd !important;
+  &-content {
+    flex: 1;
   }
-}
-
-.@{prefixCls}-vertical-area {
-  .am-textarea-label {
-    display: none;
-  }
-
-  .am-list-item {
-    padding-left: 0px;
+  &-padding {
+    padding-left: 10 * @hd;
   }
 }
