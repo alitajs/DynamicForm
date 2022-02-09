@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import classnames from 'classnames';
 import Hidden from '../Hidden';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
 
 export interface TitleProps {
   positionType?: 'vertical' | 'horizontal';

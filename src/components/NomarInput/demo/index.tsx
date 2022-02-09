@@ -2,7 +2,7 @@
  * title: 基础 输入框
  * desc: 表单使用 demo
  */
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,

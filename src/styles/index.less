@@ -63,10 +63,6 @@
   }
 
   &-error {
-    // .alitajs-dform-title {
-    //   color: rgba(255, 72, 72, 1);
-    // }
-
     &-text {
       color: rgba(255, 72, 72, 1);
       font-size: 14 * @hd;
@@ -158,23 +154,46 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-}
 
-.alitajs-dform-hide {
-  height: 0px;
-  overflow: hidden;
-}
+  &-hide {
+    height: 0px;
+    overflow: hidden;
+  }
 
-.alitajs-dform-line {
-  display: inline-block;
-  min-width: 17 * @hd;
-  height: 100%;
-  color: rgba(0, 0, 0, 0.45);
-  font-size: 17 * @hd;
-  white-space: nowrap;
-  text-align: center;
-  vertical-align: top;
-  pointer-events: none;
+  &-line {
+    display: inline-block;
+    min-width: 17 * @hd;
+    height: 100%;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 17 * @hd;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: top;
+    pointer-events: none;
+  }
+
+  &-input-title {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: 15 * @hd;
+  }
+
+  &-tick {
+    width: 5 * @hd;
+    height: 10 * @hd;
+    border-bottom: 2 * @hd solid @alita-dform-radio-color;
+    border-right: 2 * @hd solid @alita-dform-radio-color;
+    transform: rotate(40deg);
+    margin-right: 15 * @hd;
+  }
+
+  &-right-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .alitajs-dform-disabled {
@@ -205,25 +224,11 @@
   }
 }
 
-.alitajs-dform-input-title {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding-right: 15 * @hd;
-}
-
 .alitajs-dform-vertical-picker {
   .am-list-extra {
     flex-basis: 100% !important;
     text-align: left !important;
   }
-}
-
-.alitajs-dform-right-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .alitajs-dform-extra {
@@ -239,12 +244,6 @@
     height: 100%;
     opacity: 0;
     overflow: hidden;
-
-    // input[type="file"]::-webkit-file-upload-button {
-    //   width: 100%;
-    //   position: absolute;
-    //   right: 0px;
-    // }
   }
 
   .alitajs-dform-file-extra {
@@ -257,11 +256,31 @@
   }
 }
 
-.alitajs-dform-tick {
-  width: 5 * @hd;
-  height: 10 * @hd;
-  border-bottom: 2 * @hd solid @alita-dform-radio-color;
-  border-right: 2 * @hd solid @alita-dform-radio-color;
-  transform: rotate(40deg);
-  margin-right: 15 * @hd;
+@media only screen and (min-width: 800px) {
+  .@{prefixCls} {
+    &-item {
+      padding-right: 12px;
+      margin-left: 12px;
+      padding: 12px;
+      border-bottom: none;
+    }
+
+    &-title {
+      color: @alita-dform-title-color;
+      padding-top: 1px;
+      font-size: 15px !important;
+    }
+
+    &-redStar {
+      font-size: 15px !important;
+    }
+
+    &-vertical-title {
+      display: none;
+    }
+    &-vertical-item {
+      padding: 12px;
+      margin-left: 12px;
+    }
+  }
 }

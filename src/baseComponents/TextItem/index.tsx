@@ -66,8 +66,6 @@ const TextItem: FC<ITextItemProps> = (props) => {
     [`${allPrefixCls}-input-label-auto`]: labelNumber > 7,
   });
 
-  console.log(placeholder);
-
   const inputItemClick = () => {
     if (disabled) return;
     if (onClick) onClick(value);

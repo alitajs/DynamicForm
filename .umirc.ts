@@ -27,6 +27,7 @@ export default defineConfig({
   theme: {
     '@hd': '0.02rem',
   },
+  mfsu: {},
   navs: [
     null,
     ,
