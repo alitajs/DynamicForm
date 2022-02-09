@@ -110,11 +110,11 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     setInputLabel(newValue?.label.join(' '));
     setLabelList(newValue?.label);
     setValueList(newValue?.value);
-    // if (newValue?.value?.length) {
-    //   setTabActiveKey(newValue?.value?.length - 1);
-    // } else {
-    //   setTabActiveKey(0);
-    // }
+    if (newValue?.value?.length) {
+      setTabActiveKey(newValue?.value?.length - 1);
+    } else {
+      setTabActiveKey(0);
+    }
   }, [value]);
 
   const onConfirm = () => {
