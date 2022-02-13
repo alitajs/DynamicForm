@@ -64,6 +64,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
   const showTextFiled = () => {
     return (
       <TextItem
+        value={defaultValue}
         placeholder={placeholder}
         extra={extra}
         coverStyle={{
@@ -93,6 +94,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
   const showFiled = () => {
     return (
       <InputItem
+        value={defaultValue}
         {...otherProps}
         labelNumber={labelNumber > 7 ? 7 : labelNumber}
         onClick={onClick}
