@@ -1,0 +1,83 @@
+@import '~antd-mobile-v2/lib/style/themes/default.less';
+@import '../../index.less';
+
+@prefixCls: alitajs-dform;
+
+.@{prefixCls} {
+  .alitajs-dform-item-content {
+    padding-right: 12 * @hd;
+    margin-left: 12 * @hd;
+    border-bottom: 0.5 * @hd solid #e5e5e5;
+  }
+  .alitajs-dform-title-content {
+    font-size: @alita-dform-title-font-size;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &-item {
+    // min-height: @alita-dform-height;
+    padding: @alita-dform-padding;
+    .alitajs-dform-item-content();
+  }
+
+  &-vertical-item {
+    height: auto;
+    padding: @alita-dform-padding;
+    .alitajs-dform-item-content();
+  }
+
+  &-redStar {
+    // margin-right: 3 * @hd;
+    color: rgba(255, 72, 72, 1);
+    font-size: @alita-dform-title-font-size;
+    padding-top: 2 * @hd;
+  }
+
+  &-error {
+    &-text {
+      color: rgba(255, 72, 72, 1);
+      font-size: 14 * @hd;
+      padding-top: 4 * @hd;
+    }
+  }
+
+  &-title {
+    color: @alita-dform-title-color;
+    // white-space: nowrap;
+    .alitajs-dform-title-content();
+    padding-top: 1 * @hd;
+    flex-shrink: 0;
+  }
+  &-vertical-title {
+    padding-bottom: 12 * @hd;
+  }
+
+  // pc 样式
+
+  &-pc-item {
+    padding: @alita-dform-pc-padding;
+    padding-right: 12 * @pchd;
+    margin-left: 12 * @pchd;
+    border-bottom: 0.5 * @pchd solid #e5e5e5;
+    border-bottom: none;
+
+    .@{prefixCls}-title {
+      font-size: @alita-dform-pc-title-font-size;
+    }
+
+    .@{prefixCls}-redStar {
+      font-size: @alita-dform-pc-title-font-size;
+      padding-top: 2 * @pchd;
+    }
+
+    .@{prefixCls}-error {
+      &-text {
+        color: rgba(255, 72, 72, 1);
+        font-size: 15 * @pchd;
+        padding-top: 8 * @pchd;
+      }
+    }
+  }
+}
