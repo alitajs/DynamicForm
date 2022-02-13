@@ -1,59 +1,69 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, ReactNode } from 'react';
 import classnames from 'classnames';
-import Hidden from '../Hidden';
-import { allPrefixCls } from '../../const/index';
+import { DformContext } from '../DynamicForm';
+import { allPrefixCls, allPcPrefixCls } from '../../const/index';
 import './index.less';
 
-export interface VerticalTitleProps {
-  positionType?: 'vertical' | 'horizontal';
-  hidden?: boolean;
-  required?: boolean;
-  hasStar?: boolean;
-  title?: string;
-  subTitle?: string | React.ReactNode;
-  extra?: string | React.ReactNode;
-  error: any;
-  fieldProps: string;
-  independentProps?: VerticalTitleProps;
-  formFlag?: boolean;
+export interface HorizontalTitleProps {
+  /**
+   * 是否是必填项
+   */
+  required: boolean;
+  /**
+   *
+   */
+  hasStar: boolean;
+  /**
+   * 标题
+   */
+  title: string | ReactNode;
+  /**
+   * 标题宽度
+   */
+  labelNumber?: number;
+  /**
+   * 是否是纵向效果
+   */
+  isVertical?: boolean;
 }
 
-const HorizontalTitle: FC<VerticalTitleProps> = (props) => {
+const HorizontalTitle: FC<HorizontalTitleProps> = (props) => {
   const {
-    children,
-    positionType = 'horizontal',
-    hidden = false,
     required = false,
-    hasStar = true,
-    title = '',
-    subTitle,
-    extra,
-    error,
-    fieldProps,
-  } = useMemo(() => {
-    if (props.formFlag) {
-      return props;
-    }
-    return { ...props, ...props.independentProps } as any;
-  }, [props]);
+    hasStar,
+    title,
+    labelNumber = 5,
+    isVertical,
+  } = props;
 
-  // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
   return (
-    <Hidden hidden={hidden}>
-      <div
-        className={classnames(`${allPrefixCls}-cell ${allPrefixCls}-item`, {
-          [`${allPrefixCls}-horizontal`]: true,
-          [`${allPrefixCls}-error`]: error && !!error[fieldProps],
-        })}
-      >
-        <div
-          className={classnames({
-            [`${allPrefixCls}-title`]: true,
-          })}
-        >
+    <DformContext.Consumer>
+      {({ isPc }: any) => {
+        const labelCls = classnames({
+          [`${allPcPrefixCls}-title-label`]: isPc,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-0`]:
+            labelNumber === 0,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-2`]:
+            labelNumber === 2,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-3`]:
+            labelNumber === 3,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-4`]:
+            labelNumber === 4,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-5`]:
+            labelNumber === 5,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-6`]:
+            labelNumber === 6,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-7`]:
+            labelNumber === 7,
+          [`${isPc ? allPcPrefixCls : allPrefixCls}-title-label-auto`]:
+            labelNumber > 7,
+        });
+
+        return (
           <div
             className={classnames({
-              [`${allPrefixCls}-horizontal-title`]: true,
+              [`${allPrefixCls}-title`]: true,
+              [labelCls]: !isVertical,
             })}
           >
             {required && hasStar && (
@@ -61,20 +71,9 @@ const HorizontalTitle: FC<VerticalTitleProps> = (props) => {
             )}
             <div>{title}</div>
           </div>
-          <div className={classnames(`${allPrefixCls}-content`)}>
-            <div className={classnames(`${allPrefixCls}-content-child`)}>{children}</div>
-            {extra && (
-              <div className={classnames(`${allPrefixCls}-extra-horizontal`)}>{extra}</div>
-            )}
-          </div>
-        </div>
-        {error && !!error[fieldProps] && (
-          <div className={`${allPrefixCls}-error-text`}>
-            {error[fieldProps]}
-          </div>
-        )}
-      </div>
-    </Hidden>
+        );
+      }}
+    </DformContext.Consumer>
   );
 };
 

@@ -1,7 +1,10 @@
 import React, { FC, useMemo } from 'react';
 import classnames from 'classnames';
+import { DformContext } from '../DynamicForm';
 import Hidden from '../Hidden';
-import { allPrefixCls } from '../../const';
+import { allPrefixCls, allPcPrefixCls } from '../../const';
+
+import './index.less';
 
 export interface TitleProps {
   positionType?: 'vertical' | 'horizontal';
@@ -45,37 +48,47 @@ const Title: FC<TitleProps> = (props) => {
   return (
     <Hidden hidden={hidden}>
       {renderHeader}
-      <div
-        className={classnames(`${allPrefixCls}-cell`, {
-          [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
-          [`${allPrefixCls}-error`]: error && !!error[fieldProps],
-        })}
-      >
-        {isVertical && (
-          <div
-            className={classnames({
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: true,
-            })}
-          >
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-            {subTitle}
-            {extra !== '' && isVertical && (
-              <div className={`${allPrefixCls}-extra`}>{extra}</div>
-            )}
-          </div>
-        )}
-        {children}
-        {error && !!error[fieldProps] && (
-          <div className={`${allPrefixCls}-error-text`}>
-            {error[fieldProps]}
-          </div>
-        )}
-        {renderFooter}
-      </div>
+      <DformContext.Consumer>
+        {({ isPc = false }: any) => {
+          return (
+            <>
+              <div
+                className={classnames(`${allPrefixCls}-cell`, {
+                  [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]:
+                    true,
+                  // [`${allPrefixCls}-error`]: error && !!error[fieldProps],
+                  [`${allPcPrefixCls}-item`]: isPc,
+                })}
+              >
+                {isVertical && !isPc && (
+                  <div
+                    className={classnames({
+                      [`${allPrefixCls}-title`]: true,
+                      [`${allPrefixCls}-vertical-title`]: true,
+                    })}
+                  >
+                    {required && hasStar && (
+                      <div className={`${allPrefixCls}-redStar`}>*</div>
+                    )}
+                    <div>{title}</div>
+                    {subTitle}
+                    {extra !== '' && isVertical && (
+                      <div className={`${allPrefixCls}-extra`}>{extra}</div>
+                    )}
+                  </div>
+                )}
+                {children}
+                {error && !!error[fieldProps] && (
+                  <div className={`${allPrefixCls}-error-text`}>
+                    {error[fieldProps]}
+                  </div>
+                )}
+                {renderFooter}
+              </div>
+            </>
+          );
+        }}
+      </DformContext.Consumer>
     </Hidden>
   );
 };

@@ -2,6 +2,7 @@
 @import '../index.less';
 
 @prefixCls: alitajs-dform;
+@pcPrefixCls: alitajs-dform-pc;
 
 @keyframes colorful {
   0% {
@@ -14,60 +15,9 @@
 }
 
 .@{prefixCls} {
-  .alitajs-dform-item-content {
-    padding-right: 12 * @hd;
-    margin-left: 12 * @hd;
-    border-bottom: 0.5 * @hd solid #e5e5e5;
-  }
-
-  .alitajs-dform-title-content {
-    font-size: @alita-dform-title-font-size !important;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  &-item {
-    // min-height: @alita-dform-height;
-    padding: @alita-dform-padding;
-    .alitajs-dform-item-content();
-  }
-
-  &-vertical-item {
-    height: auto;
-    padding: @alita-dform-padding;
-    .alitajs-dform-item-content();
-  }
-
   &-close {
     width: 12 * @hd;
     height: 12 * @hd;
-  }
-
-  &-title {
-    color: @alita-dform-title-color;
-    // white-space: nowrap;
-    .alitajs-dform-title-content();
-    padding-top: 1 * @hd;
-    flex-shrink: 0;
-  }
-  &-vertical-title {
-    padding-bottom: 12 * @hd;
-  }
-
-  &-redStar {
-    // margin-right: 3 * @hd;
-    color: rgba(255, 72, 72, 1);
-    font-size: @alita-dform-title-font-size !important;
-    padding-top: 2 * @hd;
-  }
-
-  &-error {
-    &-text {
-      color: rgba(255, 72, 72, 1);
-      font-size: 14 * @hd;
-      padding-top: 4 * @hd;
-    }
   }
 
   &-input-label {
@@ -252,35 +202,6 @@
     .alitajs-dform-file-img {
       width: 18 * @hd;
       height: 18 * @hd;
-    }
-  }
-}
-
-@media only screen and (min-width: 800px) {
-  .@{prefixCls} {
-    &-item {
-      padding-right: 12px;
-      margin-left: 12px;
-      padding: 12px;
-      border-bottom: none;
-    }
-
-    &-title {
-      color: @alita-dform-title-color;
-      padding-top: 1px;
-      font-size: 15px !important;
-    }
-
-    &-redStar {
-      font-size: 15px !important;
-    }
-
-    &-vertical-title {
-      display: none;
-    }
-    &-vertical-item {
-      padding: 12px;
-      margin-left: 12px;
     }
   }
 }

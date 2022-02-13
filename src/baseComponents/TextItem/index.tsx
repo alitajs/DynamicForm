@@ -76,7 +76,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
       {!isVertical && (
         <div
           className={classnames({
-            [labelCls]: true,
+            // [labelCls]: true,
             [`${allPrefixCls}-input-label-min-width`]: value?.length > 10,
           })}
         >

@@ -13,8 +13,6 @@ import DynamicForm, {
   WhiteSpace,
 } from '../..';
 
-const { Group } = DynamicForm;
-
 const sexData = [
   { label: '男', value: 'man' },
   { label: '女', value: 'woman' },

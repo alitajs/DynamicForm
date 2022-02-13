@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import { Icon } from 'antd-mobile-v2';
 import CSSTransition from 'react-transition-group/CSSTransition';

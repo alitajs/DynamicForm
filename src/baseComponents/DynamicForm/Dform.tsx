@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from 'react';
 import Form, { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
-import Title from '../Title';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 import {
   DFORM_COMP_NAME,
@@ -346,7 +345,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   };
 
   return (
-    <DformContext.Provider value={{ ...fatherProps }}>
+    <DformContext.Provider value={{ isPc: false, ...fatherProps }}>
       {!sonFlag && (
         <Form
           form={form}

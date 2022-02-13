@@ -2,6 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import TouchFeedback from 'rmc-feedback';
 import { Input } from 'antd';
+import IsPcDiv from '../IsPcDiv';
+import PcLayout from '../PcLayout';
+import { DformContext } from '../DynamicForm';
 import { ClickEvent, StringEvent } from '../../PropsType';
 import { IInputItemProps } from './interface';
 import { allPrefixCls } from '../../const';
@@ -37,15 +40,15 @@ const InputItem: FC<IInputItemProps> = (props) => {
     setVal(value);
   }, [value]);
 
-  const labelCls = classnames({
-    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
-    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
-    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
-    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
-    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
-    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
-    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
-  });
+  // const labelCls = classnames({
+  //   [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
+  //   [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
+  //   [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
+  //   [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
+  //   [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
+  //   [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
+  //   [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
+  // });
 
   const inputItemClick = (e: ClickEvent) => {
     if (onClick) onClick(e);
@@ -104,69 +107,95 @@ const InputItem: FC<IInputItemProps> = (props) => {
   };
 
   return (
-    <>
-      <div className={prefixCls}>
-        {!isVertical && <div className={labelCls}>{children}</div>}
-        <div
-          className={classnames({
-            [`${prefixCls}-value`]: true,
-            [`${prefixCls}-focus`]: clearShow,
-          })}
-          onClick={(e: ClickEvent) => {
-            if (disabled) return;
-            inputItemClick(e);
-          }}
-        >
-          <input
-            type={inputType}
-            value={val}
-            aria-label={fieldProps}
-            readOnly={!editable || disabled}
-            style={{
-              textAlign: isVertical ? 'left' : 'right',
-              minHeight: '0.42rem',
-              ...coverStyle,
-            }}
-            onFocus={(e: any) => {
-              if (disabled) return;
-              setClearShow(true);
-              if (onFocus) onFocus(e.target.value);
-            }}
-            onBlur={(e: any) => {
-              if (disabled) return;
-              if (onBlur) onBlur(e.target.value);
-              setTimeout(() => {
-                setClearShow(false);
-              }, 100);
-            }}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              inputItemChange(e.target.value);
-            }}
-            className={classnames({
-              [`${prefixCls}-text`]: true,
-              'alitajs-dform-disabled': !editable || disabled,
-              [className]: className,
-            })}
-            placeholder={placeholder}
-          />
-          {clear && editable && !disabled && val && `${val}`.length > 0 ? (
-            <TouchFeedback activeClassName={`${allPrefixCls}-clear-active`}>
-              <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
-            </TouchFeedback>
-          ) : null}
-          {extra}
-        </div>
-      </div>
-      <div className={`${pcPrefixCls}`}>
-        {children}{' '}
-        <Input
-          value={value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            inputItemChange(e.target.value)
-          }
-        />
-      </div>
-    </>
+    <DformContext.Consumer>
+      {({ isPc }: any) => {
+        return (
+          <>
+            <IsPcDiv className={prefixCls} isPc={isPc} mobileFlag>
+              {!isVertical && children}
+              <div
+                className={classnames({
+                  [`${prefixCls}-value`]: true,
+                  [`${prefixCls}-focus`]: clearShow,
+                })}
+                onClick={(e: ClickEvent) => {
+                  if (disabled) return;
+                  inputItemClick(e);
+                }}
+              >
+                <input
+                  type={inputType}
+                  value={val}
+                  aria-label={fieldProps}
+                  readOnly={!editable || disabled}
+                  style={{
+                    textAlign: isVertical ? 'left' : 'right',
+                    minHeight: '0.42rem',
+                    ...coverStyle,
+                  }}
+                  onFocus={(e: any) => {
+                    if (disabled) return;
+                    setClearShow(true);
+                    if (onFocus) onFocus(e.target.value);
+                  }}
+                  onBlur={(e: any) => {
+                    if (disabled) return;
+                    if (onBlur) onBlur(e.target.value);
+                    setTimeout(() => {
+                      setClearShow(false);
+                    }, 100);
+                  }}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    inputItemChange(e.target.value);
+                  }}
+                  className={classnames({
+                    [`${prefixCls}-text`]: true,
+                    'alitajs-dform-disabled': !editable || disabled,
+                    [className]: className,
+                  })}
+                  placeholder={placeholder}
+                />
+                {clear &&
+                editable &&
+                !disabled &&
+                val &&
+                `${val}`.length > 0 ? (
+                  <TouchFeedback
+                    activeClassName={`${allPrefixCls}-clear-active`}
+                  >
+                    <div
+                      className={`${allPrefixCls}-clear`}
+                      onClick={clearInput}
+                    />
+                  </TouchFeedback>
+                ) : null}
+                {extra}
+              </div>
+            </IsPcDiv>
+            <IsPcDiv className={`${pcPrefixCls}`} isPc={isPc} pcFlag>
+              <PcLayout
+                isVertical={isVertical}
+                left={children}
+                right={
+                  <Input
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      inputItemChange(e.target.value)
+                    }
+                    placeholder={placeholder}
+                    suffix={extra}
+                    value={val}
+                    allowClear={clear}
+                    maxLength={maxLength}
+                    disabled={disabled || !editable}
+                    onClick={onClick}
+                  />
+                }
+              />
+            </IsPcDiv>
+          </>
+        );
+      }}
+    </DformContext.Consumer>
   );
 };
 

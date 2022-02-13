@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
+import { DformContext } from '../../baseComponents/DynamicForm';
 import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import InputItem from '../../baseComponents/InputItem';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import TextItem from '../../baseComponents/TextItem';
 import { allPrefixCls } from '../../const/index';
 
@@ -80,17 +82,18 @@ const DformInput: FC<INomarInputProps> = (props) => {
         ellipsis={false}
         arrow={false}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          isVertical={isVertical}
+          labelNumber={labelNumber}
+        />
       </TextItem>
     );
   };
 
-  const showFiled = () => {
+  const showFiled = ({ isPc }: { isPc: boolean }) => {
     return (
       <InputItem
         {...otherProps}
@@ -98,7 +101,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         onClick={onClick}
         placeholder={placeholder}
         fieldProps={fieldProps}
-        extra={isVertical ? '' : extra}
+        extra={isVertical && !isPc ? '' : extra}
         type={inputType}
         editable={editable}
         disabled={disabled}
@@ -112,26 +115,38 @@ const DformInput: FC<INomarInputProps> = (props) => {
         }}
         isVertical={isVertical}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+        />
       </InputItem>
     );
   };
 
   return (
     <Title independentProps={props} formFlag={formFlag} {...titleProps}>
-      <Field
-        name={fieldProps}
-        rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
-        initialValue={defaultValue}
-        formFlag={formFlag}
-      >
-        {editable && !disabled ? showFiled() : showTextFiled()}
-      </Field>
+      <DformContext.Consumer>
+        {({ isPc }: any) => {
+          return (
+            <Field
+              name={fieldProps}
+              rules={[
+                { required, message: `请输入${title}` },
+                ...(rules || []),
+              ]}
+              initialValue={defaultValue}
+              formFlag={formFlag}
+            >
+              {(editable && !disabled) || isPc
+                ? showFiled({ isPc })
+                : showTextFiled()}
+            </Field>
+          );
+        }}
+      </DformContext.Consumer>
     </Title>
   );
 };
