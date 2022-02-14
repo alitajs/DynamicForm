@@ -54,7 +54,7 @@ export default Page;
 
 直接从组件内的 `props` 下取值即可。
 
-通过 `src/baseComponents/Context` 下的 `DformContext` 对 `isPc` 字段进行透传。
+通过 `src/baseComponents/Context` 下的 `DformContext` 在 `src/baseComponents/Title` 中对 `isPc` 字段进行透传。
 
 在需要获取 `isPc` 的组件内通过 `<DformContext.Consumer>` 进行取值。
 
