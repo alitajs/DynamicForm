@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Group from './Group';
-import DForm, { useForm, DformContext } from './Dform';
+import DForm, { useForm } from './Dform';
+import { DformContext } from '../Context';
 import { IDynamicFormProps } from '../../PropsType';
 
 interface CompoundedComponent

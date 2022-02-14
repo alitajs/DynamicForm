@@ -1,6 +1,7 @@
 import React, { useState, FC } from 'react';
 import DynamicForm, { DformInput, useForm } from '../../../..';
 import PwdIcon from '../../../../assets/look.png';
+import PhotoIcon from '../../../../assets/photo.png';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
@@ -11,7 +12,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
   const [form] = useForm();
   const [pwdInputType, setPwdInputType] = useState<boolean>(false);
   const [formsValues, setFormsValues] = useState<any>({
-    userAge: '不可编辑',
+    username: 'this is dform',
   });
 
   const pwdImg = () => (
@@ -29,35 +30,33 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
     />
   );
 
+  const photoImg = () => (
+    <img
+      src={PhotoIcon}
+      data-testid="photoId"
+      style={{ width: '40px', height: '20px' }}
+    />
+  );
+
   const formProps = {
     onFinish,
     onFinishFailed,
     formsValues,
     form,
     failScroll: false,
+    isPc: true,
   };
   return (
     <div>
       <DynamicForm {...formProps}>
         <DformInput
           fieldProps="username"
-          title="用户名"
-          placeholder="请输入用户名"
           required
-        />
-        <DformInput
-          fieldProps="defaultValue"
-          title="设置默认值"
-          placeholder="请输入"
-          defaultValue="这是默认值"
-        />
-        <DformInput
-          fieldProps="userAge"
-          title="年龄"
-          placeholder="请输入"
-          editable={false}
-          inputType="text"
           clear
+          placeholder="输入项居左"
+          title="用户名"
+          coverStyle={{ textAlign: 'left' }}
+          onChange={(e) => console.log(e)}
         />
         <DformInput
           fieldProps="userPwd"
@@ -67,38 +66,35 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
           inputType={pwdInputType ? 'password' : 'text'}
         />
         <DformInput
-          fieldProps="userBlur"
-          title="失焦"
-          placeholder="请输入"
-          onBlur={clickBlur}
-        />
-        <DformInput
           fieldProps="username5"
           title="身份证"
           placeholder="请输入身份证"
           inputType="number"
-          maxLength={10}
+          onBlur={clickBlur}
         />
         <DformInput
-          fieldProps="bankCard"
-          title="bankCard测试"
-          placeholder="请输入身份证"
-          inputType="bankCard"
-          onChange={() => {
-            console.log('bankCard测试');
-          }}
+          fieldProps="cardNumber"
+          title="身份证号码(增加规则)"
+          required
+          placeholder="请输入"
+          labelNumber={7}
+          inputType="text"
+          clear
+          extra={photoImg()}
+          positionType="vertical"
+          rules={[
+            {
+              pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
+              message: '名称只允许包含数字、字母和下划线',
+            },
+          ]}
         />
         <DformInput
-          fieldProps="phone"
-          title="phone"
-          placeholder="请输入身份证"
-          inputType="phone"
-        />
-        <DformInput
-          fieldProps="digit"
-          title="digit"
-          placeholder="digit测试"
-          inputType="digit"
+          fieldProps="userTitle"
+          title="标题"
+          placeholder="点击获取表单全部数据"
+          editable={false}
+          onClick={() => console.log(form.getFieldsValue())}
         />
       </DynamicForm>
       <button onClick={() => form.submit()}>submit</button>

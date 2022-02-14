@@ -25,3 +25,4 @@ nav:
 | isDev          | 手动声明开发模式                                     | `boolean`                                             | false  | 否       |
 | failScroll     | 表单提交失败,滚动到错误的字段位置                    | `boolean`                                             | true   | 否       |
 | errorFlag      | 表单提交失败,是否显示错误的提示                      | `boolean`                                             | true   | 否       |
+| isPc           | 是否是 pc 表单                                       | `boolean`                                             | false  | 否       |

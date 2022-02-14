@@ -19,7 +19,6 @@ import {
   IFormItemProps,
   ErrorValueProps,
 } from '../../PropsType';
-//
 
 import {
   DformInput,
@@ -59,10 +58,6 @@ export const FormItemType = {
   file: DformFile,
 } as any;
 
-export interface DformContextProps extends IDynamicFormProps {}
-
-export const DformContext = React.createContext<DformContextProps | null>(null);
-
 export const getFormItem = ({
   formItem = {} as IFormItemProps,
   allDisabled,
@@ -72,6 +67,7 @@ export const getFormItem = ({
   childProps = {},
   fieldChange,
   relatives = {},
+  isPc,
 }: {
   formItem?: IFormItemProps;
   allDisabled: boolean;
@@ -81,6 +77,7 @@ export const getFormItem = ({
   childProps?: any;
   relatives?: any;
   fieldChange: (fieldProps: string, e: any, relatives: any) => void;
+  isPc?: boolean;
 }) => {
   const mFormItem = {
     ...formItem,
@@ -126,6 +123,7 @@ export const getFormItem = ({
     <React.Fragment key={otherProps?.fieldProps}>
       {!isComponent && (
         <FormItemComponent
+          isPc={isPc}
           {...otherProps}
           disabled={disabled}
           onChange={(e: any, b?: any, c?: any) => {
@@ -139,6 +137,7 @@ export const getFormItem = ({
       )}
       {isComponent &&
         React.cloneElement(child, {
+          isPc,
           ...childProps,
           onChange: (e: any, ...other: any) => {
             const { onChange } = childProps as any;
@@ -168,6 +167,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     sonFlag = false,
     isDev = false,
     errorFlag = true,
+    isPc,
   } = fatherProps;
   const [defaultValueFlag, setDefaultValueFlag] = useState<any>(true);
   const [errorValue, setErrorValue] = useState<any>({});
@@ -282,6 +282,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
           childProps: changeData(mProps, autoLineFeed),
           fieldChange,
           relatives,
+          isPc,
         });
       } else if (displayName === 'group') {
         // 内部Group组件
@@ -345,7 +346,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   };
 
   return (
-    <DformContext.Provider value={{ isPc: false, ...fatherProps }}>
+    <>
       {!sonFlag && (
         <Form
           form={form}
@@ -369,7 +370,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       )}
       {sonFlag && showChildren({ context: children })}
       {isDev && <NewFieldPicker />}
-    </DformContext.Provider>
+    </>
   );
 };
 

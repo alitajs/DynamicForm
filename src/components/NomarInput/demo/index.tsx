@@ -2,15 +2,13 @@
  * title: 基础 输入框
  * desc: 表单使用 demo
  */
-import React, { FC, useState, useEffect } from 'react';
-import { Button } from 'antd-mobile-v2';
-import Form from 'rc-field-form';
+import React, { FC, useState } from 'react';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   DformInput,
-  WhiteSpace,
 } from '@alitajs/dform';
 import PositionIcon from '../../../assets/position_ico.png';
 import PhotoIcon from '../../../assets/photo.png';
@@ -70,7 +68,100 @@ const Page: FC = () => {
 
   return (
     <>
-      <DformInput fieldProps="username" title="用户名" />
+      <DynamicForm {...formProps}>
+        <Group type="card" title="输入类型">
+          <DformInput
+            fieldProps="username"
+            required
+            clear
+            placeholder="输入项居左"
+            title="用户名"
+            subTitle={subTitle()}
+            coverStyle={{ textAlign: 'left' }}
+            onChange={(e) => console.log(e)}
+          />
+          <DformInput
+            fieldProps="userPwd"
+            title="请设置密码"
+            placeholder="请输入"
+            extra={pwdImg()}
+            inputType={pwdInputType ? 'password' : 'text'}
+          />
+          <DformInput
+            fieldProps="username5"
+            title="身份证"
+            placeholder="请输入身份证"
+            extra={photoImg()}
+            inputType="number"
+          />
+          <DformInput
+            fieldProps="cardNumber"
+            title="身份证号码(增加规则)"
+            required
+            placeholder="请输入"
+            labelNumber={7}
+            inputType="text"
+            clear
+            positionType="vertical"
+            rules={[
+              {
+                pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, 'g'),
+                message: '名称只允许包含数字、字母和下划线',
+              },
+            ]}
+          />
+        </Group>
+        <Group
+          type="card"
+          title="显示类型"
+          rightView={
+            <div
+              style={{ fontSize: '0.3rem' }}
+              onClick={() => setEditFlag(!editFlag)}
+            >
+              点击切换是否可编辑
+            </div>
+          }
+        >
+          <DformInput
+            fieldProps="userTitle"
+            title="标题"
+            placeholder="点击获取表单全部数据"
+            editable={editFlag}
+            onClick={() => console.log(form.getFieldsValue())}
+          />
+          <DformInput
+            fieldProps="allTooLong"
+            required
+            title="标题很长内容也很长"
+            placeholder="暂无数据"
+            labelNumber={7}
+            maxLine={2}
+            editable={editFlag}
+          />
+          <DformInput
+            fieldProps="valueTooLong"
+            required
+            title="内容过长隐藏"
+            placeholder="暂无数据"
+            labelNumber={7}
+            maxLine={2}
+            editable={editFlag}
+          />
+          <DformInput
+            fieldProps="titleTooLong"
+            required
+            title="标题很长，内容很短(labelNumber 设置为8)"
+            placeholder="暂无数据"
+            labelNumber={8}
+            editable={editFlag}
+          />
+        </Group>
+      </DynamicForm>
+      <WhiteSpace size="sm" />
+      <Button type="primary" onClick={() => form.submit()}>
+        Submit
+      </Button>
     </>
   );
 };

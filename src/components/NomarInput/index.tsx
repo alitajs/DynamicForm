@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
 import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
-import { DformContext } from '../../baseComponents/DynamicForm';
+import { DformContext } from '../../baseComponents/Context';
 import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import InputItem from '../../baseComponents/InputItem';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import TextItem from '../../baseComponents/TextItem';
-import { allPrefixCls } from '../../const/index';
 
 export interface INomarInputProps extends InputItemPropsType {
   inputType?: InputItemPropsType['type'];
@@ -28,6 +27,7 @@ export interface INomarInputProps extends InputItemPropsType {
   maxLine?: number;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
 }
 
 const DformInput: FC<INomarInputProps> = (props) => {
@@ -54,6 +54,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     maxLine,
     onClick,
     labelNumber = 5,
+    isPc = false,
     ...otherProps
   } = props;
 
@@ -66,6 +67,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
   const showTextFiled = () => {
     return (
       <TextItem
+        value={defaultValue}
         placeholder={placeholder}
         extra={extra}
         coverStyle={{
@@ -93,9 +95,10 @@ const DformInput: FC<INomarInputProps> = (props) => {
     );
   };
 
-  const showFiled = ({ isPc }: { isPc: boolean }) => {
+  const showFiled = ({ isPc }: { isPc?: boolean }) => {
     return (
       <InputItem
+        value={defaultValue}
         {...otherProps}
         labelNumber={labelNumber > 7 ? 7 : labelNumber}
         onClick={onClick}
@@ -127,27 +130,20 @@ const DformInput: FC<INomarInputProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
-      <DformContext.Consumer>
-        {({ isPc }: any) => {
-          return (
-            <Field
-              name={fieldProps}
-              rules={[
-                { required, message: `请输入${title}` },
-                ...(rules || []),
-              ]}
-              initialValue={defaultValue}
-              formFlag={formFlag}
-            >
-              {(editable && !disabled) || isPc
-                ? showFiled({ isPc })
-                : showTextFiled()}
-            </Field>
-          );
-        }}
-      </DformContext.Consumer>
-    </Title>
+    <DformContext.Provider value={{ isPc }}>
+      <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+        <Field
+          name={fieldProps}
+          rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
+          initialValue={defaultValue}
+          formFlag={formFlag}
+        >
+          {(editable && !disabled) || isPc
+            ? showFiled({ isPc })
+            : showTextFiled()}
+        </Field>
+      </Title>
+    </DformContext.Provider>
   );
 };
 
