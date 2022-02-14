@@ -20,6 +20,7 @@ export interface TitleProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
 }
 
 const Title: FC<TitleProps> = (props) => {
@@ -36,6 +37,7 @@ const Title: FC<TitleProps> = (props) => {
     fieldProps,
     renderFooter,
     renderHeader,
+    isPc = false,
   } = useMemo(() => {
     if (props.formFlag) {
       return props;
@@ -46,50 +48,43 @@ const Title: FC<TitleProps> = (props) => {
   const isVertical = positionType === 'vertical';
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
   return (
-    <Hidden hidden={hidden}>
-      {renderHeader}
-      <DformContext.Consumer>
-        {({ isPc = false }: any) => {
-          return (
-            <>
-              <div
-                className={classnames(`${allPrefixCls}-cell`, {
-                  [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]:
-                    true,
-                  // [`${allPrefixCls}-error`]: error && !!error[fieldProps],
-                  [`${allPcPrefixCls}-item`]: isPc,
-                })}
-              >
-                {isVertical && !isPc && (
-                  <div
-                    className={classnames({
-                      [`${allPrefixCls}-title`]: true,
-                      [`${allPrefixCls}-vertical-title`]: true,
-                    })}
-                  >
-                    {required && hasStar && (
-                      <div className={`${allPrefixCls}-redStar`}>*</div>
-                    )}
-                    <div>{title}</div>
-                    {subTitle}
-                    {extra !== '' && isVertical && (
-                      <div className={`${allPrefixCls}-extra`}>{extra}</div>
-                    )}
-                  </div>
-                )}
-                {children}
-                {error && !!error[fieldProps] && (
-                  <div className={`${allPrefixCls}-error-text`}>
-                    {error[fieldProps]}
-                  </div>
-                )}
-                {renderFooter}
-              </div>
-            </>
-          );
-        }}
-      </DformContext.Consumer>
-    </Hidden>
+    <DformContext.Provider value={{ isPc }}>
+      <Hidden hidden={hidden}>
+        {renderHeader}
+        <div
+          className={classnames(`${allPrefixCls}-cell`, {
+            [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
+            // [`${allPrefixCls}-error`]: error && !!error[fieldProps],
+            [`${allPcPrefixCls}-item`]: isPc,
+          })}
+        >
+          {isVertical && !isPc && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {required && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div>{title}</div>
+              {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
+            </div>
+          )}
+          {children}
+          {error && !!error[fieldProps] && (
+            <div className={`${allPrefixCls}-error-text`}>
+              {error[fieldProps]}
+            </div>
+          )}
+          {renderFooter}
+        </div>
+      </Hidden>
+    </DformContext.Provider>
   );
 };
 

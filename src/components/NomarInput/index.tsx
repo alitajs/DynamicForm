@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 import { Rule } from 'rc-field-form/es/interface';
-import { DformContext } from '../../baseComponents/Context';
 import { StringAndUdfEvent, ClickEvent } from '../../PropsType';
 import InputItem from '../../baseComponents/InputItem';
 import Field from '../../baseComponents/Field';
@@ -130,20 +129,23 @@ const DformInput: FC<INomarInputProps> = (props) => {
   };
 
   return (
-    <DformContext.Provider value={{ isPc }}>
-      <Title independentProps={props} formFlag={formFlag} {...titleProps}>
-        <Field
-          name={fieldProps}
-          rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
-          initialValue={defaultValue}
-          formFlag={formFlag}
-        >
-          {(editable && !disabled) || isPc
-            ? showFiled({ isPc })
-            : showTextFiled()}
-        </Field>
-      </Title>
-    </DformContext.Provider>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      isPc={isPc}
+      {...titleProps}
+    >
+      <Field
+        name={fieldProps}
+        rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
+        initialValue={defaultValue}
+        formFlag={formFlag}
+      >
+        {(editable && !disabled) || isPc
+          ? showFiled({ isPc })
+          : showTextFiled()}
+      </Field>
+    </Title>
   );
 };
 
