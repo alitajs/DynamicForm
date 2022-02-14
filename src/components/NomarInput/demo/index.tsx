@@ -3,13 +3,12 @@
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
-import { Button } from 'antd-mobile-v2';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
   Store,
   ValidateErrorEntity,
   DformInput,
-  WhiteSpace,
 } from '@alitajs/dform';
 import PositionIcon from '../../../assets/position_ico.png';
 import PhotoIcon from '../../../assets/photo.png';

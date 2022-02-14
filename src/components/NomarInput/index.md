@@ -46,6 +46,7 @@ nav:
 | maxLine      | 文字行数过长时，自动隐藏，可通过点击 `更多` 和 `收起` 进行内容的缩放                                                                  | number                        |              | 否       |
 | renderHeader | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''           | 否       |
 | renderFooter | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''           | 否       |
+| isPc         | pc 效果                                                                                                                               | boolean                       | false        | 否       |
 
 ## 备注
 

@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@bang88/china-city-data": "^1.0.0",
+    "antd": "^4.18.6",
     "antd-mobile": "5.0.0-rc.19",
     "antd-mobile-icons": "^0.2.2",
     "antd-mobile-v2": "2.3.4",

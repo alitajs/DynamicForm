@@ -66,8 +66,6 @@ const TextItem: FC<ITextItemProps> = (props) => {
     [`${allPrefixCls}-input-label-auto`]: labelNumber > 7,
   });
 
-  console.log(placeholder);
-
   const inputItemClick = () => {
     if (disabled) return;
     if (onClick) onClick(value);
@@ -78,7 +76,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
       {!isVertical && (
         <div
           className={classnames({
-            [labelCls]: true,
+            // [labelCls]: true,
             [`${allPrefixCls}-input-label-min-width`]: value?.length > 10,
           })}
         >

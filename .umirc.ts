@@ -26,7 +26,9 @@ export default defineConfig({
   ],
   theme: {
     '@hd': '0.02rem',
+    '@pchd': '1px',
   },
+  // mfsu: {},
   navs: [
     null,
     ,

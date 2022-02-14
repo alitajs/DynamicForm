@@ -1,33 +1,65 @@
 @import '../../styles/index.less';
 
-.@{prefixCls}-horizontal {
-  align-items: center;
-  .@{prefixCls}-title {
-    align-items: center;
-    .@{prefixCls}-horizontal-title {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
+.@{prefixCls} {
+  &-title-label {
+    &-0 {
+      width: 0px;
+    }
+    &-2 {
+      width: 2 * @input-label-width;
+    }
+    &-3 {
+      width: 3 * @input-label-width;
+    }
+    &-4 {
+      width: 4 * @input-label-width;
+    }
+    &-5 {
+      width: 5 * @input-label-width;
+    }
+    &-6 {
+      width: 6 * @input-label-width;
+    }
+    &-7 {
+      width: 7 * @input-label-width;
+    }
+    &-auto {
+      width: auto;
+    }
+    &-min-width {
+      max-width: 30%;
     }
   }
-
-  .@{prefixCls}-extra-horizontal {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .@{prefixCls}-content {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex: 1;
-    &-child {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
+}
+.@{pcPrefixCls} {
+  &-title-label {
+    padding-right: 8 * @pchd;
+    &-0 {
+      width: 0px;
+    }
+    &-2 {
+      width: 2 * @pc-input-label-width;
+    }
+    &-3 {
+      width: 3 * @pc-input-label-width;
+    }
+    &-4 {
+      width: 4 * @pc-input-label-width;
+    }
+    &-5 {
+      width: 5 * @pc-input-label-width;
+    }
+    &-6 {
+      width: 6 * @pc-input-label-width;
+    }
+    &-7 {
+      width: 7 * @pc-input-label-width;
+    }
+    &-auto {
+      width: auto;
+    }
+    &-min-width {
+      max-width: 30%;
     }
   }
 }
