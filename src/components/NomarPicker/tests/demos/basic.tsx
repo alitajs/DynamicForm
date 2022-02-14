@@ -1,6 +1,11 @@
 import React, { FC } from 'react';
 import { Button } from 'antd-mobile-v2';
-import DynamicForm, { IFormItemProps, useForm, WhiteSpace } from '../../../..';
+import DynamicForm, {
+  IFormItemProps,
+  useForm,
+  WhiteSpace,
+  DformPicker,
+} from '../../../..';
 
 interface BasicProps {
   onFinish: any;
@@ -41,58 +46,52 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
     },
   ];
 
-  const formsData = [
-    {
-      type: 'picker',
-      fieldProps: 'myCity',
-      required: true,
-      data: aliasCityList,
-      title: '我喜欢的城市',
-      labelNumber: 7,
-      placeholder: '请选择我喜欢的城市placeholder',
-      alias: {
-        label: 'cityId',
-        value: 'cityName',
-      },
-      onChange: (e) => onChange(e),
-    },
-    {
-      type: 'picker',
-      fieldProps: 'youCity',
-      data: cityList,
-      title: '选择你喜欢的城市',
-      positionType: 'vertical',
-    },
-    {
-      type: 'picker',
-      fieldProps: 'disabledClick',
-      data: cityList,
-      title: 'disabled点击',
-      placeholder: '不可点击',
-      disabled: true,
-    },
-    {
-      type: 'picker',
-      fieldProps: 'noData',
-      data: [],
-      title: '数据源为空',
-      placeholder: '数据源为空',
-    },
-  ] as IFormItemProps[];
   const formsValues = {
     youCity: 'fuzhou',
   };
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
     failScroll: false,
   };
   return (
     <>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <DformPicker
+          fieldProps="myCity"
+          required
+          title="我喜欢的城市"
+          data={aliasCityList}
+          labelNumber={7}
+          placeholder="请选择我喜欢的城市placeholder"
+          alias={{
+            label: 'cityId',
+            value: 'cityName',
+          }}
+          onChange={onChange}
+        />
+        <DformPicker
+          fieldProps="youCity"
+          title="选择你喜欢的城市"
+          data={cityList}
+          positionType="vertical"
+        />
+        <DformPicker
+          fieldProps="disabledClick"
+          title="disabled点击"
+          data={cityList}
+          placeholder="不可点击"
+          disabled
+        />
+        <DformPicker
+          fieldProps="noData"
+          title="数据源为空"
+          data={[]}
+          placeholder="数据源为空"
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

@@ -3,10 +3,10 @@ import { act } from 'react-dom/test-utils';
 import { Button } from 'antd-mobile-v2';
 
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
+  DformPicker,
 } from '../../../..';
 
 const pickerData = [
@@ -52,49 +52,44 @@ const Couplet: FC = () => {
 
   const onFinishFailed = (errorInfo: ValidateErrorEntity) => {};
 
-  const formsData = [
-    {
-      type: 'picker',
-      fieldProps: 'delayValue',
-      data: pickerData,
-      title: '延迟赋值',
-      labelNumber: 7,
-      placeholder: '请选择延迟赋值',
-    },
-    {
-      type: 'picker',
-      fieldProps: 'couplet',
-      data: pickerData,
-      title: '改值后及联',
-      labelNumber: 7,
-      placeholder: '请选择改值后及联',
-      onChange: () => {
-        setFormsValues({
-          ...formsValues,
-          delayValue: 'fuzhou',
-        });
-      },
-    },
-    {
-      type: 'picker',
-      fieldProps: 'delayData',
-      data: delayData,
-      title: '延迟赋数据源',
-      labelNumber: 7,
-      placeholder: '请选择延迟赋数据源',
-    },
-  ] as IFormItemProps[];
   const formProps = {
     onFinish,
     onFinishFailed,
-    data: formsData,
     formsValues,
     form,
     failScroll: false,
   };
   return (
     <div>
-      <DynamicForm {...formProps} />
+      <DynamicForm {...formProps}>
+        <DformPicker
+          fieldProps="delayValue"
+          data={pickerData}
+          title="延迟赋值"
+          labelNumber={7}
+          placeholder="请选择延迟赋值"
+        />
+        <DformPicker
+          fieldProps="couplet"
+          data={pickerData}
+          title="改值后及联"
+          labelNumber={7}
+          placeholder="请选择改值后及联"
+          onChange={() => {
+            setFormsValues({
+              ...formsValues,
+              delayValue: 'fuzhou',
+            });
+          }}
+        />
+        <DformPicker
+          fieldProps="delayData"
+          data={delayData}
+          title="延迟赋数据源"
+          labelNumber={7}
+          placeholder="请选择延迟赋数据源"
+        />
+      </DynamicForm>
       <Button onClick={() => form.submit()}>submit</Button>
       <Button
         onClick={() => {

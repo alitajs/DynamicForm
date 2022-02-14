@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
-import { DformPicker } from '../../';
+import DformPicker from '../../NomarPicker';
 import BasicText from './demos/basic';
 import CoupletText from './demos/couplet';
 
