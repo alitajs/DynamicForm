@@ -55,19 +55,33 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const addressPickerRef = useRef<any>();
   const [list, setList] = useState<any[]>([]);
   const [lastLevel, setLastLevel] = useState<boolean>(false);
+  const [curReqLevel, setCurReqLevel] = useState<number>(0); // 当前请求层级
+  const [initReq, setInitReq] = useState<boolean>(false); // 用于记录是否已经初始化请求过
 
   useEffect(() => {
     if (!!data.length) setList(data);
-    if (!!data.length && modalFlag) {
-      setList(data);
-      setLastLevel(false);
+    if (!modalFlag) return;
+    if (!!data.length) {
+      if (!initReq) setLastLevel(false);
       const newLabelList = [...labelList];
       const labelListLength = labelList.length;
-      if (valueList.length === newLabelList.length)
+      if (valueList.length === curReqLevel)
         newLabelList.push(placeholderList[labelListLength] || '请选择');
       setLabelList(newLabelList);
       if (addressPickerRef && addressPickerRef.current) {
         addressPickerRef.current.scrollTop = 0;
+      }
+    } else if (!list.length) {
+      // 初始化存在默认值
+      if (!!valueList.length) {
+        const initValueList: any[] = JSON.parse(JSON.stringify(valueList));
+        if (initReq) {
+          initValueList.pop();
+          setLastLevel(true);
+        }
+        onMChangeLevel(initValueList, true);
+      } else {
+        onMChangeLevel([]);
       }
     } else {
       setLastLevel(true);
@@ -77,22 +91,16 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   useEffect(() => {
     if (!value) return;
     const newValue = JSON.parse(JSON.stringify(value));
-    if (
-      !list.length &&
-      !modalFlag &&
-      newValue?.value &&
-      !!newValue?.value.length
-    ) {
-      const initValue: string[] = JSON.parse(
-        JSON.stringify(value?.value || []),
-      );
-      if (!!initValue.length) initValue.pop();
-      if (onChangeLevel) onChangeLevel(initValue);
-    }
     setInputLabel(newValue?.label.join(' '));
     setLabelList(newValue?.label);
     setValueList(newValue?.value);
   }, [value]);
+
+  const onMChangeLevel = (value = [] as any[], initDef = false) => {
+    setInitReq(initDef);
+    setCurReqLevel(value.length);
+    if (onChangeLevel) onChangeLevel(value);
+  };
 
   const onConfirm = () => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
@@ -151,9 +159,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     }
 
     newLabelList.splice(newLabelList.length - 1, 1, val[label]);
-
     // 调用 onChangeLevel 让用户修改数据源
-    if (onChangeLevel) onChangeLevel(newValueList);
+    onMChangeLevel(newValueList);
     // 保存value 值
     setValueList(newValueList);
     setLabelList(newLabelList);
@@ -169,7 +176,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     const newLabelList = labelList.splice(0, index);
     setValueList(newValueList);
     setLabelList(newLabelList);
-    if (onChangeLevel) onChangeLevel(newValueList);
+    onMChangeLevel(newValueList);
   };
 
   /**
@@ -177,7 +184,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
    */
   const inputClick = () => {
     if (onClick) onClick();
-    if (onChangeLevel) onChangeLevel(valueList);
+    // onMChangeLevel(valueList);
     if (!modalFlag) {
       openMoal();
     }
