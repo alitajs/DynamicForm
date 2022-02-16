@@ -226,21 +226,22 @@ test('renders Basic', async () => {
       let mValues = JSON.parse(JSON.stringify(values));
       let data: { label: string; value: string }[] =
         getResetHomeAddrList(mValues);
+      Toast.hide();
       if (key === 'commonlyAddrData') {
         setCommonlyAddrData(data);
       } else {
         setHomeAddrData(data);
       }
-      Toast.hide();
     };
 
     const resetWorkAddrList = (values: (number | string)[]) => {
       let mValues = JSON.parse(JSON.stringify(values));
       let data: { label: string; value: string }[] =
         getResetWorkAddrList(mValues);
-      setWorkAddrData(data);
       Toast.hide();
+      setWorkAddrData(data);
     };
+
     const formProps = {
       onFinish,
       onFinishFailed,
@@ -248,7 +249,6 @@ test('renders Basic', async () => {
       form,
       autoLineFeed: false,
       isDev: false,
-      failScroll: false,
     };
     return (
       <>
@@ -262,7 +262,11 @@ test('renders Basic', async () => {
             placeholderList={['请选择省', '请选择市', '请选择区']}
             onChangeLevel={(values: (string | number)[]) => {
               console.log('values', values);
-              resetHomeAddrList(values, 'homeAddrData');
+              Toast.show('加载中');
+              // eslint-disable-next-line no-console
+              setTimeout(() => {
+                resetHomeAddrList(values, 'homeAddrData');
+              }, 300);
             }}
             onChange={onChange}
           />
@@ -275,7 +279,11 @@ test('renders Basic', async () => {
             placeholderList={['请选择省', '请选择市', '请选择区']}
             onChangeLevel={(values: (string | number)[]) => {
               console.log('values', values);
-              resetHomeAddrList(values, 'commonlyAddrData');
+              Toast.show('加载中');
+              // eslint-disable-next-line no-console
+              setTimeout(() => {
+                resetHomeAddrList(values, 'commonlyAddrData');
+              }, 300);
             }}
             onChange={onChange}
           />
@@ -288,8 +296,9 @@ test('renders Basic', async () => {
             placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
             onChangeLevel={(values: (string | number)[]) => {
               Toast.show('加载中');
-              resetWorkAddrList(values);
-              Toast.hide();
+              setTimeout(() => {
+                resetWorkAddrList(values);
+              }, 300);
             }}
             onChange={onChange}
             noData={<div>暂无街道数据</div>}
@@ -306,10 +315,19 @@ test('renders Basic', async () => {
   );
   fireEvent.click(getByText('福建省 福州市 鼓楼区'));
   expect(getByText('确定')).toHaveClass('am-picker-popup-header-right');
-  fireEvent.click(getByText('福建省'));
-  fireEvent.click(getByText('福建省'));
-  fireEvent.click(getByText('福州市'));
-  fireEvent.click(getByText('台江区'));
+  await waitFor(() => {
+    fireEvent.click(getByText('福建省'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('福建省'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('福州市'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('台江区'));
+  });
+
   fireEvent.click(getByText('确定'));
   await waitFor(() => {
     expect(onChange).toBeCalled();
@@ -333,9 +351,11 @@ test('renders Basic', async () => {
     expect(onFinishFailed).toBeCalled();
   });
   fireEvent.click(getByText('福建省 福州市'));
-  expect(getByText('请选择区')).toHaveClass(
-    'alitajs-dform-address-value-select',
-  );
+  await waitFor(() => {
+    expect(getByText('请选择区')).toHaveClass(
+      'alitajs-dform-address-value-select',
+    );
+  });
   await waitFor(() => {
     fireEvent.click(getByText('确定'));
   });
@@ -354,13 +374,23 @@ test('renders Basic', async () => {
   });
   expect(getByText('请选择工作地址')).toHaveClass('alitajs-dform-error-text');
   fireEvent.click(getByText('选择当前居住城市'));
-  fireEvent.click(getByText('北京市'));
-  fireEvent.click(getByText('市辖区'));
-  fireEvent.click(getByText('东城区'));
-  expect(getByText('请选择街道')).toHaveClass(
-    'alitajs-dform-address-value-select',
-  );
-  fireEvent.click(getByText('街道1'));
+  await waitFor(() => {
+    fireEvent.click(getByText('北京市'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('市辖区'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('东城区'));
+  });
+  await waitFor(() => {
+    expect(getByText('请选择街道')).toHaveClass(
+      'alitajs-dform-address-value-select',
+    );
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('街道1'));
+  });
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinish).toBeCalled();

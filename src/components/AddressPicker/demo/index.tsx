@@ -102,20 +102,20 @@ const Page: FC = () => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetHomeAddrList(mValues);
+    Toast.hide();
     if (key === 'commonlyAddrData') {
       setCommonlyAddrData(data);
     } else {
       setHomeAddrData(data);
     }
-    Toast.hide();
   };
 
   const resetWorkAddrList = (values: (number | string)[]) => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetWorkAddrList(mValues);
-    setWorkAddrData(data);
     Toast.hide();
+    setWorkAddrData(data);
   };
 
   const formProps = {
@@ -138,6 +138,7 @@ const Page: FC = () => {
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
             console.log('values', values);
+            Toast.show('加载中');
             // eslint-disable-next-line no-console
             setTimeout(() => {
               resetHomeAddrList(values, 'homeAddrData');
@@ -156,6 +157,7 @@ const Page: FC = () => {
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
             console.log('values', values);
+            Toast.show('加载中');
             // eslint-disable-next-line no-console
             setTimeout(() => {
               resetHomeAddrList(values, 'commonlyAddrData');
@@ -176,7 +178,6 @@ const Page: FC = () => {
             Toast.show('加载中');
             setTimeout(() => {
               resetWorkAddrList(values);
-              Toast.hide();
             }, 300);
           }}
           onChange={(value: any) => {
@@ -186,6 +187,19 @@ const Page: FC = () => {
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
+      <Button
+        type="primary"
+        onClick={() =>
+          form.setFieldsValue({
+            commonlyAddr: {
+              label: ['福建省', '福州市', '鼓楼区'],
+              value: ['35', '3501', '350102'],
+            },
+          })
+        }
+      >
+        changeValue
+      </Button>
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
