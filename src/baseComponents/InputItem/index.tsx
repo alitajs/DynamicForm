@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import TouchFeedback from 'rmc-feedback';
 import { Input } from 'antd';
-import IsPcDiv from '../IsPcDiv';
 import PcLayout from '../PcLayout';
 import { DformContext } from '../DynamicForm';
 import { ClickEvent, StringEvent } from '../../PropsType';

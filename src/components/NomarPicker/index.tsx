@@ -1,9 +1,9 @@
 import React, { FC, useState, useEffect } from 'react';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
-import { allPrefixCls } from '../../const/index';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 
 const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
@@ -26,8 +26,12 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     },
     defaultValue,
     formFlag = false,
+    labelNumber = 5,
+    isPc,
     titleProps,
   } = props;
+
+  const isVertical = positionType === 'vertical';
 
   const { label = 'label', value = 'value' } = alias;
 
@@ -51,12 +55,13 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         onChange={fieldChange}
         data={aliasData}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+        />
       </PickerGroup>
     );
   };
@@ -69,6 +74,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      isPc={isPc}
       {...titleProps}
     >
       <Field
