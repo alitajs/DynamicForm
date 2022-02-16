@@ -64,43 +64,58 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   }>({
     isChange: false,
   });
+  const [curReqLevel, setCurReqLevel] = useState<number>(0); // 当前请求层级
+  const [initReq, setInitReq] = useState<boolean>(false); // 用于记录是否已经初始化请求过
 
   useEffect(() => {
     if (!modalFlag) return;
     console.log('data', data);
     console.log('lastLevel', lastLevel);
-    console.log('initStatus', initStatus);
     if (!!data.length) setList(data);
-    if (!!data.length && modalFlag) {
+    if (!!data.length) {
+      console.log(1);
+      if (!initReq) setLastLevel(false);
       const newLabelList = [...labelList];
       const labelListLength = labelList.length;
+      console.log('newLabelList', newLabelList);
+      console.log('curReqLevel', curReqLevel);
+      console.log('valueList', valueList);
 
       if (addressPickerRef && addressPickerRef.current) {
         addressPickerRef.current.scrollTop = 0;
       }
-      if (!lastLevel && valueList.length === newLabelList.length) {
+      if (valueList.length === curReqLevel) {
         newLabelList.push(placeholderList[labelListLength] || '请选择');
         setTimeout(() => {
           setTabActiveKey(newLabelList.length - 1);
         }, 100);
       }
-      if (lastLevel && !newLabelList.length) {
-        setLastLevel(false);
-        if (!initStatus.isChange)
-          setinitStatus({ isChange: true, status: false });
-        newLabelList.push(placeholderList[labelListLength] || '请选择');
-        setTimeout(() => {
-          setTabActiveKey(newLabelList.length - 1);
-        }, 100);
-      }
+      // if (lastLevel && !newLabelList.length) {
+      //   setLastLevel(false);
+      //   if (!initStatus.isChange)
+      //     setinitStatus({ isChange: true, status: false });
+      //   newLabelList.push(placeholderList[labelListLength] || '请选择');
+      //   setTimeout(() => {
+      //     setTabActiveKey(newLabelList.length - 1);
+      //   }, 100);
+      // }
       setLabelList(newLabelList);
-    }
-    if (!data.length && modalFlag && !lastLevel) {
+    } else if (!list.length) {
+      console.log(2);
+      // 初始化存在默认值
+      if (!!valueList.length) {
+        const initValueList: any[] = JSON.parse(JSON.stringify(valueList));
+        if (initReq) {
+          initValueList.pop();
+          setLastLevel(true);
+        }
+        onMChangeLevel(initValueList, true);
+      } else {
+        onMChangeLevel([]);
+      }
+    } else {
+      console.log(3);
       setLastLevel(true);
-      if (!initStatus.isChange) setinitStatus({ isChange: true, status: true });
-      const initValue: any[] = JSON.parse(JSON.stringify(valueList));
-      if (!!initValue.length) initValue.pop();
-      if (onChangeLevel) onChangeLevel(initValue);
     }
   }, [data, modalFlag]);
 
@@ -117,6 +132,12 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     }
   }, [value]);
 
+  const onMChangeLevel = (value = [] as any[], initDef = false) => {
+    setInitReq(initDef);
+    setCurReqLevel(value.length);
+    if (onChangeLevel) onChangeLevel(value);
+  };
+
   const onConfirm = () => {
     const newLabelList = JSON.parse(JSON.stringify(labelList));
     if (!lastLevel) {
@@ -131,7 +152,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     onChange(val, 'change');
     setInputLabel(newLabelList.join(' '));
     setModalFlag(false); // 关闭弹框
-    setinitStatus({ isChange: false });
+    // setinitStatus({ isChange: false });
   };
 
   /**
@@ -139,9 +160,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
    */
   const inputClick = () => {
     if (onClick) onClick();
-    const initValueList = JSON.parse(JSON.stringify(valueList));
-    if (lastLevel) initValueList.pop();
-    if (onChangeLevel) onChangeLevel(initValueList);
+    // const initValueList = JSON.parse(JSON.stringify(valueList));
+    // if (lastLevel) initValueList.pop();
+    // if (onChangeLevel) onChangeLevel(initValueList);
     if (!modalFlag) {
       if (disabled) return;
       setModalFlag(true);
@@ -151,8 +172,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   // 关闭弹窗
   const closeModal = () => {
     setModalFlag(false);
-    if (initStatus.isChange) setLastLevel(!!initStatus.status);
-    setinitStatus({ isChange: false });
+    // if (initStatus.isChange) setLastLevel(!!initStatus.status);
+    // setinitStatus({ isChange: false });
     if (!!value) {
       const newValue = JSON.parse(JSON.stringify(value));
       setTimeout(() => {
@@ -196,7 +217,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     }
 
     // 调用 onChangeLevel 让用户修改数据源
-    if (onChangeLevel) onChangeLevel(newValueList);
+    // if (onChangeLevel) onChangeLevel(newValueList);
+    onMChangeLevel(newValueList);
 
     // 保存value 值
     setValueList(newValueList);
@@ -211,7 +233,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     const mValueList = JSON.parse(JSON.stringify(valueList));
     const newValueList = mValueList.splice(0, index);
     setTabActiveKey(index);
-    if (onChangeLevel) onChangeLevel(newValueList);
+    // if (onChangeLevel) onChangeLevel(newValueList);
+    onMChangeLevel(newValueList);
   };
 
   const renderModal = () => {
