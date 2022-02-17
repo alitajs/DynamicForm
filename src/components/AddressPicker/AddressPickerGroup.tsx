@@ -14,6 +14,7 @@ interface AddressPickerGroupProps
   value?: valueProps | undefined;
 }
 
+// TODO: 切换tab时，存在默认值要滚动到对应的位置
 const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const {
     fieldProps,
@@ -66,42 +67,31 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   });
   const [curReqLevel, setCurReqLevel] = useState<number>(0); // 当前请求层级
   const [initReq, setInitReq] = useState<boolean>(false); // 用于记录是否已经初始化请求过
+  const [openReq, setOpenReq] = useState<boolean>(true); // 打开是否需要请求
+  const [isConfirm, setIsConfirm] = useState<boolean>(false); // 记录确认后的value改变
 
   useEffect(() => {
     if (!modalFlag) return;
-    console.log('data', data);
-    console.log('lastLevel', lastLevel);
     if (!!data.length) setList(data);
     if (!!data.length) {
-      console.log(1);
       if (!initReq) setLastLevel(false);
       const newLabelList = [...labelList];
       const labelListLength = labelList.length;
-      console.log('newLabelList', newLabelList);
-      console.log('curReqLevel', curReqLevel);
-      console.log('valueList', valueList);
 
       if (addressPickerRef && addressPickerRef.current) {
         addressPickerRef.current.scrollTop = 0;
       }
-      if (valueList.length === curReqLevel) {
+      if (
+        valueList.length === newLabelList.length &&
+        valueList.length === curReqLevel
+      ) {
         newLabelList.push(placeholderList[labelListLength] || '请选择');
         setTimeout(() => {
           setTabActiveKey(newLabelList.length - 1);
         }, 100);
       }
-      // if (lastLevel && !newLabelList.length) {
-      //   setLastLevel(false);
-      //   if (!initStatus.isChange)
-      //     setinitStatus({ isChange: true, status: false });
-      //   newLabelList.push(placeholderList[labelListLength] || '请选择');
-      //   setTimeout(() => {
-      //     setTabActiveKey(newLabelList.length - 1);
-      //   }, 100);
-      // }
       setLabelList(newLabelList);
     } else if (!list.length) {
-      console.log(2);
       // 初始化存在默认值
       if (!!valueList.length) {
         const initValueList: any[] = JSON.parse(JSON.stringify(valueList));
@@ -114,23 +104,38 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         onMChangeLevel([]);
       }
     } else {
-      console.log(3);
-      setLastLevel(true);
+      if (initReq) {
+        const initValueList: any[] = JSON.parse(JSON.stringify(valueList));
+        initValueList.pop();
+        setLastLevel(true);
+        onMChangeLevel(initValueList, true);
+      } else {
+        setLastLevel(true);
+      }
     }
-  }, [data, modalFlag]);
+  }, [data]);
 
   useEffect(() => {
-    if (!value) return;
-    const newValue = JSON.parse(JSON.stringify(value));
-    setInputLabel(newValue?.label.join(' '));
-    setLabelList(newValue?.label);
-    setValueList(newValue?.value);
-    if (newValue?.value?.length) {
-      setTabActiveKey(newValue?.value?.length - 1);
-    } else {
-      setTabActiveKey(0);
+    if (isConfirm) {
+      setIsConfirm(false);
     }
-  }, [value]);
+    if (!value || isConfirm) return;
+    const newValue = JSON.parse(JSON.stringify(value));
+    if (valueList.toString() !== newValue?.value?.toString()) {
+      setInputLabel(newValue?.label.join(' '));
+      setValueList(newValue?.value);
+      setLabelList(newValue?.label);
+      setCurReqLevel(newValue?.value?.length);
+      if (newValue?.value?.length) {
+        setTabActiveKey(newValue?.value?.length - 1);
+      } else {
+        setTabActiveKey(0);
+      }
+      setOpenReq(true);
+    } else {
+      setOpenReq(false);
+    }
+  }, [JSON.stringify(value)]);
 
   const onMChangeLevel = (value = [] as any[], initDef = false) => {
     setInitReq(initDef);
@@ -139,10 +144,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   };
 
   const onConfirm = () => {
-    const newLabelList = JSON.parse(JSON.stringify(labelList));
-    if (!lastLevel) {
-      newLabelList.pop();
-    }
+    const mLabelList = [...labelList];
+    const newLabelList = mLabelList.splice(0, valueList.length | 0);
     // 赋值
     let val;
     if (valueList && valueList.length) {
@@ -160,9 +163,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
    */
   const inputClick = () => {
     if (onClick) onClick();
-    // const initValueList = JSON.parse(JSON.stringify(valueList));
-    // if (lastLevel) initValueList.pop();
-    // if (onChangeLevel) onChangeLevel(initValueList);
+    if (openReq) onMChangeLevel(valueList, true);
     if (!modalFlag) {
       if (disabled) return;
       setModalFlag(true);
@@ -172,23 +173,29 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   // 关闭弹窗
   const closeModal = () => {
     setModalFlag(false);
-    // if (initStatus.isChange) setLastLevel(!!initStatus.status);
-    // setinitStatus({ isChange: false });
     if (!!value) {
       const newValue = JSON.parse(JSON.stringify(value));
       setTimeout(() => {
-        setInputLabel(newValue?.label.join(' '));
-        setLabelList(newValue?.label);
-        setValueList(newValue?.value);
-        setTabActiveKey(newValue?.label?.length - 1);
-      }, 100);
-    } else {
-      setTimeout(() => {
-        setInputLabel('');
-        setLabelList([]);
-        setValueList([]);
-        setTabActiveKey(0);
-      }, 100);
+        if (lastLevel && curReqLevel === newValue?.value?.length + 1) {
+          setValueList(newValue?.value);
+          const mLabelList = newValue?.label || [];
+          mLabelList.push(placeholderList[mLabelList.length] || '请选择');
+          setLabelList(mLabelList);
+          setLastLevel(false);
+          setOpenReq(false);
+        } else if (
+          valueList.toString() !== newValue?.value?.toString() ||
+          tabActiveKey < newValue?.label?.length
+        ) {
+          setValueList(newValue?.value);
+          setTabActiveKey(newValue?.label?.length - 1);
+          setLabelList(newValue?.label);
+          setCurReqLevel(newValue?.value?.length);
+          setOpenReq(true);
+        } else {
+          setOpenReq(false);
+        }
+      }, 50);
     }
   };
 
@@ -196,29 +203,31 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
    * 列表点击事件
    */
   const listClick = (val: any) => {
-    if (val[aliasValue] === valueList[tabActiveKey]) return;
     let newValueList = [...valueList];
 
     // 设置弹框顶部选中label 的值
     let newLabelList = [...labelList];
-
-    if (tabActiveKey === labelList.length - 1 && lastLevel) {
-      newValueList.splice(newValueList.length - 1, 1, val[aliasValue]);
-      newLabelList.splice(newLabelList.length - 1, 1, val[aliasLabel]);
-    } else if (tabActiveKey === labelList.length - 1 && !lastLevel) {
-      newLabelList.splice(newLabelList.length - 1, 1, val[aliasLabel]);
-      newValueList.push(val[aliasValue]);
+    if (val[aliasValue] === valueList[tabActiveKey]) {
+      newValueList.splice(tabActiveKey);
+      newLabelList.splice(tabActiveKey);
+      newLabelList.push(placeholderList[newLabelList.length] || '请选择');
+      if (lastLevel) setLastLevel(false);
     } else {
-      setLastLevel(false);
-      newValueList = newValueList.splice(0, tabActiveKey);
-      newValueList.push(val[aliasValue]);
-      newLabelList = newLabelList.splice(0, tabActiveKey);
-      newLabelList.push(val[aliasLabel]);
+      if (tabActiveKey === labelList.length - 1 && lastLevel) {
+        newValueList.splice(newValueList.length - 1, 1, val[aliasValue]);
+        newLabelList.splice(newLabelList.length - 1, 1, val[aliasLabel]);
+      } else if (tabActiveKey === labelList.length - 1 && !lastLevel) {
+        newLabelList.splice(newLabelList.length - 1, 1, val[aliasLabel]);
+        newValueList.push(val[aliasValue]);
+      } else {
+        setLastLevel(false);
+        newValueList = newValueList.splice(0, tabActiveKey);
+        newValueList.push(val[aliasValue]);
+        newLabelList = newLabelList.splice(0, tabActiveKey);
+        newLabelList.push(val[aliasLabel]);
+      }
+      onMChangeLevel(newValueList);
     }
-
-    // 调用 onChangeLevel 让用户修改数据源
-    // if (onChangeLevel) onChangeLevel(newValueList);
-    onMChangeLevel(newValueList);
 
     // 保存value 值
     setValueList(newValueList);
@@ -234,7 +243,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     const newValueList = mValueList.splice(0, index);
     setTabActiveKey(index);
     // if (onChangeLevel) onChangeLevel(newValueList);
-    onMChangeLevel(newValueList);
+    onMChangeLevel(newValueList, true);
   };
 
   const renderModal = () => {
@@ -326,6 +335,11 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
               >
                 <div className="alitajs-dform-address-list-item">
                   <div
+                    role={
+                      valueList.indexOf(item[aliasValue]) !== -1
+                        ? 'selected'
+                        : ''
+                    }
                     className={classnames({
                       'alitajs-dform-address-list-item-common': true,
                       'alitajs-dform-address-list-item-tick':
