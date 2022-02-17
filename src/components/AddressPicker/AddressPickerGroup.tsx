@@ -203,8 +203,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const labelClick = (index: number) => {
     if (index + 1 === labelList.length) return;
     if (index === valueList.length) return;
-    const newValueList = valueList.splice(0, index);
-    const newLabelList = labelList.splice(0, index);
+    const newValueList = [...valueList].splice(0, index);
+    const newLabelList = [...labelList].splice(0, index);
     setValueList(newValueList);
     setLabelList(newLabelList);
     onMChangeLevel(newValueList);
