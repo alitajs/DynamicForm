@@ -31,4 +31,5 @@ export interface INomarPickerProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
 }

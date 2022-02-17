@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import TouchFeedback from 'rmc-feedback';
 import { Input } from 'antd';
-import IsPcDiv from '../IsPcDiv';
 import PcLayout from '../PcLayout';
 import { DformContext } from '../DynamicForm';
 import { ClickEvent, StringEvent } from '../../PropsType';
@@ -175,36 +174,34 @@ const InputItem: FC<IInputItemProps> = (props) => {
               </div>
             )}
             {isPc && (
-              <div>
-                <PcLayout
-                  isVertical={isVertical}
-                  left={children}
-                  right={
-                    <Input
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        inputItemChange(e.target.value)
-                      }
-                      type={inputType}
-                      placeholder={placeholder}
-                      suffix={extra}
-                      value={val}
-                      allowClear={clear}
-                      maxLength={maxLength}
-                      disabled={disabled || !editable}
-                      onClick={onClick}
-                      aria-label={fieldProps}
-                      onBlur={(e: any) => {
-                        if (disabled) return;
-                        if (onBlur) onBlur(e.target.value);
-                      }}
-                      onFocus={(e: any) => {
-                        if (disabled) return;
-                        if (onFocus) onFocus(e.target.value);
-                      }}
-                    />
-                  }
-                />
-              </div>
+              <PcLayout
+                isVertical={isVertical}
+                left={children}
+                right={
+                  <Input
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      inputItemChange(e.target.value)
+                    }
+                    type={inputType}
+                    placeholder={placeholder}
+                    suffix={extra}
+                    value={val}
+                    allowClear={clear}
+                    maxLength={maxLength}
+                    disabled={disabled || !editable}
+                    onClick={onClick}
+                    aria-label={fieldProps}
+                    onBlur={(e: any) => {
+                      if (disabled) return;
+                      if (onBlur) onBlur(e.target.value);
+                    }}
+                    onFocus={(e: any) => {
+                      if (disabled) return;
+                      if (onFocus) onFocus(e.target.value);
+                    }}
+                  />
+                }
+              />
             )}
           </>
         );

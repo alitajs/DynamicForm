@@ -1,7 +1,13 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Picker, Toast } from 'antd-mobile-v2';
-import { INomarPickerProps } from './interface';
+import { Select } from 'antd';
+import PcLayout from '../../baseComponents/PcLayout';
 import TextItem from '../../baseComponents/TextItem';
+import { DformContext } from '../../baseComponents/DynamicForm';
+import { INomarPickerProps } from './interface';
+
+const { Option } = Select;
+
 interface INomarPickerGroupProps extends Omit<INomarPickerProps, 'onChange'> {
   onChange: (values: number | string | undefined) => void;
   value?: string | number;
@@ -26,6 +32,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     onClick,
     value,
     clear = false,
+    ...otherPorps
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -84,39 +91,73 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <TextItem
-        isVertical={isVertical}
-        value={`${pickerLabel}`}
-        placeholder={placeholder}
-        labelNumber={labelNumber}
-        coverStyle={coverStyle}
-        onClick={fieldClick}
-        disabled={disabled}
-        extra={extra}
-        className={className}
-        fieldProps={fieldProps}
-        arrow={!disabled}
-        clear={clear}
-        clearClick={clearClick}
-      >
-        {children}
-      </TextItem>
-      <Picker
-        title={title}
-        visible={visible && data.length > 0}
-        data={data as any}
-        cols={1}
-        value={value ? [value] : undefined}
-        onOk={onOK}
-        onDismiss={() => {
-          setvisible(false);
-        }}
-        onVisibleChange={() => {
-          setvisible(false);
-        }}
-      />
-    </React.Fragment>
+    <DformContext.Consumer>
+      {({ isPc }: any) => {
+        return (
+          <React.Fragment>
+            {!isPc && (
+              <>
+                <TextItem
+                  isVertical={isVertical}
+                  value={`${pickerLabel}`}
+                  placeholder={placeholder}
+                  labelNumber={labelNumber}
+                  coverStyle={coverStyle}
+                  onClick={fieldClick}
+                  disabled={disabled}
+                  extra={extra}
+                  className={className}
+                  fieldProps={fieldProps}
+                  arrow={!disabled}
+                  clear={clear}
+                  clearClick={clearClick}
+                >
+                  {children}
+                </TextItem>
+                <Picker
+                  title={title}
+                  visible={visible && data.length > 0}
+                  data={data as any}
+                  cols={1}
+                  value={value ? [value] : undefined}
+                  onOk={onOK}
+                  onDismiss={() => {
+                    setvisible(false);
+                  }}
+                  onVisibleChange={() => {
+                    setvisible(false);
+                  }}
+                />
+              </>
+            )}
+            {isPc && (
+              <PcLayout
+                isVertical={isVertical}
+                left={children}
+                right={
+                  <Select
+                    {...otherPorps}
+                    value={value}
+                    style={{ width: '100%', ...coverStyle }}
+                    onChange={(e: any) => {
+                      onChange(e);
+                    }}
+                    allowClear={clear}
+                    placeholder={placeholder}
+                  >
+                    {data.map((item) => (
+                      <Option key={item?.value} value={item?.value}>
+                        {item?.label}
+                      </Option>
+                    ))}
+                  </Select>
+                }
+              />
+            )}
+          </React.Fragment>
+        );
+      }}
+    </DformContext.Consumer>
   );
 };
 

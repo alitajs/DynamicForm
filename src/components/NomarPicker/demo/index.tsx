@@ -64,7 +64,8 @@ const Page: FC = () => {
     formsValues,
     form,
     autoLineFeed: false,
-    isDev: true,
+    // isDev: true,
+    isPc: true,
   };
   return (
     <>
@@ -77,7 +78,7 @@ const Page: FC = () => {
           defaultValue="shanghai"
           clear
         />
-        <DformPicker
+        {/* <DformPicker
           fieldProps="myCity"
           required={true}
           data={aliasCityList}
@@ -103,12 +104,8 @@ const Page: FC = () => {
           positionType="vertical"
           onChange={(e) => console.log(e)}
           disabled
-        />
+        /> */}
       </DynamicForm>
-      <WhiteSpace size="sm" />
-      <Button type="primary" onClick={() => form.submit()}>
-        Submit
-      </Button>
     </>
   );
 };

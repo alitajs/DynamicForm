@@ -2,8 +2,9 @@ import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import DformPicker from '../../NomarPicker';
-import BasicText from './demos/basic';
-import CoupletText from './demos/couplet';
+import BasicTest from './demos/basic';
+import CoupletTest from './demos/couplet';
+import PcTest from './demos/pc';
 
 const cityData = [
   { label: '北京', value: 'beijing' },
@@ -32,12 +33,12 @@ it('passes picker a11y test', async () => {
   await testA11y(container);
 });
 
-test('render Basic', async () => {
+test('render picker Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
   const onChange = jest.fn();
   const { getByText } = render(
-    <BasicText
+    <BasicTest
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       onChange={onChange}
@@ -63,8 +64,8 @@ test('render Basic', async () => {
   fireEvent.click(getByText('不可点击'));
 });
 
-test('render couplet', async () => {
-  const { getByText } = render(<CoupletText />);
+test('render picker couplet', async () => {
+  const { getByText } = render(<CoupletTest />);
   expect(getByText('请选择延迟赋值'));
   await sleep(1100);
   expect(getByText('上海')).toBeDefined();
@@ -77,4 +78,30 @@ test('render couplet', async () => {
   expect(getByText('杭州')).toBeDefined();
   fireEvent.click(getByText('设不存在的值'));
   expect(getByText('请选择延迟赋数据源'));
+});
+
+test('render picker Pc', async () => {
+  const onFinish = jest.fn();
+  const onFinishFailed = jest.fn();
+  const onChange = jest.fn();
+  const { getByText } = render(
+    <BasicTest
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onChange={onChange}
+    />,
+  );
+  expect(getByText('福州')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('Submit'));
+  });
+  expect(onFinishFailed).toBeCalled();
+  fireEvent.click(getByText('请选择我喜欢的城市placeholder'));
+  fireEvent.click(getByText('深圳'));
+  // expect(onChange).toBeCalled();
+  // await waitFor(() => {
+  //   fireEvent.click(getByText('Submit'));
+  // });
+  // expect(onFinish).toBeCalled();
+  fireEvent.click(getByText('不可点击'));
 });
