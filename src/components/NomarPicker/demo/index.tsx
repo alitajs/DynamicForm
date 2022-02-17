@@ -65,7 +65,7 @@ const Page: FC = () => {
     form,
     autoLineFeed: false,
     // isDev: true,
-    isPc: true,
+    isPc: false,
   };
   return (
     <>
@@ -78,7 +78,7 @@ const Page: FC = () => {
           defaultValue="shanghai"
           clear
         />
-        {/* <DformPicker
+        <DformPicker
           fieldProps="myCity"
           required={true}
           data={aliasCityList}
@@ -104,7 +104,7 @@ const Page: FC = () => {
           positionType="vertical"
           onChange={(e) => console.log(e)}
           disabled
-        /> */}
+        />
       </DynamicForm>
     </>
   );
