@@ -20,6 +20,10 @@ const Page: FC = () => {
       label: ['福建省', '福州市', '鼓楼区'],
       value: ['35', '3501', '350102'],
     },
+    commonlyAddr: {
+      label: ['福建省', '福州市'],
+      value: ['35', '3501'],
+    },
   });
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -32,6 +36,8 @@ const Page: FC = () => {
   };
 
   const [homeAddrData, setHomeAddrData] = useState<any>([]);
+  const [commonlyAddrData, setCommonlyAddrData] = useState<any>([]);
+
   const [workAddrData, setWorkAddrData] = useState<any>([]);
 
   const queryList = (list: any, val: string | number) => {
@@ -92,20 +98,24 @@ const Page: FC = () => {
     return data;
   };
 
-  const resetHomeAddrList = (values: (number | string)[]) => {
+  const resetHomeAddrList = (values: (number | string)[], key: string) => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetHomeAddrList(mValues);
-    setHomeAddrData(data);
     Toast.hide();
+    if (key === 'commonlyAddrData') {
+      setCommonlyAddrData(data);
+    } else {
+      setHomeAddrData(data);
+    }
   };
 
   const resetWorkAddrList = (values: (number | string)[]) => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetWorkAddrList(mValues);
-    setWorkAddrData(data);
     Toast.hide();
+    setWorkAddrData(data);
   };
 
   const formProps = {
@@ -122,13 +132,36 @@ const Page: FC = () => {
         <AddressPicker
           fieldProps="homeAddr"
           title="工作地址"
-          placeholder="选择当前居住城市"
+          placeholder="选择当前工作地址"
           required
           data={homeAddrData}
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
+            console.log('values', values);
+            Toast.show('加载中');
             // eslint-disable-next-line no-console
-            resetHomeAddrList(values);
+            setTimeout(() => {
+              resetHomeAddrList(values, 'homeAddrData');
+            }, 300);
+          }}
+          onChange={(value: any) => {
+            console.log('onChangevalue', value);
+          }}
+        />
+        <AddressPicker
+          fieldProps="commonlyAddr"
+          title="常用地址"
+          placeholder="选择常用地址"
+          required
+          data={commonlyAddrData}
+          placeholderList={['请选择省', '请选择市', '请选择区']}
+          onChangeLevel={(values: (string | number)[]) => {
+            console.log('values', values);
+            Toast.show('加载中');
+            // eslint-disable-next-line no-console
+            setTimeout(() => {
+              resetHomeAddrList(values, 'commonlyAddrData');
+            }, 300);
           }}
           onChange={(value: any) => {
             console.log('onChangevalue', value);
@@ -137,7 +170,7 @@ const Page: FC = () => {
         <AddressPicker
           fieldProps="workAddr"
           title="居住地址"
-          placeholder="请选择"
+          placeholder="选择当前居住城市"
           positionType="vertical"
           data={workAddrData}
           placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
@@ -145,8 +178,7 @@ const Page: FC = () => {
             Toast.show('加载中');
             setTimeout(() => {
               resetWorkAddrList(values);
-              Toast.hide();
-            }, 100);
+            }, 300);
           }}
           onChange={(value: any) => {
             console.log('onChangevalue', value);
@@ -155,6 +187,19 @@ const Page: FC = () => {
         />
       </DynamicForm>
       <WhiteSpace size="sm" />
+      <Button
+        type="primary"
+        onClick={() =>
+          form.setFieldsValue({
+            commonlyAddr: {
+              label: ['福建省', '福州市', '鼓楼区'],
+              value: ['35', '3501', '350102'],
+            },
+          })
+        }
+      >
+        changeValue
+      </Button>
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
