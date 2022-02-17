@@ -32,6 +32,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     onClick,
     value,
     clear = false,
+    ...otherPorps
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -130,19 +131,28 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
               </>
             )}
             {isPc && (
-              <>
-                <Select
-                  value={value ? [value] : undefined}
-                  style={{ width: '100%' }}
-                  onChange={onOK}
-                >
-                  {data.map((item) => (
-                    <Option key={item?.value} value={item?.value}>
-                      {item?.label}
-                    </Option>
-                  ))}
-                </Select>
-              </>
+              <PcLayout
+                isVertical={isVertical}
+                left={children}
+                right={
+                  <Select
+                    {...otherPorps}
+                    value={value}
+                    style={{ width: '100%', ...coverStyle }}
+                    onChange={(e: any) => {
+                      onChange(e);
+                    }}
+                    allowClear={clear}
+                    placeholder={placeholder}
+                  >
+                    {data.map((item) => (
+                      <Option key={item?.value} value={item?.value}>
+                        {item?.label}
+                      </Option>
+                    ))}
+                  </Select>
+                }
+              />
             )}
           </React.Fragment>
         );
