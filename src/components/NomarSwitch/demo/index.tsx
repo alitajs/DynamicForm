@@ -5,7 +5,6 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
-  IFormItemProps,
   useForm,
   Store,
   ValidateErrorEntity,
@@ -28,37 +27,12 @@ const Page: FC<PageProps> = () => {
     console.log(errorInfo);
   };
 
-  const formsData = [
-    {
-      type: 'switch',
-      fieldProps: 'off',
-      placeholder: '选择',
-      title: 'Off',
-      required: true,
-    },
-    {
-      type: 'switch',
-      fieldProps: 'on',
-      placeholder: '选择',
-      title: 'On',
-    },
-    {
-      type: 'switch',
-      fieldProps: 'disabledOn',
-      placeholder: '选择',
-      title: 'Disabled On',
-      required: true,
-      disabled: true,
-    },
-  ] as IFormItemProps[];
   const formsValues = {};
   const formsProps = {
     form,
     onFinish,
     onFinishFailed,
     formsValues,
-    // data: formsData,
-    isDev: true,
   };
 
   return (

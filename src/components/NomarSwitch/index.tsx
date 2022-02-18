@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import { Switch } from 'antd-mobile-v2';
+import { Switch } from 'antd-mobile/2x';
 import { Rule } from 'rc-field-form/es/interface';
-import { SwitchPropsType } from 'antd-mobile-v2/es/switch/PropsType';
+import { SwitchProps } from 'antd-mobile/es/components/switch/index';
 import { allPrefixCls } from '../../const/index';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
 import './index.less';
 
-export interface INomarSwitchProps extends SwitchPropsType {
+export interface INomarSwitchProps extends SwitchProps {
   coverStyle?: React.CSSProperties;
   title: string;
   required?: boolean;
