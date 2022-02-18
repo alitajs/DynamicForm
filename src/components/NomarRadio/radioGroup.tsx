@@ -2,6 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
+import { DformContext } from '@/baseComponents/Context';
+import PcLayout from '@/baseComponents/PcLayout';
+import { Radio } from 'antd';
 
 const prefixCls = 'alitajs-dform-radio';
 
@@ -37,6 +40,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     labelNumber = 5,
     children,
     formFlag = false,
+    ...otherprops
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
     undefined,
@@ -107,66 +111,93 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
 
   const formValue = formFlag ? activeValue : value;
 
-  return (
-    <div
-      className={classnames({
-        [prefixCls]: true,
-        [`${allPrefixCls}-vertical-radio`]: isVertical,
-      })}
-    >
-      {!isVertical && (
-        <div
-          className={classnames(labelCls, {
-            [`${allPrefixCls}-title`]: true,
-            [`${allPrefixCls}-vertical-title`]: isVertical,
-          })}
-        >
-          {children}
-        </div>
-      )}
+  const renderDefault = () => {
+    return (
       <div
         className={classnames({
-          [`${prefixCls}-group`]: true,
-          [`${prefixCls}-position`]: !isVertical,
-          [`${prefixCls}-item-vertical`]: radioType === 'vertical',
-          [`${allPrefixCls}-disabled`]: disabled,
+          [prefixCls]: true,
+          [`${allPrefixCls}-vertical-radio`]: isVertical,
         })}
-        style={coverStyle}
       >
-        {data.map((item: IDataItem, index: number) => (
+        {!isVertical && (
           <div
-            key={item.value}
-            className={classnames({
-              [`${prefixCls}-wrapper`]: true,
-              [`${prefixCls}-wrapper-last`]: index + 1 === (data || []).length,
-              [`${prefixCls}-wrapper-item-vertical`]: radioType === 'vertical',
+            className={classnames(labelCls, {
+              [`${allPrefixCls}-title`]: true,
+              [`${allPrefixCls}-vertical-title`]: isVertical,
             })}
-            onClick={(e) => {
-              radioClick(e, item);
-            }}
           >
-            <div
-              className={classnames({
-                [`${prefixCls}-button`]: true,
-                [`${prefixCls}-checked`]: item.value === formValue,
-              })}
-            >
-              {item.value === formValue && (
-                <div className={`${prefixCls}-inner-button`}></div>
-              )}
-            </div>
-            <div
-              className={classnames({
-                [`${prefixCls}-label`]: true,
-                [className]: className,
-              })}
-            >
-              {item.label}
-            </div>
+            {children}
           </div>
-        ))}
+        )}
+        <div
+          className={classnames({
+            [`${prefixCls}-group`]: true,
+            [`${prefixCls}-position`]: !isVertical,
+            [`${prefixCls}-item-vertical`]: radioType === 'vertical',
+            [`${allPrefixCls}-disabled`]: disabled,
+          })}
+          style={coverStyle}
+        >
+          {data.map((item: IDataItem, index: number) => (
+            <div
+              key={item.value}
+              className={classnames({
+                [`${prefixCls}-wrapper`]: true,
+                [`${prefixCls}-wrapper-last`]:
+                  index + 1 === (data || []).length,
+                [`${prefixCls}-wrapper-item-vertical`]:
+                  radioType === 'vertical',
+              })}
+              onClick={(e) => {
+                radioClick(e, item);
+              }}
+            >
+              <div
+                className={classnames({
+                  [`${prefixCls}-button`]: true,
+                  [`${prefixCls}-checked`]: item.value === formValue,
+                })}
+              >
+                {item.value === formValue && (
+                  <div className={`${prefixCls}-inner-button`}></div>
+                )}
+              </div>
+              <div
+                className={classnames({
+                  [`${prefixCls}-label`]: true,
+                  [className]: className,
+                })}
+              >
+                {item.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    );
+  };
+
+  const renderPcContent = () => {
+    return (
+      <PcLayout
+        isVertical={isVertical}
+        left={children}
+        right={
+          <Radio.Group {...otherprops} value={formValue}>
+            {}
+          </Radio.Group>
+        }
+      />
+    );
+  };
+
+  return (
+    <DformContext.Consumer>
+      {({ isPc }: any) => {
+        if (!isPc) return renderDefault();
+        return renderPcContent();
+      }}
+    </DformContext.Consumer>
   );
 };
 
