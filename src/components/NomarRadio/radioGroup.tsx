@@ -4,12 +4,14 @@ import { allPrefixCls } from '../../const/index';
 import './index.less';
 import { DformContext } from '@/baseComponents/Context';
 import PcLayout from '@/baseComponents/PcLayout';
-import { Radio } from 'antd';
+import { Radio, Space, Input } from 'antd';
 
 const prefixCls = 'alitajs-dform-radio';
 
 export interface IDataItem {
-  [key: string]: string | number | undefined;
+  label: string;
+  value: string;
+  disabled?: boolean;
 }
 
 export interface INomarRadioGroupProps {
@@ -24,6 +26,8 @@ export interface INomarRadioGroupProps {
   allowUnChecked?: boolean;
   labelNumber: number;
   formFlag?: boolean;
+  buttonStyle?: 'outline' | 'solid';
+  optionType?: 'default' | 'botton';
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
@@ -40,6 +44,8 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     labelNumber = 5,
     children,
     formFlag = false,
+    optionType = 'default',
+    buttonStyle = 'outline',
     ...otherprops
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
@@ -177,14 +183,46 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     );
   };
 
+  const renderRadio = (item: IDataItem) => {
+    if (optionType === 'default') {
+      return (
+        <Radio key={item.value} value={item.value} disabled={item.disabled}>
+          {item.label}
+        </Radio>
+      );
+    }
+    return (
+      <Radio.Button
+        key={item.value}
+        value={item.value}
+        disabled={item.disabled}
+      >
+        {item.label}
+      </Radio.Button>
+    );
+  };
+
   const renderPcContent = () => {
     return (
       <PcLayout
         isVertical={isVertical}
         left={children}
         right={
-          <Radio.Group {...otherprops} value={formValue}>
-            {}
+          <Radio.Group
+            {...otherprops}
+            value={formValue}
+            disabled={disabled}
+            onChange={(e: any) => {
+              console.log('e', e);
+              onChange(e);
+            }}
+          >
+            {data.map((item: IDataItem) => {
+              if (radioType === 'vertical') {
+                return <Space direction="vertical">{renderRadio(item)}</Space>;
+              }
+              return renderRadio(item);
+            })}
           </Radio.Group>
         }
       />

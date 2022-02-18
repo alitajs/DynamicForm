@@ -38,6 +38,7 @@ export interface INomarRadioProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
 }
 
 const DformRadio: FC<INomarRadioProps> = (props) => {
@@ -75,6 +76,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
+      ...item,
       label: item[label],
       value: item[value],
     }));
@@ -124,6 +126,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      isPc={props.isPc}
       {...titleProps}
     >
       <div className={`${prefixCls}-field`}>

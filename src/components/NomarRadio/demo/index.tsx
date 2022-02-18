@@ -77,6 +77,7 @@ const DfromRadioTextPage: FC = () => {
     onFinishFailed,
     onFinish,
     isDev: false,
+    isPc: true,
   };
   return (
     <>
