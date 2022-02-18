@@ -18,6 +18,7 @@ export interface INomarTextAreaProps
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   onChange?: (res: string) => void;
+  isPc?: boolean;
 }
 
 export interface TextareaItemProps {

@@ -21,7 +21,6 @@ const InputItem: FC<IInputItemProps> = (props) => {
     onClick,
     editable = true,
     onChange,
-    labelNumber = 5,
     coverStyle = {},
     disabled = false,
     extra = '',
