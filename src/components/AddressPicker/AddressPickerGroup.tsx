@@ -59,7 +59,6 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   const [initReq, setInitReq] = useState<boolean>(false); // 用于记录是否已经初始化请求过
   const [openReq, setOpenReq] = useState<boolean>(true); // 打开是否需要请求
   const [isConfirm, setIsConfirm] = useState<boolean>(false);
-
   useEffect(() => {
     if (!!data.length) setList(data);
     if (!modalFlag) return;
@@ -101,16 +100,20 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
   }, [data]);
 
   useEffect(() => {
-    if (isConfirm) {
-      setIsConfirm(false);
+    if (!value || isConfirm) {
+      if (isConfirm) {
+        setIsConfirm(false);
+      }
+      return;
     }
-    if (!value || isConfirm) return;
     const newValue = JSON.parse(JSON.stringify(value));
     if (valueList.toString() !== newValue?.value?.toString()) {
       setInputLabel(newValue?.label.join(' '));
       setValueList(newValue?.value);
       setLabelList(newValue?.label);
       setCurReqLevel(newValue?.value?.length);
+      setOpenReq(true);
+    } else if (!valueList.length) {
       setOpenReq(true);
     } else {
       setOpenReq(false);
@@ -136,6 +139,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     setInputLabel(newLabelList.join(' '));
     setModalFlag(false); // 关闭弹框
     setIsConfirm(true);
+    setOpenReq(false);
   };
 
   /**
