@@ -4,9 +4,10 @@ import { allPrefixCls } from '../../const/index';
 import './index.less';
 import { DformContext } from '@/baseComponents/Context';
 import PcLayout from '@/baseComponents/PcLayout';
-import { Radio, Space, Input } from 'antd';
+import { Radio, Space } from 'antd';
 
 const prefixCls = 'alitajs-dform-radio';
+const pcPrefixCls = 'alitajs-dform-pc-radio';
 
 export interface IDataItem {
   label: string;
@@ -213,16 +214,22 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
             value={formValue}
             disabled={disabled}
             onChange={(e: any) => {
-              console.log('e', e);
-              onChange(e);
+              onChange(e?.target?.value);
             }}
           >
-            {data.map((item: IDataItem) => {
-              if (radioType === 'vertical') {
-                return <Space direction="vertical">{renderRadio(item)}</Space>;
-              }
-              return renderRadio(item);
-            })}
+            <div className={`${pcPrefixCls}`}>
+              {radioType === 'vertical' ? (
+                <Space direction={radioType}>
+                  {data.map((item: IDataItem) => {
+                    return renderRadio(item);
+                  })}
+                </Space>
+              ) : (
+                data.map((item: IDataItem) => {
+                  return renderRadio(item);
+                })
+              )}
+            </div>
           </Radio.Group>
         }
       />

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
@@ -58,6 +58,8 @@ const foodList = [
 ];
 
 const DfromRadioTextPage: FC = () => {
+  const [singleVal, setSingleVal] = useState('可乐鸡翅');
+  const [singleVal1, setSingleVal1] = useState('宫保鸡丁');
   const [form] = useForm();
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -77,7 +79,7 @@ const DfromRadioTextPage: FC = () => {
     onFinishFailed,
     onFinish,
     isDev: false,
-    isPc: true,
+    // isPc: true,
   };
   return (
     <>
@@ -124,6 +126,42 @@ const DfromRadioTextPage: FC = () => {
           positionType="vertical"
         />
       </DynamicForm>
+
+      <DformRadio
+        defaultValue={singleVal}
+        fieldProps="userRadio4"
+        required
+        allowUnChecked={false}
+        data={foodList}
+        title="single"
+        radioType="vertical"
+        alias={{
+          label: 'foodId',
+          value: 'foodName',
+        }}
+        positionType="vertical"
+        onChange={(e: any) => {
+          setSingleVal(e);
+        }}
+      />
+      <DformRadio
+        isPc
+        defaultValue={singleVal1}
+        fieldProps="userRadio4"
+        required
+        allowUnChecked={false}
+        data={foodList}
+        title="single-pc"
+        radioType="vertical"
+        alias={{
+          label: 'foodId',
+          value: 'foodName',
+        }}
+        positionType="vertical"
+        onChange={(e: any) => {
+          setSingleVal1(e);
+        }}
+      />
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit

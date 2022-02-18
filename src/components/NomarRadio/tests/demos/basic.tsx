@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   IFormItemProps,
@@ -8,8 +8,10 @@ import DynamicForm, {
 import { useForm } from 'rc-field-form';
 
 interface BasicProps {
-  onFinish: any;
-  onFinishFailed: any;
+  onFinish?: any;
+  onFinishFailed?: any;
+  isPc?: boolean;
+  single?: boolean;
 }
 const radioList = [
   {
@@ -58,98 +60,76 @@ const foodList = [
   },
 ];
 
-const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
+const DfromRadioTestPage: FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  isPc = false,
+  single = false,
+}) => {
+  const [singleVal, setSingVale] = useState('红烧肉');
   const [form] = useForm();
   const formsValues = {
     userRadio3: '雨',
     userRadio4: '红烧肉',
   };
-  const formsData = [
-    {
-      type: 'radio',
-      fieldProps: 'userRadio1',
-      required: true,
-      data: radioList,
-      title: '发票',
-      onChange: (e: string | number) => {},
-    },
-    {
-      type: 'radio',
-      fieldProps: 'userRadio2',
-      required: true,
-      data: radioList,
-      title: '内容靠左',
-      labelNumber: 5,
-      coverStyle: {
-        justifyContent: 'flex-start',
-      },
-    },
-    {
-      type: 'radio',
-      fieldProps: 'userRadio3',
-      required: true,
-      disabled: true,
-      data: dayList,
-      positionType: 'vertical',
-      title: '天气情况',
-    },
-    {
-      type: 'radio',
-      fieldProps: 'userRadio4',
-      required: true,
-      allowUnChecked: false,
-      data: foodList,
-      title: '喜欢的食物',
-      radioType: 'vertical',
-      alias: {
-        label: 'foodId',
-        value: 'foodName',
-      },
-    },
-  ] as IFormItemProps[];
+
   const formProps = {
     formsValues,
     form,
     onFinishFailed,
     onFinish,
     isDev: false,
+    isPc,
   };
 
   return (
     <>
-      <DynamicForm {...formProps} failScroll={false}>
+      {!single && (
+        <DynamicForm {...formProps} failScroll={false}>
+          <DformRadio
+            fieldProps="userRadio1"
+            required
+            data={radioList}
+            title="发票"
+            allowUnChecked
+          />
+          <DformRadio
+            fieldProps="userRadio2"
+            required
+            data={radioList}
+            title="内容靠左"
+            labelNumber={5}
+            coverStyle={{
+              justifyContent: 'flex-start',
+            }}
+          />
+          <DformRadio
+            fieldProps="userRadio3"
+            required
+            disabled={true}
+            data={dayList}
+            positionType="vertical"
+            title="天气情况"
+          />
+          <DformRadio
+            fieldProps="userRadio4"
+            required
+            allowUnChecked={false}
+            data={foodList}
+            title="喜欢的食物"
+            radioType="vertical"
+            alias={{
+              label: 'foodId',
+              value: 'foodName',
+            }}
+          />
+        </DynamicForm>
+      )}
+      {single && (
         <DformRadio
-          // type='radio'
-          fieldProps="userRadio1"
-          required={true}
-          data={radioList}
-          title="发票"
-          allowUnChecked
-        />
-        <DformRadio
-          // type='radio'
-          fieldProps="userRadio2"
-          required={true}
-          data={radioList}
-          title="内容靠左"
-          labelNumber={5}
-          coverStyle={{
-            justifyContent: 'flex-start',
-          }}
-        />
-        <DformRadio
-          // type='radio'
-          fieldProps="userRadio3"
-          required={true}
-          disabled={true}
-          data={dayList}
-          positionType="vertical"
-          title="天气情况"
-        />
-        <DformRadio
-          // type='radio'
+          defaultValue={singleVal}
           fieldProps="userRadio4"
-          required={true}
+          required
           allowUnChecked={false}
           data={foodList}
           title="喜欢的食物"
@@ -158,8 +138,11 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
             label: 'foodId',
             value: 'foodName',
           }}
+          onChange={(e: any) => {
+            setSingVale(e);
+          }}
         />
-      </DynamicForm>
+      )}
       <WhiteSpace size="sm" />
       <Button type="primary" onClick={() => form.submit()}>
         Submit
