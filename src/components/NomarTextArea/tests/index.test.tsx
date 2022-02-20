@@ -2,7 +2,9 @@ import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor } from '@alita/test';
 import Form from 'rc-field-form';
 import DformTextArea from '..';
-import BasicText from './demos/basic';
+import BasicTest from './demos/basic';
+import PcTest from './demos/pc';
+import SingleTest from './demos/single';
 
 const mtProps = {
   type: 'area',
@@ -25,13 +27,13 @@ it('passes picker a11y test', async () => {
   await testA11y(container);
 });
 
-test('renders Basic', async () => {
+test('renders area Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
   const onChange = jest.fn();
   const onBlur = jest.fn();
   const { getByText } = render(
-    <BasicText
+    <BasicTest
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       onChange={onChange}
@@ -80,5 +82,67 @@ test('renders Basic', async () => {
   fireEvent.click(getByText('Submit'));
   await waitFor(() => {
     expect(onFinish).toBeCalled();
+  });
+});
+
+test('renders pc area ', async () => {
+  const onFinish = jest.fn();
+  const onFinishFailed = jest.fn();
+  const onChange = jest.fn();
+  const onBlur = jest.fn();
+  const { getByText } = render(
+    <PcTest
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onChange={onChange}
+      onBlur={onBlur}
+    />,
+  );
+  expect(getByText('学校概况')).toBeDefined();
+  fireEvent.click(getByText('Submit'));
+  await waitFor(() => {
+    expect(onFinishFailed).toBeCalled();
+    expect(getByText('请输入备注')).toBeDefined();
+  });
+
+  const school: any = getByText('备注')?.parentNode?.parentNode?.lastChild;
+
+  fireEvent.change(school, { target: { value: '我的学校很漂亮' } });
+  expect(onChange).toBeCalled();
+  await waitFor(() => {
+    expect(getByText('我的学校很漂亮')).toBeDefined();
+  });
+
+  //判断textarea标签有readonly属性
+  expect(
+    getByText('只读，不可编辑，不存在点击事件').getAttribute('disabled') === '',
+  ).toBe(true);
+  expect(
+    getByText('只读，不可编辑，存在点击事件').getAttribute('disabled') === '',
+  ).toBe(true);
+
+  const blus: any =
+    getByText('公司简介（字数统计）').parentNode?.parentNode?.lastChild
+      ?.lastChild;
+  blus.focus();
+  blus.blur();
+  expect(onBlur).toBeCalled();
+
+  fireEvent.click(getByText('Submit'));
+  await waitFor(() => {
+    expect(onFinish).toBeCalled();
+  });
+});
+
+test('renders single area ', async () => {
+  const onChange = jest.fn();
+  const { getByText } = render(<SingleTest onChange={onChange} />);
+  expect(getByText('用户名')).toBeDefined();
+  const blus: any =
+    getByText('用户名').parentNode?.parentNode?.lastChild?.lastChild;
+
+  fireEvent.change(blus, { target: { value: '我的学校很漂亮' } });
+  await waitFor(() => {
+    expect(onChange).toBeCalled();
   });
 });

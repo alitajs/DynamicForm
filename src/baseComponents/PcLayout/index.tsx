@@ -21,14 +21,18 @@ export interface PcLayoutProps {
    * @default 5
    */
   labelNumber?: number;
+  /**
+   * 类名
+   */
+  className?: string;
 }
 
 const PcLayout: FC<PcLayoutProps> = (props) => {
-  const { left, right, isVertical, labelNumber = 5 } = props;
+  const { left, right, isVertical, className } = props;
 
   return (
     <div
-      className={classnames({
+      className={classnames(className, {
         [`${allPcPrefixCls}-title`]: !isVertical,
         [`${allPcPrefixCls}-vertical-title`]: isVertical,
       })}

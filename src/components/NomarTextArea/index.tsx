@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import TextareaItem from './TextareaItem';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const/index';
 import { INomarTextAreaProps } from './interface';
 
@@ -29,6 +30,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     formFlag = false,
     onChange,
     labelNumber = 5,
+    isPc = false,
     ...otherProps
   } = props;
 
@@ -47,16 +49,13 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   if (extra) isVertical = true;
 
   const titleDiv = () => (
-    <div
-      className={classNames(labelCls, {
-        [`${allPrefixCls}-title`]: true,
-      })}
-    >
-      {required && hasStar && (
-        <div className={`${allPrefixCls}-redStar`}>*</div>
-      )}
-      <div>{title}</div>
-    </div>
+    <HorizontalTitle
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      labelNumber={labelNumber}
+      isVertical={isVertical}
+    />
   );
 
   const inputOnBlur = (val: string) => {
@@ -69,7 +68,12 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      isPc={isPc}
+      {...titleProps}
+    >
       <Field
         name={fieldProps}
         rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}

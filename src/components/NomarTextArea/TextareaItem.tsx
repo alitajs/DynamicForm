@@ -7,12 +7,17 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import classNames from 'classnames';
-import { allPrefixCls } from '../../const';
+import { Input } from 'antd';
+import PcLayout from '../../baseComponents/PcLayout';
+import { DformContext } from '../../baseComponents/DynamicForm';
+import { allPrefixCls, allPcPrefixCls } from '../../const';
 
 import { TextareaItemProps } from './interface';
 import './index.less';
 
 const prefixCls = `${allPrefixCls}-textarea`;
+
+const { TextArea } = Input;
 
 interface ITextareaItemProps extends TextareaItemProps {
   title: ReactNode;
@@ -137,15 +142,61 @@ const TextareaItem = forwardRef<TextAreaRef, ITextareaItemProps>(
     };
 
     return (
-      <>
-        {!isVertical && (
-          <div className={`${prefixCls}-wrapper`}>
-            {title}
-            {showTextareaDom()}
-          </div>
-        )}
-        {isVertical && showTextareaDom()}
-      </>
+      <DformContext.Consumer>
+        {({ isPc }: any) => {
+          return (
+            <>
+              {!isPc && (
+                <>
+                  {!isVertical && (
+                    <div className={`${prefixCls}-wrapper`}>
+                      {title}
+                      {showTextareaDom()}
+                    </div>
+                  )}
+                  {isVertical && showTextareaDom()}
+                </>
+              )}
+              {isPc && (
+                <PcLayout
+                  isVertical={isVertical}
+                  left={title}
+                  className={`${allPcPrefixCls}-textarea`}
+                  right={
+                    <TextArea
+                      {...otherProps}
+                      autoSize={autoSize}
+                      value={value}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                        areaChange(e.target.value)
+                      }
+                      showCount={showCount}
+                      maxLength={maxLength}
+                      disabled={disabled || !editable}
+                      placeholder={placeholder}
+                      className={className}
+                      style={{
+                        flex: '1',
+                        ...coverStyle,
+                      }}
+                      onFocus={(e) => {
+                        props.onFocus?.(e.target.value);
+                      }}
+                      onBlur={(e) => {
+                        props.onBlur?.(e.target.value);
+                      }}
+                      id={id}
+                      onClick={(e: React.MouseEvent<HTMLElement>) => {
+                        if (!disabled && onClick) onClick(e);
+                      }}
+                    />
+                  }
+                />
+              )}
+            </>
+          );
+        }}
+      </DformContext.Consumer>
     );
   },
 );

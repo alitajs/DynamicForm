@@ -144,6 +144,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
                     }}
                     allowClear={clear}
                     placeholder={placeholder}
+                    disabled={disabled}
                   >
                     {data.map((item) => (
                       <Option key={item?.value} value={item?.value}>
