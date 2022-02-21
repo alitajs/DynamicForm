@@ -37,6 +37,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     children,
     fieldProps,
     clear = false,
+    ...otherProps
   } = props;
 
   const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
@@ -207,11 +208,17 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
               labelNumber={labelNumber}
               right={
                 <Select
+                  {...otherProps}
+                  value={value}
                   mode="multiple"
                   allowClear={clear}
-                  style={{ width: '100%' }}
+                  style={{ width: '100%', ...coverStyle }}
+                  className={className}
                   placeholder={placeholder}
-                  onChange={(e) => console.log(e)}
+                  onChange={(e: (number | string)[]) => {
+                    if (onChange) onChange(e);
+                  }}
+                  disabled={disabled}
                 >
                   {data.map(({ label, value }) => (
                     <Option key={value} value={value}>

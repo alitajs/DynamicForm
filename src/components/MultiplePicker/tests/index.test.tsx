@@ -31,7 +31,7 @@ it('passes multiplepicker a11y test', async () => {
   await testA11y(container);
 });
 
-test('render Basic', async () => {
+test('render multiplePicker Basic', async () => {
   const onFinish = jest.fn();
   const onFinishFailed = jest.fn();
   const onChange = jest.fn();
@@ -64,4 +64,29 @@ test('render Basic', async () => {
     fireEvent.click(getByText('Submit'));
   });
   expect(onFinish).toBeCalled();
+});
+test('render multiplePicker pc Basic', async () => {
+  const onFinish = jest.fn();
+  const onFinishFailed = jest.fn();
+  const onChange = jest.fn();
+  const { getByText } = render(
+    <BasicTest
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onChange={onChange}
+      isPc
+    />,
+  );
+  await waitFor(() => {
+    fireEvent.click(getByText('Submit'));
+  });
+  expect(onFinishFailed).toBeCalled();
+  expect(getByText('我喜欢的食物').parentNode).toHaveClass(
+    'alitajs-dform-pc-title-label',
+  );
+  expect(
+    getByText('选择你喜欢的食物(不可编辑)')?.parentNode?.parentNode,
+  ).toHaveClass('alitajs-dform-pc-vertical-title');
+
+  expect(document.querySelectorAll('.ant-select-disabled').length).toBe(1);
 });

@@ -28,6 +28,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     formFlag = false,
     labelNumber = 5,
     isPc,
+    ...otherProps
   } = props;
   const { label = 'label', value = 'value' } = alias;
 
@@ -64,7 +65,15 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         initialValue={defaultValue}
         formFlag={formFlag}
       >
-        <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
+        <MultiplePickerGroup
+          {...otherProps}
+          data={aliasData}
+          onChange={fieldChange}
+          fieldProps={fieldProps}
+          title={title}
+          positionType={positionType}
+          labelNumber={labelNumber}
+        >
           <HorizontalTitle
             required={required}
             hasStar={hasStar}
