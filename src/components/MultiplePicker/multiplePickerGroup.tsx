@@ -1,11 +1,15 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile-v2';
 import classnames from 'classnames';
+import { Select } from 'antd';
 import { IMultiplePickerProps, IDataItem } from './interface';
 import TextItem from '../../baseComponents/TextItem';
+import PcLayout from '../../baseComponents/PcLayout';
+import { DformContext } from '../../baseComponents/DynamicForm';
 import './index.less';
 
 const { Item } = List;
+const { Option } = Select;
 
 interface IMultiplePickerGroupProps
   extends Omit<IMultiplePickerProps, 'onChange'> {
@@ -107,89 +111,120 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
   };
 
   return (
-    <>
-      <TextItem
-        fieldProps={fieldProps}
-        isVertical={isVertical}
-        value={multipleLabel}
-        disabled={disabled}
-        placeholder={placeholder}
-        labelNumber={labelNumber}
-        coverStyle={coverStyle}
-        className={className}
-        onClick={() => {
-          if (onClick) onClick();
-          openMoal();
-        }}
-        arrow={!disabled}
-        clear={clear}
-        clearClick={clearClick}
-      >
-        {children}
-      </TextItem>
-      <Modal
-        popup
-        visible={modalFlag}
-        onClose={() => {
-          onCancel();
-        }}
-        style={{
-          height,
-        }}
-        className="alitajs-dform-multiple-picker"
-        animationType="slide-up"
-        title={
-          <div className="am-picker-popup-header">
-            <div
-              className="am-picker-popup-item am-picker-popup-header-left"
-              onClick={() => {
-                onCancel();
-              }}
-            >
-              {leftContent}
-            </div>
-            <div className="am-picker-popup-item am-picker-popup-title">
-              {title}
-            </div>
-            <div
-              className="am-picker-popup-item am-picker-popup-header-right"
-              onClick={() => {
-                onConfirm();
-              }}
-            >
-              {rightContent}
-            </div>
-          </div>
-        }
-      >
-        <List className="alitajs-dform-modal-content">
-          {data.map((item) => (
-            <Item key={item.value}>
-              <div
-                className="alitajs-dform-multiple-picker-item"
+    <DformContext.Consumer>
+      {({ isPc }: any) => {
+        if (!isPc) {
+          return (
+            <>
+              <TextItem
+                fieldProps={fieldProps}
+                isVertical={isVertical}
+                value={multipleLabel}
+                disabled={disabled}
+                placeholder={placeholder}
+                labelNumber={labelNumber}
+                coverStyle={coverStyle}
+                className={className}
                 onClick={() => {
-                  pickerClick(item);
+                  if (onClick) onClick();
+                  openMoal();
                 }}
+                arrow={!disabled}
+                clear={clear}
+                clearClick={clearClick}
               >
-                <div
-                  className={classnames({
-                    'alitajs-dform-multiple-picker-label': true,
-                    'alitajs-dform-multiple-picker-checked':
-                      selValueList.indexOf(item?.value) !== -1,
-                  })}
+                {children}
+              </TextItem>
+              <Modal
+                popup
+                visible={modalFlag}
+                onClose={() => {
+                  onCancel();
+                }}
+                style={{
+                  height,
+                }}
+                className="alitajs-dform-multiple-picker"
+                animationType="slide-up"
+                title={
+                  <div className="am-picker-popup-header">
+                    <div
+                      className="am-picker-popup-item am-picker-popup-header-left"
+                      onClick={() => {
+                        onCancel();
+                      }}
+                    >
+                      {leftContent}
+                    </div>
+                    <div className="am-picker-popup-item am-picker-popup-title">
+                      {title}
+                    </div>
+                    <div
+                      className="am-picker-popup-item am-picker-popup-header-right"
+                      onClick={() => {
+                        onConfirm();
+                      }}
+                    >
+                      {rightContent}
+                    </div>
+                  </div>
+                }
+              >
+                <List className="alitajs-dform-modal-content">
+                  {data.map((item) => (
+                    <Item key={item.value}>
+                      <div
+                        className="alitajs-dform-multiple-picker-item"
+                        onClick={() => {
+                          pickerClick(item);
+                        }}
+                      >
+                        <div
+                          className={classnames({
+                            'alitajs-dform-multiple-picker-label': true,
+                            'alitajs-dform-multiple-picker-checked':
+                              selValueList.indexOf(item?.value) !== -1,
+                          })}
+                        >
+                          {item.label}
+                        </div>
+                        {selValueList.indexOf(item?.value) !== -1 && (
+                          <div className="alitajs-dform-tick"></div>
+                        )}
+                      </div>
+                    </Item>
+                  ))}
+                </List>
+                <div style={{ height: '1.2rem' }} />
+              </Modal>
+            </>
+          );
+        } else {
+          return (
+            <PcLayout
+              isVertical={isVertical}
+              left={children}
+              labelNumber={labelNumber}
+              right={
+                <Select
+                  mode="multiple"
+                  allowClear={clear}
+                  style={{ width: '100%' }}
+                  placeholder={placeholder}
+                  onChange={(e) => console.log(e)}
                 >
-                  {item.label}
-                </div>
-                {selValueList.indexOf(item?.value) !== -1 && (
-                  <div className="alitajs-dform-tick"></div>
-                )}
-              </div>
-            </Item>
-          ))}
-        </List>
-        <div style={{ height: '1.2rem' }} />
-      </Modal>
-    </>
+                  {data.map(({ label, value }) => (
+                    <Option key={value} value={value}>
+                      {label}
+                    </Option>
+                  ))}
+                </Select>
+              }
+            />
+          );
+        }
+      }}
+    </DformContext.Consumer>
   );
 };
 
