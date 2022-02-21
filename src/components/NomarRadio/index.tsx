@@ -6,6 +6,7 @@ import NomarRadioGroup from './radioGroup';
 import { allPrefixCls } from '../../const/index';
 import { IAliasProps } from '../../PropsType';
 import './index.less';
+import HorizontalTitle from '@/baseComponents/HorizontalTitle';
 
 const prefixCls = 'alitajs-dform-radio';
 interface radioItem {
@@ -37,6 +38,7 @@ export interface INomarRadioProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
 }
 
 const DformRadio: FC<INomarRadioProps> = (props) => {
@@ -74,6 +76,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
+      ...item,
       label: item[label],
       value: item[value],
     }));
@@ -103,12 +106,13 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
         labelNumber={labelNumber}
         formFlag={formFlag}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+        />
       </NomarRadioGroup>
     );
   };
@@ -122,6 +126,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
       title={title}
       subTitle={subTitle}
       extra={extra}
+      isPc={props.isPc}
       {...titleProps}
     >
       <div className={`${prefixCls}-field`}>
