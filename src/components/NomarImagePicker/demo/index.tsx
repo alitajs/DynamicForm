@@ -47,6 +47,7 @@ const Page = () => {
     formsValues,
     form,
     isDev: true,
+    // isPc: true,
   } as IDynamicFormProps;
 
   return (
