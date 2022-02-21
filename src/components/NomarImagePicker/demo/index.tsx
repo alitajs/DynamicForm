@@ -47,7 +47,6 @@ const Page = () => {
     formsValues,
     form,
     isDev: true,
-    isPc: true,
   } as IDynamicFormProps;
 
   return (
@@ -75,6 +74,7 @@ const Page = () => {
           }}
           limitSize={3 * 1024 * 1024}
           defaultValue={fileList}
+          disabled
         />
         <DformImagePicker
           fieldProps="noInsertImg"

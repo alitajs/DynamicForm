@@ -1,7 +1,7 @@
-import React, { FC, useState, useEffect, Children } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Toast } from 'antd-mobile-v2';
 import { ImageViewer } from 'antd-mobile/2x';
-import { Upload } from 'antd';
+import { Upload, Modal } from 'antd';
 import { AddOutline, CloseOutline } from 'antd-mobile-icons';
 import { DformContext } from '../../baseComponents/DynamicForm';
 import PcLayout from '../../baseComponents/PcLayout';
@@ -29,6 +29,7 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     onImageClick,
     showView = true,
     positionType = 'vertical',
+    disabled = false,
     children,
   } = props;
 
@@ -37,6 +38,9 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
   const [height, setHeight] = useState<number>(0);
   const [addable, setAddable] = useState<boolean>(true);
   const [imgViewList, setImgViewList] = useState<string[]>([]);
+  const [previewVisible, setPreviewVisible] = useState<boolean>(false);
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const [previewTitle, setPreviewTitle] = useState<string>('');
 
   useEffect(() => {
     // 将图片渲染到图片加载器上
@@ -51,7 +55,10 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
       setAddable(selectable);
       return;
     }
-    if (maxLength && value && value.length && value.length >= maxLength) {
+    if (
+      (maxLength && value && value.length && value.length >= maxLength) ||
+      disabled
+    ) {
       setAddable(false);
     } else {
       setAddable(true);
@@ -74,25 +81,21 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     return true;
   };
 
-  const addImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e, e?.target?.files);
-    if (e?.target?.files && !!e?.target?.files.length) {
-      const file = e?.target?.files[0];
-      transformFile(file, compressRatio).then((newFile: any) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(newFile);
-        reader.onload = function ({ target }) {
-          if (!checkFileLimit(newFile)) return;
-          const newValue = [...value];
-          newValue.push({
-            file,
-            url: target?.result || '',
-            id: getRandom(),
-          });
-          onChange(newValue, 'add', undefined);
-        };
-      });
-    }
+  const addImageChange = (file: any) => {
+    transformFile(file, compressRatio).then((newFile: any) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(newFile);
+      reader.onload = function ({ target }) {
+        if (!checkFileLimit(newFile)) return;
+        const newValue = [...value];
+        newValue.push({
+          file,
+          url: target?.result || '',
+          id: getRandom(),
+        });
+        onChange(newValue, 'add', undefined);
+      };
+    });
   };
 
   const onDelete = (item: any, index: number) => {
@@ -107,9 +110,14 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     if (onImageClick) onImageClick(index, item);
   };
 
-  const uploadAction = (file: any) => {
-    console.log(file);
+  const handlePreview = (file: any) => {
+    setPreviewVisible(true);
+    setPreviewImage(file.url || file.preview);
+    setPreviewTitle(
+      file.name || file.url.substring(file.url.lastIndexOf('/') + 1),
+    );
   };
+
   return (
     <DformContext.Consumer>
       {({ isPc }: any) => {
@@ -126,7 +134,7 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
                         src={url}
                         onClick={() => imageClick(item, index)}
                       />
-                      {deletable && (
+                      {deletable && !disabled && (
                         <span
                           className={`${prefixCls}-cell-delete`}
                           onClick={() => onDelete(item, index)}
@@ -156,7 +164,11 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
                       multiple={multiple}
                       type="file"
                       className={`${prefixCls}-upload-input`}
-                      onChange={addImageChange}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        if (e?.target?.files && !!e?.target?.files.length) {
+                          addImageChange(e?.target?.files[0]);
+                        }
+                      }}
                     />
                   </div>
                 </Item>
@@ -170,16 +182,45 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
               left={children}
               className={`${allPcPrefixCls}-image`}
               right={
-                <Upload
-                  action={addImageChange}
-                  listType="picture-card"
-                  fileList={value}
-                  multiple={multiple}
-                  // onPreview={this.handlePreview}
-                  onChange={addImageChange}
-                >
-                  {addable ? <AddOutline /> : null}
-                </Upload>
+                <>
+                  <Upload
+                    action={addImageChange}
+                    listType="picture-card"
+                    fileList={value}
+                    multiple={multiple}
+                    onPreview={handlePreview}
+                    disabled={disabled}
+                    onChange={({ file }: any) => {
+                      if (!!file?.id) {
+                        const ind = value.findIndex(
+                          (it) => it?.id === file?.id,
+                        );
+                        onDelete(file, ind);
+                      }
+                    }}
+                  >
+                    {addable ? <AddOutline /> : null}
+                  </Upload>
+                  <Modal
+                    visible={previewVisible}
+                    title={previewTitle}
+                    footer={null}
+                    onCancel={() => {
+                      setPreviewVisible(false);
+                    }}
+                    style={{
+                      width: '80%',
+                    }}
+                  >
+                    <img
+                      alt="example"
+                      style={{
+                        width: '100%',
+                      }}
+                      src={previewImage}
+                    />
+                  </Modal>
+                </>
               }
             />
           );

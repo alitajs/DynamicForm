@@ -39,6 +39,7 @@ export interface INomarImagePickerProps {
   isPc?: boolean;
   labelNumber?: number;
   positionType?: 'horizontal' | 'vertical';
+  disabled?: boolean;
 }
 
 export interface ImagePickerGroupProps extends INomarImagePickerProps {
