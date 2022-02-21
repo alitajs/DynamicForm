@@ -6,6 +6,7 @@ import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 
 interface INomarCheckBoxProps {
   title: string;
@@ -28,6 +29,9 @@ interface INomarCheckBoxProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
+  labelNumber?: number;
+  positionType?: 'horizontal' | 'vertical';
 }
 
 const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
@@ -50,9 +54,11 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     defaultValue,
     titleProps,
     hidden,
-    hasStar,
+    hasStar = true,
     subTitle,
     formFlag = false,
+    labelNumber = 5,
+    positionType = 'vertical',
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -77,6 +83,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
       hasStar={hasStar}
       title={title}
       subTitle={subTitle}
+      isPc={props.isPc}
       {...titleProps}
     >
       <div className={`${allPrefixCls}-check-box`}>
@@ -95,7 +102,16 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
             chunk={chunk}
             className={className}
             value={defaultValue}
-          />
+            positionType={positionType}
+          >
+            <HorizontalTitle
+              required={required}
+              hasStar={hasStar}
+              title={title}
+              labelNumber={labelNumber}
+              isVertical={positionType === 'vertical'}
+            />
+          </CheckBoxGroup>
         </Field>
       </div>
     </Title>
