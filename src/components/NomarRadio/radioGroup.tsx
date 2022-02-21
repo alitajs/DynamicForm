@@ -2,8 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
-import { DformContext } from '@/baseComponents/Context';
-import PcLayout from '@/baseComponents/PcLayout';
+import { DformContext } from '../../baseComponents/Context';
+import PcLayout from '../../baseComponents/PcLayout';
 import { Radio, Space } from 'antd';
 
 const prefixCls = 'alitajs-dform-radio';
