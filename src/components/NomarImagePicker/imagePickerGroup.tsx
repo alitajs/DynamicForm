@@ -1,9 +1,12 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, Children } from 'react';
 import { Toast } from 'antd-mobile-v2';
 import { ImageViewer } from 'antd-mobile/2x';
+import { Upload } from 'antd';
 import { AddOutline, CloseOutline } from 'antd-mobile-icons';
+import { DformContext } from '../../baseComponents/DynamicForm';
+import PcLayout from '../../baseComponents/PcLayout';
 import { Image, Grid } from '../../baseComponents';
-import { allPrefixCls } from '../../const';
+import { allPrefixCls, allPcPrefixCls } from '../../const';
 import { ImageFile, ImagePickerGroupProps } from './interface';
 import { transformFile, getRandom } from '../../utils';
 
@@ -25,7 +28,11 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     selectable,
     onImageClick,
     showView = true,
+    positionType = 'vertical',
+    children,
   } = props;
+
+  const isVertical = positionType === 'vertical';
 
   const [height, setHeight] = useState<number>(0);
   const [addable, setAddable] = useState<boolean>(true);
@@ -68,21 +75,24 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
   };
 
   const addImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e?.target?.files[0];
-    transformFile(file, compressRatio).then((newFile: any) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(newFile);
-      reader.onload = function ({ target }) {
-        if (!checkFileLimit(newFile)) return;
-        const newValue = [...value];
-        newValue.push({
-          file,
-          url: target?.result || '',
-          id: getRandom(),
-        });
-        onChange(newValue, 'add', undefined);
-      };
-    });
+    console.log(e, e?.target?.files);
+    if (e?.target?.files && !!e?.target?.files.length) {
+      const file = e?.target?.files[0];
+      transformFile(file, compressRatio).then((newFile: any) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(newFile);
+        reader.onload = function ({ target }) {
+          if (!checkFileLimit(newFile)) return;
+          const newValue = [...value];
+          newValue.push({
+            file,
+            url: target?.result || '',
+            id: getRandom(),
+          });
+          onChange(newValue, 'add', undefined);
+        };
+      });
+    }
   };
 
   const onDelete = (item: any, index: number) => {
@@ -96,54 +106,86 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
       ImageViewer.Multi.show({ images: imgViewList, defaultIndex: index });
     if (onImageClick) onImageClick(index, item);
   };
+
+  const uploadAction = (file: any) => {
+    console.log(file);
+  };
   return (
-    <>
-      <Grid columns={4} gap={`0.22rem`}>
-        {value.map((item, index: number) => {
-          const { url, id } = item;
+    <DformContext.Consumer>
+      {({ isPc }: any) => {
+        if (!isPc) {
           return (
-            <Item key={id}>
-              <div className={`${prefixCls}-content`}>
-                <Image
-                  id={id}
-                  src={url}
-                  onClick={() => imageClick(item, index)}
-                />
-                {deletable && (
-                  <span
-                    className={`${prefixCls}-cell-delete`}
-                    onClick={() => onDelete(item, index)}
+            <Grid columns={4} gap={`0.22rem`}>
+              {value.map((item, index: number) => {
+                const { url, id } = item;
+                return (
+                  <Item key={id}>
+                    <div className={`${prefixCls}-content`}>
+                      <Image
+                        id={id}
+                        src={url}
+                        onClick={() => imageClick(item, index)}
+                      />
+                      {deletable && (
+                        <span
+                          className={`${prefixCls}-cell-delete`}
+                          onClick={() => onDelete(item, index)}
+                        >
+                          <CloseOutline
+                            className={`${prefixCls}-cell-delete-icon`}
+                          />
+                        </span>
+                      )}
+                    </div>
+                  </Item>
+                );
+              })}
+              {addable && (
+                <Item>
+                  <div
+                    className={`${prefixCls}-upload`}
+                    id={`${prefixCls}-upload`}
+                    style={{ height }}
                   >
-                    <CloseOutline className={`${prefixCls}-cell-delete-icon`} />
-                  </span>
-                )}
-              </div>
-            </Item>
+                    <span className={`${prefixCls}-upload-button-icon`}>
+                      <AddOutline />
+                    </span>
+                    <input
+                      capture={capture}
+                      accept={accept}
+                      multiple={multiple}
+                      type="file"
+                      className={`${prefixCls}-upload-input`}
+                      onChange={addImageChange}
+                    />
+                  </div>
+                </Item>
+              )}
+            </Grid>
           );
-        })}
-        {addable && (
-          <Item>
-            <div
-              className={`${prefixCls}-upload`}
-              id={`${prefixCls}-upload`}
-              style={{ height }}
-            >
-              <span className={`${prefixCls}-upload-button-icon`}>
-                <AddOutline />
-              </span>
-              <input
-                capture={capture}
-                accept={accept}
-                multiple={multiple}
-                type="file"
-                className={`${prefixCls}-upload-input`}
-                onChange={addImageChange}
-              />
-            </div>
-          </Item>
-        )}
-      </Grid>
-    </>
+        } else {
+          return (
+            <PcLayout
+              isVertical={isVertical}
+              left={children}
+              className={`${allPcPrefixCls}-image`}
+              right={
+                <Upload
+                  action={addImageChange}
+                  listType="picture-card"
+                  fileList={value}
+                  multiple={multiple}
+                  // onPreview={this.handlePreview}
+                  onChange={addImageChange}
+                >
+                  {addable ? <AddOutline /> : null}
+                </Upload>
+              }
+            />
+          );
+        }
+      }}
+    </DformContext.Consumer>
   );
 };
 

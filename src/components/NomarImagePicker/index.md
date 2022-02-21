@@ -35,7 +35,6 @@ nav:
 | hidden        | 字段展示与否的判断                                                                                                     | boolean                                                       | false           | 否       |
 | extra         | 右边注释                                                                                                               | string or node                                                | ''              | 否       |
 | compressRatio | 压缩比率(0~1)                                                                                                          | number                                                        | 1               | 否       |
-| renderHeader  | 组件头部                                                                                                               | `number` or `string`                                          | -               | 否       |
 | className     | 类名                                                                                                                   | string                                                        | -               | 否       |
 | defaultValue  | 设置初始取值                                                                                                           | []                                                            | -               | 否       |
 | coverStyle    | 自定义每个选项的样式，例如高度，内外边距等                                                                             | object                                                        | -               | 否       |

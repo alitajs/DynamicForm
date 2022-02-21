@@ -11,6 +11,7 @@ import DynamicForm, {
   ValidateErrorEntity,
   DformImagePicker,
   WhiteSpace,
+  IDynamicFormProps,
 } from '@alitajs/dform';
 
 const fileList = [
@@ -46,7 +47,8 @@ const Page = () => {
     formsValues,
     form,
     isDev: true,
-  };
+    isPc: true,
+  } as IDynamicFormProps;
 
   return (
     <>
@@ -61,6 +63,7 @@ const Page = () => {
             console.log(files, type, index);
           }}
           maxLength={2}
+          positionType="horizontal"
         />
         <DformImagePicker
           fieldProps="showImg"
