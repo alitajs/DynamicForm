@@ -3,6 +3,7 @@ import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import './index.less';
 
 const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
@@ -21,8 +22,13 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     defaultValue = [],
     titleProps,
     formFlag = false,
+    labelNumber = 5,
+    positionType = 'vertical',
+    isPc,
     ...otherProps
   } = props;
+
+  const isVertical = positionType === 'vertical';
 
   const imageChange = (
     files: ImageFile[],
@@ -33,7 +39,12 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      formFlag={formFlag}
+      isPc={isPc}
+      {...titleProps}
+    >
       <Field
         name={fieldProps}
         rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
@@ -42,10 +53,19 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
       >
         <ImagePickerGroup
           {...otherProps}
+          positionType={positionType}
           value={defaultValue}
           onChange={imageChange}
           limitSize={limitSize}
-        />
+        >
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+          />
+        </ImagePickerGroup>
       </Field>
     </Title>
   );
