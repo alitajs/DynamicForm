@@ -4,5 +4,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  // width: 100%;
+
+  &-field {
+    flex: 1;
+    overflow: auto;
+  }
+  &-vertical {
+    justify-content: flex-end
+  }
+}
+
+.alitajs-dform-vertical-switch {
+  .alitajs-dform-switch();
+  flex-direction: column;
+  align-items: flex-start;
 }
