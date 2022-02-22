@@ -5,6 +5,7 @@ import DformPicker from '../../NomarPicker';
 import BasicTest from './demos/basic';
 import CoupletTest from './demos/couplet';
 import PcTest from './demos/pc';
+import SingleTest from './demos/single';
 
 const cityData = [
   { label: '北京', value: 'beijing' },
@@ -85,7 +86,7 @@ test('render picker Pc', async () => {
   const onFinishFailed = jest.fn();
   const onChange = jest.fn();
   const { getByText } = render(
-    <BasicTest
+    <PcTest
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       onChange={onChange}
@@ -98,10 +99,14 @@ test('render picker Pc', async () => {
   expect(onFinishFailed).toBeCalled();
   fireEvent.click(getByText('请选择我喜欢的城市placeholder'));
   fireEvent.click(getByText('深圳'));
-  // expect(onChange).toBeCalled();
-  // await waitFor(() => {
-  //   fireEvent.click(getByText('Submit'));
-  // });
-  // expect(onFinish).toBeCalled();
   fireEvent.click(getByText('不可点击'));
+});
+test('render picker single', async () => {
+  const onChange = jest.fn();
+  const { getByText } = render(<SingleTest onChange={onChange} />);
+  expect(getByText('城市')).toBeDefined();
+  fireEvent.click(getByText('请选择我喜欢的城市placeholder'));
+  fireEvent.click(getByText('确定'));
+  expect(onChange).toBeCalled();
+  fireEvent.click(getByText('北京'));
 });

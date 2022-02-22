@@ -3,7 +3,7 @@
  * desc: 表单使用 demo
  */
 
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
@@ -14,6 +14,7 @@ import DynamicForm, {
 } from '@alitajs/dform';
 
 const Page: FC = () => {
+  const [singleUse, setSingleUse] = useState<string | number>('shanghai');
   const [form] = useForm();
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -106,6 +107,17 @@ const Page: FC = () => {
           disabled
         />
       </DynamicForm>
+      <Button type="primary" onClick={() => form.submit()}>
+        submit
+      </Button>
+      <h1>单独使用</h1>
+      <DformPicker
+        fieldProps="a"
+        data={cityList}
+        title="城市"
+        onChange={(e: string | number) => setSingleUse(e)}
+        defaultValue={singleUse}
+      />
     </>
   );
 };
