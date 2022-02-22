@@ -16,8 +16,11 @@
 
 .@{prefixCls} {
   &-close {
-    width: 12 * @hd;
-    height: 12 * @hd;
+    width: @icon-size-xs;
+    height: @icon-size-xs;
+    flex-shrink: 0;
+    margin: 2 * @hd 4 * @hd;
+    cursor: pointer;
   }
 
   &-input-label {
@@ -90,13 +93,6 @@
     &-active {
       background-color: @input-color-icon-tap;
     }
-  }
-
-  &-close {
-    width: @icon-size-xs;
-    height: @icon-size-xs;
-    flex-shrink: 0;
-    margin: 2 * @hd 4 * @hd;
   }
 
   &-ellipsis {
@@ -190,10 +186,13 @@
 
   .alitajs-dform-file-input {
     position: absolute;
+    top: 0px;
     width: 100%;
     height: 100%;
     opacity: 0;
     overflow: hidden;
+    z-index: 10;
+    cursor: pointer;
   }
 
   .alitajs-dform-file-extra {

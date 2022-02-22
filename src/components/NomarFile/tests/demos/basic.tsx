@@ -7,6 +7,7 @@ interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
   onMyClick: any;
+  isPc?: boolean;
 }
 let forms: any;
 
@@ -14,6 +15,7 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
   onFinish,
   onFinishFailed,
   onMyClick,
+  isPc = false,
 }) => {
   const [form] = useForm();
   forms = form;
@@ -29,6 +31,7 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
       contract: contractList,
     },
     isDev: false,
+    isPc,
   };
   return (
     <>

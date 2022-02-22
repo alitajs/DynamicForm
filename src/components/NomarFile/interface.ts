@@ -11,6 +11,8 @@ export interface INomarFileProps {
   title: string;
   rules?: Rule[];
   hasStar?: boolean;
+  positionType?: 'horizontal' | 'vertical';
+  labelNumber?: number;
   subTitle?: string | React.ReactNode;
   extra?: string | React.ReactNode;
   uploadExtra?: string | React.ReactNode;
@@ -34,4 +36,5 @@ export interface INomarFileProps {
   renderFooter?: string | React.ReactNode;
   disabled?: boolean;
   maxLength?: number;
+  isPc?: boolean;
 }
