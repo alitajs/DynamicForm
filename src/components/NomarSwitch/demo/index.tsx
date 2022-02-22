@@ -9,8 +9,8 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   DformSwitch,
-  WhiteSpace,
 } from '@alitajs/dform';
+import { WhiteSpace } from '../../../baseComponents';
 
 interface PageProps {}
 
@@ -33,6 +33,7 @@ const Page: FC<PageProps> = () => {
     onFinish,
     onFinishFailed,
     formsValues,
+    // isPc: true,
   };
 
   return (
@@ -44,6 +45,9 @@ const Page: FC<PageProps> = () => {
           placeholder="选择"
           title="On"
           defaultValue
+          coverStyle={{
+            justifyContent: 'flex-start',
+          }}
         />
         <DformSwitch
           fieldProps="disabledOn"
