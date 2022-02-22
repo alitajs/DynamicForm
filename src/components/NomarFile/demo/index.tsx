@@ -39,6 +39,7 @@ const Page: FC = () => {
       contract: contractList,
     },
     isDev: false,
+    // isPc: true,
   };
 
   return (

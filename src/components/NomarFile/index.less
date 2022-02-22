@@ -24,5 +24,35 @@
     text-overflow: ellipsis;
     word-break: break-all;
     max-width: calc(100% - 18 * @hd);
+    cursor: pointer;
+  }
+}
+
+.@{pcPrefixCls}-file {
+  &-content {
+    padding-top: 6 * @pchd;
+    padding-left: 0px;
+
+    .alitajs-dform-close {
+      width: 18px;
+      height: 18px;
+    }
+
+    .alitajs-dform-file-item {
+      padding-bottom: 8 * @pchd;
+      padding-right: 15 * @pchd;
+    }
+    .alitajs-dform-file-title {
+      font-size: @alita-dform-pc-value-font-size;
+      font-weight: 400;
+      color: rgba(51, 51, 51, 1);
+      padding-right: 8 * @pchd;
+      max-width: calc(100% - 18 * @pchd);
+      cursor: pointer;
+    }
+  }
+
+  .alitajs-dform-extra {
+    justify-content: flex-start;
   }
 }
