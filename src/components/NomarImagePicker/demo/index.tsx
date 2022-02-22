@@ -3,7 +3,7 @@
  * desc: 表单使用 demo
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
@@ -26,6 +26,8 @@ const fileList = [
 ];
 
 const Page = () => {
+  const [singleUse, setSingleUse] = useState<any[]>(fileList);
+
   const [form] = useForm();
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
@@ -63,7 +65,6 @@ const Page = () => {
             console.log(files, type, index);
           }}
           maxLength={2}
-          positionType="horizontal"
         />
         <DformImagePicker
           fieldProps="showImg"
@@ -95,6 +96,16 @@ const Page = () => {
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
+      <h1>单独使用</h1>
+      <DformImagePicker
+        fieldProps="a"
+        title="上传图片"
+        defaultValue={singleUse}
+        onChange={(files: any, type: string, index: number | undefined) => {
+          setSingleUse(files);
+          console.log(files, type, index);
+        }}
+      />
     </>
   );
 };

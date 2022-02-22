@@ -3,6 +3,7 @@ import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarImagePicker from '../index';
 import BasicTest from './demos/basic';
+import SingleTest from './demos/single';
 
 const fileList = [
   {
@@ -27,13 +28,14 @@ const myProps = {
 };
 
 it('passes picker a11y test', async () => {
-  const { container, getByText } = render(
+  const { getByText } = render(
     <div>
       <Form>
         <NomarImagePicker {...myProps} />
       </Form>
     </div>,
   );
+  expect(getByText('请添加图片(自动压缩)')).toBeDefined();
   //判断图片数量
   expect(document.querySelectorAll('.alitajs-dform-image-content').length).toBe(
     2,
@@ -87,4 +89,20 @@ test('renders Basic', async () => {
   expect(document.querySelectorAll('.alitajs-dform-image-upload').length).toBe(
     2,
   );
+});
+test('renders single Basic', async () => {
+  const onChange = jest.fn();
+  const { getByText } = render(<SingleTest onChange={onChange} />);
+
+  expect(getByText('图片')).toBeDefined();
+  expect(document.querySelectorAll('.alitajs-dform-image-upload').length).toBe(
+    1,
+  );
+  expect(
+    document.querySelectorAll('.alitajs-dform-image-cell-delete').length,
+  ).toBe(2);
+  fireEvent.click(
+    document.querySelectorAll('.alitajs-dform-image-cell-delete')[0],
+  );
+  expect(onChange).toBeCalled();
 });

@@ -118,6 +118,8 @@ const Page: FC = () => {
         title="用户名"
         onChange={(e: string) => setSingleUse(e)}
         defaultValue={singleUse}
+        showCount
+        maxLength={10}
       />
     </>
   );

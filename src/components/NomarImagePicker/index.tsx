@@ -43,7 +43,10 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
       independentProps={props}
       formFlag={formFlag}
       isPc={isPc}
-      {...titleProps}
+      {...{
+        ...titleProps,
+        positionType: isPc ? positionType : 'vertical',
+      }}
     >
       <Field
         name={fieldProps}
