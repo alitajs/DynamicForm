@@ -33,7 +33,7 @@ const Page: FC<PageProps> = () => {
     onFinish,
     onFinishFailed,
     formsValues,
-    isPc: true,
+    // isPc: true,
   };
 
   return (
@@ -45,7 +45,9 @@ const Page: FC<PageProps> = () => {
           placeholder="选择"
           title="On"
           defaultValue
-          // positionType="vertical"
+          coverStyle={{
+            justifyContent: 'flex-start',
+          }}
         />
         <DformSwitch
           fieldProps="disabledOn"

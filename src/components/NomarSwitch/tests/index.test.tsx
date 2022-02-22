@@ -39,8 +39,7 @@ test('renders switch Basic', async () => {
   );
   //判断是否是必选
   const OnClick: any =
-    getByText('On').parentNode?.parentNode?.parentNode?.lastChild?.firstChild
-      ?.firstChild;
+    getByText('On').parentNode?.parentNode?.lastChild?.firstChild?.firstChild;
   expect(OnClick).toHaveClass('adm-switch-checked');
   fireEvent.click(OnClick);
   await waitFor(() => {
@@ -71,7 +70,7 @@ test('renders switch pc', async () => {
   );
   //判断是否是必选
   const OnClick: any =
-    getByText('On').parentNode?.parentNode?.lastChild?.firstChild;
+    getByText('On').parentNode?.parentNode?.lastChild?.firstChild?.firstChild;
   expect(OnClick).toHaveClass('ant-switch-checked');
   fireEvent.click(OnClick);
   await waitFor(() => {
@@ -94,8 +93,7 @@ test('renders switch single', async () => {
     expect(document.querySelectorAll('.adm-switch-checked').length).toBe(1);
   });
   const OnClick: any =
-    getByText('On').parentNode?.parentNode?.parentNode?.lastChild?.firstChild
-      ?.firstChild;
+    getByText('On').parentNode?.parentNode?.lastChild?.firstChild?.firstChild;
   fireEvent.click(OnClick);
   await waitFor(() => {
     expect(onChange).toBeCalled();

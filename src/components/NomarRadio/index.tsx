@@ -6,7 +6,7 @@ import NomarRadioGroup from './radioGroup';
 import { allPrefixCls } from '../../const/index';
 import { IAliasProps } from '../../PropsType';
 import './index.less';
-import HorizontalTitle from '@/baseComponents/HorizontalTitle';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 
 const prefixCls = 'alitajs-dform-radio';
 interface radioItem {
