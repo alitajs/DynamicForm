@@ -35,4 +35,5 @@ export interface IMultiplePickerProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
 }

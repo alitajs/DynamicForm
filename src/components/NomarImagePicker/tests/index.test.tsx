@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarImagePicker from '../index';
-import BasicText from './demos/basic';
+import BasicTest from './demos/basic';
 
 const fileList = [
   {
@@ -50,7 +50,7 @@ test('renders Basic', async () => {
   //图片数量修改时，默认触发的事件
   const onChange = jest.fn();
   const { getByText, getAllByText } = render(
-    <BasicText
+    <BasicTest
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       onImageClick={onImageClick}
@@ -63,14 +63,9 @@ test('renders Basic', async () => {
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
   });
-  // //进行点击图片的操作
-  // fireEvent.click(document.querySelectorAll('.alitajs-dform-image-content')[0]);
-  // await waitFor(() => {
-  //   expect(onImageClick).toBeCalled();
-  // });
   expect(
     document.querySelectorAll('.alitajs-dform-image-cell-delete').length,
-  ).toBe(6);
+  ).toBe(4);
   //进行删除操作
   fireEvent.click(
     document.querySelectorAll('.alitajs-dform-image-cell-delete')[0],
@@ -78,18 +73,18 @@ test('renders Basic', async () => {
   await waitFor(() => {
     expect(
       document.querySelectorAll('.alitajs-dform-image-cell-delete').length,
-    ).toBe(5);
+    ).toBe(3);
     expect(onChange).toBeCalled();
   });
 
   // 判断图片上传数量限制
   expect(document.querySelectorAll('.alitajs-dform-image-upload').length).toBe(
-    2,
+    1,
   );
   fireEvent.click(
-    document.querySelectorAll('.alitajs-dform-image-cell-delete')[4],
+    document.querySelectorAll('.alitajs-dform-image-cell-delete')[2],
   );
   expect(document.querySelectorAll('.alitajs-dform-image-upload').length).toBe(
-    3,
+    2,
   );
 });

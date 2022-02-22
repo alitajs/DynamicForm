@@ -28,20 +28,19 @@ nav:
 | hidden         | 字段展示与否的判断                                                                                                                    | boolean                       | false                              | 否       |
 | disabled       | 是否可选                                                                                                                              | boolean                       | false                              | 否       |
 | onChange       | 值改变事件                                                                                                                            | object                        | (e) => void                        | 否       |
-| coverStyle     | 选择项改变事件                                                                                                                        | object                        | {}                                 | 否       |
-| maxValueLength | 最大可选长度，初始赋值如果大于该值，根据选项顺序获取指定的选中项                                                                      | number                        |                                    | 否       |
+| maxValueLength | 最大可选长度，初始赋值如果大于该值，根据选项顺序获取指定的选中项(仅在移动端中使用)                                                    | number                        |                                    | 否       |
 | labelNumber    | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                        | 5                                  | 否       |
-| onClick        | 文字点击事件                                                                                                                          | function                      | null                               | 否       |
-| leftContent    | 弹框头部左侧文字                                                                                                                      | `string` or `node`            | `取消`                             | 否       |
-| rightContent   | 弹框头部右侧文字                                                                                                                      | `string` or `node`            | `确定`                             | 否       |
-| height         | 固定弹框高度                                                                                                                          | `number` or `string`          | null                               | 否       |
+| onClick        | 文字点击事件 (仅在移动端中使用)                                                                                                       | function                      | null                               | 否       |
+| leftContent    | 弹框头部左侧文字 (仅在移动端中使用)                                                                                                   | `string` or `node`            | `取消`                             | 否       |
+| rightContent   | 弹框头部右侧文字 (仅在移动端中使用)                                                                                                   | `string` or `node`            | `确定`                             | 否       |
+| height         | 固定弹框高度 (仅在移动端中使用)                                                                                                       | `number` or `string`          | null                               | 否       |
 | alias          | data 数据源的别名                                                                                                                     | object                        | { label: 'label', value: 'value' } | 否       |
-| renderHeader   | 组件头部                                                                                                                              | `number` or `string`          | -                                  | 否       |
 | className      | 类名                                                                                                                                  | string                        | -                                  | 否       |
 | extra          | 额外内容                                                                                                                              | `string` or `React.ReactNode` | -                                  | 否       |
 | clear          | 清空数据                                                                                                                              | boolean                       | `false`                            | 否       |
 | renderHeader   | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
 | renderFooter   | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
+| isPc           | pc 效果                                                                                                                               | boolean                       | false                              | 否       |
 
 ## 备注
 

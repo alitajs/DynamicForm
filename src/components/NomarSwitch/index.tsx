@@ -6,6 +6,13 @@ import { allPrefixCls } from '../../const/index';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
 import './index.less';
+import PcLayout from '../../baseComponents/PcLayout';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
+import { Switch as ASwitch } from 'antd';
+import classnames from 'classnames';
+
+const prefixCls = 'alitajs-dform-switch';
+const pcPrefixCls = 'alitajs-dform-pc-switch';
 
 export interface INomarSwitchProps extends SwitchProps {
   coverStyle?: React.CSSProperties;
@@ -22,6 +29,10 @@ export interface INomarSwitchProps extends SwitchProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
+  labelNumber?: number;
+  subTitle?: string | React.ReactNode;
+  extra?: string | React.ReactNode;
 }
 
 const DformSwitch: FC<INomarSwitchProps> = (props) => {
@@ -38,18 +49,69 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     defaultValue = false,
     titleProps,
     formFlag = false,
+    isPc = false,
+    labelNumber = 5,
+    subTitle = '',
+    extra,
     ...otherProps
   } = props;
-  return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
-      {!hidden && (
-        <div className={`${allPrefixCls}-switch`}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
+
+  const renderPcContent = () => {
+    return (
+      <PcLayout
+        left={
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+          />
+        }
+        right={
+          <div
+            className={`${prefixCls}-field`}
+            style={{
+              ...coverStyle,
+            }}
+          >
+            <Field
+              name={fieldProps}
+              valuePropName="checked"
+              rules={[
+                { required, message: `请选择${title}` },
+                ...(rules || []),
+              ]}
+              initialValue={defaultValue}
+              formFlag={formFlag}
+            >
+              <ASwitch checked={defaultValue} {...otherProps}></ASwitch>
+            </Field>
           </div>
+        }
+      />
+    );
+  };
+
+  const renderDefault = () => {
+    return (
+      <div
+        className={classnames({
+          [prefixCls]: true,
+        })}
+      >
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+        />
+
+        <div
+          className={`${prefixCls}-field`}
+          style={{
+            ...coverStyle,
+          }}
+        >
           <Field
             name={fieldProps}
             valuePropName="checked"
@@ -60,7 +122,22 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
             <Switch checked={defaultValue} {...otherProps} />
           </Field>
         </div>
-      )}
+      </div>
+    );
+  };
+
+  return (
+    <Title
+      hidden={hidden}
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      subTitle={subTitle}
+      extra={extra}
+      isPc={isPc}
+      {...titleProps}
+    >
+      {!!isPc ? renderPcContent() : renderDefault()}
     </Title>
   );
 };

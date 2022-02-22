@@ -36,6 +36,10 @@ export interface INomarImagePickerProps {
     index?: number,
   ) => void;
   onImageClick?: (index?: number, files?: Array<ImageFile>) => void;
+  isPc?: boolean;
+  labelNumber?: number;
+  positionType?: 'horizontal' | 'vertical';
+  disabled?: boolean;
 }
 
 export interface ImagePickerGroupProps extends INomarImagePickerProps {

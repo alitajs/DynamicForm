@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
 import { Button } from 'antd-mobile-v2';
-import DynamicForm, { DformSwitch, useForm, WhiteSpace } from '../../../../';
+import DynamicForm, { DformSwitch, useForm } from '../../../../';
+import { WhiteSpace } from '../../../../baseComponents';
 
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
+  isPc?: boolean;
 }
 
-const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
+const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, isPc = false }) => {
   const [form] = useForm();
   const formsValues = {};
   const formsProps = {
@@ -16,6 +18,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     onFinishFailed,
     formsValues,
     isDev: true,
+    isPc,
   };
 
   return (

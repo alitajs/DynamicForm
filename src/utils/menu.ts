@@ -18,7 +18,7 @@ export const DFORM_COMP_NAME = [
   'rangeDatePicker',
 ];
 
-export const NO_SUPPORT_VERTICAL = ['switch', 'NomarSwitch'];
+export const NO_SUPPORT_VERTICAL = ['switch', 'NomarSwitch', 'dformSwitch'];
 
 export const DFORM_COMP_DETAULT = {
   addressPicker: { positionType: 'horizontal' },

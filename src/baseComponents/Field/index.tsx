@@ -15,11 +15,15 @@ const CustomField: FC<FieldProps & { formFlag?: boolean }> = (props: any) => {
 
   // 不在DynamicForm中 取消Field包裹;
   if (!formFlag) {
-    return <div id={`alita-dform-${props?.name}`}>{props.children}</div>;
+    return (
+      <div id={`alita-dform-${props?.name}`} style={{ display: 'flex' }}>
+        {props.children}
+      </div>
+    );
   }
 
   return (
-    <div id={`alita-dform-${props?.name}`}>
+    <div id={`alita-dform-${props?.name}`} style={{ display: 'flex' }}>
       <Field {...restProps} shouldUpdate={shouldUpdate} />
     </div>
   );

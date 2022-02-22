@@ -32,7 +32,7 @@ nav:
 | editable     | 是否可编辑                                                                                                                            | boolean                       | true         | 否       |
 | disabled     | 不建议采用该属性！具体请看如下备注！                                                                                                  | boolean                       | false        | 否       |
 | extra        | 右边注释                                                                                                                              | string or node                | ''           | 否       |
-| onClick      | 文字点击事件                                                                                                                          | function                      | null         | 否       |
+| onClick      | 文字点击事件 (仅在移动端中使用)                                                                                                       | function                      | null         | 否       |
 | labelNumber  | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                        | 5            | 否       |
 | positionType | 表单方向样式                                                                                                                          | `horizontal` or `vertical`    | `horizontal` | 否       |
 | hasStar      | 必填项红\*展示与否的判断                                                                                                              | boolean                       | true         | 否       |

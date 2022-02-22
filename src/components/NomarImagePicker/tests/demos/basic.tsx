@@ -58,8 +58,8 @@ const Page: React.FC<BasicProps> = ({
           onImageClick={onImageClick}
           limitSize={3 * 1024 * 1024}
           defaultValue={fileList}
-          onChange={() => onChange()}
           showView={false}
+          disabled
         />
         <DformImagePicker
           fieldProps="noInsertImg"
@@ -67,6 +67,7 @@ const Page: React.FC<BasicProps> = ({
           required
           selectable={false}
           defaultValue={fileList}
+          onChange={() => onChange()}
         />
         <DformImagePicker
           fieldProps="maxLengthImg"
