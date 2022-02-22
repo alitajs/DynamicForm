@@ -145,4 +145,5 @@ test('renders single area ', async () => {
   await waitFor(() => {
     expect(onChange).toBeCalled();
   });
+  expect(getByText('我的学校很漂亮')).toBeDefined();
 });

@@ -2,7 +2,7 @@
  * title: 基础 多行文本输入框
  * desc: 表单使用 demo
  */
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
   useForm,
@@ -15,6 +15,9 @@ import PhotoIcon from '../../../assets/photo.png';
 
 const Page: FC = () => {
   const [form] = useForm();
+
+  const [singleUse, setSingleUse] = useState<string>('小明');
+
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -107,6 +110,15 @@ const Page: FC = () => {
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
+      <h1>单独使用</h1>
+      <DformTextArea
+        fieldProps="a"
+        required
+        placeholder="请输入"
+        title="用户名"
+        onChange={(e: string) => setSingleUse(e)}
+        defaultValue={singleUse}
+      />
     </>
   );
 };

@@ -73,6 +73,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
         formFlag={formFlag}
       >
         <TextareaItem
+          value={defaultValue}
           {...otherProps}
           onChange={areaChange}
           rows={rows}
