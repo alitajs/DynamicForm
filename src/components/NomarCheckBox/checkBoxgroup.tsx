@@ -45,8 +45,6 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
     setVal(value);
   }, [value]);
 
-  const columns = chunk > 0 ? chunk : data.length;
-
   let isVertical = positionType === 'vertical';
 
   const boxClick = (dataItem: IDataItem) => {
@@ -61,6 +59,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   };
 
   const renderDefault = () => {
+    const columns = chunk || 1;
     return (
       <div className="alitajs-dform-box-content">
         <Grid columns={columns}>
@@ -110,6 +109,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   };
 
   const renderPcContent = () => {
+    const columns = chunk > 0 ? chunk : data.length;
     return (
       <PcLayout
         isVertical={isVertical}
