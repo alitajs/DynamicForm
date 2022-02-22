@@ -20,7 +20,6 @@ interface INomarCheckBoxProps {
   className?: string;
   onChange?: (currentActiveLink: (string | number)[]) => void;
   disabled?: boolean;
-  disableItem?: (items: IDataItem) => boolean;
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
@@ -46,7 +45,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     data = [],
     onChange,
     disabled = false,
-    chunk = 1,
+    chunk = 0,
     alias = {
       label: 'label',
       value: 'value',
@@ -59,12 +58,14 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     formFlag = false,
     labelNumber = 5,
     positionType = 'vertical',
+    isPc = false,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
+      ...item,
       label: item[label],
       value: item[value],
     }));
@@ -77,7 +78,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
 
   return (
     <Title
-      positionType="vertical"
+      positionType={isPc ? positionType : 'vertical'}
       hidden={hidden}
       required={required}
       hasStar={hasStar}
@@ -94,7 +95,6 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
           formFlag={formFlag}
         >
           <CheckBoxGroup
-            disableItem={props.disableItem}
             data={aliasData}
             onChange={boxChange}
             coverStyle={coverStyle}

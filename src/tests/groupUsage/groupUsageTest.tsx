@@ -115,7 +115,6 @@ const Page: FC = () => {
           required
           data={fruitData}
           fieldProps="fruit"
-          disableItem={(x: any) => ['香梨'].some((a) => x.value === a)}
         />
         <MultiplePicker
           fieldProps="motion"
