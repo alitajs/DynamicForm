@@ -40,7 +40,7 @@ const motionData = [
 const fruitData = [
   { label: '哈密瓜', value: '哈密瓜' },
   { label: '菠萝', value: '菠萝' },
-  { label: '香梨', value: '香梨' },
+  { label: '香梨', value: '香梨', disabled: true },
 ];
 
 const Page: FC = () => {

@@ -45,6 +45,8 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
     setVal(value);
   }, [value]);
 
+  const columns = chunk > 0 ? chunk : data.length;
+
   let isVertical = positionType === 'vertical';
 
   const boxClick = (dataItem: IDataItem) => {
@@ -61,7 +63,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   const renderDefault = () => {
     return (
       <div className="alitajs-dform-box-content">
-        <Grid columns={chunk > 0 ? chunk : data.length}>
+        <Grid columns={columns}>
           {data.map((item: IDataItem) => {
             const _disabled = disabled || item.disabled;
             return (
@@ -113,20 +115,32 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
         isVertical={isVertical}
         left={children}
         right={
-          <div className={`${pcPrefixCls}`}>
+          <div
+            className={classnames({
+              [`${pcPrefixCls}`]: true,
+              [`${pcPrefixCls}-top`]: isVertical,
+            })}
+          >
             <Checkbox.Group
               {...otherProps}
               value={val}
               disabled={disabled}
-              onChange={(e: any) => {
-                setVal(e);
+              onChange={(val: any[]) => {
+                setVal(val);
+                onChange(!!val && val.length ? val : undefined);
               }}
             >
-              <Grid columns={chunk > 0 ? chunk : data.length}>
-                {data.map((item: IDataItem) => {
+              <Grid columns={columns}>
+                {data.map((item: IDataItem, index: number) => {
                   return (
                     <Item key={item.value}>
-                      <div className={`${pcPrefixCls}-grid-item`}>
+                      <div
+                        className={classnames({
+                          'alitajs-dform-pc-box-grid-item': true,
+                          'alitajs-dform-pc-box-grid-item-top':
+                            (index + 1) / columns > 1,
+                        })}
+                      >
                         <Checkbox value={item.value} disabled={item.disabled}>
                           {item.label}
                         </Checkbox>
