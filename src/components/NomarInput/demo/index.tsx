@@ -20,6 +20,8 @@ const Page: FC = () => {
   const [form] = useForm();
   const [pwdInputType, setPwdInputType] = useState<boolean>(true);
   const [editFlag, setEditFlag] = useState<boolean>(false);
+  const [singleUse, setSingleUse] = useState<string>('小明');
+
   const onFinish = (values: Store) => {
     // eslint-disable-next-line no-console
     console.log('Success:', values);
@@ -162,6 +164,16 @@ const Page: FC = () => {
       <Button type="primary" onClick={() => form.submit()}>
         Submit
       </Button>
+
+      <h1>单独使用</h1>
+      <DformInput
+        fieldProps="a"
+        clear
+        placeholder="请输入"
+        title="用户名"
+        defaultValue={singleUse}
+        onChange={(e) => setSingleUse(e)}
+      />
     </>
   );
 };

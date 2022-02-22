@@ -10,7 +10,6 @@ import { allPrefixCls } from '../../const';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-input-item';
-const pcPrefixCls = 'alitajs-dform-pc-input';
 
 const InputItem: FC<IInputItemProps> = (props) => {
   const {
