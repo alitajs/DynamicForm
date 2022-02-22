@@ -3,7 +3,8 @@ import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
+import { allPrefixCls } from '../../const';
 import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
@@ -25,8 +26,13 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     defaultValue,
     titleProps,
     formFlag = false,
+    labelNumber = 5,
+    isPc,
+    ...otherProps
   } = props;
   const { label = 'label', value = 'value' } = alias;
+
+  const isVertical = positionType === 'vertical';
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -50,6 +56,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
       positionType={positionType}
       independentProps={props}
       formFlag={formFlag}
+      isPc={isPc}
       {...titleProps}
     >
       <Field
@@ -58,13 +65,22 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         initialValue={defaultValue}
         formFlag={formFlag}
       >
-        <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+        <MultiplePickerGroup
+          {...otherProps}
+          data={aliasData}
+          onChange={fieldChange}
+          fieldProps={fieldProps}
+          title={title}
+          positionType={positionType}
+          labelNumber={labelNumber}
+        >
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+          />
         </MultiplePickerGroup>
       </Field>
     </Title>

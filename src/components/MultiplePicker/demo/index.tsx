@@ -56,6 +56,7 @@ const Page: FC = () => {
     form,
     autoLineFeed: false,
     isDev: false,
+    isPc: false,
   };
   return (
     <>

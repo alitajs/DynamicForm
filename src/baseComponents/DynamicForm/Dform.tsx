@@ -263,11 +263,12 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   const dformItems = (childs: any): React.ReactNode => {
     return childs.map((child: any, index: number) => {
       const { props = {} as any } = child;
+      const { ...otherProps } = props;
       // 字符串、null等类型
       if (!React.isValidElement(child)) return child;
       const { displayName } = child.type as any;
       const mProps: any = {
-        ...props,
+        ...otherProps,
         ...(changeForm[props.fieldProps] || {}),
         displayName,
       };
@@ -288,7 +289,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         // 内部Group组件
         return React.cloneElement(
           child,
-          { ...props, key: fieldProps || index },
+          { ...otherProps, key: fieldProps || index },
           showChildren({ context: props.children }),
         );
       } else {

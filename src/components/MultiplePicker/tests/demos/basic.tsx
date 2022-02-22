@@ -9,9 +9,15 @@ interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
   onChange: any;
+  isPc?: boolean;
 }
 
-const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
+const Page: FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  onChange,
+  isPc = false,
+}) => {
   const [form] = useForm();
 
   const foodList = [
@@ -46,6 +52,7 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
     form,
     autoLineFeed: false,
     isDev: false,
+    isPc,
   };
   return (
     <>
@@ -65,7 +72,6 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
         />
         <MultiplePicker
           fieldProps="youFood"
-          // required={true}
           data={foodList}
           title="选择你喜欢的食物(不可编辑)"
           labelNumber={7}
