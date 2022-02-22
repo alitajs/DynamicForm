@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
+import { render, testA11y, fireEvent, waitFor } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarMultiplePicker from '..';
 import BasicTest from './demos/basic';
+import SingleTest from './demos/single';
 
 const cityData = [
   { label: '北京', value: 'beijing' },
@@ -89,4 +90,15 @@ test('render multiplePicker pc Basic', async () => {
   ).toHaveClass('alitajs-dform-pc-vertical-title');
 
   expect(document.querySelectorAll('.ant-select-disabled').length).toBe(1);
+});
+test('render multiplePicker single Basic', async () => {
+  const onChange = jest.fn();
+  const { getByText } = render(<SingleTest onChange={onChange} />);
+  expect(getByText('食物')).toBeDefined();
+  expect(getByText('宫保鸡丁')).toBeDefined();
+  fireEvent.click(getByText('宫保鸡丁'));
+  fireEvent.click(getByText('可乐鸡翅'));
+  fireEvent.click(getByText('确定'));
+  expect(onChange).toBeCalled();
+  expect(getByText('宫保鸡丁,可乐鸡翅')).toBeDefined();
 });

@@ -4,7 +4,6 @@ import { IMultiplePickerProps } from './interface';
 import Field from '../../baseComponents/Field';
 import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
-import { allPrefixCls } from '../../const';
 import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
@@ -66,6 +65,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         formFlag={formFlag}
       >
         <MultiplePickerGroup
+          value={defaultValue}
           {...otherProps}
           data={aliasData}
           onChange={fieldChange}
