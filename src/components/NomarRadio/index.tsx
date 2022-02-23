@@ -69,6 +69,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     subTitle = '',
     extra,
     formFlag = false,
+    ...otherprops
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -105,6 +106,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
         className={className}
         labelNumber={labelNumber}
         formFlag={formFlag}
+        {...otherprops}
       >
         <HorizontalTitle
           required={required}
