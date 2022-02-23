@@ -28,7 +28,7 @@ export interface INomarRadioGroupProps {
   labelNumber: number;
   formFlag?: boolean;
   buttonStyle?: 'outline' | 'solid';
-  optionType?: 'default' | 'botton';
+  optionType?: 'default' | 'button';
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
@@ -46,7 +46,6 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     children,
     formFlag = false,
     optionType = 'default',
-    buttonStyle = 'outline',
     ...otherprops
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
@@ -184,22 +183,44 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     );
   };
 
-  const renderRadio = (item: IDataItem) => {
-    if (optionType === 'default') {
-      return (
-        <Radio key={item.value} value={item.value} disabled={item.disabled}>
+  const renderRadio = (item: IDataItem, index: number) => {
+    return (
+      <div
+        key={item.value}
+        className={classnames({
+          [`${pcPrefixCls}-item`]: true,
+          [`${pcPrefixCls}-item-last`]: index + 1 === (data || []).length,
+          [`${pcPrefixCls}-vertical`]: isVertical,
+        })}
+      >
+        <Radio value={item.value} disabled={item.disabled}>
           {item.label}
         </Radio>
+      </div>
+    );
+
+    // button类型不生效
+    if (optionType === 'default') {
+      return (
+        <div
+          key={item.value}
+          className={classnames({
+            [`${pcPrefixCls}-item`]: true,
+            [`${prefixCls}-item-last`]: index + 1 === (data || []).length,
+          })}
+        >
+          <Radio value={item.value} disabled={item.disabled}>
+            {item.label}
+          </Radio>
+        </div>
       );
     }
     return (
-      <Radio.Button
-        key={item.value}
-        value={item.value}
-        disabled={item.disabled}
-      >
-        {item.label}
-      </Radio.Button>
+      <div key={item.value}>
+        <Radio.Button value={item.value} disabled={item.disabled}>
+          {item.label}
+        </Radio.Button>
+      </div>
     );
   };
 
@@ -209,33 +230,42 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
         isVertical={isVertical}
         left={children}
         right={
-          <Radio.Group
-            {...otherprops}
-            value={formValue}
-            disabled={disabled}
-            onChange={(e: any) => {
-              onChange(e?.target?.value);
-            }}
+          <div
+            className={classnames({
+              [`${pcPrefixCls}`]: true,
+            })}
           >
-            <div className={`${pcPrefixCls}`}>
-              {radioType === 'vertical' ? (
-                <Space direction={radioType}>
-                  {data.map((item: IDataItem) => {
-                    return renderRadio(item);
-                  })}
-                </Space>
-              ) : (
-                data.map((item: IDataItem) => {
-                  return renderRadio(item);
-                })
-              )}
-            </div>
-          </Radio.Group>
+            <Radio.Group
+              // {...otherprops}
+              value={formValue}
+              disabled={disabled}
+              onChange={(e: any) => {
+                onChange(e?.target?.value);
+              }}
+            >
+              <div
+                className={classnames({
+                  [`${pcPrefixCls}-content`]: true,
+                })}
+              >
+                {radioType === 'vertical' ? (
+                  <Space direction={radioType}>
+                    {data.map((item: IDataItem, index: number) => {
+                      return renderRadio(item, index);
+                    })}
+                  </Space>
+                ) : (
+                  data.map((item: IDataItem, index: number) => {
+                    return renderRadio(item, index);
+                  })
+                )}
+              </div>
+            </Radio.Group>
+          </div>
         }
       />
     );
   };
-
   return (
     <DformContext.Consumer>
       {({ isPc }: any) => {

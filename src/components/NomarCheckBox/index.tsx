@@ -6,6 +6,7 @@ import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 
 interface INomarCheckBoxProps {
   title: string;
@@ -19,7 +20,6 @@ interface INomarCheckBoxProps {
   className?: string;
   onChange?: (currentActiveLink: (string | number)[]) => void;
   disabled?: boolean;
-  disableItem?: (items: IDataItem) => boolean;
   hidden?: boolean;
   chunk?: number;
   alias?: IAliasProps;
@@ -28,6 +28,9 @@ interface INomarCheckBoxProps {
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  isPc?: boolean;
+  labelNumber?: number;
+  positionType?: 'horizontal' | 'vertical';
 }
 
 const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
@@ -42,7 +45,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     data = [],
     onChange,
     disabled = false,
-    chunk = 1,
+    chunk = 0,
     alias = {
       label: 'label',
       value: 'value',
@@ -50,15 +53,19 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     defaultValue,
     titleProps,
     hidden,
-    hasStar,
+    hasStar = true,
     subTitle,
     formFlag = false,
+    labelNumber = 5,
+    positionType = 'vertical',
+    isPc = false,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
+      ...item,
       label: item[label],
       value: item[value],
     }));
@@ -71,12 +78,13 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
 
   return (
     <Title
-      positionType="vertical"
+      positionType={isPc ? positionType : 'vertical'}
       hidden={hidden}
       required={required}
       hasStar={hasStar}
       title={title}
       subTitle={subTitle}
+      isPc={props.isPc}
       {...titleProps}
     >
       <div className={`${allPrefixCls}-check-box`}>
@@ -87,7 +95,6 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
           formFlag={formFlag}
         >
           <CheckBoxGroup
-            disableItem={props.disableItem}
             data={aliasData}
             onChange={boxChange}
             coverStyle={coverStyle}
@@ -95,7 +102,16 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
             chunk={chunk}
             className={className}
             value={defaultValue}
-          />
+            positionType={positionType}
+          >
+            <HorizontalTitle
+              required={required}
+              hasStar={hasStar}
+              title={title}
+              labelNumber={labelNumber}
+              isVertical={positionType === 'vertical'}
+            />
+          </CheckBoxGroup>
         </Field>
       </div>
     </Title>

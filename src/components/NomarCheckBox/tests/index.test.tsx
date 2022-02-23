@@ -64,6 +64,51 @@ test('renders Basic', async () => {
   });
 });
 
+test('renders Basic PC', async () => {
+  const onFinish = jest.fn();
+  const onFinishFailed = jest.fn();
+  const { getByText } = render(
+    <BasicTest onFinish={onFinish} onFinishFailed={onFinishFailed} isPc />,
+  );
+  await sleep(1000);
+  expect(getByText('苹果')).toBeDefined();
+  fireEvent.click(getByText('橙子'));
+  fireEvent.click(getByText('Submit'));
+  await waitFor(() => {
+    expect(onFinishFailed).toBeCalled();
+  });
+  fireEvent.click(getByText('苹果'));
+  await waitFor(() => {
+    expect(getByText('苹果').parentNode?.firstChild).toHaveClass(
+      'ant-checkbox-checked',
+    );
+  });
+  fireEvent.click(getByText('Submit'));
+  await waitFor(() => {
+    expect(onFinish).toBeCalled();
+  });
+});
+
+test('renders Basic Single', async () => {
+  const onFinish = jest.fn();
+  const onFinishFailed = jest.fn();
+  const onChange = jest.fn();
+  const { getByText } = render(
+    <BasicTest
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onChange={onChange}
+      single
+    />,
+  );
+  await sleep(1000);
+  expect(getByText('苹果')).toBeDefined();
+  fireEvent.click(getByText('橙子'));
+  await waitFor(() => {
+    expect(onChange).toBeCalled();
+  });
+});
+
 test('render couple', async () => {
   const { getByText } = render(<CoupletText />);
   await sleep(1000);
