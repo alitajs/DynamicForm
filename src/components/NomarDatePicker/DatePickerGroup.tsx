@@ -72,7 +72,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
   };
 
   return (
-    <div>
+    <>
       <PopupDatePicker
         datePicker={datePicker}
         WrapComponent="div"
@@ -109,7 +109,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
       >
         {children}
       </TextItem>
-    </div>
+    </>
   );
 };
 
