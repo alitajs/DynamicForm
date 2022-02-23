@@ -1,16 +1,18 @@
-/**
- * title: 基础 多选框
- * desc: 表单使用 demo
- */
 import React, { FC } from 'react';
 import { Button } from 'antd-mobile-v2';
 import DynamicForm, {
+  IFormItemProps,
   useForm,
-  Store,
-  ValidateErrorEntity,
   DformCustom,
   WhiteSpace,
-} from '@alitajs/dform';
+} from '../../../..';
+
+interface BasicProps {
+  onFinish: any;
+  onFinishFailed: any;
+  onChange: any;
+  isPc?: boolean;
+}
 
 interface IDemoPage {
   name: string;
@@ -28,6 +30,7 @@ const DemoPage: FC<IDemoPage> = (props) => {
       <p>
         age:
         <input
+          data-testid="names"
           style={{ fontSize: '0.28rem' }}
           value={value}
           type="text"
@@ -40,32 +43,22 @@ const DemoPage: FC<IDemoPage> = (props) => {
   );
 };
 
-const Page: FC = () => {
+const Basic: FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  isPc,
+  onChange,
+}) => {
   const [form] = useForm();
-  const onFinish = (values: Store) => {
-    // eslint-disable-next-line no-console
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
-
-  const formsValues = {
-    age: '17',
-  };
-
   const formProps = {
-    form,
     onFinish,
     onFinishFailed,
-    formsValues,
-    isDev: true,
-    // isPc: true,
+    formsValues: {},
+    form,
+    isPc,
   };
   return (
-    <>
+    <div>
       <DynamicForm {...formProps}>
         <DformCustom
           title="自定义组件(非受控)"
@@ -81,9 +74,7 @@ const Page: FC = () => {
           title="自定义组件(受控)"
           required={true}
           fieldProps="age"
-          defaultValue="17"
-          CustomDom={DemoPage}
-          onChange={(e: any) => console.log(e)}
+          onChange={onChange}
         >
           <DemoPage name="age" />
         </DformCustom>
@@ -97,8 +88,8 @@ const Page: FC = () => {
       >
         Submit
       </Button>
-    </>
+    </div>
   );
 };
 
-export default Page;
+export default Basic;

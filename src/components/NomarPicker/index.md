@@ -38,6 +38,7 @@ nav:
 | clear        | 清空数据                                                                                                                              | boolean                       | `false`                            | 否       |
 | renderHeader | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
 | renderFooter | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
+| isPc         | pc 效果                                                                                                                               | boolean                       | false                              | 否       |
 
 ## IAliasProps
 
