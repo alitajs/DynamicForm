@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+import px2rem from '@alitajs/postcss-plugin-px2rem';
 
 export default defineConfig({
   title: '@alitajs/dform',
@@ -16,13 +17,26 @@ export default defineConfig({
         var github = document.createElement('p');
         github.className = 'github';
         github.style.position = 'absolute';
-        github.style.top = '-8px';
+        github.style.top = '20px';
         github.style.left = '280px';
         github.innerHTML = '<object type="image/svg+xml" data="https://img.shields.io/github/stars/alitajs/DynamicForm?style=social"></object>';
         navbar.appendChild(github);
       }
     }
   }, 300)`,
+  ],
+  themeConfig: {
+    hd: {
+      rules: [{ mode: 'flex' }],
+    },
+  },
+  extraPostCSSPlugins: [
+    px2rem({
+      rootValue: 100,
+      minPixelValue: 2,
+      selectorBlackList: [/.__dumi/, /markdown/],
+      selectorDoubleRemList: [/.ant-/],
+    }),
   ],
   theme: {
     '@hd': '0.02rem',
