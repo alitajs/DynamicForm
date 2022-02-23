@@ -19,7 +19,7 @@ const fruitsList = [
   { foodId: 'watermelon', foodName: '西瓜' },
   { foodId: 'hami', foodName: '哈密瓜' },
   { foodId: 'pineapple', foodName: '菠萝' },
-  { foodId: 'pear', foodName: '香梨' },
+  { foodId: 'pear', foodName: '香梨', disabled: true },
 ];
 
 const Page: FC = () => {

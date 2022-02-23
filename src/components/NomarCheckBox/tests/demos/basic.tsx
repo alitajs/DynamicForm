@@ -5,6 +5,9 @@ import DynamicForm, { useForm, DformCheckBox, WhiteSpace } from '../../../..';
 interface BasicProps {
   onFinish: any;
   onFinishFailed: any;
+  onChange?: (val: any) => void;
+  single?: boolean;
+  isPc?: boolean;
 }
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
@@ -16,22 +19,14 @@ const fruitsList = [
   { foodId: 'pear', foodName: '香梨' },
 ];
 
-const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
+const Page: FC<BasicProps> = ({
+  onFinish,
+  onFinishFailed,
+  onChange = (val: any) => {},
+  single = false,
+  isPc = false,
+}) => {
   const [form] = useForm();
-  // const formsData = [
-  //   {
-  //     type: 'checkbox',
-  //     title: '喜欢的水果',
-  //     required: true,
-  //     data: fruitsList,
-  //     fieldProps: 'fruit',
-  //     chunk: 2,
-  //     alias: {
-  //       label: 'foodName',
-  //       value: 'foodId',
-  //     },
-  //   },
-  // ] as IFormItemProps[];
 
   const formsValues = {
     fruit: ['orange'],
@@ -43,13 +38,30 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     onFinishFailed,
     formsValues,
     isDev: true,
+    isPc,
   };
+  if (single) {
+    return (
+      <DformCheckBox
+        title="喜欢的水果"
+        required
+        data={fruitsList}
+        fieldProps="fruit"
+        chunk={2}
+        alias={{
+          label: 'foodName',
+          value: 'foodId',
+        }}
+        onChange={onChange}
+      />
+    );
+  }
   return (
     <>
       <DynamicForm {...formProps}>
         <DformCheckBox
           title="喜欢的水果"
-          required={true}
+          required
           data={fruitsList}
           fieldProps="fruit"
           chunk={2}

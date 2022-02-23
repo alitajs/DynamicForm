@@ -27,7 +27,7 @@ const motionData = [
 const fruitData = [
   { label: '哈密瓜', value: '哈密瓜' },
   { label: '菠萝', value: '菠萝' },
-  { label: '香梨', value: '香梨' },
+  { label: '香梨', value: '香梨', disabled: true },
 ];
 
 const data = [
@@ -122,7 +122,6 @@ const data = [
     title: '喜欢的水果',
     data: fruitData,
     required: true,
-    disableItem: (x: any) => ['香梨'].some((a) => x.value === a),
   },
   {
     type: 'multiplePicker',
