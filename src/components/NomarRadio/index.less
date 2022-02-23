@@ -2,13 +2,36 @@
 
 .@{pcPrefixCls}-radio {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  margin-top: 3 * @pchd;
+  &-content {
+    display: flex;
+  }
+  &-vertical {
+    padding: 8 * @pchd 0;
+  }
+  &-item {
+    display: flex;
+    align-items: center;
+    padding-right: 8 * @pchd;
+  }
+
+  &-item-last {
+    padding-right: 0;
+  }
+  &-item-text {
+    font-size: 15 * @pchd;
+    padding: 0 8 * @pchd;
+  }
   .ant-radio-wrapper {
     display: flex;
     span {
       font-size: 15 * @pchd;
+      padding: 0 4 * @pchd;
+    }
+    .ant-radio {
+      .ant-radio-inner {
+        padding: 0;
+      }
     }
   }
 }
