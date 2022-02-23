@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Picker, Toast } from 'antd-mobile-v2';
+import { Picker } from 'antd-mobile-v2';
+import { Toast } from 'antd-mobile/2x';
 import { Select } from 'antd';
 import PcLayout from '../../baseComponents/PcLayout';
 import TextItem from '../../baseComponents/TextItem';
@@ -69,7 +70,11 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
       onClick(value);
       return;
     } else if (!!!data.length) {
-      Toast.fail('数据未配置');
+      Toast.show({
+        icon: 'fail',
+        content: '数据未配置',
+        maskClickable: false,
+      });
       return;
     }
     if (!!onClick) {

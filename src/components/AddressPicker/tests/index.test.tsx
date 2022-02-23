@@ -11,7 +11,8 @@ import {
 import Form from 'rc-field-form';
 import DynamicForm, { IFormItemProps } from '../../..';
 import CountryList from '@bang88/china-city-data';
-import { Button, Toast } from 'antd-mobile-v2';
+import { Button } from 'antd-mobile-v2';
+import { Toast } from 'antd-mobile/2x';
 import AddressPicker from '..';
 
 const props = {
@@ -231,7 +232,7 @@ test('renders Basic', async () => {
       let mValues = JSON.parse(JSON.stringify(values));
       let data: { label: string; value: string }[] =
         getResetHomeAddrList(mValues);
-      Toast.hide();
+      Toast.clear();
       if (key === 'commonlyAddrData') {
         setCommonlyAddrData(data);
       } else {
@@ -243,7 +244,7 @@ test('renders Basic', async () => {
       let mValues = JSON.parse(JSON.stringify(values));
       let data: { label: string; value: string }[] =
         getResetWorkAddrList(mValues);
-      Toast.hide();
+      Toast.clear();
       setWorkAddrData(data);
     };
 
@@ -266,7 +267,12 @@ test('renders Basic', async () => {
             data={homeAddrData}
             placeholderList={['请选择省', '请选择市', '请选择区']}
             onChangeLevel={(values: (string | number)[]) => {
-              Toast.show('加载中');
+              Toast.show({
+                content: '加载中...',
+                duration: 0,
+                maskClickable: false,
+                icon: 'loading',
+              });
               resetHomeAddrList(values, 'homeAddrData');
             }}
             onChange={onChange}
@@ -279,7 +285,12 @@ test('renders Basic', async () => {
             data={commonlyAddrData}
             placeholderList={['请选择省', '请选择市', '请选择区']}
             onChangeLevel={(values: (string | number)[]) => {
-              Toast.show('加载中');
+              Toast.show({
+                content: '加载中...',
+                duration: 0,
+                maskClickable: false,
+                icon: 'loading',
+              });
               resetHomeAddrList(values, 'commonlyAddrData');
             }}
             onChange={onChange}
@@ -292,7 +303,12 @@ test('renders Basic', async () => {
             data={workAddrData}
             placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
             onChangeLevel={(values: (string | number)[]) => {
-              Toast.show('加载中');
+              Toast.show({
+                content: '加载中...',
+                duration: 0,
+                maskClickable: false,
+                icon: 'loading',
+              });
               resetWorkAddrList(values);
             }}
             onChange={onChange}

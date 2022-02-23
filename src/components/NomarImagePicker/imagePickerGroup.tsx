@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Toast } from 'antd-mobile-v2';
-import { ImageViewer } from 'antd-mobile/2x';
+import { ImageViewer, Toast } from 'antd-mobile/2x';
 import { Upload, Modal } from 'antd';
 import { AddOutline, CloseOutline } from 'antd-mobile-icons';
 import { DformContext } from '../../baseComponents/DynamicForm';
@@ -75,7 +74,11 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
 
   const checkFileLimit = (file: ImageFile) => {
     if (limitSize && file && file.size && file.size > limitSize) {
-      Toast.fail('图片过大', 1);
+      Toast.show({
+        icon: 'fail',
+        content: '图片过大',
+        maskClickable: false,
+      });
       return false;
     }
     return true;

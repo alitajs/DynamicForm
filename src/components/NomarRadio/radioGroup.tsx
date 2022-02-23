@@ -56,16 +56,6 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     isVertical = true;
   }
 
-  const labelCls = classnames({
-    [`${allPrefixCls}-input-label-0`]: labelNumber === 0,
-    [`${allPrefixCls}-input-label-2`]: labelNumber === 2,
-    [`${allPrefixCls}-input-label-3`]: labelNumber === 3,
-    [`${allPrefixCls}-input-label-4`]: labelNumber === 4,
-    [`${allPrefixCls}-input-label-5`]: labelNumber === 5,
-    [`${allPrefixCls}-input-label-6`]: labelNumber === 6,
-    [`${allPrefixCls}-input-label-7`]: labelNumber === 7,
-  });
-
   useEffect(() => {
     if (data.length === 0) {
       setActiveValue(undefined);
@@ -127,7 +117,7 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
       >
         {!isVertical && (
           <div
-            className={classnames(labelCls, {
+            className={classnames({
               [`${allPrefixCls}-title`]: true,
               [`${allPrefixCls}-vertical-title`]: isVertical,
             })}
