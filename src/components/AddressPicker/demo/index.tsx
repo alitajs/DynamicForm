@@ -3,7 +3,8 @@
  * desc: 表单使用 demo
  */
 import React, { FC, useState } from 'react';
-import { Button, WhiteSpace, Toast } from 'antd-mobile-v2';
+import { Button, WhiteSpace } from 'antd-mobile-v2';
+import { Toast } from 'antd-mobile/2x';
 import DynamicForm, {
   useForm,
   Store,
@@ -102,7 +103,7 @@ const Page: FC = () => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetHomeAddrList(mValues);
-    Toast.hide();
+    Toast.clear();
     if (key === 'commonlyAddrData') {
       setCommonlyAddrData(data);
     } else {
@@ -114,7 +115,7 @@ const Page: FC = () => {
     let mValues = JSON.parse(JSON.stringify(values));
     let data: { label: string; value: string }[] =
       getResetWorkAddrList(mValues);
-    Toast.hide();
+    Toast.clear();
     setWorkAddrData(data);
   };
 
@@ -138,7 +139,12 @@ const Page: FC = () => {
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
             console.log('values', values);
-            Toast.show('加载中');
+            Toast.show({
+              content: '加载中...',
+              duration: 0,
+              maskClickable: false,
+              icon: 'loading',
+            });
             // eslint-disable-next-line no-console
             setTimeout(() => {
               resetHomeAddrList(values, 'homeAddrData');
@@ -157,7 +163,12 @@ const Page: FC = () => {
           placeholderList={['请选择省', '请选择市', '请选择区']}
           onChangeLevel={(values: (string | number)[]) => {
             console.log('values', values);
-            Toast.show('加载中');
+            Toast.show({
+              content: '加载中...',
+              duration: 0,
+              maskClickable: false,
+              icon: 'loading',
+            });
             // eslint-disable-next-line no-console
             setTimeout(() => {
               resetHomeAddrList(values, 'commonlyAddrData');
@@ -176,7 +187,12 @@ const Page: FC = () => {
           placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
           onChangeLevel={(values: (string | number)[]) => {
             console.log('wvalues', values);
-            Toast.show('加载中');
+            Toast.show({
+              content: '加载中...',
+              duration: 0,
+              icon: 'loading',
+              maskClickable: false,
+            });
             setTimeout(() => {
               resetWorkAddrList(values);
             }, 300);

@@ -10,7 +10,6 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
   DformPicker,
-  WhiteSpace,
 } from '@alitajs/dform';
 
 const Page: FC = () => {
