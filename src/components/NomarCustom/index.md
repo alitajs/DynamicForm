@@ -15,24 +15,26 @@ nav:
 
 ## API
 
-| 参数           | 说明                                                       | 类型                          | 默认值      | 是否必填   |
-| -------------- | ---------------------------------------------------------- | ----------------------------- | ----------- | ---------- |
-| title          | 标题                                                       | string                        | ''          | 是         |
-| fieldProps     | 文本属性                                                   | boolean                       | false       | 是         |
-| required       | 必填判断                                                   | boolean                       | false       | 否         |
-| positionType   | 样式类型                                                   | `vertical` or `horizontal`    | false       | `vertical` |
-| hasStar        | 必填项红\*展示与否的判断                                   | boolean                       | true        | 否         |
-| rules          | 规则校验(如需用到该字段，请重写 `required` 校验)           | array                         | []          | 否         |
-| CustomDom      | 自定义样式                                                 | React.Node                    |             | 是         |
-| customDomProps | 自定义样式传入的值                                         | Object                        | {}          | 否         |
-| subTitle       | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效 | string or node                | ''          | 否         |
-| hidden         | 字段展示与否的判断                                         | boolean                       | false       | 否         |
-| renderHeader   | 组件头部                                                   | `number` or `string`          | -           | 否         |
-| defaultValue   | 设置初始取值                                               | string                        | -           | 否         |
-| onChange       | 值改变事件                                                 | object                        | (e) => void | 否         |
-| extra          |                                                            | `string` or `React.ReactNode` | ''          | 否         |
-| renderHeader   | 组件头部                                                   | `string` or `React.ReactNode` | ''          | 否         |
-| renderFooter   | 组件尾部                                                   | `string` or `React.ReactNode` | ''          | 否         |
+| 参数           | 说明                                                                                                                                  | 类型                          | 默认值       | 是否必填   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ------------ | ---------- |
+| title          | 标题                                                                                                                                  | string                        | ''           | 是         |
+| fieldProps     | 文本属性                                                                                                                              | boolean                       | false        | 是         |
+| required       | 必填判断                                                                                                                              | boolean                       | false        | 否         |
+| positionType   | 表单方向样式                                                                                                                          | `horizontal` or `vertical`    | `horizontal` | 否         |
+| labelNumber    | 定宽枚举值：`num * @input-label-width: 34px`，可用 `2-7` 之间的数字，一般(不能保证全部)能对应显示出相应个数的中文文字(不考虑英文字符) | number                        | 5            | 否         |
+| positionType   | 样式类型                                                                                                                              | `vertical` or `horizontal`    | false        | `vertical` |
+| hasStar        | 必填项红\*展示与否的判断                                                                                                              | boolean                       | true         | 否         |
+| rules          | 规则校验(如需用到该字段，请重写 `required` 校验)                                                                                      | array                         | []           | 否         |
+| CustomDom      | 自定义样式                                                                                                                            | React.Node                    |              | 是         |
+| customDomProps | 自定义样式传入的值                                                                                                                    | Object                        | {}           | 否         |
+| subTitle       | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效                                                                            | string or node                | ''           | 否         |
+| hidden         | 字段展示与否的判断                                                                                                                    | boolean                       | false        | 否         |
+| defaultValue   | 设置初始取值                                                                                                                          | string                        | -            | 否         |
+| onChange       | 值改变事件                                                                                                                            | object                        | (e) => void  | 否         |
+| extra          |                                                                                                                                       | `string` or `React.ReactNode` | ''           | 否         |
+| renderHeader   | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''           | 否         |
+| renderFooter   | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''           | 否         |
+| isPc           | pc 效果                                                                                                                               | boolean                       | false        | 否         |
 
 ## 自定义组件开发教程
 
