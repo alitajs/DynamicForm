@@ -8,6 +8,12 @@ import './index.less';
 
 const prefixCls = 'alitajs-dform-text-item';
 
+const checkValue = (val: string | number) => {
+  if (val) return true;
+  if (val === 0) return true;
+  return false;
+};
+
 const TextItem: FC<ITextItemProps> = (props) => {
   const [overflowFlag, setOverflowFlag] = useState<boolean>(true); // 展开收起标识
   const [lineHeightFlag, setLineHeightFlag] = useState<boolean>(false); // 文字行数是否超过 maxLength
@@ -31,6 +37,8 @@ const TextItem: FC<ITextItemProps> = (props) => {
     clearClick = () => {},
   } = props;
 
+  console.log(value);
+
   useEffect(() => {
     const textIds = document.getElementById(`text-${fieldProps}`);
     if (textIds) {
@@ -50,7 +58,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
   useEffect(() => {
     if (coverStyle && Object.keys(coverStyle)?.length) {
       const newStyle = JSON.parse(JSON.stringify(coverStyle));
-      if (!value && coverStyle.color) delete newStyle.color;
+      if (!checkValue(value) && coverStyle.color) delete newStyle.color;
       setCurrentCoverStyle({ ...newStyle });
     }
   }, [value, coverStyle]);
@@ -92,9 +100,9 @@ const TextItem: FC<ITextItemProps> = (props) => {
       >
         <div
           className={classnames({
-            [`${prefixCls}-content`]: !!value,
+            [`${prefixCls}-content`]: !!checkValue(value),
             [`${prefixCls}-content-padding`]: !isVertical,
-            [`${allPrefixCls}-placeholder`]: !value,
+            [`${allPrefixCls}-placeholder`]: !checkValue(value),
             [`${allPrefixCls}-ellipsis`]: ellipsis,
           })}
           onClick={() => {
@@ -105,7 +113,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
             id={`text-${fieldProps}`}
             className={classnames({
               [`${prefixCls}-text`]: true,
-              'alitajs-dform-disabled': disabled && value,
+              'alitajs-dform-disabled': disabled && checkValue(value),
               [className]: className,
             })}
             style={{
@@ -116,7 +124,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
               ...currentCoverStyle,
             }}
           >
-            {value || placeholder}
+            {checkValue(value) ? `${value}` : placeholder}
           </div>
           {maxLine && lineHeightFlag && (
             <div
@@ -129,7 +137,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
             </div>
           )}
         </div>
-        {clear && value && !disabled && (
+        {clear && checkValue(value) && !disabled && (
           <img
             className={`${allPrefixCls}-close`}
             src={ClosePng}
