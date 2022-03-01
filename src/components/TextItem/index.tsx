@@ -37,8 +37,6 @@ const TextItem: FC<ITextItemProps> = (props) => {
     clearClick = () => {},
   } = props;
 
-  console.log(value);
-
   useEffect(() => {
     const textIds = document.getElementById(`text-${fieldProps}`);
     if (textIds) {
