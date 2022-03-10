@@ -40,6 +40,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     formFlag = false,
     children,
     positionType,
+    hidden = false,
   } = props;
 
   useEffect(() => {
@@ -56,6 +57,9 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
       initialValue={defaultValue}
       formFlag={formFlag}
+      params={{
+        hidden,
+      }}
     >
       {children ? children : <CustomDom {...customDomProps} />}
     </Field>

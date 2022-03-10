@@ -48,6 +48,7 @@ const DformText: FC<INomarTextProps> = (props) => {
     defaultValue,
     titleProps,
     formFlag = false,
+    hidden = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -59,6 +60,9 @@ const DformText: FC<INomarTextProps> = (props) => {
         rules={[{ required, message: `${title}无数据` }, ...(rules || [])]}
         initialValue={defaultValue}
         formFlag={formFlag}
+        params={{
+          hidden,
+        }}
       >
         <TextItem
           placeholder={placeholder}

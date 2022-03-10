@@ -89,6 +89,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             }}
             initialValue={firstProps?.defaultValue}
             formFlag={formFlag}
+            params={{
+              hidden,
+            }}
           >
             <DatePickerGroup
               {...otherProps}
@@ -137,6 +140,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             }}
             initialValue={secondProps?.defaultValue}
             formFlag={formFlag}
+            params={{
+              hidden,
+            }}
           >
             <DatePickerGroup
               {...otherProps}

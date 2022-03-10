@@ -18,6 +18,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     onChange,
     defaultValue,
     titleProps,
+    hidden = false,
     formFlag = false,
   } = props;
 
@@ -37,6 +38,9 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
         }}
         initialValue={defaultValue}
         formFlag={formFlag}
+        params={{
+          hidden,
+        }}
       >
         <AddressPickerGroup
           {...props}

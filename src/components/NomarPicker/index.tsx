@@ -79,6 +79,9 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         }}
         initialValue={defaultValue}
         formFlag={formFlag}
+        params={{
+          hidden,
+        }}
       >
         {showFiled()}
       </Field>

@@ -45,6 +45,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     firstProps,
     secondProps,
     titleProps,
+    hidden = false,
     formFlag = false,
   } = props;
 
@@ -68,6 +69,9 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={secondProps?.defaultValue}
           formFlag={formFlag}
+          params={{
+            hidden,
+          }}
         >
           <PickerGroup
             {...secondProps}
@@ -85,6 +89,9 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
         initialValue={secondProps?.defaultValue}
         formFlag={formFlag}
+        params={{
+          hidden,
+        }}
       >
         <InputItem
           labelNumber={0}
@@ -113,6 +120,9 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
             rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
             initialValue={firstProps?.defaultValue}
             formFlag={formFlag}
+            params={{
+              hidden,
+            }}
           >
             <InputItem
               {...firstProps}

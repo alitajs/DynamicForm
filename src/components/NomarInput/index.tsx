@@ -131,6 +131,9 @@ const DformInput: FC<INomarInputProps> = (props) => {
         rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
         initialValue={defaultValue}
         formFlag={formFlag}
+        params={{
+          hidden,
+        }}
       >
         {editable && !disabled ? showFiled() : showTextFiled()}
       </Field>

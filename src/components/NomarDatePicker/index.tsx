@@ -31,7 +31,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     minDate,
     maxDate,
     modeType = 'date',
-    ...otherProps
+    hidden = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -62,6 +62,9 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           {...fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           formFlag={formFlag}
+          params={{
+            hidden,
+          }}
         >
           <DatePickerGroup
             {...dateProps}

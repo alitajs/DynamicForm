@@ -25,6 +25,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     titleProps,
     maxLine,
     formFlag = false,
+    hidden = false,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -75,6 +76,9 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
         rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         initialValue={defaultValue}
         formFlag={formFlag}
+        params={{
+          hidden,
+        }}
       >
         <SelectGroup
           {...props}

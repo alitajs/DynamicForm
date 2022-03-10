@@ -41,6 +41,9 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
           formFlag={formFlag}
+          params={{
+            hidden,
+          }}
         >
           <ImagePickerGroup
             {...otherProps}

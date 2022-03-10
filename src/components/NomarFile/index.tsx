@@ -23,6 +23,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     formFlag = false,
     disabled = false,
     maxLength,
+    hidden = false,
   } = props;
 
   const [selectable, setSelectable] = useState<boolean>(true);
@@ -91,6 +92,9 @@ const DformFile: FC<INomarFileProps> = (props) => {
           name={fieldProps}
           rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
+          params={{
+            hidden,
+          }}
         >
           <FileGroup
             {...props}

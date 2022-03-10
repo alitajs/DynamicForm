@@ -87,6 +87,9 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
           }}
           initialValue={defaultValue}
           formFlag={formFlag}
+          params={{
+            hidden,
+          }}
         >
           <TextareaItem
             {...otherProps}
