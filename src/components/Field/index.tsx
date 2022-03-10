@@ -9,8 +9,8 @@ interface CustomFieldProps extends FieldProps {
 }
 
 const CustomField: FC<CustomFieldProps> = (props: any) => {
-  const { formFlag = false, rules = [], params, ...restProps } = props;
-  const { hidden } = params;
+  const { formFlag = false, rules = [], params = {}, ...restProps } = props;
+  const { hidden = false } = params;
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
     if (props.shouldUpdate && typeof props.shouldUpdate === 'function') {
