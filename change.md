@@ -1,5 +1,9 @@
 # 版本升级内容
 
+## 3.4.12
+
+修复 3.4.11 的小问题。
+
 ## 3.4.11
 
 hidden > required、rules 并且通过 defaultValue 和 formValues 设置的值不会消失。会在 submit 的时候带出来。
