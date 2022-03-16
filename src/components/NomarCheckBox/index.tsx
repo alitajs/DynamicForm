@@ -1,34 +1,10 @@
 import React, { FC, useState, useEffect } from 'react';
-import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import Title from '../Title';
-import CheckBoxGroup, { IDataItem } from './checkBoxgroup';
-import { IAliasProps } from '../../PropsType';
+import CheckBoxGroup from './checkBoxgroup';
 import { allPrefixCls } from '../../const/index';
+import { INomarCheckBoxProps } from './interface';
 import './index.less';
-
-interface INomarCheckBoxProps {
-  title: string;
-  rules?: Rule[];
-  required?: boolean;
-  data?: any;
-  fieldProps: string;
-  hasStar?: boolean;
-  subTitle?: string | React.ReactNode;
-  coverStyle?: React.CSSProperties;
-  className?: string;
-  onChange?: (currentActiveLink: (string | number)[]) => void;
-  disabled?: boolean;
-  disableItem?: (items: IDataItem) => boolean;
-  hidden?: boolean;
-  chunk?: number;
-  alias?: IAliasProps;
-  defaultValue?: (string | number)[];
-  titleProps?: any;
-  formFlag?: boolean;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-}
 
 const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);

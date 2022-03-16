@@ -2,7 +2,6 @@ import { Rule } from 'rc-field-form/es/interface';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import { IAliasProps } from '../../PropsType';
 import { PickerPropsType } from 'antd-mobile-v2/es/picker/PropsType';
-import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarSelectProps
   extends Omit<PickerPropsType, 'extra' | 'onChange' | 'value'> {
@@ -31,6 +30,5 @@ export interface INomarSelectProps
   titleProps?: any;
   maxLine?: number | undefined;
   formFlag?: boolean;
-  renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
 }

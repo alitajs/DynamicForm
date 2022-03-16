@@ -1,31 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
-import { Rule } from 'rc-field-form/es/interface';
+import React, { FC, useEffect } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
 import HorizontalTitle from '../HorizontalTitle';
+import { INomarCustomPorps } from './interface';
 import './index.less';
-
-interface INomarCustomPorps {
-  fieldProps: string;
-  title: string;
-  positionType?: 'horizontal' | 'vertical';
-  required?: boolean;
-  hasStar?: boolean;
-  rules?: Rule[];
-  onChange?: (currentActiveLink: any) => void;
-  customDomProps?: any;
-  CustomDom?: any;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-  extra?: string | React.ReactNode;
-  defaultValue?: string;
-  titleProps?: any;
-  formFlag?: boolean;
-  children: React.ReactElement;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-}
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {
   const {

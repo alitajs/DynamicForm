@@ -1,34 +1,12 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
-import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
 import Field from '../Field';
 import Title from '../Title';
-import { INomarDatePickerProps } from '../NomarDatePicker/interface';
 import { changeDateFormat } from '../../utils';
 import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
 import { allPrefixCls } from '../../const/index';
+import { IRangeDatePickerProps } from './interface';
 import './index.less';
-
-export interface DateProps extends PropsType {
-  defaultValue?: Date;
-}
-
-export interface IRangeDatePickerProps extends INomarDatePickerProps {
-  fieldProps2: string;
-  placeholder2?: string;
-  minDate?: Date;
-  maxDate?: Date;
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  secondProps?: DateProps;
-  firstProps?: DateProps;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-  titleProps?: any;
-  formFlag?: boolean;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-}
 
 const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
   const [beginDate, setBeginDate] = useState<Date>();

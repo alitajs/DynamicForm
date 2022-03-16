@@ -1,35 +1,13 @@
-import React, { FC, useState } from 'react';
-import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
+import React, { FC } from 'react';
 import classnames from 'classnames';
-import { Rule } from 'rc-field-form/es/interface';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
 import Title from '../Title';
 import InputItem from '../InputItem';
 import { StringAndUdfEvent } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
+import { IExtraInputProps } from './interface';
 import './index.less';
-
-export interface IExtraInputProps {
-  fieldProps: string;
-  fieldProps2?: string;
-  required?: boolean;
-  rules?: Rule[];
-  title: string;
-  coverStyle?: React.CSSProperties;
-  extraType?: 'input' | 'select';
-  positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
-  firstProps?: InputItemPropsType;
-  secondProps?: any;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-  disabled?: boolean;
-  titleProps?: any;
-  formFlag?: boolean;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-}
 
 const ExtraInput: FC<IExtraInputProps> = (props) => {
   const {

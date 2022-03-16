@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useMemo } from 'react';
+import React, { FC, useState, useMemo } from 'react';
 import { Picker } from 'antd-mobile-v2';
 import { INomarSelectProps } from './interface';
 import TextItem from '../TextItem';
