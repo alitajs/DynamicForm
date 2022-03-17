@@ -3,7 +3,7 @@ import { Field } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
 import '../../styles/index.less';
 
-interface CustomFieldProps extends FieldProps {
+export interface CustomFieldProps extends FieldProps {
   formFlag?: boolean;
   params?: any;
 }
