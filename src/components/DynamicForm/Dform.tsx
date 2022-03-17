@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from 'react';
 import Form, { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
-import Title from '../Title';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 import {
   DFORM_COMP_NAME,
@@ -177,6 +176,14 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   const [changeForm, setChangeForm] = useState<any>({});
 
   useEffect(() => {
+    Object.keys(relatives).map((item) => {
+      if (formsValues[item]) {
+        fieldChange(item, formsValues[item], relatives);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     if (defaultValueFlag) {
       if (data && data.length) {
         const filter = data.filter(
@@ -188,6 +195,13 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         if (filter && filter.length) {
           filter.forEach((filterItem: any) => {
             formsValues[filterItem?.fieldProps] = filterItem.defaultValue;
+            if (relatives[filterItem?.fieldProps]) {
+              fieldChange(
+                filterItem?.fieldProps,
+                filterItem.defaultValue,
+                relatives,
+              );
+            }
           });
           setDefaultValueFlag(false);
         }
@@ -219,7 +233,16 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       !!curFieldRel &&
       !!curFieldRel.length
     ) {
-      curFieldRel.forEach((rel: any) => {
+      const newCurFieldRel = [...curFieldRel];
+      const ind = curFieldRel.findIndex((it: any) =>
+        it?.targetValue.includes(e),
+      );
+      const findObj = curFieldRel.find((it: any) =>
+        it?.targetValue.includes(e),
+      );
+      newCurFieldRel.splice(ind, 1);
+      newCurFieldRel.push(findObj);
+      newCurFieldRel.forEach((rel: any) => {
         const { type, targetValue, targetSet = [] } = rel;
         const fieldValues = {} as any;
         switch (type) {
