@@ -37,7 +37,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       value: item[value],
     }));
     setAliasData(newData);
-  }, [data]);
+  }, [JSON.stringify(data)]);
 
   const fieldChange = (values: any) => {
     if (onChange) onChange(values);
