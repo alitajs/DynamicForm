@@ -19,7 +19,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     title,
     hasStar = true,
     onChange,
-    data,
+    data = [],
     alias = {
       label: 'label',
       value: 'value',
@@ -32,7 +32,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const { label = 'label', value = 'value' } = alias;
 
   useEffect(() => {
-    const newData = data.map((item: any) => ({
+    const newData = (data || []).map((item: any) => ({
       label: item[label],
       value: item[value],
     }));
