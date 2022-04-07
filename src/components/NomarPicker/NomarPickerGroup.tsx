@@ -26,6 +26,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     onClick,
     value,
     clear = false,
+    customTitle
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -103,7 +104,8 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
         {children}
       </TextItem>
       <Picker
-        title={title}
+        /** @ts-ignore */
+        title={customTitle || title}
         visible={visible && data.length > 0}
         data={data as any}
         cols={1}
