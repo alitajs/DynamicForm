@@ -6,10 +6,17 @@ import '../../styles/index.less';
 export interface CustomFieldProps extends FieldProps {
   formFlag?: boolean;
   params?: any;
+  style?: React.CSSProperties;
 }
 
 const CustomField: FC<CustomFieldProps> = (props: any) => {
-  const { formFlag = false, rules = [], params = {}, ...restProps } = props;
+  const {
+    formFlag = false,
+    rules = [],
+    params = {},
+    style = {},
+    ...restProps
+  } = props;
   const { hidden = false } = params;
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
@@ -25,7 +32,7 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   }
 
   return (
-    <div id={`alita-dform-${props?.name}`}>
+    <div id={`alita-dform-${props?.name}`} style={style}>
       <Field
         {...restProps}
         rules={hidden ? [] : rules}

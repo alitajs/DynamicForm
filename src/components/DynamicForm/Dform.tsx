@@ -240,8 +240,10 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       const findObj = curFieldRel.find((it: any) =>
         it?.targetValue.includes(e),
       );
-      newCurFieldRel.splice(ind, 1);
-      newCurFieldRel.push(findObj);
+      if (ind > -1) {
+        newCurFieldRel.splice(ind, 1);
+        newCurFieldRel.push(findObj);
+      }
       newCurFieldRel.forEach((rel: any) => {
         const { type, targetValue, targetSet = [] } = rel;
         const fieldValues = {} as any;
