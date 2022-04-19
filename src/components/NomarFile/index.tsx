@@ -90,7 +90,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
         <Field
           formFlag={formFlag}
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
+          rules={[...(rules || []), { required, message: `请选择${title}` }]}
           initialValue={defaultValue}
           params={{
             hidden,

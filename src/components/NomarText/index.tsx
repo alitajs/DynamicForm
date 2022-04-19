@@ -57,7 +57,7 @@ const DformText: FC<INomarTextProps> = (props) => {
     <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `${title}无数据` }, ...(rules || [])]}
+        rules={[...(rules || []), { required, message: `${title}无数据` }]}
         initialValue={defaultValue}
         formFlag={formFlag}
         params={{

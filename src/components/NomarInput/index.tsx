@@ -108,7 +108,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
+        rules={[...(rules || []), { required, message: `请输入${title}` }]}
         initialValue={defaultValue}
         formFlag={formFlag}
         params={{

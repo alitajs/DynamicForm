@@ -32,7 +32,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     <Title independentProps={props} formFlag={formFlag} {...titleProps}>
       <Field
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
+        rules={[...(rules || []), { required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
