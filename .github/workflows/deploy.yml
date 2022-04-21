@@ -22,22 +22,11 @@ jobs:
         with:
           node-version: 14
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-
-
-      - name: Pnpm action
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: true
+      - name: install
+        run: yarn
 
       - name: Build
-        run: pnpm docs:build
+        run: yarn run docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
