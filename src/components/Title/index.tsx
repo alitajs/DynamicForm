@@ -4,6 +4,7 @@ import Hidden from '../Hidden';
 import { allPrefixCls } from '../../const/index';
 
 export interface TitleProps {
+  children: any;
   positionType?: 'vertical' | 'horizontal';
   hidden?: boolean;
   required?: boolean;

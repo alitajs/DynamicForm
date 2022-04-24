@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { Flex } from 'antd-mobile-v2';
-import chunkLodash from 'lodash/chunk';
+import chunkLodash from 'lodash.chunk';
 
 const { Item } = Flex;
 
