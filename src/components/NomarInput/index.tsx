@@ -3,8 +3,8 @@ import { StringAndUdfEvent } from '../../PropsType';
 import InputItem from '../InputItem';
 import Field from '../Field';
 import Title from '../Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { TextItem } from '../..';
-import { allPrefixCls } from '../../const';
 import { INomarInputProps } from './interface';
 
 const DformInput: FC<INomarInputProps> = (props) => {
@@ -25,12 +25,11 @@ const DformInput: FC<INomarInputProps> = (props) => {
     className = '',
     disabled = false,
     defaultValue,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     placeholder,
     maxLine,
     onClick,
-    labelNumber = 5,
+    labelNumber = 7,
     ...otherProps
   } = props;
 
@@ -61,12 +60,14 @@ const DformInput: FC<INomarInputProps> = (props) => {
         ellipsis={false}
         arrow={false}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+        />
       </TextItem>
     );
   };
@@ -94,26 +95,31 @@ const DformInput: FC<INomarInputProps> = (props) => {
         }}
         isVertical={isVertical}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+        />
       </InputItem>
     );
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} type="input">
       <Field
         name={fieldProps}
-        rules={[...(rules || []), { required, message: `请输入${title}` }]}
+        rules={rules}
+        title={title}
+        required={required}
         initialValue={defaultValue}
         formFlag={formFlag}
         params={{
           hidden,
         }}
+        type="input"
       >
         {editable && !disabled ? showFiled() : showTextFiled()}
       </Field>

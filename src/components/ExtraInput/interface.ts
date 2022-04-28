@@ -16,8 +16,8 @@ export interface IExtraInputProps {
   subTitle?: string | React.ReactNode;
   hidden?: boolean;
   disabled?: boolean;
-  titleProps?: any;
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  labelNumber?: number;
 }

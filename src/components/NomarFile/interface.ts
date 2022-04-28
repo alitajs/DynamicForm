@@ -1,5 +1,4 @@
 import { Rule } from 'rc-field-form/es/interface';
-import { ErrorValueProps } from '../../PropsType';
 
 export interface INomarFileItemProps {
   [key: string]: any;

@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import Field from '../Field';
 import Title from '../Title';
 import AddressPickerGroup from './AddressPickerGroup';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { IAddressPickerProps, valueProps } from './interface';
-import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
@@ -17,9 +17,9 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     extra,
     onChange,
     defaultValue,
-    titleProps,
     hidden = false,
-    formFlag = false,
+    formFlag = true,
+    labelNumber = 7,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -29,10 +29,12 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} type="addressPicker">
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[...(rules || []), { required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
@@ -41,18 +43,21 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
         params={{
           hidden,
         }}
+        type="addressPicker"
       >
         <AddressPickerGroup
           {...props}
           extra={isVertical ? '' : extra}
           onChange={fieldChange}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+          />
         </AddressPickerGroup>
       </Field>
     </Title>

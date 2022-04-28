@@ -3,6 +3,7 @@ import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
 import Title from '../Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -23,11 +24,13 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
-    titleProps,
     hidden = false,
-    formFlag = false,
+    formFlag = true,
+    labelNumber = 7,
   } = props;
   const { label = 'label', value = 'value' } = alias;
+
+  const isVertical = positionType === 'vertical';
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -46,29 +49,28 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   };
 
   return (
-    <Title
-      title={title}
-      positionType={positionType}
-      independentProps={props}
-      formFlag={formFlag}
-      {...titleProps}
-    >
+    <Title type="multiplePicker" independentProps={props} formFlag={formFlag}>
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[...(rules || []), { required, message: `请选择${title}` }]}
         initialValue={defaultValue}
         formFlag={formFlag}
         params={{
           hidden,
         }}
+        type="multiplePicker"
       >
         <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+          />
         </MultiplePickerGroup>
       </Field>
     </Title>

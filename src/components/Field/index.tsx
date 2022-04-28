@@ -1,23 +1,42 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, useState, useMemo } from 'react';
 import { Field } from 'rc-field-form';
 import { FieldProps } from 'rc-field-form/es/Field';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import { TitleTypePorps } from '../../PropsType';
+import { PLACEHOLDER_MENU } from '../../utils/menu';
 import '../../styles/index.less';
 
 export interface CustomFieldProps extends FieldProps {
   formFlag?: boolean;
   params?: any;
   style?: React.CSSProperties;
+  title?: string;
+  required?: boolean;
+  type: TitleTypePorps;
 }
 
 const CustomField: FC<CustomFieldProps> = (props: any) => {
   const {
-    formFlag = false,
+    formFlag = true,
     rules = [],
     params = {},
     style = {},
+    required = false,
+    title = '',
+    type,
+    name,
     ...restProps
   } = props;
+  const [mregedRequired, setMregedRequired] = useState<boolean>(required);
   const { hidden = false } = params;
+
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[name]?.required !== undefined) {
+      setMregedRequired(changeForm[name]?.required);
+    }
+  }, [changeForm[name]]);
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
     if (props.shouldUpdate && typeof props.shouldUpdate === 'function') {
@@ -35,7 +54,18 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
     <div id={`alita-dform-${props?.name}`} style={style}>
       <Field
         {...restProps}
-        rules={hidden ? [] : rules}
+        name={name}
+        rules={
+          hidden
+            ? []
+            : [
+                ...(rules || []),
+                {
+                  required: mregedRequired,
+                  message: `${PLACEHOLDER_MENU[type]}${title}`,
+                },
+              ]
+        }
         shouldUpdate={shouldUpdate}
       />
     </div>

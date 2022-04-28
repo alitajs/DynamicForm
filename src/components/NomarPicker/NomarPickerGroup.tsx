@@ -20,13 +20,13 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     disabled = false,
     positionType = 'horizontal',
     coverStyle,
-    labelNumber = 5,
+    labelNumber = 7,
     extra = '',
     className,
     onClick,
     value,
     clear = false,
-    customTitle
+    customTitle,
   } = props;
   const isVertical = positionType === 'vertical';
 

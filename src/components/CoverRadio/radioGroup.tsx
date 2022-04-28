@@ -20,6 +20,7 @@ interface IRadioGroup {
   className?: string;
   labelNumber: number;
   formFlag?: boolean;
+  children?: any;
 }
 
 const RadioGroup: FC<IRadioGroup> = (props) => {
@@ -32,8 +33,8 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     disabled = false,
     coverStyle,
     className = '',
-    labelNumber = 5,
-    formFlag = false,
+    labelNumber = 7,
+    formFlag = true,
     children,
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
@@ -45,7 +46,6 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
   }
 
   const formValue = formFlag ? activeValue : value;
-
 
   const labelCls = classnames({
     [`${allPrefixCls}-input-label-0`]: labelNumber === 0,

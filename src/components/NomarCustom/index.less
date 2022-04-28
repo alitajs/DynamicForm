@@ -1,5 +1,9 @@
 @import '../../styles/index.less';
 
-.@{prefixCls}-vertical-dom {
+.@{prefixCls}-dom {
   font-size: 17 * @hd;
+  display: flex;
+  & > div:last-child {
+    flex: 1;
+  }
 }

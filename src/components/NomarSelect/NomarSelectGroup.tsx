@@ -27,7 +27,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     value = '',
     onClick,
     className,
-    labelNumber = 6,
+    labelNumber = 7,
     extra = '',
     children,
     onChange,

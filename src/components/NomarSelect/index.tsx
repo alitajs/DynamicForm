@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
 import Title from '../Title';
 import './index.less';
@@ -21,12 +21,15 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    positionType = 'horizontal',
     defaultValue,
-    titleProps,
     maxLine,
-    formFlag = false,
+    formFlag = true,
     hidden = false,
+    labelNumber = 7,
   } = props;
+
+  const isVertical = positionType === 'vertical';
 
   const { label = 'label', value = 'value' } = alias;
   const [initValue, setInitValue] = React.useState<any>();
@@ -70,15 +73,18 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} type="select">
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[...(rules || []), { required, message: `请选择${title}` }]}
         initialValue={defaultValue}
         formFlag={formFlag}
         params={{
           hidden,
         }}
+        type="select"
       >
         <SelectGroup
           {...props}
@@ -87,12 +93,14 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
           data={aliasData}
           maxLine={maxLine}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+          />
         </SelectGroup>
       </Field>
     </Title>

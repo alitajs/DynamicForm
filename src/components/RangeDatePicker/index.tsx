@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { changeDateFormat } from '../../utils';
 import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
 import { allPrefixCls } from '../../const/index';
@@ -28,10 +29,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     firstProps,
     subTitle,
     hidden = false,
-    labelNumber = 5,
+    labelNumber = 7,
     coverStyle = {},
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     ...otherProps
   } = props;
 
@@ -41,7 +41,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     <Title
       independentProps={{ positionType, ...props }}
       formFlag={formFlag}
-      {...titleProps}
+      type="rangeDatePicker"
     >
       <div
         className={classnames({
@@ -59,8 +59,11 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
           }-picker`}
         >
           <Field
+            type="rangeDatePicker"
+            title={title}
+            required={required}
+            rules={rules}
             name={fieldProps}
-            rules={[...(rules || []), { required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
               setBeginDate(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
@@ -93,12 +96,14 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               format={(value) => changeDateFormat(value, modeType)}
             >
               {!isVertical && (
-                <div className={`${allPrefixCls}-title`}>
-                  {required && hasStar && (
-                    <div className={`${allPrefixCls}-redStar`}>*</div>
-                  )}
-                  <div>{title}</div>
-                </div>
+                <HorizontalTitle
+                  required={required}
+                  hasStar={hasStar}
+                  title={title}
+                  labelNumber={labelNumber}
+                  isVertical={isVertical}
+                  fieldProps={fieldProps}
+                />
               )}
             </DatePickerGroup>
           </Field>

@@ -20,7 +20,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     use12Hours = false,
     minuteStep = 1,
     placeholder = '请选择',
-    labelNumber = 5,
+    labelNumber = 7,
     coverStyle,
     disabled = false,
     extra = '',

@@ -18,9 +18,8 @@ const DformFile: FC<INomarFileProps> = (props) => {
     onChange,
     defaultValue,
     upload,
-    titleProps,
     fileProps,
-    formFlag = false,
+    formFlag = true,
     disabled = false,
     maxLength,
     hidden = false,
@@ -81,16 +80,22 @@ const DformFile: FC<INomarFileProps> = (props) => {
 
   return (
     <Title
-      independentProps={{ positionType: 'vertical', ...props }}
+      type="file"
+      independentProps={{
+        positionType: 'vertical',
+        ...props,
+        extra: extraContent(),
+      }}
       formFlag={formFlag}
-      {...titleProps}
-      extra={extraContent()}
     >
       <div className={prefixCls}>
         <Field
+          type="file"
+          title={title}
+          required={required}
+          rules={rules}
           formFlag={formFlag}
           name={fieldProps}
-          rules={[...(rules || []), { required, message: `请选择${title}` }]}
           initialValue={defaultValue}
           params={{
             hidden,

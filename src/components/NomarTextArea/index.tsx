@@ -3,6 +3,7 @@ import { TextareaItem } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const';
 import { INomarTextAreaProps } from './interface';
 import './index.less';
@@ -15,7 +16,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     rules = [],
     rows = 3,
     title,
-    positionType = 'horizontal',
+    positionType = 'vertical',
     hasStar = true,
     extra = '',
     subTitle,
@@ -25,8 +26,8 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     className = '',
     defaultValue,
     errorValue,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
+    labelNumber = 7,
     ...otherProps
   } = props;
 
@@ -34,12 +35,14 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   if (extra) isVertical = true;
 
   const titleDiv = () => (
-    <div className={`${allPrefixCls}-title`}>
-      {required && hasStar && (
-        <div className={`${allPrefixCls}-redStar`}>*</div>
-      )}
-      <div>{title}</div>
-    </div>
+    <HorizontalTitle
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      labelNumber={labelNumber}
+      isVertical={isVertical}
+      fieldProps={fieldProps}
+    />
   );
 
   const inputOnBlur = (val: string | undefined) => {
@@ -48,7 +51,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} type="area">
       <div
         className={classnames({
           [`${allPrefixCls}-area`]: true,
@@ -57,8 +60,11 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
         })}
       >
         <Field
+          type="area"
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[...(rules || []), { required, message: `请输入${title}` }]}
           shouldUpdate={(prevValue: any, nextValue: any) => {
             return prevValue !== nextValue;
           }}

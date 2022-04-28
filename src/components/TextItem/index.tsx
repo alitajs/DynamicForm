@@ -24,7 +24,7 @@ const TextItem: FC<ITextItemProps> = (props) => {
     value = '',
     placeholder = '请输入',
     onClick,
-    labelNumber = 5,
+    labelNumber = 7,
     coverStyle = {},
     extra,
     maxLine,

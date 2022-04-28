@@ -13,9 +13,19 @@ export interface INomarCustomPorps {
   hidden?: boolean;
   extra?: string | React.ReactNode;
   defaultValue?: string;
-  titleProps?: any;
   formFlag?: boolean;
   children: React.ReactElement;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  labelNumber?: number;
+}
+
+export interface CustomGroupProps {
+  value?: any;
+  onChange?: (res: any) => any;
+  customDomProps?: any;
+  CustomDom?: any;
+  isVertical: boolean;
+  cutomTitle: React.ReactNode;
+  children?: any;
 }

@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 interface HiddenProps {
   hidden: boolean;
+  children: any;
 }
 
 const Hidden: FC<HiddenProps> = ({ children, hidden = false }) => {
