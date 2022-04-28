@@ -21,6 +21,7 @@ export interface INomarRadioGroupProps {
   allowUnChecked?: boolean;
   labelNumber: number;
   formFlag?: boolean;
+  children?: any;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
@@ -34,9 +35,9 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     coverStyle,
     className = '',
     allowUnChecked,
-    labelNumber = 5,
+    labelNumber = 7,
     children,
-    formFlag = false,
+    formFlag = true,
   } = props;
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
     undefined,

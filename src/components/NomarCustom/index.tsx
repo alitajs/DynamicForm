@@ -2,8 +2,10 @@ import React, { FC, useEffect } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
-import HorizontalTitle from '../HorizontalTitle';
+import CustomGroup from './CustomGroup';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { INomarCustomPorps } from './interface';
+import { allPrefixCls } from '../../const';
 import './index.less';
 
 const DformCustom: FC<INomarCustomPorps> = (props) => {
@@ -15,12 +17,15 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     title,
     CustomDom,
     customDomProps,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     children,
-    positionType,
-    hidden = false,
+    hasStar = true,
+    positionType = 'vertical',
+    labelNumber = 7,
+    onChange,
   } = props;
+
+  const isVertical = positionType === 'vertical';
 
   useEffect(() => {
     if (CustomDom || customDomProps) {
@@ -30,56 +35,61 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     }
   }, [CustomDom, customDomProps]);
 
-  const dom = () => (
-    <Field
-      name={fieldProps}
-      rules={[...(rules || []), { required, message: `请选择${title}` }]}
-      initialValue={defaultValue}
-      formFlag={formFlag}
-      params={{
-        hidden,
-      }}
-    >
-      {children ? children : <CustomDom {...customDomProps} />}
-    </Field>
-  );
-
-  const isVertical =
-    (formFlag ? titleProps?.positionType : positionType) === 'vertical';
-
-  const Vertical = (
-    <Title
-      independentProps={{ positionType: 'vertical', ...props }}
-      formFlag={formFlag}
-      {...titleProps}
-    >
-      <div
-        className={classnames('alitajs-dform-dom', {
-          'alitajs-dform-vertical-dom': true,
-        })}
-      >
-        {dom()}
-      </div>
-    </Title>
-  );
-
-  const Horizontal = (
+  const cutomTitle = () => (
     <HorizontalTitle
-      independentProps={{ positionType: 'vertical', ...props }}
-      formFlag={formFlag}
-      {...titleProps}
-    >
-      <div
-        className={classnames('alitajs-dform-dom', {
-          'alitajs-dform-vertical-dom': true,
-        })}
-      >
-        {dom()}
-      </div>
-    </HorizontalTitle>
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      labelNumber={labelNumber}
+      isVertical={isVertical}
+      fieldProps={fieldProps}
+    />
   );
 
-  return isVertical ? Vertical : Horizontal;
+  const fieldChange = (e: any) => {
+    if (onChange) onChange(e);
+  };
+
+  const childrenContent = () => {
+    return (
+      <>
+        <div
+          className={classnames({
+            [`${allPrefixCls}-dom`]: true,
+          })}
+        >
+          {!isVertical && cutomTitle()}
+          <Field
+            name={fieldProps}
+            title={title}
+            required={required}
+            rules={rules}
+            initialValue={defaultValue}
+            formFlag={formFlag}
+            type="custom"
+          >
+            <CustomGroup
+              isVertical={isVertical}
+              CustomDom={CustomDom}
+              customDomProps={customDomProps}
+              cutomTitle={cutomTitle()}
+              onChange={fieldChange}
+            >
+              {children}
+            </CustomGroup>
+          </Field>
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <Title
+      independentProps={{ ...props, children: childrenContent() }}
+      formFlag={formFlag}
+      type="custom"
+    />
+  );
 };
 
 DformCustom.displayName = 'dformCustom';

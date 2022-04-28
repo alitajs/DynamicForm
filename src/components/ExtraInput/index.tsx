@@ -4,6 +4,7 @@ import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
 import Title from '../Title';
 import InputItem from '../InputItem';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { StringAndUdfEvent } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import { IExtraInputProps } from './interface';
@@ -14,7 +15,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     fieldProps,
     fieldProps2,
     title,
-    required,
+    required = false,
     rules = [],
     coverStyle,
     extraType = 'input',
@@ -22,9 +23,9 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     hasStar = true,
     firstProps,
     secondProps,
-    titleProps,
     hidden = false,
-    formFlag = false,
+    labelNumber = 7,
+    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -43,13 +44,16 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     if (extraType === 'select') {
       return (
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps2}
-          rules={[...(rules || []), { required, message: `请选择${title}` }]}
           initialValue={secondProps?.defaultValue}
           formFlag={formFlag}
           params={{
             hidden,
           }}
+          type="picker"
         >
           <PickerGroup
             {...secondProps}
@@ -63,13 +67,16 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
 
     return (
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps2}
-        rules={[...(rules || []), { required, message: `请输入${title}` }]}
         initialValue={secondProps?.defaultValue}
         formFlag={formFlag}
         params={{
           hidden,
         }}
+        type="extraInput"
       >
         <InputItem
           labelNumber={0}
@@ -81,7 +88,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title type="extraInput" independentProps={props} formFlag={formFlag}>
       <div
         className={classnames({
           [`${allPrefixCls}-extra-input`]: true,
@@ -94,13 +101,16 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           }-input`}
         >
           <Field
+            title={title}
+            required={required}
+            rules={rules}
             name={fieldProps}
-            rules={[...(rules || []), { required, message: `请输入${title}` }]}
             initialValue={firstProps?.defaultValue}
             formFlag={formFlag}
             params={{
               hidden,
             }}
+            type="extraInput"
           >
             <InputItem
               {...firstProps}
@@ -114,14 +124,14 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
               }}
               isVertical={isVertical}
             >
-              {!isVertical && (
-                <div className={`${allPrefixCls}-title`}>
-                  {required && hasStar && (
-                    <div className={`${allPrefixCls}-redStar`}>*</div>
-                  )}
-                  <div>{title}</div>
-                </div>
-              )}
+              <HorizontalTitle
+                required={required}
+                hasStar={hasStar}
+                title={title}
+                labelNumber={labelNumber}
+                isVertical={isVertical}
+                fieldProps={fieldProps}
+              />
             </InputItem>
           </Field>
         </div>

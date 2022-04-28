@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Switch } from 'antd-mobile-v2';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
 import Title from '../Title';
 import { INomarSwitchProps } from './interface';
@@ -18,24 +19,29 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     hidden = false,
     className = '',
     defaultValue = false,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
+    labelNumber = 7,
     ...otherProps
   } = props;
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} type="switch">
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={false}
+            fieldProps={fieldProps}
+          />
           <Field
+            type="switch"
+            title={title}
+            required={required}
+            rules={rules}
             name={fieldProps}
             valuePropName="checked"
-            rules={[...(rules || []), { required, message: `请选择${title}` }]}
             initialValue={defaultValue}
             formFlag={formFlag}
             params={{

@@ -11,6 +11,7 @@ interface IMultiplePickerGroupProps
   extends Omit<IMultiplePickerProps, 'onChange'> {
   onChange?: (values: (string | number)[] | undefined, flag?: string) => void;
   value?: (string | number)[] | undefined;
+  children?: any;
 }
 
 const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
@@ -25,7 +26,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     maxValueLength,
     coverStyle,
     className = '',
-    labelNumber = 5,
+    labelNumber = 7,
     onClick,
     leftContent = '取消',
     rightContent = '确定',

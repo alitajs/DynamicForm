@@ -3,7 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import Title from '../Title';
 import { TextItem } from '../..';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 
 export interface INomarTextProps {
   positionType?: 'vertical' | 'horizontal';
@@ -23,7 +23,6 @@ export interface INomarTextProps {
   maxLine?: number;
   className?: string;
   defaultValue?: string;
-  titleProps?: any;
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
@@ -40,29 +39,31 @@ const DformText: FC<INomarTextProps> = (props) => {
     rules = [],
     extra,
     placeholder = '',
-    labelNumber = 5,
+    labelNumber = 7,
     disabled = false,
     maxLine,
     onClick,
     className = '',
     defaultValue,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     hidden = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title independentProps={props} formFlag={formFlag} type="text">
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[...(rules || []), { required, message: `${title}无数据` }]}
         initialValue={defaultValue}
         formFlag={formFlag}
         params={{
           hidden,
         }}
+        type="text"
       >
         <TextItem
           placeholder={placeholder}
@@ -82,12 +83,14 @@ const DformText: FC<INomarTextProps> = (props) => {
           ellipsis={false}
           arrow={false}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+          />
         </TextItem>
       </Field>
     </Title>

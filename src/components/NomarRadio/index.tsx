@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import Field from '../Field';
 import Title from '../Title';
 import NomarRadioGroup from './radioGroup';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { INomarRadioProps } from './interface';
 import './index.less';
 
@@ -30,12 +30,11 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     },
     hidden = false,
     className = '',
-    labelNumber = 5,
+    labelNumber = 7,
     defaultValue,
-    titleProps,
     subTitle = '',
     extra,
-    formFlag = false,
+    formFlag = true,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -72,36 +71,32 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
         labelNumber={labelNumber}
         formFlag={formFlag}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+        />
       </NomarRadioGroup>
     );
   };
 
   return (
-    <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} type="radio">
       <div className={`${prefixCls}-field`}>
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[...(rules || []), { required, message: `请选择${title}` }]}
           initialValue={defaultValue}
           formFlag={formFlag}
           params={{
             hidden,
           }}
+          type="radio"
         >
           {showFiled()}
         </Field>

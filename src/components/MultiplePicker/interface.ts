@@ -30,7 +30,6 @@ export interface IMultiplePickerProps {
   className?: string;
   extra?: string | React.ReactNode;
   defaultValue?: (string | number)[] | undefined;
-  titleProps?: any;
   clear?: boolean;
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;

@@ -1,45 +1,69 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useContext, useState } from 'react';
 import classnames from 'classnames';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Hidden from '../Hidden';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
+import { DFORM_COMP_DETAULT, NO_SUPPORT_VERTICAL } from '../../utils/menu';
+import { TitleTypePorps } from '../../PropsType';
 
 export interface TitleProps {
-  children: any;
-  positionType?: 'vertical' | 'horizontal';
-  hidden?: boolean;
-  required?: boolean;
-  hasStar?: boolean;
-  title?: string;
-  subTitle?: string | React.ReactNode;
+  children?: any;
+  type: TitleTypePorps;
+  // hidden?: boolean;
+  // required?: boolean;
+  // hasStar?: boolean;
+  // title?: string;
+  // subTitle?: string | React.ReactNode;
   extra?: string | React.ReactNode;
-  error: any;
-  fieldProps: string;
-  independentProps?: TitleProps;
+  // error: any;
+  // fieldProps: string;
+  independentProps?: any;
   formFlag?: boolean;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
+  // renderHeader?: string | React.ReactNode;
+  // renderFooter?: string | React.ReactNode;
 }
 
 const Title: FC<TitleProps> = (props) => {
   const {
     children,
-    positionType = 'horizontal',
+    type = '',
+    independentProps = {},
+  } = useMemo(() => {
+    return { ...props, ...props.independentProps } as any;
+  }, [props]);
+
+  const {
     hidden = false,
     required = false,
     hasStar = true,
     title = '',
     subTitle,
     extra,
-    error,
     fieldProps,
     renderFooter,
     renderHeader,
-  } = useMemo(() => {
-    if (props.formFlag) {
-      return props;
+  } = independentProps;
+
+  const [mregedRequired, setMregedRequired] = useState<boolean>(required);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.required !== undefined) {
+      setMregedRequired(changeForm[fieldProps]?.required);
     }
-    return { ...props, ...props.independentProps } as any;
-  }, [props]);
+  }, [changeForm[fieldProps]]);
+
+  // 表单对齐方向
+  let positionType =
+    independentProps.positionType || DFORM_COMP_DETAULT[type]?.positionType;
+
+  // 是否是不可变更对齐方式的表单类型
+  if (NO_SUPPORT_VERTICAL.includes(type)) {
+    positionType = DFORM_COMP_DETAULT[type]?.positionType;
+  }
+
+  // @ts-ignore
+  const { errorValue = {} } = useContext<DformContextProps>(DformContext);
 
   const isVertical = positionType === 'vertical';
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
@@ -49,7 +73,7 @@ const Title: FC<TitleProps> = (props) => {
       <div
         className={classnames(`${allPrefixCls}-cell`, {
           [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
-          [`${allPrefixCls}-error`]: error && !!error[fieldProps],
+          [`${allPrefixCls}-error`]: errorValue && !!errorValue[fieldProps],
         })}
       >
         {isVertical && (
@@ -59,7 +83,7 @@ const Title: FC<TitleProps> = (props) => {
               [`${allPrefixCls}-vertical-title`]: true,
             })}
           >
-            {required && hasStar && (
+            {mregedRequired && hasStar && (
               <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
             <div>{title}</div>
@@ -70,9 +94,9 @@ const Title: FC<TitleProps> = (props) => {
           </div>
         )}
         {children}
-        {error && !!error[fieldProps] && (
+        {errorValue && !!errorValue[fieldProps] && (
           <div className={`${allPrefixCls}-error-text`}>
-            {error[fieldProps]}
+            {errorValue[fieldProps]}
           </div>
         )}
         {renderFooter}

@@ -3,6 +3,7 @@ import Form, { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
+import { DformContext } from '../../baseComponents/Context';
 import {
   DFORM_COMP_NAME,
   DFORM_COMP_DETAULT,
@@ -14,12 +15,7 @@ import {
   defaultFailed,
   changeData,
 } from '../../utils/tool';
-import {
-  IDynamicFormProps,
-  IFormItemProps,
-  ErrorValueProps,
-} from '../../PropsType';
-//
+import { IDynamicFormProps, IFormItemProps } from '../../PropsType';
 
 import {
   DformInput,
@@ -61,23 +57,15 @@ export const FormItemType = {
   file: DformFile,
 } as any;
 
-export interface DformContextProps extends IDynamicFormProps {}
-
-export const DformContext = React.createContext<DformContextProps | null>(null);
-
 export const getFormItem = ({
   formItem = {} as IFormItemProps,
   allDisabled,
-  errorValue,
-  isComponent = false,
-  child = () => <div></div>,
   childProps = {},
   fieldChange,
   relatives = {},
 }: {
   formItem?: IFormItemProps;
   allDisabled: boolean;
-  errorValue?: ErrorValueProps;
   child?: any;
   isComponent?: boolean;
   childProps?: any;
@@ -88,68 +76,20 @@ export const getFormItem = ({
     ...formItem,
     ...childProps,
   };
-  const {
-    type,
-    disabled = allDisabled,
-    renderHeader,
-    renderFooter,
-    ...otherProps
-  } = mFormItem;
+  const { type, disabled = allDisabled, ...otherProps } = mFormItem;
   const FormItemComponent = FormItemType[type];
 
-  // 表单对齐方向
-  let positionType =
-    otherProps?.positionType ||
-    DFORM_COMP_DETAULT[type]?.positionType ||
-    DFORM_COMP_DETAULT[otherProps.displayName]?.positionType;
-
-  // 是否是不可变更对齐方式的表单类型
-  if (NO_SUPPORT_VERTICAL.includes(type || otherProps.displayName)) {
-    positionType =
-      DFORM_COMP_DETAULT[type]?.positionType ||
-      DFORM_COMP_DETAULT[otherProps.displayName]?.positionType;
-  }
-
-  const titleProps = {
-    key: otherProps?.fieldProps,
-    error: errorValue,
-    positionType,
-    hidden: otherProps?.hidden,
-    required: otherProps?.required,
-    hasStar: otherProps?.hasStar,
-    title: otherProps?.title,
-    subTitle: otherProps?.subTitle,
-    extra: otherProps?.extra || '',
-    fieldProps: otherProps?.fieldProps,
-    renderFooter,
-    renderHeader,
-  };
   return (
     <React.Fragment key={otherProps?.fieldProps}>
-      {!isComponent && (
-        <FormItemComponent
-          {...otherProps}
-          disabled={disabled}
-          onChange={(e: any, b?: any, c?: any) => {
-            const { onChange } = otherProps as any;
-            fieldChange(otherProps.fieldProps, e, relatives);
-            if (onChange) onChange(e, b, c);
-          }}
-          titleProps={titleProps}
-          formFlag={true}
-        />
-      )}
-      {isComponent &&
-        React.cloneElement(child, {
-          ...childProps,
-          onChange: (e: any, ...other: any) => {
-            const { onChange } = childProps as any;
-            fieldChange(childProps.fieldProps, e, relatives);
-            if (onChange) onChange(e, ...other);
-          },
-          titleProps,
-          formFlag: true,
-        })}
+      <FormItemComponent
+        {...otherProps}
+        disabled={disabled}
+        onChange={(e: any, ...otherChange: any) => {
+          const { onChange } = otherProps as any;
+          fieldChange(otherProps.fieldProps, e, relatives);
+          if (onChange) onChange(e, ...otherChange);
+        }}
+      />
     </React.Fragment>
   );
 };
@@ -305,7 +245,6 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         return getFormItem({
           child,
           allDisabled,
-          errorValue,
           isComponent: true,
           childProps: changeData(mProps, autoLineFeed),
           fieldChange,
@@ -321,6 +260,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
       } else {
         // 其他类型组件
         const isArray = Array.isArray(props.children);
+
         if (
           props.children &&
           ((isArray && !!props.children.length) ||
@@ -342,8 +282,8 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     jsonData: IFormItemProps[];
   }) => {
     return jsonData.map((item: any) => {
-      const mItem = { ...item, ...(changeForm[item.fieldProps] || {}) };
-      const { type, groupProps, fieldProps, children } = mItem;
+      // const mItem = { ...item, ...(changeForm[item.fieldProps] || {}) };
+      const { type, groupProps, fieldProps, children } = item;
 
       if (type === 'group') {
         return (
@@ -353,9 +293,9 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         );
       }
       return getFormItem({
-        formItem: changeData(mItem, autoLineFeed),
+        formItem: changeData(item, autoLineFeed),
         allDisabled,
-        errorValue,
+        // errorValue,
         fieldChange,
         relatives,
       });
@@ -363,18 +303,20 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   };
 
   const showChildren = ({ context }: any) => {
-    const childs = React.Children.toArray(context);
+    // const childs = React.Children.toArray(context);
+
     return (
       <React.Fragment>
         {!!data.length && jsonDataContent({ jsonData: data })}
-        {childs && typeof children === 'function' && children({ errorValue })}
-        {childs && dformItems(childs)}
+        {/* {childs && typeof children === 'function' && children()}
+        {childs && dformItems(childs)} */}
+        {context}
       </React.Fragment>
     );
   };
 
   return (
-    <DformContext.Provider value={{ ...fatherProps }}>
+    <DformContext.Provider value={{ errorValue, changeForm }}>
       {!sonFlag && (
         <Form
           form={form}
@@ -390,6 +332,12 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
               values,
             );
             if (success && errorFlag) setErrorValue(errorObj);
+
+            fieldChange(
+              Object.keys(values)[0],
+              Object.values(values)[0],
+              relatives,
+            );
             if (onValuesChange) onValuesChange(values);
           }}
         >

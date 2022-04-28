@@ -19,6 +19,25 @@ export type ClickEvent = React.MouseEvent<HTMLElement>;
 
 export type ErrorValueProps = { [key: string]: string | undefined };
 
+export type TitleTypePorps =
+  | 'addressPicker'
+  | 'coverRadio'
+  | 'extraInput'
+  | 'multiplePicker'
+  | 'input'
+  | 'select'
+  | 'picker'
+  | 'switch'
+  | 'area'
+  | 'date'
+  | 'radio'
+  | 'checkbox'
+  | 'image'
+  | 'custom'
+  | 'text'
+  | 'file'
+  | 'rangeDatePicker';
+
 export interface IAliasProps {
   label: string;
   value: string | number;
@@ -143,4 +162,5 @@ export interface CardProps {
 
 export interface GroupProps extends CardProps {
   type?: 'empty' | 'card';
+  children?: any;
 }

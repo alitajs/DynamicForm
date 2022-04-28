@@ -20,7 +20,6 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   compressRatio?: number;
   className?: string;
   defaultValue?: any[] | undefined;
-  titleProps?: any;
   formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;

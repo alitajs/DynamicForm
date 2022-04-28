@@ -4,8 +4,9 @@ import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
 import Title from '../Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { IAliasProps } from '../../PropsType';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-cover-radio';
@@ -32,7 +33,6 @@ interface ICoverRadioProps {
   alias?: IAliasProps;
   labelNumber?: number;
   defaultValue?: string;
-  titleProps?: any;
   formFlag?: boolean;
   extra?: string | React.ReactNode;
 }
@@ -56,13 +56,10 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
       label: 'label',
       value: 'value',
     },
-    labelNumber = 5,
+    labelNumber = 7,
     defaultValue,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     hidden = false,
-    subTitle,
-    extra,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -98,27 +95,20 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         labelNumber={labelNumber}
         formFlag={formFlag}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+        />
       </CoverRadioGroup>
     );
   };
 
   return (
-    <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} type="coverRadio">
       <div
         className={classnames({
           [prefixCls]: true,
@@ -127,13 +117,16 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
       >
         <div className={`${prefixCls}-field`}>
           <Field
+            title={title}
+            required={required}
             name={fieldProps}
-            rules={[...(rules || []), { required, message: `请选择${title}` }]}
+            rules={rules}
             initialValue={defaultValue}
             formFlag={formFlag}
             params={{
               hidden,
             }}
+            type="coverRadio"
           >
             {showFiled()}
           </Field>

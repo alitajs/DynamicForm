@@ -134,7 +134,7 @@ const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
         if (titleSize > 8) {
           item.labelNumber = titleSize / 2 + 1;
         } else {
-          item.labelNumber = 5;
+          item.labelNumber = 7;
         }
       }
     }

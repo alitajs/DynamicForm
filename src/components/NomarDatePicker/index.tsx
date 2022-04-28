@@ -2,7 +2,8 @@ import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../Title';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
+import { allPrefixCls } from '../../const';
 import DatePickerGroup from './DatePickerGroup';
 import { INomarDatePickerProps } from './interface';
 import { changeDateFormat } from '../../utils';
@@ -24,8 +25,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     disabled = false,
     onChange,
     defaultValue,
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     coverStyle = {},
     labelNumber,
     minDate,
@@ -59,12 +59,15 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
         })}
       >
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           {...fieldProps}
-          rules={[...(rules || []), { required, message: `请选择${title}` }]}
           formFlag={formFlag}
           params={{
             hidden,
           }}
+          type="date"
         >
           <DatePickerGroup
             {...dateProps}
@@ -72,12 +75,15 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
             format={(value) => changeDateFormat(value, modeType)}
           >
             {!isVertical && type === 'left' && (
-              <div className={`${allPrefixCls}-title`}>
-                {required && hasStar && (
-                  <div className={`${allPrefixCls}-redStar`}>*</div>
-                )}
-                <div>{title}</div>
-              </div>
+              <HorizontalTitle
+                required={required}
+                hasStar={hasStar}
+                title={title}
+                labelNumber={labelNumber}
+                isVertical={isVertical}
+                fieldProps={fieldProps.name}
+                {...fieldProps}
+              />
             )}
           </DatePickerGroup>
         </Field>
@@ -146,11 +152,9 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   return (
     <Title
-      {...titleProps}
-      title={title}
-      independentProps={{ ...props, positionType }}
+      type="date"
+      independentProps={{ positionType, ...props }}
       formFlag={formFlag}
-      positionType={positionType}
     >
       <div
         className={classnames({

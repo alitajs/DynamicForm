@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
 import Title from '../Title';
 
@@ -11,8 +11,8 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const {
     positionType = 'horizontal',
     hidden = false,
-    subTitle = '',
-    extra,
+    // subTitle = '',
+    // extra,
     fieldProps,
     rules = [],
     required = false,
@@ -25,11 +25,13 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
-    formFlag = false,
-    titleProps,
+    formFlag = true,
+    labelNumber = 7,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
+
+  const isVertical = positionType === 'vertical';
 
   useEffect(() => {
     const newData = (data || []).map((item: any) => ({
@@ -51,29 +53,24 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         onChange={fieldChange}
         data={aliasData}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+        />
       </PickerGroup>
     );
   };
   return (
-    <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
-    >
+    <Title independentProps={props} formFlag={formFlag} type="picker">
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[...(rules || []), { required, message: `请选择${title}` }]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
@@ -82,6 +79,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         params={{
           hidden,
         }}
+        type="picker"
       >
         {showFiled()}
       </Field>
