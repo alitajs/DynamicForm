@@ -16,7 +16,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     rules = [],
     rows = 3,
     title,
-    positionType = 'horizontal',
+    positionType = 'vertical',
     hasStar = true,
     extra = '',
     subTitle,
