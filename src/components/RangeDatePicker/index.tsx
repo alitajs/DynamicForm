@@ -31,18 +31,13 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     hidden = false,
     labelNumber = 7,
     coverStyle = {},
-    formFlag = true,
     ...otherProps
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title
-      independentProps={{ positionType, ...props }}
-      formFlag={formFlag}
-      type="rangeDatePicker"
-    >
+    <Title independentProps={{ positionType, ...props }} type="rangeDatePicker">
       <div
         className={classnames({
           [`${allPrefixCls}-range-horizontal`]: !isVertical,
@@ -69,7 +64,6 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               return prevValue !== nextValue;
             }}
             initialValue={firstProps?.defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
             }}
@@ -122,7 +116,6 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               return prevValue !== nextValue;
             }}
             initialValue={secondProps?.defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
             }}

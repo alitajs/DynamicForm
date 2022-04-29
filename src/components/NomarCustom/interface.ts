@@ -13,7 +13,6 @@ export interface INomarCustomPorps {
   hidden?: boolean;
   extra?: string | React.ReactNode;
   defaultValue?: string;
-  formFlag?: boolean;
   children: React.ReactElement;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;

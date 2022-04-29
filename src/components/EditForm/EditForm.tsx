@@ -152,7 +152,6 @@ const getFormItem = (fieldItemKey: string) => {
       fieldProps={fieldItemKey}
       title={title}
       editable={fieldItemKey !== 'type'}
-      // formFlag={true}
     />
   );
 };

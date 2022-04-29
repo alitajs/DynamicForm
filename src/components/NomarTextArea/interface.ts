@@ -17,7 +17,6 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   className?: string;
   defaultValue?: string;
   errorValue?: any;
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
 }

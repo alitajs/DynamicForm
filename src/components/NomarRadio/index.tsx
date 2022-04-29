@@ -34,7 +34,6 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     defaultValue,
     subTitle = '',
     extra,
-    formFlag = true,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -69,7 +68,6 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
         disabled={disabled}
         className={className}
         labelNumber={labelNumber}
-        formFlag={formFlag}
       >
         <HorizontalTitle
           required={required}
@@ -84,7 +82,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="radio">
+    <Title independentProps={props} type="radio">
       <div className={`${prefixCls}-field`}>
         <Field
           title={title}
@@ -92,7 +90,6 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
           rules={rules}
           name={fieldProps}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
           }}

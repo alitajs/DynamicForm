@@ -17,7 +17,6 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     title,
     CustomDom,
     customDomProps,
-    formFlag = true,
     children,
     hasStar = true,
     positionType = 'vertical',
@@ -65,7 +64,6 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
             required={required}
             rules={rules}
             initialValue={defaultValue}
-            formFlag={formFlag}
             type="custom"
           >
             <CustomGroup
@@ -86,7 +84,6 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
   return (
     <Title
       independentProps={{ ...props, children: childrenContent() }}
-      formFlag={formFlag}
       type="custom"
     />
   );

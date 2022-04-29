@@ -24,7 +24,6 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     positionType = 'horizontal',
     defaultValue,
     maxLine,
-    formFlag = true,
     hidden = false,
     labelNumber = 7,
   } = props;
@@ -73,14 +72,13 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="select">
+    <Title independentProps={props} type="select">
       <Field
         title={title}
         required={required}
         rules={rules}
         name={fieldProps}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}

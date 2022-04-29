@@ -18,7 +18,6 @@ export interface TitleProps {
   // error: any;
   // fieldProps: string;
   independentProps?: any;
-  formFlag?: boolean;
   // renderHeader?: string | React.ReactNode;
   // renderFooter?: string | React.ReactNode;
 }

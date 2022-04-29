@@ -25,7 +25,6 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     disabled = false,
     onChange,
     defaultValue,
-    formFlag = true,
     coverStyle = {},
     labelNumber,
     minDate,
@@ -63,7 +62,6 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           required={required}
           rules={rules}
           {...fieldProps}
-          formFlag={formFlag}
           params={{
             hidden,
           }}
@@ -151,11 +149,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   };
 
   return (
-    <Title
-      type="date"
-      independentProps={{ positionType, ...props }}
-      formFlag={formFlag}
-    >
+    <Title type="date" independentProps={{ positionType, ...props }}>
       <div
         className={classnames({
           [`${allPrefixCls}-range-horizontal`]: !isVertical,

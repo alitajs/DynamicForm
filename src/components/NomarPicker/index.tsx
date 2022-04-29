@@ -25,7 +25,6 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
-    formFlag = true,
     labelNumber = 7,
   } = props;
 
@@ -65,7 +64,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     );
   };
   return (
-    <Title independentProps={props} formFlag={formFlag} type="picker">
+    <Title independentProps={props} type="picker">
       <Field
         title={title}
         required={required}
@@ -75,7 +74,6 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
           return prevValue !== nextValue;
         }}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}

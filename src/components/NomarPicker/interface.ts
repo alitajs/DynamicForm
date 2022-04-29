@@ -28,7 +28,6 @@ export interface INomarPickerProps {
   defaultValue?: string;
   titleProps?: any;
   clear?: boolean;
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   customTitle?: React.ReactNode;

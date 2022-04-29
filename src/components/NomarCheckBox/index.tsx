@@ -27,7 +27,6 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     hidden,
     hasStar,
     subTitle,
-    formFlag = true,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -45,7 +44,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   };
 
   return (
-    <Title formFlag={formFlag} independentProps={props} type="checkbox">
+    <Title independentProps={props} type="checkbox">
       <div className={`${allPrefixCls}-check-box`}>
         <Field
           title={title}
@@ -53,7 +52,6 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
           rules={rules}
           name={fieldProps}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
           }}

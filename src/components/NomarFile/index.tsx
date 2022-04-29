@@ -19,7 +19,6 @@ const DformFile: FC<INomarFileProps> = (props) => {
     defaultValue,
     upload,
     fileProps,
-    formFlag = true,
     disabled = false,
     maxLength,
     hidden = false,
@@ -86,7 +85,6 @@ const DformFile: FC<INomarFileProps> = (props) => {
         ...props,
         extra: extraContent(),
       }}
-      formFlag={formFlag}
     >
       <div className={prefixCls}>
         <Field
@@ -94,7 +92,6 @@ const DformFile: FC<INomarFileProps> = (props) => {
           title={title}
           required={required}
           rules={rules}
-          formFlag={formFlag}
           name={fieldProps}
           initialValue={defaultValue}
           params={{

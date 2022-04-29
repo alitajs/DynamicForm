@@ -33,7 +33,6 @@ interface ICoverRadioProps {
   alias?: IAliasProps;
   labelNumber?: number;
   defaultValue?: string;
-  formFlag?: boolean;
   extra?: string | React.ReactNode;
 }
 
@@ -58,7 +57,6 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     },
     labelNumber = 7,
     defaultValue,
-    formFlag = true,
     hidden = false,
   } = props;
 
@@ -93,7 +91,6 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         coverStyle={coverStyle}
         className={className}
         labelNumber={labelNumber}
-        formFlag={formFlag}
       >
         <HorizontalTitle
           required={required}
@@ -108,7 +105,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="coverRadio">
+    <Title independentProps={props} type="coverRadio">
       <div
         className={classnames({
           [prefixCls]: true,
@@ -122,7 +119,6 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
             name={fieldProps}
             rules={rules}
             initialValue={defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
             }}

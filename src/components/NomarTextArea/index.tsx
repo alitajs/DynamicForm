@@ -26,7 +26,6 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     className = '',
     defaultValue,
     errorValue,
-    formFlag = true,
     labelNumber = 7,
     ...otherProps
   } = props;
@@ -51,7 +50,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="area">
+    <Title independentProps={props} type="area">
       <div
         className={classnames({
           [`${allPrefixCls}-area`]: true,
@@ -69,7 +68,6 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
             return prevValue !== nextValue;
           }}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
           }}

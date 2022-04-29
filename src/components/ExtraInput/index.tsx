@@ -25,7 +25,6 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     secondProps,
     hidden = false,
     labelNumber = 7,
-    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -49,7 +48,6 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           rules={rules}
           name={fieldProps2}
           initialValue={secondProps?.defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
           }}
@@ -72,7 +70,6 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         rules={rules}
         name={fieldProps2}
         initialValue={secondProps?.defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}
@@ -88,7 +85,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <Title type="extraInput" independentProps={props} formFlag={formFlag}>
+    <Title type="extraInput" independentProps={props}>
       <div
         className={classnames({
           [`${allPrefixCls}-extra-input`]: true,
@@ -106,7 +103,6 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
             rules={rules}
             name={fieldProps}
             initialValue={firstProps?.defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
             }}

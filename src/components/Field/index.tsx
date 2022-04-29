@@ -7,7 +7,6 @@ import { PLACEHOLDER_MENU } from '../../utils/menu';
 import '../../styles/index.less';
 
 export interface CustomFieldProps extends FieldProps {
-  formFlag?: boolean;
   params?: any;
   style?: React.CSSProperties;
   title?: string;
@@ -17,7 +16,6 @@ export interface CustomFieldProps extends FieldProps {
 
 const CustomField: FC<CustomFieldProps> = (props: any) => {
   const {
-    formFlag = true,
     rules = [],
     params = {},
     style = {},
@@ -30,7 +28,8 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
   const { hidden = false } = params;
 
-  const { changeForm } = useContext<DformContextProps>(DformContext);
+  const { changeForm, formFlag = false } =
+    useContext<DformContextProps>(DformContext);
 
   useMemo(() => {
     if (changeForm[name]?.required !== undefined) {

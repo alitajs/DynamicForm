@@ -26,7 +26,6 @@ export interface INomarRadioProps {
   labelNumber?: number;
   extra?: string | React.ReactNode;
   defaultValue?: string;
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
 }

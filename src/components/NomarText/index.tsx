@@ -23,7 +23,6 @@ export interface INomarTextProps {
   maxLine?: number;
   className?: string;
   defaultValue?: string;
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
 }
@@ -45,21 +44,19 @@ const DformText: FC<INomarTextProps> = (props) => {
     onClick,
     className = '',
     defaultValue,
-    formFlag = true,
     hidden = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="text">
+    <Title independentProps={props} type="text">
       <Field
         title={title}
         required={required}
         rules={rules}
         name={fieldProps}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}

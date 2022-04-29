@@ -18,7 +18,6 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     onChange,
     defaultValue,
     hidden = false,
-    formFlag = true,
     labelNumber = 7,
   } = props;
 
@@ -29,7 +28,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="addressPicker">
+    <Title independentProps={props} type="addressPicker">
       <Field
         title={title}
         required={required}
@@ -39,7 +38,6 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
           return prevValue !== nextValue;
         }}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}

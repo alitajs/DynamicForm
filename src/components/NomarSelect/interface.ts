@@ -28,6 +28,5 @@ export interface INomarSelectProps
   alias?: IAliasProps;
   defaultValue?: any;
   maxLine?: number | undefined;
-  formFlag?: boolean;
   renderFooter?: string | React.ReactNode;
 }

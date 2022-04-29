@@ -25,7 +25,6 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     },
     defaultValue,
     hidden = false,
-    formFlag = true,
     labelNumber = 7,
   } = props;
   const { label = 'label', value = 'value' } = alias;
@@ -49,14 +48,13 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
   };
 
   return (
-    <Title type="multiplePicker" independentProps={props} formFlag={formFlag}>
+    <Title type="multiplePicker" independentProps={props}>
       <Field
         title={title}
         required={required}
         rules={rules}
         name={fieldProps}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}

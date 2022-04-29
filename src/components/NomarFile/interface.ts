@@ -28,7 +28,6 @@ export interface INomarFileProps {
   defaultValue?: INomarFileItemProps;
   titleProps?: any;
   fileProps?: any;
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   disabled?: boolean;

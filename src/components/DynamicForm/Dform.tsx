@@ -316,7 +316,7 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   };
 
   return (
-    <DformContext.Provider value={{ errorValue, changeForm }}>
+    <DformContext.Provider value={{ errorValue, changeForm, formFlag: true }}>
       {!sonFlag && (
         <Form
           form={form}

@@ -25,7 +25,6 @@ const DformInput: FC<INomarInputProps> = (props) => {
     className = '',
     disabled = false,
     defaultValue,
-    formFlag = true,
     placeholder,
     maxLine,
     onClick,
@@ -108,14 +107,13 @@ const DformInput: FC<INomarInputProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} type="input">
+    <Title independentProps={props} type="input">
       <Field
         name={fieldProps}
         rules={rules}
         title={title}
         required={required}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
         }}

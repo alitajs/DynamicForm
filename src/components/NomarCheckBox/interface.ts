@@ -19,7 +19,6 @@ export interface INomarCheckBoxProps {
   chunk?: number;
   alias?: IAliasProps;
   defaultValue?: (string | number)[];
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
 }

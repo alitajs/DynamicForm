@@ -19,12 +19,11 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     hidden = false,
     className = '',
     defaultValue = false,
-    formFlag = true,
     labelNumber = 7,
     ...otherProps
   } = props;
   return (
-    <Title independentProps={props} formFlag={formFlag} type="switch">
+    <Title independentProps={props} type="switch">
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
           <HorizontalTitle
@@ -43,7 +42,6 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
             name={fieldProps}
             valuePropName="checked"
             initialValue={defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
             }}
