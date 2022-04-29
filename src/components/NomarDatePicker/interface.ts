@@ -26,6 +26,8 @@ export interface INomarDatePickerProps extends PropsType {
   defaultValue?: Date | undefined | string;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {

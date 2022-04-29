@@ -25,6 +25,8 @@ export interface INomarTextProps {
   defaultValue?: string;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 const DformText: FC<INomarTextProps> = (props) => {
@@ -45,12 +47,19 @@ const DformText: FC<INomarTextProps> = (props) => {
     className = '',
     defaultValue,
     hidden = false,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title independentProps={props} type="text">
+    <Title
+      independentProps={props}
+      type="text"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
         title={title}
         required={required}
@@ -87,6 +96,7 @@ const DformText: FC<INomarTextProps> = (props) => {
             labelNumber={labelNumber}
             isVertical={isVertical}
             fieldProps={fieldProps}
+            titleStyle={titleStyle}
           />
         </TextItem>
       </Field>

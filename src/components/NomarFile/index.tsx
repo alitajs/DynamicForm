@@ -22,6 +22,8 @@ const DformFile: FC<INomarFileProps> = (props) => {
     disabled = false,
     maxLength,
     hidden = false,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const [selectable, setSelectable] = useState<boolean>(true);
@@ -85,6 +87,8 @@ const DformFile: FC<INomarFileProps> = (props) => {
         ...props,
         extra: extraContent(),
       }}
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div className={prefixCls}>
         <Field

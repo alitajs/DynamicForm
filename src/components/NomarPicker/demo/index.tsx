@@ -90,8 +90,8 @@ const Page: FC = () => {
           clear
         />
         <DformPicker
-          fieldProps="myCity"
-          // data={[]}
+          fieldProps="myCity2"
+          data={[]}
           title="我居住过的城市(没数据)"
           positionType="vertical"
           labelNumber={6}

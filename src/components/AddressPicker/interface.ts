@@ -1,4 +1,5 @@
 import { Rule } from 'rc-field-form/es/interface';
+import React from 'react';
 import { IAliasProps } from '../../PropsType';
 
 export interface IModalData {
@@ -36,6 +37,8 @@ export interface IAddressPickerProps {
   titleProps?: any;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 export interface valueProps {

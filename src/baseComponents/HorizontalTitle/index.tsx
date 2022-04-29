@@ -28,6 +28,14 @@ export interface HorizontalTitleProps {
    * 是否是纵向效果
    */
   isVertical?: boolean;
+  /**
+   * style
+   */
+  style?: React.CSSProperties;
+  /**
+   * 标题 style
+   */
+  titleStyle?: React.CSSProperties;
 }
 
 const HorizontalTitle: FC<HorizontalTitleProps> = (props) => {
@@ -38,6 +46,7 @@ const HorizontalTitle: FC<HorizontalTitleProps> = (props) => {
     labelNumber = 7,
     isVertical,
     fieldProps,
+    titleStyle,
   } = props;
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
 
@@ -71,7 +80,7 @@ const HorizontalTitle: FC<HorizontalTitleProps> = (props) => {
       {mregedRequired && hasStar && (
         <div className={`${allPrefixCls}-redStar`}>*</div>
       )}
-      <div>{title}</div>
+      <div style={titleStyle}>{title}</div>
     </div>
   );
 };

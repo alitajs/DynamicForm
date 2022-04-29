@@ -17,6 +17,8 @@ export interface INomarCustomPorps {
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   labelNumber?: number;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 export interface CustomGroupProps {

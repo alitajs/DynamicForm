@@ -32,4 +32,6 @@ export interface INomarFileProps {
   renderFooter?: string | React.ReactNode;
   disabled?: boolean;
   maxLength?: number;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }

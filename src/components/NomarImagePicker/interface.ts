@@ -23,6 +23,8 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   maxLength?: number;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 export interface ImagePickerGroupProps extends INomarImagePickerProps {

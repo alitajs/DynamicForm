@@ -32,8 +32,8 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     className = '',
     labelNumber = 7,
     defaultValue,
-    subTitle = '',
-    extra,
+    boxStyle,
+    titleStyle,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -76,13 +76,19 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
           labelNumber={labelNumber}
           isVertical={isVertical}
           fieldProps={fieldProps}
+          titleStyle={titleStyle}
         />
       </NomarRadioGroup>
     );
   };
 
   return (
-    <Title independentProps={props} type="radio">
+    <Title
+      independentProps={props}
+      type="radio"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div className={`${prefixCls}-field`}>
         <Field
           title={title}

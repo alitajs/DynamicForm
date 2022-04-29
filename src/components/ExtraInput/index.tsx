@@ -25,6 +25,8 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     secondProps,
     hidden = false,
     labelNumber = 7,
+    boxStyle = {},
+    titleStyle,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -85,7 +87,12 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   };
 
   return (
-    <Title type="extraInput" independentProps={props}>
+    <Title
+      type="extraInput"
+      independentProps={props}
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-extra-input`]: true,
@@ -127,6 +134,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
                 labelNumber={labelNumber}
                 isVertical={isVertical}
                 fieldProps={fieldProps}
+                titleStyle={titleStyle}
               />
             </InputItem>
           </Field>

@@ -9,17 +9,10 @@ import { TitleTypePorps } from '../../PropsType';
 export interface TitleProps {
   children?: any;
   type: TitleTypePorps;
-  // hidden?: boolean;
-  // required?: boolean;
-  // hasStar?: boolean;
-  // title?: string;
-  // subTitle?: string | React.ReactNode;
   extra?: string | React.ReactNode;
-  // error: any;
-  // fieldProps: string;
   independentProps?: any;
-  // renderHeader?: string | React.ReactNode;
-  // renderFooter?: string | React.ReactNode;
+  style?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 const Title: FC<TitleProps> = (props) => {
@@ -27,9 +20,9 @@ const Title: FC<TitleProps> = (props) => {
     children,
     type = '',
     independentProps = {},
-  } = useMemo(() => {
-    return { ...props, ...props.independentProps } as any;
-  }, [props]);
+    style = {},
+    titleStyle = {},
+  } = props;
 
   const {
     hidden = false,
@@ -66,6 +59,7 @@ const Title: FC<TitleProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
+
   return (
     <Hidden hidden={hidden}>
       {renderHeader}
@@ -74,6 +68,7 @@ const Title: FC<TitleProps> = (props) => {
           [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
           [`${allPrefixCls}-error`]: errorValue && !!errorValue[fieldProps],
         })}
+        style={style}
       >
         {isVertical && (
           <div
@@ -85,7 +80,7 @@ const Title: FC<TitleProps> = (props) => {
             {mregedRequired && hasStar && (
               <div className={`${allPrefixCls}-redStar`}>*</div>
             )}
-            <div>{title}</div>
+            <div style={titleStyle}>{title}</div>
             {subTitle}
             {extra !== '' && isVertical && (
               <div className={`${allPrefixCls}-extra`}>{extra}</div>

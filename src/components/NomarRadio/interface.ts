@@ -28,4 +28,6 @@ export interface INomarRadioProps {
   defaultValue?: string;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }

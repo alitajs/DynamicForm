@@ -15,4 +15,6 @@ export interface INomarSwitchProps extends SwitchPropsType {
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   labelNumber?: number;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }

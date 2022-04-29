@@ -20,6 +20,8 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     extra = '',
     onChange,
     defaultValue = [],
+    boxStyle,
+    titleStyle,
     ...otherProps
   } = props;
 
@@ -32,7 +34,12 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} type="image">
+    <Title
+      independentProps={props}
+      type="image"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div className={`${allPrefixCls}-image`}>
         <Field
           title={title}

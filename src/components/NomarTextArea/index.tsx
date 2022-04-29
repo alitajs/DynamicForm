@@ -27,6 +27,8 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     defaultValue,
     errorValue,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
     ...otherProps
   } = props;
 
@@ -41,6 +43,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
       labelNumber={labelNumber}
       isVertical={isVertical}
       fieldProps={fieldProps}
+      titleStyle={titleStyle}
     />
   );
 
@@ -50,7 +53,12 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} type="area">
+    <Title
+      independentProps={props}
+      type="area"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-area`]: true,

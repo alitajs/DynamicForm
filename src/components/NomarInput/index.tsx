@@ -29,6 +29,8 @@ const DformInput: FC<INomarInputProps> = (props) => {
     maxLine,
     onClick,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
     ...otherProps
   } = props;
 
@@ -66,6 +68,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
           labelNumber={labelNumber}
           isVertical={isVertical}
           fieldProps={fieldProps}
+          titleStyle={titleStyle}
         />
       </TextItem>
     );
@@ -101,13 +104,19 @@ const DformInput: FC<INomarInputProps> = (props) => {
           labelNumber={labelNumber}
           isVertical={isVertical}
           fieldProps={fieldProps}
+          titleStyle={titleStyle}
         />
       </InputItem>
     );
   };
 
   return (
-    <Title independentProps={props} type="input">
+    <Title
+      independentProps={props}
+      type="input"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
         name={fieldProps}
         rules={rules}

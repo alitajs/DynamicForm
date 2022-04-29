@@ -29,4 +29,6 @@ export interface INomarSelectProps
   defaultValue?: any;
   maxLine?: number | undefined;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }

@@ -34,6 +34,8 @@ interface ICoverRadioProps {
   labelNumber?: number;
   defaultValue?: string;
   extra?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 const CoverRadio: FC<ICoverRadioProps> = (props) => {
@@ -57,6 +59,8 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     },
     labelNumber = 7,
     defaultValue,
+    boxStyle,
+    titleStyle,
     hidden = false,
   } = props;
 
@@ -99,13 +103,19 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
           labelNumber={labelNumber}
           isVertical={isVertical}
           fieldProps={fieldProps}
+          titleStyle={titleStyle}
         />
       </CoverRadioGroup>
     );
   };
 
   return (
-    <Title independentProps={props} type="coverRadio">
+    <Title
+      independentProps={props}
+      type="coverRadio"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [prefixCls]: true,

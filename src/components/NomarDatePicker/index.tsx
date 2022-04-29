@@ -31,6 +31,8 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     maxDate,
     modeType = 'date',
     hidden = false,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -80,6 +82,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
                 labelNumber={labelNumber}
                 isVertical={isVertical}
                 fieldProps={fieldProps.name}
+                titleStyle={titleStyle}
                 {...fieldProps}
               />
             )}
@@ -149,7 +152,12 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   };
 
   return (
-    <Title type="date" independentProps={{ positionType, ...props }}>
+    <Title
+      type="date"
+      independentProps={{ positionType, ...props }}
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-range-horizontal`]: !isVertical,

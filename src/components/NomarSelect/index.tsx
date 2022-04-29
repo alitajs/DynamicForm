@@ -26,6 +26,8 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     maxLine,
     hidden = false,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -72,7 +74,12 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} type="select">
+    <Title
+      independentProps={props}
+      type="select"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
         title={title}
         required={required}
@@ -98,6 +105,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
             labelNumber={labelNumber}
             isVertical={isVertical}
             fieldProps={fieldProps}
+            titleStyle={titleStyle}
           />
         </SelectGroup>
       </Field>

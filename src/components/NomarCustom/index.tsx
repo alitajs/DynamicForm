@@ -22,6 +22,8 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     positionType = 'vertical',
     labelNumber = 7,
     onChange,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -42,6 +44,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       labelNumber={labelNumber}
       isVertical={isVertical}
       fieldProps={fieldProps}
+      titleStyle={titleStyle}
     />
   );
 
@@ -85,6 +88,8 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     <Title
       independentProps={{ ...props, children: childrenContent() }}
       type="custom"
+      style={boxStyle}
+      titleStyle={titleStyle}
     />
   );
 };

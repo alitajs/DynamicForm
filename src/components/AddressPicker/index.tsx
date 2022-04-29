@@ -19,6 +19,8 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     defaultValue,
     hidden = false,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -27,8 +29,34 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     if (onChange) onChange(val);
   };
 
+  const showAddressPickerFiled = () => {
+    return (
+      <AddressPickerGroup
+        value={defaultValue}
+        {...props}
+        extra={isVertical ? '' : extra}
+        onChange={fieldChange}
+      >
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+          titleStyle={titleStyle}
+        />
+      </AddressPickerGroup>
+    );
+  };
+
   return (
-    <Title independentProps={props} type="addressPicker">
+    <Title
+      independentProps={props}
+      type="addressPicker"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
         title={title}
         required={required}
@@ -43,20 +71,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
         }}
         type="addressPicker"
       >
-        <AddressPickerGroup
-          {...props}
-          extra={isVertical ? '' : extra}
-          onChange={fieldChange}
-        >
-          <HorizontalTitle
-            required={required}
-            hasStar={hasStar}
-            title={title}
-            labelNumber={labelNumber}
-            isVertical={isVertical}
-            fieldProps={fieldProps}
-          />
-        </AddressPickerGroup>
+        {showAddressPickerFiled()}
       </Field>
     </Title>
   );

@@ -21,4 +21,6 @@ export interface INomarCheckBoxProps {
   defaultValue?: (string | number)[];
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }

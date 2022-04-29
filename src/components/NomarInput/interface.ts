@@ -19,4 +19,6 @@ export interface INomarInputProps extends InputItemPropsType {
   maxLine?: number;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }

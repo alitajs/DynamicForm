@@ -20,10 +20,17 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     className = '',
     defaultValue = false,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
     ...otherProps
   } = props;
   return (
-    <Title independentProps={props} type="switch">
+    <Title
+      independentProps={props}
+      type="switch"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
           <HorizontalTitle
@@ -33,6 +40,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
             labelNumber={labelNumber}
             isVertical={false}
             fieldProps={fieldProps}
+            titleStyle={titleStyle}
           />
           <Field
             type="switch"

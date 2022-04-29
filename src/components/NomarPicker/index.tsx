@@ -26,6 +26,8 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     },
     defaultValue,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -59,12 +61,18 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
           labelNumber={labelNumber}
           isVertical={isVertical}
           fieldProps={fieldProps}
+          titleStyle={titleStyle}
         />
       </PickerGroup>
     );
   };
   return (
-    <Title independentProps={props} type="picker">
+    <Title
+      independentProps={props}
+      type="picker"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
         title={title}
         required={required}

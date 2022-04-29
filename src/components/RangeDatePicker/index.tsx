@@ -30,6 +30,8 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     subTitle,
     hidden = false,
     labelNumber = 7,
+    boxStyle,
+    titleStyle,
     coverStyle = {},
     ...otherProps
   } = props;
@@ -37,7 +39,12 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   return (
-    <Title independentProps={{ positionType, ...props }} type="rangeDatePicker">
+    <Title
+      independentProps={{ positionType, ...props }}
+      type="rangeDatePicker"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-range-horizontal`]: !isVertical,
@@ -97,6 +104,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
                   labelNumber={labelNumber}
                   isVertical={isVertical}
                   fieldProps={fieldProps}
+                  titleStyle={titleStyle}
                 />
               )}
             </DatePickerGroup>

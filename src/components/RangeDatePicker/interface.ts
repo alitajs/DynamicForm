@@ -18,4 +18,6 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   hidden?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
