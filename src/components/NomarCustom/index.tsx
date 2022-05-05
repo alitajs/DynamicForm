@@ -52,45 +52,38 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     if (onChange) onChange(e);
   };
 
-  const childrenContent = () => {
-    return (
-      <>
-        <div
-          className={classnames({
-            [`${allPrefixCls}-dom`]: true,
-          })}
-        >
-          {!isVertical && cutomTitle()}
-          <Field
-            name={fieldProps}
-            title={title}
-            required={required}
-            rules={rules}
-            initialValue={defaultValue}
-            type="custom"
-          >
-            <CustomGroup
-              isVertical={isVertical}
-              CustomDom={CustomDom}
-              customDomProps={customDomProps}
-              cutomTitle={cutomTitle()}
-              onChange={fieldChange}
-            >
-              {children}
-            </CustomGroup>
-          </Field>
-        </div>
-      </>
-    );
-  };
-
   return (
     <Title
-      independentProps={{ ...props, children: childrenContent() }}
+      independentProps={props}
       type="custom"
       style={boxStyle}
       titleStyle={titleStyle}
-    />
+    >
+      <div
+        className={classnames({
+          [`${allPrefixCls}-dom`]: true,
+        })}
+      >
+        {!isVertical && cutomTitle()}
+        <Field
+          name={fieldProps}
+          title={title}
+          required={required}
+          rules={rules}
+          initialValue={defaultValue}
+          type="custom"
+        >
+          <CustomGroup
+            isVertical={isVertical}
+            CustomDom={CustomDom}
+            customDomProps={customDomProps}
+            cutomTitle={cutomTitle()}
+            onChange={fieldChange}
+            children={children}
+          />
+        </Field>
+      </div>
+    </Title>
   );
 };
 

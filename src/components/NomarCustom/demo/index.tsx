@@ -83,7 +83,7 @@ const Page: FC = () => {
           required={true}
           fieldProps="age"
           defaultValue="17"
-          CustomDom={DemoPage}
+          // CustomDom={DemoPage}
           onChange={(e: any) => console.log(e)}
         >
           <DemoPage name="age" />

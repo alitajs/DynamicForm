@@ -5,6 +5,7 @@ import {
 } from '../../PropsType';
 
 export interface IInputItemProps {
+  children?: any;
   fieldProps: string;
   isVertical?: boolean;
   value?: string;

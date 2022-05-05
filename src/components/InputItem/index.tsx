@@ -27,6 +27,8 @@ const InputItem: FC<IInputItemProps> = (props) => {
     clear = false,
     maxLength,
     fieldProps,
+    children,
+    ...otherProps
   } = props;
   const [val, setVal] = useState(value);
   const [clearShow, setClearShow] = useState<boolean>(false);
@@ -84,11 +86,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
   let inputType: any = 'text';
   if (type === 'bankCard' || type === 'phone') {
     inputType = 'tel';
-  } else if (type === 'password') {
-    inputType = 'password';
-  } else if (type === 'digit') {
-    inputType = 'number';
-  } else if (type !== 'text' && type !== 'number') {
+  } else {
     inputType = type;
   }
 
@@ -114,6 +112,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
         }}
       >
         <input
+          {...otherProps}
           type={inputType}
           value={val}
           aria-label={fieldProps}
