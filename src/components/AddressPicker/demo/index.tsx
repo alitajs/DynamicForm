@@ -128,29 +128,50 @@ const Page: FC = () => {
   };
   return (
     <>
-      <AddressPicker
-        fieldProps="homeAddr"
-        title="工作地址"
-        placeholder="选择当前工作地址"
-        required
-        data={homeAddrData}
-        placeholderList={['请选择省', '请选择市', '请选择区']}
-        onChangeLevel={(values: (string | number)[]) => {
-          console.log('values', values);
-          Toast.show('加载中');
-          // eslint-disable-next-line no-console
-          setTimeout(() => {
-            resetHomeAddrList(values, 'homeAddrData');
-          }, 300);
-        }}
-        defaultValue={{
-          label: ['福建省', '福州市', '鼓楼区'],
-          value: ['35', '3501', '350102'],
-        }}
-        onChange={(value: any) => {
-          console.log('onChangevalue', value);
-        }}
-      />
+      <DynamicForm {...formProps}>
+        <AddressPicker
+          fieldProps="homeAddr"
+          title="工作地址"
+          placeholder="选择当前工作地址"
+          required
+          data={homeAddrData}
+          placeholderList={['请选择省', '请选择市', '请选择区']}
+          onChangeLevel={(values: (string | number)[]) => {
+            console.log('values', values);
+            Toast.show('加载中');
+            // eslint-disable-next-line no-console
+            setTimeout(() => {
+              resetHomeAddrList(values, 'homeAddrData');
+            }, 300);
+          }}
+          defaultValue={{
+            label: ['福建省', '福州市', '鼓楼区'],
+            value: ['35', '3501', '350102'],
+          }}
+          onChange={(value: any) => {
+            console.log('onChangevalue', value);
+          }}
+        />
+        <AddressPicker
+          fieldProps="workAddr"
+          title="居住地址"
+          placeholder="请选择"
+          positionType="vertical"
+          data={workAddrData}
+          placeholderList={['请选择省', '请选择市', '请选择区', '请选择街道']}
+          onChangeLevel={(values: (string | number)[]) => {
+            Toast.show('加载中');
+            setTimeout(() => {
+              resetWorkAddrList(values);
+              Toast.hide();
+            }, 100);
+          }}
+          onChange={(value: any) => {
+            console.log('onChangevalue', value);
+          }}
+          noData={<div>暂无街道数据</div>}
+        />
+      </DynamicForm>
       <WhiteSpace size="sm" />
       <Button
         type="primary"
