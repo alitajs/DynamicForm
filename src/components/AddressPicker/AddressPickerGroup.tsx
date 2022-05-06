@@ -109,9 +109,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     const newValue = JSON.parse(JSON.stringify(value));
     if (valueList.toString() !== newValue?.value?.toString()) {
       setInputLabel((newValue?.label || []).join(' '));
-      setValueList(newValue?.value);
-      setLabelList(newValue?.label);
-      setCurReqLevel(newValue?.value?.length);
+      setValueList(newValue?.value || []);
+      setLabelList(newValue?.label || []);
+      setCurReqLevel(newValue?.value?.length || 0);
       setOpenReq(true);
     } else if (!valueList.length) {
       setOpenReq(true);
