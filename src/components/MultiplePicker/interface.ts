@@ -35,4 +35,5 @@ export interface IMultiplePickerProps {
   renderFooter?: string | React.ReactNode;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }

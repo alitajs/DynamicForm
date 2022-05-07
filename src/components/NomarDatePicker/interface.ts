@@ -28,6 +28,7 @@ export interface INomarDatePickerProps extends PropsType {
   renderFooter?: string | React.ReactNode;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {

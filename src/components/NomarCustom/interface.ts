@@ -19,6 +19,7 @@ export interface INomarCustomPorps {
   labelNumber?: number;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }
 
 export interface CustomGroupProps {

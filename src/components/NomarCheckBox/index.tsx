@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import CheckBoxGroup from './checkBoxgroup';
 import { allPrefixCls } from '../../const/index';
 import { INomarCheckBoxProps } from './interface';
@@ -27,6 +27,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     hidden,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -59,6 +60,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
           initialValue={defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
           type="checkbox"
         >

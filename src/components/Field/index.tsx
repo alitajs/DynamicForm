@@ -26,7 +26,7 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
     ...restProps
   } = props;
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
-  const { hidden = false } = params;
+  const { hidden = false, formFlag: fFlag = true } = params;
 
   const { changeForm, formFlag = false } =
     useContext<DformContextProps>(DformContext);
@@ -45,7 +45,7 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   };
 
   // 不在DynamicForm中 取消Field包裹;
-  if (!formFlag) {
+  if (!formFlag || !fFlag) {
     return <div id={`alita-dform-${props?.name}`}>{props.children}</div>;
   }
 

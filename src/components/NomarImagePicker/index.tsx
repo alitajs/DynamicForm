@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -22,6 +22,7 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     defaultValue = [],
     boxStyle,
     titleStyle,
+    formFlag = true,
     ...otherProps
   } = props;
 
@@ -49,6 +50,7 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
           initialValue={defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
           type="image"
         >

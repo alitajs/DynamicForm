@@ -21,6 +21,7 @@ export interface INomarInputProps extends InputType {
   className?: string;
   titleProps?: any;
   maxLine?: number;
+  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   boxStyle?: React.CSSProperties;

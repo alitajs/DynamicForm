@@ -34,4 +34,5 @@ export interface INomarFileProps {
   maxLength?: number;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }

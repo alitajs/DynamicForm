@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import './index.less';
 import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
@@ -28,6 +28,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     labelNumber = 7,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -88,6 +89,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
         initialValue={defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="select"
       >

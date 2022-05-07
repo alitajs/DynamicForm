@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import NomarRadioGroup from './radioGroup';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { INomarRadioProps } from './interface';
@@ -34,6 +34,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     defaultValue,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -98,6 +99,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
           initialValue={defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
           type="radio"
         >

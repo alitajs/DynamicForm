@@ -3,7 +3,7 @@ import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { IAliasProps } from '../../PropsType';
 import { allPrefixCls } from '../../const';
@@ -36,6 +36,7 @@ interface ICoverRadioProps {
   extra?: string | React.ReactNode;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }
 
 const CoverRadio: FC<ICoverRadioProps> = (props) => {
@@ -62,6 +63,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     boxStyle,
     titleStyle,
     hidden = false,
+    formFlag = true,
   } = props;
 
   let isVertical = positionType === 'vertical';
@@ -131,6 +133,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
             initialValue={defaultValue}
             params={{
               hidden,
+              formFlag,
             }}
             type="coverRadio"
           >

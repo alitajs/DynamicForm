@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import classnames from 'classnames';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
-import Title from '../Title';
-import InputItem from '../InputItem';
+import Title from '../../baseComponents/Title';
+import InputItem from '../../baseComponents/InputItem';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { StringAndUdfEvent } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
@@ -27,6 +27,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     labelNumber = 7,
     boxStyle = {},
     titleStyle,
+    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -52,6 +53,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           initialValue={secondProps?.defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
           type="picker"
         >
@@ -74,6 +76,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         initialValue={secondProps?.defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="extraInput"
       >
@@ -112,6 +115,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
             initialValue={firstProps?.defaultValue}
             params={{
               hidden,
+              formFlag,
             }}
             type="extraInput"
           >

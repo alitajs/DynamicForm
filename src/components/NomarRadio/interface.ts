@@ -23,6 +23,7 @@ export interface INomarRadioProps {
   alias?: IAliasProps;
   className?: string;
   allowUnChecked?: boolean;
+  formFlag?: boolean;
   labelNumber?: number;
   extra?: string | React.ReactNode;
   defaultValue?: string;

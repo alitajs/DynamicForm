@@ -21,4 +21,5 @@ export interface IExtraInputProps {
   labelNumber?: number;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }

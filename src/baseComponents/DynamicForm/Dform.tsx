@@ -3,7 +3,7 @@ import Form, { useForm } from 'rc-field-form';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
-import { DformContext } from '../../baseComponents/Context';
+import { DformContext } from '../Context';
 import {
   DFORM_COMP_NAME,
   DFORM_COMP_DETAULT,
@@ -35,7 +35,7 @@ import {
   DformText,
   DformPicker,
   DformFile,
-} from '../';
+} from '../../components';
 
 export const FormItemType = {
   input: DformInput,

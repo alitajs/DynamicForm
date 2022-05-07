@@ -33,4 +33,5 @@ export interface INomarPickerProps {
   customTitle?: React.ReactNode;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }

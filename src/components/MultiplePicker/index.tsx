@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
@@ -28,6 +28,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     labelNumber = 7,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
   const { label = 'label', value = 'value' } = alias;
 
@@ -64,6 +65,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         initialValue={defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="multiplePicker"
       >

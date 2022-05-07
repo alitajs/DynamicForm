@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import AddressPickerGroup from './AddressPickerGroup';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { IAddressPickerProps, valueProps } from './interface';
@@ -20,6 +20,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     hidden = false,
     labelNumber = 7,
     boxStyle,
+    formFlag = true,
     titleStyle,
   } = props;
 
@@ -68,6 +69,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
         initialValue={defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="addressPicker"
       >

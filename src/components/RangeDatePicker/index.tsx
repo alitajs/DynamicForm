@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { changeDateFormat } from '../../utils';
 import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
@@ -33,6 +33,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     boxStyle,
     titleStyle,
     coverStyle = {},
+    formFlag = true,
     ...otherProps
   } = props;
 
@@ -73,6 +74,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             initialValue={firstProps?.defaultValue}
             params={{
               hidden,
+              formFlag,
             }}
           >
             <DatePickerGroup
@@ -126,6 +128,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
             initialValue={secondProps?.defaultValue}
             params={{
               hidden,
+              formFlag,
             }}
           >
             <DatePickerGroup

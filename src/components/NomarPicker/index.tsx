@@ -3,7 +3,7 @@ import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 
 const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
@@ -28,6 +28,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     labelNumber = 7,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const { label = 'label', value = 'value' } = alias;
@@ -84,6 +85,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         initialValue={defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="picker"
       >

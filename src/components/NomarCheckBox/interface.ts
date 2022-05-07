@@ -23,4 +23,5 @@ export interface INomarCheckBoxProps {
   renderFooter?: string | React.ReactNode;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }

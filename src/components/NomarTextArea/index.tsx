@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { TextareaItem } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const';
 import { INomarTextAreaProps } from './interface';
@@ -29,6 +29,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     labelNumber = 7,
     boxStyle,
     titleStyle,
+    formFlag = true,
     ...otherProps
   } = props;
 
@@ -78,6 +79,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
           initialValue={defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
         >
           <TextareaItem

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
-import Title from '../Title';
-import { TextItem } from '../..';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
+import TextItem from '../../baseComponents/TextItem';
 
 export interface INomarTextProps {
   positionType?: 'vertical' | 'horizontal';
@@ -20,6 +20,7 @@ export interface INomarTextProps {
   labelNumber?: number;
   onClick?: (val: string) => void;
   disabled?: boolean;
+  formFlag?: boolean;
   maxLine?: number;
   className?: string;
   defaultValue?: string;
@@ -49,6 +50,7 @@ const DformText: FC<INomarTextProps> = (props) => {
     hidden = false,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -68,6 +70,7 @@ const DformText: FC<INomarTextProps> = (props) => {
         initialValue={defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="text"
       >

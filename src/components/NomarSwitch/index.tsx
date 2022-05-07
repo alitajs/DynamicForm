@@ -3,7 +3,7 @@ import { Switch } from 'antd-mobile-v2';
 import { allPrefixCls } from '../../const';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import { INomarSwitchProps } from './interface';
 import './index.less';
 
@@ -22,6 +22,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     labelNumber = 7,
     boxStyle,
     titleStyle,
+    formFlag = true,
     ...otherProps
   } = props;
   return (
@@ -52,6 +53,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
             initialValue={defaultValue}
             params={{
               hidden,
+              formFlag,
             }}
           >
             <Switch checked={defaultValue} {...otherProps} />

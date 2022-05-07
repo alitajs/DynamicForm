@@ -15,6 +15,7 @@ export interface INomarSelectProps
   required?: boolean;
   disabled?: boolean;
   hasStar?: boolean;
+  formFlag?: boolean;
   rules?: Rule[];
   subTitle?: string | React.ReactNode;
   hidden?: boolean;

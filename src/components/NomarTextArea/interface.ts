@@ -10,6 +10,7 @@ export interface INomarTextAreaProps extends TextAreaItemPropsType {
   placeholder?: string;
   positionType?: 'vertical' | 'horizontal';
   hasStar?: boolean;
+  formFlag?: boolean;
   extra?: React.ReactNode | string;
   subTitle?: string | React.ReactNode;
   hidden?: boolean;

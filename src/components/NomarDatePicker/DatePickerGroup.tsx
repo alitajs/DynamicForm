@@ -4,7 +4,7 @@ import RCDatePicker from 'rmc-date-picker/lib/DatePicker';
 import DatePickerLocale from 'rmc-date-picker/lib/locale/zh_CN';
 import { changeDateFormat } from '../../utils';
 import { INomarDatePickerGroupProps } from './interface';
-import TextItem from '../TextItem';
+import TextItem from '../../baseComponents/TextItem';
 
 const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
   const [visible, setVisible] = useState<boolean>(false);

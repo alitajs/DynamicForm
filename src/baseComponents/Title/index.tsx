@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useContext, useState } from 'react';
 import classnames from 'classnames';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import { DformContext, DformContextProps } from '../Context';
 import Hidden from '../Hidden';
 import { allPrefixCls } from '../../const';
 import { DFORM_COMP_DETAULT, NO_SUPPORT_VERTICAL } from '../../utils/menu';

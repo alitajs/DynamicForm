@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import CustomGroup from './CustomGroup';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { INomarCustomPorps } from './interface';
@@ -24,6 +24,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     onChange,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';

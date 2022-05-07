@@ -39,6 +39,7 @@ export interface IAddressPickerProps {
   renderFooter?: string | React.ReactNode;
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }
 
 export interface valueProps {

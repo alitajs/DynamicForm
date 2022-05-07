@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, useState } from 'react';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
 import FileIcon from '../../assets/file.png';
@@ -24,6 +24,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
     hidden = false,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const [selectable, setSelectable] = useState<boolean>(true);
@@ -100,6 +101,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
           initialValue={defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
         >
           <FileGroup

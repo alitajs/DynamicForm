@@ -12,6 +12,7 @@ export interface INomarSwitchProps extends SwitchPropsType {
   hidden?: boolean;
   className?: string;
   defaultValue?: boolean;
+  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
   labelNumber?: number;

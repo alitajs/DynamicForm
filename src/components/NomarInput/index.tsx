@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { StringAndUdfEvent } from '../../PropsType';
-import InputItem from '../InputItem';
+import InputItem from '../../baseComponents/InputItem';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
-import { TextItem } from '../..';
+import TextItem from '../../baseComponents/TextItem';
 import { INomarInputProps } from './interface';
 
 const DformInput: FC<INomarInputProps> = (props) => {
@@ -31,6 +31,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     labelNumber = 7,
     boxStyle,
     titleStyle,
+    formFlag = true,
     ...otherProps
   } = props;
 
@@ -125,6 +126,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         initialValue={defaultValue}
         params={{
           hidden,
+          formFlag,
         }}
         type="input"
       >

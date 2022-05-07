@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const';
 import DatePickerGroup from './DatePickerGroup';
@@ -33,6 +33,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     hidden = false,
     boxStyle,
     titleStyle,
+    formFlag = true,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -66,6 +67,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           {...fieldProps}
           params={{
             hidden,
+            formFlag,
           }}
           type="date"
         >
