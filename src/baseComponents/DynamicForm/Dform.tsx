@@ -315,8 +315,16 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
     );
   };
 
+  const updateErrorValue = (fieldProps: string) => {
+    const newErrorValue = { ...errorValue };
+    delete newErrorValue[fieldProps];
+    setErrorValue(newErrorValue);
+  };
+
   return (
-    <DformContext.Provider value={{ errorValue, changeForm, formFlag: true }}>
+    <DformContext.Provider
+      value={{ errorValue, changeForm, formFlag: true, updateErrorValue }}
+    >
       {!sonFlag && (
         <Form
           form={form}

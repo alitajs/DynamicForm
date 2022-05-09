@@ -28,8 +28,11 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
   const { hidden = false, formFlag: fFlag = true } = params;
 
-  const { changeForm, formFlag = false } =
-    useContext<DformContextProps>(DformContext);
+  const {
+    changeForm,
+    formFlag = false,
+    updateErrorValue,
+  } = useContext<DformContextProps>(DformContext);
 
   useMemo(() => {
     if (changeForm[name]?.required !== undefined) {
@@ -38,6 +41,9 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   }, [changeForm[name]]);
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
+    if (prevValue[props?.name] !== nextValue[props?.name]) {
+      if (updateErrorValue) updateErrorValue(name);
+    }
     if (props.shouldUpdate && typeof props.shouldUpdate === 'function') {
       props.shouldUpdate(prevValue, nextValue, {});
     }
