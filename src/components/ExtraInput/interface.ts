@@ -3,7 +3,7 @@ import { InputItemPropsType } from 'antd-mobile-v2/es/input-item/PropsType';
 
 export interface IExtraInputProps {
   fieldProps: string;
-  fieldProps2?: string;
+  fieldProps2: string;
   required?: boolean;
   rules?: Rule[];
   title: string;

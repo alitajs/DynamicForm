@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
@@ -66,8 +67,17 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     formFlag = true,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
@@ -93,7 +103,7 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         positionType={positionType}
         radioType={radioType}
         onChange={radioChange}
-        disabled={disabled}
+        disabled={mregedDisabled}
         coverStyle={coverStyle}
         className={className}
         labelNumber={labelNumber}

@@ -1,4 +1,5 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState, useContext } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
@@ -29,12 +30,21 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    disabled = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
 
   const { label = 'label', value = 'value' } = alias;
   const [initValue, setInitValue] = React.useState<any>();
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   const twoDimensionalTransform = () => {
     const newAllArray: PickerData[] = [];
@@ -95,6 +105,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
       >
         <SelectGroup
           {...props}
+          disabled={mregedDisabled}
           value={initValue || defaultValue}
           onChange={fieldChange}
           data={aliasData}

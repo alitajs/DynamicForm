@@ -1,10 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
-import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
@@ -29,10 +29,21 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    disabled = false,
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const { label = 'label', value = 'value' } = alias;
 
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -69,7 +80,12 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         }}
         type="multiplePicker"
       >
-        <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
+        <MultiplePickerGroup
+          {...props}
+          disabled={mregedDisabled}
+          data={aliasData}
+          onChange={fieldChange}
+        >
           <HorizontalTitle
             required={required}
             hasStar={hasStar}

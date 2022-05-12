@@ -26,6 +26,7 @@ export interface INomarImagePickerProps extends ImagePickerPropTypes {
   boxStyle?: React.CSSProperties;
   titleStyle?: React.CSSProperties;
   formFlag?: boolean;
+  disabled?: boolean;
 }
 
 export interface ImagePickerGroupProps extends INomarImagePickerProps {

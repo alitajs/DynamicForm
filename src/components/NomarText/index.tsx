@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, useMemo, useState } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
@@ -53,7 +54,16 @@ const DformText: FC<INomarTextProps> = (props) => {
     formFlag = true,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   return (
     <Title
@@ -85,7 +95,7 @@ const DformText: FC<INomarTextProps> = (props) => {
           isVertical={isVertical}
           labelNumber={labelNumber}
           onClick={onClick}
-          disabled={disabled}
+          disabled={mregedDisabled}
           maxLine={maxLine}
           fieldProps={fieldProps}
           className={className}

@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
@@ -29,11 +30,20 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    disabled = false,
   } = props;
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const { label = 'label', value = 'value' } = alias;
 
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   useEffect(() => {
     const newData = (data || []).map((item: any) => ({
@@ -52,6 +62,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       <PickerGroup
         value={defaultValue}
         {...props}
+        disabled={mregedDisabled}
         onChange={fieldChange}
         data={aliasData}
       >

@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { Switch } from 'antd-mobile-v2';
 import { allPrefixCls } from '../../const';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
@@ -23,8 +24,19 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    disabled = false,
     ...otherProps
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
+
   return (
     <Title
       independentProps={props}
@@ -56,7 +68,11 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
               formFlag,
             }}
           >
-            <Switch checked={defaultValue} {...otherProps} />
+            <Switch
+              checked={defaultValue}
+              {...otherProps}
+              disabled={mregedDisabled}
+            />
           </Field>
         </div>
       )}

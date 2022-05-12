@@ -25,6 +25,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    hidden = false,
   } = props;
 
   const isVertical = positionType === 'vertical';
@@ -73,6 +74,10 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
           rules={rules}
           initialValue={defaultValue}
           type="custom"
+          params={{
+            hidden,
+            formFlag,
+          }}
         >
           <CustomGroup
             isVertical={isVertical}

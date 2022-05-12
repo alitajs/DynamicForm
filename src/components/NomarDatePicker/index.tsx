@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
@@ -15,8 +16,8 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   const [endDate, setEndDate] = useState<Date>();
   const {
     fieldProps,
-    fieldProps2,
-    secondProps,
+    fieldProps2 = '',
+    secondProps = {},
     required = false,
     title,
     rules = [],
@@ -35,6 +36,24 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     titleStyle,
     formFlag = true,
   } = props;
+
+  const { disabled: secondDisabled = false } = secondProps;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const [sMregedDisabled, setSMregedDisabled] =
+    useState<boolean>(secondDisabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
+  useMemo(() => {
+    if (fieldProps2 && changeForm[fieldProps2]?.disabled !== undefined) {
+      setSMregedDisabled(changeForm[fieldProps2]?.disabled);
+    }
+  }, [changeForm[fieldProps2]]);
 
   const isVertical = positionType === 'vertical';
 
@@ -57,7 +76,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           [`${allPrefixCls}-begin${isVertical ? '-vertical' : ''}-picker`]:
             isBegin,
           [`${allPrefixCls}-end${isVertical ? '-vertical' : ''}-picker`]: isEnd,
-          'alitajs-dform-disabled': disabled,
+          'alitajs-dform-disabled': mregedDisabled,
         })}
       >
         <Field
@@ -115,6 +134,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
       setEndDate(nextValue && nextValue[fieldProps2 as any]);
       return prevValue !== nextValue;
     },
+    disabled: sMregedDisabled,
   };
 
   // 默认第一个时间props

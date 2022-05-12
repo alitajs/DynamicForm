@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import NomarRadioGroup from './radioGroup';
@@ -37,8 +38,17 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     formFlag = true,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
@@ -66,7 +76,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
         radioType={radioType}
         onChange={radioChange}
         coverStyle={coverStyle}
-        disabled={disabled}
+        disabled={mregedDisabled}
         className={className}
         labelNumber={labelNumber}
       >

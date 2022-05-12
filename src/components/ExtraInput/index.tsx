@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
 import classnames from 'classnames';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
@@ -21,8 +22,8 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     extraType = 'input',
     positionType = 'vertical',
     hasStar = true,
-    firstProps,
-    secondProps,
+    firstProps = {},
+    secondProps = {},
     hidden = false,
     labelNumber = 7,
     boxStyle = {},
@@ -30,7 +31,24 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     formFlag = true,
   } = props;
 
+  const { disabled: firstDisabled = false } = firstProps;
+  const { disabled: secondDisabled = false } = firstProps;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(firstDisabled);
+  const [sMregedDisabled, setSMregedDisabled] =
+    useState<boolean>(secondDisabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+    if (changeForm[fieldProps2]?.disabled !== undefined) {
+      setSMregedDisabled(changeForm[fieldProps2]?.disabled);
+    }
+  }, [changeForm[fieldProps2], changeForm[fieldProps]]);
 
   const inputOnBlur = (val: string | undefined) => {
     if (firstProps && firstProps.onBlur) firstProps.onBlur(val);
@@ -59,6 +77,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
         >
           <PickerGroup
             {...secondProps}
+            disabled={sMregedDisabled}
             onChange={fieldChange}
             labelNumber={0}
             title={title}
@@ -84,6 +103,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           labelNumber={0}
           style={{ textAlign: 'right', ...coverStyle }}
           {...secondProps}
+          disabled={sMregedDisabled}
         />
       </Field>
     );
@@ -121,6 +141,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           >
             <InputItem
               {...firstProps}
+              disabled={mregedDisabled}
               fieldProps={fieldProps}
               coverStyle={{
                 textAlign: 'center',

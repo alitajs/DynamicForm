@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { StringAndUdfEvent } from '../../PropsType';
 import InputItem from '../../baseComponents/InputItem';
 import Field from '../Field';
@@ -35,7 +36,16 @@ const DformInput: FC<INomarInputProps> = (props) => {
     ...otherProps
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   const inputOnBlur = (val: string | undefined) => {
     if (onBlur) onBlur(val);
@@ -55,7 +65,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         labelNumber={labelNumber}
         // @ts-ignore
         onClick={onClick}
-        disabled={disabled}
+        disabled={mregedDisabled}
         maxLine={maxLine}
         fieldProps={fieldProps}
         className={className}
@@ -87,7 +97,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         extra={isVertical ? '' : extra}
         type={inputType}
         editable={editable}
-        disabled={disabled}
+        disabled={mregedDisabled}
         className={className}
         coverStyle={{
           textAlign: isVertical ? 'left' : 'right',
@@ -130,7 +140,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         }}
         type="input"
       >
-        {editable && !disabled ? showFiled() : showTextFiled()}
+        {editable && !mregedDisabled ? showFiled() : showTextFiled()}
       </Field>
     </Title>
   );

@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import CheckBoxGroup from './checkBoxgroup';
@@ -30,7 +31,16 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     formFlag = true,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const { label = 'label', value = 'value' } = alias;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -69,7 +79,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
             data={aliasData}
             onChange={boxChange}
             coverStyle={coverStyle}
-            disabled={disabled}
+            disabled={mregedDisabled}
             chunk={chunk}
             className={className}
             value={defaultValue}

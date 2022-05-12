@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { TextareaItem } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import Field from '../Field';
@@ -16,7 +17,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     rules = [],
     rows = 3,
     title,
-    positionType = 'vertical',
+    positionType = 'horizontal',
     hasStar = true,
     extra = '',
     subTitle,
@@ -30,11 +31,21 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    disabled = false,
     ...otherProps
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   const titleDiv = () => (
     <HorizontalTitle
@@ -84,6 +95,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
         >
           <TextareaItem
             {...otherProps}
+            disabled={mregedDisabled}
             title={titleDiv()}
             editable={editable}
             style={{

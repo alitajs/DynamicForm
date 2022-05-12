@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
 import Field from '../Field';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Title from '../../baseComponents/Title';
 import AddressPickerGroup from './AddressPickerGroup';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
@@ -22,9 +23,19 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     boxStyle,
     formFlag = true,
     titleStyle,
+    disabled = false,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   const fieldChange = (val: valueProps | undefined) => {
     if (onChange) onChange(val);
@@ -35,6 +46,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
       <AddressPickerGroup
         value={defaultValue}
         {...props}
+        disabled={mregedDisabled}
         extra={isVertical ? '' : extra}
         onChange={fieldChange}
       >

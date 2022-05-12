@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
@@ -23,8 +24,18 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    disabled = false,
     ...otherProps
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    }
+  }, [changeForm[fieldProps]]);
 
   const imageChange = (
     files: ImageFile[],
@@ -56,6 +67,7 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
         >
           <ImagePickerGroup
             {...otherProps}
+            disabled={mregedDisabled}
             value={defaultValue}
             onChange={imageChange}
             limitSize={limitSize}

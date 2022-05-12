@@ -56,6 +56,10 @@ const Page: FC = () => {
             label: 'foodName',
             value: 'foodId',
           }}
+          disableItem={(item) => {
+            if (item.value === 'watermelon') return true;
+            return false;
+          }}
         />
         <DformCheckBox
           title="喜欢的水果(默认值)"

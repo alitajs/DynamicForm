@@ -37,11 +37,15 @@ const Title: FC<TitleProps> = (props) => {
   } = independentProps;
 
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
+  const [mregedHidden, setMregedHidden] = useState<boolean>(hidden);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   useMemo(() => {
     if (changeForm[fieldProps]?.required !== undefined) {
       setMregedRequired(changeForm[fieldProps]?.required);
+    }
+    if (changeForm[fieldProps]?.hidden !== undefined) {
+      setMregedHidden(changeForm[fieldProps]?.hidden);
     }
   }, [changeForm[fieldProps]]);
 
@@ -61,7 +65,7 @@ const Title: FC<TitleProps> = (props) => {
   // `${allPrefixCls}-cell` 类名勿动，主要用来配置单一class 取消Group尾部下划线
 
   return (
-    <Hidden hidden={hidden}>
+    <Hidden hidden={mregedHidden}>
       {renderHeader}
       <div
         className={classnames(`${allPrefixCls}-cell`, {
