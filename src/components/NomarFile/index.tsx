@@ -35,8 +35,10 @@ const DformFile: FC<INomarFileProps> = (props) => {
   useMemo(() => {
     if (changeForm[fieldProps]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps]]);
+  }, [changeForm[fieldProps], disabled]);
 
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {

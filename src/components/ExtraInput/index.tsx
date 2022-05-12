@@ -44,11 +44,20 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   useMemo(() => {
     if (changeForm[fieldProps]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(firstDisabled);
     }
     if (changeForm[fieldProps2]?.disabled !== undefined) {
       setSMregedDisabled(changeForm[fieldProps2]?.disabled);
+    } else {
+      setSMregedDisabled(secondDisabled);
     }
-  }, [changeForm[fieldProps2], changeForm[fieldProps]]);
+  }, [
+    changeForm[fieldProps2],
+    changeForm[fieldProps],
+    firstDisabled,
+    secondDisabled,
+  ]);
 
   const inputOnBlur = (val: string | undefined) => {
     if (firstProps && firstProps.onBlur) firstProps.onBlur(val);

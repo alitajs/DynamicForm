@@ -47,13 +47,17 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   useMemo(() => {
     if (changeForm[fieldProps]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps]]);
+  }, [changeForm[fieldProps], disabled]);
   useMemo(() => {
     if (fieldProps2 && changeForm[fieldProps2]?.disabled !== undefined) {
       setSMregedDisabled(changeForm[fieldProps2]?.disabled);
+    } else {
+      setSMregedDisabled(secondDisabled);
     }
-  }, [changeForm[fieldProps2]]);
+  }, [changeForm[fieldProps2], secondDisabled]);
 
   const isVertical = positionType === 'vertical';
 

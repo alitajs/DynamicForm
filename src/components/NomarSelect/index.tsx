@@ -43,8 +43,10 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   useMemo(() => {
     if (changeForm[fieldProps]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps]]);
+  }, [changeForm[fieldProps], disabled]);
 
   const twoDimensionalTransform = () => {
     const newAllArray: PickerData[] = [];

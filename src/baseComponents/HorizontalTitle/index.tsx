@@ -67,8 +67,10 @@ const HorizontalTitle: FC<HorizontalTitleProps> = (props) => {
   useMemo(() => {
     if (changeForm[fieldProps]?.required !== undefined) {
       setMregedRequired(changeForm[fieldProps]?.required);
+    } else {
+      setMregedRequired(required);
     }
-  }, [changeForm[fieldProps]]);
+  }, [changeForm[fieldProps], required]);
 
   return (
     <div

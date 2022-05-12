@@ -38,11 +38,15 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   useMemo(() => {
     if (changeForm[name]?.required !== undefined) {
       setMregedRequired(changeForm[name]?.required);
+    } else {
+      setMregedRequired(required);
     }
     if (changeForm[name]?.hidden !== undefined) {
       setMregedHidden(changeForm[name]?.hidden);
+    } else {
+      setMregedHidden(hidden);
     }
-  }, [changeForm[name]]);
+  }, [changeForm[name], hidden, required]);
 
   const shouldUpdate = (prevValue: any, nextValue: any) => {
     if (prevValue[props?.name] !== nextValue[props?.name]) {

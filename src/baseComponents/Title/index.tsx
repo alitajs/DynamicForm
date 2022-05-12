@@ -43,11 +43,15 @@ const Title: FC<TitleProps> = (props) => {
   useMemo(() => {
     if (changeForm[fieldProps]?.required !== undefined) {
       setMregedRequired(changeForm[fieldProps]?.required);
+    } else {
+      setMregedRequired(required);
     }
     if (changeForm[fieldProps]?.hidden !== undefined) {
       setMregedHidden(changeForm[fieldProps]?.hidden);
+    } else {
+      setMregedHidden(hidden);
     }
-  }, [changeForm[fieldProps]]);
+  }, [changeForm[fieldProps], hidden, required]);
 
   // 表单对齐方向
   let positionType =
