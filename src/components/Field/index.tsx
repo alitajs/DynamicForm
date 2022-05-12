@@ -25,8 +25,9 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
     name,
     ...restProps
   } = props;
-  const [mregedRequired, setMregedRequired] = useState<boolean>(required);
   const { hidden = false, formFlag: fFlag = true } = params;
+  const [mregedRequired, setMregedRequired] = useState<boolean>(required);
+  const [mregedHidden, setMregedHidden] = useState<boolean>(hidden);
 
   const {
     changeForm,
@@ -37,6 +38,9 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
   useMemo(() => {
     if (changeForm[name]?.required !== undefined) {
       setMregedRequired(changeForm[name]?.required);
+    }
+    if (changeForm[name]?.hidden !== undefined) {
+      setMregedHidden(changeForm[name]?.hidden);
     }
   }, [changeForm[name]]);
 
@@ -61,7 +65,7 @@ const CustomField: FC<CustomFieldProps> = (props: any) => {
         {...restProps}
         name={name}
         rules={
-          hidden
+          mregedHidden
             ? []
             : [
                 ...(rules || []),

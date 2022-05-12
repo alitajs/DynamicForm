@@ -95,6 +95,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
         >
           <TextareaItem
             {...otherProps}
+            labelNumber={labelNumber}
             disabled={mregedDisabled}
             title={titleDiv()}
             editable={editable}
