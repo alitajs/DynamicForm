@@ -8,7 +8,7 @@ import {
   ValidateErrorEntity,
 } from 'rc-field-form/es/interface';
 
-export * from 'rc-field-form/es/interface';
+// export * from 'rc-field-form/es/interface';
 
 export type InputEventHandler = (value?: string) => void;
 
