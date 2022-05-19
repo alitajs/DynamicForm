@@ -71,37 +71,44 @@ const Title: FC<TitleProps> = (props) => {
   return (
     <Hidden hidden={mregedHidden}>
       {renderHeader}
-      <div
-        className={classnames(`${allPrefixCls}-cell`, {
-          [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
-          [`${allPrefixCls}-error`]: errorValue && !!errorValue[fieldProps],
-        })}
-        style={style}
-      >
-        {isVertical && (
-          <div
-            className={classnames({
-              [`${allPrefixCls}-title`]: true,
-              [`${allPrefixCls}-vertical-title`]: true,
-            })}
-          >
-            {mregedRequired && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div style={titleStyle}>{title}</div>
-            {subTitle}
-            {extra !== '' && isVertical && (
-              <div className={`${allPrefixCls}-extra`}>{extra}</div>
-            )}
-          </div>
-        )}
-        {children}
-        {errorValue && !!errorValue[fieldProps] && (
-          <div className={`${allPrefixCls}-error-text`}>
-            {errorValue[fieldProps]}
-          </div>
-        )}
-        {renderFooter}
+      <div className={`${allPrefixCls}-content`} style={style}>
+        <div
+          style={{
+            borderBottom:
+              style.background ||
+              style.backgroundColor ||
+              '0.01rem solid #e5e5e5',
+          }}
+          className={classnames(`${allPrefixCls}-cell`, {
+            [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
+            [`${allPrefixCls}-error`]: errorValue && !!errorValue[fieldProps],
+          })}
+        >
+          {isVertical && (
+            <div
+              className={classnames({
+                [`${allPrefixCls}-title`]: true,
+                [`${allPrefixCls}-vertical-title`]: true,
+              })}
+            >
+              {mregedRequired && hasStar && (
+                <div className={`${allPrefixCls}-redStar`}>*</div>
+              )}
+              <div style={titleStyle}>{title}</div>
+              {subTitle}
+              {extra !== '' && isVertical && (
+                <div className={`${allPrefixCls}-extra`}>{extra}</div>
+              )}
+            </div>
+          )}
+          {children}
+          {errorValue && !!errorValue[fieldProps] && (
+            <div className={`${allPrefixCls}-error-text`}>
+              {errorValue[fieldProps]}
+            </div>
+          )}
+          {renderFooter}
+        </div>
       </div>
     </Hidden>
   );

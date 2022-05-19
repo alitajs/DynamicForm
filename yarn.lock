@@ -10000,7 +10000,7 @@ rc-dropdown@~3.5.0:
     rc-trigger "^5.0.4"
     rc-util "^5.17.0"
 
-rc-field-form@^1.26.4:
+rc-field-form@1.26.4:
   version "1.26.4"
   resolved "https://registry.npmmirror.com/rc-field-form/-/rc-field-form-1.26.4.tgz#78553e0f317f0ed7ceea70b1b89d43865dddeb83"
   integrity sha512-eCCyiNNaN0NTYTyoziQHD4Fj6mUED21lWkw66vg+kttg0eDw+miD6LsaJbTD5c2bzKjUJTf10AitPG+f5zT4+A==
