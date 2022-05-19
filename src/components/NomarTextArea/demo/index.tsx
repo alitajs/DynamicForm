@@ -49,9 +49,6 @@ const Page: FC = () => {
           placeholder="支持输入值过长自动换行"
           rows={1}
           autoHeight={true}
-          boxStyle={{
-            background: 'green',
-          }}
         />
         <DformTextArea
           fieldProps="textArea1"
