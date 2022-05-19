@@ -371,7 +371,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 };
 
 // 为自定义 useForm 预留入口
-export { useForm, IDynamicFormProps };
+export { useForm };
 
 //@ts-ignore
 DynamicForm.Group = Group;
