@@ -1,19 +1,13 @@
 import { Rule } from 'rc-field-form/es/interface';
+import { BaseComponentProps } from '../../PropsType';
 
 export interface INomarFileItemProps {
   [key: string]: any;
 }
 
-export interface INomarFileProps {
-  fieldProps: string;
-  required?: boolean;
-  title: string;
-  rules?: Rule[];
-  hasStar?: boolean;
-  subTitle?: string | React.ReactNode;
+export interface INomarFileProps extends BaseComponentProps {
   extra?: string | React.ReactNode;
   uploadExtra?: string | React.ReactNode;
-  hidden?: boolean;
   onClick?: (val: INomarFileItemProps) => void;
   onChange?: (
     val: INomarFileItemProps[],
@@ -26,13 +20,6 @@ export interface INomarFileProps {
     title: string;
   };
   defaultValue?: INomarFileItemProps;
-  titleProps?: any;
   fileProps?: any;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-  disabled?: boolean;
   maxLength?: number;
-  boxStyle?: React.CSSProperties;
-  titleStyle?: React.CSSProperties;
-  formFlag?: boolean;
 }

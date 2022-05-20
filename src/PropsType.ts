@@ -162,3 +162,22 @@ export interface GroupProps extends CardProps {
   type?: 'empty' | 'card';
   children?: any;
 }
+
+export interface BaseComponentProps {
+  title: string;
+  required?: boolean;
+  fieldProps: string;
+  rules?: Rule[];
+  hasStar?: boolean;
+  positionType?: 'vertical' | 'horizontal';
+  subTitle?: string | React.ReactNode;
+  hidden?: boolean;
+  className?: string;
+  titleProps?: any;
+  formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
+  disabled?: boolean;
+}

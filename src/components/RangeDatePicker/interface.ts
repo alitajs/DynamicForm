@@ -11,14 +11,6 @@ export interface IRangeDatePickerProps extends INomarDatePickerProps {
   minDate?: Date;
   maxDate?: Date;
   positionType?: 'vertical' | 'horizontal';
-  hasStar?: boolean;
   secondProps?: DateProps;
   firstProps?: DateProps;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
-  formFlag?: boolean;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-  boxStyle?: React.CSSProperties;
-  titleStyle?: React.CSSProperties;
 }

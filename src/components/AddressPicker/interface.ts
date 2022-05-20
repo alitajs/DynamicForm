@@ -1,24 +1,15 @@
 import { Rule } from 'rc-field-form/es/interface';
 import React from 'react';
-import { IAliasProps } from '../../PropsType';
+import { IAliasProps, BaseComponentProps } from '../../PropsType';
 
 export interface IModalData {
   [key: string]: string | number;
 }
 
-export interface IAddressPickerProps {
-  fieldProps: string;
-  title: string;
-  positionType?: 'horizontal' | 'vertical';
-  required?: boolean;
-  hasStar?: boolean;
-  rules?: Rule[];
+export interface IAddressPickerProps extends BaseComponentProps {
   onChange?: (currentActiveLink: any) => void;
-  subTitle?: string | React.ReactNode;
-  hidden?: boolean;
   placeholder?: string;
   extra?: string | React.ReactNode;
-  disabled?: boolean;
   // level: number;
   data?: IModalData[];
   onChangeLevel: (value: (string | number)[]) => void;
@@ -34,12 +25,6 @@ export interface IAddressPickerProps {
   className?: string;
   alias?: IAliasProps;
   defaultValue?: valueProps;
-  titleProps?: any;
-  renderHeader?: string | React.ReactNode;
-  renderFooter?: string | React.ReactNode;
-  boxStyle?: React.CSSProperties;
-  titleStyle?: React.CSSProperties;
-  formFlag?: boolean;
 }
 
 export interface valueProps {
