@@ -12,13 +12,13 @@ import DynamicForm, {
 } from '@alitajs/dform';
 
 const fruitsList = [
-  { foodId: 'apple', foodName: '苹果' },
-  { foodId: 'banana', foodName: '香蕉' },
-  { foodId: 'orange', foodName: '橙子' },
-  { foodId: 'watermelon', foodName: '西瓜' },
-  { foodId: 'hami', foodName: '哈密瓜' },
-  { foodId: 'pineapple', foodName: '菠萝' },
-  { foodId: 'pear', foodName: '香梨' },
+  { foodId: 'apple', foodName: '苹果', desc: '这是苹果' },
+  { foodId: 'banana', foodName: '香蕉', desc: '这是香蕉' },
+  { foodId: 'orange', foodName: '橙子', desc: '这是橙子' },
+  { foodId: 'watermelon', foodName: '西瓜', desc: '这是西瓜' },
+  { foodId: 'hami', foodName: '哈密瓜', desc: '这是哈密瓜' },
+  { foodId: 'pineapple', foodName: '菠萝', desc: '这是菠萝' },
+  { foodId: 'pear', foodName: '香梨', desc: '这是香梨' },
 ];
 
 const Page: FC = () => {

@@ -3,7 +3,7 @@ import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import CheckBoxGroup from './checkBoxgroup';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
 import { INomarCheckBoxProps } from './interface';
 import './index.less';
 
@@ -34,7 +34,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
-  const { label = 'label', value = 'value' } = alias;
+  const { label = 'label', value = 'value', desc = 'desc' } = alias;
 
   useMemo(() => {
     if (changeForm[fieldProps]?.disabled !== undefined) {
@@ -48,6 +48,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
+      desc: item?.[desc],
     }));
     setAliasData(newData);
   }, [data]);

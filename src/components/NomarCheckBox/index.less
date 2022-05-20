@@ -1,5 +1,7 @@
 @import '../../styles/index.less';
 
+@prefixClsExtends: alitajs-dform-check-box-extends;
+
 .alitajs-dform-check-box {
   .alitajs-dform-box-content {
     color: @alita-dform-value-color;
@@ -58,6 +60,61 @@
       .alitajs-dform-box-label {
         padding-left: 8 * @hd;
         padding-right: 8 * @hd;
+      }
+    }
+  }
+
+  .@{prefixClsExtends} {
+    &-animation {
+      display: none;
+    }
+    &-entered {
+      display: block;
+    }
+
+    color: rgba(173, 183, 204, 100);
+    font-size: 26px;
+    text-align: left;
+
+    &-body {
+      &-enter {
+        .@{prefixClsExtends}-animation {
+          display: block;
+          max-height: 0;
+        }
+        &-active {
+          .@{prefixClsExtends}-animation {
+            display: block;
+            max-height: 100vh;
+            transition: max-height 200ms linear;
+          }
+        }
+        &-done {
+          .@{prefixClsExtends}-animation {
+            display: block;
+            max-height: 100vh;
+          }
+        }
+      }
+
+      &-exit {
+        .@{prefixClsExtends}-animation {
+          display: block;
+          max-height: 100vh;
+        }
+        &-active {
+          .@{prefixClsExtends}-animation {
+            display: block;
+            max-height: 1px;
+            transition: max-height 200ms linear;
+          }
+        }
+        &-done {
+          .@{prefixClsExtends}-animation {
+            display: none;
+            max-height: 0;
+          }
+        }
       }
     }
   }

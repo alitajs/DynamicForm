@@ -2,12 +2,17 @@ import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { Flex } from 'antd-mobile-v2';
 import chunkLodash from 'lodash.chunk';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import { allPrefixCls } from '../../const';
+
+import './index.less';
 
 const { Item } = Flex;
 
 export interface IDataItem {
   label: string | number;
   value: string | number;
+  desc?: string | number;
 }
 
 interface ICheckBoxGroup {
@@ -21,6 +26,8 @@ interface ICheckBoxGroup {
   className?: string;
 }
 
+const prefixCls = `${allPrefixCls}-check-box-extends`;
+
 const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   const {
     data = [],
@@ -33,9 +40,19 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
   } = props;
 
   const [val, setVal] = useState<(string | number)[] | undefined>([]);
+  const [isExtandObj, setIsExtandObj] = useState<Record<string, any>>({});
   useEffect(() => {
     setVal(value);
-  }, [value]);
+    const newIsExtandObj = { ...isExtandObj };
+    data.forEach((item) => {
+      if ((value || []).indexOf(item.value) !== -1) {
+        newIsExtandObj[item.value] = true;
+      } else {
+        newIsExtandObj[item.value] = false;
+      }
+    });
+    setIsExtandObj(newIsExtandObj);
+  }, [value, data]);
 
   const boxClick = (dataItem: IDataItem) => {
     const newInitValue = [...(val || [])];
@@ -50,7 +67,7 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
 
   const BoxContent = () =>
     chunkLodash([...data], chunk).map((list: IDataItem[], index: number) => (
-      <Flex key={index}>
+      <Flex key={index} align="start">
         {[...list].map((item: IDataItem) => {
           const _disabled = disabled || props?.disableItem?.(item);
           return (
@@ -88,6 +105,25 @@ const CheckBoxGroup: FC<ICheckBoxGroup> = (props) => {
                 >
                   {item.label}
                 </div>
+              </div>
+              <div className={prefixCls}>
+                <CSSTransition
+                  in={isExtandObj?.[item.value] || false}
+                  classNames={`${prefixCls}-body`}
+                  timeout={200}
+                >
+                  {(state) => (
+                    <div className={`${prefixCls}-body`}>
+                      <div
+                        className={classnames(`${prefixCls}-animation`, {
+                          [`${prefixCls}-entered`]: state === 'entered',
+                        })}
+                      >
+                        {item.desc}
+                      </div>
+                    </div>
+                  )}
+                </CSSTransition>
               </div>
             </Item>
           );

@@ -39,6 +39,7 @@ export type TitleTypePorps =
 export interface IAliasProps {
   label: string;
   value: string | number;
+  desc?: string | number;
 }
 
 export interface IFormItemProps {

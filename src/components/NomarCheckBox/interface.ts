@@ -2,7 +2,7 @@ import { IDataItem } from './checkBoxgroup';
 import { IAliasProps, BaseComponentProps } from '../../PropsType';
 
 export interface INomarCheckBoxProps extends BaseComponentProps {
-  data?: any;
+  data?: Record<string, string>[];
   coverStyle?: React.CSSProperties;
   className?: string;
   onChange?: (currentActiveLink: (string | number)[]) => void;
