@@ -57,8 +57,10 @@
     font-size: 18 * @hd;
   }
 
-  .@{prefixCls}-cell:last-child {
-    border: none;
+  .@{prefixCls}-content:last-child {
+    .@{prefixCls}-cell {
+      border-bottom: none !important;
+    }
   }
 
   &-extends-icon {

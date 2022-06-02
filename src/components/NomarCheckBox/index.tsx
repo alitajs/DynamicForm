@@ -1,8 +1,9 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import CheckBoxGroup from './checkBoxgroup';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
 import { INomarCheckBoxProps } from './interface';
 import './index.less';
 
@@ -24,19 +25,30 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
       value: 'value',
     },
     defaultValue,
-    titleProps,
     hidden,
-    hasStar,
-    subTitle,
-    formFlag = false,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
   } = props;
 
-  const { label = 'label', value = 'value' } = alias;
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  const { label = 'label', value = 'value', desc = 'desc' } = alias;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
       label: item[label],
       value: item[value],
+      desc: item?.[desc],
     }));
     setAliasData(newData);
   }, [data]);
@@ -47,30 +59,30 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
 
   return (
     <Title
-      positionType="vertical"
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      {...titleProps}
+      independentProps={props}
+      type="checkbox"
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div className={`${allPrefixCls}-check-box`}>
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
+            formFlag,
           }}
+          type="checkbox"
         >
           <CheckBoxGroup
             disableItem={props.disableItem}
             data={aliasData}
             onChange={boxChange}
             coverStyle={coverStyle}
-            disabled={disabled}
+            disabled={mregedDisabled}
             chunk={chunk}
             className={className}
             value={defaultValue}

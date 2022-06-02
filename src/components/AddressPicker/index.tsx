@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
 import Field from '../Field';
-import Title from '../Title';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import Title from '../../baseComponents/Title';
 import AddressPickerGroup from './AddressPickerGroup';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { IAddressPickerProps, valueProps } from './interface';
-import { allPrefixCls } from '../../const/index';
 import './index.less';
 
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
@@ -17,43 +18,76 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     extra,
     onChange,
     defaultValue,
-    titleProps,
     hidden = false,
-    formFlag = false,
+    labelNumber = 7,
+    boxStyle,
+    formFlag = true,
+    titleStyle,
+    disabled = false,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   const fieldChange = (val: valueProps | undefined) => {
     if (onChange) onChange(val);
   };
 
+  const showAddressPickerFiled = () => {
+    return (
+      <AddressPickerGroup
+        value={defaultValue}
+        {...props}
+        disabled={mregedDisabled}
+        extra={isVertical ? '' : extra}
+        onChange={fieldChange}
+      >
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+          titleStyle={titleStyle}
+        />
+      </AddressPickerGroup>
+    );
+  };
+
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      type="addressPicker"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
+          formFlag,
         }}
+        type="addressPicker"
       >
-        <AddressPickerGroup
-          {...props}
-          extra={isVertical ? '' : extra}
-          onChange={fieldChange}
-        >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
-        </AddressPickerGroup>
+        {showAddressPickerFiled()}
       </Field>
     </Title>
   );

@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { Switch } from 'antd-mobile-v2';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import { INomarSwitchProps } from './interface';
 import './index.less';
 
@@ -18,31 +20,61 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     hidden = false,
     className = '',
     defaultValue = false,
-    titleProps,
-    formFlag = false,
+    labelNumber = 7,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
+    disabled = false,
     ...otherProps
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
+
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      type="switch"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       {!hidden && (
         <div className={`${allPrefixCls}-switch`}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={false}
+            fieldProps={fieldProps}
+            titleStyle={titleStyle}
+          />
           <Field
+            type="switch"
+            title={title}
+            required={required}
+            rules={rules}
             name={fieldProps}
             valuePropName="checked"
-            rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
             initialValue={defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
+              formFlag,
             }}
           >
-            <Switch checked={defaultValue} {...otherProps} />
+            <Switch
+              checked={defaultValue}
+              {...otherProps}
+              disabled={mregedDisabled}
+            />
           </Field>
         </div>
       )}

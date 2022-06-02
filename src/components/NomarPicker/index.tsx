@@ -1,9 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 
 const DformPicker: FC<INomarPickerProps> = (props) => {
   const [aliasData, setAliasData] = useState<any[]>([]);
@@ -11,8 +12,8 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const {
     positionType = 'horizontal',
     hidden = false,
-    subTitle = '',
-    extra,
+    // subTitle = '',
+    // extra,
     fieldProps,
     rules = [],
     required = false,
@@ -25,11 +26,26 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
-    formFlag = false,
-    titleProps,
+    labelNumber = 7,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
+    disabled = false,
   } = props;
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const { label = 'label', value = 'value' } = alias;
+
+  const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item: any) => ({
@@ -48,40 +64,43 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
       <PickerGroup
         value={defaultValue}
         {...props}
+        disabled={mregedDisabled}
         onChange={fieldChange}
         data={aliasData}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+          titleStyle={titleStyle}
+        />
       </PickerGroup>
     );
   };
   return (
     <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
+      independentProps={props}
+      type="picker"
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
+          formFlag,
         }}
+        type="picker"
       >
         {showFiled()}
       </Field>

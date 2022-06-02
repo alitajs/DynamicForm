@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import ImagePickerGroup from './imagePickerGroup';
 import { ImageFile, INomarImagePickerProps } from './interface';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -20,10 +21,23 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
     extra = '',
     onChange,
     defaultValue = [],
-    titleProps,
-    formFlag = false,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
+    disabled = false,
     ...otherProps
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   const imageChange = (
     files: ImageFile[],
@@ -34,19 +48,28 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      type="image"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div className={`${allPrefixCls}-image`}>
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
+            formFlag,
           }}
+          type="image"
         >
           <ImagePickerGroup
             {...otherProps}
+            disabled={mregedDisabled}
             value={defaultValue}
             onChange={imageChange}
             limitSize={limitSize}

@@ -1,8 +1,9 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState, useContext } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import './index.less';
 import { INomarSelectProps } from './interface';
 import SelectGroup from './NomarSelectGroup';
@@ -21,15 +22,31 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    positionType = 'horizontal',
     defaultValue,
-    titleProps,
     maxLine,
-    formFlag = false,
     hidden = false,
+    labelNumber = 7,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
+    disabled = false,
   } = props;
+
+  const isVertical = positionType === 'vertical';
 
   const { label = 'label', value = 'value' } = alias;
   const [initValue, setInitValue] = React.useState<any>();
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   const twoDimensionalTransform = () => {
     const newAllArray: PickerData[] = [];
@@ -70,29 +87,41 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      type="select"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
+          formFlag,
         }}
+        type="select"
       >
         <SelectGroup
           {...props}
+          disabled={mregedDisabled}
           value={initValue || defaultValue}
           onChange={fieldChange}
           data={aliasData}
           maxLine={maxLine}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+            titleStyle={titleStyle}
+          />
         </SelectGroup>
       </Field>
     </Title>

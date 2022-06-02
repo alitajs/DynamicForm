@@ -1,9 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import MultiplePickerGroup from './multiplePickerGroup';
 import { IMultiplePickerProps } from './interface';
 import Field from '../Field';
-import Title from '../Title';
-import { allPrefixCls } from '../../const/index';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import './index.less';
 
 const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
@@ -23,11 +24,28 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
       value: 'value',
     },
     defaultValue,
-    titleProps,
     hidden = false,
-    formFlag = false,
+    labelNumber = 7,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
+    disabled = false,
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const { label = 'label', value = 'value' } = alias;
+
+  const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -47,28 +65,38 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   return (
     <Title
-      title={title}
-      positionType={positionType}
+      type="multiplePicker"
       independentProps={props}
-      formFlag={formFlag}
-      {...titleProps}
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
+          formFlag,
         }}
+        type="multiplePicker"
       >
-        <MultiplePickerGroup {...props} data={aliasData} onChange={fieldChange}>
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+        <MultiplePickerGroup
+          {...props}
+          disabled={mregedDisabled}
+          data={aliasData}
+          onChange={fieldChange}
+        >
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+            titleStyle={titleStyle}
+          />
         </MultiplePickerGroup>
       </Field>
     </Title>

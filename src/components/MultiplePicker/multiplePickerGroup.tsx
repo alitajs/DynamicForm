@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import { IMultiplePickerProps, IDataItem } from './interface';
-import TextItem from '../TextItem';
+import TextItem from '../../baseComponents/TextItem';
 import './index.less';
 
 const { Item } = List;
@@ -11,6 +11,7 @@ interface IMultiplePickerGroupProps
   extends Omit<IMultiplePickerProps, 'onChange'> {
   onChange?: (values: (string | number)[] | undefined, flag?: string) => void;
   value?: (string | number)[] | undefined;
+  children?: any;
 }
 
 const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
@@ -25,7 +26,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     maxValueLength,
     coverStyle,
     className = '',
-    labelNumber = 5,
+    labelNumber = 7,
     onClick,
     leftContent = '取消',
     rightContent = '确定',

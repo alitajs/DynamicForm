@@ -1,5 +1,6 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 import classnames from 'classnames';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -19,7 +20,7 @@ interface IRadioGroup {
   coverStyle?: React.CSSProperties;
   className?: string;
   labelNumber: number;
-  formFlag?: boolean;
+  children?: any;
 }
 
 const RadioGroup: FC<IRadioGroup> = (props) => {
@@ -32,10 +33,10 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
     disabled = false,
     coverStyle,
     className = '',
-    labelNumber = 5,
-    formFlag = false,
+    labelNumber = 7,
     children,
   } = props;
+  const { formFlag = false } = useContext<DformContextProps>(DformContext);
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
     undefined,
   );
@@ -45,7 +46,6 @@ const RadioGroup: FC<IRadioGroup> = (props) => {
   }
 
   const formValue = formFlag ? activeValue : value;
-
 
   const labelCls = classnames({
     [`${allPrefixCls}-input-label-0`]: labelNumber === 0,

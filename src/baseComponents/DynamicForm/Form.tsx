@@ -28,7 +28,7 @@ import {
   DformText,
   DformPicker,
   DformFile,
-} from '../';
+} from '../../components';
 
 import Title from '../Title';
 
@@ -134,7 +134,7 @@ const changeData = (oldData: IFormItemProps[], autoLineFeed: boolean) =>
         if (titleSize > 8) {
           item.labelNumber = titleSize / 2 + 1;
         } else {
-          item.labelNumber = 5;
+          item.labelNumber = 7;
         }
       }
     }
@@ -371,7 +371,7 @@ const DynamicForm: FC<IDynamicFormProps> = ({
 };
 
 // 为自定义 useForm 预留入口
-export { useForm, IDynamicFormProps };
+export { useForm };
 
 //@ts-ignore
 DynamicForm.Group = Group;

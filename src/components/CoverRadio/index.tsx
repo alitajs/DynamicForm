@@ -1,11 +1,13 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { IAliasProps } from '../../PropsType';
-import { allPrefixCls } from '../../const/index';
+import { allPrefixCls } from '../../const';
 import './index.less';
 
 const prefixCls = 'alitajs-dform-cover-radio';
@@ -32,9 +34,10 @@ interface ICoverRadioProps {
   alias?: IAliasProps;
   labelNumber?: number;
   defaultValue?: string;
-  titleProps?: any;
-  formFlag?: boolean;
   extra?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
+  formFlag?: boolean;
 }
 
 const CoverRadio: FC<ICoverRadioProps> = (props) => {
@@ -56,17 +59,27 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
       label: 'label',
       value: 'value',
     },
-    labelNumber = 5,
+    labelNumber = 7,
     defaultValue,
-    titleProps,
-    formFlag = false,
+    boxStyle,
+    titleStyle,
     hidden = false,
-    subTitle,
-    extra,
+    formFlag = true,
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
 
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
@@ -92,32 +105,30 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
         positionType={positionType}
         radioType={radioType}
         onChange={radioChange}
-        disabled={disabled}
+        disabled={mregedDisabled}
         coverStyle={coverStyle}
         className={className}
         labelNumber={labelNumber}
-        formFlag={formFlag}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+          titleStyle={titleStyle}
+        />
       </CoverRadioGroup>
     );
   };
 
   return (
     <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
+      independentProps={props}
+      type="coverRadio"
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div
         className={classnames({
@@ -127,13 +138,16 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
       >
         <div className={`${prefixCls}-field`}>
           <Field
+            title={title}
+            required={required}
             name={fieldProps}
-            rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
+            rules={rules}
             initialValue={defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
+              formFlag,
             }}
+            type="coverRadio"
           >
             {showFiled()}
           </Field>

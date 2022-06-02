@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { TextareaItem } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { allPrefixCls } from '../../const';
 import { INomarTextAreaProps } from './interface';
 import './index.less';
@@ -25,21 +27,38 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     className = '',
     defaultValue,
     errorValue,
-    titleProps,
-    formFlag = false,
+    labelNumber = 7,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
+    disabled = false,
     ...otherProps
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
 
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
 
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
+
   const titleDiv = () => (
-    <div className={`${allPrefixCls}-title`}>
-      {required && hasStar && (
-        <div className={`${allPrefixCls}-redStar`}>*</div>
-      )}
-      <div>{title}</div>
-    </div>
+    <HorizontalTitle
+      required={required}
+      hasStar={hasStar}
+      title={title}
+      labelNumber={labelNumber}
+      isVertical={isVertical}
+      fieldProps={fieldProps}
+      titleStyle={titleStyle}
+    />
   );
 
   const inputOnBlur = (val: string | undefined) => {
@@ -48,7 +67,12 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      type="area"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-area`]: true,
@@ -57,19 +81,24 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
         })}
       >
         <Field
+          type="area"
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
           shouldUpdate={(prevValue: any, nextValue: any) => {
             return prevValue !== nextValue;
           }}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
+            formFlag,
           }}
         >
           <TextareaItem
             {...otherProps}
+            labelNumber={labelNumber}
+            disabled={mregedDisabled}
             title={titleDiv()}
             editable={editable}
             style={{

@@ -1,5 +1,6 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 import classnames from 'classnames';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { allPrefixCls } from '../../const/index';
 import './index.less';
 
@@ -20,7 +21,7 @@ export interface INomarRadioGroupProps {
   className?: string;
   allowUnChecked?: boolean;
   labelNumber: number;
-  formFlag?: boolean;
+  children?: any;
 }
 
 const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
@@ -34,10 +35,10 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     coverStyle,
     className = '',
     allowUnChecked,
-    labelNumber = 5,
+    labelNumber = 7,
     children,
-    formFlag = false,
   } = props;
+  const { formFlag = false } = useContext<DformContextProps>(DformContext);
   const [activeValue, setActiveValue] = useState<string | number | undefined>(
     undefined,
   );

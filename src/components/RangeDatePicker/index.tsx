@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { changeDateFormat } from '../../utils';
 import DatePickerGroup from '../NomarDatePicker/DatePickerGroup';
 import { allPrefixCls } from '../../const/index';
@@ -28,10 +29,11 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
     firstProps,
     subTitle,
     hidden = false,
-    labelNumber = 5,
+    labelNumber = 7,
+    boxStyle,
+    titleStyle,
     coverStyle = {},
-    titleProps,
-    formFlag = false,
+    formFlag = true,
     ...otherProps
   } = props;
 
@@ -40,8 +42,9 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
   return (
     <Title
       independentProps={{ positionType, ...props }}
-      formFlag={formFlag}
-      {...titleProps}
+      type="rangeDatePicker"
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div
         className={classnames({
@@ -59,16 +62,19 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
           }-picker`}
         >
           <Field
+            type="rangeDatePicker"
+            title={title}
+            required={required}
+            rules={rules}
             name={fieldProps}
-            rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
               setBeginDate(nextValue && nextValue[fieldProps as any]);
               return prevValue !== nextValue;
             }}
             initialValue={firstProps?.defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
+              formFlag,
             }}
           >
             <DatePickerGroup
@@ -93,12 +99,15 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               format={(value) => changeDateFormat(value, modeType)}
             >
               {!isVertical && (
-                <div className={`${allPrefixCls}-title`}>
-                  {required && hasStar && (
-                    <div className={`${allPrefixCls}-redStar`}>*</div>
-                  )}
-                  <div>{title}</div>
-                </div>
+                <HorizontalTitle
+                  required={required}
+                  hasStar={hasStar}
+                  title={title}
+                  labelNumber={labelNumber}
+                  isVertical={isVertical}
+                  fieldProps={fieldProps}
+                  titleStyle={titleStyle}
+                />
               )}
             </DatePickerGroup>
           </Field>
@@ -111,15 +120,15 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
         >
           <Field
             name={fieldProps2}
-            rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
+            rules={[...(rules || []), { required, message: `请选择${title}` }]}
             shouldUpdate={(prevValue: any, nextValue: any) => {
               setEndDate(nextValue && nextValue[fieldProps2 as any]);
               return prevValue !== nextValue;
             }}
             initialValue={secondProps?.defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
+              formFlag,
             }}
           >
             <DatePickerGroup

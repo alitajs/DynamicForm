@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, useRef } from 'react';
 import { Modal, List } from 'antd-mobile-v2';
 import classnames from 'classnames';
 import { IAddressPickerProps, valueProps, IModalData } from './interface';
-import TextItem from '../TextItem';
+import TextItem from '../../baseComponents/TextItem';
 import './index.less';
 
 const { Item } = List;
@@ -108,10 +108,10 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     }
     const newValue = JSON.parse(JSON.stringify(value));
     if (valueList.toString() !== newValue?.value?.toString()) {
-      setInputLabel(newValue?.label.join(' '));
-      setValueList(newValue?.value);
-      setLabelList(newValue?.label);
-      setCurReqLevel(newValue?.value?.length);
+      setInputLabel((newValue?.label || []).join(' '));
+      setValueList(newValue?.value || []);
+      setLabelList(newValue?.label || []);
+      setCurReqLevel(newValue?.value?.length || 0);
       setOpenReq(true);
     } else if (!valueList.length) {
       setOpenReq(true);
@@ -128,7 +128,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
 
   const onConfirm = () => {
     const mLabelList = [...labelList];
-    const newLabelList = mLabelList.splice(0, valueList.length | 0);
+    const newLabelList = mLabelList.splice(0, valueList.length | 0) || [];
     // 赋值
     let val;
     if (valueList && valueList.length) {

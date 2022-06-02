@@ -1,8 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import classnames from 'classnames';
 import Field from '../Field';
-import Title from '../Title';
-import { allPrefixCls } from '../../const/index';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
+import { allPrefixCls } from '../../const';
 import DatePickerGroup from './DatePickerGroup';
 import { INomarDatePickerProps } from './interface';
 import { changeDateFormat } from '../../utils';
@@ -14,8 +16,8 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   const [endDate, setEndDate] = useState<Date>();
   const {
     fieldProps,
-    fieldProps2,
-    secondProps,
+    fieldProps2 = '',
+    secondProps = {},
     required = false,
     title,
     rules = [],
@@ -24,15 +26,38 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     disabled = false,
     onChange,
     defaultValue,
-    titleProps,
-    formFlag = false,
     coverStyle = {},
     labelNumber,
     minDate,
     maxDate,
     modeType = 'date',
     hidden = false,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
   } = props;
+
+  const { disabled: secondDisabled = false } = secondProps;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const [sMregedDisabled, setSMregedDisabled] =
+    useState<boolean>(secondDisabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
+  useMemo(() => {
+    if (fieldProps2 && changeForm[fieldProps2]?.disabled !== undefined) {
+      setSMregedDisabled(changeForm[fieldProps2]?.disabled);
+    } else {
+      setSMregedDisabled(secondDisabled);
+    }
+  }, [changeForm[fieldProps2], secondDisabled]);
 
   const isVertical = positionType === 'vertical';
 
@@ -55,16 +80,19 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           [`${allPrefixCls}-begin${isVertical ? '-vertical' : ''}-picker`]:
             isBegin,
           [`${allPrefixCls}-end${isVertical ? '-vertical' : ''}-picker`]: isEnd,
-          'alitajs-dform-disabled': disabled,
+          'alitajs-dform-disabled': mregedDisabled,
         })}
       >
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           {...fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
-          formFlag={formFlag}
           params={{
             hidden,
+            formFlag,
           }}
+          type="date"
         >
           <DatePickerGroup
             {...dateProps}
@@ -72,12 +100,16 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
             format={(value) => changeDateFormat(value, modeType)}
           >
             {!isVertical && type === 'left' && (
-              <div className={`${allPrefixCls}-title`}>
-                {required && hasStar && (
-                  <div className={`${allPrefixCls}-redStar`}>*</div>
-                )}
-                <div>{title}</div>
-              </div>
+              <HorizontalTitle
+                required={required}
+                hasStar={hasStar}
+                title={title}
+                labelNumber={labelNumber}
+                isVertical={isVertical}
+                fieldProps={fieldProps.name}
+                titleStyle={titleStyle}
+                {...fieldProps}
+              />
             )}
           </DatePickerGroup>
         </Field>
@@ -106,6 +138,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
       setEndDate(nextValue && nextValue[fieldProps2 as any]);
       return prevValue !== nextValue;
     },
+    disabled: sMregedDisabled,
   };
 
   // 默认第一个时间props
@@ -146,11 +179,10 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   return (
     <Title
-      {...titleProps}
-      title={title}
-      independentProps={{ ...props, positionType }}
-      formFlag={formFlag}
-      positionType={positionType}
+      type="date"
+      independentProps={{ positionType, ...props }}
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div
         className={classnames({

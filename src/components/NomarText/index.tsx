@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, useMemo, useState } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import { Rule } from 'rc-field-form/es/interface';
 import Field from '../Field';
-import Title from '../Title';
-import { TextItem } from '../..';
-import { allPrefixCls } from '../../const/index';
+import Title from '../../baseComponents/Title';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
+import TextItem from '../../baseComponents/TextItem';
 
 export interface INomarTextProps {
   positionType?: 'vertical' | 'horizontal';
@@ -20,13 +21,14 @@ export interface INomarTextProps {
   labelNumber?: number;
   onClick?: (val: string) => void;
   disabled?: boolean;
+  formFlag?: boolean;
   maxLine?: number;
   className?: string;
   defaultValue?: string;
-  titleProps?: any;
-  formFlag?: boolean;
   renderHeader?: string | React.ReactNode;
   renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 const DformText: FC<INomarTextProps> = (props) => {
@@ -40,29 +42,49 @@ const DformText: FC<INomarTextProps> = (props) => {
     rules = [],
     extra,
     placeholder = '',
-    labelNumber = 5,
+    labelNumber = 7,
     disabled = false,
     maxLine,
     onClick,
     className = '',
     defaultValue,
-    titleProps,
-    formFlag = false,
     hidden = false,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const isVertical = positionType === 'vertical';
 
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
+
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      independentProps={props}
+      type="text"
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps}
-        rules={[{ required, message: `${title}无数据` }, ...(rules || [])]}
         initialValue={defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
+          formFlag,
         }}
+        type="text"
       >
         <TextItem
           placeholder={placeholder}
@@ -75,19 +97,22 @@ const DformText: FC<INomarTextProps> = (props) => {
           isVertical={isVertical}
           labelNumber={labelNumber}
           onClick={onClick}
-          disabled={disabled}
+          disabled={mregedDisabled}
           maxLine={maxLine}
           fieldProps={fieldProps}
           className={className}
           ellipsis={false}
           arrow={false}
         >
-          <div className={`${allPrefixCls}-title`}>
-            {required && hasStar && (
-              <div className={`${allPrefixCls}-redStar`}>*</div>
-            )}
-            <div>{title}</div>
-          </div>
+          <HorizontalTitle
+            required={required}
+            hasStar={hasStar}
+            title={title}
+            labelNumber={labelNumber}
+            isVertical={isVertical}
+            fieldProps={fieldProps}
+            titleStyle={titleStyle}
+          />
         </TextItem>
       </Field>
     </Title>

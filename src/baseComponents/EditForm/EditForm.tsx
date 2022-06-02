@@ -23,7 +23,7 @@ import {
   DformCheckBox,
   DformText,
   DformPicker,
-} from '..';
+} from '../../components';
 
 const FormItemType = {
   input: DformInput,
@@ -152,7 +152,6 @@ const getFormItem = (fieldItemKey: string) => {
       fieldProps={fieldItemKey}
       title={title}
       editable={fieldItemKey !== 'type'}
-      formFlag={true}
     />
   );
 };

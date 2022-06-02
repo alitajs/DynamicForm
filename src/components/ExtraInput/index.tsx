@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useContext, useMemo } from 'react';
 import classnames from 'classnames';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
-import Title from '../Title';
-import InputItem from '../InputItem';
+import Title from '../../baseComponents/Title';
+import InputItem from '../../baseComponents/InputItem';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { StringAndUdfEvent } from '../../PropsType';
 import { allPrefixCls } from '../../const/index';
 import { IExtraInputProps } from './interface';
@@ -14,20 +16,48 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     fieldProps,
     fieldProps2,
     title,
-    required,
+    required = false,
     rules = [],
     coverStyle,
     extraType = 'input',
     positionType = 'vertical',
     hasStar = true,
-    firstProps,
-    secondProps,
-    titleProps,
+    firstProps = {},
+    secondProps = {},
     hidden = false,
-    formFlag = false,
+    labelNumber = 7,
+    boxStyle = {},
+    titleStyle,
+    formFlag = true,
   } = props;
 
+  const { disabled: firstDisabled = false } = firstProps;
+  const { disabled: secondDisabled = false } = firstProps;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(firstDisabled);
+  const [sMregedDisabled, setSMregedDisabled] =
+    useState<boolean>(secondDisabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
+
   const isVertical = positionType === 'vertical';
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(firstDisabled);
+    }
+    if (changeForm[fieldProps2]?.disabled !== undefined) {
+      setSMregedDisabled(changeForm[fieldProps2]?.disabled);
+    } else {
+      setSMregedDisabled(secondDisabled);
+    }
+  }, [
+    changeForm[fieldProps2],
+    changeForm[fieldProps],
+    firstDisabled,
+    secondDisabled,
+  ]);
 
   const inputOnBlur = (val: string | undefined) => {
     if (firstProps && firstProps.onBlur) firstProps.onBlur(val);
@@ -43,16 +73,20 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     if (extraType === 'select') {
       return (
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps2}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={secondProps?.defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
+            formFlag,
           }}
+          type="picker"
         >
           <PickerGroup
             {...secondProps}
+            disabled={sMregedDisabled}
             onChange={fieldChange}
             labelNumber={0}
             title={title}
@@ -63,25 +97,34 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
 
     return (
       <Field
+        title={title}
+        required={required}
+        rules={rules}
         name={fieldProps2}
-        rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
         initialValue={secondProps?.defaultValue}
-        formFlag={formFlag}
         params={{
           hidden,
+          formFlag,
         }}
+        type="extraInput"
       >
         <InputItem
           labelNumber={0}
           style={{ textAlign: 'right', ...coverStyle }}
           {...secondProps}
+          disabled={sMregedDisabled}
         />
       </Field>
     );
   };
 
   return (
-    <Title independentProps={props} formFlag={formFlag} {...titleProps}>
+    <Title
+      type="extraInput"
+      independentProps={props}
+      style={boxStyle}
+      titleStyle={titleStyle}
+    >
       <div
         className={classnames({
           [`${allPrefixCls}-extra-input`]: true,
@@ -94,16 +137,20 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
           }-input`}
         >
           <Field
+            title={title}
+            required={required}
+            rules={rules}
             name={fieldProps}
-            rules={[{ required, message: `请输入${title}` }, ...(rules || [])]}
             initialValue={firstProps?.defaultValue}
-            formFlag={formFlag}
             params={{
               hidden,
+              formFlag,
             }}
+            type="extraInput"
           >
             <InputItem
               {...firstProps}
+              disabled={mregedDisabled}
               fieldProps={fieldProps}
               coverStyle={{
                 textAlign: 'center',
@@ -114,14 +161,15 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
               }}
               isVertical={isVertical}
             >
-              {!isVertical && (
-                <div className={`${allPrefixCls}-title`}>
-                  {required && hasStar && (
-                    <div className={`${allPrefixCls}-redStar`}>*</div>
-                  )}
-                  <div>{title}</div>
-                </div>
-              )}
+              <HorizontalTitle
+                required={required}
+                hasStar={hasStar}
+                title={title}
+                labelNumber={labelNumber}
+                isVertical={isVertical}
+                fieldProps={fieldProps}
+                titleStyle={titleStyle}
+              />
             </InputItem>
           </Field>
         </div>

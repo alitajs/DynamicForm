@@ -89,10 +89,12 @@ const Page: FC = () => {
           />
           <DformInput
             fieldProps="username5"
-            title="身份证"
+            title="数字键盘"
             placeholder="请输入身份证"
             extra={photoImg()}
             inputType="number"
+            pattern="[0-9]*"
+            inputMode="decimal"
           />
           <DformInput
             fieldProps="cardNumber"

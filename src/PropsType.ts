@@ -8,8 +8,6 @@ import {
   ValidateErrorEntity,
 } from 'rc-field-form/es/interface';
 
-export * from 'rc-field-form/es/interface';
-
 export type InputEventHandler = (value?: string) => void;
 
 export type StringAndUdfEvent = string | undefined;
@@ -19,9 +17,29 @@ export type ClickEvent = React.MouseEvent<HTMLElement>;
 
 export type ErrorValueProps = { [key: string]: string | undefined };
 
+export type TitleTypePorps =
+  | 'addressPicker'
+  | 'coverRadio'
+  | 'extraInput'
+  | 'multiplePicker'
+  | 'input'
+  | 'select'
+  | 'picker'
+  | 'switch'
+  | 'area'
+  | 'date'
+  | 'radio'
+  | 'checkbox'
+  | 'image'
+  | 'custom'
+  | 'text'
+  | 'file'
+  | 'rangeDatePicker';
+
 export interface IAliasProps {
   label: string;
   value: string | number;
+  desc?: string | number;
 }
 
 export interface IFormItemProps {
@@ -113,6 +131,7 @@ export interface IFormRelativesProps {
 }
 
 export interface IDynamicFormProps {
+  children: any;
   data?: IFormItemProps[]; // 动态表单数据
   form: FormInstance; // 表单对象
   relatives?: IFormRelativesProps; // 表单集联规则
@@ -142,4 +161,24 @@ export interface CardProps {
 
 export interface GroupProps extends CardProps {
   type?: 'empty' | 'card';
+  children?: any;
+}
+
+export interface BaseComponentProps {
+  title: string;
+  required?: boolean;
+  fieldProps: string;
+  rules?: Rule[];
+  hasStar?: boolean;
+  positionType?: 'vertical' | 'horizontal';
+  subTitle?: string | React.ReactNode;
+  hidden?: boolean;
+  className?: string;
+  titleProps?: any;
+  formFlag?: boolean;
+  renderHeader?: string | React.ReactNode;
+  renderFooter?: string | React.ReactNode;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
+  disabled?: boolean;
 }

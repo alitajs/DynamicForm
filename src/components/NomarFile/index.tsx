@@ -1,6 +1,7 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { FC, ChangeEvent, useState, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
 import FileIcon from '../../assets/file.png';
@@ -18,15 +19,26 @@ const DformFile: FC<INomarFileProps> = (props) => {
     onChange,
     defaultValue,
     upload,
-    titleProps,
     fileProps,
-    formFlag = false,
     disabled = false,
     maxLength,
     hidden = false,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
   } = props;
 
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
   const [selectable, setSelectable] = useState<boolean>(true);
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
@@ -43,7 +55,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
       <div className="alitajs-dform-file-input">{uploadExtra}</div>
     ) : (
       <React.Fragment>
-        {!disabled && selectable && (
+        {!mregedDisabled && selectable && (
           <>
             <label>
               <input
@@ -81,23 +93,31 @@ const DformFile: FC<INomarFileProps> = (props) => {
 
   return (
     <Title
-      independentProps={{ positionType: 'vertical', ...props }}
-      formFlag={formFlag}
-      {...titleProps}
-      extra={extraContent()}
+      type="file"
+      independentProps={{
+        positionType: 'vertical',
+        ...props,
+        extra: extraContent(),
+      }}
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div className={prefixCls}>
         <Field
-          formFlag={formFlag}
+          type="file"
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
           params={{
             hidden,
+            formFlag,
           }}
         >
           <FileGroup
             {...props}
+            disabled={mregedDisabled}
             onChange={fileChange}
             valueChange={valueChange}
           />

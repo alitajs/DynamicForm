@@ -51,3 +51,23 @@ export const DFORM_COMP_DETAULT = {
   dformText: { positionType: 'horizontal' },
   dformFile: { positionType: 'vertical' },
 } as { [key: string]: { positionType: 'vertical' | 'horizontal' } };
+
+export const PLACEHOLDER_MENU = {
+  addressPicker: '请选择',
+  coverRadio: '请选择',
+  extraInput: '请输入',
+  multiplePicker: '请选择',
+  input: '请输入',
+  select: '请选择',
+  picker: '请选择',
+  switch: '请选择',
+  area: '请输入',
+  date: '请选择',
+  radio: '请选择',
+  checkbox: '请选择',
+  image: '请上传',
+  custom: '请选择',
+  text: '暂无数据',
+  file: '请上传',
+  rangeDatePicker: '请选择',
+} as { [key: string]: '请选择' | '请上传' | '请输入' | '暂无数据' };

@@ -1,8 +1,9 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
+import { DformContext, DformContextProps } from '../../baseComponents/Context';
 import Field from '../Field';
-import Title from '../Title';
+import Title from '../../baseComponents/Title';
 import NomarRadioGroup from './radioGroup';
-import { allPrefixCls } from '../../const/index';
+import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import { INomarRadioProps } from './interface';
 import './index.less';
 
@@ -30,16 +31,26 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     },
     hidden = false,
     className = '',
-    labelNumber = 5,
+    labelNumber = 7,
     defaultValue,
-    titleProps,
-    subTitle = '',
-    extra,
-    formFlag = false,
+    boxStyle,
+    titleStyle,
+    formFlag = true,
   } = props;
+
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { changeForm } = useContext<DformContextProps>(DformContext);
 
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
+
+  useMemo(() => {
+    if (changeForm[fieldProps]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    } else {
+      setMregedDisabled(disabled);
+    }
+  }, [changeForm[fieldProps], disabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
@@ -67,41 +78,42 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
         radioType={radioType}
         onChange={radioChange}
         coverStyle={coverStyle}
-        disabled={disabled}
+        disabled={mregedDisabled}
         className={className}
         labelNumber={labelNumber}
-        formFlag={formFlag}
       >
-        <div className={`${allPrefixCls}-title`}>
-          {required && hasStar && (
-            <div className={`${allPrefixCls}-redStar`}>*</div>
-          )}
-          <div>{title}</div>
-        </div>
+        <HorizontalTitle
+          required={required}
+          hasStar={hasStar}
+          title={title}
+          labelNumber={labelNumber}
+          isVertical={isVertical}
+          fieldProps={fieldProps}
+          titleStyle={titleStyle}
+        />
       </NomarRadioGroup>
     );
   };
 
   return (
     <Title
-      positionType={positionType}
-      hidden={hidden}
-      required={required}
-      hasStar={hasStar}
-      title={title}
-      subTitle={subTitle}
-      extra={extra}
-      {...titleProps}
+      independentProps={props}
+      type="radio"
+      style={boxStyle}
+      titleStyle={titleStyle}
     >
       <div className={`${prefixCls}-field`}>
         <Field
+          title={title}
+          required={required}
+          rules={rules}
           name={fieldProps}
-          rules={[{ required, message: `请选择${title}` }, ...(rules || [])]}
           initialValue={defaultValue}
-          formFlag={formFlag}
           params={{
             hidden,
+            formFlag,
           }}
+          type="radio"
         >
           {showFiled()}
         </Field>

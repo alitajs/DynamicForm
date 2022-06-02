@@ -13,25 +13,21 @@ import DynamicForm, {
 
 interface IDemoPage {
   name: string;
-  age: number;
   onChange?: (currentActiveLink: string) => void;
   value?: string;
 }
 
-const showDemoPage = () => (
-  <div style={{ textAlign: 'left' }}>This is a display page</div>
-);
-
-const demoPage: FC<IDemoPage> = (props) => {
+const DemoPage: FC<IDemoPage> = (props) => {
   const { name, onChange, value } = props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // eslint-disable-next-line react-hooks/rules-of-hooks
   return (
-    <div style={{ textAlign: 'left' }}>
+    <div style={{ textAlign: 'left', fontSize: '0.3rem' }}>
       <p>name: {name}</p>
       <p>
         age:
         <input
+          style={{ fontSize: '0.28rem' }}
           value={value}
           type="text"
           onChange={(e) => {
@@ -65,6 +61,7 @@ const Page: FC = () => {
     onFinishFailed,
     formsValues,
     isDev: true,
+    // isPc: true,
   };
   return (
     <>
@@ -72,18 +69,25 @@ const Page: FC = () => {
         <DformCustom
           title="自定义组件(非受控)"
           fieldProps="custom"
-          CustomDom={showDemoPage}
-        />
+          positionType="horizontal"
+          labelNumber={7}
+        >
+          <div
+            style={{ width: '100%', textAlign: 'right', fontSize: '0.3rem' }}
+          >
+            This is a display page
+          </div>
+        </DformCustom>
         <DformCustom
           title="自定义组件(受控)"
           required={true}
           fieldProps="age"
-          CustomDom={demoPage}
-          customDomProps={{
-            name: 'owen',
-          }}
           defaultValue="17"
-        />
+          // CustomDom={DemoPage}
+          onChange={(e: any) => console.log(e)}
+        >
+          <DemoPage name="age" />
+        </DformCustom>
       </DynamicForm>
       <WhiteSpace size="sm" />
       <Button

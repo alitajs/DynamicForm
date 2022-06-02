@@ -30,6 +30,17 @@
   &-item {
     // min-height: @alita-dform-height;
     padding: @alita-dform-padding;
+
+    input::-webkit-input-placeholder {
+      font-size: @alita-dform-value-font-size;
+    }
+
+    input:-moz-placeholder {
+      font-size: @alita-dform-value-font-size;
+    }
+    input::-moz-placeholder {
+      font-size: @alita-dform-value-font-size;
+    }
     .alitajs-dform-item-content();
   }
 

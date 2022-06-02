@@ -83,6 +83,7 @@ const Page: FC = () => {
           required
           defaultValue="这里可以设置默认值"
           labelNumber={7}
+          positionType="vertical"
         />
         <DformTextArea
           fieldProps="idenPhone"
