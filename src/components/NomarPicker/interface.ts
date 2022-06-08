@@ -18,4 +18,5 @@ export interface INomarPickerProps extends BaseComponentProps {
   defaultValue?: string;
   clear?: boolean;
   customTitle?: React.ReactNode;
+  insistOpenModal?: boolean;
 }

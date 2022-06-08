@@ -27,6 +27,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     value,
     clear = false,
     customTitle,
+    insistOpenModal = false,
   } = props;
   const isVertical = positionType === 'vertical';
 
@@ -59,13 +60,15 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
 
   const fieldClick = () => {
     if (disabled) return;
-    // if (!!!data.length && !!onClick) {
-    //   onClick(value);
-    //   return;
-    // } else if (!!!data.length) {
-    //   Toast.fail('数据未配置');
-    //   return;
-    // }
+    if (!insistOpenModal) {
+      if (!!!data.length && !!onClick) {
+        onClick(value);
+        return;
+      } else if (!!!data.length) {
+        Toast.fail('数据未配置');
+        return;
+      }
+    }
 
     if (!!onClick) {
       onClick(value);
@@ -107,7 +110,10 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
       <Picker
         /** @ts-ignore */
         title={customTitle || title}
-        visible={visible}
+        visible={
+          (visible && data.length > 0 && !insistOpenModal) ||
+          (visible && insistOpenModal)
+        }
         data={data as any}
         cols={1}
         value={value ? [value] : undefined}
