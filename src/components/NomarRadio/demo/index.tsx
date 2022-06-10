@@ -116,8 +116,8 @@ const DfromRadioTextPage: FC = () => {
           title="喜欢的食物(默认值)"
           radioType="vertical"
           alias={{
-            label: 'foodId',
-            value: 'foodName',
+            label: 'foodName',
+            value: 'foodId',
           }}
           positionType="vertical"
         />
