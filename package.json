@@ -1,6 +1,6 @@
 {
   "name": "@alitajs/dform",
-  "version": "3.7.8",
+  "version": "3.7.10",
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -47,7 +47,7 @@
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.10.6",
     "lodash.chunk": "^4.2.0",
-    "rc-field-form": "1.26.4",
+    "rc-field-form": "^1.27.0",
     "react-transition-group": "4.4.1",
     "rmc-date-picker": "^6.0.10",
     "rmc-feedback": "^2.0.0"

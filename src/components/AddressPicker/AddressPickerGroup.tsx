@@ -9,7 +9,10 @@ const { Item } = List;
 
 interface AddressPickerGroupProps
   extends Omit<IAddressPickerProps, 'onChange'> {
-  onChange: (val: valueProps | undefined, flag: 'init' | 'change') => void;
+  onChange: (
+    val: valueProps | undefined,
+    flag: 'init' | 'change',
+  ) => boolean | void;
   value?: valueProps | undefined;
 }
 
@@ -39,6 +42,7 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    onChangeVerifies,
   } = props;
 
   const { label = 'label' } = alias;
@@ -134,8 +138,10 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
     if (valueList && valueList.length) {
       val = { label: newLabelList, value: valueList };
     }
-    // 设值
     onChange(val, 'change');
+    if (onChangeVerifies && !onChangeVerifies(val)) {
+      return;
+    }
     setInputLabel(newLabelList.join(' '));
     setModalFlag(false); // 关闭弹框
     setIsConfirm(true);
