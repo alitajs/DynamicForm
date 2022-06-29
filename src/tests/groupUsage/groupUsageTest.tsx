@@ -62,14 +62,21 @@ const Page: FC = () => {
         <WhiteSpace size="lg" />
         <Group type="card" title="卡片一" required>
           <DformInput
-            fieldProps="username"
+            fieldProps=""
+            fieldName="username"
             required
             placeholder="请输入"
             title="用户名"
             defaultValue="小红"
           />
           <Group type="card" title="卡片二" required>
-            <DformRadio fieldProps="sex" title="性别" required data={sexData} />
+            <DformRadio
+              fieldProps=""
+              fieldName="sex"
+              title="性别"
+              required
+              data={sexData}
+            />
           </Group>
         </Group>
         <Group

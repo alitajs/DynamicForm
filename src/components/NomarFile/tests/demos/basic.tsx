@@ -37,7 +37,8 @@ const NomarFileTestPage: React.FC<BasicProps> = ({
         <NomarFile
           // type='file'
           required={true}
-          fieldProps="contract"
+          fieldProps=""
+          fieldName="contract"
           title="合同"
           onClick={(res: any) => {
             onMyClick();

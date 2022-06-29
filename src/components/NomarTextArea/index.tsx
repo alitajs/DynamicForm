@@ -14,6 +14,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
     coverStyle,
     required = false,
     fieldProps,
+    fieldName,
     rules = [],
     rows = 3,
     title,
@@ -38,16 +39,18 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
+  const fieldKey = fieldName || fieldProps;
+
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   const titleDiv = () => (
     <HorizontalTitle
@@ -56,7 +59,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
       title={title}
       labelNumber={labelNumber}
       isVertical={isVertical}
-      fieldProps={fieldProps}
+      fieldProps={fieldKey}
       titleStyle={titleStyle}
     />
   );
@@ -85,7 +88,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
           title={title}
           required={required}
           rules={rules}
-          name={fieldProps}
+          name={fieldKey}
           shouldUpdate={(prevValue: any, nextValue: any) => {
             return prevValue !== nextValue;
           }}

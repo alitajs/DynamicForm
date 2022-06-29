@@ -103,7 +103,8 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
         />
         <DformSelect
           type="select"
-          fieldProps="userPicker3"
+          fieldProps=""
+          fieldName="userPicker3"
           required={true}
           title="城市(不可编辑)"
           placeholder="请选择"

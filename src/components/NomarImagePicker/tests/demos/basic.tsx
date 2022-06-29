@@ -42,7 +42,8 @@ const Page: React.FC<BasicProps> = ({
     <>
       <DynamicForm {...formProps}>
         <NomarImagePicker
-          fieldProps="insertImg"
+          fieldProps=""
+          fieldName="insertImg"
           title="请添加图片(自动压缩)"
           required
           compressRatio={0.5}

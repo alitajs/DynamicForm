@@ -12,6 +12,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   const {
     fieldProps,
+    fieldName,
     rules = [],
     required = false,
     title,
@@ -39,13 +40,15 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
+  const fieldKey = fieldName || fieldProps;
+
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -74,7 +77,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         title={title}
         required={required}
         rules={rules}
-        name={fieldProps}
+        name={fieldKey}
         initialValue={defaultValue}
         params={{
           hidden,
@@ -87,6 +90,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
           disabled={mregedDisabled}
           data={aliasData}
           onChange={fieldChange}
+          fieldProps={fieldKey}
         >
           <HorizontalTitle
             required={required}
@@ -94,7 +98,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
             title={title}
             labelNumber={labelNumber}
             isVertical={isVertical}
-            fieldProps={fieldProps}
+            fieldProps={fieldKey}
             titleStyle={titleStyle}
           />
         </MultiplePickerGroup>

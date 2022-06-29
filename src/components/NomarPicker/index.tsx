@@ -15,6 +15,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     // subTitle = '',
     // extra,
     fieldProps,
+    fieldName,
     rules = [],
     required = false,
     title,
@@ -35,17 +36,19 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
+  const fieldKey = fieldName || fieldProps;
+
   const { label = 'label', value = 'value' } = alias;
 
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item: any) => ({
@@ -67,6 +70,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         disabled={mregedDisabled}
         onChange={fieldChange}
         data={aliasData}
+        fieldProps={fieldKey}
       >
         <HorizontalTitle
           required={required}
@@ -74,7 +78,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
           title={title}
           labelNumber={labelNumber}
           isVertical={isVertical}
-          fieldProps={fieldProps}
+          fieldProps={fieldKey}
           titleStyle={titleStyle}
         />
       </PickerGroup>
@@ -91,7 +95,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
         title={title}
         required={required}
         rules={rules}
-        name={fieldProps}
+        name={fieldKey}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}

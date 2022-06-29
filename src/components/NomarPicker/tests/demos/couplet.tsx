@@ -55,7 +55,8 @@ const Couplet: FC = () => {
   const formsData = [
     {
       type: 'picker',
-      fieldProps: 'delayValue',
+      fieldProps: '',
+      fieldName: 'delayValue',
       data: pickerData,
       title: '延迟赋值',
       labelNumber: 7,
@@ -63,7 +64,8 @@ const Couplet: FC = () => {
     },
     {
       type: 'picker',
-      fieldProps: 'couplet',
+      fieldProps: '',
+      fieldName: 'couplet',
       data: pickerData,
       title: '改值后及联',
       labelNumber: 7,

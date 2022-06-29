@@ -35,7 +35,8 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
     <>
       <DynamicForm {...formProps}>
         <DformDatePicker
-          fieldProps="Date"
+          fieldProps=""
+          fieldName="Date"
           modeType="date"
           title="Date"
           disabled
@@ -52,7 +53,8 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
           placeholder="请选择月份"
         />
         <DformDatePicker
-          fieldProps="DateTime"
+          fieldProps=""
+          fieldName="DateTime"
           modeType="datetime"
           title="DateTimeVertical"
           required

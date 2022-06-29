@@ -44,7 +44,8 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
   const formsData = [
     {
       type: 'picker',
-      fieldProps: 'myCity',
+      fieldProps: '',
+      fieldName: 'myCity',
       required: true,
       data: aliasCityList,
       title: '我喜欢的城市',

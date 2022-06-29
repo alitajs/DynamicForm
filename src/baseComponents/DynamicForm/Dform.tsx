@@ -79,14 +79,16 @@ export const getFormItem = ({
   const { type, disabled = allDisabled, ...otherProps } = mFormItem;
   const FormItemComponent = FormItemType[type];
 
+  const key = otherProps?.fieldName || otherProps?.fieldProps;
+
   return (
-    <React.Fragment key={otherProps?.fieldProps}>
+    <React.Fragment key={key}>
       <FormItemComponent
         {...otherProps}
         disabled={disabled}
         onChange={(e: any, ...otherChange: any) => {
           const { onChange } = otherProps as any;
-          fieldChange(otherProps.fieldProps, e, relatives);
+          fieldChange(key, e, relatives);
           if (onChange) onChange(e, ...otherChange);
         }}
       />
@@ -129,18 +131,16 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
         const filter = data.filter(
           (dataItem: any) =>
             dataItem?.defaultValue !== undefined &&
-            formsValues[dataItem?.fieldProps] === undefined,
+            formsValues[dataItem?.fieldName || dataItem?.fieldProps] ===
+              undefined,
         );
 
         if (filter && filter.length) {
           filter.forEach((filterItem: any) => {
-            formsValues[filterItem?.fieldProps] = filterItem.defaultValue;
-            if (relatives[filterItem?.fieldProps]) {
-              fieldChange(
-                filterItem?.fieldProps,
-                filterItem.defaultValue,
-                relatives,
-              );
+            const key = filterItem?.fieldName || filterItem?.fieldProps;
+            formsValues[key] = filterItem.defaultValue;
+            if (relatives[key]) {
+              fieldChange(key, filterItem.defaultValue, relatives);
             }
           });
           setDefaultValueFlag(false);
@@ -283,11 +283,11 @@ const Dform: FC<IDynamicFormProps> = (fatherProps) => {
   }) => {
     return jsonData.map((item: any) => {
       // const mItem = { ...item, ...(changeForm[item.fieldProps] || {}) };
-      const { type, groupProps, fieldProps, children } = item;
+      const { type, groupProps, fieldProps, children, fieldName } = item;
 
       if (type === 'group') {
         return (
-          <Group {...groupProps} key={fieldProps}>
+          <Group {...groupProps} key={fieldName || fieldProps}>
             {jsonDataContent({ jsonData: children })}
           </Group>
         );

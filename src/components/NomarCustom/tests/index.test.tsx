@@ -32,12 +32,13 @@ const demoPage: React.FC<IDemoPage> = (props) => {
 const myProps = {
   title: '自定义组件(受控)',
   required: true,
-  fieldProps: 'age',
+  fieldProps: '',
+  fieldName: 'age',
   CustomDom: demoPage,
   customDomProps: {
     name: 'owen',
   },
-  defaultValue: "17",
+  defaultValue: '17',
 };
 
 it('passes picker a11y test', async () => {
@@ -48,7 +49,7 @@ it('passes picker a11y test', async () => {
       </Form>
     </div>,
   );
-  await sleep(500)
-  expect(getByLabelText('input')).toBeDefined()
+  await sleep(500);
+  expect(getByLabelText('input')).toBeDefined();
   await testA11y(container);
 });

@@ -59,7 +59,8 @@ const CoupletText: FC = () => {
           title="请选择饮料"
           required={true}
           data={drinksList}
-          fieldProps="fruit"
+          fieldName="fruit"
+          fieldProps=""
           chunk={2}
           alias={{
             label: 'foodName',

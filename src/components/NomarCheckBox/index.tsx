@@ -12,6 +12,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const {
     coverStyle,
     fieldProps,
+    fieldName,
     className = '',
     title,
     rules = [],
@@ -35,14 +36,15 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const { label = 'label', value = 'value', desc = 'desc' } = alias;
+  const fieldKey = fieldName || fieldProps;
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({
@@ -69,7 +71,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
           title={title}
           required={required}
           rules={rules}
-          name={fieldProps}
+          name={fieldKey}
           initialValue={defaultValue}
           params={{
             hidden,

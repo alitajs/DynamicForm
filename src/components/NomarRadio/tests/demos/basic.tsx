@@ -64,7 +64,8 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   const formsData = [
     {
       type: 'radio',
-      fieldProps: 'userRadio1',
+      fieldProps: '',
+      fieldName: 'userRadio1',
       required: true,
       data: radioList,
       title: '发票',
@@ -72,7 +73,8 @@ const DfromRadioTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     },
     {
       type: 'radio',
-      fieldProps: 'userRadio2',
+      fieldProps: '',
+      fieldName: 'userRadio2',
       required: true,
       data: radioList,
       title: '内容靠左',

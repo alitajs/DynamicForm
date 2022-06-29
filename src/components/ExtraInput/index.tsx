@@ -14,6 +14,7 @@ import './index.less';
 const ExtraInput: FC<IExtraInputProps> = (props) => {
   const {
     fieldProps,
+    fieldName,
     fieldProps2,
     title,
     required = false,
@@ -39,11 +40,13 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     useState<boolean>(secondDisabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
+  const fieldKey = fieldName || fieldProps;
+
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(firstDisabled);
     }
@@ -54,7 +57,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     }
   }, [
     changeForm[fieldProps2],
-    changeForm[fieldProps],
+    changeForm[fieldKey],
     firstDisabled,
     secondDisabled,
   ]);
@@ -140,7 +143,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
             title={title}
             required={required}
             rules={rules}
-            name={fieldProps}
+            name={fieldKey}
             initialValue={firstProps?.defaultValue}
             params={{
               hidden,
@@ -151,7 +154,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
             <InputItem
               {...firstProps}
               disabled={mregedDisabled}
-              fieldProps={fieldProps}
+              fieldProps={fieldKey}
               coverStyle={{
                 textAlign: 'center',
                 ...coverStyle,
@@ -167,7 +170,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
                 title={title}
                 labelNumber={labelNumber}
                 isVertical={isVertical}
-                fieldProps={fieldProps}
+                fieldProps={fieldKey}
                 titleStyle={titleStyle}
               />
             </InputItem>

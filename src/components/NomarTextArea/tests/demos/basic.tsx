@@ -50,7 +50,8 @@ const NomarTextAreaTestPage: React.FC<BasicProps> = ({
           editable={false}
         />
         <NomarTextArea
-          fieldProps="titleTooLong"
+          fieldProps=""
+          fieldName="titleTooLong"
           title="标题文字内容过长"
           placeholder="请输入"
           positionType="vertical"

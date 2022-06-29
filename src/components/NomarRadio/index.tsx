@@ -15,6 +15,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
   const {
     coverStyle,
     fieldProps,
+    fieldName,
     required = false,
     allowUnChecked = true,
     rules = [],
@@ -41,16 +42,18 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
+  const fieldKey = fieldName || fieldProps;
+
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({
@@ -88,7 +91,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
           title={title}
           labelNumber={labelNumber}
           isVertical={isVertical}
-          fieldProps={fieldProps}
+          fieldProps={fieldKey}
           titleStyle={titleStyle}
         />
       </NomarRadioGroup>
@@ -107,7 +110,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
           title={title}
           required={required}
           rules={rules}
-          name={fieldProps}
+          name={fieldKey}
           initialValue={defaultValue}
           params={{
             hidden,

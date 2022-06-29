@@ -10,6 +10,7 @@ import './index.less';
 const AddressPicker: FC<IAddressPickerProps> = (props) => {
   const {
     fieldProps,
+    fieldName,
     rules = [],
     required = false,
     title,
@@ -26,18 +27,20 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     disabled = false,
   } = props;
 
+  const fieldKey = fieldName || fieldProps;
+
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   const fieldChange = (val: valueProps | undefined) => {
     if (onChange) onChange(val);
@@ -48,6 +51,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
       <AddressPickerGroup
         value={defaultValue}
         {...props}
+        fieldProps={fieldKey}
         disabled={mregedDisabled}
         extra={isVertical ? '' : extra}
         onChange={fieldChange}
@@ -58,7 +62,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
           title={title}
           labelNumber={labelNumber}
           isVertical={isVertical}
-          fieldProps={fieldProps}
+          fieldProps={fieldKey}
           titleStyle={titleStyle}
         />
       </AddressPickerGroup>
@@ -76,7 +80,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
         title={title}
         required={required}
         rules={rules}
-        name={fieldProps}
+        name={fieldKey}
         shouldUpdate={(prevValue: any, nextValue: any) => {
           return prevValue !== nextValue;
         }}

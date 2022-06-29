@@ -40,7 +40,8 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
     <div>
       <DynamicForm {...formProps}>
         <DformInput
-          fieldProps="username"
+          fieldProps=""
+          fieldName="username"
           title="用户名"
           placeholder="请输入用户名"
           required
@@ -104,7 +105,6 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, clickBlur }) => {
           fieldProps="knowNull"
           title="knowNull"
           placeholder="knowNull测试"
-          inputType="knowNull"
         />
       </DynamicForm>
       <button onClick={() => form.submit()}>submit</button>

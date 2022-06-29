@@ -16,6 +16,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   const [endDate, setEndDate] = useState<Date>();
   const {
     fieldProps,
+    fieldName,
     fieldProps2 = '',
     secondProps = {},
     required = false,
@@ -37,6 +38,8 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     formFlag = true,
   } = props;
 
+  const fieldKey = fieldName || fieldProps;
+
   const { disabled: secondDisabled = false } = secondProps;
 
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
@@ -45,12 +48,12 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
   useMemo(() => {
     if (fieldProps2 && changeForm[fieldProps2]?.disabled !== undefined) {
       setSMregedDisabled(changeForm[fieldProps2]?.disabled);
@@ -119,13 +122,13 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   // 默认第一个时间field
   const firstFieldProps: any = {
-    name: fieldProps,
+    name: fieldKey,
     initialValue: defaultValue,
   };
   // 存在区间时
   if (fieldProps2) {
     firstFieldProps.shouldUpdate = (prevValue: any, nextValue: any) => {
-      setBeginDate(nextValue && nextValue[fieldProps as any]);
+      setBeginDate(nextValue && nextValue[fieldKey as any]);
       return prevValue !== nextValue;
     };
   }

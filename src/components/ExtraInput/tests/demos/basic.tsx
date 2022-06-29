@@ -59,7 +59,8 @@ const ExtraInputTestPage: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
     <>
       <DynamicForm {...formProps}>
         <ExtraInput
-          fieldProps="minPrise"
+          fieldProps=""
+          fieldName="minPrise"
           fieldProps2="maxPrise"
           title="价格区间(数字输入)"
           firstProps={{ placeholder: '输入最小价格' }}

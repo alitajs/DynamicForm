@@ -63,7 +63,8 @@ export interface IFormItemProps {
     | 'group'
     | 'checkbox';
   title: string;
-  fieldProps: string;
+  fieldProps?: string;
+  fieldName?: string;
   required?: boolean;
   placeholder?: string;
   disabled?: boolean;
@@ -168,6 +169,7 @@ export interface BaseComponentProps {
   title: string;
   required?: boolean;
   fieldProps: string;
+  fieldName?: string;
   rules?: Rule[];
   hasStar?: boolean;
   positionType?: 'vertical' | 'horizontal';

@@ -34,24 +34,27 @@ const Title: FC<TitleProps> = (props) => {
     fieldProps,
     renderFooter,
     renderHeader,
+    fieldName,
   } = independentProps;
+
+  const fieldKey = fieldName || fieldProps;
 
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
   const [mregedHidden, setMregedHidden] = useState<boolean>(hidden);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.required !== undefined) {
-      setMregedRequired(changeForm[fieldProps]?.required);
+    if (changeForm[fieldKey]?.required !== undefined) {
+      setMregedRequired(changeForm[fieldKey]?.required);
     } else {
       setMregedRequired(required);
     }
-    if (changeForm[fieldProps]?.hidden !== undefined) {
-      setMregedHidden(changeForm[fieldProps]?.hidden);
+    if (changeForm[fieldKey]?.hidden !== undefined) {
+      setMregedHidden(changeForm[fieldKey]?.hidden);
     } else {
       setMregedHidden(hidden);
     }
-  }, [changeForm[fieldProps], hidden, required]);
+  }, [changeForm[fieldKey], hidden, required]);
 
   // 表单对齐方向
   let positionType =
@@ -81,7 +84,7 @@ const Title: FC<TitleProps> = (props) => {
           }}
           className={classnames(`${allPrefixCls}-cell`, {
             [`${allPrefixCls}${isVertical ? '-vertical' : ''}-item`]: true,
-            [`${allPrefixCls}-error`]: errorValue && !!errorValue[fieldProps],
+            [`${allPrefixCls}-error`]: errorValue && !!errorValue[fieldKey],
           })}
         >
           {isVertical && (
@@ -102,9 +105,9 @@ const Title: FC<TitleProps> = (props) => {
             </div>
           )}
           {children}
-          {errorValue && !!errorValue[fieldProps] && (
+          {errorValue && !!errorValue[fieldKey] && (
             <div className={`${allPrefixCls}-error-text`}>
-              {errorValue[fieldProps]}
+              {errorValue[fieldKey]}
             </div>
           )}
           {renderFooter}

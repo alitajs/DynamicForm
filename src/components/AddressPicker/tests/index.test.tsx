@@ -8,6 +8,7 @@ import AddressPicker from '..';
 
 const props = {
   type: 'addressPicker',
+  fieldName: 'homeAddr',
   fieldProps: 'homeAddr',
   title: '居住地址',
   placeholder: '选择当前居住城市',
@@ -80,7 +81,7 @@ test('renders Basic', async () => {
     const formsData = [
       {
         type: 'addressPicker',
-        fieldProps: 'homeAddr',
+        fieldName: 'homeAddr',
         title: '居住地址',
         placeholder: '选择当前居住城市',
         required: true,
@@ -254,7 +255,8 @@ test('renders Basic', async () => {
       <>
         <DynamicForm {...formProps}>
           <AddressPicker
-            fieldProps="homeAddr"
+            fieldProps=""
+            fieldName="homeAddr"
             title="工作地址"
             placeholder="选择当前工作地址"
             required
@@ -288,7 +290,8 @@ test('renders Basic', async () => {
             onChange={onChange}
           />
           <AddressPicker
-            fieldProps="workAddr"
+            fieldProps=""
+            fieldName="workAddr"
             title="居住地址"
             placeholder="选择当前居住城市"
             positionType="vertical"

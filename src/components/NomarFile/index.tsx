@@ -11,6 +11,7 @@ const prefixCls = 'alitajs-dform-file';
 const DformFile: FC<INomarFileProps> = (props) => {
   const {
     fieldProps,
+    fieldName,
     required = false,
     title,
     rules = [],
@@ -32,13 +33,15 @@ const DformFile: FC<INomarFileProps> = (props) => {
   const { changeForm } = useContext<DformContextProps>(DformContext);
   const [selectable, setSelectable] = useState<boolean>(true);
 
+  const fieldKey = fieldName || fieldProps;
+
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
@@ -64,8 +67,8 @@ const DformFile: FC<INomarFileProps> = (props) => {
                 className="alitajs-dform-file-input"
                 onChange={fileIns}
                 {...fileProps}
-                aria-labelledby={fieldProps}
-                aria-label={fieldProps}
+                aria-labelledby={fieldKey}
+                aria-label={fieldKey}
               />
             </label>
             <span className="alitajs-dform-file-extra">{extra}</span>
@@ -108,7 +111,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
           title={title}
           required={required}
           rules={rules}
-          name={fieldProps}
+          name={fieldKey}
           initialValue={defaultValue}
           params={{
             hidden,

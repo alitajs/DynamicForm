@@ -23,7 +23,13 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed }) => {
   return (
     <React.Fragment>
       <DynamicForm {...formsProps}>
-        <DformSwitch fieldProps="off" placeholder="选择" title="Off" required />
+        <DformSwitch
+          fieldProps=""
+          fieldName="off"
+          placeholder="选择"
+          title="Off"
+          required
+        />
         <DformSwitch
           fieldProps="on"
           placeholder="选择"

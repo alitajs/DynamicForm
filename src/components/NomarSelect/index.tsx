@@ -14,6 +14,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
     title,
     required = false,
     fieldProps,
+    fieldName,
     rules = [],
     data = [] as any,
     hasStar = true,
@@ -40,13 +41,15 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
+  const fieldKey = fieldName || fieldProps;
+
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   const twoDimensionalTransform = () => {
     const newAllArray: PickerData[] = [];
@@ -97,7 +100,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
         title={title}
         required={required}
         rules={rules}
-        name={fieldProps}
+        name={fieldKey}
         initialValue={defaultValue}
         params={{
           hidden,
@@ -112,6 +115,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
           onChange={fieldChange}
           data={aliasData}
           maxLine={maxLine}
+          fieldProps={fieldKey}
         >
           <HorizontalTitle
             required={required}
@@ -119,7 +123,7 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
             title={title}
             labelNumber={labelNumber}
             isVertical={isVertical}
-            fieldProps={fieldProps}
+            fieldProps={fieldKey}
             titleStyle={titleStyle}
           />
         </SelectGroup>

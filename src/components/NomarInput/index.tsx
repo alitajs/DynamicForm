@@ -15,6 +15,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
     title = '',
     required = false,
     fieldProps,
+    fieldName,
     rules = [],
     positionType = 'horizontal',
     hasStar = true,
@@ -39,15 +40,17 @@ const DformInput: FC<INomarInputProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
+  const fieldKey = fieldName || fieldProps;
+
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
-    if (changeForm[fieldProps]?.disabled !== undefined) {
-      setMregedDisabled(changeForm[fieldProps]?.disabled);
+    if (changeForm[fieldKey]?.disabled !== undefined) {
+      setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldKey], disabled]);
 
   const inputOnBlur = (val: string | undefined) => {
     if (onBlur) onBlur(val);
@@ -69,7 +72,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         onClick={onClick}
         disabled={mregedDisabled}
         maxLine={maxLine}
-        fieldProps={fieldProps}
+        fieldProps={fieldKey}
         className={className}
         ellipsis={false}
         arrow={false}
@@ -80,7 +83,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
           title={title}
           labelNumber={labelNumber}
           isVertical={isVertical}
-          fieldProps={fieldProps}
+          fieldProps={fieldKey}
           titleStyle={titleStyle}
         />
       </TextItem>
@@ -95,7 +98,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
         labelNumber={labelNumber > 7 ? 7 : labelNumber}
         onClick={onClick}
         placeholder={placeholder}
-        fieldProps={fieldProps}
+        fieldProps={fieldKey}
         extra={isVertical ? '' : extra}
         type={inputType}
         editable={editable}
@@ -116,7 +119,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
           title={title}
           labelNumber={labelNumber}
           isVertical={isVertical}
-          fieldProps={fieldProps}
+          fieldProps={fieldKey}
           titleStyle={titleStyle}
         />
       </InputItem>
@@ -131,7 +134,7 @@ const DformInput: FC<INomarInputProps> = (props) => {
       titleStyle={titleStyle}
     >
       <Field
-        name={fieldProps}
+        name={fieldKey}
         rules={rules}
         title={title}
         required={required}

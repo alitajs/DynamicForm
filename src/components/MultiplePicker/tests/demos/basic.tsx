@@ -56,7 +56,8 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
     <>
       <DynamicForm {...formProps}>
         <MultiplePicker
-          fieldProps="myFood"
+          fieldProps=""
+          fieldName="myFood"
           required={true}
           data={foodList}
           title="我喜欢的食物"

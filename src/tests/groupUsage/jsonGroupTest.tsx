@@ -41,7 +41,8 @@ const data = [
     children: [
       {
         type: 'input',
-        fieldProps: 'username',
+        fieldProps: '',
+        fieldName: 'username',
         required: true,
         placeholder: '请输入',
         title: '用户名',
@@ -58,7 +59,8 @@ const data = [
         children: [
           {
             type: 'radio',
-            fieldProps: 'sex',
+            fieldProps: '',
+            fieldName: 'sex',
             title: '性别',
             data: sexData,
             required: true,

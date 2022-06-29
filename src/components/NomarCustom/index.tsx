@@ -12,6 +12,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
   const {
     defaultValue,
     fieldProps,
+    fieldName,
     required = false,
     rules = [],
     title,
@@ -30,6 +31,8 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
+  const fieldKey = fieldName || fieldProps;
+
   useEffect(() => {
     if (CustomDom || customDomProps) {
       console.warn(
@@ -45,7 +48,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       title={title}
       labelNumber={labelNumber}
       isVertical={isVertical}
-      fieldProps={fieldProps}
+      fieldProps={fieldKey}
       titleStyle={titleStyle}
     />
   );
@@ -68,7 +71,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
       >
         {!isVertical && cutomTitle()}
         <Field
-          name={fieldProps}
+          name={fieldKey}
           title={title}
           required={required}
           rules={rules}
