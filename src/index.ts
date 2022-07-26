@@ -6,6 +6,8 @@ export * from './components';
 export * from './utils';
 export * from './PropsType';
 
+export { default as FieldForm } from 'rc-field-form';
+
 export { useForm };
 // rename
 export { DynamicForm as Form };
