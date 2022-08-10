@@ -145,7 +145,9 @@ const TextItem: FC<ITextItemProps> = (props) => {
         )}
       </div>
       <div className={`${allPrefixCls}-right-content`}>
-        {arrow && <div className={`${allPrefixCls}-arrow-horizontal`} />}
+        {arrow && !disabled && (
+          <div className={`${allPrefixCls}-arrow-horizontal`} />
+        )}
         {!isVertical && <div className="am-input-extra">{extra}</div>}
       </div>
     </div>

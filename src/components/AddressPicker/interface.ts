@@ -26,6 +26,7 @@ export interface IAddressPickerProps extends BaseComponentProps {
   alias?: IAliasProps;
   defaultValue?: valueProps;
   onChangeVerifies?: (value: any) => boolean;
+  arrow?: boolean;
 }
 
 export interface valueProps {

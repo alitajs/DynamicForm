@@ -34,6 +34,8 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     children,
     fieldProps,
     clear = false,
+    extra,
+    arrow,
   } = props;
 
   const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
@@ -122,9 +124,10 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
           if (onClick) onClick();
           openMoal();
         }}
-        arrow={!disabled}
+        arrow={arrow}
         clear={clear}
         clearClick={clearClick}
+        extra={extra}
       >
         {children}
       </TextItem>

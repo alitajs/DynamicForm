@@ -53,7 +53,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
         {...props}
         fieldProps={fieldKey}
         disabled={mregedDisabled}
-        extra={isVertical ? '' : extra}
+        extra={extra}
         onChange={fieldChange}
       >
         <HorizontalTitle

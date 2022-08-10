@@ -21,4 +21,5 @@ export interface IMultiplePickerProps extends BaseComponentProps {
   extra?: string | React.ReactNode;
   defaultValue?: (string | number)[] | undefined;
   clear?: boolean;
+  arrow?: boolean;
 }

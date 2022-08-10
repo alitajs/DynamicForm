@@ -42,7 +42,9 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
       label: 'label',
       value: 'value',
     },
+    arrow,
     onChangeVerifies,
+    extra,
   } = props;
 
   const { label = 'label' } = alias;
@@ -249,7 +251,8 @@ const AddressPickerGroup: FC<AddressPickerGroupProps> = (props) => {
         labelNumber={labelNumber}
         onClick={inputClick}
         fieldProps={fieldProps}
-        arrow={!disabled}
+        arrow={arrow}
+        extra={extra}
       >
         {children}
       </TextItem>

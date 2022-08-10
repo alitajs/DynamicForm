@@ -25,6 +25,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
     className,
     onClick,
     value,
+    arrow,
     clear = false,
     customTitle,
     insistOpenModal = false,
@@ -101,7 +102,7 @@ const NomarPickerGroup: FC<INomarPickerGroupProps> = (props) => {
         extra={extra}
         className={className}
         fieldProps={fieldProps}
-        arrow={!disabled}
+        arrow={arrow}
         clear={clear}
         clearClick={clearClick}
       >
