@@ -160,7 +160,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
       onChange && onChange(e);
     };
     firstDateProps.labelNumber = isVertical ? 0 : labelNumber;
-    firstDateProps.arrow = false;
+    // firstDateProps.arrow = false;
     firstDateProps.maxDate = endDate || maxDate;
   }
 

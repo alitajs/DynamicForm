@@ -19,4 +19,5 @@ export interface INomarSelectProps extends SelectType {
   alias?: IAliasProps;
   defaultValue?: any;
   maxLine?: number | undefined;
+  arrow?: boolean;
 }

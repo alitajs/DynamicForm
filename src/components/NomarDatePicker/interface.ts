@@ -1,15 +1,16 @@
 import React, { CSSProperties } from 'react';
-import { Rule } from 'rc-field-form/es/interface';
 import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
 import { ErrorValueProps, BaseComponentProps } from '../../PropsType';
 
-export interface DateProps extends PropsType {
+export interface DateProps extends Omit<PropsType, 'extra'> {
   defaultValue?: Date;
+  arrow?: boolean;
+  extra?: string | React.ReactNode;
 }
 
 export type DatePickerType = PropsType & BaseComponentProps;
 
-export interface INomarDatePickerProps extends DatePickerType {
+export interface INomarDatePickerProps extends Omit<DatePickerType, 'extra'> {
   modeType?: PropsType['mode'];
   fieldProps2?: string;
   secondProps?: DateProps;
@@ -18,6 +19,8 @@ export interface INomarDatePickerProps extends DatePickerType {
   coverStyle?: CSSProperties;
   errorValue?: ErrorValueProps;
   defaultValue?: Date | undefined | string;
+  arrow?: boolean;
+  extra?: string | React.ReactNode;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {

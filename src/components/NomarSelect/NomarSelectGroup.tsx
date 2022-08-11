@@ -31,6 +31,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
     extra = '',
     children,
     onChange,
+    arrow,
     ...restProps
   } = props;
 
@@ -134,7 +135,7 @@ const NomarSelectGroup: FC<INomarSelectGroupProps> = (props) => {
         extra={extra}
         className={className}
         fieldProps={fieldProps}
-        arrow={!disabled}
+        arrow={arrow}
       >
         {children}
       </TextItem>

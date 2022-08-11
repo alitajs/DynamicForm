@@ -12,6 +12,10 @@ nav:
 
 ## 3.8.X
 
+### 3.8.4
+
+- `select`、`date` 增加 `arrow` 的入参，允许隐藏右侧箭头。
+
 ### 3.8.3
 
 - `picker`、`addressPicker`、`multiplePicker` 增加 `arrow` 的入参，允许隐藏右侧箭头。

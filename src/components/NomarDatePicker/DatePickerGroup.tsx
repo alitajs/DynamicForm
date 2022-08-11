@@ -27,7 +27,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     className,
     format,
     onValueChange,
-    arrow = true,
+    arrow,
     children,
     fieldProps,
     value,
@@ -104,7 +104,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
         onClick={() => {
           setVisible(true);
         }}
-        arrow={!disabled}
+        arrow={arrow}
         ellipsis={true}
       >
         {children}
