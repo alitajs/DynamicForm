@@ -153,7 +153,7 @@ export interface CardProps {
   required?: boolean;
   title?: string | React.ReactNode;
   rightView?: string | React.ReactNode;
-  classname?: React.CSSProperties;
+  className?: string;
   border?: boolean; // 是否带border边框   默认true
   extandPostion?: 'top' | 'bottom' | '';
   defaultExtand?: boolean;

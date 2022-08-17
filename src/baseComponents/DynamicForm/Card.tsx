@@ -18,7 +18,7 @@ const Card: FC<CardProps> = ({
   required,
   title,
   rightView,
-  classname,
+  className,
   border = true,
   extandPostion = '',
   defaultExtand = true,
@@ -28,11 +28,13 @@ const Card: FC<CardProps> = ({
 
   return (
     <div
-      className={classnames({
-        [prefixCls]: true,
-        classname,
-        [`${prefixCls}-border`]: border,
-      })}
+      className={classnames(
+        {
+          [prefixCls]: true,
+          [`${prefixCls}-border`]: border,
+        },
+        className,
+      )}
     >
       <div className={`${prefixCls}-title-box`}>
         {leftView}
