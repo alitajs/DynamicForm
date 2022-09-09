@@ -12,7 +12,7 @@ webpackConfig.forEach((config, index) => {
   const outputPath = path.join(process.cwd(), 'umd');
   rimraf.sync(outputPath);
 
-  config.externals['antd-mobile'] = 'antd-mobile-v2';
+  config.externals['antd-mobile-v2'] = 'antd-mobile';
   config.output.library = 'DynamicForm';
 
   config.output.path = outputPath;
@@ -20,5 +20,6 @@ webpackConfig.forEach((config, index) => {
     [index === 0 ? `dform.min` : 'dform']: './src/index.ts',
   };
 });
+
 
 module.exports = webpackConfig;
