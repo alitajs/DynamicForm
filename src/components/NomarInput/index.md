@@ -40,7 +40,6 @@ nav:
 | subTitle     | 标题右侧的副标题，仅在 `positionType` 为 `vertical` 时生效                                                                            | string or node                | ''           | 否       |
 | coverStyle   | 自定义输入框样式                                                                                                                      | object                        | {}           | 否       |
 | hidden       | 字段展示与否的判断                                                                                                                    | boolean                       | false        | 否       |
-| renderHeader | 组件头部                                                                                                                              | `number` or `string`          | -            | 否       |
 | className    | 类名                                                                                                                                  | string                        | -            | 否       |
 | defaultValue | 设置初始取值                                                                                                                          | string                        | -            | 否       |
 | maxLine      | 文字行数过长时，自动隐藏，可通过点击 `更多` 和 `收起` 进行内容的缩放                                                                  | number                        |              | 否       |
