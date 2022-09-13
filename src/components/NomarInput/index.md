@@ -43,6 +43,9 @@ nav:
 | className    | 类名                                                                                                                                  | string                        | -            | 否       |
 | defaultValue | 设置初始取值                                                                                                                          | string                        | -            | 否       |
 | maxLine      | 文字行数过长时，自动隐藏，可通过点击 `更多` 和 `收起` 进行内容的缩放                                                                  | number                        |              | 否       |
+| max          | 仅在`type`为`number` 时生效                                                                                                           | number                        | -            | 否       |
+| min          | 仅在`type`为`number` 时生效                                                                                                           | number                        | -            | 否       |
+| unit         | 单位                                                                                                                                  | string                        | -            | 否       |
 | renderHeader | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''           | 否       |
 | renderFooter | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''           | 否       |
 

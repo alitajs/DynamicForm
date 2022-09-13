@@ -22,6 +22,9 @@ export interface IInputItemProps {
   onFocus?: InputEventHandler;
   clear?: boolean;
   maxLength?: number;
+  unit?: string;
+  min?: number;
+  max?: number;
   type?:
     | 'text'
     | 'bankCard'

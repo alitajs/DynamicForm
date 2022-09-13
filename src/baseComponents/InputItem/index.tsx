@@ -27,6 +27,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
     clear = false,
     maxLength,
     fieldProps,
+    unit,
     children,
     ...otherProps
   } = props;
@@ -70,6 +71,12 @@ const InputItem: FC<IInputItemProps> = (props) => {
         break;
       case 'number':
         ctrlValue = rawVal.replace(/\D/g, '');
+        if (ctrlValue && otherProps.min && parseFloat(ctrlValue) < otherProps.min) {
+          ctrlValue = otherProps.min.toString()
+        }
+        if (ctrlValue && otherProps.max && parseFloat(ctrlValue) > otherProps.max) {
+          ctrlValue = otherProps.max.toString()
+        }
         break;
       case 'text':
       case 'password':
@@ -96,6 +103,10 @@ const InputItem: FC<IInputItemProps> = (props) => {
   const clearInput = () => {
     setVal('');
     if (onChange) onChange('');
+  };
+
+  const renderUnit = () => {
+    return <div className={`${prefixCls}-unit`}>{unit}</div>;
   };
 
   return (
@@ -149,7 +160,7 @@ const InputItem: FC<IInputItemProps> = (props) => {
             <div className={`${allPrefixCls}-clear`} onClick={clearInput} />
           </TouchFeedback>
         ) : null}
-
+        {unit && unit.length > 0 && renderUnit()}
         {extra}
       </div>
     </div>

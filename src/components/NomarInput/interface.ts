@@ -12,4 +12,5 @@ export interface INomarInputProps extends InputType {
   coverStyle?: React.CSSProperties;
   onClick?: (e: ClickEvent) => void;
   maxLine?: number;
+  unit?: string;
 }
