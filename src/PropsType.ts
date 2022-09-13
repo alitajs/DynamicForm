@@ -132,7 +132,7 @@ export interface IFormRelativesProps {
 }
 
 export interface IDynamicFormProps {
-  children: any;
+  children?: any;
   data?: IFormItemProps[]; // 动态表单数据
   form: FormInstance; // 表单对象
   relatives?: IFormRelativesProps; // 表单集联规则
