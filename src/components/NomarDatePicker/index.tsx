@@ -98,9 +98,9 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           type="date"
         >
           <DatePickerGroup
+            format={(value) => changeDateFormat(value, modeType)}
             {...dateProps}
             mode={modeType}
-            format={(value) => changeDateFormat(value, modeType)}
           >
             {!isVertical && type === 'left' && (
               <HorizontalTitle
