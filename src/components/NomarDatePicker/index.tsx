@@ -148,6 +148,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   // 默认第一个时间props
   const firstDateProps: any = {
+    value: defaultValue,
     ...props,
   };
   // 存在区间时

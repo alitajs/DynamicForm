@@ -72,7 +72,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
    */
   const dateChange = (e: any) => {
     setTextValue(changeDateFormat({ value: e, modeType, format }));
-    onChange(e);
+    if (onChange) onChange(e);
     setVisible(false);
   };
 

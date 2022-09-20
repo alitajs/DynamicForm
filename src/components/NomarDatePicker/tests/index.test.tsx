@@ -3,6 +3,7 @@ import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarDatePiker from '..';
 import BasicTest from './demos/basic';
+import SingleTest from './demos/single';
 import dayjs from 'dayjs';
 
 const props = {
@@ -92,4 +93,21 @@ test('render Basic', async () => {
     fireEvent.click(getByText('Submit'));
   });
   expect(onFinish).toBeCalled();
+});
+
+test('render Single', async () => {
+  const { getByText } = render(<SingleTest />);
+  expect(getByText('2022-01-01')).toBeDefined();
+  fireEvent.click(getByText('2022-01-01'));
+  expect(getByText('2022年')).toBeDefined();
+  expect(getByText('1月')).toBeDefined();
+  expect(getByText('1日')).toBeDefined();
+  fireEvent.click(getByText('确认'));
+
+  expect(getByText('2022-01-01')).toBeDefined();
+  sleep(1000);
+  expect(getByText('changeValue')).toBeDefined();
+  fireEvent.click(getByText('changeValue'));
+  sleep(1000);
+  expect(getByText('2022-01-02')).toBeDefined();
 });

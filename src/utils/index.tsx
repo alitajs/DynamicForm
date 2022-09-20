@@ -51,13 +51,13 @@ export const changeDateFormat = ({
   format,
   replaceName,
 }: {
-  value: Date | string;
+  value: Date | string | undefined;
   modeType: string;
   format?: string | undefined | ((value: Date) => string);
   replaceName?: Record<string, string>;
 }) => {
+  if (!value) return '';
   let dateFormat = '';
-  const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g');
   let val = dateNameReplace({ value, replaceName });
   switch (modeType) {
     case 'datetime':
