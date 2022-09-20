@@ -12,19 +12,23 @@ nav:
 
 ## 3.8.X
 
-## 3.8.8
+### 3.8.9
+
+修复 `Date` 组件 `replaceName` 属性，在 `Date` 弹框不生效的问题。
+
+### 3.8.8
 
 `Date` 组件 `replaceName` 组件。支持替换中文的 `value` 格式。
 
-## 3.8.7
+### 3.8.7
 
 `Date`组件新增 format 处理
 
-## 3.8.6
+### 3.8.6
 
 `Input`组件新增 unit、min、max 属性
 
-## 3.8.5
+### 3.8.5
 
 修复 `Card` 组件 `className` 无效的问题。
 

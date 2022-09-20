@@ -48,7 +48,6 @@ const Page: FC = () => {
           modeType="date"
           title="Date"
           maxDate={new Date()}
-          defaultValue={new Date()}
           replaceName={{
             [`年`]: '-',
             [`月`]: '-',

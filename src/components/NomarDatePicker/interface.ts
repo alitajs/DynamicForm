@@ -3,7 +3,7 @@ import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
 import { ErrorValueProps, BaseComponentProps } from '../../PropsType';
 
 export interface DateProps extends Omit<PropsType, 'extra'> {
-  defaultValue?: Date;
+  defaultValue?: Date | string;
   arrow?: boolean;
   extra?: string | React.ReactNode;
 }

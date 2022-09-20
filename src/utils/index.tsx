@@ -19,6 +19,29 @@ export const getInitKeyValue = ({
 };
 
 /**
+ * 将带中文的日期值 修改成底层组件能读懂的内容
+ */
+export const dateNameReplace = ({
+  value,
+  replaceName,
+}: {
+  value?: Date | string;
+  replaceName?: Record<string, string>;
+}) => {
+  let val = value;
+  const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g');
+  if (replaceName && val && typeof val === 'string' && reg.test(val)) {
+    Object.entries(replaceName).forEach(([key, name]: any) => {
+      val = (val as string).replace(key, name);
+    });
+    if (val.endsWith('-')) {
+      val = val.slice(0, val.length - 1);
+    }
+  }
+  return val;
+};
+
+/**
  * 时间展示类型改变事件
  * @param val
  */
@@ -35,15 +58,7 @@ export const changeDateFormat = ({
 }) => {
   let dateFormat = '';
   const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g');
-  let val = value;
-  if (replaceName && val && typeof val === 'string' && reg.test(val)) {
-    Object.entries(replaceName).forEach(([key, name]: any) => {
-      val = (val as string).replace(key, name);
-    });
-    if (val.endsWith('-')) {
-      val = val.slice(0, val.length - 1);
-    }
-  }
+  let val = dateNameReplace({ value, replaceName });
   switch (modeType) {
     case 'datetime':
       dateFormat = dayjs(val).format('YYYY-MM-DD HH:mm');
@@ -64,13 +79,20 @@ export const changeDateFormat = ({
   if (format && typeof format === 'string') {
     dateFormat = dayjs(val).format(format);
   }
-  if (format && typeof val !== 'string' && typeof format === 'function') {
+  if (
+    format &&
+    val &&
+    typeof val !== 'string' &&
+    typeof format === 'function'
+  ) {
     dateFormat = format(val);
   }
+
   return dateFormat;
 };
 
-export const dateChange = (date: Date | string) => {
+export const dateChange = (date: Date | string | undefined) => {
+  if (!date) return date;
   const stringDate = dayjs(date).format('YYYY-MM-DD-HH-mm-ss');
   const dateList = stringDate.split('-');
   const numberDateList = dateList.map((item) => parseInt(item, 10));

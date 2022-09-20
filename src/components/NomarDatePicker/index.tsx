@@ -168,6 +168,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   // 区间第二个时间props
   const secondDateProps: any = {
+    ...props,
     ...secondProps,
     labelNumber: 0,
     minDate: beginDate || minDate,

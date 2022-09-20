@@ -2,7 +2,11 @@ import React, { FC, useState, useEffect } from 'react';
 import PopupDatePicker from 'rmc-date-picker/lib/Popup';
 import RCDatePicker from 'rmc-date-picker/lib/DatePicker';
 import DatePickerLocale from 'rmc-date-picker/lib/locale/zh_CN';
-import { changeDateFormat } from '../../utils';
+import {
+  changeDateFormat,
+  dateNameReplace,
+  dateChange as utilDateChange,
+} from '../../utils';
 import { INomarDatePickerGroupProps } from './interface';
 import TextItem from '../../baseComponents/TextItem';
 
@@ -38,7 +42,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
   useEffect(() => {
     if (value) {
       setTextValue(changeDateFormat({ value, modeType, format, replaceName }));
-      setDateValue(new Date(value));
+      setDateValue(new Date(dateNameReplace({ value, replaceName }) || ''));
     } else {
       setTextValue('');
       setDateValue(undefined);
