@@ -96,7 +96,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
               minDate={minDate}
               maxDate={endDate || maxDate}
               mode={modeType}
-              format={(value) => changeDateFormat(value, modeType)}
+              format={(value) => changeDateFormat({ value, modeType })}
             >
               {!isVertical && (
                 <HorizontalTitle
@@ -149,7 +149,7 @@ const RangeDatePicker: FC<IRangeDatePickerProps> = (props) => {
                 ...coverStyle,
               }}
               mode={modeType}
-              format={(value) => changeDateFormat(value, modeType)}
+              format={(value) => changeDateFormat({ value, modeType })}
               minDate={beginDate || minDate}
               maxDate={maxDate}
             />

@@ -36,6 +36,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    replaceName,
   } = props;
 
   const fieldKey = fieldName || fieldProps;
@@ -64,9 +65,9 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-  const fileChange = (e: any) => {
-    if (onChange) onChange(e);
-  };
+  // const fileChange = (e: any) => {
+  //   if (onChange) onChange(e);
+  // };
 
   const renderDatePicker = ({
     fieldProps = {},
@@ -98,9 +99,10 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
           type="date"
         >
           <DatePickerGroup
-            format={(value) => changeDateFormat(value, modeType)}
+            format={(value) => changeDateFormat({ value, modeType })}
             {...dateProps}
             mode={modeType}
+            replaceName={replaceName}
           >
             {!isVertical && type === 'left' && (
               <HorizontalTitle

@@ -28,7 +28,7 @@ const Page: FC = () => {
     DateTime: dateChange('2020-02-02 22:22'),
     rangeTime1: dateChange(new Date('2021-07-08')),
     rangeTime2: dateChange(new Date('2021-08-08')),
-    Date: '2020-02-02',
+    Date: '2020年02月04日',
     Month: dateChange('2020-02'),
   };
 
@@ -49,6 +49,11 @@ const Page: FC = () => {
           title="Date"
           maxDate={new Date()}
           defaultValue={new Date()}
+          replaceName={{
+            [`年`]: '-',
+            [`月`]: '-',
+            [`日`]: '',
+          }}
         />
         <DformDatePicker
           fieldProps="Month"

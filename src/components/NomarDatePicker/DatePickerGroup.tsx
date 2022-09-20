@@ -31,12 +31,13 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
     children,
     fieldProps,
     value,
+    replaceName,
     ...otherProps
   } = props;
 
   useEffect(() => {
     if (value) {
-      setTextValue(changeDateFormat(value, modeType, format));
+      setTextValue(changeDateFormat({ value, modeType, format, replaceName }));
       setDateValue(new Date(value));
     } else {
       setTextValue('');
@@ -66,7 +67,7 @@ const DatePickerGroup: FC<INomarDatePickerGroupProps> = (props) => {
    * date 改变事件
    */
   const dateChange = (e: any) => {
-    setTextValue(changeDateFormat(e, modeType, format));
+    setTextValue(changeDateFormat({ value: e, modeType, format }));
     onChange(e);
     setVisible(false);
   };

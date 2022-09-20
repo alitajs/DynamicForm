@@ -26,6 +26,7 @@ nav:
 | secondProps  | `DformDatePicker` api                                                                                                                | {}                            | {}           | 否       |
 | placeholder  | placeholder                                                                                                                          | string                        | ''           | 否       |
 | required     | 必填判断                                                                                                                             | boolean                       | false        | 否       |
+| replaceName  | 替换值的中文                                                                                                                         | {}                            | {}           | 否       |
 | modeType     | 时间类型                                                                                                                             | string                        | `date`       | 否       |
 | minDate      | 最小可选日期                                                                                                                         | date                          | ''           | 否       |
 | maxDate      | 最大可选日期                                                                                                                         | date                          | ''           | 否       |

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface ITextItemProps {
   isVertical?: boolean;
   value?: string;
@@ -14,4 +16,5 @@ export interface ITextItemProps {
   ellipsis?: boolean;
   clear?: boolean;
   clearClick?: () => void;
+  children?: React.ReactNode;
 }

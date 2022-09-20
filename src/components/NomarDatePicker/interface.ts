@@ -21,10 +21,12 @@ export interface INomarDatePickerProps extends Omit<DatePickerType, 'extra'> {
   defaultValue?: Date | undefined | string;
   arrow?: boolean;
   extra?: string | React.ReactNode;
+  replaceName?: Record<string, string>;
 }
 
 export interface INomarDatePickerGroupProps extends INomarDatePickerProps {
   onChange: (e: any) => void;
   value?: Date | undefined;
   arrow?: boolean;
+  children?: React.ReactNode;
 }

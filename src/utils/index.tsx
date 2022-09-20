@@ -22,12 +22,28 @@ export const getInitKeyValue = ({
  * 时间展示类型改变事件
  * @param val
  */
-export const changeDateFormat = (
-  val: Date,
-  modeType: string,
-  format?: string | undefined | ((value: Date) => string),
-) => {
+export const changeDateFormat = ({
+  value,
+  modeType,
+  format,
+  replaceName,
+}: {
+  value: Date | string;
+  modeType: string;
+  format?: string | undefined | ((value: Date) => string);
+  replaceName?: Record<string, string>;
+}) => {
   let dateFormat = '';
+  const reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g');
+  let val = value;
+  if (replaceName && val && typeof val === 'string' && reg.test(val)) {
+    Object.entries(replaceName).forEach(([key, name]: any) => {
+      val = (val as string).replace(key, name);
+    });
+    if (val.endsWith('-')) {
+      val = val.slice(0, val.length - 1);
+    }
+  }
   switch (modeType) {
     case 'datetime':
       dateFormat = dayjs(val).format('YYYY-MM-DD HH:mm');
@@ -48,7 +64,7 @@ export const changeDateFormat = (
   if (format && typeof format === 'string') {
     dateFormat = dayjs(val).format(format);
   }
-  if (format && typeof format === 'function') {
+  if (format && typeof val !== 'string' && typeof format === 'function') {
     dateFormat = format(val);
   }
   return dateFormat;
