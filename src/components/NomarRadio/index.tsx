@@ -1,5 +1,10 @@
 import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import NomarRadioGroup from './radioGroup';
@@ -39,7 +44,10 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     formFlag = true,
   } = props;
 
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const fieldKey = fieldName || fieldProps;
@@ -48,12 +56,13 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
   const { label = 'label', value = 'value' } = alias;
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({

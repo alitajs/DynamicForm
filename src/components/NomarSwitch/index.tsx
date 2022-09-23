@@ -1,5 +1,10 @@
 import React, { FC, useState, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import { Switch } from 'antd-mobile-v2';
 import { allPrefixCls } from '../../const';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
@@ -29,18 +34,22 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
     ...otherProps
   } = props;
 
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const fieldKey = fieldName || fieldProps;
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   return (
     <Title

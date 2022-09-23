@@ -1,5 +1,10 @@
 import React, { FC, useState, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import classnames from 'classnames';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
@@ -42,26 +47,31 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
   const fieldKey = fieldName || fieldProps;
 
   const { disabled: secondDisabled = false } = secondProps;
-
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
-  const [sMregedDisabled, setSMregedDisabled] =
-    useState<boolean>(secondDisabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
+  const [sMregedDisabled, setSMregedDisabled] = useState<boolean>(
+    secondDisabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
   useMemo(() => {
+    if (cDisabled) return;
     if (fieldProps2 && changeForm[fieldProps2]?.disabled !== undefined) {
       setSMregedDisabled(changeForm[fieldProps2]?.disabled);
     } else {
       setSMregedDisabled(secondDisabled);
     }
-  }, [changeForm[fieldProps2], secondDisabled]);
+  }, [changeForm[fieldProps2], secondDisabled, cDisabled]);
 
   const isVertical = positionType === 'vertical';
 

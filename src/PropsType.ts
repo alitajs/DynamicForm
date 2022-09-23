@@ -158,6 +158,9 @@ export interface CardProps {
   extandPostion?: 'top' | 'bottom' | '';
   defaultExtand?: boolean;
   extandChange?: (res: boolean) => void;
+  disabled?: boolean;
+  hideStar?: boolean;
+  children?: any;
 }
 
 export interface GroupProps extends CardProps {

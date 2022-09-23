@@ -1,5 +1,10 @@
 import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import { Rule } from 'rc-field-form/es/interface';
 import classnames from 'classnames';
 import CoverRadioGroup from './radioGroup';
@@ -67,19 +72,23 @@ const CoverRadio: FC<ICoverRadioProps> = (props) => {
     formFlag = true,
   } = props;
 
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   let isVertical = positionType === 'vertical';
   const { label = 'label', value = 'value' } = alias;
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldProps]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldProps]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldProps], disabled]);
+  }, [changeForm[fieldProps], disabled, cDisabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item) => ({

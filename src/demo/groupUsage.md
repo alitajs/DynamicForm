@@ -28,3 +28,5 @@ nav:
 | rightView     | 左侧样式               | `string` \| `node`    | `-`     | 否       |
 | extandPostion | 开关位置               | `top` \| `bottom`     | `-`     | 否       |
 | defaultExtand | 默认是面板开关         | `boolean`             | true    | 否       |
+| disabled      | 是否禁用               | `boolean`             | false   | 否       |
+| hideStar      | 是否隐藏必填`*`        | `boolean`             | false   | 否       |

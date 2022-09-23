@@ -1,5 +1,10 @@
 import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import PickerGroup from './NomarPickerGroup';
 import { INomarPickerProps } from './interface';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
@@ -33,7 +38,10 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
     formFlag = true,
     disabled = false,
   } = props;
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const fieldKey = fieldName || fieldProps;
@@ -43,12 +51,13 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   useEffect(() => {
     const newData = (data || []).map((item: any) => ({

@@ -1,5 +1,10 @@
 import React, { FC, useMemo, useState, useContext } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import { PickerData } from 'antd-mobile-v2/lib/picker/PropsType';
 import HorizontalTitle from '../../baseComponents/HorizontalTitle';
 import Field from '../Field';
@@ -38,18 +43,22 @@ const DformSelect: FC<INomarSelectProps> = (props) => {
 
   const { label = 'label', value = 'value' } = alias;
   const [initValue, setInitValue] = React.useState<any>();
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const fieldKey = fieldName || fieldProps;
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   const twoDimensionalTransform = () => {
     const newAllArray: PickerData[] = [];

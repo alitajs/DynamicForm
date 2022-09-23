@@ -1,5 +1,10 @@
 import React, { FC, useState, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import { StringAndUdfEvent } from '../../PropsType';
 import InputItem from '../../baseComponents/InputItem';
 import Field from '../Field';
@@ -37,7 +42,10 @@ const DformInput: FC<INomarInputProps> = (props) => {
     ...otherProps
   } = props;
 
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const fieldKey = fieldName || fieldProps;
@@ -45,12 +53,13 @@ const DformInput: FC<INomarInputProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   const inputOnBlur = (val: string | undefined) => {
     if (onBlur) onBlur(val);

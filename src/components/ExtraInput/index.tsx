@@ -1,6 +1,11 @@
 import React, { FC, useState, useContext, useMemo } from 'react';
 import classnames from 'classnames';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import PickerGroup from '../NomarPicker/NomarPickerGroup';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
@@ -34,10 +39,12 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
 
   const { disabled: firstDisabled = false } = firstProps;
   const { disabled: secondDisabled = false } = firstProps;
-
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(firstDisabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    firstDisabled || cDisabled,
+  );
   const [sMregedDisabled, setSMregedDisabled] =
-    useState<boolean>(secondDisabled);
+    useState<boolean>(secondDisabled || cDisabled);
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const fieldKey = fieldName || fieldProps;
@@ -45,6 +52,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   const isVertical = positionType === 'vertical';
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
@@ -60,6 +68,7 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
     changeForm[fieldKey],
     firstDisabled,
     secondDisabled,
+    cDisabled,
   ]);
 
   const inputOnBlur = (val: string | undefined) => {

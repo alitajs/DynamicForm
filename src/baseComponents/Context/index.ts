@@ -13,3 +13,11 @@ export const DformContext = createContext<DformContextProps>({
   formFlag: false,
   updateErrorValue: () => {},
 });
+
+export interface CardContextProps {
+  cDisabled: boolean;
+}
+
+export const CardContext = createContext<CardContextProps>({
+  cDisabled: false,
+});

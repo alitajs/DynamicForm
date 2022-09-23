@@ -1,5 +1,10 @@
 import React, { FC, ChangeEvent, useState, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import FileGroup from './fileGroup';
@@ -29,19 +34,23 @@ const DformFile: FC<INomarFileProps> = (props) => {
     formFlag = true,
   } = props;
 
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
   const [selectable, setSelectable] = useState<boolean>(true);
 
   const fieldKey = fieldName || fieldProps;
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   // 该函数没被使用，因此注释
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {

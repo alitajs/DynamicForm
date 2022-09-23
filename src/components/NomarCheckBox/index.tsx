@@ -1,5 +1,10 @@
 import React, { FC, useState, useEffect, useContext, useMemo } from 'react';
-import { DformContext, DformContextProps } from '../../baseComponents/Context';
+import {
+  CardContext,
+  CardContextProps,
+  DformContext,
+  DformContextProps,
+} from '../../baseComponents/Context';
 import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import CheckBoxGroup from './checkBoxgroup';
@@ -32,19 +37,23 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
     formFlag = true,
   } = props;
 
-  const [mregedDisabled, setMregedDisabled] = useState<boolean>(disabled);
+  const { cDisabled } = useContext<CardContextProps>(CardContext);
+  const [mregedDisabled, setMregedDisabled] = useState<boolean>(
+    disabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const { label = 'label', value = 'value', desc = 'desc' } = alias;
   const fieldKey = fieldName || fieldProps;
 
   useMemo(() => {
+    if (cDisabled) return;
     if (changeForm[fieldKey]?.disabled !== undefined) {
       setMregedDisabled(changeForm[fieldKey]?.disabled);
     } else {
       setMregedDisabled(disabled);
     }
-  }, [changeForm[fieldKey], disabled]);
+  }, [changeForm[fieldKey], disabled, cDisabled]);
 
   useEffect(() => {
     const newData = data.map((item: any) => ({

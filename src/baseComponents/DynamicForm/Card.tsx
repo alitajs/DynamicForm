@@ -7,6 +7,7 @@ import useToggle from '../../hooks/useToggle';
 import { allPrefixCls } from '../../const/index';
 import { CardProps } from '../../PropsType';
 import './index.less';
+import { CardContext } from '../Context';
 
 const prefixCls = `${allPrefixCls}-card`;
 
@@ -23,67 +24,71 @@ const Card: FC<CardProps> = ({
   extandPostion = '',
   defaultExtand = true,
   extandChange,
+  disabled = false,
+  hideStar = false,
 }) => {
   const [isExtand, toggleExtand] = useToggle(defaultExtand);
 
   return (
-    <div
-      className={classnames(
-        {
-          [prefixCls]: true,
-          [`${prefixCls}-border`]: border,
-        },
-        className,
-      )}
-    >
-      <div className={`${prefixCls}-title-box`}>
-        {leftView}
-        {required && <div className={`${prefixCls}-require`}>*</div>}
-        {title && <div className={`${prefixCls}-title`}>{title}</div>}
-        {rightView && rightView}
-        {extandPostion === 'top' && (
-          <div
-            className={`${prefixCls}-extends-icon`}
-            onClick={() => {
-              toggleExtand();
-              if (extandChange) extandChange(!isExtand);
-            }}
-          >
-            <Icon size="xxs" type={isExtand ? 'up' : 'down'} />
-          </div>
+    <CardContext.Provider value={{ cDisabled: disabled }}>
+      <div
+        className={classnames(
+          {
+            [prefixCls]: true,
+            [`${prefixCls}-border`]: border,
+          },
+          className,
         )}
-      </div>
-      <div className={prefixClsExtends}>
-        <CSSTransition
-          in={isExtand}
-          classNames={`${prefixClsExtends}-body`}
-          timeout={200}
-        >
-          {(state) => {
-            return (
-              <div className={`${prefixClsExtends}-body`}>
-                <div
-                  className={classnames(`${prefixClsExtends}-animation`, {
-                    [`${prefixClsExtends}-entered`]: state === 'entered',
-                  })}
-                >
-                  {children}
+      >
+        <div className={`${prefixCls}-title-box`}>
+          {leftView}
+          {required && !hideStar && <div className={`${prefixCls}-require`}>*</div>}
+          {title && <div className={`${prefixCls}-title`}>{title}</div>}
+          {rightView && rightView}
+          {extandPostion === 'top' && (
+            <div
+              className={`${prefixCls}-extends-icon`}
+              onClick={() => {
+                toggleExtand();
+                if (extandChange) extandChange(!isExtand);
+              }}
+            >
+              <Icon size="xxs" type={isExtand ? 'up' : 'down'} />
+            </div>
+          )}
+        </div>
+        <div className={prefixClsExtends}>
+          <CSSTransition
+            in={isExtand}
+            classNames={`${prefixClsExtends}-body`}
+            timeout={200}
+          >
+            {(state) => {
+              return (
+                <div className={`${prefixClsExtends}-body`}>
+                  <div
+                    className={classnames(`${prefixClsExtends}-animation`, {
+                      [`${prefixClsExtends}-entered`]: state === 'entered',
+                    })}
+                  >
+                    {children}
+                  </div>
+                  {extandPostion === 'bottom' && (
+                    <ExpandView
+                      isExtand={isExtand}
+                      onChange={() => {
+                        toggleExtand();
+                        if (extandChange) extandChange(!isExtand);
+                      }}
+                    />
+                  )}
                 </div>
-                {extandPostion === 'bottom' && (
-                  <ExpandView
-                    isExtand={isExtand}
-                    onChange={() => {
-                      toggleExtand();
-                      if (extandChange) extandChange(!isExtand);
-                    }}
-                  />
-                )}
-              </div>
-            );
-          }}
-        </CSSTransition>
+              );
+            }}
+          </CSSTransition>
+        </div>
       </div>
-    </div>
+    </CardContext.Provider>
   );
 };
 
