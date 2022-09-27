@@ -10,6 +10,10 @@ nav:
 
 # 升级说明
 
+## 3.9.2
+
+新增 `Group` 组件属性 `boxStyle`, `titleStyle`, 用于设置分组样式和分组 `title` 样式。
+
 ## 3.9.1
 
 新增 `Card` 组件属性 `disabled`，支持Card整体禁用，新增 `hideStar` 属性，用于隐藏必填 `*` 号

@@ -26,6 +26,8 @@ const Card: FC<CardProps> = ({
   extandChange,
   disabled = false,
   hideStar = false,
+  boxStyle,
+  titleStyle,
 }) => {
   const [isExtand, toggleExtand] = useToggle(defaultExtand);
 
@@ -39,11 +41,18 @@ const Card: FC<CardProps> = ({
           },
           className,
         )}
+        style={boxStyle}
       >
         <div className={`${prefixCls}-title-box`}>
           {leftView}
-          {required && !hideStar && <div className={`${prefixCls}-require`}>*</div>}
-          {title && <div className={`${prefixCls}-title`}>{title}</div>}
+          {required && !hideStar && (
+            <div className={`${prefixCls}-require`}>*</div>
+          )}
+          {title && (
+            <div className={`${prefixCls}-title`} style={titleStyle}>
+              {title}
+            </div>
+          )}
           {rightView && rightView}
           {extandPostion === 'top' && (
             <div

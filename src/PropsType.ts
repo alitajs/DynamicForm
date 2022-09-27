@@ -161,6 +161,8 @@ export interface CardProps {
   disabled?: boolean;
   hideStar?: boolean;
   children?: any;
+  boxStyle?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
 }
 
 export interface GroupProps extends CardProps {
