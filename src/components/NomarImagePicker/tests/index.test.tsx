@@ -3,6 +3,7 @@ import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarImagePicker from '../index';
 import BasicText from './demos/basic';
+import SingleText from './demos/single';
 
 const fileList = [
   {
@@ -96,4 +97,17 @@ test('renders Basic', async () => {
   await waitFor(() => {
     expect(onChange).toBeCalled();
   });
+});
+
+test('renders single', async () => {
+  const { getAllByText } = render(<SingleText />);
+  expect(getAllByText('请添加图片'));
+  expect(document.querySelectorAll('.am-image-picker-item-remove').length).toBe(
+    2,
+  );
+  //进行删除操作
+  fireEvent.click(document.querySelectorAll('.am-image-picker-item-remove')[0]);
+  expect(document.querySelectorAll('.am-image-picker-item-remove').length).toBe(
+    1,
+  );
 });

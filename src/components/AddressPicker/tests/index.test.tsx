@@ -6,6 +6,8 @@ import CountryList from '@bang88/china-city-data';
 import { Button, Toast } from 'antd-mobile-v2';
 import AddressPicker from '..';
 
+import SingleText from './demos/single';
+
 const props = {
   type: 'addressPicker',
   fieldName: 'homeAddr',
@@ -398,4 +400,30 @@ test('renders Basic', async () => {
   await waitFor(() => {
     expect(onFinish).toBeCalled();
   });
+});
+
+test('renders single', async () => {
+  const { getByText } = render(<SingleText />);
+
+  expect(getByText('福建省 福州市 鼓楼区')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('福建省 福州市 鼓楼区'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('福建省'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('河北省'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('石家庄市'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('长安区'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('确定'));
+  });
+
+  expect(getByText('河北省 石家庄市 长安区')).toBeDefined();
 });

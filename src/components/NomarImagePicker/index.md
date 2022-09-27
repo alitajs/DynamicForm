@@ -13,6 +13,10 @@ nav:
 
 <code src="./demo/index.tsx" />
 
+## 单独使用
+
+<code src="./demo/single.tsx" />
+
 ## API
 
 | 参数          | 说明                                                                                                                   | 类型                                                          | 默认值 | 是否必填 |

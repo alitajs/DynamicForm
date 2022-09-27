@@ -3,6 +3,7 @@ import Form from 'rc-field-form';
 import { render, testA11y, fireEvent, waitFor } from '@alita/test';
 import { DformInput } from '../../..';
 import BasicText from './demos/basic';
+import SingleText from './demos/single';
 
 it('passes input a11y test', async () => {
   const { getByText, container } = render(
@@ -67,4 +68,11 @@ test('render Basic', async () => {
     target: { value: '1468282282' },
   });
   fireEvent.change(getByLabelText('digit'), { target: { value: 'digit' } });
+});
+
+test('single basic', async () => {
+  const { getByLabelText } = render(<SingleText />);
+  expect(getByLabelText('a')).toHaveValue('1');
+  fireEvent.change(getByLabelText('a'), { target: { value: '小明' } });
+  expect(getByLabelText('a')).toHaveValue('小明');
 });
