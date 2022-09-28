@@ -16,7 +16,7 @@ const Page: FC = () => {
         clear
         placeholder="请输入"
         title="用户名"
-        onChange={(e: string) => setInputValue(e)}
+        onChange={(e: any) => setInputValue(e)}
         defaultValue={inputValue}
       />
       <WhiteSpace size="sm" />

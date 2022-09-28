@@ -4,11 +4,7 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import Group from './Group';
 import NewFieldPicker from '../NewFieldPicker/NewFieldPicker';
 import { DformContext } from '../Context';
-import {
-  DFORM_COMP_NAME,
-  DFORM_COMP_DETAULT,
-  NO_SUPPORT_VERTICAL,
-} from '../../utils/menu';
+import { DFORM_COMP_NAME } from '../../utils/menu';
 import {
   resetErrorField,
   getAllError,

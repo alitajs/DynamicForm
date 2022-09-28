@@ -9,6 +9,7 @@ import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
+// @ts-ignore
 import FileIcon from '../../assets/file.png';
 
 const prefixCls = 'alitajs-dform-file';

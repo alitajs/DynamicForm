@@ -10,7 +10,7 @@
     "baseUrl": "./",
     "strict": true,
     "declaration": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"],
@@ -19,6 +19,7 @@
     },
     "allowSyntheticDefaultImports": true
   },
+  "include": ["typings.d","./src"],
   "exclude": [
     "node_modules",
     "lib",

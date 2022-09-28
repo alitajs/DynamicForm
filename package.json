@@ -18,7 +18,7 @@
   },
   "main": "lib/index.js",
   "module": "es/index.js",
-  "typings": "dist/src/index.d.ts",
+  "typings": "es/index.d.ts",
   "files": [
     "dist",
     "es",
@@ -52,6 +52,10 @@
   },
   "peerDependencies": {
     "react": ">=16.8.6"
+  },
+  "resolutions": {
+    "@types/react": "16.14.32",
+    "@types/react-dom": "16.9.16"
   },
   "devDependencies": {
     "@alita/test": "^0.0.4",

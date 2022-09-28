@@ -34,6 +34,7 @@ export type TitleTypePorps =
   | 'custom'
   | 'text'
   | 'file'
+  | 'group'
   | 'rangeDatePicker';
 
 export interface IAliasProps {

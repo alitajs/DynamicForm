@@ -10,7 +10,7 @@ import DynamicForm, {
   ValidateErrorEntity,
   AddressPicker,
 } from '@alitajs/dform';
-
+// @ts-ignore
 import CountryList from '@bang88/china-city-data';
 
 const Page: FC = () => {

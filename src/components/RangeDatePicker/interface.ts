@@ -2,7 +2,7 @@ import { PropsType } from 'antd-mobile-v2/es/date-picker/index';
 import { INomarDatePickerProps } from '../NomarDatePicker/interface';
 
 export interface DateProps extends PropsType {
-  defaultValue?: Date;
+  defaultValue?: Date | string;
 }
 
 export interface IRangeDatePickerProps extends INomarDatePickerProps {
