@@ -4,7 +4,7 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile-v2';
-import { DformInput } from '@alitajs/dform';
+import DformInput from '../../';
 
 const Page: FC = () => {
   const [inputValue, setInputValue] = useState<string>('1');
@@ -16,7 +16,7 @@ const Page: FC = () => {
         clear
         placeholder="请输入"
         title="用户名"
-        onChange={(e: string) => setInputValue(e)}
+        onChange={(e: any) => setInputValue(e)}
         defaultValue={inputValue}
       />
       <WhiteSpace size="sm" />

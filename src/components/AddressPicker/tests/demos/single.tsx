@@ -4,8 +4,9 @@
  */
 import React, { FC, useState } from 'react';
 import { Toast, Button, WhiteSpace } from 'antd-mobile-v2';
-import { AddressPicker } from '@alitajs/dform';
+import AddressPicker from '../..';
 
+// @ts-ignore
 import CountryList from '@bang88/china-city-data';
 
 const Page: FC = () => {

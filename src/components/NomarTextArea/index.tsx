@@ -47,7 +47,7 @@ const DformTextArea: FC<INomarTextAreaProps> = (props) => {
   );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   let isVertical = positionType === 'vertical';
   if (extra) isVertical = true;

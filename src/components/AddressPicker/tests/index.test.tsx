@@ -2,6 +2,7 @@ import * as React from 'react';
 import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import DynamicForm, { IFormItemProps } from '../../..';
+// @ts-ignore
 import CountryList from '@bang88/china-city-data';
 import { Button, Toast } from 'antd-mobile-v2';
 import AddressPicker from '..';

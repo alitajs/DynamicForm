@@ -40,7 +40,7 @@ const DformImagePicker: FC<INomarImagePickerProps> = (props) => {
   );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useMemo(() => {
     if (cDisabled) return;

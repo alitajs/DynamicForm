@@ -23,8 +23,8 @@ export interface IInputItemProps {
   clear?: boolean;
   maxLength?: number;
   unit?: string;
-  min?: number;
-  max?: number;
+  min?: string | number;
+  max?: string | number;
   type?:
     | 'text'
     | 'bankCard'

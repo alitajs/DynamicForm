@@ -7,7 +7,7 @@ export default {
       react: 'React',
     },
   },
-  disableTypeCheck: true,
+  // disableTypeCheck: true,
   cssModules: false,
   // extraBabelPlugins: [
   //   [

@@ -11,7 +11,7 @@ export interface CustomFieldProps extends FieldProps {
   style?: React.CSSProperties;
   title?: string;
   required?: boolean;
-  type: TitleTypePorps;
+  type?: TitleTypePorps;
 }
 
 const CustomField: FC<CustomFieldProps> = (props: any) => {

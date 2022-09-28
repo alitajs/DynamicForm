@@ -71,17 +71,18 @@ export const getFormItem = (
   return (
     <Title
       key={otherProps?.fieldProps}
-      error={errorValue}
-      positionType={
-        otherProps?.positionType || DFORM_COMP_DETAULT[type].positionType
-      }
-      hidden={otherProps?.hidden}
-      required={otherProps?.required}
-      hasStar={otherProps?.hasStar}
-      title={otherProps?.title}
-      subTitle={otherProps?.subTitle}
-      extra={otherProps?.extra || ''}
-      fieldProps={otherProps?.fieldProps}
+      type={type}
+      // error={errorValue}
+      // positionType={
+      //   otherProps?.positionType || DFORM_COMP_DETAULT[type].positionType
+      // }
+      // hidden={otherProps?.hidden}
+      // required={otherProps?.required}
+      // hasStar={otherProps?.hasStar}
+      // title={otherProps?.title}
+      // subTitle={otherProps?.subTitle}
+      // extra={otherProps?.extra || ''}
+      // fieldProps={otherProps?.fieldProps}
     >
       {renderHeader}
       <FormItemComponent
@@ -303,16 +304,17 @@ const DynamicForm: FC<IDynamicFormProps> = ({
       if (DFORM_COMP_NAME.indexOf(name) !== -1) {
         return (
           <Title
+            type={name}
             key={fieldProps || index}
-            error={errorValue}
-            positionType={positionType || DFORM_COMP_DETAULT[name].positionType}
-            hidden={hidden}
-            required={required}
-            hasStar={hasStar}
-            title={title}
-            subTitle={subTitle}
-            extra={extra}
-            fieldProps={fieldProps}
+            // error={errorValue}
+            // positionType={positionType || DFORM_COMP_DETAULT[name].positionType}
+            // hidden={hidden}
+            // required={required}
+            // hasStar={hasStar}
+            // title={title}
+            // subTitle={subTitle}
+            // extra={extra}
+            // fieldProps={fieldProps}
           >
             {React.cloneElement(child, {
               ...mProps,

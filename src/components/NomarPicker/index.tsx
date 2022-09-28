@@ -44,7 +44,7 @@ const DformPicker: FC<INomarPickerProps> = (props) => {
   );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   const { label = 'label', value = 'value' } = alias;
 

@@ -24,9 +24,10 @@ export interface INomarDatePickerProps extends Omit<DatePickerType, 'extra'> {
   replaceName?: Record<string, string>;
 }
 
-export interface INomarDatePickerGroupProps extends INomarDatePickerProps {
+export interface INomarDatePickerGroupProps
+  extends Omit<INomarDatePickerProps, 'value'> {
   onChange: (e: any) => void;
-  value?: Date | undefined;
+  value?: Date | string | undefined;
   arrow?: boolean;
   children?: React.ReactNode;
 }

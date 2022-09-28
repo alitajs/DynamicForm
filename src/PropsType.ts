@@ -34,6 +34,7 @@ export type TitleTypePorps =
   | 'custom'
   | 'text'
   | 'file'
+  | 'group'
   | 'rangeDatePicker';
 
 export interface IAliasProps {
@@ -171,9 +172,9 @@ export interface GroupProps extends CardProps {
 }
 
 export interface BaseComponentProps {
-  title: string;
+  title?: string;
   required?: boolean;
-  fieldProps: string;
+  fieldProps?: string;
   fieldName?: string;
   rules?: Rule[];
   hasStar?: boolean;

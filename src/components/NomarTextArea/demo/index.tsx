@@ -10,6 +10,7 @@ import DynamicForm, {
   ValidateErrorEntity,
   DformTextArea,
 } from '@alitajs/dform';
+// @ts-ignore
 import PhotoIcon from '../../../assets/photo.png';
 
 const Page: FC = () => {

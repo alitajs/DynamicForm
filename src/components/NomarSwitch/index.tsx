@@ -40,7 +40,7 @@ const DformSwitch: FC<INomarSwitchProps> = (props) => {
   );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useMemo(() => {
     if (cDisabled) return;

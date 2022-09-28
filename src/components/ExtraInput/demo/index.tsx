@@ -9,6 +9,7 @@ import DynamicForm, {
   Store,
   ValidateErrorEntity,
 } from '../../../index';
+// @ts-ignore
 import PositionIcon from '../../../assets/position_ico.png';
 import ExtraInput from '../';
 

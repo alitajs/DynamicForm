@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { INomarFileProps, INomarFileItemProps } from './interface';
+// @ts-ignore
 import ClosePng from '../../assets/close.png';
 import './index.less';
 

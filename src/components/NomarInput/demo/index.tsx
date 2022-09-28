@@ -10,8 +10,11 @@ import DynamicForm, {
   ValidateErrorEntity,
   DformInput,
 } from '@alitajs/dform';
+//@ts-ignore
 import PositionIcon from '../../../assets/position_ico.png';
+//@ts-ignore
 import PhotoIcon from '../../../assets/photo.png';
+//@ts-ignore
 import PwdIcon from '../../../assets/look.png';
 
 const { Group } = DynamicForm;

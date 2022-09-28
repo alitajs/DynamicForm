@@ -7,6 +7,7 @@ const CustomGroup: FC<CustomGroupProps> = (props) => {
   const dom = () => {
     if (React.isValidElement(children)) {
       return React.cloneElement(children, {
+        // @ts-ignore
         ...children.props,
         value,
         onChange,

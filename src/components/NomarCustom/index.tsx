@@ -31,7 +31,7 @@ const DformCustom: FC<INomarCustomPorps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useEffect(() => {
     if (CustomDom || customDomProps) {

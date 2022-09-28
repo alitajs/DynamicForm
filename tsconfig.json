@@ -4,11 +4,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": "./",
     "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"],
@@ -17,6 +19,7 @@
     },
     "allowSyntheticDefaultImports": true
   },
+  "include": ["typings.d","./src"],
   "exclude": [
     "node_modules",
     "lib",

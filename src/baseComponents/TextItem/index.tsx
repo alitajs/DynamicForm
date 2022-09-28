@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
+// @ts-ignore
 import ClosePng from '../../assets/close.png';
 import { ITextItemProps } from './interface';
 import { allPrefixCls } from '../../const/index';

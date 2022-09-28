@@ -9,6 +9,7 @@ import Field from '../Field';
 import Title from '../../baseComponents/Title';
 import FileGroup from './fileGroup';
 import { INomarFileProps, INomarFileItemProps } from './interface';
+// @ts-ignore
 import FileIcon from '../../assets/file.png';
 
 const prefixCls = 'alitajs-dform-file';
@@ -41,7 +42,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
   const { changeForm } = useContext<DformContextProps>(DformContext);
   const [selectable, setSelectable] = useState<boolean>(true);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useMemo(() => {
     if (cDisabled) return;
