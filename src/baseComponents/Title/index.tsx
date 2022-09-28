@@ -37,7 +37,7 @@ const Title: FC<TitleProps> = (props) => {
     fieldName,
   } = independentProps;
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);
   const [mregedHidden, setMregedHidden] = useState<boolean>(hidden);

@@ -43,11 +43,12 @@ const ExtraInput: FC<IExtraInputProps> = (props) => {
   const [mregedDisabled, setMregedDisabled] = useState<boolean>(
     firstDisabled || cDisabled,
   );
-  const [sMregedDisabled, setSMregedDisabled] =
-    useState<boolean>(secondDisabled || cDisabled);
+  const [sMregedDisabled, setSMregedDisabled] = useState<boolean>(
+    secondDisabled || cDisabled,
+  );
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   const isVertical = positionType === 'vertical';
 

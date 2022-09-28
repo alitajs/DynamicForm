@@ -15,7 +15,7 @@ export interface HorizontalTitleProps {
   /**
    * fieldProps
    */
-  fieldProps: string;
+  fieldProps?: string;
   /**
    * 标题
    */
@@ -45,7 +45,7 @@ const HorizontalTitle: FC<HorizontalTitleProps> = (props) => {
     title,
     labelNumber = 7,
     isVertical,
-    fieldProps,
+    fieldProps = '',
     titleStyle,
   } = props;
   const [mregedRequired, setMregedRequired] = useState<boolean>(required);

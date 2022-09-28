@@ -48,7 +48,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useMemo(() => {
     if (cDisabled) return;

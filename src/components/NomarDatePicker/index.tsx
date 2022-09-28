@@ -44,7 +44,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
     replaceName,
   } = props;
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   const { disabled: secondDisabled = false } = secondProps;
   const { cDisabled } = useContext<CardContextProps>(CardContext);

@@ -32,7 +32,7 @@ const AddressPicker: FC<IAddressPickerProps> = (props) => {
     disabled = false,
   } = props;
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   const { cDisabled } = useContext<CardContextProps>(CardContext);
 

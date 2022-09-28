@@ -44,7 +44,7 @@ const DformCheckBox: FC<INomarCheckBoxProps> = (props) => {
   const { changeForm } = useContext<DformContextProps>(DformContext);
 
   const { label = 'label', value = 'value', desc = 'desc' } = alias;
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useMemo(() => {
     if (cDisabled) return;

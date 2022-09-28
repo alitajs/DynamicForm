@@ -41,7 +41,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
   const { changeForm } = useContext<DformContextProps>(DformContext);
   const [selectable, setSelectable] = useState<boolean>(true);
 
-  const fieldKey = fieldName || fieldProps;
+  const fieldKey: any = fieldName || fieldProps;
 
   useMemo(() => {
     if (cDisabled) return;
