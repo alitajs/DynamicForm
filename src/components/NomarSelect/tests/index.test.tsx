@@ -4,6 +4,7 @@ import Form from 'rc-field-form';
 import NomarSelect from '../index';
 import BasicText from './demos/basic';
 import CoupletText from './demos/couplet';
+import SingleText from '../demo/single';
 
 // //选择季节
 const seasons = [
@@ -85,4 +86,40 @@ test('render couplet', async () => {
   expect(getByText('福州')).toBeDefined();
   await sleep(2100);
   expect(getByText('杭州')).toBeDefined();
+});
+
+test('renders single', async () => {
+  const { getByText } = render(<SingleText />);
+
+  expect(getByText('福建省 福州市 鼓楼区')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('福建省 福州市 鼓楼区'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('福建省'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('河北省'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('石家庄市'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('长安区'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('确定'));
+  });
+
+  test('single basic', async () => {
+    const { getByLabelText } = render(<SingleText />);
+    await waitFor(() => {
+      fireEvent.click(getByText('2013'));
+    });
+    await waitFor(() => {
+      fireEvent.click(getByText('春'));
+    });
+    expect(getByLabelText('2013')).toHaveValue('2013');
+    expect(getByLabelText('春')).toHaveValue('春');
+  });
 });
