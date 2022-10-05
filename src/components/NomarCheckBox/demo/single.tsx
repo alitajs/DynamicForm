@@ -1,5 +1,5 @@
 /**
- * title: 基础 输入框
+ * title: 基础 多选框
  * desc: 单独使用 demo
  */
 import React, { FC, useState } from 'react';
@@ -7,6 +7,7 @@ import { Button, WhiteSpace } from 'antd-mobile-v2';
 import { DformCheckBox } from '@alitajs/dform';
 
 const Page: FC = () => {
+  const [value, setValue] = useState<any[]>(['huawei', 'apple']);
   const dataList = [
     { telId: 'vivo', telName: 'vivo', desc: '这是vivo手机' },
     { telId: 'oppo', telName: 'oppo', desc: '这是oppo手机' },
@@ -19,7 +20,7 @@ const Page: FC = () => {
     <>
       <DformCheckBox
         fieldProps="a"
-        defaultValue={['huawei', 'apple']}
+        defaultValue={value}
         required
         title="手机型号"
         chunk={3}
@@ -28,14 +29,14 @@ const Page: FC = () => {
           label: 'telName',
           value: 'telId',
         }}
+        onChange={(val) => setValue(val)}
         disableItem={(item) => {
           if (item.value === 'huawei') return true;
           return false;
         }}
-        //  defaultValue={inputValue}
       />
       <WhiteSpace size="sm" />
-      <Button type="primary" onClick={() => console.log({ inputValue })}>
+      <Button type="primary" onClick={() => console.log({ value })}>
         Submit
       </Button>
     </>
