@@ -95,6 +95,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
         type="multiplePicker"
       >
         <MultiplePickerGroup
+          value={defaultValue}
           {...props}
           disabled={mregedDisabled}
           data={aliasData}

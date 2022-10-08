@@ -129,6 +129,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
           }}
         >
           <FileGroup
+            value={defaultValue}
             {...props}
             disabled={mregedDisabled}
             onChange={fileChange}

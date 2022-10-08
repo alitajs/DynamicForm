@@ -19,7 +19,7 @@ export interface INomarFileProps extends BaseComponentProps {
     id: string | number;
     title: string;
   };
-  defaultValue?: INomarFileItemProps;
+  defaultValue?: INomarFileItemProps[];
   fileProps?: any;
   maxLength?: number;
 }
