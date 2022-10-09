@@ -4,7 +4,7 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile-v2';
-import { DformCheckBox } from '@alitajs/dform';
+import DformCheckBox from '../../';
 interface pageProps {
   onSubmit?: () => void;
 }

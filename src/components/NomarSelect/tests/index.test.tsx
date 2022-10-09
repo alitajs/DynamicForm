@@ -4,7 +4,7 @@ import Form from 'rc-field-form';
 import NomarSelect from '../index';
 import BasicText from './demos/basic';
 import CoupletText from './demos/couplet';
-import SingleText from '../demo/single';
+import SingleText from './demos/single';
 
 // //选择季节
 const seasons = [
@@ -88,38 +88,24 @@ test('render couplet', async () => {
   expect(getByText('杭州')).toBeDefined();
 });
 
-test('renders single', async () => {
-  const { getByText } = render(<SingleText />);
-
-  expect(getByText('福建省 福州市 鼓楼区')).toBeDefined();
+test('single basic', async () => {
+  const sbumit = jest.fn();
+  const { getByText, getAllByText } = render(<SingleText sbumit={sbumit} />);
   await waitFor(() => {
-    fireEvent.click(getByText('福建省 福州市 鼓楼区'));
+    fireEvent.click(getAllByText('请选择')[0]);
   });
   await waitFor(() => {
-    fireEvent.click(getByText('福建省'));
+    fireEvent.click(getByText('2013'));
   });
   await waitFor(() => {
-    fireEvent.click(getByText('河北省'));
-  });
-  await waitFor(() => {
-    fireEvent.click(getByText('石家庄市'));
-  });
-  await waitFor(() => {
-    fireEvent.click(getByText('长安区'));
+    fireEvent.click(getByText('春'));
   });
   await waitFor(() => {
     fireEvent.click(getByText('确定'));
   });
-
-  test('single basic', async () => {
-    const { getByLabelText } = render(<SingleText />);
-    await waitFor(() => {
-      fireEvent.click(getByText('2013'));
-    });
-    await waitFor(() => {
-      fireEvent.click(getByText('春'));
-    });
-    expect(getByLabelText('2013')).toHaveValue('2013');
-    expect(getByLabelText('春')).toHaveValue('春');
+  expect(getByText('2013,春')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('Submit'));
   });
+  expect(sbumit).toBeCalled();
 });
