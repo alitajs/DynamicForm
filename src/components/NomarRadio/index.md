@@ -9,9 +9,13 @@ nav:
 
 # Radio
 
-## 代码验演示
+## 代码演示
 
 <code src="./demo/index.tsx" />
+
+## 单独使用
+
+<code src="./demo/single.tsx" />
 
 ## API
 
