@@ -12,6 +12,7 @@ import Form from 'rc-field-form';
 import { getRandom } from '../../../index';
 import NomarFile from '../index';
 import TestPage from './demos/basic';
+import SingleText from './demos/single';
 
 const NomarFileTestPage = TestPage.NomarFileTestPage;
 const form = TestPage.forms;
@@ -95,4 +96,18 @@ test('passes file basic', async () => {
   await waitFor(() => {
     expect(onFinishFailed).toBeCalled();
   });
+});
+
+test('single basic', async () => {
+  const onSubmit = jest.fn();
+  const { getByText } = render(<SingleText onSubmit={onSubmit} />);
+  expect(document.querySelectorAll('.alitajs-dform-close').length).toBe(1);
+  expect(getByText('个人简历模板2020.pdf')).toBeDefined();
+  fireEvent.click(getByText('个人简历模板2020.pdf').parentNode?.lastChild!);
+  await sleep(500);
+  expect(document.querySelectorAll('.alitajs-dform-close').length).toBe(0);
+  await waitFor(() => {
+    fireEvent.click(getByText('Submit'));
+  });
+  expect(onSubmit).toBeCalled();
 });
