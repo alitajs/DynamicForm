@@ -13,6 +13,8 @@ nav:
 
 <code src="./demo/index.tsx" />
 
+## 单独使用
+
 <code src="./demo/single.tsx" />
 ## API
 

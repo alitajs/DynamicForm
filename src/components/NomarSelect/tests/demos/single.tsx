@@ -4,7 +4,7 @@
  */
 import React, { FC, useState } from 'react';
 import { Button, WhiteSpace } from 'antd-mobile-v2';
-import { DformSelect } from '@alitajs/dform';
+import DformSelect from '../../';
 interface pageProps {
   sbumit?: () => void;
 }

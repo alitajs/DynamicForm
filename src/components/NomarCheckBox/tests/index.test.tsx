@@ -12,7 +12,7 @@ import DformCheckBox from '../index';
 import BasicTest from './demos/basic';
 import CoupletText from './demos/couplet';
 import Formtest from './demos/formtest';
-import SingleText from '../demo/single';
+import SingleText from './demos/single';
 
 const fruitsList = [
   { foodId: 'apple', foodName: '苹果' },
@@ -124,15 +124,27 @@ it('This is test form', async () => {
 });
 
 test('single basic', async () => {
-  const { getByLabelText, getByText } = render(<SingleText />);
+  const onSubmit = jest.fn();
+  const { getByText } = render(<SingleText onSubmit={onSubmit} />);
+
+  expect(getByText('华为').parentNode?.firstChild).toHaveClass(
+    'alitajs-dform-box-botton-checked',
+  );
+  expect(getByText('这是华为手机')).toBeDefined();
+
   await waitFor(() => {
-    fireEvent.click(getByText('vivo'));
+    fireEvent.click(getByText('荣耀'));
   });
   await waitFor(() => {
-    fireEvent.click(getByText('xiaomi'));
+    fireEvent.click(getByText('华为'));
   });
-  expect(getByLabelText('vivo')).toHaveValue('vivo');
-  expect(getByLabelText('小米')).toHaveValue('xiaomi');
-  expect(getByLabelText('华为')).toHaveValue('huawei');
-  expect(getByLabelText('苹果')).toHaveValue('apple');
+  expect(getByText('荣耀').parentNode?.firstChild).toHaveClass(
+    'alitajs-dform-box-botton-checked',
+  );
+  expect(getByText('这是荣耀手机')).toBeDefined();
+  expect(getByText('这是华为手机')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('Submit'));
+  });
+  expect(onSubmit).toBeCalled();
 });
