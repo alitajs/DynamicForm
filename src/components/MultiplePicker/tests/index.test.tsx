@@ -3,6 +3,7 @@ import { render, testA11y, fireEvent, waitFor, sleep } from '@alita/test';
 import Form from 'rc-field-form';
 import NomarMultiplePicker from '..';
 import BasicTest from './demos/basic';
+import SingleText from './demos/single';
 
 const cityData = [
   { label: '北京', value: 'beijing' },
@@ -64,4 +65,26 @@ test('render Basic', async () => {
     fireEvent.click(getByText('Submit'));
   });
   expect(onFinish).toBeCalled();
+});
+
+test('single basic', async () => {
+  const onSbumit = jest.fn();
+  const { getByText, getAllByText } = render(
+    <SingleText onSbumit={onSbumit} />,
+  );
+  expect(getByText('红烧肉')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('红烧肉'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('可乐鸡翅'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('确定'));
+  });
+  expect(getByText('可乐鸡翅,红烧肉')).toBeDefined();
+  await waitFor(() => {
+    fireEvent.click(getByText('Submit'));
+  });
+  expect(onSbumit).toBeCalled();
 });
