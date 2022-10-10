@@ -109,7 +109,10 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
 
   return (
     <Title
-      independentProps={props}
+      independentProps={{
+        ...props,
+        positionType: isVertical ? 'vertical' : 'horizontal',
+      }}
       type="radio"
       style={boxStyle}
       titleStyle={titleStyle}

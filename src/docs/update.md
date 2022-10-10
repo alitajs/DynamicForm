@@ -12,6 +12,10 @@ nav:
 
 ## 3.9.X
 
+## 3.9.4
+
+修复`Radio`组件 `radioType`为`vertical`且`positionType`为`vertical`时，标题不展示的问题
+
 ### 3.9.3
 
 缩小包体积
