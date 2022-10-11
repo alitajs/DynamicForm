@@ -43,9 +43,6 @@ const RadioGroup: FC<INomarRadioGroupProps> = (props) => {
     undefined,
   );
   let isVertical = positionType === 'vertical';
-  if (radioType === 'vertical') {
-    isVertical = true;
-  }
 
   const labelCls = classnames({
     [`${allPrefixCls}-input-label-0`]: labelNumber === 0,

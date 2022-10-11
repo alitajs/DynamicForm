@@ -72,10 +72,6 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
     setAliasData(newData);
   }, [data]);
 
-  if (radioType === 'vertical') {
-    isVertical = true;
-  }
-
   const radioChange = (e: string | number | undefined) => {
     if (onChange) onChange(e);
   };
@@ -109,10 +105,7 @@ const DformRadio: FC<INomarRadioProps> = (props) => {
 
   return (
     <Title
-      independentProps={{
-        ...props,
-        positionType: isVertical ? 'vertical' : 'horizontal',
-      }}
+      independentProps={props}
       type="radio"
       style={boxStyle}
       titleStyle={titleStyle}

@@ -12,6 +12,10 @@ nav:
 
 ## 3.9.X
 
+## 3.9.5
+
+修复`Radio`组件 `radioType`为`vertical`且`positionType`为`horizontal`时，效果不生效的问题
+
 ## 3.9.4
 
 修复`Radio`组件 `radioType`为`vertical`且`positionType`为`vertical`时，标题不展示的问题

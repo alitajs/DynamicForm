@@ -2,9 +2,7 @@
 
 .@{prefixCls}-radio {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  // min-height: @alita-dform-height;
 
   &-field {
     flex: 1;
@@ -16,7 +14,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    flex: 1;
   }
 
   &-wrapper {
@@ -68,6 +65,11 @@
   &-wrapper-item-vertical {
     padding-bottom: 8 * @hd;
     padding-top: 8 * @hd;
+  }
+
+  &-wrapper-item-vertical:first-child {
+    padding-bottom: 8 * @hd;
+    padding-top: 0;
   }
 
   &-position {
