@@ -22,4 +22,6 @@ export interface INomarFileProps extends BaseComponentProps {
   defaultValue?: INomarFileItemProps[];
   fileProps?: any;
   maxLength?: number;
+  valueStyle?: React.CSSProperties;
+  itemExtra?: (item: INomarFileItemProps, index: number) => React.ReactNode;
 }

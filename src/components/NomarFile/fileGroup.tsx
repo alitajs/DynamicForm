@@ -9,6 +9,7 @@ const prefixCls = 'alitajs-dform-file';
 interface IFileGroupProps extends INomarFileProps {
   value?: INomarFileItemProps[];
   valueChange: (res: any[]) => void;
+  valueStyle?: React.CSSProperties;
 }
 
 const FileGroup: FC<IFileGroupProps> = (props) => {
@@ -19,6 +20,8 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
     alias = { id: 'id', title: 'title' },
     disabled = false,
     valueChange,
+    valueStyle,
+    itemExtra
   } = props;
 
   useEffect(() => {
@@ -41,6 +44,7 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
         <div key={item[alias.id || 'id']} className={`${prefixCls}-item`}>
           <span
             className={`${prefixCls}-title`}
+            style={valueStyle}
             onClick={() => {
               itemClick(item);
             }}
@@ -57,6 +61,7 @@ const FileGroup: FC<IFileGroupProps> = (props) => {
               className="alitajs-dform-close"
             />
           )}
+          {typeof itemExtra === "function" && <div className={`${prefixCls}-item-extra`}>{itemExtra(item, index)}</div>}
         </div>
       ))}
     </div>

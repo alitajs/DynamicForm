@@ -33,6 +33,8 @@ const DformFile: FC<INomarFileProps> = (props) => {
     boxStyle,
     titleStyle,
     formFlag = true,
+    valueStyle,
+    itemExtra
   } = props;
 
   const { cDisabled } = useContext<CardContextProps>(CardContext);
@@ -57,7 +59,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
   const fileIns = (e: ChangeEvent<HTMLInputElement> | any) => {
     if (e.target.files) {
       const fileList = Object.keys(e.target.files).map(
-        (item) => e.target.files[item],
+        (item) => {  return e.target.files[item]},
       );
       upload(fileList);
     }
@@ -134,6 +136,8 @@ const DformFile: FC<INomarFileProps> = (props) => {
             disabled={mregedDisabled}
             onChange={fileChange}
             valueChange={valueChange}
+            valueStyle={valueStyle}
+            itemExtra={itemExtra}
           />
         </Field>
       </div>

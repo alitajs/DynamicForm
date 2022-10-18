@@ -50,6 +50,11 @@ const Page: FC = () => {
           onClick={(res: any) => {
             console.log(res);
           }}
+          valueStyle={{ color: "#f40"}}
+          itemExtra={(item, index) => {
+            console.log(item, index);
+            return <div>预览</div>;
+          }}
           maxLength={3}
           onChange={(res: any, delItem: any) => {
             console.log(res, delItem);
