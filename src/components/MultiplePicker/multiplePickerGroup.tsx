@@ -128,6 +128,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
         clear={clear}
         clearClick={clearClick}
         extra={extra}
+        ellipsis={false}
       >
         {children}
       </TextItem>
