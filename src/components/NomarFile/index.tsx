@@ -62,6 +62,7 @@ const DformFile: FC<INomarFileProps> = (props) => {
         (item) => {  return e.target.files[item]},
       );
       upload(fileList);
+      e.target.value = ""
     }
   };
 
