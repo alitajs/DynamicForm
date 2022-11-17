@@ -10,18 +10,23 @@ const ImagePickerGroup: FC<ImagePickerGroupProps> = (props) => {
     compressRatio,
     value = [],
     maxLength,
+    disabled = false,
     ...otherProps
   } = props;
 
   const [selectable, setSelectable] = useState<boolean>(true);
 
   useEffect(() => {
+    if (disabled) {
+      setSelectable(false);
+      return;
+    }
     if (maxLength && value && value.length && value.length >= maxLength) {
       setSelectable(false);
     } else {
       setSelectable(true);
     }
-  }, [JSON.stringify(value || [])]);
+  }, [disabled, JSON.stringify(value || [])]);
 
   const checkFileLimit = (file: ImageFile) => {
     if (limitSize && file && file.size && file.size > limitSize) {

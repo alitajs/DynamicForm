@@ -50,7 +50,7 @@ const Page: FC = () => {
           onClick={(res: any) => {
             console.log(res);
           }}
-          valueStyle={{ color: "#f40"}}
+          valueStyle={{ color: '#f40' }}
           itemExtra={(item, index) => {
             console.log(item, index);
             return <div>预览</div>;

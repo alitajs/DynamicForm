@@ -77,7 +77,7 @@ const Page = () => {
           fieldProps="noInsertImg"
           title="不可添加图片"
           required
-          selectable={false}
+          disabled={true}
           defaultValue={fileList}
         />
         <DformImagePicker

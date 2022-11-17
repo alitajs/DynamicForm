@@ -28,7 +28,7 @@ nav:
 | hasStar       | 必填项红\*展示与否的判断                                                                                               | boolean                                                       | true   | 否       |
 | rules         | 规则校验(如需用到该字段，请重写 `required` 校验)                                                                       | array                                                         | []     | 否       |
 | disableDelete | 是否隐藏删除按钮                                                                                                       | boolean                                                       | false  | 否       |
-| selectable    | 是否显示添加按钮                                                                                                       | boolean                                                       | true   | 否       |
+| disabled      | 是否显示添加按钮                                                                                                       | boolean                                                       | true   | 否       |
 | onImageClick  | 点击图片触发的回调                                                                                                     | `(index: number, files: Object): void`                        |        | 否       |
 | onChange      | files 值发生变化触发的回调函数, operationType 操作类型有添加，移除，如果是移除操作，则第三个参数代表的是移除图片的索引 | `(files: Object, operationType: string, index: number): void` |        | 否       |
 | limitSize     | 图片大小限制, 度量长度为 `kb`                                                                                          | number                                                        |        | 否       |
