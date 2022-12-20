@@ -1,14 +1,17 @@
-export default {
-  esm: 'babel',
-  cjs: 'babel',
+import { defineConfig } from 'father';
+
+export default defineConfig({
+  esm: {
+    output: 'es',
+  },
+  cjs: {
+    output: 'lib',
+    platform: 'browser',
+  },
   umd: {
     name: 'DynamicForm',
-    globals: {
-      react: 'React',
-    },
+    output: 'dist',
   },
-  // disableTypeCheck: true,
-  cssModules: false,
   // extraBabelPlugins: [
   //   [
   //     'babel-plugin-import',
@@ -19,4 +22,4 @@ export default {
   //     },
   //   ],
   // ],
-};
+});
