@@ -169,7 +169,7 @@ const DformDatePicker: FC<INomarDatePickerProps> = (props) => {
       textAlign: 'center',
     };
     firstDateProps.onChange = (e: any) => {
-      setEndDate(e);
+      setBeginDate(e);
       onChange && onChange(e);
     };
     firstDateProps.labelNumber = isVertical ? 0 : labelNumber;
