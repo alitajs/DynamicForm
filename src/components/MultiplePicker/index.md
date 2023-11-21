@@ -49,21 +49,20 @@ nav:
 | clear          | 清空数据                                                                                                                              | boolean                       | `false`                            | 否       |
 | renderHeader   | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
 | renderFooter   | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
-| valueLink      | 选值联动                                                                                                                              | `Array<valueLink>`            | []                                 | 否       |
+| valueLink      | 选值联动                                                                                                                              | `ValueLinks`                  | []                                 | 否       |
 
-## valueLink
+## ValueLinks
 
-| 参数     | 说明             | 类型                      | 默认值 | 是否必填 |
-| -------- | ---------------- | ------------------------- | ------ | -------- |
-| linkList | 联动其他字段     | `Array<ChangeValueLinks>` | -      | 是       |
-| value    | 根据当前值的联动 | `string` or `number`      | -      | 是       |
+| 参数            | 说明         | 类型            | 默认值 | 是否必填 |
+| --------------- | ------------ | --------------- | ------ | -------- |
+| `[key: string]` | 联动其他字段 | `ChangeValLink` | -      | 是       |
 
-## ChangeValueLinks
+## ChangeValLink
 
-| 参数  | 说明             | 类型                 | 默认值 | 是否必填 |
-| ----- | ---------------- | -------------------- | ------ | -------- |
-| value | 根据当前值的联动 | `string` or `number` | -      | 是       |
-| isHas | 是否选中         | boolean              | -      | 是       |
+| 参数        | 说明         | 类型          | 默认值   | 是否必填 |
+| ----------- | ------------ | ------------- | -------- | -------- | --- |
+| linkVals    | 选中的值集   | `Array<string | number>` | -        | 否  |
+| unLlinkVals | 非选中的值集 | `Array<string | number>` | -        | 否  |
 
 ## 备注
 

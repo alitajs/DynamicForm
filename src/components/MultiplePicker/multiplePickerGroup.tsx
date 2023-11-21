@@ -1,12 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile-v2';
 import classnames from 'classnames';
-import {
-  IMultiplePickerProps,
-  IDataItem,
-  valueLink,
-  ChangeValueLinks,
-} from './interface';
+import { IMultiplePickerProps, IDataItem, ValueLinks } from './interface';
 import TextItem from '../../baseComponents/TextItem';
 import './index.less';
 
@@ -17,7 +12,7 @@ interface IMultiplePickerGroupProps
   onChange?: (values: (string | number)[] | undefined, flag?: string) => void;
   value?: (string | number)[] | undefined;
   children?: any;
-  valueLinks: Array<valueLink>;
+  valueLinks: ValueLinks;
 }
 
 const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
@@ -62,30 +57,32 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     if (
       Array.isArray(val) &&
       val.length > 0 &&
-      valueLinks.length > 0 &&
-      valueLinks.some(
-        (item) =>
-          val.some((it) => it === item.value) &&
-          item.linkList.some((it) => it?.isHas),
-      )
+      valueLinks &&
+      Object.keys(valueLinks)?.length > 0
     ) {
-      val.forEach((item) => {
-        if (
-          valueLinks.some(
-            (it) => item === it.value && it.linkList.some((i) => i?.isHas),
-          )
-        ) {
-          let linkObj = valueLinks.find(
-            (it) => item === it.value && it.linkList.some((i) => i?.isHas),
-          );
-          linkObj?.linkList.forEach((ele) => {
-            if (ele?.isHas) hasValue.push(ele.value);
-            else if (
-              !ele?.isHas &&
-              hasValue.some((i: string | number) => i === ele.value)
-            )
-              hasValue.splice(hasValue.indexOf(ele.value), 1);
-          });
+      val?.forEach((item, index, array: (string | number)[]) => {
+        if (valueLinks[item] && Object.keys(valueLinks[item]).length > 0) {
+          if (
+            valueLinks[item]?.linkVals &&
+            Array.isArray(valueLinks[item]?.linkVals)
+          ) {
+            valueLinks[item]?.linkVals?.forEach((it: string | number) => {
+              if (array?.some((i) => i === it)) {
+              } else {
+                hasValue.push(it);
+              }
+            });
+          }
+          if (
+            valueLinks[item]?.unLlinkVals &&
+            Array.isArray(valueLinks[item]?.unLlinkVals)
+          ) {
+            valueLinks[item]?.linkVals?.forEach((it: string | number) => {
+              if (array?.some((i) => i === it)) {
+                hasValue.splice(hasValue.indexOf(it), 1);
+              }
+            });
+          }
         }
       });
     }
@@ -113,23 +110,32 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     const list = JSON.parse(JSON.stringify(selValueList));
     if (
       !list.some((i: string | number) => i === val.value) &&
-      valueLinks.length > 0 &&
-      valueLinks.some((it: valueLink) => it?.value === val?.value)
+      valueLinks[val?.value] &&
+      Object.keys(valueLinks[val?.value]).length > 0
     ) {
-      const linkObj: valueLink | undefined = valueLinks.find(
-        (it: valueLink) => it.value === val.value,
-      );
-      if (linkObj && Object.keys(linkObj)?.length > 0) {
-        linkObj.linkList.forEach((item: ChangeValueLinks) => {
-          if (item?.isHas) list.push(item.value);
-          else if (
-            !item?.isHas &&
-            list.some((i: string | number) => i === item.value)
-          )
-            list.splice(list.indexOf(item.value), 1);
+      if (
+        valueLinks[val?.value]?.linkVals &&
+        Array.isArray(valueLinks[val?.value]?.linkVals)
+      ) {
+        valueLinks[val?.value]?.linkVals?.forEach((it: string | number) => {
+          if (list?.some((i: string | number) => i === it)) {
+          } else {
+            list.push(it);
+          }
+        });
+      }
+      if (
+        valueLinks[val?.value]?.unLlinkVals &&
+        Array.isArray(valueLinks[val?.value]?.unLlinkVals)
+      ) {
+        valueLinks[val?.value]?.unLlinkVals?.forEach((it: string | number) => {
+          if (list?.some((i: string | number) => i === it)) {
+            list.splice(list.indexOf(it), 1);
+          }
         });
       }
     }
+
     if (list.indexOf(val.value) !== -1) {
       list.splice(list.indexOf(val.value), 1);
     } else {
@@ -139,6 +145,30 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
       list.shift();
     }
     setSelValueList(list);
+  };
+
+  const isHasLink = (value: string | number): boolean => {
+    let isNoHasLink = false;
+    if (valueLinks && Object.keys(valueLinks).length > 0) {
+      selValueList.forEach((item) => {
+        if (valueLinks[item] && Object.keys(valueLinks[item]).length > 0) {
+          if (
+            valueLinks[item]?.linkVals &&
+            Array.isArray(valueLinks[item]?.linkVals) &&
+            valueLinks[item]?.linkVals?.some((i) => i === value)
+          ) {
+            isNoHasLink = true;
+          } else if (
+            valueLinks[item]?.unLlinkVals &&
+            Array.isArray(valueLinks[item]?.unLlinkVals) &&
+            valueLinks[item]?.unLlinkVals?.some((i) => i === value)
+          ) {
+            isNoHasLink = true;
+          }
+        }
+      });
+    }
+    return isNoHasLink;
   };
 
   const openMoal = () => {
@@ -232,14 +262,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
               <div
                 className="alitajs-dform-multiple-picker-item"
                 onClick={() => {
-                  if (
-                    valueLinks.some(
-                      (it) =>
-                        selValueList.some((i) => i === it?.value) &&
-                        it.linkList.some((e) => e.value === item?.value),
-                    )
-                  )
-                    return;
+                  if (isHasLink(item.value)) return;
                   pickerClick(item);
                 }}
               >
@@ -248,11 +271,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
                     'alitajs-dform-multiple-picker-label': true,
                     'alitajs-dform-multiple-picker-checked':
                       selValueList.indexOf(item?.value) !== -1,
-                    'alitajs-dform-box-wrapper-disabled': valueLinks.some(
-                      (it) =>
-                        selValueList.some((i) => i === it?.value) &&
-                        it.linkList.some((e) => e.value === item?.value),
-                    ),
+                    'alitajs-dform-box-wrapper-disabled': isHasLink(item.value),
                   })}
                 >
                   {item.label}

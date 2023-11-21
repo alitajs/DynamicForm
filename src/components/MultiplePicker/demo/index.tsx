@@ -79,30 +79,15 @@ const Page: FC = () => {
             value: 'foodId',
           }}
           defaultValue={['清蒸小黄鱼', '宫保鸡丁']}
-          valueLinks={[
-            {
-              value: '清蒸小黄鱼',
-              linkList: [
-                {
-                  value: '爆炒虾仁',
-                  isHas: true,
-                },
-                {
-                  value: '可乐鸡翅',
-                  isHas: false,
-                },
-              ],
+          valueLinks={{
+            清蒸小黄鱼: {
+              linkVals: ['爆炒虾仁', '铁板牛肉'],
+              unLlinkVals: ['可乐鸡翅'],
             },
-            {
-              value: '宫保鸡丁',
-              linkList: [
-                {
-                  value: '红烧肉',
-                  isHas: false,
-                },
-              ],
+            宫保鸡丁: {
+              unLlinkVals: ['红烧肉'],
             },
-          ]}
+          }}
           clear
         />
         <MultiplePicker

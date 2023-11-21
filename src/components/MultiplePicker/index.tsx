@@ -36,7 +36,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     titleStyle,
     formFlag = true,
     disabled = false,
-    valueLinks = [],
+    valueLinks = {},
   } = props;
 
   const { cDisabled } = useContext<CardContextProps>(CardContext);

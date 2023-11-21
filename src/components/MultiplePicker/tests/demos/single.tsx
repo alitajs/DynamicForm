@@ -51,30 +51,15 @@ const Page: FC<pageProps> = (props) => {
         formFlag={false}
         defaultValue={mulValue}
         clear
-        valueLinks={[
-          {
-            value: '清蒸小黄鱼',
-            linkList: [
-              {
-                value: '爆炒虾仁',
-                isHas: true,
-              },
-              {
-                value: '可乐鸡翅',
-                isHas: false,
-              },
-            ],
+        valueLinks={{
+          清蒸小黄鱼: {
+            linkVals: ['爆炒虾仁'],
+            unLlinkVals: ['可乐鸡翅'],
           },
-          {
-            value: '宫保鸡丁',
-            linkList: [
-              {
-                value: '红烧肉',
-                isHas: false,
-              },
-            ],
+          宫保鸡丁: {
+            unLlinkVals: ['红烧肉'],
           },
-        ]}
+        }}
         onChange={(e: (string | number)[]) => setMulValue(e)}
       />
       <WhiteSpace size="sm" />

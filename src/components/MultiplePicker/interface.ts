@@ -6,14 +6,13 @@ export interface IDataItem {
   [key: string]: string | number;
 }
 
-export interface ChangeValueLinks {
-  value: string | number;
-  isHas: Boolean;
+export interface ChangeValLink {
+  linkVals?: Array<string | number>;
+  unLlinkVals?: Array<string | number>;
 }
 
-export interface valueLink {
-  value: string | number;
-  linkList: Array<ChangeValueLinks>;
+export interface ValueLinks {
+  [key: string]: ChangeValLink;
 }
 export interface IMultiplePickerProps extends BaseComponentProps {
   data: IDataItem[];
@@ -31,5 +30,5 @@ export interface IMultiplePickerProps extends BaseComponentProps {
   defaultValue?: (string | number)[] | undefined;
   clear?: boolean;
   arrow?: boolean;
-  valueLinks?: Array<valueLink>;
+  valueLinks?: ValueLinks;
 }
