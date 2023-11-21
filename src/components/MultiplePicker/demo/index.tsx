@@ -25,6 +25,10 @@ const Page: FC = () => {
 
   const foodList = [
     {
+      foodName: '东坡肉',
+      foodId: '东坡肉',
+    },
+    {
       foodName: '宫保鸡丁',
       foodId: '宫保鸡丁',
     },
@@ -43,6 +47,10 @@ const Page: FC = () => {
     {
       foodName: '红烧肉',
       foodId: '红烧肉',
+    },
+    {
+      foodName: '铁板牛肉',
+      foodId: '铁板牛肉',
     },
   ];
   const formsValues = {
@@ -70,7 +78,31 @@ const Page: FC = () => {
             label: 'foodName',
             value: 'foodId',
           }}
-          defaultValue={['爆炒虾仁', '宫保鸡丁']}
+          defaultValue={['清蒸小黄鱼', '宫保鸡丁']}
+          valueLinks={[
+            {
+              value: '清蒸小黄鱼',
+              linkList: [
+                {
+                  value: '爆炒虾仁',
+                  isHas: true,
+                },
+                {
+                  value: '可乐鸡翅',
+                  isHas: false,
+                },
+              ],
+            },
+            {
+              value: '宫保鸡丁',
+              linkList: [
+                {
+                  value: '红烧肉',
+                  isHas: false,
+                },
+              ],
+            },
+          ]}
           clear
         />
         <MultiplePicker

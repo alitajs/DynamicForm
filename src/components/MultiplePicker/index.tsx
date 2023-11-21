@@ -36,6 +36,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
     titleStyle,
     formFlag = true,
     disabled = false,
+    valueLinks = [],
   } = props;
 
   const { cDisabled } = useContext<CardContextProps>(CardContext);
@@ -101,6 +102,7 @@ const MultiplePicker: FC<IMultiplePickerProps> = (props) => {
           data={aliasData}
           onChange={fieldChange}
           fieldProps={fieldKey}
+          valueLinks={valueLinks}
         >
           <HorizontalTitle
             required={required}

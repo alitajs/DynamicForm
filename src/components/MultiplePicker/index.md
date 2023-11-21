@@ -49,6 +49,21 @@ nav:
 | clear          | 清空数据                                                                                                                              | boolean                       | `false`                            | 否       |
 | renderHeader   | 组件头部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
 | renderFooter   | 组件尾部                                                                                                                              | `string` or `React.ReactNode` | ''                                 | 否       |
+| valueLink      | 选值联动                                                                                                                              | `Array<valueLink>`            | []                                 | 否       |
+
+## valueLink
+
+| 参数     | 说明             | 类型                      | 默认值 | 是否必填 |
+| -------- | ---------------- | ------------------------- | ------ | -------- |
+| linkList | 联动其他字段     | `Array<ChangeValueLinks>` | -      | 是       |
+| value    | 根据当前值的联动 | `string` or `number`      | -      | 是       |
+
+## ChangeValueLinks
+
+| 参数  | 说明             | 类型                 | 默认值 | 是否必填 |
+| ----- | ---------------- | -------------------- | ------ | -------- |
+| value | 根据当前值的联动 | `string` or `number` | -      | 是       |
+| isHas | 是否选中         | boolean              | -      | 是       |
 
 ## 备注
 

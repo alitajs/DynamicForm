@@ -67,6 +67,26 @@ const Page: FC<BasicProps> = ({ onFinish, onFinishFailed, onChange }) => {
             label: 'foodName',
             value: 'foodId',
           }}
+          valueLinks={[
+            {
+              value: '清蒸小黄鱼',
+              linkList: [
+                {
+                  value: '爆炒虾仁',
+                  isHas: true,
+                },
+              ],
+            },
+            {
+              value: '宫保鸡丁',
+              linkList: [
+                {
+                  value: '红烧肉',
+                  isHas: false,
+                },
+              ],
+            },
+          ]}
           onChange={onChange}
         />
         <MultiplePicker
