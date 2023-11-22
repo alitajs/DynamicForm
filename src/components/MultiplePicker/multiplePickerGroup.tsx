@@ -71,7 +71,6 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
         });
       }
     }
-    console.log({ valueArr });
     return [...valueArr];
   };
 
