@@ -1,7 +1,12 @@
 import React, { FC, useState, useEffect } from 'react';
 import { Modal, List } from 'antd-mobile-v2';
 import classnames from 'classnames';
-import { IMultiplePickerProps, IDataItem } from './interface';
+import {
+  IMultiplePickerProps,
+  IDataItem,
+  ValueLinks,
+  ChangeValLink,
+} from './interface';
 import TextItem from '../../baseComponents/TextItem';
 import './index.less';
 
@@ -12,6 +17,7 @@ interface IMultiplePickerGroupProps
   onChange?: (values: (string | number)[] | undefined, flag?: string) => void;
   value?: (string | number)[] | undefined;
   children?: any;
+  valueLinks: ValueLinks;
 }
 
 const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
@@ -36,6 +42,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     clear = false,
     extra,
     arrow,
+    valueLinks,
   } = props;
 
   const [selValueList, setSelValueList] = useState<(string | number)[]>([]); // 当前选中的值列表
@@ -44,13 +51,49 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
 
   const isVertical = positionType === 'vertical';
 
+  const setValueList = (
+    changeValLink: ChangeValLink,
+    hasValue: (string | number)[],
+    oldValue: (string | number)[],
+  ): (string | number)[] => {
+    let valueArr: (string | number)[] = hasValue;
+    if (changeValLink && Object.keys(changeValLink).length > 0) {
+      if (changeValLink?.linkVals) {
+        valueArr = Array.from(
+          new Set([...valueArr, ...(changeValLink?.linkVals || [])]),
+        );
+      }
+      if (changeValLink?.unLlinkVals) {
+        changeValLink?.unLlinkVals?.forEach((it: string | number) => {
+          if (oldValue?.some((i) => i === it)) {
+            valueArr.splice(valueArr.indexOf(it), 1);
+          }
+        });
+      }
+    }
+    return [...valueArr];
+  };
+
   /**
    * 设值
    * @param da 数据源
    * @param val 值
    */
   const setValues = (da: IDataItem[], val: (string | number)[] | undefined) => {
-    const filter = da.filter((item) => val?.indexOf(item.value) !== -1);
+    let hasValue = Array.isArray(val) && val.length > 0 ? [...val] : [];
+
+    if (
+      Array.isArray(val) &&
+      val.length > 0 &&
+      valueLinks &&
+      Object.keys(valueLinks)?.length > 0
+    ) {
+      val?.forEach((item, index, array: (string | number)[]) => {
+        hasValue = setValueList(valueLinks[item], hasValue, array);
+      });
+    }
+
+    const filter = da.filter((item) => hasValue?.indexOf(item.value) !== -1);
     const labels = filter.map((item) => item.label);
     const values = filter.map((item) => item.value);
     setMultipleLabel(labels.join(','));
@@ -62,15 +105,22 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     const { labels, values } = setValues(data, value || []);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
-  }, [value]);
+  }, [value, JSON.stringify(valueLinks)]);
   useEffect(() => {
     const { labels, values } = setValues(data, value || []);
     setMultipleLabel(labels.join(','));
     setSelValueList(values);
-  }, [data]);
+  }, [data, JSON.stringify(valueLinks)]);
 
   const pickerClick = (val: IDataItem) => {
-    const list = JSON.parse(JSON.stringify(selValueList));
+    let list = JSON.parse(JSON.stringify(selValueList));
+    if (
+      !list.some((i: string | number) => i === val.value) &&
+      valueLinks[val?.value] &&
+      Object.keys(valueLinks[val?.value]).length > 0
+    ) {
+      list = setValueList(valueLinks[val?.value], list, list);
+    }
     if (list.indexOf(val.value) !== -1) {
       list.splice(list.indexOf(val.value), 1);
     } else {
@@ -80,6 +130,25 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
       list.shift();
     }
     setSelValueList(list);
+  };
+
+  const isHasLink = (value: string | number): boolean => {
+    let isNoHasLink = false;
+    if (valueLinks && Object.keys(valueLinks).length > 0) {
+      selValueList.forEach((item) => {
+        if (valueLinks[item] && Object.keys(valueLinks[item]).length > 0) {
+          if (
+            (valueLinks[item]?.linkVals &&
+              valueLinks[item]?.linkVals?.some((i) => i === value)) ||
+            (valueLinks[item]?.unLlinkVals &&
+              valueLinks[item]?.unLlinkVals?.some((i) => i === value))
+          ) {
+            isNoHasLink = true;
+          }
+        }
+      });
+    }
+    return isNoHasLink;
   };
 
   const openMoal = () => {
@@ -173,6 +242,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
               <div
                 className="alitajs-dform-multiple-picker-item"
                 onClick={() => {
+                  if (isHasLink(item.value)) return;
                   pickerClick(item);
                 }}
               >
@@ -181,6 +251,7 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
                     'alitajs-dform-multiple-picker-label': true,
                     'alitajs-dform-multiple-picker-checked':
                       selValueList.indexOf(item?.value) !== -1,
+                    'alitajs-dform-box-wrapper-disabled': isHasLink(item.value),
                   })}
                 >
                   {item.label}

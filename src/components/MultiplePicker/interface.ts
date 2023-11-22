@@ -6,6 +6,14 @@ export interface IDataItem {
   [key: string]: string | number;
 }
 
+export interface ChangeValLink {
+  linkVals?: Array<string | number>;
+  unLlinkVals?: Array<string | number>;
+}
+
+export interface ValueLinks {
+  [key: string]: ChangeValLink;
+}
 export interface IMultiplePickerProps extends BaseComponentProps {
   data: IDataItem[];
   onChange?: (currentActiveLink: (string | number)[]) => void;
@@ -22,4 +30,5 @@ export interface IMultiplePickerProps extends BaseComponentProps {
   defaultValue?: (string | number)[] | undefined;
   clear?: boolean;
   arrow?: boolean;
+  valueLinks?: ValueLinks;
 }

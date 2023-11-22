@@ -72,9 +72,23 @@ test('single basic', async () => {
   const { getByText, getAllByText } = render(
     <SingleText onSbumit={onSbumit} />,
   );
-  expect(getByText('红烧肉')).toBeDefined();
+  expect(getByText('宫保鸡丁')).toBeDefined();
   await waitFor(() => {
-    fireEvent.click(getByText('红烧肉'));
+    fireEvent.click(getByText('宫保鸡丁'));
+  });
+  await waitFor(() => {
+    fireEvent.click(getByText('清蒸小黄鱼'));
+  });
+  await waitFor(() => {
+    expect(getByText('红烧肉')).toHaveClass(
+      'alitajs-dform-box-wrapper-disabled',
+    );
+    expect(getByText('爆炒虾仁')?.parentElement?.lastChild).toHaveClass(
+      'alitajs-dform-tick',
+    );
+    expect(getByText('可乐鸡翅')).toHaveClass(
+      'alitajs-dform-box-wrapper-disabled',
+    );
   });
   await waitFor(() => {
     fireEvent.click(getByText('可乐鸡翅'));
@@ -82,7 +96,7 @@ test('single basic', async () => {
   await waitFor(() => {
     fireEvent.click(getByText('确定'));
   });
-  expect(getByText('可乐鸡翅,红烧肉')).toBeDefined();
+  expect(getByText('宫保鸡丁,爆炒虾仁,清蒸小黄鱼')).toBeDefined();
   await waitFor(() => {
     fireEvent.click(getByText('Submit'));
   });

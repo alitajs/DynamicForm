@@ -34,7 +34,7 @@ interface pageProps {
 }
 const Page: FC<pageProps> = (props) => {
   const { onSbumit } = props;
-  const [mulValue, setMulValue] = useState<(string | number)[]>(['红烧肉']);
+  const [mulValue, setMulValue] = useState<(string | number)[]>(['宫保鸡丁']);
   return (
     <>
       <MultiplePicker
@@ -51,6 +51,15 @@ const Page: FC<pageProps> = (props) => {
         formFlag={false}
         defaultValue={mulValue}
         clear
+        valueLinks={{
+          清蒸小黄鱼: {
+            linkVals: ['爆炒虾仁'],
+            unLlinkVals: ['可乐鸡翅'],
+          },
+          宫保鸡丁: {
+            unLlinkVals: ['红烧肉'],
+          },
+        }}
         onChange={(e: (string | number)[]) => setMulValue(e)}
       />
       <WhiteSpace size="sm" />
