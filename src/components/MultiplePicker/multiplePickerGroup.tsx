@@ -55,13 +55,24 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
     changeValLink: ChangeValLink,
     hasValue: (string | number)[],
     oldValue: (string | number)[],
+    currentValue?: IDataItem,
   ): (string | number)[] => {
     let valueArr: (string | number)[] = hasValue;
     if (changeValLink && Object.keys(changeValLink).length > 0) {
       if (changeValLink?.linkVals) {
-        valueArr = Array.from(
-          new Set([...valueArr, ...(changeValLink?.linkVals || [])]),
-        );
+        if (
+          currentValue?.value &&
+          oldValue.some((item) => item === currentValue?.value)
+        ) {
+          let oldValueList = oldValue.filter((item) => {
+            return !changeValLink.linkVals?.some((it) => it === item);
+          });
+          valueArr = Array.from(new Set([...oldValueList]));
+        } else {
+          valueArr = Array.from(
+            new Set([...valueArr, ...(changeValLink?.linkVals || [])]),
+          );
+        }
       }
       if (changeValLink?.unLlinkVals) {
         changeValLink?.unLlinkVals?.forEach((it: string | number) => {
@@ -115,11 +126,10 @@ const MultiplePickerGroup: FC<IMultiplePickerGroupProps> = (props) => {
   const pickerClick = (val: IDataItem) => {
     let list = JSON.parse(JSON.stringify(selValueList));
     if (
-      !list.some((i: string | number) => i === val.value) &&
       valueLinks[val?.value] &&
       Object.keys(valueLinks[val?.value]).length > 0
     ) {
-      list = setValueList(valueLinks[val?.value], list, list);
+      list = setValueList(valueLinks[val?.value], list, list, val);
     }
     if (list.indexOf(val.value) !== -1) {
       list.splice(list.indexOf(val.value), 1);

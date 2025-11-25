@@ -60,9 +60,9 @@ nav:
 ## ChangeValLink
 
 | 参数        | 说明         | 类型          | 默认值   | 是否必填 |
-| ----------- | ------------ | ------------- | -------- | -------- | --- |
-| linkVals    | 选中的值集   | `Array<string | number>` | -        | 否  |
-| unLlinkVals | 非选中的值集 | `Array<string | number>` | -        | 否  |
+| ----------- | ------------ | ------------- | -------- | -------- |
+| linkVals    | 选中的值集   | `Array<string \| number> ` | -         | 否  |
+| unLlinkVals | 非选中的值集 | `Array<string \| number> ` | -         | 否  |
 
 ## 备注
 
